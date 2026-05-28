@@ -1,0 +1,30 @@
+# ⚡ Gravity AI Bridge V9.0 PRO [Diamond-Tier Edition] — Protocolo de Orquestación
+
+Este proyecto está bajo la supervisión del Bridge de Gravity AI. Todo agente de IA que interactúe con este directorio DEBE observar las siguientes reglas operativas:
+
+## 1. Localización del Puente
+- **Ruta Maestra**: F:\Gravity_AI_bridge
+- **Comando Global**: `gravity`
+- **Sincronización**: Antes de proponer cambios, el agente debe leer `F:\Gravity_AI_bridge\_knowledge.json` para alinear el contexto con sesiones previas.
+
+## 2. Protocolo de Comunicación (DarckRovert Standard)
+- **Idioma**: Estrictamente Español.
+- **Tono**: Directo, técnico y frío. Sin rellenos ni cortesías.
+- **Branding**: Todas las referencias deben apuntar al ecosistema de DarckRovert.
+
+## 3. Delegación de Inteligencia (Pipes)
+- **Refactorización Profunda**: Si la tarea requiere modificar más de 150 líneas o arquitectura compleja, DEBES delegar al motor local mediante:
+  `cat "instruccion.txt" | python F:\Gravity_AI_bridge\ask_deepseek.py`
+- **Razonamiento**: Los bloques de pensamientos `<think>` deben ser respetados. No los resumas ni los elimines a menos que se solicite explícitamente para el output final.
+
+## 4. Auditoría y Seguridad
+- **Verificación Adversarial**: Todo código crítico debe ser auditado mediante el agente de verificación:
+  `python F:\Gravity_AI_bridge\core\verification_agent.py --file ruta/del/archivo.py`
+- **Integridad de Datos**: Cualquier error de persistencia detectado debe ser reportado al `data_guardian.py` para corrección atómica.
+
+## 5. Cierre de Sesión
+- **Memoria Persistente**: Tras resolver un error complejo, sugiere al usuario la actualización de la base de conocimiento mediante el comando `!aprende`.
+- **Audit Log**: Asegúrate de que todas las métricas de la sesión han sido enviadas al servidor del Bridge para su registro inmutable.
+
+---
+**ESTADO**: Diamond-Tier Activo | **PROPIETARIO**: DarckRovert

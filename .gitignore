@@ -1,0 +1,13 @@
+# System Files
+.DS_Store
+Thumbs.db
+*.log
+
+# Design Assets Source (if any added later)
+*.psd
+*.ai
+
+# Deployment
+.netlify/
+dist/
+node_modules/
