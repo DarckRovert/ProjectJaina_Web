@@ -44,20 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const rand = Math.random();
             if (rand > 0.82) {
-                this.color = 
-gba(212, 175, 55, ); // Andean Gold (#D4AF37)
+                this.color = `rgba(212, 175, 55, ${this.opacity})`; // Andean Gold (#D4AF37)
             } else if (rand > 0.60) {
-                this.color = 
-gba(220, 38, 38, ); // Blood Red
+                this.color = `rgba(220, 38, 38, ${this.opacity})`; // Blood Red
             } else if (rand > 0.35) {
-                this.color = 
-gba(147, 51, 234, ); // Void Purple
+                this.color = `rgba(147, 51, 234, ${this.opacity})`; // Void Purple
             } else if (rand > 0.12) {
-                this.color = 
-gba(74, 222, 128, ); // Fel Green
+                this.color = `rgba(74, 222, 128, ${this.opacity})`; // Fel Green
             } else {
-                this.color = 
-gba(56, 189, 248, ); // Northrend Frost
+                this.color = `rgba(56, 189, 248, ${this.opacity})`; // Northrend Frost
             }
         }
 
