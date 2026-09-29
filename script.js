@@ -43,14 +43,21 @@ document.addEventListener('DOMContentLoaded', () => {
             this.opacity = Math.random() * 0.5 + 0.2;
 
             const rand = Math.random();
-            if (rand > 0.88) {
-                this.color = `rgba(220, 38, 38, ${this.opacity})`; // Blood Red
-            } else if (rand > 0.55) {
-                this.color = `rgba(147, 51, 234, ${this.opacity})`; // Void Purple
-            } else if (rand > 0.2) {
-                this.color = `rgba(74, 222, 128, ${this.opacity})`; // Fel Green
+            if (rand > 0.82) {
+                this.color = 
+gba(212, 175, 55, ); // Andean Gold (#D4AF37)
+            } else if (rand > 0.60) {
+                this.color = 
+gba(220, 38, 38, ); // Blood Red
+            } else if (rand > 0.35) {
+                this.color = 
+gba(147, 51, 234, ); // Void Purple
+            } else if (rand > 0.12) {
+                this.color = 
+gba(74, 222, 128, ); // Fel Green
             } else {
-                this.color = `rgba(220, 38, 38, ${this.opacity})`; // Blood Red (lore)
+                this.color = 
+gba(56, 189, 248, ); // Northrend Frost
             }
         }
 
@@ -239,3 +246,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+/* =========================================================================
+   6. GLOBAL CLIPBOARD COPY UTILITY (WoW Peru Addons, Realmlist & Slash Cmds)
+   ========================================================================= */
+window.copyToClipboard = function(text, btnElement, successMsg = '¡COPIADO!') {
+    if (!text) return;
+    
+    const fallbackCopy = (str) => {
+        const el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error('Fallback copy failed', err);
+        }
+        document.body.removeChild(el);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+    } else {
+        fallbackCopy(text);
+    }
+
+    if (btnElement) {
+        const origText = btnElement.getAttribute('data-orig-text') || btnElement.innerHTML;
+        if (!btnElement.getAttribute('data-orig-text')) {
+            btnElement.setAttribute('data-orig-text', origText);
+        }
+        btnElement.innerHTML = `<span style="color:#4ade80;font-weight:bold;">✓ ${successMsg}</span>`;
+        btnElement.classList.add('copied');
+        setTimeout(() => {
+            btnElement.innerHTML = origText;
+            btnElement.classList.remove('copied');
+        }, 2200);
+    }
+};
+
+window.copyRepoUrl = function(url, btnElement) {
+    window.copyToClipboard(url, btnElement, '¡URL COPIADA!');
+};

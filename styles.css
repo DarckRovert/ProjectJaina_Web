@@ -28,6 +28,16 @@
     --grad-pink: linear-gradient(135deg, #b5179e, var(--neon-pink));
     --grad-lore: linear-gradient(135deg, var(--neon-pink), var(--void-purple));
     
+        /* Andean & Frost WotLK Additions (WoW Peru Reino Andino) */
+    --gold-andino: #D4AF37;
+    --gold-dark: #8B7500;
+    --gold-glow: rgba(212, 175, 55, 0.35);
+    --grad-gold: linear-gradient(135deg, #D4AF37, #F5D77F);
+    --frost-ice: #38bdf8;
+    --frost-dark: #0284c7;
+    --frost-glow: rgba(56, 189, 248, 0.3);
+    --grad-frost: linear-gradient(135deg, #0284c7, #38bdf8);
+
     /* Fonts */
     --font-cinzel: 'Cinzel', serif;
     --font-inter: 'Inter', sans-serif;
@@ -1294,7 +1304,7 @@ body {
 .install-btn:hover { box-shadow: 0 0 30px rgba(245, 158, 11, 0.6); color: #000; }
 
 /* ============================================================
-   CORE CARD (Arsenal Grid WCS_Brain)
+   CORE CARD (Arsenal Grid Sequito RaidSuite)
    ============================================================ */
 .core-card-grid {
     border-color: rgba(147, 51, 234, 0.6) !important;
@@ -2067,4 +2077,105 @@ button.addon-dl-link:active {
         max-width: 320px;
         margin: 0 auto;
     }
+}
+
+/* ============================================================
+   WOW PERU - REINO ANDINO THEME EXTENSIONS
+   ============================================================ */
+.gold-btn {
+    border-color: var(--gold-andino) !important;
+    color: #fff !important;
+    box-shadow: 0 0 20px var(--gold-glow);
+}
+.gold-btn .cyber-button-glitch {
+    background: var(--grad-gold) !important;
+}
+
+.frost-btn {
+    border-color: var(--frost-ice) !important;
+    color: #fff !important;
+    box-shadow: 0 0 20px var(--frost-glow);
+}
+.frost-btn .cyber-button-glitch {
+    background: var(--grad-frost) !important;
+}
+
+.badge-andino {
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: #fde047 !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+}
+
+.badge-frost {
+    background: rgba(56, 189, 248, 0.15) !important;
+    color: #7dd3fc !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+}
+
+.badge-official {
+    background: linear-gradient(135deg, #b45309, #d97706) !important;
+    color: #fff !important;
+    font-weight: 800;
+}
+
+.text-gold {
+    color: var(--gold-andino) !important;
+}
+
+.andino-highlight {
+    color: var(--gold-andino);
+    text-shadow: 0 0 15px var(--gold-glow);
+}
+
+.realmlist-box {
+    background: rgba(10, 5, 20, 0.85);
+    border: 1px solid var(--gold-andino);
+    border-radius: 12px;
+    padding: 1.2rem 1.8rem;
+    font-family: monospace;
+    color: #fde047;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.realmlist-code {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.copy-pill-btn {
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--gold-andino);
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+    font-family: var(--font-inter);
+}
+
+.copy-pill-btn:hover {
+    background: var(--gold-andino);
+    color: #000;
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.slash-cmd-tag {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 6px;
+    padding: 0.2rem 0.6rem;
+    font-family: monospace;
+    color: #fde047;
+    font-size: 0.85rem;
+    margin: 0.2rem 0.3rem 0.2rem 0;
 }

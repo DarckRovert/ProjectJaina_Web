@@ -1,89 +1,97 @@
 <div align="center">
-  <img src="assets/logo.png" alt="El Séquito del Terror" width="200">
-  <h1>El Séquito del Terror — Portal Oficial</h1>
-  <p><strong>La hermandad más letal de Turtle WoW tiene su propio ecosistema digital.</strong></p>
+  <img src="assets/logo.png" alt="El Séquito" width="180">
+  <h1>El Séquito — Portal Oficial</h1>
+  <p><strong>La hermandad más letal y avanzada de WoW Perú (Reino Andino) tiene su propio ecosistema digital.</strong></p>
 </div>
 
 ---
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
 [![Open Source](https://img.shields.io/badge/Open%20Source-Netlify-green)](https://opensource-form.netlify.com/)
-[![Turtle WoW](https://img.shields.io/badge/Turtle%20WoW-1.12.1-orange)](https://turtle-wow.org/)
+[![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://wow-peru.lat/)
+[![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú%20(Reino%20Andino)-gold.svg)](https://wow-peru.lat/)
+[![Version](https://img.shields.io/badge/version-6.0.0-brightgreen.svg)](https://github.com/DarckRovert/SequitoWeb/releases)
 
-## 🌐 ¿Qué es este repositorio?
+---
 
-Este repositorio contiene el **código fuente Front-End** de la página de aterrizaje oficial de **El Séquito del Terror**, la hermandad Warlock de élite del servidor Turtle WoW. Construida puramente con HTML5, CSS3 e interacciones síncronas en JS Vainilla en un diseño *Cyber-Void* brutalista.
+## 👁️ ¿Qué es este repositorio?
 
-##  Secciones del Portal
+Este repositorio contiene el **código fuente Front-End** de la página de aterrizaje oficial de **El Séquito**, la hermandad de élite del servidor **WoW Perú — Reino Andino (WotLK 3.3.5a Build 12340)**, liderada por **Elnazzareno** (DarckRovert). 
+
+Construida con HTML5 semántico, CSS3 moderno con estética *Cyber-Void & Oro Andino* y JavaScript Vanilla reactivo acelerado por GPU, diseñada para ofrecer máxima velocidad de carga e impacto visual sin dependencias pesadas.
+
+---
+
+## 🏛️ Secciones del Portal
 
 | Sección | Contenido |
 |---|---|
-| **Hero** | Presentación del clan y llamadas a la acción |
-| **Lore** | Crónicas canónicas de Elnazzareno y la dominación del Vacío |
-| **Arsenal** | Los 14 addons del ecosistema con links a GitHub |
-| **Wiki** | Guías de instalación, FAQ y Manual de Usuario |
-| **Miembros** | Galería del Séquito |
-| **Reclutamiento** | Requisitos y formulario de Discord |
-| **Footer** | Licencia, Conducta y badge Netlify |
-
-## 🏗️ Stack Técnico
-
-- **HTML5** — Semántico y accesible
-- **CSS3** — Variables CSS, glassmorphism, animaciones
-- **JavaScript Vanilla** — Sin frameworks, funcionalidad mínima
-- **Fuentes**: Google Fonts (Rajdhani, Cinzel)
-- **Hosting**: Netlify (Open Source Plan)
-
-## 🔒 Open Source
-
-Este proyecto está postulado para el **Netlify Open Source Plan** y cumple con todos los requisitos:
-1. ✅ **Licencia OSI** — MIT License
-2. ✅ **Código de Conducta** — Contributor Covenant v2.1
-3. ✅ **Badge de Atribución** — "Powered by Netlify" en el footer
-4. ✅ **Proyecto No Comercial** — Sin fines de lucro, proyecto comunitario
-
-## ⚙️ Despliegue Local
-
-```bash
-# Clona el repositorio
-git clone https://github.com/DarckRovert/SequitoWeb.git
-
-# Abre el archivo directamente en el navegador
-# (no requiere servidor — es HTML estático puro)
-open index.html
-```
-
-## 🔗 Ecosistema de Addons
-
-Este portal es la cara pública del ecosistema de addons de El Séquito del Terror:
-
-| Categoría | Addon | Repositorio |
-|---|---|---|
-| **Core** | WCS_Brain v9.3.1 | [Ver](https://github.com/DarckRovert/WCS_Brain-v9.3.1-God-Tier) |
-| | pfUI v7.3.4 | [Ver](https://github.com/DarckRovert/pfUI-El-Sequito-del-Terror-Edition) |
-| | pfQuest v5.3.3 | [Ver](https://github.com/DarckRovert/pfQuest-El-Sequito-del-Terror-Edition) |
-| | QuestVoice v1.0.2 | [Ver](https://github.com/DarckRovert/QuestVoice-El-Sequito-del-Terror-Edition) |
-| | Atlas-TW v1.8.4 | [Ver](https://github.com/DarckRovert/AtlasTW-TurtleWoW-El-Sequito-del-Terror-Edition) |
-| | WIM v1.3.4 | [Ver](https://github.com/DarckRovert/WIM-El-Sequito-del-Terror-Edition) |
-| **IA & Motores** | Esbirro del Terror (IA) | [Ver](https://github.com/DarckRovert/Esbirro_del_Terror) |
-| | Gravity AI Bridge v8.0.0 PRO | [Ver](https://github.com/DarckRovert/Gravity_AI_bridge) |
-| **Combate** | TerrorSquadAI v1.0.4 | [Ver](https://github.com/DarckRovert/TerrorSquadAI) |
-| | TerrorMeter v1.2.0 | [Ver](https://github.com/DarckRovert/TerrorMeter-El-Sequito-del-Terror-Edition) |
-| | BigWigs v2.0.1 | [Ver](https://github.com/DarckRovert/BigWigs-El-Sequito-del-Terror-Edition) |
-| | HealBot v1.12.0 | [Ver](https://github.com/DarckRovert/HealBot-El-Sequito-del-Terror-Edition) |
-| **Utilidades** | DoTimer v1.5.0 | [Ver](https://github.com/DarckRovert/DoTimer-El-Sequito-del-Terror-Edition) |
-| | EquipCompare v1.1.0 | [Ver](https://github.com/DarckRovert/EquipCompare-El-Sequito-del-Terror-Edition) |
-| | StatCompare v1.2.0 | [Ver](https://github.com/DarckRovert/StatCompare-El-Sequito-del-Terror-Edition) |
-| **Economía** | Auctionator v1.2.2 | [Ver](https://github.com/DarckRovert/Auctionator-El-Sequito-del-Terror-Edition) |
-| | AUX-Trading v2.0.1 | [Ver](https://github.com/DarckRovert/AUX-Trading-El-Sequito-del-Terror-Edition) |
-
-## 🕸️ Gobernanza
-
-- ⚖️ [Licencia MIT](./LICENSE)
-- 🤝 [Código de Conducta](./CODE_OF_CONDUCT.md)
-- 🛠️ [Guía de Contribución](./CONTRIBUTING.md)
+| **Hero** | Presentación de la hermandad en el Reino Andino y llamadas a la acción |
+| **El Líder** | Perfil, rol y enlaces de transmisión de Elnazzareno |
+| **Lore** | Las Crónicas canónicas del Vacío y la conquista de la Forja Andina (Actos I al V) |
+| **Arsenal 3.3.5a** | Los 5 pilares oficiales del ecosistema de addons de WoW Perú con enlaces a GitHub |
+| **Desarrolladores** | Arquitectura de Gravity AI Bridge V15.1 PRO y herramientas locales |
+| **Instalación** | Guía de configuración del `realmlist.wtf`, copiado interactivo y descarga de addons |
+| **Miembros** | Convocatoria y cónclave de guerreros del clan |
+| **Reclutamiento** | Requisitos para bandas de nivel 80 (ICC, Ulduar, ToC, RS) y Discord |
+| **Tributo & Footer** | Mantenimiento comunitario, licencia MIT y atribución Netlify |
 
 ---
-© 2026 **DarckRovert (Elnazzareno)** — El Séquito del Terror  
+
+## ⚡ Stack Técnico
+
+- **HTML5** — Semántico, modular y accesible.
+- **CSS3 Moderno** — Variables CSS (`--gold-andino`, `--void-purple`, `--fel-green`, `--frost-ice`), glassmorphism y aceleración por hardware.
+- **JavaScript Vanilla (ES6+)** — Sin dependencias (Zero-Frameworks), motor de partículas Canvas 2D y observers de visibilidad.
+- **Fuentes Web**: Google Fonts (*Cinzel* para títulos de fantasía oscura, *Inter* para claridad de datos).
+- **Hosting**: Netlify (Open Source Plan).
+
+---
+
+## 🌐 Ecosistema Oficial de Addons (WoW Perú 3.3.5a)
+
+El portal es la vitrina oficial de las herramientas desarrolladas por DarckRovert y el equipo de WoW Perú:
+
+| Addon / Sistema | Versión | Propósito Principal | Repositorio Oficial |
+| :--- | :--- | :--- | :--- |
+| **`WoWPeru_RaidSuite`** | `v11.0.0` | Suite de combate, macros 30 specs, Loot Council, HUD y wipes | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_RaidSuite) |
+| **`WoWPeru_BattlePass`** | `v2.0.0` | Pase de Batalla estacional de 50 niveles (La Forja Andina) | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_BattlePass) |
+| **`WoWPeru_Companion`** | `v1.0.1` | Hub social meta-ligero, radar P2P de grupo y anuncios | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_Companion) |
+| **`WoWPeru_GameModes`** | `v1.0.0` | Selector cinematográfico de retos Hardcore (1 vida) e Ironman | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_GameModes) |
+| **`WowPeruVisualShop`** | `v1.0.0` | Catálogo cosmético de 18 alas dinámicas, 40+ auras y títulos | [Ver Repositorio](https://github.com/DarckRovert/WowPeruVisualShop) |
+| **`Gravity AI Bridge`** | `v15.1 PRO` | Orquestador local-first de IA y herramientas para desarrolladores | [Ver Repositorio](https://github.com/DarckRovert/Gravity_AI_bridge) |
+
+---
+
+## 🚀 Conexión Rápida a WoW Perú
+
+1. Abre tu archivo `realmlist.wtf` en la carpeta de tu cliente WoW 3.3.5a:
+   ```text
+   set realmlist logon.wow-peru.lat
+   ```
+2. Instala los addons en `World of Warcraft\Interface\AddOns\`.
+3. Inicia el juego, marca **"Cargar accesorios desactualizados"** en el menú de AddOns y únete a nuestras filas.
+
+---
+
+## 📖 Documentación & Wiki
+
+- 🏛️ [Arquitectura del Sistema (wiki/Arquitectura.md)](wiki/Arquitectura.md)
+- ❓ [Preguntas Frecuentes (wiki/FAQ.md)](wiki/FAQ.md)
+- 📜 [Manual de Usuario (wiki/Manual_Usuario.md)](wiki/Manual_Usuario.md)
+- 💻 [Guía de la API de Frontend (wiki/Guia_API.md)](wiki/Guia_API.md)
+
+---
+
+## ⚖️ Gobernanza & Open Source
+
+Este proyecto está postulado para el **Netlify Open Source Plan** y cumple con todos sus lineamientos:
+1. ✅ **Licencia OSI** — [Licencia MIT](./LICENSE).
+2. ✅ **Código de Conducta** — [Contributor Covenant v2.1](./CODE_OF_CONDUCT.md).
+3. ✅ **Badge de Atribución** — "Powered by Netlify" en el footer y documentación.
+4. ✅ **Proyecto Comunitario No Comercial** — Sin fines de lucro.
+
+---
+© 2026 **DarckRovert (Elnazzareno)** — El Séquito | [WoW Perú — Reino Andino](https://wow-peru.lat/)
 
 [![Powered by Netlify](https://img.shields.io/badge/Powered%20by-Netlify-00C7B7?logo=netlify&logoColor=white)](https://www.netlify.com)
