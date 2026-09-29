@@ -6,7 +6,7 @@ Este documento describe la arquitectura técnica, el sistema de diseño y la int
 - **Frontend**: HTML5 Semántico y Accesible.
 - **Estilos**: CSS3 Moderno con Variables CSS, Grid Layout, Flexbox y Glassmorphism.
 - **Lógica**: JavaScript Vanilla (ES6+), sin frameworks pesados (Zero-Dependencies).
-- **Alojamiento**: Netlify (Open Source Plan).
+- **Alojamiento**: GitHub Pages (Servido directamente desde el repositorio oficial mediante GitHub Actions).
 
 ## 2. Sistema de Diseño (Cyber-Void & Oro Andino)
 La estética del portal fusiona la mística del Vacío con la identidad cultural y épica del **Reino Andino**:

@@ -3,14 +3,13 @@ setlocal EnableDelayedExpansion
 color 0B
 
 :: ==========================================================
-:: EL SEQUITO DEL TERROR - DESPLIEGUE WEB GOD-TIER V2.0 PRO 🚀
+:: EL SÉQUITO - DESPLIEGUE A GITHUB PAGES V3.0 🚀
 :: ==========================================================
-:: Optimizacion: Gravity AI Bridge - Senior Audit Mode
-:: Proposito: Sincronizacion del portal oficial SequitoWeb
+:: Sincronización del portal oficial SequitoWeb en GitHub Pages
 :: ==========================================================
 
 set LOG_FILE=%cd%\deploy_log.txt
-echo [INIT] Iniciando despliegue de alta disponibilidad - %DATE% %TIME% > "%LOG_FILE%"
+echo [INIT] Iniciando sincronizacion - %DATE% %TIME% > "%LOG_FILE%"
 
 :: 1. Verificar dependencias
 where git >nul 2>nul
@@ -21,11 +20,11 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-:: 2. Obtener Fecha Corregida (Independiente de Localizacion)
+:: 2. Obtener Fecha Corregida
 for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
 set FECHA=%datetime:~0,4%-%datetime:~4,2%-%datetime:~6,2%
 set HORA=%datetime:~8,2%%datetime:~10,2%
-set COMMIT_MSG=feat: SequitoWeb Diamond-Tier deployment %FECHA% %HORA%
+set COMMIT_MSG=feat: SequitoWeb GitHub Pages sync %FECHA% %HORA%
 
 echo Procediendo con la sincronizacion del portal...
 echo.
@@ -41,10 +40,8 @@ if not exist "%cd%\.git" (
     exit /b 1
 )
 
-:: Sincronizar URL de Remote por seguridad
 git remote set-url origin "https://github.com/DarckRovert/SequitoWeb.git" >> "%LOG_FILE%" 2>&1
 
-:: Verificar si hay cambios reales
 set CHANGES_FOUND=0
 for /f "tokens=*" %%i in ('git status --porcelain') do (
     set CHANGES_FOUND=1
@@ -62,28 +59,26 @@ echo %COMMIT_MSG% > LAST_DEPLOY_WEB.txt
 
 git add . >> "%LOG_FILE%" 2>&1
 git commit -m "%COMMIT_MSG%" >> "%LOG_FILE%" 2>&1
-
-:: Asegurar rama main
 git branch -M main >> "%LOG_FILE%" 2>&1
 
-:: Push a main y asegurar master (Dual-Push)
-echo [SequitoWeb] Subiendo a GitHub...
-git push origin main HEAD:master --force >> "%LOG_FILE%" 2>&1
+echo [SequitoWeb] Subiendo a GitHub main...
+git push origin main >> "%LOG_FILE%" 2>&1
 
 if %ERRORLEVEL% EQU 0 (
     echo.
     echo ==========================================================
-    echo           RESUMEN DE OPERACION COMMANDER
+    echo           DESPLIEGUE A GITHUB PAGES EXITOSO
     echo ==========================================================
-    echo [OK] SequitoWeb sincronizado en GitHub.
-    echo [OK] Ramas main/master actualizadas.
+    echo [OK] SequitoWeb sincronizado en GitHub (rama main).
+    echo [OK] El workflow de GitHub Actions desplegara la web en:
+    echo      https://darckrovert.github.io/SequitoWeb/
     echo ==========================================================
 ) else (
     echo.
     echo ==========================================================
-    echo [!] FALLO CRITICO EN EL DESPLIEGUE
+    echo [!] FALLO EN EL DESPLIEGUE
     echo ==========================================================
-    echo [TIP]: Revisa deploy_log.txt para mas detalles técnicos.
+    echo [TIP]: Revisa deploy_log.txt para mas detalles tecnicos.
 )
 
 echo [SequitoWeb] --- End: %TIME% --- >> "%LOG_FILE%"

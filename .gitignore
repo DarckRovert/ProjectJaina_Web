@@ -8,6 +8,5 @@ Thumbs.db
 *.ai
 
 # Deployment
-.netlify/
 dist/
 node_modules/

@@ -7,7 +7,7 @@
 ---
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
-[![Open Source](https://img.shields.io/badge/Open%20Source-Netlify-green)](https://opensource-form.netlify.com/)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/SequitoWeb/)
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://wow-peru.lat/)
 [![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú%20(Reino%20Andino)-gold.svg)](https://wow-peru.lat/)
 [![Version](https://img.shields.io/badge/version-6.0.0-brightgreen.svg)](https://github.com/DarckRovert/SequitoWeb/releases)
@@ -34,7 +34,7 @@ Construida con HTML5 semántico, CSS3 moderno con estética *Cyber-Void & Oro An
 | **Instalación** | Guía de configuración del `realmlist.wtf`, copiado interactivo y descarga de addons |
 | **Miembros** | Convocatoria y cónclave de guerreros del clan |
 | **Reclutamiento** | Requisitos para bandas de nivel 80 (ICC, Ulduar, ToC, RS) y Discord |
-| **Tributo & Footer** | Mantenimiento comunitario, licencia MIT y atribución Netlify |
+| **Tributo & Footer** | Mantenimiento comunitario, licencia MIT y GitHub Pages |
 
 ---
 
@@ -44,7 +44,7 @@ Construida con HTML5 semántico, CSS3 moderno con estética *Cyber-Void & Oro An
 - **CSS3 Moderno** — Variables CSS (`--gold-andino`, `--void-purple`, `--fel-green`, `--frost-ice`), glassmorphism y aceleración por hardware.
 - **JavaScript Vanilla (ES6+)** — Sin dependencias (Zero-Frameworks), motor de partículas Canvas 2D y observers de visibilidad.
 - **Fuentes Web**: Google Fonts (*Cinzel* para títulos de fantasía oscura, *Inter* para claridad de datos).
-- **Hosting**: Netlify (Open Source Plan).
+- **Hosting**: GitHub Pages (CDN global de alta disponibilidad).
 
 ---
 
@@ -85,13 +85,13 @@ El portal es la vitrina oficial de las herramientas desarrolladas por DarckRover
 
 ## ⚖️ Gobernanza & Open Source
 
-Este proyecto está postulado para el **Netlify Open Source Plan** y cumple con todos sus lineamientos:
+Este proyecto es de código abierto y cumple con los estándares de la comunidad:
 1. ✅ **Licencia OSI** — [Licencia MIT](./LICENSE).
 2. ✅ **Código de Conducta** — [Contributor Covenant v2.1](./CODE_OF_CONDUCT.md).
-3. ✅ **Badge de Atribución** — "Powered by Netlify" en el footer y documentación.
+3. ✅ **Alojamiento Web** — Desplegado y distribuido globalmente mediante **GitHub Pages**.
 4. ✅ **Proyecto Comunitario No Comercial** — Sin fines de lucro.
 
 ---
 © 2026 **DarckRovert (Elnazzareno)** — El Séquito | [WoW Perú — Reino Andino](https://wow-peru.lat/)
 
-[![Powered by Netlify](https://img.shields.io/badge/Powered%20by-Netlify-00C7B7?logo=netlify&logoColor=white)](https://www.netlify.com)
+[![Hosted with GitHub Pages](https://img.shields.io/badge/Hosted%20with-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/SequitoWeb/)

@@ -4,6 +4,16 @@ Todas las modificaciones notables de este proyecto están documentadas en este a
 
 ---
 
+## [6.0.1] - 2026-09-28
+
+### 🚀 Migración de Hosting: Netlify → GitHub Pages
+- **Eliminación Total de Netlify:** Erradicados todos los badges, enlaces y referencias a Netlify en index.html, README.md, wiki/Arquitectura.md y .gitignore.
+- **Workflow de GitHub Actions:** Creado .github/workflows/deploy-pages.yml para compilar y desplegar automáticamente la web en **GitHub Pages** (https://darckrovert.github.io/SequitoWeb/) en cada push a main.
+- **Actualización de Scripts:** Modernizado Deploy_SequitoWeb.bat eliminando comandos antiguos dual-push a master y garantizando sincronización exclusiva sobre main.
+- **Eliminación de Assets Obsoletos:** Removido ssets/netlify-badge.svg.
+
+---
+
 ## [6.0.0] - 2026-09-28
 
 ### 🌟 Migración Oficial a WoW Perú (Reino Andino - WotLK 3.3.5a)
