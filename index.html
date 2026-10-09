@@ -49,6 +49,47 @@
             <a href="#como-jugar" class="btn-secondary">📥 Descargar Launcher Oficial</a>
         </div>
 
+        <!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
+        <div class="grand-opening-card" id="grandOpeningCard">
+            <div class="opening-badge-header">
+                <span class="opening-sparkle">✨</span>
+                <span class="opening-badge-text">GRAN APERTURA MUNDIAL · 24 DE NOVIEMBRE DE 2026</span>
+                <span class="opening-sparkle">✨</span>
+            </div>
+            <h2 class="opening-title">Cuenta Regresiva para la Apertura Oficial</h2>
+            <p class="opening-subtitle">El portal de Project JAIna abrirá sus puertas a aventureros de todo el mundo. Prepara tu hermandad y únete a la revolución de Lore Viviente con IA Neuronal y Audio Espacial 3D.</p>
+            
+            <div class="countdown-clock-grid">
+                <div class="countdown-tile">
+                    <div class="countdown-number" id="openingDays">00</div>
+                    <div class="countdown-label">DÍAS</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-tile">
+                    <div class="countdown-number" id="openingHours">00</div>
+                    <div class="countdown-label">HORAS</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-tile">
+                    <div class="countdown-number" id="openingMinutes">00</div>
+                    <div class="countdown-label">MINUTOS</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-tile">
+                    <div class="countdown-number highlight-pulse" id="openingSeconds">00</div>
+                    <div class="countdown-label">SEGUNDOS</div>
+                </div>
+            </div>
+
+            <div class="opening-progress-track">
+                <div class="opening-progress-fill" id="openingProgressFill"></div>
+            </div>
+            <div class="opening-meta-info">
+                <span>🕒 Hora Oficial de Apertura: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
+                <span>🌐 Realmlist Canónico: <strong>set realmlist projectjaina.com</strong></span>
+            </div>
+        </div>
+
         <!-- STATUS REALM METRIC BAR -->
         <div class="status-bar-card">
             <div class="status-metric">
@@ -59,6 +100,14 @@
                 </div>
             </div>
             <div class="status-metric">
+                <div class="metric-label">Tiempo Activo (Uptime)</div>
+                <div class="metric-value monospace-num" id="serverUptime">00d 00h 00m 00s</div>
+            </div>
+            <div class="status-metric">
+                <div class="metric-label">Era Activa</div>
+                <div class="metric-value" id="activeEraCap" style="color: #39d353;">TBC (Lv 70)</div>
+            </div>
+            <div class="status-metric">
                 <div class="metric-label">Héroes en el Mundo</div>
                 <div class="metric-value" id="onlinePlayers">--</div>
             </div>
@@ -67,7 +116,7 @@
                 <div class="metric-value" id="totalAccounts">--</div>
             </div>
             <div class="status-metric">
-                <div class="metric-label">Dominio & Realmlist Canónico</div>
+                <div class="metric-label">Dominio & Realmlist</div>
                 <div class="metric-value" style="font-size: 1.1rem; color: var(--gold-primary);">projectjaina.com</div>
             </div>
         </div>
@@ -79,6 +128,92 @@
             <h2 class="timeline-title">LÍNEA DE FASES & REINOS PROGRESIVOS</h2>
             <p class="timeline-subtitle">Evolución canónica de contenido, bandas y temporadas gobernadas por el Motor de Lore Viviente de Gravity AI</p>
             <div id="activeEraBadge" class="active-era-pill">🌟 Era Activa: <strong>World of Warcraft The Burning Crusade</strong> (Cap Nivel 70)</div>
+        </div>
+
+        <!-- HUD DE TELEMETRÍA EN VIVO & TRANSICIÓN DE ERAS -->
+        <div class="live-transition-hud" id="liveTransitionHUD">
+            <div class="hud-top-bar">
+                <div class="hud-indicator">
+                    <span class="hud-dot"></span>
+                    <span class="hud-title">CRONÓMETRO DE REINO & TELEMETRÍA DE ERAS EN VIVO</span>
+                </div>
+                <div class="hud-uptime-badge">
+                    <span class="hud-label">UPTIME ACTIVO:</span>
+                    <span class="hud-val monospace" id="hudServerUptime">00d 00h 00m 00s</span>
+                </div>
+            </div>
+
+            <!-- Flujo Visual de Transición: Vanilla ➔ TBC ➔ Naxxramas... -->
+            <div class="transition-flow-container">
+                <div class="flow-step step-completed">
+                    <div class="flow-step-icon">✓</div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-tag">FASE 1 · CULMINADA</div>
+                        <div class="flow-step-name">Vanilla Classic (Cap 60)</div>
+                    </div>
+                </div>
+                <div class="flow-step-arrow">➔</div>
+                <div class="flow-step step-current pulse-glow">
+                    <div class="flow-step-icon">⚡</div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-tag current-tag">ERA ACTUAL EN CURSO</div>
+                        <div class="flow-step-name">The Burning Crusade (Cap 70)</div>
+                        <div class="flow-step-time" id="tbcElapsedTime">Tiempo en Era: Calculando...</div>
+                    </div>
+                </div>
+                <div class="flow-step-arrow">➔</div>
+                <div class="flow-step step-next">
+                    <div class="flow-step-icon">⏳</div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-tag">SIGUIENTE TRANSICIÓN</div>
+                        <div class="flow-step-name">WotLK Naxxramas (Cap 80)</div>
+                        <div class="flow-step-time" id="nextPhaseCountdown">Apertura en: Calculando...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Transición Sincronizada -->
+            <div class="transition-gauge-container">
+                <div class="gauge-labels">
+                    <span>Progreso de Transición de Era: <strong id="transitionPercentText">0.0%</strong></span>
+                    <span>Gobernado por: <strong>Gravity AI Autonomous Chrono-Master</strong></span>
+                </div>
+                <div class="gauge-bar-track">
+                    <div class="gauge-bar-fill" id="transitionGaugeFill" style="width: 38%;"></div>
+                </div>
+            </div>
+
+            <!-- Parámetros en Tiempo Real del Servidor -->
+            <div class="hud-params-grid">
+                <div class="param-box">
+                    <span class="param-icon">🛡️</span>
+                    <div>
+                        <div class="param-name">Gating de Contenido</div>
+                        <div class="param-val" id="paramGating">Eluna Gate v2.0 (Activo)</div>
+                    </div>
+                </div>
+                <div class="param-box">
+                    <span class="param-icon">🧠</span>
+                    <div>
+                        <div class="param-name">Motor Neuronal IA</div>
+                        <div class="param-val" id="paramAI">Jaina LLM (Qwen 2.5 3B)</div>
+                    </div>
+                </div>
+                <div class="param-box">
+                    <span class="param-icon">🎧</span>
+                    <div>
+                        <div class="param-name">Audio Espacial 3D</div>
+                        <div class="param-val" id="paramVoice">HRTF 3050 Online</div>
+                    </div>
+                </div>
+                <div class="param-box">
+                    <span class="param-icon">⏱️</span>
+                    <div>
+                        <div class="param-name">Tickrate / Latencia Core</div>
+                        <div class="param-val" id="paramTickrate">~12 ms (Estable)</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="timeline-scroll-wrapper">
@@ -191,5 +326,6 @@
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
     <script src="js/progression.js"></script>
+    <script src="js/countdown.js"></script>
 </body>
 </html>

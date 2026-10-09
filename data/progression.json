@@ -4,6 +4,20 @@
   "version": "1.0.0",
   "last_updated": "2026-10-09T04:30:00Z",
   "governed_by": "Gravity AI Bridge (Autonomous Chrono-Master)",
+  "server_launch_date": "2026-11-24T00:00:00-05:00",
+  "server_start_time": "2026-10-09T00:00:00-05:00",
+  "current_phase_start": "2026-10-01T00:00:00-05:00",
+  "next_phase_target": "2027-01-15T00:00:00-05:00",
+  "active_phase_name": "World of Warcraft The Burning Crusade",
+  "active_level_cap": 70,
+  "realmlist": "projectjaina.com",
+  "world_tickrate_ms": 12,
+  "telemetry": {
+    "engine_version": "TrinityCore / AzerothCore v3.3.5a",
+    "eluna_gate": "v2.0 Enforced",
+    "living_lore_ai": "Active (Local Qwen 2.5 3B)",
+    "audio_spatial": "3D HRTF Port 3050"
+  },
   "phases": [
     {
       "id": "vanilla",
