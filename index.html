@@ -20,6 +20,7 @@
         </a>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="#linea-de-fases">Línea de Fases</a></li>
             <li><a href="#living-lore">Lore Viviente</a></li>
             <li><a href="registro.html">Crear Cuenta</a></li>
             <li><a href="armeria.html">Armería</a></li>
@@ -71,6 +72,21 @@
             </div>
         </div>
     </header>
+
+    <!-- LÍNEA DE FASES (PROGRESSION TIMELINE) -->
+    <section id="linea-de-fases" class="timeline-section">
+        <div class="timeline-header">
+            <h2 class="timeline-title">LÍNEA DE FASES & REINOS PROGRESIVOS</h2>
+            <p class="timeline-subtitle">Evolución canónica de contenido, bandas y temporadas gobernadas por el Motor de Lore Viviente de Gravity AI</p>
+            <div id="activeEraBadge" class="active-era-pill">🌟 Era Activa: <strong>World of Warcraft The Burning Crusade</strong> (Cap Nivel 70)</div>
+        </div>
+
+        <div class="timeline-scroll-wrapper">
+            <div id="timelineRail" class="timeline-rail">
+                <!-- Nodos renderizados dinámicamente por js/progression.js -->
+            </div>
+        </div>
+    </section>
 
     <!-- LIVING LORE FEATURE SHOWCASE -->
     <section id="living-lore" class="factions-section">
@@ -174,5 +190,6 @@
     <!-- SCRIPTS -->
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/progression.js"></script>
 </body>
 </html>

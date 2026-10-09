@@ -1,0 +1,256 @@
+{
+  "realm_name": "Project JAIna",
+  "active_phase_id": "tbc",
+  "version": "1.0.0",
+  "last_updated": "2026-10-09T04:30:00Z",
+  "governed_by": "Gravity AI Bridge (Autonomous Chrono-Master)",
+  "phases": [
+    {
+      "id": "vanilla",
+      "code": "VANILLA",
+      "name": "World of Warcraft Classic",
+      "subtitle": "La Era de las Leyendas Originales",
+      "patch": "1.12.1",
+      "status": "completed",
+      "status_label": "COMPLETADA",
+      "level_cap": 60,
+      "logo": "images/phases/vanilla.png",
+      "banner_color": "#a0a5aa",
+      "glow_color": "rgba(160, 165, 170, 0.4)",
+      "raids": [
+        "Núcleo de Magma (Molten Core)",
+        "Guarida de Onyxia (Lvl 60)",
+        "Guarida de Alanegra (Blackwing Lair)",
+        "Zul'Gurub (ZG)",
+        "Ruinas de Ahn'Qiraj (AQ20)",
+        "Templo de Ahn'Qiraj (AQ40)",
+        "Naxxramas Clásico (Lvl 60)"
+      ],
+      "dungeons": [
+        "Cumbre de Roca Negra",
+        "Profundidades de Roca Negra",
+        "Stratholme",
+        "Scholomance",
+        "La Masacre (Dire Maul)"
+      ],
+      "world_events": [
+        "Apertura de las Puertas de Ahn'Qiraj",
+        "Invasión de la Plaga Pre-Naxxramas"
+      ],
+      "unlock_requirements": "Hito Histórico Conquistado al 100%.",
+      "jaina_lore": "«Recordamos los sacrificios de las Tres Guerras y los cimientos de Theramore. El pasado forjó nuestro temple ante la tormenta venidera.»"
+    },
+    {
+      "id": "tbc",
+      "code": "TBC",
+      "name": "World of Warcraft The Burning Crusade",
+      "subtitle": "La Cruzada Ardiente & El Portal Oscuro",
+      "patch": "2.4.3",
+      "status": "active",
+      "status_label": "FASE ACTUAL",
+      "level_cap": 70,
+      "logo": "images/phases/tbc.png",
+      "banner_color": "#39d353",
+      "glow_color": "rgba(57, 211, 83, 0.7)",
+      "raids": [
+        "Karazhan (Torre de Medivh)",
+        "Guarida de Gruul",
+        "Guarida de Magtheridon",
+        "Caverna Santuario Serpiente (SSC)",
+        "El Castillo de la Tempestad (El Ojo)",
+        "La Batalla del Monte Hyjal (Cumbre de Hyjal)",
+        "El Templo Oscuro (Illidan Tempestira)",
+        "Zul'Aman (Los Dioses de Zul)",
+        "Meseta de La Fuente del Sol (Kil'jaeden)"
+      ],
+      "dungeons": [
+        "Península del Fuego Infernal (3 mazmorras)",
+        "Marisma de Zangar (3 mazmorras)",
+        "Bosque de Terokkar / Auchindoun (4 mazmorras)",
+        "Tormenta Abisal (3 mazmorras)",
+        "Bancal del Magister (Isla de Quel'Danas)"
+      ],
+      "world_events": [
+        "Campaña de la Isla de Quel'Danas",
+        "Defensa de Theramore contra incursiones abisales"
+      ],
+      "unlock_requirements": "Fase Activa en Curso. El Portal Oscuro está abierto y la Legión Ardiente es repelida en Terrallende.",
+      "jaina_lore": "«El destino de Terrallende pende de un hilo. Debemos purificar la Fuente del Sol y asegurar la caída de Kil'jaeden antes de volver nuestros ojos hacia el gélido norte.»"
+    },
+    {
+      "id": "naxx",
+      "code": "NAXX",
+      "name": "Curse of Naxxramas",
+      "subtitle": "La Plaga en Rasganorte (Tier 7)",
+      "patch": "3.0.9",
+      "status": "upcoming",
+      "status_label": "LÍNEA DE FASES",
+      "level_cap": 80,
+      "logo": "images/phases/naxx.png",
+      "banner_color": "#00e5ff",
+      "glow_color": "rgba(0, 229, 255, 0.5)",
+      "raids": [
+        "Naxxramas 80 (10/25)",
+        "El Ojo de la Eternidad (Malygos 10/25)",
+        "El Sagrario Obsidiana (Sartharion + 3 Drakes)",
+        "La Cámara de Archavon (Archavon)"
+      ],
+      "dungeons": [
+        "Mazmorras de Rasganorte Nivel 70-80 (Modo Heroico)",
+        "Fortaleza de Utgarde",
+        "El Nexo",
+        "Azjol-Nerub",
+        "Bastión Violeta de Dalaran",
+        "Gundrak",
+        "Salas de Piedra & Relámpagos"
+      ],
+      "world_events": [
+        "Llegada de la Alianza y Horda a Tundra Boreal y Fiordo Aquilonal",
+        "Establecimiento del Santuario Arcano de Dalaran"
+      ],
+      "unlock_requirements": "Caída de Kil'jaeden en Meseta de la Fuente del Sol y Desembarco de la Flota en Rasganorte.",
+      "jaina_lore": "«Arthas... el Rey Exánime despierta desde su Trono Helado. Naxxramas se cierne sobre Rasganorte. No descansaré hasta que el azote de la Plaga sea erradicado.»"
+    },
+    {
+      "id": "ulduar",
+      "code": "ULDUAR",
+      "name": "Secrets of Ulduar",
+      "subtitle": "Los Secretos de los Titanes & Yogg-Saron (Tier 8)",
+      "patch": "3.1.3",
+      "status": "upcoming",
+      "status_label": "LÍNEA DE FASES",
+      "level_cap": 80,
+      "logo": "images/phases/ulduar.png",
+      "banner_color": "#00b0ff",
+      "glow_color": "rgba(0, 176, 255, 0.5)",
+      "raids": [
+        "Ulduar (10/25 - Normal & Hardmodes)",
+        "Algalon el Observador (Batalla de 1 Hora)",
+        "Cámara de Archavon (Emalon el Vigía de la Tormenta)"
+      ],
+      "dungeons": [
+        "Mazmorras Heroicas con Runa Titánica"
+      ],
+      "world_events": [
+        "Descubrimiento de la Ciudadela de los Creadores",
+        "Consejo de Dalaran ante el despertar del Dios Antiguo Yogg-Saron"
+      ],
+      "unlock_requirements": "Conquista de Naxxramas (Kel'Thuzad derrotado en modo 25 jugadores) y autorización del Kirin Tor.",
+      "jaina_lore": "«Las maquinaciones de Yogg-Saron amenazan la misma cordura de Azeroth. Ni siquiera los Titanes previeron el veneno del Dios Antiguo en los guardianes de Ulduar.»"
+    },
+    {
+      "id": "toc",
+      "code": "TOC",
+      "name": "Call of the Crusade",
+      "subtitle": "La Llamada de la Cruzada & Torneo Argenta (Tier 9)",
+      "patch": "3.2.2a",
+      "status": "upcoming",
+      "status_label": "LÍNEA DE FASES",
+      "level_cap": 80,
+      "logo": "images/phases/toc.png",
+      "banner_color": "#ffd600",
+      "glow_color": "rgba(255, 214, 0, 0.5)",
+      "raids": [
+        "Prueba del Cruzado (10/25 Normal)",
+        "Prueba del Gran Cruzado (10/25 Heroico - Insignia de Tributo)",
+        "Guarida de Onyxia 80 (Aniversario 10/25)",
+        "Cámara de Archavon (Koralon el Vigía de las Llamas)"
+      ],
+      "dungeons": [
+        "Prueba del Campeón (Mazmorra 5 Jugadores - Normal & Heroico)"
+      ],
+      "world_events": [
+        "Torneo Argenta en Corona de Hielo",
+        "Régimen de Justas y Campeones de Facción"
+      ],
+      "unlock_requirements": "Derrota de Yogg-Saron (Cero Guardianes) y aprobación de Tirion Vadín.",
+      "jaina_lore": "«La Cruzada Argenta pone a prueba la templanza de nuestros héroes en las puertas mismas de la Corona de Hielo. Sólo los dignos desafiarán la Ciudadela.»"
+    },
+    {
+      "id": "icc",
+      "code": "ICC",
+      "name": "Fall of the Lich King",
+      "subtitle": "La Caída del Rey Exánime (Tier 10)",
+      "patch": "3.3.0",
+      "status": "upcoming",
+      "status_label": "PRÓXIMA ERA",
+      "level_cap": 80,
+      "logo": "images/phases/icc.png",
+      "banner_color": "#2979ff",
+      "glow_color": "rgba(41, 121, 255, 0.6)",
+      "raids": [
+        "Ciudadela de la Corona de Hielo (10/25 Normal & Heroico)",
+        "El Trono Helado (Arthas Menethil)",
+        "Cámara de Archavon (Toravon el Vigía del Hielo)"
+      ],
+      "dungeons": [
+        "La Forja de Almas (5J Normal/Heroico)",
+        "Foso de Saron (5J Normal/Heroico)",
+        "Cámaras de Reflexión (Escape de Arthas junto a Jaina)"
+      ],
+      "world_events": [
+        "El Asalto del Veredicto Cinéreo",
+        "Forja de la Agonía de Sombras (Shadowmourne Legendaria)"
+      ],
+      "unlock_requirements": "Conquista del Torneo Argenta y apertura de los portales de asedio en Corona de Hielo.",
+      "jaina_lore": "«He caminado por las Cámaras de Reflexión... Sentí el filo helado de Frostmourne y la sombra de lo que alguna vez fue el príncipe que amé. Esta batalla decidirá la eternidad.»"
+    },
+    {
+      "id": "ruby",
+      "code": "RUBY",
+      "name": "The Ruby Sanctum",
+      "subtitle": "El Sagrario Rubí & Halion (Tier 10.5)",
+      "patch": "3.3.5a",
+      "status": "upcoming",
+      "status_label": "PRÓXIMA ERA",
+      "level_cap": 80,
+      "logo": "images/phases/ruby.png",
+      "banner_color": "#ff1744",
+      "glow_color": "rgba(255, 23, 68, 0.6)",
+      "raids": [
+        "El Sagrario Rubí (Halion el Destructor del Crepúsculo 10/25 Normal & Heroico)"
+      ],
+      "dungeons": [
+        "Campaña del Vuelo de Dragones Rojo en el Templo del Reposo del Dragón"
+      ],
+      "world_events": [
+        "Preludio al Cataclismo: La Incursión del Vuelo Crepuscular",
+        "Terremotos Arcanos en Theramore y Dalaran"
+      ],
+      "unlock_requirements": "Caída del Rey Exánime en Modo Heroico (25 jugadores) y alerta del Vuelo Rojo.",
+      "jaina_lore": "«El cielo de Rasganorte se tiñe de fuego crepuscular. Halion busca destruir el Sagrario de Alexstrasza mientras la tierra misma tiembla con presagios del Devastador.»"
+    },
+    {
+      "id": "cataclysm",
+      "code": "CATACLYSM",
+      "name": "The Shattering & Beyond",
+      "subtitle": "El Cataclismo & La Nueva Era de Lore Viviente",
+      "patch": "4.0+",
+      "status": "upcoming",
+      "status_label": "HORIZONTE",
+      "level_cap": 85,
+      "logo": "images/phases/cataclysm.png",
+      "banner_color": "#ff6d00",
+      "glow_color": "rgba(255, 109, 0, 0.6)",
+      "raids": [
+        "Bastión del Crepúsculo (Cho'gall)",
+        "Descenso de Alanegra (Nefarian)",
+        "Trono de los Cuatro Vientos (Al'Akir)",
+        "Tierras de Fuego (Ragnaros)",
+        "Alma de Dragón (Alamuerte)"
+      ],
+      "dungeons": [
+        "Mazmorras Rehechas de Azeroth (Nivel 80-85)",
+        "Fin de los Días",
+        "Pozo de la Eternidad",
+        "Hora del Crepúsculo"
+      ],
+      "world_events": [
+        "Ruptura de la Vorágine y Devastación de Azeroth",
+        "Evolución Neuronal Autónoma de NPCs de IA en Nuevos Reinos"
+      ],
+      "unlock_requirements": "Cierre de la Era de WotLK y activación del Motor de Expansiones Autónomo en Gravity AI.",
+      "jaina_lore": "«Azeroth ha cambiado para siempre. Las cicatrices de Alamuerte desgarraron el mundo, pero nuestro Lore Viviente continuará guiando a los campeones hacia horizontes jamás vistos.»"
+    }
+  ]
+}
