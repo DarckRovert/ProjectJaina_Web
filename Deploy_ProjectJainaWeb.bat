@@ -3,15 +3,16 @@ setlocal EnableDelayedExpansion
 color 0B
 
 :: ==========================================================
-:: EL SÉQUITO - DESPLIEGUE A GITHUB PAGES V3.0 🚀
+:: PROJECT JAINA - DESPLIEGUE A GITHUB PAGES 🚀
 :: ==========================================================
-:: Sincronización del portal oficial SequitoWeb en GitHub Pages
+:: Portal Oficial: https://darckrovert.github.io/ProjectJaina_Web/
+:: Repositorio: https://github.com/DarckRovert/ProjectJaina_Web.git
 :: ==========================================================
 
 set LOG_FILE=%cd%\deploy_log.txt
-echo [INIT] Iniciando sincronizacion - %DATE% %TIME% > "%LOG_FILE%"
+echo [INIT] Iniciando sincronizacion ProjectJaina_Web - %DATE% %TIME% > "%LOG_FILE%"
 
-:: 1. Verificar dependencias
+:: 1. Verificar Git
 where git >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
     echo [!] ERROR: Git no encontrado en el PATH del sistema.
@@ -20,18 +21,16 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-:: 2. Obtener Fecha Corregida
+:: 2. Fecha y Mensaje de Commit
 for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
 set FECHA=%datetime:~0,4%-%datetime:~4,2%-%datetime:~6,2%
 set HORA=%datetime:~8,2%%datetime:~10,2%
-set COMMIT_MSG=feat: SequitoWeb GitHub Pages sync %FECHA% %HORA%
+set COMMIT_MSG=feat(web): sincronizacion portal Project Jaina %FECHA% %HORA%
 
-echo Procediendo con la sincronizacion del portal...
+echo ==========================================================
+echo      PROJECT JAINA WEB - SINCRONIZADOR A GITHUB PAGES
+echo ==========================================================
 echo.
-
-:: 3. Ejecutar Despliegue
-echo [SequitoWeb] Verificando cambios...
-echo [SequitoWeb] --- Start Check: %TIME% --- >> "%LOG_FILE%"
 
 if not exist "%cd%\.git" (
     echo [!] ERROR: Este directorio no es un repositorio git.
@@ -40,7 +39,8 @@ if not exist "%cd%\.git" (
     exit /b 1
 )
 
-git remote set-url origin "https://github.com/DarckRovert/SequitoWeb.git" >> "%LOG_FILE%" 2>&1
+:: 3. Asegurar remote canónico
+git remote set-url origin "https://github.com/DarckRovert/ProjectJaina_Web.git" >> "%LOG_FILE%" 2>&1
 
 set CHANGES_FOUND=0
 for /f "tokens=*" %%i in ('git status --porcelain') do (
@@ -48,40 +48,43 @@ for /f "tokens=*" %%i in ('git status --porcelain') do (
 )
 
 if %CHANGES_FOUND% EQU 0 (
-    echo [SKIP] No se detectaron cambios en el portal. Ecosistema al dia.
+    echo [SKIP] No se detectaron cambios pendientes. Web al dia.
     echo [SKIP] No changes found >> "%LOG_FILE%"
     timeout /t 3 >nul
     exit /b 0
 )
 
-echo [SequitoWeb] Cambios detectados. Iniciando sincronizacion...
+echo [ProjectJaina] Detectados cambios en el portal. Empaquetando...
 echo %COMMIT_MSG% > LAST_DEPLOY_WEB.txt
 
 git add . >> "%LOG_FILE%" 2>&1
 git commit -m "%COMMIT_MSG%" >> "%LOG_FILE%" 2>&1
 git branch -M main >> "%LOG_FILE%" 2>&1
 
-echo [SequitoWeb] Subiendo a GitHub main...
+echo [ProjectJaina] Empujando a GitHub (rama main)...
 git push origin main >> "%LOG_FILE%" 2>&1
+
+echo [ProjectJaina] Sincronizando rama gh-pages...
+git push origin main:gh-pages --force >> "%LOG_FILE%" 2>&1
 
 if %ERRORLEVEL% EQU 0 (
     echo.
     echo ==========================================================
     echo           DESPLIEGUE A GITHUB PAGES EXITOSO
     echo ==========================================================
-    echo [OK] SequitoWeb sincronizado en GitHub (rama main).
-    echo [OK] El workflow de GitHub Actions desplegara la web en:
-    echo      https://darckrovert.github.io/SequitoWeb/
+    echo [OK] Project Jaina Web sincronizado en GitHub (main y gh-pages).
+    echo [OK] Portal activo en vivo:
+    echo      https://darckrovert.github.io/ProjectJaina_Web/
     echo ==========================================================
 ) else (
     echo.
     echo ==========================================================
-    echo [!] FALLO EN EL DESPLIEGUE
+    echo [!] HUBO UN INCONVENIENTE EN EL PUSH
     echo ==========================================================
-    echo [TIP]: Revisa deploy_log.txt para mas detalles tecnicos.
+    echo [TIP]: Revisa deploy_log.txt para ver el registro detallado.
 )
 
-echo [SequitoWeb] --- End: %TIME% --- >> "%LOG_FILE%"
+echo [ProjectJaina] --- Fin: %TIME% --- >> "%LOG_FILE%"
 echo.
 pause
 exit /b 0

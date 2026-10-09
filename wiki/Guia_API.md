@@ -1,51 +1,38 @@
-# Guía de la API Interna (JavaScript & Frontend)
+# 🔌 Guía de API y Módulos JavaScript — Project Jaina Web
 
-Documentación técnica de las funciones y lógica contenida en `script.js` del portal **SequitoWeb**.
-
----
-
-## 1. Motor de Partículas (Canvas 2D)
-
-### `initCanvas()`
-Calcula y sincroniza las dimensiones del canvas con `window.innerWidth` e `innerHeight`.
-
-### `class Particle`
-- **`reset()`**: Asigna posición aleatoria y selecciona una tonalidad cromática balanceada:
-  - `rgba(212, 175, 55, a)`: Oro Andino (#D4AF37)
-  - `rgba(220, 38, 38, a)`: Sangre Letal
-  - `rgba(147, 51, 234, a)`: Vacío Abismal
-  - `rgba(74, 222, 128, a)`: Fuego Vil
-  - `rgba(56, 189, 248, a)`: Escarcha de Rasganorte
-- **`update()`**: Aplica vector de velocidad vertical ascendente, oscilación horizontal senoidal y fuerza de repulsión reactiva ante el puntero del ratón (`mouse repulsion`).
-- **`draw()`**: Renderiza el punto en el contexto 2D usando `arc` y `fill`.
-
-### `animate()`
-Bucle de renderizado continuo sincronizado con la tasa de refresco del monitor mediante `requestAnimationFrame`.
+Documentación técnica de los módulos JavaScript del cliente que alimentan el portal de **Project Jaina**.
 
 ---
 
-## 2. Utilidades de Portapapeles & UI
+## 1. Módulos del Cliente
 
-### `window.copyToClipboard(text, btnElement, successMsg)`
-Gestiona la copia segura de texto al portapapeles con retroalimentación visual e interactiva instantánea:
-- Utiliza la API moderna `navigator.clipboard.writeText` con fallback transparente a elemento `textarea` oculto.
-- Cambia temporalmente el contenido del botón a `✓ ¡COPIADO!` y restaura su estado original tras 2.2 segundos.
+### `js/config.js` — Fuente Única de Verdad (SSOT) de Red
+Gestiona la resolución dinámica de endpoints según el origen desde donde navegue el usuario:
+- **Local / Sandbox**: `http://127.0.0.1:8080`
+- **Radmin VPN**: `http://26.140.157.205:8080`
+- **Producción / Web Pública**: Túnel seguro o endpoint de backend configurable (`CONFIG.getApiUrl()`).
 
-### `window.copyRepoUrl(url, btnElement)`
-Wrapper especializado para clonado de repositorios en GitHub.
+### `js/register.js` — Registro Autoritativo SRP6
+Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POST`) hacia `/api/register`:
+- Longitud mínima de credenciales (3-16 caracteres de usuario, mínimo 4 en contraseña).
+- Confirmación de contraseña y feedback visual mediante toasts no bloqueantes.
+- Creación autoritativa en `auth.account` de AzerothCore.
+
+### `js/store.js` — Catálogo Visual de Tienda & Donaciones
+- Renderizado de artículos cosméticos (monturas, transfiguraciones, auras y títulos).
+- Integración con pasarela PayPal / Donaciones y asignación automática por SOAP o comando de servidor.
+
+### `js/armory.js` — Inspección de Héroes y Estadísticas
+- Búsqueda y filtrado de personajes en la base de datos `characters`.
+- Visualización de GearScore, talentos, logros y estadísticas de combate.
 
 ---
 
-## 3. Observadores de Scroll & Menú Móvil
+## 2. Endpoints del Micro-Backend (`ProjectJaina_WebAPI.py`)
 
-### `IntersectionObserver`
-Detecta cuándo las secciones y tarjetas ingresan al viewport (`threshold: 0.12`) y aplica la clase `.active` para desencadenar animaciones CSS aceleradas por GPU.
-
-### `updateActiveNavLink()`
-Monitorea la posición vertical de la página y resalta dinámicamente el enlace correspondiente en la barra de navegación superior.
-
-### Menú Desplegable Móvil
-Controla la apertura y cierre del menú para pantallas táctiles (`#nav-hamburger` y `#mobile-nav`), bloqueando el scroll del `body` mientras el menú esté visible para evitar desplazamientos accidentales.
-
----
-© 2026 **DarckRovert** — El Séquito del Terror
+| Método | Ruta | Descripción |
+| :--- | :--- | :--- |
+| `GET` | `/api/status` | Devuelve estado del reino (online/offline), uptime y jugadores conectados. |
+| `POST` | `/api/register` | Crea una cuenta en la base de datos `auth` utilizando SRP6 salt y verifier. |
+| `GET` | `/api/armory/characters` | Lista de personajes activos para la armería pública. |
+| `GET` | `/api/store/catalog` | Catálogo de recompensas y canjes disponibles. |
