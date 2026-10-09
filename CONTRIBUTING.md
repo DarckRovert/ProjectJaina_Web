@@ -1,19 +1,19 @@
-# Forjando Arsenal para El Séquito
+# Guía de Contribución — Project JAIna Web
 
-El ecosistema requiere de mentes tácticas dispuestas a sacrificar su tiempo en la optimización del código.
+Agradecemos las contribuciones de la comunidad para expandir y perfeccionar el portal web y el ecosistema de **Project JAIna**.
 
-## Cómo aportar al ecosistema
-1. Haz un fork de nuestros grimorios (repositorios en GitHub).
-2. Crea una rama para tu conjuro (`git checkout -b feature/nueva-tactica`).
-3. Envía tu aporte táctico vía Pull Request al Líder Supremo.
+## Cómo Aportar al Proyecto
+1. Haz un fork del repositorio oficial ([DarckRovert/ProjectJaina_Web](https://github.com/DarckRovert/ProjectJaina_Web)).
+2. Crea una rama para tu mejora (`git checkout -b feature/nueva-seccion`).
+3. Realiza tus cambios asegurando compatibilidad con diseño Glassmorphism, CSS vanilla y buenas prácticas de accesibilidad.
+4. Envía tu Pull Request con una descripción detallada de los cambios implementados.
 
-## Estándares de la Hermandad
-- Compatibilidad letal garantizada con **WoW Perú — Reino Andino (WotLK 3.3.5a / Lua 5.1 puro)**.
-- Sin fugas de memoria (`Zero Heap Thrashing`), respeto al límite de red de 255 bytes en `SendAddonMessage`.
-- Si trabajas sobre la IA, compatibilidad con arquitecturas neurales **(Python / Ollama)** de Gravity AI Bridge.
-- Comentarios y commits escritos con pulcritud absoluta y formato de Conventional Commits.
+## Estándares de Código
+- **HTML/CSS:** Semántica moderna, responsive para dispositivos móviles y PC, sin dependencias pesadas de frameworks externos.
+- **JavaScript:** ES6+ puro, arquitectura modular (`js/`), tratamiento seguro de errores en peticiones asíncronas (`fetch`).
+- **Commits:** Formato de Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).
 
-Jura lealtad al [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) antes de empezar.
+Consulta el [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) antes de participar.
 
 ---
-© 2026 **DarckRovert (Elnazzareno)** — El Séquito | WoW Perú (Reino Andino)
+© 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna

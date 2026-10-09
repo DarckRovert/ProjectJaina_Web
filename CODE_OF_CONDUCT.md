@@ -1,15 +1,16 @@
-# Código de Conducta de El Séquito del Terror
+# Código de Conducta de la Comunidad — Project JAIna
 
-## Nuestro Juramento de Sangre
-Como acólitos, contribuyentes y comandantes de **El Séquito del Terror**, nos compromemos a mantener una disciplina marcial. El ecosistema táctico exige absoluto orden para garantizar la eficiencia bélica en un entorno respetuoso.
+## Nuestra Misión
+Como miembros, jugadores, contribuyentes y desarrolladores de **Project JAIna**, nos comprometemos a mantener un entorno de camaradería, excelencia técnica y respeto mutuo. El proyecto fusiona tecnología de punta (IA neuronal, audio espacial 3D) con una experiencia inmersiva de World of Warcraft.
 
 ## Nuestras Directivas
-- Demostrar lealtad, empatía y respeto profesional entre aliados.
-- Acatar la cadena de mando y las revisiones de código de manera madura.
-- Aceptar la responsabilidad por la eficacia e impacto de tus aportes.
+- Fomentar la colaboración constructiva, la empatía y la cortesía entre jugadores y desarrolladores.
+- Mantener un juego limpio (Fair Play) respetando los modos Normal, Hardcore e Ironman.
+- Tratar los reportes de bugs y sugerencias técnicas con madurez y profesionalismo.
+- Cero tolerancia al acoso, discriminación o toxicidad en los canales de juego y repositorios.
 
 ## Aplicación
-Las traiciones, infracciones o falta de conducta serán tratadas severamente. Reporta incidentes a través del issue tracker de GitHub de la organización.
+Las infracciones serán evaluadas por el equipo de moderación y administración de **Project JAIna**. Reporta cualquier incidente a través de los canales oficiales.
 
 ---
-Adaptado estructuralmente del [Contributor Covenant](https://www.contributor-covenant.org) v2.1.
+© 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
