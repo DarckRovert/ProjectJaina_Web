@@ -149,7 +149,7 @@ function closeCheckout() {
     if (checkout) checkout.style.display = "none";
 }
 
-function simulateTestDonation() {
+async function simulateTestDonation() {
     const charName = document.getElementById("targetCharacterName")?.value.trim();
     const feedback = document.getElementById("paymentFeedback");
 
@@ -159,14 +159,51 @@ function simulateTestDonation() {
         return;
     }
 
+    if (!selectedPackage) {
+        alert("Por favor selecciona un paquete de la tienda antes de continuar.");
+        return;
+    }
+
     if (feedback) {
         feedback.style.display = "block";
+        feedback.className = "payment-feedback-box";
+        feedback.innerHTML = `⏳ Verificando existencia del personaje <strong>${charName}</strong> en la base de datos...`;
+    }
+
+    try {
+        const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
+        const res = await fetch(`${apiUrl}/api/shop/simulate_delivery`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true'
+            },
+            body: JSON.stringify({
+                character_name: charName,
+                package_id: selectedPackage.id
+            })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            feedback.className = "payment-feedback-box success-box";
+            feedback.innerHTML = `
+                <div>🎉 <strong>¡Verificación Exitosa!</strong></div>
+                <p style="margin-top: 5px; font-size: 0.88rem;">${data.message}</p>
+            `;
+        } else {
+            feedback.className = "payment-feedback-box error-box";
+            feedback.innerHTML = `
+                <div>⚠️ <strong>Validación Fallida</strong></div>
+                <p style="margin-top: 5px; font-size: 0.88rem;">${data.message || 'No se pudo verificar el personaje.'}</p>
+            `;
+        }
+    } catch (e) {
         feedback.className = "payment-feedback-box success-box";
         feedback.innerHTML = `
-            <div>🎉 <strong>¡Recompensa Simulada con Éxito!</strong></div>
+            <div>🎉 <strong>¡Simulación Local Registrada!</strong></div>
             <p style="margin-top: 5px; font-size: 0.88rem;">
-                Se ha generado la orden de prueba para el personaje <strong>${charName.toUpperCase()}</strong>.
-                En el servidor real, el comando SOAP entregará automáticamente el correo con los Tokens de Jaina.
+                Orden generada para el personaje <strong>${charName.toUpperCase()}</strong> con el paquete <strong>${selectedPackage.name}</strong>.
             </p>
         `;
     }
@@ -238,12 +275,45 @@ function renderPayPal(container, packageId, price) {
             });
         },
         onApprove: async (data, actions) => {
-            const details = await actions.order.capture();
             const feedback = document.getElementById("paymentFeedback");
-            if (feedback) {
-                feedback.style.display = "block";
-                feedback.className = "payment-feedback-box success-box";
-                feedback.innerHTML = `🎉 ¡Gracias ${details.payer.name.given_name}! Pago completado. Tus tokens están en camino a tu buzón in-game.`;
+            const charName = document.getElementById("targetCharacterName")?.value.trim();
+            try {
+                const details = await actions.order.capture();
+                if (feedback) {
+                    feedback.style.display = "block";
+                    feedback.className = "payment-feedback-box";
+                    feedback.innerHTML = `⏳ Confirmando orden con el servidor de juego de Project JAIna...`;
+                }
+
+                const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
+                const res = await fetch(`${apiUrl}/api/shop/paypal/capture`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true'
+                    },
+                    body: JSON.stringify({
+                        order_id: details.id,
+                        character_name: charName,
+                        package_id: selectedPackage.id,
+                        payer_email: details.payer?.email_address || ''
+                    })
+                });
+
+                const result = await res.json();
+                if (res.ok && result.ok) {
+                    feedback.className = "payment-feedback-box success-box";
+                    feedback.innerHTML = `🎉 ¡Gracias ${details.payer?.name?.given_name || charName}! ${result.message}`;
+                } else {
+                    feedback.className = "payment-feedback-box error-box";
+                    feedback.innerHTML = `⚠️ Pago registrado en PayPal pero el servidor reportó: ${result.message || 'Error de entrega'}. Contacta a soporte con tu Order ID: ${details.id}.`;
+                }
+            } catch (err) {
+                if (feedback) {
+                    feedback.style.display = "block";
+                    feedback.className = "payment-feedback-box error-box";
+                    feedback.innerHTML = `❌ Error en el procesamiento del pago: ${err.message}`;
+                }
             }
         }
     }).render(container);

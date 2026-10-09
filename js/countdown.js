@@ -166,14 +166,18 @@
     }
 
     function tickLocalChronometers() {
-        // Incrementar uptime continuo en vivo segundo a segundo
-        serverUptimeSeconds++;
+        // Solo incrementar uptime continuo si el servidor está activo en vivo
+        if (isServerLive) {
+            serverUptimeSeconds++;
+        }
         renderServerTelemetryUI();
         renderProgressionChronometer();
     }
 
     function renderServerTelemetryUI() {
-        const uptimeStr = formatDuration(serverUptimeSeconds);
+        const uptimeStr = isServerLive 
+            ? formatDuration(serverUptimeSeconds) 
+            : '00d 00h 00m 00s (STANDBY)';
 
         // Barra de estado hero
         const serverUptimeEl = document.getElementById('serverUptime');
