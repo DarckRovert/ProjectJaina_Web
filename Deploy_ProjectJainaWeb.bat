@@ -2,17 +2,19 @@
 setlocal EnableDelayedExpansion
 color 0B
 
-:: ==========================================================
-:: PROJECT JAINA - DESPLIEGUE A GITHUB PAGES 🚀
-:: ==========================================================
-:: Portal Oficial: https://darckrovert.github.io/ProjectJaina_Web/
-:: Repositorio: https://github.com/DarckRovert/ProjectJaina_Web.git
-:: ==========================================================
+if exist "C:\Program Files\Git\cmd" set "PATH=C:\Program Files\Git\cmd;%PATH%"
+
+REM ==========================================================
+REM PROJECT JAINA - DESPLIEGUE A GITHUB PAGES
+REM ==========================================================
+REM Portal Oficial: https://darckrovert.github.io/ProjectJaina_Web/
+REM Repositorio: https://github.com/DarckRovert/ProjectJaina_Web.git
+REM ==========================================================
 
 set LOG_FILE=%cd%\deploy_log.txt
 echo [INIT] Iniciando sincronizacion ProjectJaina_Web - %DATE% %TIME% > "%LOG_FILE%"
 
-:: 1. Verificar Git
+REM 1. Verificar Git
 where git >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
     echo [!] ERROR: Git no encontrado en el PATH del sistema.
