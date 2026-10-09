@@ -225,7 +225,10 @@ async function fetchLiveArmory() {
         const response = await fetch(`${apiUrl}/api/armory`, {
             method: "GET",
             signal: controller.signal,
-            headers: { "Accept": "application/json" }
+            headers: { 
+                "Accept": "application/json",
+                "ngrok-skip-browser-warning": "true"
+            }
         });
         clearTimeout(timeoutId);
 

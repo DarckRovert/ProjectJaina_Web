@@ -77,7 +77,10 @@
                 const res = await fetch(`${apiUrl}/api/chat`, {
                     method: 'POST',
                     signal: controller.signal,
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true'
+                    },
                     body: JSON.stringify({ message: rawText, speaker: "Aventurero" })
                 });
                 clearTimeout(timeoutId);
