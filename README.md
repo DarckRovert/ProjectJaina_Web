@@ -1,9 +1,10 @@
-# 🌐 Project Jaina — Portal Web Oficial AAA
+# 🌐 Project JAIna — Portal Web Oficial AAA
 
 <div align="center">
-  <img src="images/jaina_crest_logo.jpg" alt="Project Jaina Emblema" width="180" style="border-radius: 50%;">
-  <h1>Project Jaina — Portal Oficial</h1>
+  <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Emblema" width="180" style="border-radius: 50%;">
+  <h1>Project JAIna — Portal Oficial</h1>
   <p><strong>El portal web oficial de nueva generación para el reino de Theramore (WotLK 3.3.5a). Living Lore & AI Revolution.</strong></p>
+  <p><em>(La 'AI' destacada en <strong>Project JAIna</strong> es el guiño a la inteligencia artificial neuronal que da vida al ecosistema)</em></p>
   <p><a href="https://darckrovert.github.io/ProjectJaina_Web/">🌐 Portal en Vivo: darckrovert.github.io/ProjectJaina_Web</a></p>
 </div>
 
@@ -12,7 +13,7 @@
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/ProjectJaina_Web/)
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
-[![Reino Oficial](https://img.shields.io/badge/Reino-Project%20Jaina-00ccff.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
+[![Reino Oficial](https://img.shields.io/badge/Reino-Project%20JAIna-00ccff.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
 
 ---
 

@@ -121,6 +121,26 @@ body {
     letter-spacing: 1.5px;
 }
 
+.brand-ai-spark {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.85));
+    font-weight: 900;
+    letter-spacing: 2px;
+    display: inline-block;
+    animation: ai-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes ai-pulse {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(0, 242, 254, 0.6));
+    }
+    100% {
+        filter: drop-shadow(0 0 12px rgba(0, 242, 254, 1)) drop-shadow(0 0 22px rgba(79, 172, 254, 0.7));
+    }
+}
+
 .brand-subtitle {
     font-size: 0.7rem;
     font-weight: 700;
