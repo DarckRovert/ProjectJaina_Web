@@ -20,7 +20,10 @@ async function updateTelemetry() {
     try {
         const response = await fetch(`${apiUrl}/api/status`, {
             method: "GET",
-            headers: { "Accept": "application/json" }
+            headers: { 
+                "Accept": "application/json",
+                "ngrok-skip-browser-warning": "true"
+            }
         });
 
         if (response.ok) {

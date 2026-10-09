@@ -7,7 +7,7 @@ const CONFIG = {
     // URL por defecto del Micro-Backend (ProjectJaina_WebAPI.py en puerto 8080)
     LOCAL_API: "http://127.0.0.1:8080",
     RADMIN_API: "http://26.140.157.205:8080",
-    PUBLIC_TUNNEL_API: "https://api.projectjaina.com", // O Cloudflare Tunnel hacia projectjaina.com
+    PUBLIC_TUNNEL_API: "https://ingrainedly-easeled-edelmira.ngrok-free.dev", // Endpoint HTTPS permanente de ngrok
 
     // Client ID de PayPal (Reemplaza con tu Client ID de PayPal Developer)
     // Para pruebas inmediatas en sandbox usa 'sb', para producción tu Client ID real.
