@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Oficial SRP6 — Project JAIna</title>
+    <title>Crear Cuenta SRP6 — Project JAIna | Living Lore & AI</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
-<body>
+<body class="theme-alliance">
 
     <!-- NAVBAR -->
     <nav class="navbar">
@@ -15,7 +15,7 @@
             <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
             <div>
                 <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
-                <div class="brand-subtitle">LIVING LORE & AI REVOLUTION</div>
+                <div class="brand-subtitle">REGISTRO OFICIAL SRP6</div>
             </div>
         </a>
         <ul class="nav-links">
@@ -25,57 +25,129 @@
             <li><a href="armeria.html">Armería</a></li>
             <li><a href="tienda.html">Tienda & Donar</a></li>
             <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+            <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
         </ul>
     </nav>
 
-    <!-- MAIN FORM -->
-    <main style="padding: 2rem 1.5rem;">
-        <div class="form-container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🛡️</div>
-                <h1 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold-primary);">Crear Cuenta de Juego</h1>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.4rem;">Criptografía autoritativa SRP6 compatible con World of Warcraft 3.3.5a (WotLK)</p>
+    <!-- HERO REGISTRO -->
+    <header class="subpage-hero">
+        <div class="hero-badge">🛡️ Criptografía Militar SRP6 · Activación Instantánea in-game</div>
+        <h1 class="subpage-title">Únete a la Conquista de Azeroth</h1>
+        <p class="subpage-desc">Tu cuenta se registra de forma directa y segura en la base de datos de <strong>AzerothCore</strong>. Compatible con tu cliente WotLK 3.3.5a y nuestro lanzador oficial.</p>
+    </header>
+
+    <!-- MAIN FORM CONTAINER -->
+    <main style="padding: 1rem 1.5rem 4rem; position: relative; z-index: 2;">
+        <div class="form-container register-card-elevated">
+            
+            <!-- FACTION SELECTOR -->
+            <div class="faction-selector-container">
+                <div class="faction-label">Elige tu Lealtad Inicial:</div>
+                <div class="faction-pills">
+                    <label class="faction-pill active" data-faction="alliance">
+                        <input type="radio" name="clan" value="PROJECT_JAINA" checked style="display:none;">
+                        <span class="faction-icon">🦁</span>
+                        <span class="faction-name">Alianza & Theramore</span>
+                    </label>
+                    <label class="faction-pill" data-faction="kirintor">
+                        <input type="radio" name="clan" value="KIRIN_TOR" style="display:none;">
+                        <span class="faction-icon">🔮</span>
+                        <span class="faction-name">Kirin Tor Dalaran</span>
+                    </label>
+                    <label class="faction-pill" data-faction="horde">
+                        <input type="radio" name="clan" value="EL_SEQUITO" style="display:none;">
+                        <span class="faction-icon">🐺</span>
+                        <span class="faction-name">La Horda de Orgrimmar</span>
+                    </label>
+                </div>
             </div>
 
-            <div id="registerMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.92rem; border: 1px solid;"></div>
+            <div id="registerMessage" class="register-feedback-box" style="display: none;"></div>
 
-            <form id="registerForm">
+            <form id="registerForm" novalidate>
                 <div class="form-group">
-                    <label for="regUsername">Nombre de Usuario (Login)</label>
-                    <input type="text" id="regUsername" class="form-control" placeholder="Ej: GuerreroAndino" required minlength="3" maxlength="16" autocomplete="username">
+                    <label for="regUsername">
+                        <span>Nombre de Usuario (Login)</span>
+                        <small class="label-hint">3 a 16 caracteres alfanuméricos</small>
+                    </label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="regUsername" class="form-control" placeholder="Ej: ArchimagoValiente" required minlength="3" maxlength="16" autocomplete="username">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="regPassword">Contraseña</label>
-                    <input type="password" id="regPassword" class="form-control" placeholder="Mínimo 4 caracteres" required minlength="4" autocomplete="new-password">
+                    <label for="regPassword">
+                        <span>Contraseña de Acceso</span>
+                        <small class="label-hint">Mínimo 4 caracteres</small>
+                    </label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="regPassword" class="form-control" placeholder="Escribe tu contraseña" required minlength="4" autocomplete="new-password">
+                    </div>
+                    <!-- Medidor de Fuerza de Contraseña -->
+                    <div class="password-meter-container">
+                        <div class="meter-bar"><div id="passStrengthBar" class="meter-fill" style="width: 0%;"></div></div>
+                        <div class="meter-text" id="passStrengthText">Seguridad: Ingresa una contraseña</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="regConfirmPassword">Confirmar Contraseña</label>
-                    <input type="password" id="regConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required minlength="4" autocomplete="new-password">
+                    <label for="regConfirmPassword">
+                        <span>Confirmar Contraseña</span>
+                        <span id="passMatchIndicator" class="pass-match-indicator"></span>
+                    </label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required minlength="4" autocomplete="new-password">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="regEmail">Correo Electrónico (Opcional)</label>
-                    <input type="email" id="regEmail" class="form-control" placeholder="tu-correo@ejemplo.com" autocomplete="email">
+                    <label for="regEmail">
+                        <span>Correo Electrónico</span>
+                        <small class="label-hint">Para recuperación de cuenta (Opcional)</small>
+                    </label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="regEmail" class="form-control" placeholder="aventurero@projectjaina.com" autocomplete="email">
+                    </div>
                 </div>
 
-                <div class="form-group"><label>Reino de Juego:</label><input type="text" class="form-control" value="Project JAIna (Oficial)" readonly style="color: var(--gold-primary); font-weight: bold;"></div>
+                <div class="form-group info-pill-box">
+                    <div class="info-pill-item">
+                        <span class="info-label">Reino Oficial:</span>
+                        <strong class="info-val" style="color: var(--gold-primary);">Project JAIna (WotLK 3.3.5a)</strong>
+                    </div>
+                    <div class="info-pill-item">
+                        <span class="info-label">Realmlist:</span>
+                        <code class="info-code">set realmlist projectjaina.com</code>
+                    </div>
+                </div>
 
-                <button type="submit" id="btnRegisterSubmit" class="btn-primary btn-block">
-                    ⚔️ CREAR CUENTA SRP6
+                <button type="submit" id="btnRegisterSubmit" class="btn-primary btn-block btn-register-action">
+                    ⚔️ CREAR CUENTA SRP6 AL INSTANTE
                 </button>
             </form>
+
+            <div class="security-guarantee-footer">
+                <span>🛡️ Protocolo SRP6 Militar (RFC 5054) · Tus contraseñas nunca viajan en texto plano</span>
+            </div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA & LIVING LORE & AI REVOLUTION</div>
-        <p>Tu cuenta queda registrada inmediatamente en la base de datos central de AzerothCore.</p>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE EXPERIENCE</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--text-muted);">Servidor impulsado por AzerothCore v3.3.5a con soporte para clientes HD y 18 AddOns oficiales.</p>
     </footer>
 
     <!-- SCRIPTS -->
+    <script src="js/particles.js"></script>
     <script src="js/config.js"></script>
     <script src="js/register.js"></script>
 </body>

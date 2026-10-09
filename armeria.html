@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armería & Ranking — Project JAIna</title>
+    <title>Armería Oficial & Salón de Campeones — Project JAIna</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
@@ -25,15 +25,50 @@
             <li><a href="armeria.html" class="active">Armería</a></li>
             <li><a href="tienda.html">Tienda & Donar</a></li>
             <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+            <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
         </ul>
     </nav>
 
-    <!-- CONTENT -->
-    <main style="padding: 3rem 1.5rem;">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
-            <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🏆</div>
-            <h1 class="section-title">Armería & Cuadro de Honor</h1>
-            <p style="color: var(--text-secondary);">Top 20 personajes legendarios de Project JAIna ordenados por nivel y hazañas de combate</p>
+    <!-- HERO ARMERÍA -->
+    <header class="subpage-hero">
+        <div class="hero-badge">🏆 Cuadro de Honor · Telemetría en Vivo de Personajes y Clanes</div>
+        <h1 class="subpage-title">Salón de Campeones de Azeroth</h1>
+        <p class="subpage-desc">Héroes legendarios del reino clasificados por nivel, tiempo de combate y hazañas. Sincronizado en tiempo real con la base de datos de <strong>AzerothCore</strong>.</p>
+        
+        <div class="subpage-banner-container">
+            <img src="images/armory_champions_epic.jpg" alt="Salón de Campeones Project Jaina" class="subpage-banner-img">
+            <div class="hero-banner-overlay">
+                <span class="hero-banner-tag">SALÓN DE LA GLORIA</span>
+                <span class="hero-banner-status">● BASE DE DATOS ACORE_CHARACTERS CONECTADA</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- PODIUM TOP 3 CHAMPIONS -->
+    <section class="podium-section">
+        <div class="podium-grid" id="championsPodium">
+            <!-- Renderizado dinámicamente por armory.js -->
+        </div>
+    </section>
+
+    <!-- CONTENT TABLE & FILTERS -->
+    <main style="padding: 1rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+        
+        <!-- SEARCH & FILTER TOOLBAR -->
+        <div class="armory-toolbar">
+            <div class="search-box-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="armorySearchInput" class="armory-search-input" placeholder="Buscar por nombre, hermandad o clase...">
+            </div>
+            
+            <div class="filter-chips-group">
+                <button class="filter-chip active" data-filter="all">Todos</button>
+                <button class="filter-chip" data-filter="Paladín">Paladines</button>
+                <button class="filter-chip" data-filter="Mago">Magos</button>
+                <button class="filter-chip" data-filter="Guerrero">Guerreros</button>
+                <button class="filter-chip" data-filter="Caballero de la Muerte">DKs</button>
+                <button class="filter-chip" data-filter="online">En Línea</button>
+            </div>
         </div>
 
         <div class="table-container">
@@ -41,19 +76,20 @@
                 <table class="styled-table">
                     <thead>
                         <tr>
-                            <th># Rank</th>
-                            <th>Personaje</th>
+                            <th># Rango</th>
+                            <th>Héroe</th>
                             <th>Clase</th>
                             <th>Raza</th>
                             <th>Nivel</th>
                             <th>Hermandad</th>
                             <th>Estado</th>
+                            <th>Inspección</th>
                         </tr>
                     </thead>
                     <tbody id="armoryTableBody">
                         <tr id="armoryLoading">
-                            <td colspan="7" style="text-align: center; color: var(--gold-primary); padding: 2.5rem;">
-                                ⏳ Conectando con acore_characters y cargando héroes del reino...
+                            <td colspan="8" style="text-align: center; color: var(--gold-primary); padding: 3rem;">
+                                ⏳ Conectando con acore_characters y sincronizando ranking de temporada...
                             </td>
                         </tr>
                     </tbody>
@@ -62,13 +98,26 @@
         </div>
     </main>
 
+    <!-- MODAL DE INSPECCIÓN DE HÉROE -->
+    <div id="characterModal" class="phase-modal-backdrop">
+        <div class="phase-modal-card hero-inspect-card">
+            <button class="modal-close-btn" id="closeCharModalBtn">&times;</button>
+            <div id="characterModalContent" class="modal-content-inner"></div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
-        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA & LIVING LORE & AI REVOLUTION</div>
-        <p>Telemetría sincronizada en tiempo real con la base de datos de AzerothCore.</p>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE EXPERIENCE</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--text-muted);">Los datos de la armería reflejan las estadísticas de los personajes almacenadas en MySQL.</p>
     </footer>
 
     <!-- SCRIPTS -->
+    <script src="js/particles.js"></script>
     <script src="js/config.js"></script>
     <script src="js/armory.js"></script>
 </body>

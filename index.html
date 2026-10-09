@@ -37,9 +37,9 @@
         <p>El primer servidor de World of Warcraft del mundo con <strong>HeroBots Vivientes impulsados por Inteligencia Artificial Neuronal</strong>. Camina junto a <strong>Lady Jaina Valiente</strong> en Theramore y Dalaran, forja afinidad real a través de diálogos libres, combate hombro a hombro en mazmorras y vive una experiencia binaural 3D sin precedentes.</p>
         
         <div class="hero-banner-container">
-            <img src="images/jaina_hero_banner.jpg" alt="Lady Jaina Proudmoore - Project Jaina Living Lore" class="hero-banner-img">
+            <img src="images/jaina_arcane_sanctum.jpg" alt="Lady Jaina Proudmoore - Project Jaina Living Lore en Dalaran" class="hero-banner-img">
             <div class="hero-banner-overlay">
-                <span class="hero-banner-tag">EXPEDICIÓN DALARAN</span>
+                <span class="hero-banner-tag">EXPEDICIÓN DALARAN · SANTUARIO ARCANO</span>
                 <span class="hero-banner-status">● MOTOR DE LORE VIVIENTE V4.0 ACTIVO</span>
             </div>
         </div>
@@ -270,6 +270,125 @@
                 </div>
             </div>
         </div>
+
+        <!-- SIMULADOR NEURONAL INTERACTIVO DE JAINA -->
+        <div class="neural-chat-container" id="jainaSimulator">
+            <div class="chat-header-bar">
+                <div class="chat-header-info">
+                    <span class="chat-pulse-dot"></span>
+                    <div>
+                        <div class="chat-jaina-title">Lady Jaina Valiente — Simulador Neuronal en Vivo</div>
+                        <div class="chat-jaina-status">Conectado a Modelo Qwen 2.5 3B (LLM Local / Puerto 1234)</div>
+                    </div>
+                </div>
+                <div class="chat-header-badge">❄️ LORE VIVIENTE V4.0</div>
+            </div>
+
+            <!-- CHAT LOG -->
+            <div class="chat-log-box" id="jainaChatLog">
+                <div class="chat-msg msg-jaina">
+                    <img src="images/jaina_crest_logo.jpg" alt="Lady Jaina" class="msg-avatar-img">
+                    <div class="msg-bubble">
+                        <div class="msg-sender">Lady Jaina Valiente <span class="badge-ai-spark">IA Neuronal</span></div>
+                        <div class="msg-text">«Saludos, aventurero. Las puertas de Theramore y el Sagrario de Dalaran están abiertas ante ti. ¿Qué deseas saber sobre nuestro reino, las batallas venideras o cómo lucharé a tu lado en mazmorras?»</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPTS RÁPIDOS -->
+            <div class="chat-quick-prompts">
+                <span class="prompt-hint">Preguntas Frecuentes al Modelo:</span>
+                <button class="prompt-pill" data-prompt="mision">🌟 ¿Cuál es tu misión?</button>
+                <button class="prompt-pill" data-prompt="herobot">⚔️ ¿Cómo me asistes en combate?</button>
+                <button class="prompt-pill" data-prompt="audio">🎧 ¿Cómo funciona el Audio 3D?</button>
+                <button class="prompt-pill" data-prompt="fuente">🔥 ¿Qué pasará con la Fuente del Sol?</button>
+                <button class="prompt-pill" data-prompt="reino">❄️ ¿Qué hace único a Project JAIna?</button>
+            </div>
+
+            <!-- INPUT BAR -->
+            <div class="chat-input-bar">
+                <input type="text" id="jainaChatInput" class="chat-text-input" placeholder="Escribe un mensaje o pregunta a Lady Jaina..." maxlength="300">
+                <button id="jainaSendBtn" class="chat-send-btn">
+                    <span>Enviar</span> ⚡
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CINEMÁTICA OFICIAL DE LA ERA & RASGANORTE -->
+    <section id="trailer-cinematico" class="cinematic-section">
+        <div class="cinematic-header">
+            <div class="hero-badge" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.4); color: #00e5ff;">🎬 CINEMÁTICA OFICIAL DE LA ERA</div>
+            <h2 class="section-title">El Despertar de Rasganorte</h2>
+            <p class="section-subtitle">«Hijo mío... el día que naciste, los mismos bosques de Lordaeron susurraron tu nombre...»</p>
+        </div>
+
+        <div class="video-container-frame">
+            <div class="video-glow-backdrop"></div>
+            <div class="video-responsive-wrapper">
+                <iframe 
+                    src="https://www.youtube-nocookie.com/embed/BCr7y4SLhck?rel=0&modestbranding=1" 
+                    title="World of Warcraft: Wrath of the Lich King Cinematic Trailer HD" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-caption-bar">
+                <span>❄️ <strong>Wrath of the Lich King Cinematic 4K:</strong> La cumbre del lore que conquistarás en Project JAIna.</span>
+                <a href="registro.html" class="btn-cta-nav" style="font-size: 0.8rem; padding: 0.4rem 1rem !important;">⚔️ Crear Cuenta para Jugar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUITE DE LOS 18 ADDONS OFICIALES REMASTERIZADOS -->
+    <section id="addons-showcase" class="factions-section">
+        <h2 class="section-title">Suite de 18 AddOns Oficiales Remasterizados</h2>
+        <p class="section-subtitle">Optimizados exclusivamente para el cliente WotLK 3.3.5a HD de Project JAIna, incluidos en el Launcher oficial</p>
+
+        <div class="addons-grid">
+            <div class="addon-card">
+                <div class="addon-badge">INTERFAZ 10.0</div>
+                <div class="addon-icon">🐉</div>
+                <h3 class="addon-title">ProjectJaina_DragonflightUI</h3>
+                <p class="addon-desc">Reemplazo total de barras de acción, marcos de unidad micro-botones y minimapa al estándar moderno de Dragonflight en 3.3.5a.</p>
+            </div>
+
+            <div class="addon-card">
+                <div class="addon-badge">AUDIO BINAURAL</div>
+                <div class="addon-icon">🎧</div>
+                <h3 class="addon-title">ProjectJaina_Audio3D</h3>
+                <p class="addon-desc">Motor espacial HRTF por proximidad. Escucha a Jaina y a los aventureros con paneo y atenuación cardinal en tiempo real.</p>
+            </div>
+
+            <div class="addon-card">
+                <div class="addon-badge">GRÁFICOS HD</div>
+                <div class="addon-icon">💎</div>
+                <h3 class="addon-title">ProjectJaina_Graphics</h3>
+                <p class="addon-desc">Texturas remasterizadas en alta definición, sombras dinámicas y shaders ambientales adaptados a pantallas 4K y Full HD.</p>
+            </div>
+
+            <div class="addon-card">
+                <div class="addon-badge">PROGRESIÓN</div>
+                <div class="addon-icon">🏆</div>
+                <h3 class="addon-title">ProjectJaina_BattlePass</h3>
+                <p class="addon-desc">Pase de Batalla con 100 niveles de recompensas cosméticas, misiones diarias y desafíos semanales sincronizados con el servidor.</p>
+            </div>
+
+            <div class="addon-card">
+                <div class="addon-badge">DESAFÍO EXTREMO</div>
+                <div class="addon-icon">💀</div>
+                <h3 class="addon-title">ProjectJaina_Hardcore</h3>
+                <p class="addon-desc">Modo Muerte Permanente oficial. Certificación de supervivencia, lápida in-game y alertas globales para hazañas heroicas.</p>
+            </div>
+
+            <div class="addon-card">
+                <div class="addon-badge">LÍNEA DE FASES</div>
+                <div class="addon-icon">⏳</div>
+                <h3 class="addon-title">ProjectJaina_ContentGate</h3>
+                <p class="addon-desc">Sincronización in-game con la era activa gobernada por Gravity AI, bloqueando contenido superior hasta su apertura oficial.</p>
+            </div>
+        </div>
     </section>
 
     <!-- GUÍA DE CONEXIÓN EN 3 PASOS -->
@@ -323,9 +442,11 @@
     </footer>
 
     <!-- SCRIPTS -->
+    <script src="js/particles.js"></script>
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
     <script src="js/progression.js"></script>
     <script src="js/countdown.js"></script>
+    <script src="js/jaina_dialogue.js"></script>
 </body>
 </html>

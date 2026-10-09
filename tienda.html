@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Oficial & Donaciones — Project JAIna</title>
+    <title>Tienda Mística & Donaciones — Project JAIna</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
-    <!-- PayPal SDK se inyecta dinámicamente desde store.js usando CONFIG.PAYPAL_CLIENT_ID -->
 </head>
 <body>
 
@@ -26,50 +25,93 @@
             <li><a href="armeria.html">Armería</a></li>
             <li><a href="tienda.html" class="active">Tienda & Donar</a></li>
             <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+            <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
         </ul>
     </nav>
 
+    <!-- HERO TIENDA -->
+    <header class="subpage-hero">
+        <div class="hero-badge">💎 Tesorería Mística · Recompensas Cosméticas In-Game Automatizadas</div>
+        <h1 class="subpage-title">Arsenal Arcano & Tesorería de Dalaran</h1>
+        <p class="subpage-desc">Apoya el sostenimiento de la infraestructura, clúster dedicado y modelos neuronales de Project JAIna. Cada contribución acredita automáticamente Tokens y objetos exclusivos in-game mediante correo SOAP.</p>
+        
+        <div class="subpage-banner-container">
+            <img src="images/mystic_treasury_shop.jpg" alt="Tesorería Mística de Dalaran" class="subpage-banner-img">
+            <div class="hero-banner-overlay">
+                <span class="hero-banner-tag">BÓVEDA DE LAS MARAVILLAS</span>
+                <span class="hero-banner-status">● ENTREGAS IN-GAME VÍA CORREO INSTANTÁNEO SOAP</span>
+            </div>
+        </div>
+    </header>
+
     <!-- CONTENT -->
-    <main style="padding: 3rem 1.5rem;">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
-            <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">💎</div>
-            <h1 class="section-title">Tienda Oficial & Donaciones</h1>
-            <p style="color: var(--text-secondary);">Apoya el mantenimiento y desarrollo de Project JAIna. Todas las donaciones acreditan recompensas cosméticas y Tokens de Jaina de forma automática in-game vía correo SOAP.</p>
+    <main style="padding: 1rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+        
+        <!-- CATEGORY FILTERS -->
+        <div class="shop-filter-bar">
+            <button class="shop-cat-btn active" data-category="all">✨ Todos los Paquetes</button>
+            <button class="shop-cat-btn" data-category="tokens">🪙 Tokens & Monedas</button>
+            <button class="shop-cat-btn" data-category="mounts">🐉 Monturas & Épicos</button>
+            <button class="shop-cat-btn" data-category="battlepass">🏆 Pase de Batalla</button>
+            <button class="shop-cat-btn" data-category="services">📜 Servicios de Héroe</button>
         </div>
 
-        <!-- SHOP CARDS -->
+        <!-- SHOP CARDS GRID -->
         <div class="shop-grid" id="shopCardsContainer">
-            <div style="grid-column: 1/-1; text-align: center; color: var(--gold-primary); padding: 2rem;">
-                ⏳ Cargando paquetes de donación oficiales...
+            <div style="grid-column: 1/-1; text-align: center; color: var(--gold-primary); padding: 3rem;">
+                ⏳ Desplegando tesorería mística de Dalaran...
             </div>
         </div>
 
         <!-- CHECKOUT MODAL SECTION -->
-        <div id="checkoutSection" style="display: none; max-width: 600px; margin: 2rem auto; background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
-            <h2 style="font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold-primary); margin-bottom: 0.5rem; text-align: center;">Completar Donación</h2>
-            <p id="selectedPkgSummary" style="text-align: center; color: var(--text-secondary); margin-bottom: 1.8rem; font-size: 0.95rem;"></p>
+        <div id="checkoutSection" class="checkout-modal-card" style="display: none;">
+            <div class="checkout-header">
+                <h2 class="checkout-title">Confirmar Contribución</h2>
+                <button class="checkout-close-btn" onclick="closeCheckout()">&times;</button>
+            </div>
+            
+            <p id="selectedPkgSummary" class="checkout-summary-text"></p>
 
-            <div class="form-group">
-                <label for="targetCharacterName">Nombre de tu Personaje en el Juego (Destinatario):</label>
-                <input type="text" id="targetCharacterName" class="form-control" placeholder="Ej: Arthas / Jaina" required style="font-size: 1.1rem; font-weight: bold; color: var(--gold-primary);">
-                <small style="color: var(--text-muted); display: block; margin-top: 5px;">Asegúrate de escribir el nombre exacto de tu personaje para que la recompensa llegue a tu buzón.</small>
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <label for="targetCharacterName">
+                    <span>Nombre de tu Personaje Destinatario:</span>
+                    <small class="label-hint">Debe existir en acore_characters</small>
+                </label>
+                <div class="input-with-icon">
+                    <span class="input-icon">⚔️</span>
+                    <input type="text" id="targetCharacterName" class="form-control" placeholder="Ej: Darckrovert" required style="font-size: 1.15rem; font-weight: bold; color: var(--gold-primary);">
+                </div>
+                <small style="color: var(--text-muted); display: block; margin-top: 6px;">
+                    El servidor enviará automáticamente los Tokens de Jaina y recompensas al buzón de este personaje en menos de 10 segundos.
+                </small>
             </div>
 
-            <!-- PAYPAL BUTTON CONTAINER -->
+            <!-- SIMULATED OR PAYPAL BUTTON -->
             <div id="paypal-button-container" style="margin-top: 1.8rem;"></div>
 
+            <div style="margin-top: 1.2rem; text-align: center;">
+                <button class="btn-secondary btn-block" onclick="simulateTestDonation()" style="font-size: 0.88rem; padding: 0.6rem;">
+                    🧪 Simular Entrega In-Game Inmediata (Prueba de Clúster)
+                </button>
+            </div>
+
             <!-- FEEDBACK MESSAGE -->
-            <div id="paymentFeedback" style="display: none; margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-size: 0.95rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); text-align: center;"></div>
+            <div id="paymentFeedback" class="payment-feedback-box" style="display: none;"></div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA & LIVING LORE & AI REVOLUTION</div>
-        <p>Pagos procesados de forma segura a través de PayPal Inc. Acreditación automática in-game sin intervención humana.</p>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE EXPERIENCE</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--text-muted);">Pagos procesados de forma segura a través de PayPal Developer Sandbox / Producción y pasarelas autorizadas.</p>
     </footer>
 
     <!-- SCRIPTS -->
+    <script src="js/particles.js"></script>
     <script src="js/config.js"></script>
     <script src="js/store.js"></script>
 </body>
