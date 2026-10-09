@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armería & Ranking — Project Jaina</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project Jaina" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT JAINA</div>
+                <div class="brand-subtitle">ARMERÍA OFICIAL & LÍDERES</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="registro.html">Crear Cuenta</a></li>
+            <li><a href="armeria.html" class="active">Armería</a></li>
+            <li><a href="tienda.html">Tienda & Donar</a></li>
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENT -->
+    <main style="padding: 3rem 1.5rem;">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
+            <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🏆</div>
+            <h1 class="section-title">Armería & Cuadro de Honor</h1>
+            <p style="color: var(--text-secondary);">Top 20 personajes legendarios de Project Jaina ordenados por nivel y hazañas de combate</p>
+        </div>
+
+        <div class="table-container">
+            <div style="overflow-x: auto;">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th># Rank</th>
+                            <th>Personaje</th>
+                            <th>Clase</th>
+                            <th>Raza</th>
+                            <th>Nivel</th>
+                            <th>Hermandad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="armoryTableBody">
+                        <tr id="armoryLoading">
+                            <td colspan="7" style="text-align: center; color: var(--gold-primary); padding: 2.5rem;">
+                                ⏳ Conectando con acore_characters y cargando héroes del reino...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="credits-lead">PROJECT JAINA & LIVING LORE & AI REVOLUTION</div>
+        <p>Telemetría sincronizada en tiempo real con la base de datos de AzerothCore.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/config.js"></script>
+    <script src="js/armory.js"></script>
+</body>
+</html>

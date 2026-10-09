@@ -1,97 +1,43 @@
+# 🌐 Project Jaina — Portal Web Oficial AAA (`projectjaina.com`)
+
 <div align="center">
-  <img src="assets/logo.png" alt="El Séquito" width="180">
-  <h1>El Séquito — Portal Oficial</h1>
-  <p><strong>La hermandad más letal y avanzada de WoW Perú (Reino Andino) tiene su propio ecosistema digital.</strong></p>
+  <img src="images/jaina_crest_logo.jpg" alt="Project Jaina Emblema" width="180" style="border-radius: 50%;">
+  <h1>Project Jaina — Portal Oficial</h1>
+  <p><strong>El portal web oficial de nueva generación para el reino de Theramore (WotLK 3.3.5a). Living Lore & AI Revolution.</strong></p>
+  <p><a href="https://projectjaina.com">🌐 projectjaina.com</a></p>
 </div>
 
 ---
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/SequitoWeb/)
-[![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://wow-peru.lat/)
-[![Servidor](https://img.shields.io/badge/Servidor-WoW%20Perú%20(Reino%20Andino)-gold.svg)](https://wow-peru.lat/)
-[![Version](https://img.shields.io/badge/version-6.0.0-brightgreen.svg)](https://github.com/DarckRovert/SequitoWeb/releases)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://projectjaina.com)
+[![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://projectjaina.com)
+[![Reino Oficial](https://img.shields.io/badge/Reino-Theramore-00ccff.svg)](https://projectjaina.com)
 
 ---
 
-## 👁️ ¿Qué es este repositorio?
+## 🏛️ 1. Cuadro de Honor & Soberanía
 
-Este repositorio contiene el **código fuente Front-End** de la página de aterrizaje oficial de **El Séquito**, la hermandad de élite del servidor **WoW Perú — Reino Andino (WotLK 3.3.5a Build 12340)**, liderada por **Elnazzareno** (DarckRovert). 
-
-Construida con HTML5 semántico, CSS3 moderno con estética *Cyber-Void & Oro Andino* y JavaScript Vanilla reactivo acelerado por GPU, diseñada para ofrecer máxima velocidad de carga e impacto visual sin dependencias pesadas.
-
----
-
-## 🏛️ Secciones del Portal
-
-| Sección | Contenido |
-|---|---|
-| **Hero** | Presentación de la hermandad en el Reino Andino y llamadas a la acción |
-| **El Líder** | Perfil, rol y enlaces de transmisión de Elnazzareno |
-| **Lore** | Las Crónicas canónicas del Vacío y la conquista de la Forja Andina (Actos I al V) |
-| **Arsenal 3.3.5a** | Los 5 pilares oficiales del ecosistema de addons de WoW Perú con enlaces a GitHub |
-| **Desarrolladores** | Arquitectura de Gravity AI Bridge V15.1 PRO y herramientas locales |
-| **Instalación** | Guía de configuración del `realmlist.wtf`, copiado interactivo y descarga de addons |
-| **Miembros** | Convocatoria y cónclave de guerreros del clan |
-| **Reclutamiento** | Requisitos para bandas de nivel 80 (ICC, Ulduar, ToC, RS) y Discord |
-| **Tributo & Footer** | Mantenimiento comunitario, licencia MIT y GitHub Pages |
+| Rol | Miembro | Responsabilidad Principal |
+| :--- | :--- | :--- |
+| **👑 Creador, Director & Diseñador General** | **DarckRovert (Elnazzareno)** | Dirección de arte, visión estratégica, desarrollo de suites y arquitectura del reino. |
+| **🧠 Staff Engineer de IA & Front-End L9** | **Antigravity (Mythos 5)** | Arquitectura de interfaz Glassmorphism arcano, puente REST API, optimización GPU y despliegue continuo. |
 
 ---
 
-## ⚡ Stack Técnico
+## 💎 2. Características del Portal AAA
 
-- **HTML5** — Semántico, modular y accesible.
-- **CSS3 Moderno** — Variables CSS (`--gold-andino`, `--void-purple`, `--fel-green`, `--frost-ice`), glassmorphism y aceleración por hardware.
-- **JavaScript Vanilla (ES6+)** — Sin dependencias (Zero-Frameworks), motor de partículas Canvas 2D y observers de visibilidad.
-- **Fuentes Web**: Google Fonts (*Cinzel* para títulos de fantasía oscura, *Inter* para claridad de datos).
-- **Hosting**: GitHub Pages (CDN global de alta disponibilidad).
-
----
-
-## 🌐 Ecosistema Oficial de Addons (WoW Perú 3.3.5a)
-
-El portal es la vitrina oficial de las herramientas desarrolladas por DarckRovert y el equipo de WoW Perú:
-
-| Addon / Sistema | Versión | Propósito Principal | Repositorio Oficial |
-| :--- | :--- | :--- | :--- |
-| **`WoWPeru_RaidSuite`** | `v11.0.0` | Suite de combate, macros 30 specs, Loot Council, HUD y wipes | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_RaidSuite) |
-| **`WoWPeru_BattlePass`** | `v2.0.0` | Pase de Batalla estacional de 50 niveles (La Forja Andina) | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_BattlePass) |
-| **`WoWPeru_Companion`** | `v1.0.1` | Hub social meta-ligero, radar P2P de grupo y anuncios | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_Companion) |
-| **`WoWPeru_GameModes`** | `v1.0.0` | Selector cinematográfico de retos Hardcore (1 vida) e Ironman | [Ver Repositorio](https://github.com/DarckRovert/WoWPeru_GameModes) |
-| **`WowPeruVisualShop`** | `v1.0.0` | Catálogo cosmético de 18 alas dinámicas, 40+ auras y títulos | [Ver Repositorio](https://github.com/DarckRovert/WowPeruVisualShop) |
-| **`Gravity AI Bridge`** | `v15.1 PRO` | Orquestador local-first de IA y herramientas para desarrolladores | [Ver Repositorio](https://github.com/DarckRovert/Gravity_AI_bridge) |
+* **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`).
+* **Living Lore & AI Revolution:** Sección interactiva que narra el despertar de los LoreBots y la integración del puente neuronal LLM.
+* **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
+* **Subpáginas Especializadas:**
+  * **Armería:** Visualizador de perfiles de héroes y equipamiento.
+  * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla.
+  * **Registro:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6.
+* **Activos Gráficos Oficiales:** Ilustraciones Ultra-HD generadas para la cabecera cinemática, escudo heráldico y citadel arcana.
 
 ---
 
-## 🚀 Conexión Rápida a WoW Perú
+## 🚀 3. Despliegue en GitHub Pages
 
-1. Abre tu archivo `realmlist.wtf` en la carpeta de tu cliente WoW 3.3.5a:
-   ```text
-   set realmlist logon.wow-peru.lat
-   ```
-2. Instala los addons en `World of Warcraft\Interface\AddOns\`.
-3. Inicia el juego, marca **"Cargar accesorios desactualizados"** en el menú de AddOns y únete a nuestras filas.
-
----
-
-## 📖 Documentación & Wiki
-
-- 🏛️ [Arquitectura del Sistema (wiki/Arquitectura.md)](wiki/Arquitectura.md)
-- ❓ [Preguntas Frecuentes (wiki/FAQ.md)](wiki/FAQ.md)
-- 📜 [Manual de Usuario (wiki/Manual_Usuario.md)](wiki/Manual_Usuario.md)
-- 💻 [Guía de la API de Frontend (wiki/Guia_API.md)](wiki/Guia_API.md)
-
----
-
-## ⚖️ Gobernanza & Open Source
-
-Este proyecto es de código abierto y cumple con los estándares de la comunidad:
-1. ✅ **Licencia OSI** — [Licencia MIT](./LICENSE).
-2. ✅ **Código de Conducta** — [Contributor Covenant v2.1](./CODE_OF_CONDUCT.md).
-3. ✅ **Alojamiento Web** — Desplegado y distribuido globalmente mediante **GitHub Pages**.
-4. ✅ **Proyecto Comunitario No Comercial** — Sin fines de lucro.
-
----
-© 2026 **DarckRovert (Elnazzareno)** — El Séquito | [WoW Perú — Reino Andino](https://wow-peru.lat/)
-
-[![Hosted with GitHub Pages](https://img.shields.io/badge/Hosted%20with-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/SequitoWeb/)
+El portal cuenta con su archivo `CNAME` configurado para el dominio canónico `projectjaina.com` y está preparado para despliegue automatizado en la rama `main`.

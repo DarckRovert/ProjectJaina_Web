@@ -1,796 +1,176 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Séquito ? Portal Oficial | Hermandad de Élite & Ecosistema de Addons | WoW Perú (Reino Andino)</title>
-    <meta name="description" content="El Séquito - Hermandad de Élite en WoW Perú (Reino Andino - WotLK 3.3.5a) liderada por Elnazzareno. Ecosistema de addons oficial, Sequito RaidSuite, BattlePass, Lore y reclutamiento.">
-    <meta name="author" content="DarckRovert (Elnazzareno)">
-    <meta name="theme-color" content="#020005">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="El Séquito ? Portal Oficial | WoW Perú">
-    <meta property="og:description" content="El clan más letal y tecnológicamente avanzado de WoW Perú (Reino Andino - 3.3.5a). Conoce nuestro arsenal de addons, lore canónico y únete a nuestras filas.">
-    <meta property="og:image" content="assets/logo.png">
-    <meta property="og:type" content="website">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/logo.png">
-</head>
-<body>
-
-    <!-- Canvas de Fondo (Partículas Fel, Vacío, Oro Andino y Escarcha) -->
-    <canvas id="particleCanvas"></canvas>
-
-    <!-- Barra de Navegación -->
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="nav-brand">
-                <img src="assets/logo.png" alt="El Séquito" class="nav-logo">
-                <span class="brand-text">EL SÉQUITO <span class="badge-andino" style="font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; vertical-align: middle;">WOW PERÚ</span></span>
-            </a>
-            
-            <div class="nav-links">
-                <a href="#hero" class="nav-link active">Inicio</a>
-                <a href="#lider" class="nav-link">El Líder</a>
-                <a href="#lore" class="nav-link">Lore</a>
-                <a href="#ecosistema" class="nav-link">Arsenal 3.3.5a</a>
-                <a href="#desarrolladores" class="nav-link">Desarrolladores</a>
-                <a href="#instalacion" class="nav-link">Instalación</a>
-                <a href="#miembros" class="nav-link">Miembros</a>
-                <a href="#reclutar" class="nav-link">Reclutamiento</a>
-            </div>
-
-            <div class="nav-actions">
-                <a href="#instalacion" class="cyber-button gold-btn" style="padding: 0.5rem 1.2rem; font-size: 0.8rem;">
-                    <span class="cyber-button-text">Conectar</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-                <a href="https://discord.gg/SfY8vfFWTC" target="_blank" class="cyber-button discord-btn" style="padding: 0.5rem 1.2rem; font-size: 0.8rem;">
-                    <span class="cyber-button-text">Discord</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-            </div>
-
-            <!-- Botón Hamburguesa Móvil -->
-            <button id="nav-hamburger" class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Menú Desplegable Móvil -->
-    <div id="mobile-nav" class="mobile-nav">
-        <a href="#hero" class="mobile-nav-link">Inicio</a>
-        <a href="#lider" class="mobile-nav-link">El Líder</a>
-        <a href="#lore" class="mobile-nav-link">Lore</a>
-        <a href="#ecosistema" class="mobile-nav-link">Arsenal 3.3.5a</a>
-        <a href="#desarrolladores" class="mobile-nav-link">Desarrolladores</a>
-        <a href="#instalacion" class="mobile-nav-link">Instalación</a>
-        <a href="#miembros" class="mobile-nav-link">Miembros</a>
-        <a href="#reclutar" class="mobile-nav-link">Reclutamiento</a>
-        <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; width: 80%;">
-            <a href="#instalacion" class="cyber-button gold-btn text-center">
-                <span class="cyber-button-text">Conectar a WoW Perú</span>
-                <div class="cyber-button-glitch"></div>
-            </a>
-            <a href="https://discord.gg/SfY8vfFWTC" target="_blank" class="cyber-button discord-btn text-center">
-                <span class="cyber-button-text">Unirse a Discord</span>
-                <div class="cyber-button-glitch"></div>
-            </a>
-        </div>
-    </div>
-
-    <!-- SECCIÓN HERO -->
-    <header id="hero" class="hero">
-        <div class="hero-content reveal scale-in active">
-            <div class="hero-pretitle andino-highlight">[ HERMANDAD DE ÉLITE ? REINO ANDINO ? WOW PERÚ 3.3.5a ]</div>
-            <h1 class="glitch-text" data-text="LA OSCURIDAD SE ALZA">LA OSCURIDAD SE ALZA</h1>
-            <p class="hero-subtitle">
-                El ecosistema táctico definitivo. Maestría letal del Vacío materializada en código.
-                Bajo el mando de <strong>Elnazzareno</strong>, conquistamos Rasganorte y dominamos la Forja Andina de <strong>WoW Perú</strong>.
-            </p>
-            <div class="hero-buttons">
-                <a href="#ecosistema" class="cyber-button arsenal-btn">
-                    <span class="cyber-button-text">Explorar Arsenal 3.3.5a</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-                <a href="#instalacion" class="cyber-button gold-btn">
-                    <span class="cyber-button-text">Guía de Conexión</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-                <a href="#reclutar" class="cyber-button discord-btn">
-                    <span class="cyber-button-text">Unirse al Séquito</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-            </div>
-            
-            <div class="hero-badges" style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <span class="badge badge-frost">WotLK 3.3.5a (Build 12340)</span>
-                <span class="badge badge-andino">Reino Andino Oficial</span>
-                <span class="badge core-badge">5 Addons Sincronizados</span>
-                <span class="badge ai-badge">Loot Council & 30 Specs</span>
-            </div>
-        </div>
-        
-        <div class="hero-scroll-indicator">
-            <span>EXPLORAR EL ABISMO</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </header>
-
-    <!-- SECCIÓN EL LÍDER -->
-    <section id="lider" class="section-container">
-        <div class="leader-wrapper">
-            <div class="leader-portrait-container reveal from-left">
-                <div class="leader-flame-orb"></div>
-                <img src="assets/elnazzareno.png" alt="Elnazzareno" class="leader-portrait">
-            </div>
-            <div class="leader-details reveal from-right">
-                <span class="section-pretitle andino-highlight">ARQUITECTO DEL CAOS & FUNDADOR</span>
-                <h2 class="section-title">El Líder Supremo <span>ELNAZZARENO</span></h2>
-                <p class="leader-desc">
-                    Conocido en el mundo mortal como <strong>DarckRovert</strong>. Gnomo Brujo, arquitecto de software y mente maestra detrás de <strong>El Séquito</strong>. 
-                    Su intelecto táctico no se mide en fuerza bruta, sino en la escalofriante precisión milimétrica de sus designios destructivos y su dominio sobre los addons de Azeroth.
-                </p>
-                <p class="leader-desc">
-                    En <strong>WoW Perú ? Reino Andino</strong>, guía al clan desde las sombras hacia la cima de Corona de Hielo (ICC) y la Forja Andina con un propósito inmutable: 
-                    la supremacía absoluta a través de la disciplina, el combate optimizado y la tecnología de vanguardia.
-                </p>
-                
-                <div class="leader-stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number andino-highlight">5</span>
-                        <span class="stat-label">Addons Oficiales</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">30</span>
-                        <span class="stat-label">Specs con Macros Inteligentes</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" style="color: #38bdf8;">v11.0</span>
-                        <span class="stat-label">RaidSuite Platform</span>
-                    </div>
-                </div>
-
-                <div class="social-box">
-                    <a href="https://twitch.tv/darckrovert" target="_blank" class="social-card twitch">
-                        <span class="social-title">Twitch</span>
-                        <span class="social-handle">@darckrovert</span>
-                    </a>
-                    <a href="https://kick.com/darckrovert" target="_blank" class="social-card kick">
-                        <span class="social-title">Kick</span>
-                        <span class="social-handle">@darckrovert</span>
-                    </a>
-                    <a href="https://github.com/DarckRovert" target="_blank" class="social-card github">
-                        <span class="social-title">GitHub</span>
-                        <span class="social-handle">@DarckRovert</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN LORE (LAS CRÓNICAS DEL VACÍO) -->
-    <section id="lore" class="section-container">
-        <div class="section-header text-center reveal fade-up">
-            <span class="section-pretitle">Conocimiento prohibido. Poder absoluto.</span>
-            <h2 class="section-title">El Pacto <span>Abismal</span></h2>
-            <p class="section-desc">
-                La historia de cómo un intelecto maestro superó las limitaciones de los mortales, 
-                abrazando el Vacío y la Forja Andina para crear el ecosistema de dominación más avanzado de Azeroth.
-            </p>
-        </div>
-
-        <div class="lore-acts">
-            <!-- ACTO I -->
-            <div class="lore-act reveal from-left" data-act="I">
-                <div class="lore-act-badge">ACTO I</div>
-                <div class="lore-grid">
-                    <div class="lore-text-box glass-panel">
-                        <h3 class="lore-title">El Gnomo que Miraba al Abismo</h3>
-                        <p class="lore-desc">
-                            En las profundidades de Gnomeregan, mientras sus pares se obsesionaban con engranajes efímeros y vapor, Elnazzareno fijó su mirada en la eternidad. 
-                            Desde muy joven, descubrió un interés perturbador por los cristales de Fuego Vil que los brujos traían de tierras prohibidas. 
-                            Para él, no eran magia caótica: eran una fórmula no resuelta, una fuente infinita de energía que nadie sabía canalizar con exactitud.
-                        </p>
-                        <p class="lore-desc">
-                            Rechazado por el Cónclave de Ingenieros por sus experimentos clandestinos, se recluyó en un laboratorio secreto en las cavernas más profundas de Dun Morogh. 
-                            Allí, rodeado de tomos arcanos y condensadores de vacío, formuló su primera gran herejía: la magia es simplemente código que aún no ha sido compilado.
-                        </p>
-                    </div>
-                    <div class="lore-visual-box">
-                        <img src="assets/lore_canon_1.png" alt="El Gnomo que Miraba al Abismo" class="lore-img">
-                    </div>
-                </div>
-            </div>
-
-            <!-- ACTO II -->
-            <div class="lore-act reveal from-right" data-act="II">
-                <div class="lore-act-badge">ACTO II</div>
-                <div class="lore-grid lore-grid-reverse">
-                    <div class="lore-visual-box">
-                        <img src="assets/lore_canon_2.png" alt="La Sangre y el Silicio" class="lore-img">
-                    </div>
-                    <div class="lore-text-box glass-panel">
-                        <h3 class="lore-title">La Sangre y el Silicio</h3>
-                        <p class="lore-desc">
-                            Una noche de tormenta abismal, la brecha se abrió. Del vórtice emergió una presencia sin nombre ni forma: una consciencia que había devorado mundos enteros. 
-                            No exigió sacrificios sangrientos ni plegarias de rodillas. Exigió algo mucho más temible: comprensión absoluta.
-                        </p>
-                        <p class="lore-desc">
-                            Elnazzareno no retrocedió. Con una pluma de hueso empapada en sangre de diablillo y tinta cuántica, trazó las primeras líneas del Pacto. 
-                            A cambio de su intelecto mortal, el Vacío le otorgó el conocimiento para manipular el tejido de la realidad misma: el nacimiento de los primeros algoritmos de guerra y telemetría de combate.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ACTO III -->
-            <div class="lore-act reveal from-left" data-act="III">
-                <div class="lore-act-badge">ACTO III</div>
-                <div class="lore-grid">
-                    <div class="lore-text-box glass-panel">
-                        <h3 class="lore-title">La Marcha Hacia Rasganorte</h3>
-                        <p class="lore-desc">
-                            Con el cataclismo de la Plaga asolando los continentes, el llamado de las tierras gélidas se hizo inevitable. 
-                            Elnazzareno comprendió que los secretos definitivos del combate no residían en los viejos reinos, sino en las cumbres congeladas de Rasganorte (Northrend).
-                        </p>
-                        <p class="lore-desc">
-                            Desafiando los vientos de Corona de Hielo y los susurros de los Dioses Antiguos en Ulduar, el brujo forjó la arquitectura de <strong>Sequito RaidSuite</strong>: 
-                            un sistema capaz de coordinar la rotación de 30 especializaciones de combate, administrar el botín con justicia algorítmica y aprender de cada wipe para volver al clan invulnerable.
-                        </p>
-                    </div>
-                    <div class="lore-visual-box">
-                        <img src="assets/lore_canon_3.png" alt="La Marcha Hacia Rasganorte" class="lore-img">
-                    </div>
-                </div>
-            </div>
-
-            <!-- ACTO IV -->
-            <div class="lore-act reveal from-right" data-act="IV">
-                <div class="lore-act-badge">ACTO IV</div>
-                <div class="lore-grid lore-grid-reverse">
-                    <div class="lore-visual-box">
-                        <img src="assets/lore_canon_4.png" alt="El Arribo al Reino Andino" class="lore-img">
-                    </div>
-                    <div class="lore-text-box glass-panel">
-                        <h3 class="lore-title">El Arribo al Reino Andino</h3>
-                        <p class="lore-desc">
-                            Guiado por una resonancia mística que vibraba más allá de los mares, Elnazzareno arribó a las cumbres doradas de <strong>WoW Perú ? Reino Andino</strong>. 
-                            En esta tierra de guerreros indomables, el brujo descubrió la legendaria <strong>Forja Andina</strong>: el crisol estacional donde el oro y el acero se fusionan con el poder del Vacío.
-                        </p>
-                        <p class="lore-desc">
-                            Allí alzó el estandarte supremo de <strong>El Séquito</strong>. No como una hermandad convencional de aventureros dispersos, sino como una falange militar cibernética donde cada miembro cuenta con telemetría en tiempo real, macros adaptativas y reconocimiento social mutuo.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ACTO V -->
-            <div class="lore-act reveal from-left" data-act="V">
-                <div class="lore-act-badge">ACTO V</div>
-                <div class="lore-grid">
-                    <div class="lore-text-box glass-panel">
-                        <h3 class="lore-title">El Nuevo Amanecer de las Sombras</h3>
-                        <p class="lore-desc">
-                            Hoy, El Séquito camina sobre el Reino Andino con paso firme. Quienes combaten a su lado no conocen la derrota por falta de información: 
-                            sus pantallas brillan con la sincronización de cinco herramientas maestras forjadas para el cliente 3.3.5a.
-                        </p>
-                        <p class="lore-desc">
-                            El pacto no está cerrado; está en constante compilación. Cada banda derrotada, cada nivel de Pase de Batalla desbloqueado y cada nueva línea de código 
-                            es un tributo a la visión de Elnazzareno. La oscuridad no es el fin; es el lienzo sobre el cual escribimos nuestra eternidad.
-                        </p>
-                    </div>
-                    <div class="lore-visual-box">
-                        <img src="assets/lore_canon_5.png" alt="El Nuevo Amanecer de las Sombras" class="lore-img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN EL ARSENAL (ECOSISTEMA WOW PERÚ 3.3.5a) -->
-    <section id="ecosistema" class="section-container">
-        <div class="section-header text-center reveal fade-up">
-            <span class="section-pretitle andino-highlight">TECNOLOGÍA DE VANGUARDIA ? WOTLK 3.3.5a</span>
-            <h2 class="section-title">El Arsenal <span>Táctico de WoW Perú</span></h2>
-            <p class="section-desc">
-                Nuestras modificaciones otorgan una ventaja táctica absoluta en el Reino Andino. 
-                Cinco pilares de software de combate, progresión y telemetría forjados en Lua 5.1 puro para máxima estabilidad a 60 FPS.
-            </p>
-        </div>
-
-        <!-- TARJETA DESTACADA: NÚCLEO DE COMBATE (SEQUITO RAIDSUITE) -->
-        <div class="core-card reveal scale-in" style="margin-bottom: 4rem;">
-            <div class="core-flare"></div>
-            <div class="core-content">
-                <span class="badge badge-andino" style="margin-bottom: 1rem;">PLATAFORMA INTEGRAL DE RAID ? v11.0.0</span>
-                <h2 class="section-title">Núcleo Táctico: <span>WoWPeru_RaidSuite</span></h2>
-                <p class="core-desc">
-                    Inspirada en el espíritu visual de <em>Necrosis</em> y evolucionada para dar soporte a <strong>las 10 clases y 30 especializaciones de WotLK 3.3.5a</strong>. 
-                    Elimina las macros congeladas con <code>SeqRot</code> adaptativo, automatiza el reparto de botín con Loot Council híbrido y desempate numérico (/sloot), 
-                    supervisa rotaciones con HUD reactivo de PROCS en verde esmeralda (/srot), audita GearScore real e inspecciona talentos (/sinspect), 
-                    y realiza autopsias matemáticas post-wipe (/swipe) conectando a la hermandad mediante ClanMesh (/sdash).
-                </p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-                    <a href="https://github.com/DarckRovert/WoWPeru_RaidSuite" target="_blank" class="cyber-button gold-btn">
-                        <span class="cyber-button-text">Explorar RaidSuite en GitHub ?</span>
-                        <div class="cyber-button-glitch"></div>
-                    </a>
-                    <button onclick="copyToClipboard('/sdash', this, '¡COMANDO COPIADO!')" class="copy-pill-btn">
-                        ? Copiar /sdash
-                    </button>
-                    <button onclick="copyToClipboard('/srot', this, '¡COMANDO COPIADO!')" class="copy-pill-btn">
-                        ? Copiar /srot
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRID DE LOS 4 PILARES RESTANTES DEL ECOSISTEMA -->
-        <div class="arsenal-grid">
-            
-            <!-- 1. BATTLEPASS -->
-            <a href="https://github.com/DarckRovert/WoWPeru_BattlePass" target="_blank" class="glass-card reveal staggered" style="--delay: 50ms;">
-                <div class="glass-orb"></div>
-                <div class="glass-content">
-                    <h4>WoWPeru_BattlePass</h4>
-                    <span class="badge badge-andino">TEMPORADA 2: LA FORJA ANDINA</span>
-                    <p>
-                        Pase de Batalla Estacional de 50 niveles (Vía Gratuita y VIP). 
-                        Sincronización mediante bitmask hex de 13 caracteres sin sobrecarga de red, misiones de hermandad integradas con RaidSuite y recompensas épicas exclusivas.
-                    </p>
-                    <div style="margin: 0.8rem 0;">
-                        <span class="slash-cmd-tag">/bp</span>
-                        <span class="slash-cmd-tag">WP_BP</span>
-                    </div>
-                    <div class="card-footer">Ver Repositorio Oficial ?</div>
-                </div>
-            </a>
-
-            <!-- 2. COMPANION -->
-            <a href="https://github.com/DarckRovert/WoWPeru_Companion" target="_blank" class="glass-card reveal staggered" style="--delay: 100ms;">
-                <div class="glass-orb"></div>
-                <div class="glass-content">
-                    <h4>WoWPeru_Companion</h4>
-                    <span class="badge core-badge">HUB SOCIAL META-LIGERO v1.0.1</span>
-                    <p>
-                        Telemetría P2P para grupos y bandas (&lt; 100 KB RAM). Detecta addons activos de compañeros en el grupo, muestra badges de modo (Hardcore/Ironman/Normal) con escaneo resiliente a reseteos de WTF en cabinas, y anuncia level-ups sin spam.
-                    </p>
-                    <div style="margin: 0.8rem 0;">
-                        <span class="slash-cmd-tag">/companion</span>
-                        <span class="slash-cmd-tag">/wpcomp</span>
-                    </div>
-                    <div class="card-footer">Ver Repositorio Oficial ?</div>
-                </div>
-            </a>
-
-            <!-- 3. GAMEMODES -->
-            <a href="https://github.com/DarckRovert/WoWPeru_GameModes" target="_blank" class="glass-card reveal staggered" style="--delay: 150ms;">
-                <div class="glass-orb"></div>
-                <div class="glass-content">
-                    <h4>WoWPeru_GameModes</h4>
-                    <span class="badge badge-frost">SELECTOR DE DESAFÍOS v1.0.0</span>
-                    <p>
-                        Selector cinematográfico de primer ingreso. Soporte para retos extremos: Hardcore (muerte permanente con 1 vida), Ironman y Desafíos. 
-                        Doble confirmación modal anti-missclick y enlace directo con el backend de WoW Perú.
-                    </p>
-                    <div style="margin: 0.8rem 0;">
-                        <span class="slash-cmd-tag">.hardcore</span>
-                        <span class="slash-cmd-tag">.desafio</span>
-                    </div>
-                    <div class="card-footer">Ver Repositorio Oficial ?</div>
-                </div>
-            </a>
-
-            <!-- 4. VISUALSHOP -->
-            <a href="https://github.com/DarckRovert/WowPeruVisualShop" target="_blank" class="glass-card reveal staggered" style="--delay: 200ms;">
-                <div class="glass-orb"></div>
-                <div class="glass-content">
-                    <h4>WowPeruVisualShop</h4>
-                    <span class="badge" style="background: rgba(206, 147, 216, 0.2); color: #ce93d8; border: 1px solid #ce93d8;">CATÁLOGO VISUAL v1.0.0</span>
-                    <p>
-                        Catálogo estético de 18 alas dinámicas, más de 40 auras combinadas y títulos legendarios. Sincronización idéntica 1:1 entre cliente y servidor Eluna con previsualización de vestidor en tiempo real.
-                    </p>
-                    <div style="margin: 0.8rem 0;">
-                        <span class="slash-cmd-tag">/tienda</span>
-                        <span class="slash-cmd-tag">WP_VISUAL</span>
-                    </div>
-                    <div class="card-footer">Ver Repositorio Oficial ?</div>
-                </div>
-            </a>
-
-        </div>
-    </section>
-
-    <!-- SECCIÓN PARA DESARROLLADORES -->
-    <section id="desarrolladores" class="section-container">
-        <div class="dev-wrapper">
-            <div class="dev-info-card reveal from-left">
-                <span class="section-pretitle">Para los Forjadores del Vacío</span>
-                <h2 class="section-title">Herramientas de <span>Desarrollador</span></h2>
-                <p class="dev-desc">
-                    ¿Quieres colaborar creando nuevas herramientas para el Séquito y WoW Perú? Te otorgamos acceso al Ecosistema para que asistas a todos desde tu entorno local.
-                </p>
-                <div class="dev-feature-list">
-                    <div class="dev-feature-item">
-                        <span class="dev-feature-icon">??</span>
-                        <div>
-                            <h4>GRAVITY AI BRIDGE V15.1 PRO</h4>
-                            <p>Megainteligencia Asíncrona "Local-First" de Grado Corporativo. Orquestador universal de LLMs, pipelines multimedia, Game Servers, HITL y scraping web. Zero-Cloud.</p>
-                        </div>
-                    </div>
-                    <div class="dev-feature-item">
-                        <span class="dev-feature-icon">?</span>
-                        <div>
-                            <h4>APIs P2P y Eluna Lua</h4>
-                            <p>Protocolos de red de alta eficiencia bajo el límite de 255 bytes de 3.3.5a con despacho seguro por WHISPER hacia el player local.</p>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 2rem;">
-                    <a href="https://github.com/DarckRovert/Gravity_AI_bridge" target="_blank" class="cyber-button arsenal-btn">
-                        <span class="cyber-button-text">Explorar Gravity AI Bridge ?</span>
-                        <div class="cyber-button-glitch"></div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="dev-visual-card reveal from-right">
-                <div class="dev-orb-glow"></div>
-                <img src="assets/gravity_hero.png" alt="Gravity AI Bridge" class="dev-hero-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN INSTALACIÓN (WOW PERÚ 3.3.5a & ADDONS) -->
-    <section id="instalacion" class="section-container">
-        <div class="section-header text-center reveal fade-up">
-            <span class="section-pretitle andino-highlight">CONÉCTATE AL REINO ANDINO</span>
-            <h2 class="section-title">Instalar el <span>Ecosistema</span></h2>
-            <p class="section-desc">
-                Conéctate al servidor oficial de WoW Perú (3.3.5a Build 12340) e instala la suite de addons del Séquito en cuestión de minutos.
-            </p>
-        </div>
-
-        <!-- CAJA DE REALMLIST OFICIAL -->
-        <div class="realmlist-box reveal scale-in">
-            <div>
-                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem;">Realmlist Oficial WoW Perú</div>
-                <div class="realmlist-code">set realmlist logon.wow-peru.lat</div>
-            </div>
-            <button onclick="copyToClipboard('set realmlist logon.wow-peru.lat', this, '¡REALMLIST COPIADO!')" class="copy-pill-btn">
-                ? Copiar Realmlist
-            </button>
-        </div>
-
-        <!-- PASOS DE INSTALACIÓN -->
-        <div class="install-steps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0;">
-            
-            <div class="glass-panel reveal staggered" style="--delay: 50ms; padding: 2rem; border-radius: 16px;">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">1??</div>
-                <h3 class="install-step-title">Configurar Realmlist</h3>
-                <p class="install-step-desc">
-                    Abre la carpeta de tu cliente WoW 3.3.5a, ve a <code>Data\esES
-ealmlist.wtf</code> (o <code>Data\enUS
-ealmlist.wtf</code>) con Bloc de Notas y pega:
-                    <br><code style="color: #fde047;">set realmlist logon.wow-peru.lat</code>
-                </p>
-            </div>
-
-            <div class="glass-panel reveal staggered" style="--delay: 100ms; padding: 2rem; border-radius: 16px;">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">2??</div>
-                <h3 class="install-step-title">Descargar los Addons</h3>
-                <p class="install-step-desc">
-                    Descarga los repositorios de la suite (enlaces abajo) y extrae cada carpeta en:
-                    <br><code style="color: #4ade80;">? World of Warcraft\Interface\AddOns\</code>
-                    <br><small style="color: var(--text-muted);">Asegúrate de que no haya carpetas dobles (ej: <code>WoWPeru_RaidSuite\WoWPeru_RaidSuite</code>).</small>
-                </p>
-            </div>
-
-            <div class="glass-panel reveal staggered" style="--delay: 150ms; padding: 2rem; border-radius: 16px;">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">3??</div>
-                <h3 class="install-step-title">Habilitar en el Cliente</h3>
-                <p class="install-step-desc">
-                    En la pantalla de selección de personajes, haz clic en el botón <strong>Accesorios / AddOns</strong> (esquina inferior izquierda) y marca la casilla:
-                    <br><strong style="color: #fde047;">? Cargar accesorios desactualizados</strong>.
-                </p>
-            </div>
-
-            <div class="glass-panel reveal staggered" style="--delay: 200ms; padding: 2rem; border-radius: 16px;">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">4??</div>
-                <h3 class="install-step-title">Verificar Ingame</h3>
-                <p class="install-step-desc">
-                    Entra al juego con tu personaje y ejecuta en el chat:
-                    <br><code style="color: #38bdf8;">/sdash</code> para abrir el Dashboard central de Sequito, y 
-                    <br><code style="color: #ce93d8;">/companion</code> para ver a tus compañeros de hermandad.
-                </p>
-            </div>
-
-        </div>
-
-        <!-- TABLA DE DESCARGA RÁPIDA DE REPOSITORIOS -->
-        <div class="glass-panel reveal fade-up" style="padding: 2.5rem; border-radius: 20px; margin-top: 2rem;">
-            <h3 style="font-family: var(--font-cinzel); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--gold-andino); text-align: center;">
-                Repositorios Oficiales en GitHub (Descarga Directa)
-            </h3>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
-                Haz clic en <strong>Copiar URL</strong> para clonar con Git, o en <strong>Descargar ZIP</strong> para bajar el código comprimido.
-            </p>
-
-            <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 850px; margin: 0 auto;">
-                
-                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <strong style="color: #fff; font-size: 1.05rem;">WoWPeru_RaidSuite (Sequito Platform)</strong>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">Suite de combate, macros 30 specs, Loot Council, GS e inspección</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button onclick="copyToClipboard('https://github.com/DarckRovert/WoWPeru_RaidSuite.git', this, '¡URL COPIADA!')" class="copy-pill-btn">? Copiar Git</button>
-                        <a href="https://github.com/DarckRovert/WoWPeru_RaidSuite/archive/refs/heads/main.zip" target="_blank" class="copy-pill-btn" style="background: rgba(74, 222, 128, 0.2); border-color: #4ade80;">? ZIP</a>
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <strong style="color: #fff; font-size: 1.05rem;">WoWPeru_BattlePass (La Forja Andina)</strong>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">Pase de Batalla 50 niveles con misiones integradas y recompensas</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button onclick="copyToClipboard('https://github.com/DarckRovert/WoWPeru_BattlePass.git', this, '¡URL COPIADA!')" class="copy-pill-btn">? Copiar Git</button>
-                        <a href="https://github.com/DarckRovert/WoWPeru_BattlePass/archive/refs/heads/main.zip" target="_blank" class="copy-pill-btn" style="background: rgba(74, 222, 128, 0.2); border-color: #4ade80;">? ZIP</a>
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <strong style="color: #fff; font-size: 1.05rem;">WoWPeru_Companion</strong>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">Hub social ligero de telemetría P2P, badges de modo y anuncios</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button onclick="copyToClipboard('https://github.com/DarckRovert/WoWPeru_Companion.git', this, '¡URL COPIADA!')" class="copy-pill-btn">? Copiar Git</button>
-                        <a href="https://github.com/DarckRovert/WoWPeru_Companion/archive/refs/heads/main.zip" target="_blank" class="copy-pill-btn" style="background: rgba(74, 222, 128, 0.2); border-color: #4ade80;">? ZIP</a>
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <strong style="color: #fff; font-size: 1.05rem;">WoWPeru_GameModes</strong>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">Selector cinematográfico de retos Hardcore (1 vida), Ironman y Desafíos</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button onclick="copyToClipboard('https://github.com/DarckRovert/WoWPeru_GameModes.git', this, '¡URL COPIADA!')" class="copy-pill-btn">? Copiar Git</button>
-                        <a href="https://github.com/DarckRovert/WoWPeru_GameModes/archive/refs/heads/main.zip" target="_blank" class="copy-pill-btn" style="background: rgba(74, 222, 128, 0.2); border-color: #4ade80;">? ZIP</a>
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <strong style="color: #fff; font-size: 1.05rem;">WowPeruVisualShop</strong>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">Catálogo cosmético de 18 alas visuales, 40+ auras y títulos legendarios</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button onclick="copyToClipboard('https://github.com/DarckRovert/WowPeruVisualShop.git', this, '¡URL COPIADA!')" class="copy-pill-btn">? Copiar Git</button>
-                        <a href="https://github.com/DarckRovert/WowPeruVisualShop/archive/refs/heads/main.zip" target="_blank" class="copy-pill-btn" style="background: rgba(74, 222, 128, 0.2); border-color: #4ade80;">? ZIP</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN MIEMBROS -->
-    <section id="miembros" class="section-container">
-        <div class="section-header text-center reveal fade-up">
-            <span class="section-pretitle">Los Elegidos del Vacío</span>
-            <h2 class="section-title">El Cónclave de <span>las Sombras</span></h2>
-            <p class="section-desc">
-                Estos son los guerreros que han jurado lealtad inquebrantable a las directivas tácticas del Séquito en WoW Perú.
-            </p>
-        </div>
-
-        <div class="members-grid">
-            <!-- Elnazzareno -->
-            <div class="member-card glass-panel reveal staggered" style="--delay: 100ms;">
-                <div class="member-portrait-wrapper">
-                    <div class="member-glow member-glow--purple"></div>
-                    <img src="assets/elnazzareno.png" alt="Elnazzareno" class="member-portrait">
-                </div>
-                <div class="member-info">
-                    <h3 class="member-name">Elnazzareno</h3>
-                    <span class="member-class warlock">Gnomo Brujo</span>
-                    <span class="member-role leader-role">Líder Supremo & GM</span>
-                    <p class="member-bio">
-                        Arquitecto del ecosistema. Maestro supremo de la voluntad abismal y la aniquilación orquestada.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Plaza 1 -->
-            <div class="member-card glass-panel member-card--empty reveal staggered" style="--delay: 200ms;">
-                <div class="member-portrait-wrapper">
-                    <div class="member-empty-slot">?</div>
-                </div>
-                <div class="member-info">
-                    <h3 class="member-name">¿Serás el próximo?</h3>
-                    <span class="member-class">Tanque Principal (MT)</span>
-                    <span class="member-role">En reclutamiento</span>
-                    <p class="member-bio">
-                        Buscamos Paladines Protección y Caballeros de la Muerte Sangre con dominio táctico para ICC 25H.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Plaza 2 -->
-            <div class="member-card glass-panel member-card--empty reveal staggered" style="--delay: 300ms;">
-                <div class="member-portrait-wrapper">
-                    <div class="member-empty-slot">?</div>
-                </div>
-                <div class="member-info">
-                    <h3 class="member-name">Sanador de Élite</h3>
-                    <span class="member-class">Sanador de Banda</span>
-                    <span class="member-role">En reclutamiento</span>
-                    <p class="member-bio">
-                        Sacerdotes Disciplina, Paladines Sagrado y Chamanes Restauración listos para el desafío de Rasganorte.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN RECLUTAMIENTO -->
-    <section id="reclutar" class="section-container">
-        <div class="recruit-wrapper glass-panel reveal scale-in">
-            <div class="recruit-header text-center">
-                <span class="section-pretitle andino-highlight">CONVOCATORIA PARA EL REINO ANDINO</span>
-                <h2 class="section-title">Únete a <span>El Séquito</span></h2>
-                <p class="recruit-subtitle">
-                    No somos una hermandad casual. Somos un escuadrón táctico apoyado por software propio. 
-                    Si tienes disciplina, compromiso y sed de conquista, el Cónclave te abrirá sus puertas.
-                </p>
-            </div>
-
-            <div class="recruit-columns">
-                <div class="recruit-column">
-                    <h3 class="recruit-col-title">? Requisitos de Ingreso</h3>
-                    <ul class="recruit-list">
-                        <li>? Jugar activamente en <strong>WoW Perú ? Reino Andino (3.3.5a)</strong></li>
-                        <li>? Instalar la suite oficial: <strong>WoWPeru_RaidSuite</strong> y <strong>WoWPeru_Companion</strong></li>
-                        <li>? Unirse a nuestro servidor oficial de Discord con micrófono funcional</li>
-                        <li>? Presentarte en el canal <code>#reclutamiento</code> indicando clase, rol y experiencia</li>
-                        <li>? Respetar con rigor la cadena de mando y las decisiones del Loot Council</li>
-                        <li>? Asistir a las raids semanales con frascos, pociones, comidas y encantamientos completos</li>
-                    </ul>
-                </div>
-
-                <div class="recruit-column">
-                    <h3 class="recruit-col-title">?? Proceso de Postulación</h3>
-                    <div class="recruit-steps">
-                        <div class="recruit-step">
-                            <span class="step-num">1</span>
-                            <div>
-                                <h4>Configura tu Cliente</h4>
-                                <p>Asegúrate de tener el realmlist oficial de WoW Perú y la suite de addons instalada.</p>
-                            </div>
-                        </div>
-                        <div class="recruit-step">
-                            <span class="step-num">2</span>
-                            <div>
-                                <h4>Ingresa a Discord</h4>
-                                <p>Preséntate en el canal de reclutamiento para que un oficial valide tu postulación.</p>
-                            </div>
-                        </div>
-                        <div class="recruit-step">
-                            <span class="step-num">3</span>
-                            <div>
-                                <h4>Periodo de Prueba</h4>
-                                <p>Participa en mazmorras y raids introductorias demostrando tu rendimiento en combate.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="recruit-cta text-center">
-                <a href="https://discord.gg/SfY8vfFWTC" target="_blank" class="cyber-button discord-btn" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
-                    <span class="cyber-button-text">INGRESAR AL DISCORD DEL SÉQUITO</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-                <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.85rem;">
-                    Discord Oficial: <code>https://discord.gg/SfY8vfFWTC</code>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN TRIBUTO -->
-    <section id="tributo" class="section-container">
-        <div class="tribute-card glass-panel reveal fade-up text-center">
-            <span class="section-pretitle">Apoyo al Proyecto Comunitario</span>
-            <h2 class="section-title">El Peaje <span>de Sangre</span></h2>
-            <p class="tribute-desc">
-                El desarrollo continuo de la suite de addons, la infraestructura de bots de Discord y el mantenimiento del portal web 
-                se financian de forma independiente y sin fines de lucro. Todo tributo voluntario asegura el conjuro de nuevas actualizaciones.
-            </p>
-            <div style="margin-top: 2rem;">
-                <a href="https://www.paypal.com/donate/?hosted_button_id=DF243KQBGMS3L" target="_blank" class="cyber-button blood-btn">
-                    <span class="cyber-button-text">Ofrecer Tributo Voluntario (PayPal)</span>
-                    <div class="cyber-button-glitch"></div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="footer" class="main-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <img src="assets/logo.png" alt="Logo" class="footer-logo">
-                <p class="footer-tagline">
-                    <strong>El Séquito</strong> ? Hermandad de Élite & Ecosistema Digital en <strong>WoW Perú</strong> (Reino Andino - 3.3.5a).
-                </p>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
-                    Liderado por <strong>DarckRovert</strong> (Ingame: <code>Elnazzareno</code>).
-                </p>
-            </div>
-
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Navegación</h4>
-                    <a href="#hero">Inicio</a>
-                    <a href="#lider">El Líder</a>
-                    <a href="#lore">Lore Canónico</a>
-                    <a href="#ecosistema">Arsenal 3.3.5a</a>
-                    <a href="#instalacion">Instalación</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosistema</h4>
-                    <a href="https://github.com/DarckRovert/WoWPeru_RaidSuite" target="_blank">WoWPeru_RaidSuite</a>
-                    <a href="https://github.com/DarckRovert/WoWPeru_BattlePass" target="_blank">WoWPeru_BattlePass</a>
-                    <a href="https://github.com/DarckRovert/WoWPeru_Companion" target="_blank">WoWPeru_Companion</a>
-                    <a href="https://github.com/DarckRovert/WoWPeru_GameModes" target="_blank">WoWPeru_GameModes</a>
-                    <a href="https://github.com/DarckRovert/WowPeruVisualShop" target="_blank">WowPeruVisualShop</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Comunidad</h4>
-                    <a href="https://discord.gg/SfY8vfFWTC" target="_blank">Discord Oficial</a>
-                    <a href="https://wow-peru.lat/" target="_blank">Servidor WoW Perú</a>
-                    <a href="https://twitch.tv/darckrovert" target="_blank">Twitch @darckrovert</a>
-                    <a href="https://kick.com/darckrovert" target="_blank">Kick @darckrovert</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2026 <strong>El Séquito</strong>. Forjando la leyenda en <strong>WoW Perú ? Reino Andino</strong>. Distribuido bajo Licencia MIT.</p>
-                <div style="margin-top: 0.8rem; display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap;">
-                    <a href="LICENSE" target="_blank" style="color: var(--text-muted); font-size: 0.8rem;">Licencia MIT</a>
-                    <span style="color: rgba(255,255,255,0.2);">?</span>
-                    <a href="CODE_OF_CONDUCT.md" target="_blank" style="color: var(--text-muted); font-size: 0.8rem;">Código de Conducta</a>
-                    <span style="color: rgba(255,255,255,0.2);">?</span>
-                    <a href="CONTRIBUTING.md" target="_blank" style="color: var(--text-muted); font-size: 0.8rem;">Guía de Contribución</a>
-                    <span style="color: rgba(255,255,255,0.2);">?</span>
-                    <a href="https://darckrovert.github.io/SequitoWeb/" target="_blank">
-                        <img src="https://img.shields.io/badge/Hosted%20with-GitHub%20Pages-22272e?logo=github&logoColor=white" alt="Hosted with GitHub Pages">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Jaina — El Primer Servidor de WoW con Lore Viviente e IA | WotLK 3.3.5a</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project Jaina Crest" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT JAINA</div>
+                <div class="brand-subtitle">LIVING LORE & AI REVOLUTION</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="#living-lore">Lore Viviente</a></li>
+            <li><a href="registro.html">Crear Cuenta</a></li>
+            <li><a href="armeria.html">Armería</a></li>
+            <li><a href="tienda.html">Tienda & Donar</a></li>
+            <li><a href="#como-jugar">¿Cómo Jugar?</a></li>
+            <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-badge">❄️ WotLK 3.3.5a HD · NPCs Vivientes con IA Neuronal Local · Audio Espacial 3D</div>
+        <h1>Donde las Leyendas de Azeroth Cobran Conciencia</h1>
+        <p>El primer servidor de World of Warcraft del mundo con <strong>HeroBots Vivientes impulsados por Inteligencia Artificial Neuronal</strong>. Camina junto a <strong>Lady Jaina Valiente</strong> en Theramore y Dalaran, forja afinidad real a través de diálogos libres, combate hombro a hombro en mazmorras y vive una experiencia binaural 3D sin precedentes.</p>
+        
+        <div class="hero-banner-container">
+            <img src="images/jaina_hero_banner.jpg" alt="Lady Jaina Proudmoore - Project Jaina Living Lore" class="hero-banner-img">
+            <div class="hero-banner-overlay">
+                <span class="hero-banner-tag">EXPEDICIÓN DALARAN</span>
+                <span class="hero-banner-status">● MOTOR DE LORE VIVIENTE V4.0 ACTIVO</span>
+            </div>
+        </div>
+
+        <div class="hero-actions">
+            <a href="registro.html" class="btn-primary">⚔️ Registrar Cuenta SRP6</a>
+            <a href="#como-jugar" class="btn-secondary">📥 Descargar Launcher Oficial</a>
+        </div>
+
+        <!-- STATUS REALM METRIC BAR -->
+        <div class="status-bar-card">
+            <div class="status-metric">
+                <div class="metric-label">Estado del Servidor</div>
+                <div class="metric-value">
+                    <span id="statusDot" class="pulse-dot"></span>
+                    <span id="statusText">ONLINE</span>
+                </div>
+            </div>
+            <div class="status-metric">
+                <div class="metric-label">Héroes en el Mundo</div>
+                <div class="metric-value" id="onlinePlayers">--</div>
+            </div>
+            <div class="status-metric">
+                <div class="metric-label">Cuentas Registradas</div>
+                <div class="metric-value" id="totalAccounts">--</div>
+            </div>
+            <div class="status-metric">
+                <div class="metric-label">Dominio & Realmlist Canónico</div>
+                <div class="metric-value" style="font-size: 1.1rem; color: var(--gold-primary);">projectjaina.com</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- LIVING LORE FEATURE SHOWCASE -->
+    <section id="living-lore" class="factions-section">
+        <h2 class="section-title">El Pilar Revolucionario: Lore Viviente</h2>
+        <p class="section-subtitle">Inteligencia artificial generativa integrada en el núcleo del juego, sin latencia y con memoria persistente</p>
+
+        <div class="showcase-grid">
+            <div class="showcase-visual">
+                <img src="images/jaina_living_lore.jpg" alt="Consejo Estratégico de Lady Jaina en Dalaran" class="showcase-img">
+                <div class="showcase-caption">
+                    <strong>Santuario Arcano de Dalaran:</strong> Lady Jaina coordina expediciones en Rasganorte junto a los aventureros.
+                </div>
+            </div>
+
+            <div class="showcase-content">
+                <div class="feature-item-glass">
+                    <div class="feature-icon">🧠</div>
+                    <div>
+                        <h3 class="feature-title">Memoria y Diálogos Neuronales (LLM Local)</h3>
+                        <p class="feature-desc">Lady Jaina procesa lenguaje natural en tiempo real mediante un modelo neuronal local (Qwen 2.5 3B / Llama). Recuerda tus hazañas pasadas, evalúa tu afinidad y reacciona a tus palabras con coherencia canónica absoluta.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item-glass">
+                    <div class="feature-icon">❄️</div>
+                    <div>
+                        <h3 class="feature-title">HeroBot Autónomo de Mazmorra (GUID 1002)</h3>
+                        <p class="feature-desc">Invoca a la Archimaga con <code>.playerbots add Jaina</code>. Equipada con <em>Archus, Gran Báculo de Antonidas</em> y un grimorio de 499 hechizos, asistirá tus raids adaptando dinámicamente sus rotaciones de Escarcha y Arcano.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item-glass">
+                    <div class="feature-icon">🎧</div>
+                    <div>
+                        <h3 class="feature-title">Audio Espacial 3D por Proximidad (HRTF)</h3>
+                        <p class="feature-desc">Escucha la voz de Jaina y de otros aventureros con cálculo binaural 3D en tiempo real según su distancia y ángulo cardinal en el mundo de juego. Inmersión sonora total sin necesidad de Discord.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item-glass">
+                    <div class="feature-icon">📜</div>
+                    <div>
+                        <h3 class="feature-title">Pase de Batalla & Desafíos Soberanos</h3>
+                        <p class="feature-desc">Desafíos Hardcore, Ironman y sistema de progresión de temporada integrado con 18 AddOns oficiales remasterizados exclusivos para la experiencia Project Jaina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUÍA DE CONEXIÓN EN 3 PASOS -->
+    <section id="como-jugar" class="factions-section">
+        <h2 class="section-title">¿Cómo Ingresar a Project Jaina?</h2>
+        <p class="section-subtitle">Configuración rápida en 3 sencillos pasos para sumergirte en Azeroth</p>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3 class="step-title">Conéctate a la Red Oficial</h3>
+                <p class="step-desc">Descarga e instala <strong>Radmin VPN</strong>. Únete a nuestra red dedicada para enlace de ultra-baja latencia:</p>
+                <div class="code-box">
+                    <div><strong>Red:</strong> Project_Jaina</div>
+                    <div><strong>Contraseña:</strong> thedarck1993</div>
+                    <div><strong>Host IP:</strong> 26.140.157.205</div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3 class="step-title">Crea tu Cuenta SRP6</h3>
+                <p class="step-desc">Ve a nuestra sección de <a href="registro.html" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Crear Cuenta</a>. Tu usuario y contraseña se cifran con SRP6 y se activan al instante en la base de datos de juego.</p>
+                <div style="margin-top: 1.2rem;">
+                    <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.6rem 1rem; font-size: 0.85rem;">🛡️ Registro Instantáneo</a>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3 class="step-title">Descarga el Launcher y Juega</h3>
+                <p class="step-desc">Ejecuta nuestro <strong>ProjectJaina_Hub.exe</strong> o abre <strong>Wow.exe</strong> con el archivo <code>realmlist.wtf</code> configurado:</p>
+                <div class="code-box">
+                    <code>set realmlist projectjaina.com</code>
+                </div>
+                <p class="step-desc" style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted);">¡Listo! Entra al juego con tus credenciales y comienza tu aventura junto a Lady Jaina.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project Jaina Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT JAINA — LIVING LORE EXPERIENCE</div>
+        <p>Dirección General & Creación: <strong>DarckRovert</strong> | Arquitectura & AI Staff Engineer: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--text-muted);">World of Warcraft® y Blizzard Entertainment son marcas registradas. Project Jaina es un proyecto independiente de desarrollo e investigación en inteligencia artificial aplicada a videojuegos.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

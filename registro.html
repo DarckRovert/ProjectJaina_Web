@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Oficial SRP6 — Project Jaina</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project Jaina" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT JAINA</div>
+                <div class="brand-subtitle">LIVING LORE & AI REVOLUTION</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="registro.html" class="active">Crear Cuenta</a></li>
+            <li><a href="armeria.html">Armería</a></li>
+            <li><a href="tienda.html">Tienda & Donar</a></li>
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN FORM -->
+    <main style="padding: 2rem 1.5rem;">
+        <div class="form-container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🛡️</div>
+                <h1 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold-primary);">Crear Cuenta de Juego</h1>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.4rem;">Criptografía autoritativa SRP6 compatible con World of Warcraft 3.3.5a (WotLK)</p>
+            </div>
+
+            <div id="registerMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.92rem; border: 1px solid;"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">Nombre de Usuario (Login)</label>
+                    <input type="text" id="regUsername" class="form-control" placeholder="Ej: GuerreroAndino" required minlength="3" maxlength="16" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassword">Contraseña</label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="Mínimo 4 caracteres" required minlength="4" autocomplete="new-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="regConfirmPassword">Confirmar Contraseña</label>
+                    <input type="password" id="regConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required minlength="4" autocomplete="new-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Correo Electrónico (Opcional)</label>
+                    <input type="email" id="regEmail" class="form-control" placeholder="tu-correo@ejemplo.com" autocomplete="email">
+                </div>
+
+                <div class="form-group"><label>Reino de Juego:</label><input type="text" class="form-control" value="Project Jaina (Oficial)" readonly style="color: var(--gold-primary); font-weight: bold;"></div>
+
+                <button type="submit" id="btnRegisterSubmit" class="btn-primary btn-block">
+                    ⚔️ CREAR CUENTA SRP6
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="credits-lead">PROJECT JAINA & LIVING LORE & AI REVOLUTION</div>
+        <p>Tu cuenta queda registrada inmediatamente en la base de datos central de AzerothCore.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/config.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>
