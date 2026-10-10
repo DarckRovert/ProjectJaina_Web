@@ -1,55 +1,239 @@
 /**
- * Project JAIna — Armería & Cuadro de Honor
- * Incluye Podio Top 3, buscador en vivo, filtros por clase y modal de inspección.
+ * ============================================================================
+ * Project JAIna — Armería Oficial & Salón de Campeones
+ * Archivo: js/armory.js
+ * Versión: 2.5 Mythos (Empirismo Estricto & Telemetría Canónica)
+ * ============================================================================
+ * Sincronización híbrida bidireccional:
+ * 1. Carga inmediata de instantánea canónica local (data/armory.json) para
+ *    soporte offline y GitHub Pages (HTTPS sin mixed-content).
+ * 2. Sondeo en vivo hacia ProjectJaina_WebAPI (/api/armory) para actualización
+ *    en tiempo real desde acore_characters cuando el clúster está encendido.
+ * 3. Detección visual rigurosa: Si el servidor está apagado, se declara
+ *    ○ SERVIDOR DESCONECTADO y ningún personaje figura ficticiamente en línea.
+ * ============================================================================
  */
 
-const DEFAULT_ARMORY_SNAPSHOT = [
-    { name: "Darckrovert", class: "Paladín", race: "Humano", level: 80, guild: "Project JAIna", online: true, gs: 6150, spec: "Reprensión", role: "DPS / Ofensivo", title: "el Vencedor Soberano" },
-    { name: "Gasket", class: "Brujo", race: "No-muerto", level: 80, guild: "Project JAIna", online: true, gs: 6020, spec: "Destrucción", role: "DPS a Distancia", title: "el Conjurador Oscuro" },
-    { name: "Elnazzareno", class: "Guerrero", race: "Humano", level: 80, guild: "Soberanos de Theramore", online: true, gs: 5980, spec: "Protección", role: "Tanque Principal", title: "el Bastión Inquebrantable" },
-    { name: "Proudmoore", class: "Mago", race: "Humano", level: 80, guild: "Consejo de Kirin Tor", online: true, gs: 5920, spec: "Escarcha", role: "DPS Arcano", title: "Archimago de Dalaran" },
-    { name: "Evaayllon", class: "Sacerdote", race: "Humano", level: 80, guild: "Soberanos de Theramore", online: false, gs: 5850, spec: "Disciplina", role: "Sanador de Banda", title: "la Purificadora" },
-    { name: "Freemaduro", class: "Caballero de la Muerte", race: "No-muerto", level: 80, guild: "Project JAIna", online: false, gs: 5800, spec: "Profano", role: "DPS de Plaga", title: "el Caballero Maldito" },
-    { name: "Otrokin", class: "Mago", race: "Gnomo", level: 80, guild: "Consejo de Kirin Tor", online: false, gs: 5740, spec: "Fuego", role: "DPS de Asedio", title: "el Piroclasta" },
-    { name: "Teriantropo", class: "Druida", race: "Elfo de la Noche", level: 80, guild: "Círculo Cenarion", online: false, gs: 5690, spec: "Restauración", role: "Sanador Silvano", title: "el Guardián del Sueño" },
-    { name: "Unodos", class: "Pícaro", race: "Humano", level: 80, guild: "Project JAIna", online: false, gs: 5630, spec: "Combate", role: "DPS Melé", title: "la Sombra Letal" },
-    { name: "FranFranco", class: "Chamán", race: "Tauren", level: 80, guild: "Cluster Master", online: false, gs: 5600, spec: "Mejora", role: "DPS Elemental", title: "Hijo de la Tierra" },
-    { name: "Tervosh", class: "Mago", race: "Humano", level: 80, guild: "Consejo de Kirin Tor", online: false, gs: 5540, spec: "Arcano", role: "DPS de Élite", title: "Consejero Arcano" },
-    { name: "Dolida", class: "Pícaro", race: "Humano", level: 80, guild: "Guardia Real de Theramore", online: true, gs: 5500, spec: "Asesinato", role: "DPS Sigiloso", title: "la Hoja Rápida" },
-    { name: "Screwdink", class: "Cazador", race: "Gnomo", level: 80, guild: "Ingenieros de Dalaran", online: false, gs: 5450, spec: "Puntería", role: "DPS Físico", title: "el Francotirador" },
-    { name: "Kaelthas", class: "Mago", race: "Elfo de Sangre", level: 80, guild: "El Sol Sangrante", online: false, gs: 5400, spec: "Fuego", role: "DPS Ígneo", title: "el Señor Solar" },
-    { name: "Varian", class: "Guerrero", race: "Humano", level: 80, guild: "Alianza de Ventormenta", online: false, gs: 5380, spec: "Armas", role: "Comandante Melé", title: "el Lobo Fantasma" }
+const CANONICAL_BASELINE = [
+    {
+        name: "Gasket",
+        class: "Brujo",
+        race: "No-Muerto",
+        level: 60,
+        guild: "Project JAIna",
+        online: false,
+        gs: 850,
+        spec: "Destrucción",
+        role: "DPS a Distancia",
+        title: "Administrador de Proyecto",
+        lore: "Primer avatar registrado del Reino de Theramore. Ostenta privilegios administrativos y enlace directo con la red neuronal de Lore."
+    }
 ];
 
-let allCharacters = [...DEFAULT_ARMORY_SNAPSHOT];
+let allCharacters = [...CANONICAL_BASELINE];
 let currentFilter = "all";
 let currentSearch = "";
+let isServerOnline = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     initArmory();
 });
 
 async function initArmory() {
-    renderPodium(allCharacters);
-    renderArmoryRows(allCharacters);
     setupFiltersAndSearch();
     setupModalEvents();
+    setupSyncButton();
+
+    // 1. Carga instantánea canónica en disco para render instantáneo
+    await loadLocalArmorySnapshot();
+
+    // 2. Probar conexión en vivo contra el micro-backend
     await fetchLiveArmory();
 }
 
+/**
+ * Carga el registro estático data/armory.json (SSOT en disco)
+ */
+async function loadLocalArmorySnapshot() {
+    try {
+        const resp = await fetch(`data/armory.json?t=${Date.now()}`);
+        if (resp.ok) {
+            const data = await resp.json();
+            if (Array.isArray(data) && data.length > 0) {
+                // Si el servidor está apagado o no comprobado, forzamos status offline
+                allCharacters = data.map(c => ({ ...c, online: false }));
+            }
+        }
+    } catch (err) {
+        console.warn("[Armería] Usando instantánea de respaldo integrada:", err);
+        allCharacters = [...CANONICAL_BASELINE];
+    }
+
+    updateArmoryStatusBadge(false, "○ SERVIDOR DESCONECTADO (REGISTRO LOCAL EN DISCO)");
+    renderPodium(allCharacters);
+    renderArmoryRows(allCharacters);
+}
+
+/**
+ * Sondea el micro-backend en vivo para obtener los datos de acore_characters
+ */
+async function fetchLiveArmory() {
+    const syncBtn = document.getElementById("btnSyncArmory");
+    if (syncBtn) {
+        syncBtn.disabled = true;
+        syncBtn.innerHTML = `⏳ Sincronizando...`;
+    }
+
+    updateArmoryStatusBadge(false, "⏳ COMPROBANDO ESTADO DEL REINO...");
+
+    try {
+        const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl)
+            ? CONFIG.getApiUrl()
+            : "http://127.0.0.1:8080";
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+        const response = await fetch(`${apiUrl}/api/armory`, {
+            method: "GET",
+            signal: controller.signal,
+            headers: {
+                "Accept": "application/json",
+                "ngrok-skip-browser-warning": "true"
+            }
+        });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+            const liveData = await response.json();
+            if (Array.isArray(liveData) && liveData.length > 0) {
+                allCharacters = liveData;
+                isServerOnline = true;
+                updateArmoryStatusBadge(true, "● SERVIDOR EN VIVO (SINCRONIZADO CON ACORE_CHARACTERS)");
+                renderPodium(allCharacters);
+                renderArmoryRows(allCharacters);
+                return;
+            }
+        }
+        throw new Error("Respuesta inválida o vacía");
+    } catch (e) {
+        // Servidor offline / Túnel inactivo
+        isServerOnline = false;
+        // En modo offline, forzamos que ningún personaje muestre 'online'
+        allCharacters = allCharacters.map(c => ({ ...c, online: false }));
+        updateArmoryStatusBadge(false, "○ SERVIDOR DESCONECTADO (ÚLTIMO REGISTRO EN DISCO)");
+        renderPodium(allCharacters);
+        renderArmoryRows(allCharacters);
+    } finally {
+        if (syncBtn) {
+            syncBtn.disabled = false;
+            syncBtn.innerHTML = `🔄 Sincronizar en Tiempo Real`;
+        }
+    }
+}
+
+function updateArmoryStatusBadge(online, text) {
+    const badge = document.getElementById("armoryLiveBadge");
+    if (!badge) return;
+
+    badge.textContent = text;
+    if (online) {
+        badge.className = "hero-banner-status armory-badge-live";
+        badge.style.color = "#39d353";
+        badge.style.borderColor = "rgba(57, 211, 83, 0.4)";
+        badge.style.background = "rgba(57, 211, 83, 0.12)";
+    } else {
+        badge.className = "hero-banner-status armory-badge-offline";
+        badge.style.color = "#ffb74d";
+        badge.style.borderColor = "rgba(255, 183, 77, 0.4)";
+        badge.style.background = "rgba(255, 183, 77, 0.12)";
+    }
+}
+
+/**
+ * Renderizado adaptable del Podio:
+ * Soporta de 1 a N personajes sin romper la grilla visual.
+ */
 function renderPodium(chars) {
     const podiumContainer = document.getElementById("championsPodium");
-    if (!podiumContainer || chars.length < 3) return;
+    if (!podiumContainer) return;
 
-    const top3 = [chars[1], chars[0], chars[2]]; // orden visual: 2º (Plata), 1º (Oro - Centro), 3º (Bronce)
+    if (!chars || chars.length === 0) {
+        podiumContainer.className = "podium-grid podium-empty";
+        podiumContainer.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">
+                No hay héroes registrados en el salón de honor todavía.
+            </div>
+        `;
+        return;
+    }
+
+    // Caso 1: Un solo campeón (ej: Gasket como primer héroe)
+    if (chars.length === 1) {
+        podiumContainer.className = "podium-grid podium-single";
+        const c = chars[0];
+        const classBadge = getClassBadgeClass(c.class);
+        podiumContainer.innerHTML = `
+            <div class="podium-card podium-gold" onclick="inspectCharacter('${c.name}')" style="max-width: 360px; margin: 0 auto; width: 100%;">
+                <div class="podium-crown">👑</div>
+                <div class="podium-avatar-wrap">
+                    <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
+                    <span class="podium-rank-badge">1º</span>
+                </div>
+                <div class="podium-char-name">${c.name}</div>
+                <div class="podium-char-title">${c.title || 'Campeón Supremo del Reino'}</div>
+                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
+                <div class="podium-stats">
+                    <span>Lv ${c.level} (Vanilla)</span> · <span>${c.gs || 850} GS</span> · <span>${c.guild}</span>
+                </div>
+                <div style="margin-top: 0.8rem; font-size: 0.75rem; color: ${c.online ? 'var(--status-online)' : 'var(--text-muted)'};">
+                    ${c.online ? '● Conectado en Mundo' : '○ Servidor Desconectado'}
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    // Caso 2: Dos campeones (1º Oro, 2º Plata)
+    if (chars.length === 2) {
+        podiumContainer.className = "podium-grid podium-double";
+        const ranks = [
+            { place: "1º", medal: "👑", label: "CAMPEÓN", classMod: "podium-gold", c: chars[0] },
+            { place: "2º", medal: "🥈", label: "PLATA", classMod: "podium-silver", c: chars[1] }
+        ];
+
+        podiumContainer.innerHTML = ranks.map(r => {
+            const c = r.c;
+            const classBadge = getClassBadgeClass(c.class);
+            return `
+                <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${c.name}')">
+                    <div class="podium-crown">${r.medal}</div>
+                    <div class="podium-avatar-wrap">
+                        <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
+                        <span class="podium-rank-badge">${r.place}</span>
+                    </div>
+                    <div class="podium-char-name">${c.name}</div>
+                    <div class="podium-char-title">${c.title || 'Héroe de Azeroth'}</div>
+                    <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
+                    <div class="podium-stats">
+                        <span>Lv ${c.level}</span> · <span>${c.gs || 850} GS</span> · <span>${c.guild}</span>
+                    </div>
+                </div>
+            `;
+        }).join("");
+        return;
+    }
+
+    // Caso 3: Tres o más campeones (Orden visual tradicional: 2º Plata, 1º Oro al centro, 3º Bronce)
+    podiumContainer.className = "podium-grid podium-triple";
     const ranks = [
-        { place: "2º", medal: "🥈", label: "PLATA", classMod: "podium-silver", idx: 1 },
-        { place: "1º", medal: "👑", label: "CAMPEÓN SUPREMO", classMod: "podium-gold", idx: 0 },
-        { place: "3º", medal: "🥉", label: "BRONCE", classMod: "podium-bronze", idx: 2 }
+        { place: "2º", medal: "🥈", label: "PLATA", classMod: "podium-silver", c: chars[1] },
+        { place: "1º", medal: "👑", label: "CAMPEÓN SUPREMO", classMod: "podium-gold", c: chars[0] },
+        { place: "3º", medal: "🥉", label: "BRONCE", classMod: "podium-bronze", c: chars[2] }
     ];
 
     podiumContainer.innerHTML = ranks.map(r => {
-        const c = chars[r.idx];
+        const c = r.c;
         const classBadge = getClassBadgeClass(c.class);
         return `
             <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${c.name}')">
@@ -59,10 +243,10 @@ function renderPodium(chars) {
                     <span class="podium-rank-badge">${r.place}</span>
                 </div>
                 <div class="podium-char-name">${c.name}</div>
-                <div class="podium-char-title">${c.title || 'Campeón de Azeroth'}</div>
+                <div class="podium-char-title">${c.title || 'Héroe de Azeroth'}</div>
                 <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
                 <div class="podium-stats">
-                    <span>Lv ${c.level}</span> · <span>${c.gs || 5800} GS</span> · <span>${c.guild}</span>
+                    <span>Lv ${c.level}</span> · <span>${c.gs || 850} GS</span> · <span>${c.guild}</span>
                 </div>
             </div>
         `;
@@ -76,7 +260,7 @@ function renderArmoryRows(chars) {
     if (loadingRow) loadingRow.remove();
 
     let filtered = chars.filter(c => {
-        const matchesSearch = !currentSearch || 
+        const matchesSearch = !currentSearch ||
             c.name.toLowerCase().includes(currentSearch) ||
             c.guild.toLowerCase().includes(currentSearch) ||
             c.class.toLowerCase().includes(currentSearch);
@@ -85,22 +269,22 @@ function renderArmoryRows(chars) {
         if (currentFilter === "online") {
             matchesFilter = !!c.online;
         } else if (currentFilter !== "all") {
-            matchesFilter = (c.class === currentFilter);
+            matchesFilter = (c.class.toLowerCase() === currentFilter.toLowerCase());
         }
 
         return matchesSearch && matchesFilter;
     });
 
     if (filtered.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">No se encontraron héroes que coincidan con la búsqueda.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">No se encontraron héroes que coincidan con la búsqueda o filtro seleccionado.</td></tr>`;
         return;
     }
 
     tableBody.innerHTML = filtered.map((c, idx) => {
         const classClass = getClassBadgeClass(c.class);
-        const statusBadge = c.online 
-            ? `<span class="online-tag">● Online</span>`
-            : `<span class="offline-tag">○ Offline</span>`;
+        const statusBadge = c.online
+            ? `<span class="online-tag">● En Línea</span>`
+            : `<span class="offline-tag">○ Desconectado</span>`;
 
         return `
             <tr class="armory-row" onclick="inspectCharacter('${c.name}')">
@@ -145,8 +329,19 @@ function setupFiltersAndSearch() {
     });
 }
 
+function setupSyncButton() {
+    const syncBtn = document.getElementById("btnSyncArmory");
+    if (syncBtn) {
+        syncBtn.addEventListener("click", () => {
+            fetchLiveArmory();
+        });
+    }
+}
+
 function inspectCharacter(charName) {
     const char = allCharacters.find(c => c.name.toLowerCase() === charName.toLowerCase()) || allCharacters[0];
+    if (!char) return;
+
     const modal = document.getElementById("characterModal");
     const modalBody = document.getElementById("characterModalContent");
     if (!modal || !modalBody) return;
@@ -160,11 +355,11 @@ function inspectCharacter(charName) {
             </div>
             <div>
                 <h2 class="inspect-name">${char.name}</h2>
-                <div class="inspect-title-tag">${char.title || 'Veterano de Northrend'}</div>
+                <div class="inspect-title-tag">${char.title || 'Campeón de Azeroth'}</div>
                 <div class="inspect-badges-row">
                     <span class="badge-class ${classBadge}">${char.class}</span>
                     <span class="inspect-pill">${char.race}</span>
-                    <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level}</span>
+                    <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level} (Vanilla)</span>
                     <span class="inspect-pill">${char.guild}</span>
                 </div>
             </div>
@@ -173,11 +368,11 @@ function inspectCharacter(charName) {
         <div class="inspect-stats-grid">
             <div class="inspect-stat-card">
                 <div class="stat-name">Puntuación de Equipo (GS)</div>
-                <div class="stat-val" style="color: #00e5ff;">${char.gs || 5800} GS</div>
+                <div class="stat-val" style="color: #00e5ff;">${char.gs || 850} GS</div>
             </div>
             <div class="inspect-stat-card">
                 <div class="stat-name">Especialización</div>
-                <div class="stat-val" style="color: var(--gold-primary);">${char.spec || 'Doble Talento'}</div>
+                <div class="stat-val" style="color: var(--gold-primary);">${char.spec || 'Talentos de Era Clásica'}</div>
             </div>
             <div class="inspect-stat-card">
                 <div class="stat-name">Rol de Combate</div>
@@ -186,14 +381,14 @@ function inspectCharacter(charName) {
             <div class="inspect-stat-card">
                 <div class="stat-name">Estado en Reino</div>
                 <div class="stat-val" style="color: ${char.online ? 'var(--status-online)' : 'var(--text-muted)'};">
-                    ${char.online ? 'Conectado (En Mundo)' : 'Desconectado'}
+                    ${char.online ? '● Conectado (En Mundo)' : '○ Desconectado (Servidor Standby)'}
                 </div>
             </div>
         </div>
 
         <div class="inspect-lore-box">
             <div class="lore-box-title">📜 Registro Histórico del Campeón:</div>
-            <p>Héroe registrado bajo la jurisdicción de <strong>${char.guild}</strong>. Ha participado en campañas activas de la era actual y ostenta acceso irrestricto a los sagrarios de Dalaran y Theramore.</p>
+            <p>${char.lore || `Héroe registrado bajo la jurisdicción de <strong>${char.guild}</strong>. Ha participado en campañas de la Era Clásica de Azeroth con acceso a los sagrarios de Theramore y Dalaran.`}</p>
         </div>
     `;
 
@@ -216,35 +411,6 @@ function setupModalEvents() {
     });
 }
 
-async function fetchLiveArmory() {
-    try {
-        const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000);
-
-        const response = await fetch(`${apiUrl}/api/armory`, {
-            method: "GET",
-            signal: controller.signal,
-            headers: { 
-                "Accept": "application/json",
-                "ngrok-skip-browser-warning": "true"
-            }
-        });
-        clearTimeout(timeoutId);
-
-        if (response.ok) {
-            const data = await response.json();
-            if (Array.isArray(data) && data.length > 0) {
-                allCharacters = data;
-                renderPodium(allCharacters);
-                renderArmoryRows(allCharacters);
-            }
-        }
-    } catch (e) {
-        // En espera de conexión con MySQL
-    }
-}
-
 function getClassBadgeClass(className) {
     const map = {
         "Guerrero": "class-guerrero",
@@ -258,5 +424,5 @@ function getClassBadgeClass(className) {
         "Brujo": "class-brujo",
         "Druida": "class-druida"
     };
-    return map[className] || "class-mago";
+    return map[className] || "class-brujo";
 }

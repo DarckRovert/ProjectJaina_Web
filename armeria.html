@@ -38,13 +38,16 @@
         <div class="subpage-banner-container">
             <img src="images/armory_champions_epic.jpg" alt="Salón de Campeones Project Jaina" class="subpage-banner-img">
             <div class="hero-banner-overlay">
-                <span class="hero-banner-tag">SALÓN DE LA GLORIA</span>
-                <span class="hero-banner-status">● BASE DE DATOS ACORE_CHARACTERS CONECTADA</span>
+                <span class="hero-banner-tag">SALÓN DE LA GLORIA · ERA CLÁSICA</span>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                    <span id="armoryLiveBadge" class="hero-banner-status armory-badge-offline">○ VERIFICANDO CONEXIÓN CON EL REINO...</span>
+                    <button id="btnSyncArmory" class="btn-sync-action" title="Sondear base de datos acore_characters">🔄 Sincronizar en Tiempo Real</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- PODIUM TOP 3 CHAMPIONS -->
+    <!-- PODIUM TOP CHAMPIONS (ADAPTABLE) -->
     <section class="podium-section">
         <div class="podium-grid" id="championsPodium">
             <!-- Renderizado dinámicamente por armory.js -->
@@ -52,7 +55,7 @@
     </section>
 
     <!-- CONTENT TABLE & FILTERS -->
-    <main style="padding: 1rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <main style="padding: 1rem 1.5rem 2rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
         
         <!-- SEARCH & FILTER TOOLBAR -->
         <div class="armory-toolbar">
@@ -63,10 +66,15 @@
             
             <div class="filter-chips-group">
                 <button class="filter-chip active" data-filter="all">Todos</button>
+                <button class="filter-chip" data-filter="Brujo">Brujos</button>
                 <button class="filter-chip" data-filter="Paladín">Paladines</button>
                 <button class="filter-chip" data-filter="Mago">Magos</button>
                 <button class="filter-chip" data-filter="Guerrero">Guerreros</button>
-                <button class="filter-chip" data-filter="Caballero de la Muerte">DKs</button>
+                <button class="filter-chip" data-filter="Cazador">Cazadores</button>
+                <button class="filter-chip" data-filter="Sacerdote">Sacerdotes</button>
+                <button class="filter-chip" data-filter="Pícaro">Pícaros</button>
+                <button class="filter-chip" data-filter="Chamán">Chamanes</button>
+                <button class="filter-chip" data-filter="Druida">Druidas</button>
                 <button class="filter-chip" data-filter="online">En Línea</button>
             </div>
         </div>
@@ -106,14 +114,32 @@
         </div>
     </div>
 
+    <!-- AVISO LEGAL & ATRIBUCIÓN INTELECTUAL -->
+    <section class="legal-disclaimer-section">
+        <div class="legal-disclaimer-box">
+            <div class="legal-disclaimer-title">⚖️ AVISO LEGAL, PROPIEDAD INTELECTUAL & FILOSOFÍA DEL LABORATORIO</div>
+            <p>
+                <strong>World of Warcraft®</strong>, <strong>Warcraft®</strong>, los nombres de clases, razas, hechizos, mapas, cinemáticas, texturas, música y logotipos asociados son marcas registradas y propiedad intelectual exclusiva de <strong>Blizzard Entertainment, Inc.</strong> Project JAIna no está afiliado, respaldado ni patrocinado por Blizzard Entertainment.
+            </p>
+            <p>
+                <strong>Project JAIna</strong> es un laboratorio experimental independiente de investigación científica y tecnológica sin fines de lucro, enfocado en el desarrollo de <strong>Inteligencia Artificial Agéntica y Modelos Neuronales Locales (LLM)</strong> para recrear comportamientos vivos e inmersión dinámica sobre el motor de emulación de código abierto <strong>AzerothCore</strong> (licenciado bajo GNU AGPL v3).
+            </p>
+            <p>
+                Este entorno es de acceso libre y educativo. Los datos mostrados en esta armería provienen de consultas a la base de datos de emulación y reflejan el estado del clúster de investigación.
+            </p>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-crest-container">
             <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
         </div>
-        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE EXPERIENCE</div>
-        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
-        <p style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--text-muted);">Los datos de la armería reflejan las estadísticas de los personajes almacenadas en MySQL.</p>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
+        <p>Dirección General & Diseño de Sistemas: <strong>DarckRovert</strong> | Arquitectura de IA & Front-End: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.76rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            World of Warcraft® y Blizzard Entertainment son marcas comerciales o marcas registradas de Blizzard Entertainment, Inc. en los Estados Unidos y/u otros países. Este portal opera únicamente como interfaz de telemetría y divulgación técnica para el proyecto experimental Project JAIna.
+        </p>
     </footer>
 
     <!-- SCRIPTS -->

@@ -1,15 +1,15 @@
 {
   "realm_name": "Project JAIna",
-  "active_phase_id": "tbc",
+  "active_phase_id": "vanilla",
   "version": "1.0.0",
-  "last_updated": "2026-10-09T04:30:00Z",
+  "last_updated": "2026-10-09T21:30:00Z",
   "governed_by": "Gravity AI Bridge (Autonomous Chrono-Master)",
   "server_launch_date": "2026-11-24T00:00:00-05:00",
   "server_start_time": "2026-10-09T00:00:00-05:00",
   "current_phase_start": "2026-10-01T00:00:00-05:00",
   "next_phase_target": "2027-01-15T00:00:00-05:00",
-  "active_phase_name": "World of Warcraft The Burning Crusade",
-  "active_level_cap": 70,
+  "active_phase_name": "World of Warcraft Classic (Vanilla)",
+  "active_level_cap": 60,
   "realmlist": "projectjaina.com",
   "world_tickrate_ms": 12,
   "telemetry": {
@@ -25,12 +25,12 @@
       "name": "World of Warcraft Classic",
       "subtitle": "La Era de las Leyendas Originales",
       "patch": "1.12.1",
-      "status": "completed",
-      "status_label": "COMPLETADA",
+      "status": "active",
+      "status_label": "FASE ACTUAL",
       "level_cap": 60,
       "logo": "images/phases/vanilla.png",
-      "banner_color": "#a0a5aa",
-      "glow_color": "rgba(160, 165, 170, 0.4)",
+      "banner_color": "#f1a80a",
+      "glow_color": "rgba(241, 168, 10, 0.7)",
       "raids": [
         "Núcleo de Magma (Molten Core)",
         "Guarida de Onyxia (Lvl 60)",
@@ -51,7 +51,7 @@
         "Apertura de las Puertas de Ahn'Qiraj",
         "Invasión de la Plaga Pre-Naxxramas"
       ],
-      "unlock_requirements": "Hito Histórico Conquistado al 100%.",
+      "unlock_requirements": "Fase Activa Inicial de Project JAIna. Nivel máximo fijado en 60. Contenido canónico de Azeroth Clásico.",
       "jaina_lore": "«Recordamos los sacrificios de las Tres Guerras y los cimientos de Theramore. El pasado forjó nuestro temple ante la tormenta venidera.»"
     },
     {
@@ -60,12 +60,12 @@
       "name": "World of Warcraft The Burning Crusade",
       "subtitle": "La Cruzada Ardiente & El Portal Oscuro",
       "patch": "2.4.3",
-      "status": "active",
-      "status_label": "FASE ACTUAL",
+      "status": "upcoming",
+      "status_label": "PRÓXIMA ERA (BLOQUEADA)",
       "level_cap": 70,
       "logo": "images/phases/tbc.png",
       "banner_color": "#39d353",
-      "glow_color": "rgba(57, 211, 83, 0.7)",
+      "glow_color": "rgba(57, 211, 83, 0.3)",
       "raids": [
         "Karazhan (Torre de Medivh)",
         "Guarida de Gruul",
@@ -88,7 +88,7 @@
         "Campaña de la Isla de Quel'Danas",
         "Defensa de Theramore contra incursiones abisales"
       ],
-      "unlock_requirements": "Fase Activa en Curso. El Portal Oscuro está abierto y la Legión Ardiente es repelida en Terrallende.",
+      "unlock_requirements": "Próxima era programada. Requiere la culminación de la Campaña de Naxxramas 60 y evento de apertura del Portal Oscuro.",
       "jaina_lore": "«El destino de Terrallende pende de un hilo. Debemos purificar la Fuente del Sol y asegurar la caída de Kil'jaeden antes de volver nuestros ojos hacia el gélido norte.»"
     },
     {

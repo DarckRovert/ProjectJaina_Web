@@ -194,8 +194,10 @@
         // Indicador de Era & Cap en Hero
         const activeEraCapEl = document.getElementById('activeEraCap');
         if (activeEraCapEl && progressionMetadata) {
-            const cap = progressionMetadata.active_level_cap || 70;
-            activeEraCapEl.textContent = `TBC (Cap Lv ${cap})`;
+            const cap = progressionMetadata.active_level_cap || 60;
+            const phaseId = (progressionMetadata.active_phase_id || 'vanilla').toLowerCase();
+            const phaseLabel = phaseId === 'vanilla' ? 'Vanilla' : (phaseId === 'tbc' ? 'TBC' : 'WotLK');
+            activeEraCapEl.textContent = `${phaseLabel} (Lv ${cap})`;
         }
     }
 

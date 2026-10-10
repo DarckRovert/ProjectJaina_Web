@@ -32,10 +32,10 @@
 
         container.innerHTML = '';
         const phases = progressionData.phases;
-        const activeId = progressionData.active_phase_id || 'tbc';
+        const activeId = progressionData.active_phase_id || 'vanilla';
 
         // Indicador de estado de la era en el banner superior
-        const activePhaseObj = phases.find(p => p.id === activeId) || phases[1];
+        const activePhaseObj = phases.find(p => p.id === activeId) || phases[0];
         const statusEraBadge = document.getElementById('activeEraBadge');
         if (statusEraBadge) {
             statusEraBadge.innerHTML = `🌟 Era Activa: <strong>${activePhaseObj.name}</strong> (Cap Nivel ${activePhaseObj.level_cap})`;
@@ -158,10 +158,10 @@
     function getFallbackProgression() {
         return {
             realm_name: "Project JAIna",
-            active_phase_id: "tbc",
+            active_phase_id: "vanilla",
             phases: [
-                { id: "vanilla", code: "VANILLA", name: "World of Warcraft Classic", status: "completed", status_label: "COMPLETADA", level_cap: 60, logo: "images/phases/vanilla.png", raids: ["Molten Core", "Onyxia 60", "Blackwing Lair", "AQ40"] },
-                { id: "tbc", code: "TBC", name: "The Burning Crusade", status: "active", status_label: "FASE ACTUAL", level_cap: 70, logo: "images/phases/tbc.png", raids: ["Karazhan", "SSC", "The Eye", "Black Temple", "Sunwell"] },
+                { id: "vanilla", code: "VANILLA", name: "World of Warcraft Classic", status: "active", status_label: "FASE ACTUAL", level_cap: 60, logo: "images/phases/vanilla.png", raids: ["Molten Core", "Onyxia 60", "Blackwing Lair", "AQ40", "Naxxramas 60"] },
+                { id: "tbc", code: "TBC", name: "The Burning Crusade", status: "upcoming", status_label: "PRÓXIMA ERA (BLOQUEADA)", level_cap: 70, logo: "images/phases/tbc.png", raids: ["Karazhan", "SSC", "The Eye", "Black Temple", "Sunwell"] },
                 { id: "naxx", code: "NAXX", name: "Curse of Naxxramas", status: "upcoming", status_label: "LÍNEA DE FASES", level_cap: 80, logo: "images/phases/naxx.png", raids: ["Naxxramas 80", "Malygos", "Sartharion"] },
                 { id: "ulduar", code: "ULDUAR", name: "Secrets of Ulduar", status: "upcoming", status_label: "LÍNEA DE FASES", level_cap: 80, logo: "images/phases/ulduar.png", raids: ["Ulduar 10/25 + Hardmodes"] },
                 { id: "toc", code: "TOC", name: "Call of the Crusade", status: "upcoming", status_label: "LÍNEA DE FASES", level_cap: 80, logo: "images/phases/toc.png", raids: ["Prueba del Cruzado", "Onyxia 80"] }

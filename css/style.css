@@ -2895,5 +2895,114 @@ body.theme-horde .faction-pill.active {
         max-width: 95%;
     }
 }
+/* ==============================================================================
+   PODIO ADAPTABLE (1, 2 O 3 CAMPEONES) & ESTADOS DE ARMERÍA
+   ============================================================================== */
+.podium-grid.podium-single {
+    display: flex;
+    justify-content: center;
+    max-width: 420px;
+    margin: 0 auto;
+}
 
+.podium-grid.podium-double {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
 
+.podium-grid.podium-triple {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.armory-badge-live {
+    color: #39d353 !important;
+    background: rgba(57, 211, 83, 0.12) !important;
+    border: 1px solid rgba(57, 211, 83, 0.4) !important;
+    box-shadow: 0 0 15px rgba(57, 211, 83, 0.25);
+}
+
+.armory-badge-offline {
+    color: #ffb74d !important;
+    background: rgba(255, 183, 77, 0.12) !important;
+    border: 1px solid rgba(255, 183, 77, 0.4) !important;
+}
+
+.btn-sync-action {
+    background: rgba(243, 156, 18, 0.15);
+    color: var(--gold-primary);
+    border: 1px solid rgba(243, 156, 18, 0.4);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-sync-action:hover {
+    background: var(--gold-primary);
+    color: #0c0e14;
+    box-shadow: 0 0 12px rgba(243, 156, 18, 0.4);
+}
+
+/* ==============================================================================
+   AVISO LEGAL & ATRIBUCIÓN INTELECTUAL (BLIZZARD ENTERTAINMENT)
+   ============================================================================== */
+.legal-disclaimer-section {
+    max-width: 1200px;
+    margin: 3rem auto 1rem;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.legal-disclaimer-box {
+    background: rgba(13, 17, 26, 0.88);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 4px solid var(--gold-primary);
+    border-radius: var(--radius-md);
+    padding: 1.8rem 2rem;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.65;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.legal-disclaimer-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--gold-primary);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+
+.legal-disclaimer-box p {
+    margin-bottom: 0.75rem;
+}
+
+.legal-disclaimer-box p:last-child {
+    margin-bottom: 0;
+}
+
+.legal-disclaimer-box strong {
+    color: #ffffff;
+}
+
+.legal-disclaimer-box a {
+    color: var(--gold-primary);
+    text-decoration: underline;
+}
