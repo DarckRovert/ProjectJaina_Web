@@ -1,0 +1,10 @@
+{
+  "version": "1.1.0",
+  "launcher_version": "1.1.0",
+  "min_supported_version": "1.0.0",
+  "release_date": "2026-10-10",
+  "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
+  "changelog": "Integración de telemetría de fallos en vivo (Crash Reporter) y comprobación automática de actualizaciones.",
+  "addons_version": "2026.10.10",
+  "addons_pack_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_AddOns_Pack.zip"
+}
