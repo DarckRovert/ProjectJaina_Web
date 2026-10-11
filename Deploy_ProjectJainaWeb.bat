@@ -41,7 +41,7 @@ if not exist "%cd%\.git" (
     exit /b 1
 )
 
-:: 3. Asegurar remote canónico
+:: 3. Asegurar remote can?nico
 git remote set-url origin "https://github.com/DarckRovert/ProjectJaina_Web.git" >> "%LOG_FILE%" 2>&1
 
 set CHANGES_FOUND=0
