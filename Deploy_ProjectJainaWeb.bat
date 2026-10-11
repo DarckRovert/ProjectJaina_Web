@@ -76,7 +76,7 @@ if "!PUSH_MAIN_STATUS!"=="0" (
     echo ==========================================================
     echo           DESPLIEGUE A GITHUB PAGES EXITOSO
     echo ==========================================================
-    echo [OK] Project Jaina Web sincronizado en GitHub (main y gh-pages).
+    echo [OK] Project Jaina Web sincronizado en GitHub [main y gh-pages].
     echo [OK] Portal activo en vivo:
     echo      https://darckrovert.github.io/ProjectJaina_Web/
     echo ==========================================================
