@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAINACORE — El Motor de WoW 3.3.5a de Próxima Generación | Project JAIna</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+    <style>
+        .core-hero {
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .core-terminal-box {
+            background: #06080e;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(243, 156, 18, 0.1);
+            padding: 1.5rem;
+            margin: 2.5rem auto;
+            max-width: 950px;
+            text-align: left;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.88rem;
+            color: #2ecc71;
+            overflow-x: auto;
+            position: relative;
+        }
+        .core-terminal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #e74c3c; }
+        .dot-yellow { background: #f1c40f; }
+        .dot-green { background: #2ecc71; }
+
+        .terminal-banner-art {
+            color: #f1c40f;
+            white-space: pre;
+            line-height: 1.15;
+            font-weight: bold;
+        }
+        .terminal-log-cyan { color: #00e5ff; }
+        .terminal-log-yellow { color: #ffd166; }
+        .terminal-log-green { color: #06d6a0; }
+        .terminal-prompt { color: #e056fd; font-weight: bold; }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.7rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
+            background: var(--bg-card-hover);
+        }
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .pillar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: var(--gold-primary);
+            margin-bottom: 0.8rem;
+        }
+        .pillar-desc {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        .pillar-tag {
+            display: inline-block;
+            background: rgba(142, 68, 173, 0.25);
+            color: #d2a8ff;
+            border: 1px solid rgba(142, 68, 173, 0.4);
+            border-radius: 20px;
+            padding: 0.2rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 1.2rem;
+        }
+
+        .comparison-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+        .comparison-table-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .comparison-table th {
+            background: rgba(243, 156, 18, 0.12);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+        }
+        .comparison-table td {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+        .comparison-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .badge-check {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        .badge-cross {
+            color: #e74c3c;
+            opacity: 0.7;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+        .spec-box {
+            background: rgba(16, 20, 32, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 1.3rem;
+            text-align: center;
+        }
+        .spec-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
+                <div class="brand-subtitle">LIVING LORE & AI REVOLUTION</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jainacore.html" class="active">JainaCore</a></li>
+            <li><a href="index.html#linea-de-fases">Línea de Fases</a></li>
+            <li><a href="index.html#living-lore">Lore Viviente</a></li>
+            <li><a href="registro.html">Crear Cuenta</a></li>
+            <li><a href="armeria.html">Armería</a></li>
+            <li><a href="tienda.html">Tienda & Donar</a></li>
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+            <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="core-hero">
+        <div class="hero-badge">🏛️ MOTOR C++20 AUTÓNOMO · REVOLUCIÓN DE IA & AUDIO 3D ESPACIAL</div>
+        <h1 style="font-family: 'Cinzel', serif; font-size: 3.2rem; margin: 1rem 0; color: var(--gold-primary); text-shadow: 0 0 25px rgba(241, 196, 15, 0.4);">
+            JAINACORE
+        </h1>
+        <p style="max-width: 850px; margin: 0 auto; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7;">
+            El primer núcleo de <strong>World of Warcraft (WotLK 3.3.5a)</strong> del mundo diseñado desde sus raíces con <strong>LoreBots Neuronales con Consciencia Situacional</strong>, <strong>IA Táctica AAA de Jugadores Automatizados</strong> y una <strong>Pasarela Nativa de Voz Espacial 3D por Proximidad</strong>.
+        </p>
+
+        <div class="hero-actions" style="margin-top: 2rem;">
+            <a href="registro.html" class="btn-primary">⚔️ Unirse a Project JAIna</a>
+            <a href="downloads/ProjectJaina_Launcher_Oficial.zip" class="btn-secondary">⚡ Descargar Cliente & Parches</a>
+        </div>
+
+        <!-- TERMINAL PREVIEW -->
+        <div class="core-terminal-box">
+            <div class="core-terminal-header">
+                <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                </div>
+                <span>JainaCore Daemon · worldserver.exe · Win64 MSVC v143</span>
+                <span>Port 8085 [ONLINE]</span>
+            </div>
+            <pre class="terminal-banner-art">
+   ██╗ █████╗ ██╗███╗   ██╗ █████╗  ██████╗ ██████╗ ██████╗ ███████╗
+   ██║██╔══██╗██║████╗  ██║██╔══██╗██╔════╝██╔═══██╗██╔══██╗██╔════╝
+   ██║███████║██║██╔██╗ ██║███████║██║     ██║   ██║██████╔╝█████╗  
+██   ██║██╔══██║██║██║╚██╗██║██╔══██║██║     ██║   ██║██╔══██╗██╔══╝  
+╚█████╔╝██║  ██║██║██║ ╚████║██║  ██║╚██████╗╚██████╔╝██║  ██║███████╗
+ ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝</pre>
+            <div class="terminal-log-yellow">     JainaCore 3.3.5a  -  Living Lore, Neural AI & Spatial Voice Engine</div>
+            <div class="terminal-log-cyan">     Official Hub: https://darckrovert.github.io/ProjectJaina_Web/</div>
+            <br>
+            <div>[2026-10-11 05:29:03] <span class="terminal-log-green">[OK]</span> Preflight Bootstrap: Esquemas, realmlist canónico y HeroBot Jaina verificados.</div>
+            <div>[2026-10-11 05:29:35] <span class="terminal-log-green">[OK]</span> Mod-Playerbots AAA: 133 cuentas generadas, salvaguardas forzosas de armas y armaduras activas.</div>
+            <div>[2026-10-11 05:29:40] <span class="terminal-log-green">[OK]</span> Voz Espacial 3D HRTF: Coordinador WebRTC escuchando en puerto 3050.</div>
+            <div>[2026-10-11 05:29:42] <span class="terminal-log-cyan">WORLD:</span> World Initialized in 0 min 39 sec. Diff promedio: <span class="terminal-log-green">19 ms</span> | Mediana: <span class="terminal-log-green">10 ms</span> (500 bots activos).</div>
+            <div><span class="terminal-prompt">JC></span> <span style="color: #fff;">.server info</span></div>
+            <div style="color: #8be9fd;">JainaCore rev. 950684036946+ (master branch) (Win64, RelWithDebInfo, Static) ready...</div>
+        </div>
+    </header>
+
+    <!-- METRICS STRIP -->
+    <section class="specs-grid">
+        <div class="spec-box">
+            <div class="spec-value">10 ms</div>
+            <div class="spec-label">Mediana de Diff del Mundo</div>
+        </div>
+        <div class="spec-box">
+            <div class="spec-value">500+</div>
+            <div class="spec-label">Playerbots Autónomos en Línea</div>
+        </div>
+        <div class="spec-box">
+            <div class="spec-value">25 yd</div>
+            <div class="spec-label">Radio 3D de Voz Binaural</div>
+        </div>
+        <div class="spec-box">
+            <div class="spec-value">0 Bytes</div>
+            <div class="spec-label">Errores en Errors.log</div>
+        </div>
+    </section>
+
+    <!-- 4 PILLARS -->
+    <section style="max-width: 1200px; margin: 3rem auto 1rem; text-align: center; padding: 0 1.5rem;">
+        <h2 style="font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--gold-primary);">
+            Los Cuatro Pilares Fundamentales de JainaCore
+        </h2>
+        <p style="color: var(--text-secondary); max-width: 750px; margin: 0.8rem auto 2rem;">
+            Una síntesis de ingeniería avanzada desarrollada bajo estándares comerciales Staff L9 para transformar la experiencia clásica de World of Warcraft en un mundo orgánico y viviente.
+        </p>
+
+        <div class="pillars-grid">
+            <!-- PILAR 1 -->
+            <div class="pillar-card">
+                <span class="pillar-icon">🧠</span>
+                <h3 class="pillar-title">Motor Neural de Lore</h3>
+                <p class="pillar-desc">
+                    Impulsado por <strong>mod-ale v4.0</strong> y puente directo hacia modelos locales de lenguaje (LM Studio). Personajes icónicos como Lady Jaina poseen memoria persistente de interacciones por jugador, consciencia de proximidad geográfica y oratoria situacional en Theramore y Dalaran.
+                </p>
+                <span class="pillar-tag">Cognición Dinámica LLM</span>
+            </div>
+
+            <!-- PILAR 2 -->
+            <div class="pillar-card">
+                <span class="pillar-icon">⚔️</span>
+                <h3 class="pillar-title">IA Táctica de Playerbots AAA</h3>
+                <p class="pillar-desc">
+                    Erradicación de la conducta mecánica. Los bots reaccionan con <strong>latencia humana realista (220-360 ms)</strong>, detectan y esquivan proactivamente áreas hostiles en suelo (Ventiscas, Charcos, Fuego), asisten al tanque de grupo, respetan marcas de banda y cuentan con blindaje nativo contra desarmado o desnudez.
+                </p>
+                <span class="pillar-tag">Softmax Utility & AoE Evade</span>
+            </div>
+
+            <!-- PILAR 3 -->
+            <div class="pillar-card">
+                <span class="pillar-icon">🎙️</span>
+                <h3 class="pillar-title">Pasarela de Voz Espacial 3D</h3>
+                <p class="pillar-desc">
+                    Comunicación de proximidad natural con tecnología <strong>WebRTC y paneo estereofónico HRTF</strong>. El volumen decae suavemente hasta un radio de 25 yardas y el sonido se orienta en 360° según la posición y ángulo del avatar. Incluye indicativo visual dinámico sobre el personaje en juego.
+                </p>
+                <span class="pillar-tag">Audio Binaural de 360°</span>
+            </div>
+
+            <!-- PILAR 4 -->
+            <div class="pillar-card">
+                <span class="pillar-icon">🛡️</span>
+                <h3 class="pillar-title">Auto-Bootstrap & Progresión</h3>
+                <p class="pillar-desc">
+                    Arranque atómico e idempotente de bases de datos. Garantiza la inicialización sin fallos de esquemas, entidades y realmlist antes de abrir el socket de juego. Incorpora bloqueo de contenido progresivo (Fase Vanilla Nivel 60 $\to$ TBC $\to$ WotLK) gobernado por el estado del mundo.
+                </p>
+                <span class="pillar-tag">MySQL 8.4 Transaccional</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="comparison-section">
+        <h2 style="font-family: 'Cinzel', serif; font-size: 2rem; color: var(--gold-primary); text-align: center; margin-bottom: 2rem;">
+            Matriz Comparativa de Ingeniería
+        </h2>
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Característica Arquitectónica</th>
+                        <th>AzerothCore Clásico</th>
+                        <th>TrinityCore Tradicional</th>
+                        <th style="color: #ffd700; background: rgba(241, 196, 15, 0.2);">JAINACORE (Project Jaina)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Diálogos de NPCs de Lore</strong></td>
+                        <td>Gossip estático en base de datos</td>
+                        <td>Gossip estático en base de datos</td>
+                        <td><span class="badge-check">✓</span> <strong>Inferencia Neuronal LLM Local + Memoria</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interrupciones de Playerbots</strong></td>
+                        <td>Frame-0 instantáneo (Inhumano)</td>
+                        <td>Sin soporte nativo</td>
+                        <td><span class="badge-check">✓</span> <strong>Percepción Humana Estocástica (220-360 ms)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evasión de Áreas Hostiles (AoE)</strong></td>
+                        <td><span class="badge-cross">✗</span> Ciegos ante áreas dinámicas</td>
+                        <td><span class="badge-cross">✗</span> Ciegos ante áreas dinámicas</td>
+                        <td><span class="badge-check">✓</span> <strong>Detección y Fuga Proactiva de Fuego/Ventisca</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equipamiento de Bots en Subida de Nivel</strong></td>
+                        <td><span class="badge-cross">✗</span> Quedan desarmados/desnudos en BG</td>
+                        <td><span class="badge-cross">✗</span> Sin soporte</td>
+                        <td><span class="badge-check">✓</span> <strong>Salvaguarda Forzosa de Set y Armas (100%)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Voz Espacial de Proximidad 3D</strong></td>
+                        <td><span class="badge-cross">✗</span> No disponible</td>
+                        <td><span class="badge-cross">✗</span> No disponible</td>
+                        <td><span class="badge-check">✓</span> <strong>WebRTC HRTF (25 yardas) + Badge In-Game</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prompt de Consola Administrativa</strong></td>
+                        <td>AC></td>
+                        <td>TC></td>
+                        <td><span class="badge-check">✓</span> <strong>JC> (JainaCore Engine)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Progresión Bloqueada de Expansiones</strong></td>
+                        <td>Manual / Parches no oficiales</td>
+                        <td>No soportada nativamente</td>
+                        <td><span class="badge-check">✓</span> <strong>Gobernanza Nativa de Fases (Cap 60 $\to$ 70 $\to$ 80)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background: rgba(6, 8, 14, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 3rem 2rem; margin-top: 5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+        <div style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-primary); margin-bottom: 0.5rem;">
+            PROJECT JAINA — JAINACORE REVOLUTION
+        </div>
+        <p>Motor de Simulación Libre y Abierto basado en AzerothCore bajo licencia GNU GPLv2.</p>
+        <p style="margin-top: 0.5rem;">World of Warcraft y Blizzard Entertainment son marcas comerciales registradas de Blizzard Entertainment, Inc.</p>
+        <div style="margin-top: 1.5rem;">
+            <a href="index.html" style="color: var(--gold-primary); margin: 0 1rem; text-decoration: none;">Inicio</a>
+            <a href="registro.html" style="color: var(--gold-primary); margin: 0 1rem; text-decoration: none;">Crear Cuenta</a>
+            <a href="armeria.html" style="color: var(--gold-primary); margin: 0 1rem; text-decoration: none;">Armería</a>
+            <a href="tienda.html" style="color: var(--gold-primary); margin: 0 1rem; text-decoration: none;">Tienda & Donar</a>
+        </div>
+    </footer>
+
+</body>
+</html>

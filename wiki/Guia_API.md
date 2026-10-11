@@ -32,7 +32,12 @@ Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POS
 
 | Método | Ruta | Descripción |
 | :--- | :--- | :--- |
-| `GET` | `/api/status` | Devuelve estado del reino (online/offline), uptime y jugadores conectados. |
-| `POST` | `/api/register` | Crea una cuenta en la base de datos `auth` utilizando SRP6 salt y verifier. |
-| `GET` | `/api/armory/characters` | Lista de personajes activos para la armería pública. |
-| `GET` | `/api/store/catalog` | Catálogo de recompensas y canjes disponibles. |
+| `GET` | `/api/gameserver/status` | Devuelve estado del reino (online/offline), uptime, jugadores conectados y servicios. |
+| `POST` | `/api/register` | Crea una cuenta en la base de datos `acore_auth` utilizando criptografía SRP6 (salt + verifier). |
+| `GET` | `/api/armory` | Perfiles completos de personajes (nivel, clase, raza, GearScore, equipamiento, estadísticas). |
+| `GET` | `/api/shop/catalog` | Catálogo visual de monturas, auras, cosméticos y pases de batalla. |
+| `GET` | `/api/progression` | Telemetría de la fase de progresión activa (`vanilla`, `tbc`, `wotlk`) y level cap. |
+| `POST` | `/api/progression/transition` | Transición atómica de era temporal (requiere clave GM y concilia con Eluna). |
+| `POST` | `/api/shop/paypal/capture` | Procesamiento y captura de pedidos de tienda mediante pasarela PayPal. |
+| `POST` | `/api/shop/simulate_delivery` | Despacho de ítems cosméticos in-game vía comando SOAP en el servidor. |
+| `POST` | `/api/admin/command` | Despacho seguro de comandos administrativos SOAP (`.say`, `.reload`, etc.). |
