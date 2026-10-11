@@ -1,1 +1,1 @@
-feat(web): sincronizacion portal Project Jaina ~0,4datetime:~4,2datetime:~6,2 ~8,2%datetime:~10,2 
+feat(web): sincronizacion portal Project Jaina 2026-10-11_10:21 

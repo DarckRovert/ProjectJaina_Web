@@ -11,45 +11,45 @@ REM Portal Oficial: https://darckrovert.github.io/ProjectJaina_Web/
 REM Repositorio: https://github.com/DarckRovert/ProjectJaina_Web.git
 REM ==========================================================
 
-set LOG_FILE=%cd%\deploy_log.txt
+set "LOG_FILE=%~dp0deploy_log.txt"
 echo [INIT] Iniciando sincronizacion ProjectJaina_Web - %DATE% %TIME% > "%LOG_FILE%"
 
 REM 1. Verificar Git
 where git >nul 2>nul
-if %ERRORLEVEL% NEQ 0 (
+if !ERRORLEVEL! NEQ 0 (
     echo [!] ERROR: Git no encontrado en el PATH del sistema.
     echo [!] ERROR: Git no encontrado >> "%LOG_FILE%"
     pause
     exit /b 1
 )
 
-:: 2. Fecha y Mensaje de Commit
-for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
-set FECHA=%datetime:~0,4%-%datetime:~4,2%-%datetime:~6,2%
-set HORA=%datetime:~8,2%%datetime:~10,2%
-set COMMIT_MSG=feat(web): sincronizacion portal Project Jaina %FECHA% %HORA%
+:: 2. Fecha y Mensaje de Commit (Resiliente a Windows 11 sin WMIC)
+for /f %%I in ('powershell -NoProfile -Command "Get-Date -Format 'yyyy-MM-dd_HH:mm'"') do set "TS=%%I"
+if "%TS%"=="" set "TS=%DATE:/=-%_%TIME::=-%"
+set "COMMIT_MSG=feat(web): sincronizacion portal Project Jaina %TS%"
 
 echo ==========================================================
 echo      PROJECT JAINA WEB - SINCRONIZADOR A GITHUB PAGES
 echo ==========================================================
-echo.
+echo(
 
-if not exist "%cd%\.git" (
+cd /d "%~dp0"
+if not exist "%~dp0.git" (
     echo [!] ERROR: Este directorio no es un repositorio git.
     echo [FAIL] No .git directory >> "%LOG_FILE%"
     pause
     exit /b 1
 )
 
-:: 3. Asegurar remote can?nico
+:: 3. Asegurar remote canonico
 git remote set-url origin "https://github.com/DarckRovert/ProjectJaina_Web.git" >> "%LOG_FILE%" 2>&1
 
-set CHANGES_FOUND=0
+set "CHANGES_FOUND=0"
 for /f "tokens=*" %%i in ('git status --porcelain') do (
-    set CHANGES_FOUND=1
+    set "CHANGES_FOUND=1"
 )
 
-if %CHANGES_FOUND% EQU 0 (
+if "!CHANGES_FOUND!"=="0" (
     echo [SKIP] No se detectaron cambios pendientes. Web al dia.
     echo [SKIP] No changes found >> "%LOG_FILE%"
     timeout /t 3 >nul
@@ -57,7 +57,7 @@ if %CHANGES_FOUND% EQU 0 (
 )
 
 echo [ProjectJaina] Detectados cambios en el portal. Empaquetando...
-echo %COMMIT_MSG% > LAST_DEPLOY_WEB.txt
+echo %COMMIT_MSG% > "%~dp0LAST_DEPLOY_WEB.txt"
 
 git add . >> "%LOG_FILE%" 2>&1
 git commit -m "%COMMIT_MSG%" >> "%LOG_FILE%" 2>&1
@@ -65,12 +65,14 @@ git branch -M main >> "%LOG_FILE%" 2>&1
 
 echo [ProjectJaina] Empujando a GitHub (rama main)...
 git push origin main >> "%LOG_FILE%" 2>&1
+set "PUSH_MAIN_STATUS=!ERRORLEVEL!"
 
 echo [ProjectJaina] Sincronizando rama gh-pages...
 git push origin main:gh-pages --force >> "%LOG_FILE%" 2>&1
+set "PUSH_GHPAGES_STATUS=!ERRORLEVEL!"
 
-if %ERRORLEVEL% EQU 0 (
-    echo.
+if "!PUSH_MAIN_STATUS!"=="0" (
+    echo(
     echo ==========================================================
     echo           DESPLIEGUE A GITHUB PAGES EXITOSO
     echo ==========================================================
@@ -79,7 +81,7 @@ if %ERRORLEVEL% EQU 0 (
     echo      https://darckrovert.github.io/ProjectJaina_Web/
     echo ==========================================================
 ) else (
-    echo.
+    echo(
     echo ==========================================================
     echo [!] HUBO UN INCONVENIENTE EN EL PUSH
     echo ==========================================================
@@ -87,6 +89,6 @@ if %ERRORLEVEL% EQU 0 (
 )
 
 echo [ProjectJaina] --- Fin: %TIME% --- >> "%LOG_FILE%"
-echo.
-pause
+echo(
+timeout /t 5 >nul
 exit /b 0
