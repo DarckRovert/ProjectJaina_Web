@@ -2,6 +2,7 @@
 .DS_Store
 Thumbs.db
 *.log
+deploy_log.txt
 
 # Design Assets Source (if any added later)
 *.psd
