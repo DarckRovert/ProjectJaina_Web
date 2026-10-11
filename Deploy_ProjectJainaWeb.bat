@@ -52,7 +52,7 @@ for /f "tokens=*" %%i in ('git status --porcelain') do (
 if "!CHANGES_FOUND!"=="0" (
     echo [SKIP] No se detectaron cambios pendientes. Web al dia.
     echo [SKIP] No changes found >> "%LOG_FILE%"
-    timeout /t 3 >nul
+    ping 127.0.0.1 -n 3 >nul
     exit /b 0
 )
 
