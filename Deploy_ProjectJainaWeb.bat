@@ -90,5 +90,5 @@ if "!PUSH_MAIN_STATUS!"=="0" (
 
 echo [ProjectJaina] --- Fin: %TIME% --- >> "%LOG_FILE%"
 echo(
-timeout /t 5 >nul
+ping 127.0.0.1 -n 4 >nul
 exit /b 0
