@@ -30,11 +30,18 @@ const nearbyCountEl = document.getElementById('nearby-count');
 const serverSelect = document.getElementById('server-select');
 const customServerInput = document.getElementById('custom-server-input');
 
+const KNOWN_SERVERS = [
+    'http://26.140.157.205:3050',
+    'http://26.202.12.241:3050',
+    'http://localhost:3050'
+];
+
 function initServerSelector() {
     if (!serverSelect) return;
     const saved = localStorage.getItem('projectjaina_voice_server');
+    
     if (saved) {
-        if (saved === 'http://193.84.88.26:3050' || saved === 'http://localhost:3050') {
+        if (KNOWN_SERVERS.includes(saved)) {
             serverSelect.value = saved;
             if (customServerInput) customServerInput.style.display = 'none';
         } else {
@@ -45,10 +52,11 @@ function initServerSelector() {
             }
         }
     } else {
+        // En entorno local usa localhost; en produccion web por defecto apunta al Host Maestro
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             serverSelect.value = 'http://localhost:3050';
         } else {
-            serverSelect.value = 'http://193.84.88.26:3050';
+            serverSelect.value = 'http://26.140.157.205:3050';
         }
     }
 
@@ -74,14 +82,16 @@ function initServerSelector() {
 
 function getVoiceServerBaseUrl() {
     const saved = localStorage.getItem('projectjaina_voice_server');
-    if (saved) return saved.replace(/\/+$/, '');
+    if (saved && (KNOWN_SERVERS.includes(saved) || (customServerInput && saved === customServerInput.value.trim()))) {
+        return saved.replace(/\/+$/, '');
+    }
     if (serverSelect && serverSelect.value !== 'custom') {
         return serverSelect.value.replace(/\/+$/, '');
     }
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:3050';
     }
-    return 'http://193.84.88.26:3050';
+    return 'http://26.140.157.205:3050';
 }
 
 // Configuración de WebRTC (STUN público de alta velocidad)
