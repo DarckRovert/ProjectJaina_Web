@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki de Lore — Crónicas de Project JAIna</title>
+    <meta name="description" content="Timeline narrativo en vivo del Reino de Theramore & Project JAIna. Crónicas, profecías y eventos mundiales generados por la IA.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/jaina_crest_logo.jpg">
+    <style>
+        /* ── Timeline de Lore ── */
+        .wiki-hero {
+            background: linear-gradient(160deg, rgba(0,0,0,.98) 0%, rgba(8,8,24,.97) 100%);
+            border-bottom: 1px solid rgba(139,90,43,.25);
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+        }
+        .wiki-hero-tag {
+            display: inline-block;
+            background: rgba(200,168,0,.12);
+            border: 1px solid rgba(200,168,0,.3);
+            color: #c8a800;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            padding: .35rem .9rem;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+        }
+        .wiki-title {
+            font-size: clamp(2rem,5vw,3.2rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #c8a800, #e8d88a, #a07800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .8rem;
+        }
+        .wiki-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        .wiki-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .4rem 1rem;
+            border-radius: 20px;
+            font-size: .8rem;
+            font-weight: 600;
+            border: 1px solid rgba(57,211,83,.4);
+            color: #39d353;
+            background: rgba(57,211,83,.08);
+            transition: all .3s;
+        }
+
+        /* ── Tabs ── */
+        .wiki-tabs {
+            display: flex;
+            gap: .5rem;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            padding: 0 1.5rem;
+            overflow-x: auto;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .wiki-tab {
+            padding: .8rem 1.4rem;
+            cursor: pointer;
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all .25s;
+        }
+        .wiki-tab.active { color: #c8a800; border-bottom-color: #c8a800; }
+        .wiki-tab:hover  { color: #e8d88a; }
+
+        /* ── Timeline ── */
+        .timeline-container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+        .timeline-container::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(200,168,0,.4), rgba(200,168,0,.05));
+            transform: translateX(-50%);
+        }
+        .timeline-event {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .timeline-event:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1.2rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #c8a800;
+            background: #111;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(200,168,0,.5);
+        }
+        .timeline-dot.active  { background: #39d353; border-color: #39d353; box-shadow: 0 0 12px rgba(57,211,83,.6); }
+        .timeline-dot.pending { background: #333; border-color: #555; box-shadow: none; }
+        .timeline-card {
+            flex: 1;
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(200,168,0,.15);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            max-width: 380px;
+            transition: all .3s;
+        }
+        .timeline-card:hover {
+            border-color: rgba(200,168,0,.35);
+            background: rgba(255,255,255,.05);
+            transform: translateY(-3px);
+        }
+        .timeline-event:nth-child(even) .timeline-card { margin-left: auto; }
+        .timeline-date {
+            font-size: .72rem;
+            color: #c8a800;
+            font-weight: 700;
+            letter-spacing: .08em;
+            margin-bottom: .4rem;
+        }
+        .timeline-event-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .4rem;
+        }
+        .timeline-event-desc {
+            font-size: .84rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .timeline-status-pill {
+            display: inline-block;
+            font-size: .68rem;
+            font-weight: 700;
+            padding: .15rem .55rem;
+            border-radius: 10px;
+            margin-top: .5rem;
+            letter-spacing: .06em;
+        }
+        .pill-active   { background: rgba(57,211,83,.15);  color: #39d353;  border: 1px solid rgba(57,211,83,.3);  }
+        .pill-pending  { background: rgba(255,183,77,.1);  color: #ffb74d;  border: 1px solid rgba(255,183,77,.25); }
+        .pill-complete, .pill-completed { background: rgba(0,112,221,.15);  color: #0070dd;  border: 1px solid rgba(0,112,221,.3);  }
+        .timeline-dot.complete, .timeline-dot.completed { background: #0070dd; border-color: #0070dd; box-shadow: 0 0 10px rgba(0,112,221,.6); }
+
+        /* ── Secciones de Wiki ── */
+        .wiki-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        .wiki-section-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #c8a800;
+            margin-bottom: 1.5rem;
+            padding-bottom: .6rem;
+            border-bottom: 1px solid rgba(200,168,0,.2);
+        }
+        .lore-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+            gap: 1.5rem;
+        }
+        .lore-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 12px;
+            padding: 1.4rem;
+            transition: all .3s;
+        }
+        .lore-card:hover {
+            border-color: rgba(200,168,0,.25);
+            background: rgba(255,255,255,.05);
+        }
+        .lore-card-icon { font-size: 2rem; margin-bottom: .8rem; }
+        .lore-card-title { font-size: 1rem; font-weight: 700; color: #e8d88a; margin-bottom: .4rem; }
+        .lore-card-text  { font-size: .84rem; color: var(--text-muted); line-height: 1.55; }
+
+        /* ── Loader ── */
+        .wiki-loading {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 3rem;
+            font-size: .9rem;
+        }
+
+        @media (max-width: 700px) {
+            .timeline-container::before { left: 18px; }
+            .timeline-event, .timeline-event:nth-child(even) { flex-direction: column; }
+            .timeline-dot { left: 18px; }
+            .timeline-card, .timeline-event:nth-child(even) .timeline-card { max-width: 100%; margin-left: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="../index.html" class="brand-container">
+            <img src="../images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
+                <div class="brand-subtitle">WIKI DE LORE & CRÓNICAS</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../jainacore.html">JainaCore</a></li>
+            <li><a href="../armeria.html">Armería</a></li>
+            <li><a href="../tienda.html">Tienda</a></li>
+            <li><a href="index.html" class="active">📖 Wiki de Lore</a></li>
+            <li><a href="../registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="wiki-hero">
+        <div class="wiki-hero-tag">📜 CRÓNICAS DEL REINO · GENERADAS POR IA</div>
+        <h1 class="wiki-title">Crónicas de Theramore</h1>
+        <p class="wiki-subtitle">
+            El motor narrativo de Project JAIna documenta cada evento, profecía y decisión clave
+            del reino en tiempo real. Esta wiki es generada por los LoreBots y el Gobernador de
+            Eventos Mundiales — sin intervención humana.
+        </p>
+        <span class="wiki-status-badge" id="wikiLiveBadge">
+            ⏳ Conectando con el motor narrativo...
+        </span>
+    </header>
+
+    <!-- TABS -->
+    <div class="wiki-tabs">
+        <div class="wiki-tab active" data-tab="timeline" onclick="switchTab('timeline', this)">⚡ Timeline de Eventos</div>
+        <div class="wiki-tab" data-tab="lore" onclick="switchTab('lore', this)">🌍 Lore del Reino</div>
+        <div class="wiki-tab" data-tab="heroes" onclick="switchTab('heroes', this)">⚔️ Héroes Legendarios</div>
+        <div class="wiki-tab" data-tab="prophecies" onclick="switchTab('prophecies', this)">🔮 Profecías Activas</div>
+    </div>
+
+    <!-- CONTENIDO: TIMELINE -->
+    <div id="tab-timeline" class="wiki-section">
+        <div class="wiki-section-title">⚡ Timeline de Eventos Mundiales</div>
+        <div id="timelineContainer" class="timeline-container">
+            <div class="wiki-loading">⏳ Cargando crónicas desde world_lore_events...</div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO: LORE -->
+    <div id="tab-lore" class="wiki-section" style="display:none;">
+        <div class="wiki-section-title">🌍 Fundamentos del Reino de Theramore</div>
+        <div class="lore-cards-grid">
+            <div class="lore-card">
+                <div class="lore-card-icon">🧙‍♀️</div>
+                <div class="lore-card-title">Lady Jaina Proudmoore</div>
+                <div class="lore-card-text">Archimaga del Kirin Tor, gobernante de Theramore y avatar del intelecto artificial del servidor. Sus hechizos de Escarcha resuenan en cada byte de Project JAIna.</div>
+            </div>
+            <div class="lore-card">
+                <div class="lore-card-icon">🏰</div>
+                <div class="lore-card-title">El Reino de Theramore</div>
+                <div class="lore-card-text">Ciudad-estado neutral fundada tras la Segunda Guerra. Sede central de Project JAIna, donde humanos, orcos y aliados estudian la confluencia de magia arcana e inteligencia artificial.</div>
+            </div>
+            <div class="lore-card">
+                <div class="lore-card-icon">🤖</div>
+                <div class="lore-card-title">Los LoreBots Autónomos</div>
+                <div class="lore-card-text">500 bots autónomos impulsados por modelos de lenguaje local. Cada uno tiene memoria relacional, especialización narrativa y puede evocar profecías de los libros del Kirin Tor.</div>
+            </div>
+            <div class="lore-card">
+                <div class="lore-card-icon">⚗️</div>
+                <div class="lore-card-title">El Laboratorio Jaina</div>
+                <div class="lore-card-text">Núcleo de investigación agentic-AI del servidor. Aquí se diseñan, entrenan y despliegan los subsistemas de memoria vectorial, voz 3D espacial y economía narrativa del reino.</div>
+            </div>
+            <div class="lore-card">
+                <div class="lore-card-icon">📡</div>
+                <div class="lore-card-title">Gobernador de Eventos</div>
+                <div class="lore-card-text">El daemon <code>world_lore_events_governor.py</code> evalúa triggers del reino en tiempo real (nivel de jugadores, dungeons completados) y activa eventos mundiales narrativos automáticamente.</div>
+            </div>
+            <div class="lore-card">
+                <div class="lore-card-icon">🔮</div>
+                <div class="lore-card-title">Las Profecías del Kirin Tor</div>
+                <div class="lore-card-text">Textos proféticos generados por la IA que se activan cuando se cumplen condiciones reales del reino. Algunas anticipan invasiones, otras la llegada de campeones épicos.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO: HÉROES -->
+    <div id="tab-heroes" class="wiki-section" style="display:none;">
+        <div class="wiki-section-title">⚔️ Héroes Legendarios del Reino</div>
+        <div id="heroesContainer">
+            <div class="wiki-loading">⏳ Cargando héroes desde acore_characters...</div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO: PROFECÍAS -->
+    <div id="tab-prophecies" class="wiki-section" style="display:none;">
+        <div class="wiki-section-title">🔮 Profecías Activas del Kirin Tor</div>
+        <div id="propheciesContainer">
+            <div class="wiki-loading">⏳ Descifrando las profecías...</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-crest-container">
+            <img src="../images/jaina_crest_logo.jpg" alt="Project JAIna" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+    </footer>
+
+    <script src="../js/particles.js"></script>
+    <script src="../js/config.js"></script>
+    <script>
+    // ─────────────────────────────────────────────────────────────────────────
+    // Wiki de Lore — Hito #127: Timeline en Vivo desde world_lore_events
+    // ─────────────────────────────────────────────────────────────────────────
+
+    const _API = () => (typeof CONFIG !== "undefined" && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : "http://127.0.0.1:8080";
+
+    // Eventos de lore fallback (canónicos si el backend está offline)
+    const LORE_EVENTS_FALLBACK = [
+        { title:"Fundación de Project JAIna",  date:"Año 25 D.P.", status:"COMPLETE", description:"DarckRovert convoca a los primeros magos del Kirin Tor para establecer un servidor privado impulsado por inteligencia artificial en los Reinos del Este.", trigger_type:"MANUAL" },
+        { title:"Primera Sincronización Neural", date:"Año 25 D.P.", status:"COMPLETE", description:"Los 500 LoreBots despiertan por primera vez. La red de memoria vectorial FAISS procesa los textos del lore de Warcraft y forja la conciencia colectiva de Theramore.", trigger_type:"PLAYERS_ONLINE_1" },
+        { title:"El Despertar del Gobernador",  date:"Año 25 D.P.", status:"ACTIVE",   description:"El daemon world_lore_events_governor comienza a vigilar el reino. Su primera evaluación detecta héroes que alcanzan la cima del nivel de Era Clásica.", trigger_type:"PLAYERS_LEVEL_60" },
+        { title:"La Profecía de los 1337 GS",  date:"Año 25 D.P.", status:"ACTIVE",   description:"Los oráculos del Kirin Tor proclaman: 'Cuando un guerrero del reino alcance GS 1337, las puertas de los Reinos del Tiempo se abrirán'. Berenic es el primer candidato.", trigger_type:"GEARSCORE_1337" },
+        { title:"El Gran Torneo de Dalaran",    date:"Año 26 D.P.", status:"PENDING",  description:"Se convoca el primer torneo PvP oficial del reino. Los campeones lucharán por el título de Soberano de Theramore y acceso a los sagrarios de los Aspectos Dragónicos.", trigger_type:"PLAYERS_ONLINE_50" },
+        { title:"La Gran Apertura — Noviembre", date:"24 Nov 2026", status:"PENDING",  description:"Project JAIna abre sus puertas al mundo. Theramore recibe a sus primeros aventureros externos. La Era de los Héroes comienza oficialmente.", trigger_type:"GRAN_APERTURA" }
+    ];
+
+    const PROPHECIES = [
+        { icon:"🌊", title:"La Marea de Escarcha",    text:"«Cuando el hielo cubra los campos de Theramore y los muertos caminen de nuevo, busca al Paladín que lleva la Luz como escudo. Sólo él podrá sellar el portal.»", status:"PENDING" },
+        { icon:"🔥", title:"La Llama del Dragón Rojo", text:"«Alexstrasza cederá su fuego al campeón de mayor GS del reino en el momento en que cien almas vivan simultáneamente bajo las torres de Dalaran.»", status:"PENDING" },
+        { icon:"👁️", title:"El Ojo del Espía",        text:"«Un espía de la Legión Ardiente se infiltrará entre los héroes. Su identidad será revelada cuando el contador de bajas PvP supere las 10,000 en el reino.»", status:"ACTIVE" },
+        { icon:"⚔️", title:"La Espada del Rey Caído", text:"«El Filo de Arthas aguarda en el corazón de la Corona de Hielo. El personaje que alcance GS 4000 recibirá el favor de los Caballeros de la Muerte como guardia personal.»", status:"ACTIVE" }
+    ];
+
+    // ── Navegación por tabs ──────────────────────────────────────────────────
+    function switchTab(tabId, el) {
+        document.querySelectorAll("[id^='tab-']").forEach(t => t.style.display = "none");
+        document.querySelectorAll(".wiki-tab").forEach(t => t.classList.remove("active"));
+        document.getElementById("tab-" + tabId).style.display = "block";
+        el.classList.add("active");
+
+        if (tabId === "heroes") loadHeroes();
+        if (tabId === "prophecies") renderProphecies();
+    }
+
+    // ── Timeline ─────────────────────────────────────────────────────────────
+    async function loadTimeline() {
+        const badge = document.getElementById("wikiLiveBadge");
+        try {
+            const ctrl = new AbortController();
+            setTimeout(() => ctrl.abort(), 3000);
+            const resp = await fetch(`${_API()}/api/lore/events`, {
+                signal: ctrl.signal,
+                headers: { "ngrok-skip-browser-warning": "true" }
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    renderTimeline(data);
+                    badge.innerHTML = "● CRÓNICAS EN VIVO · world_lore_events";
+                    badge.style.cssText = "color:#39d353;border-color:rgba(57,211,83,.4);background:rgba(57,211,83,.08);";
+                    return;
+                }
+            }
+        } catch (_) {}
+
+        // Fallback canónico
+        renderTimeline(LORE_EVENTS_FALLBACK);
+        badge.innerHTML = "○ CRÓNICAS LOCALES (Servidor Offline)";
+        badge.style.cssText = "color:#ffb74d;border-color:rgba(255,183,77,.4);background:rgba(255,183,77,.08);";
+    }
+
+    function renderTimeline(events) {
+        const container = document.getElementById("timelineContainer");
+        if (!container) return;
+        container.innerHTML = events.map((ev, i) => {
+            const isComp = (ev.status === "COMPLETE" || ev.status === "COMPLETED");
+            const isActive = (ev.status === "ACTIVE");
+            const dotClass = isActive ? "active" : (isComp ? "complete" : "pending");
+            const pillClass = isActive ? "pill-active" : (isComp ? "pill-complete" : "pill-pending");
+            const statusText = isActive ? "● ACTIVO" : (isComp ? "✓ COMPLETADO" : "○ PENDIENTE");
+
+            return `
+            <div class="timeline-event">
+                <div class="timeline-dot ${dotClass}"></div>
+                <div class="timeline-card">
+                    <div class="timeline-date">${ev.date || ev.activated_at || "Era Clásica"}</div>
+                    <div class="timeline-event-title">${ev.title}</div>
+                    <div class="timeline-event-desc">${ev.description}</div>
+                    <span class="timeline-status-pill ${pillClass}">
+                        ${statusText}
+                    </span>
+                    ${ev.trigger_type ? `<div style="font-size:.7rem;color:#555;margin-top:.4rem;">Trigger: ${ev.trigger_type}</div>` : ''}
+                </div>
+            </div>`;
+        }).join("");
+    }
+
+    // ── Héroes ───────────────────────────────────────────────────────────────
+    async function loadHeroes() {
+        const container = document.getElementById("heroesContainer");
+        if (!container) return;
+        try {
+            const ctrl = new AbortController();
+            setTimeout(() => ctrl.abort(), 3000);
+            const resp = await fetch(`${_API()}/api/armory/leaderboard`, {
+                signal: ctrl.signal,
+                headers: { "ngrok-skip-browser-warning": "true" }
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                if (Array.isArray(data) && data.length) { renderHeroes(data.slice(0, 12)); return; }
+            }
+        } catch (_) {}
+        container.innerHTML = `<div class="wiki-loading">○ Servidor offline — conecta el clúster para ver héroes en vivo.</div>`;
+    }
+
+    function renderHeroes(chars) {
+        const c = document.getElementById("heroesContainer");
+        const QUALITY_COLOR_GS = gs => gs >= 3000 ? "#ffd700" : gs >= 2000 ? "#a335ee" : gs >= 1200 ? "#0070dd" : "#1eff00";
+        c.innerHTML = `<div class="lore-cards-grid">${chars.map((ch, i) => `
+            <div class="lore-card" style="border-color:rgba(200,168,0,.15);">
+                <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;">
+                    <div style="width:42px;height:42px;border-radius:50%;background:rgba(200,168,0,.1);
+                         border:1px solid rgba(200,168,0,.3);display:flex;align-items:center;
+                         justify-content:center;font-size:1.3rem;font-weight:800;color:#c8a800;">
+                        ${ch.name.charAt(0)}
+                    </div>
+                    <div>
+                        <div style="font-weight:800;color:#fff;">#${i+1} ${ch.name}</div>
+                        <div style="font-size:.75rem;color:var(--text-muted);">${ch.title || "Héroe de Azeroth"}</div>
+                    </div>
+                </div>
+                <div style="font-size:.84rem;color:var(--text-muted);line-height:1.5;">
+                    ${ch.class} · ${ch.race} · Nv${ch.level}<br>
+                    <span style="color:${QUALITY_COLOR_GS(ch.gs)};font-weight:700;">${ch.gs} GS</span>
+                    · ${ch.guild}
+                    ${ch.online ? '<span style="color:#39d353;margin-left:.5rem;">● En Línea</span>' : ''}
+                </div>
+                ${ch.honor ? `<div style="font-size:.76rem;color:#ff6b6b;margin-top:.4rem;">⚔️ ${(ch.honor||0).toLocaleString()} honor · ${(ch.kills||0).toLocaleString()} bajas</div>` : ''}
+            </div>`).join("")}
+        </div>`;
+    }
+
+    // ── Profecías ────────────────────────────────────────────────────────────
+    function renderProphecies() {
+        const c = document.getElementById("propheciesContainer");
+        if (!c) return;
+        c.innerHTML = `<div class="lore-cards-grid">${PROPHECIES.map(p => `
+            <div class="lore-card" style="border-color:${p.status==='ACTIVE'?'rgba(163,53,238,.25)':'rgba(255,255,255,.07)'};">
+                <div class="lore-card-icon">${p.icon}</div>
+                <div class="lore-card-title" style="color:${p.status==='ACTIVE'?'#a335ee':'#e8d88a'};">${p.title}</div>
+                <div class="lore-card-text" style="font-style:italic;color:#9090a8;">${p.text}</div>
+                <span class="timeline-status-pill ${p.status==='ACTIVE'?'pill-active':'pill-pending'}" style="margin-top:.7rem;">
+                    ${p.status==='ACTIVE'?'● PROFECÍA ACTIVA':'○ PENDIENTE'}
+                </span>
+            </div>`).join("")}
+        </div>`;
+    }
+
+    // ── Endpoint /api/lore/events — agregar al WebAPI si no existe ────────────
+    // (El endpoint se añadirá en WebAPI.py junto a /api/armory)
+
+    // INIT
+    document.addEventListener("DOMContentLoaded", () => { loadTimeline(); });
+    </script>
+</body>
+</html>

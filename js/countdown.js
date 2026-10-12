@@ -103,6 +103,38 @@
     }
 
     async function fetchProgressionSSOT() {
+        const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) 
+            ? CONFIG.getApiUrl() 
+            : 'http://127.0.0.1:8080';
+
+        // 1. Intentar telemetría de era en vivo desde WebAPI
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+            const resp = await fetch(`${apiUrl}/api/progression`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
+                },
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data && data.active_phase_id) {
+                    progressionMetadata = data;
+                    renderProgressionChronometer();
+                    return;
+                }
+            }
+        } catch (liveErr) {
+            // Backend offline o timeout
+        }
+
+        // 2. Fallback estático
         try {
             const resp = await fetch(PROGRESSION_SSOT_URL + '?t=' + Date.now());
             if (resp.ok) {

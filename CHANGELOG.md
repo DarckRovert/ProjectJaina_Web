@@ -12,7 +12,7 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 - **Submódulos Especializados:**
   - `armeria.html`: Inspección de personajes, GearScore y estadísticas.
   - `tienda.html`: Catálogo de cosméticos, auras y Pase de Batalla.
-  - `registro.html`: Formulario con cifrado SRP6 para creación de cuentas directas en AzerothCore.
+  - `registro.html`: Formulario con cifrado SRP6 para creación de cuentas directas en JainaCore.
 - **Activos Gráficos Oficiales:** Generación e integración de ilustraciones Ultra-HD (`jaina_crest_logo.jpg`, `jaina_hero_banner.jpg`, `jaina_living_lore.jpg`).
 - **Despliegue GitHub Pages:** Flujo de trabajo CI/CD automatizado vía `.github/workflows/deploy-pages.yml` y rama `gh-pages`.
 

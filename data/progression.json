@@ -13,7 +13,7 @@
   "realmlist": "projectjaina.com",
   "world_tickrate_ms": 12,
   "telemetry": {
-    "engine_version": "TrinityCore / AzerothCore v3.3.5a",
+    "engine_version": "JainaCore Engine v3.3.5a",
     "eluna_gate": "v2.0 Enforced",
     "living_lore_ai": "Active (Local Qwen 2.5 3B)",
     "audio_spatial": "3D HRTF Port 3050"

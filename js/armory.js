@@ -2,351 +2,327 @@
  * ============================================================================
  * Project JAIna — Armería Oficial & Salón de Campeones
  * Archivo: js/armory.js
- * Versión: 2.5 Mythos (Empirismo Estricto & Telemetría Canónica)
+ * Versión: 3.0 Hito-125 (Armería en Vivo con MySQL · Auto-refresh 60s · Modal con ítems reales)
  * ============================================================================
- * Sincronización híbrida bidireccional:
- * 1. Carga inmediata de instantánea canónica local (data/armory.json) para
- *    soporte offline y GitHub Pages (HTTPS sin mixed-content).
- * 2. Sondeo en vivo hacia ProjectJaina_WebAPI (/api/armory) para actualización
- *    en tiempo real desde acore_characters cuando el clúster está encendido.
- * 3. Detección visual rigurosa: Si el servidor está apagado, se declara
- *    ○ SERVIDOR DESCONECTADO y ningún personaje figura ficticiamente en línea.
+ * Sincronización híbrida:
+ *  1. Carga instantánea canónica local (data/armory.json) → render inmediato offline.
+ *  2. Sondeo en vivo /api/armory → GS real desde acore_characters, cada 60s.
+ *  3. inspectCharacter → llama /api/armory/search?name=X → muestra ítems reales equipados.
  * ============================================================================
  */
 
-const CANONICAL_BASELINE = [
-    {
-        name: "Gasket",
-        class: "Brujo",
-        race: "No-Muerto",
-        level: 60,
-        guild: "Project JAIna",
-        online: false,
-        gs: 850,
-        spec: "Destrucción",
-        role: "DPS a Distancia",
-        title: "Administrador de Proyecto",
-        lore: "Primer avatar registrado del Reino de Theramore. Ostenta privilegios administrativos y enlace directo con la red neuronal de Lore."
-    }
-];
+const CANONICAL_BASELINE = [{
+    name: "Gasket",
+    class: "Brujo",
+    race: "No-Muerto",
+    level: 60,
+    guild: "Project JAIna",
+    online: false,
+    gs: 850,
+    spec: "Destruccion",
+    role: "DPS a Distancia",
+    title: "Administrador de Proyecto",
+    lore: "Primer avatar registrado del Reino de Theramore."
+}];
 
-let allCharacters = [...CANONICAL_BASELINE];
-let currentFilter = "all";
-let currentSearch = "";
+let allCharacters  = [...CANONICAL_BASELINE];
+let currentFilter  = "all";
+let currentSearch  = "";
 let isServerOnline = false;
+let _refreshTimer  = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-    initArmory();
-});
+document.addEventListener("DOMContentLoaded", () => { initArmory(); });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// BOOTSTRAP
+// ─────────────────────────────────────────────────────────────────────────────
 async function initArmory() {
     setupFiltersAndSearch();
     setupModalEvents();
     setupSyncButton();
-
-    // 1. Carga instantánea canónica en disco para render instantáneo
     await loadLocalArmorySnapshot();
-
-    // 2. Probar conexión en vivo contra el micro-backend
     await fetchLiveArmory();
+    _startAutoRefresh();
 }
 
-/**
- * Carga el registro estático data/armory.json (SSOT en disco)
- */
+function _startAutoRefresh() {
+    if (_refreshTimer) clearInterval(_refreshTimer);
+    // Auto-refresh cada 60s cuando el servidor está en vivo
+    _refreshTimer = setInterval(async () => {
+        if (isServerOnline) await fetchLiveArmory();
+    }, 60000);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CARGA LOCAL (GitHub Pages / offline)
+// ─────────────────────────────────────────────────────────────────────────────
 async function loadLocalArmorySnapshot() {
     try {
         const resp = await fetch(`data/armory.json?t=${Date.now()}`);
         if (resp.ok) {
             const data = await resp.json();
             if (Array.isArray(data) && data.length > 0) {
-                // Si el servidor está apagado o no comprobado, forzamos status offline
                 allCharacters = data.map(c => ({ ...c, online: false }));
             }
         }
-    } catch (err) {
-        console.warn("[Armería] Usando instantánea de respaldo integrada:", err);
+    } catch (_) {
         allCharacters = [...CANONICAL_BASELINE];
     }
-
     updateArmoryStatusBadge(false, "○ SERVIDOR DESCONECTADO (REGISTRO LOCAL EN DISCO)");
     renderPodium(allCharacters);
     renderArmoryRows(allCharacters);
 }
 
-/**
- * Sondea el micro-backend en vivo para obtener los datos de acore_characters
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// FETCH EN VIVO (acore_characters via WebAPI)
+// ─────────────────────────────────────────────────────────────────────────────
 async function fetchLiveArmory() {
     const syncBtn = document.getElementById("btnSyncArmory");
-    if (syncBtn) {
-        syncBtn.disabled = true;
-        syncBtn.innerHTML = `⏳ Sincronizando...`;
-    }
-
+    if (syncBtn) { syncBtn.disabled = true; syncBtn.innerHTML = `⏳ Sincronizando...`; }
     updateArmoryStatusBadge(false, "⏳ COMPROBANDO ESTADO DEL REINO...");
 
     try {
         const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl)
-            ? CONFIG.getApiUrl()
-            : "http://127.0.0.1:8080";
+            ? CONFIG.getApiUrl() : "http://127.0.0.1:8080";
 
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2500);
+        const ctrl = new AbortController();
+        const tid  = setTimeout(() => ctrl.abort(), 3000);
 
-        const response = await fetch(`${apiUrl}/api/armory`, {
-            method: "GET",
-            signal: controller.signal,
-            headers: {
-                "Accept": "application/json",
-                "ngrok-skip-browser-warning": "true"
-            }
+        const resp = await fetch(`${apiUrl}/api/armory`, {
+            signal: ctrl.signal,
+            headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
         });
-        clearTimeout(timeoutId);
+        clearTimeout(tid);
 
-        if (response.ok) {
-            const liveData = await response.json();
+        if (resp.ok) {
+            const liveData = await resp.json();
             if (Array.isArray(liveData) && liveData.length > 0) {
-                allCharacters = liveData;
+                allCharacters  = liveData;
                 isServerOnline = true;
-                updateArmoryStatusBadge(true, "● SERVIDOR EN VIVO (SINCRONIZADO CON ACORE_CHARACTERS)");
+                const ts = new Date().toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+                updateArmoryStatusBadge(true, `● EN VIVO · acore_characters · Actualizado ${ts}`);
                 renderPodium(allCharacters);
                 renderArmoryRows(allCharacters);
                 return;
             }
         }
-        throw new Error("Respuesta inválida o vacía");
-    } catch (e) {
-        // Servidor offline / Túnel inactivo
+        throw new Error("Respuesta vacía");
+    } catch (_) {
         isServerOnline = false;
-        // En modo offline, forzamos que ningún personaje muestre 'online'
-        allCharacters = allCharacters.map(c => ({ ...c, online: false }));
+        allCharacters  = allCharacters.map(c => ({ ...c, online: false }));
         updateArmoryStatusBadge(false, "○ SERVIDOR DESCONECTADO (ÚLTIMO REGISTRO EN DISCO)");
         renderPodium(allCharacters);
         renderArmoryRows(allCharacters);
     } finally {
-        if (syncBtn) {
-            syncBtn.disabled = false;
-            syncBtn.innerHTML = `🔄 Sincronizar en Tiempo Real`;
-        }
+        if (syncBtn) { syncBtn.disabled = false; syncBtn.innerHTML = `🔄 Sincronizar en Tiempo Real`; }
     }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// STATUS BADGE
+// ─────────────────────────────────────────────────────────────────────────────
 function updateArmoryStatusBadge(online, text) {
     const badge = document.getElementById("armoryLiveBadge");
     if (!badge) return;
-
     badge.textContent = text;
     if (online) {
         badge.className = "hero-banner-status armory-badge-live";
-        badge.style.color = "#39d353";
-        badge.style.borderColor = "rgba(57, 211, 83, 0.4)";
-        badge.style.background = "rgba(57, 211, 83, 0.12)";
+        badge.style.cssText = "color:#39d353;border-color:rgba(57,211,83,.4);background:rgba(57,211,83,.12);";
     } else {
         badge.className = "hero-banner-status armory-badge-offline";
-        badge.style.color = "#ffb74d";
-        badge.style.borderColor = "rgba(255, 183, 77, 0.4)";
-        badge.style.background = "rgba(255, 183, 77, 0.12)";
+        badge.style.cssText = "color:#ffb74d;border-color:rgba(255,183,77,.4);background:rgba(255,183,77,.12);";
     }
 }
 
-/**
- * Renderizado adaptable del Podio:
- * Soporta de 1 a N personajes sin romper la grilla visual.
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// PÓDIUM (1, 2 ó 3+ personajes)
+// ─────────────────────────────────────────────────────────────────────────────
 function renderPodium(chars) {
-    const podiumContainer = document.getElementById("championsPodium");
-    if (!podiumContainer) return;
-
+    const pc = document.getElementById("championsPodium");
+    if (!pc) return;
     if (!chars || chars.length === 0) {
-        podiumContainer.className = "podium-grid podium-empty";
-        podiumContainer.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">
-                No hay héroes registrados en el salón de honor todavía.
-            </div>
-        `;
+        pc.className = "podium-grid podium-empty";
+        pc.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:2rem;">
+            No hay héroes registrados en el salón de honor todavía.</div>`;
         return;
     }
 
-    // Caso 1: Un solo campeón (ej: Gasket como primer héroe)
+    const _card = (c, medal, rank, mod) => {
+        const cb = getClassBadgeClass(c.class);
+        const gsColor = c.gs >= 2000 ? "#ffd700" : c.gs >= 1200 ? "#00e5ff" : "#a0a0c0";
+        return `<div class="podium-card ${mod}" onclick="inspectCharacter('${c.name}')">
+            <div class="podium-crown">${medal}</div>
+            <div class="podium-avatar-wrap">
+                <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
+                <span class="podium-rank-badge">${rank}</span>
+            </div>
+            <div class="podium-char-name">${c.name}</div>
+            <div class="podium-char-title">${c.title || "Héroe de Azeroth"}</div>
+            <div class="podium-class-pill"><span class="badge-class ${cb}">${c.class}</span></div>
+            <div class="podium-stats">
+                <span>Lv ${c.level}</span> · <span style="color:${gsColor};font-weight:700;">${c.gs || 850} GS</span> · <span>${c.guild}</span>
+            </div>
+            <div style="margin-top:.6rem;font-size:.75rem;color:${c.online ? "var(--status-online)" : "var(--text-muted)"};">
+                ${c.online ? "● Conectado en Mundo" : "○ Servidor Standby"}
+            </div>
+        </div>`;
+    };
+
     if (chars.length === 1) {
-        podiumContainer.className = "podium-grid podium-single";
-        const c = chars[0];
-        const classBadge = getClassBadgeClass(c.class);
-        podiumContainer.innerHTML = `
-            <div class="podium-card podium-gold" onclick="inspectCharacter('${c.name}')" style="max-width: 360px; margin: 0 auto; width: 100%;">
-                <div class="podium-crown">👑</div>
-                <div class="podium-avatar-wrap">
-                    <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
-                    <span class="podium-rank-badge">1º</span>
-                </div>
-                <div class="podium-char-name">${c.name}</div>
-                <div class="podium-char-title">${c.title || 'Campeón Supremo del Reino'}</div>
-                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
-                <div class="podium-stats">
-                    <span>Lv ${c.level} (Vanilla)</span> · <span>${c.gs || 850} GS</span> · <span>${c.guild}</span>
-                </div>
-                <div style="margin-top: 0.8rem; font-size: 0.75rem; color: ${c.online ? 'var(--status-online)' : 'var(--text-muted)'};">
-                    ${c.online ? '● Conectado en Mundo' : '○ Servidor Desconectado'}
-                </div>
-            </div>
-        `;
-        return;
+        pc.className = "podium-grid podium-single";
+        pc.innerHTML = _card(chars[0], "👑", "1º", "podium-gold");
+    } else if (chars.length === 2) {
+        pc.className = "podium-grid podium-double";
+        pc.innerHTML = _card(chars[0], "👑", "1º", "podium-gold") +
+                       _card(chars[1], "🥈", "2º", "podium-silver");
+    } else {
+        pc.className = "podium-grid podium-triple";
+        pc.innerHTML = _card(chars[1], "🥈", "2º", "podium-silver") +
+                       _card(chars[0], "👑", "1º", "podium-gold") +
+                       _card(chars[2], "🥉", "3º", "podium-bronze");
     }
-
-    // Caso 2: Dos campeones (1º Oro, 2º Plata)
-    if (chars.length === 2) {
-        podiumContainer.className = "podium-grid podium-double";
-        const ranks = [
-            { place: "1º", medal: "👑", label: "CAMPEÓN", classMod: "podium-gold", c: chars[0] },
-            { place: "2º", medal: "🥈", label: "PLATA", classMod: "podium-silver", c: chars[1] }
-        ];
-
-        podiumContainer.innerHTML = ranks.map(r => {
-            const c = r.c;
-            const classBadge = getClassBadgeClass(c.class);
-            return `
-                <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${c.name}')">
-                    <div class="podium-crown">${r.medal}</div>
-                    <div class="podium-avatar-wrap">
-                        <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
-                        <span class="podium-rank-badge">${r.place}</span>
-                    </div>
-                    <div class="podium-char-name">${c.name}</div>
-                    <div class="podium-char-title">${c.title || 'Héroe de Azeroth'}</div>
-                    <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
-                    <div class="podium-stats">
-                        <span>Lv ${c.level}</span> · <span>${c.gs || 850} GS</span> · <span>${c.guild}</span>
-                    </div>
-                </div>
-            `;
-        }).join("");
-        return;
-    }
-
-    // Caso 3: Tres o más campeones (Orden visual tradicional: 2º Plata, 1º Oro al centro, 3º Bronce)
-    podiumContainer.className = "podium-grid podium-triple";
-    const ranks = [
-        { place: "2º", medal: "🥈", label: "PLATA", classMod: "podium-silver", c: chars[1] },
-        { place: "1º", medal: "👑", label: "CAMPEÓN SUPREMO", classMod: "podium-gold", c: chars[0] },
-        { place: "3º", medal: "🥉", label: "BRONCE", classMod: "podium-bronze", c: chars[2] }
-    ];
-
-    podiumContainer.innerHTML = ranks.map(r => {
-        const c = r.c;
-        const classBadge = getClassBadgeClass(c.class);
-        return `
-            <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${c.name}')">
-                <div class="podium-crown">${r.medal}</div>
-                <div class="podium-avatar-wrap">
-                    <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
-                    <span class="podium-rank-badge">${r.place}</span>
-                </div>
-                <div class="podium-char-name">${c.name}</div>
-                <div class="podium-char-title">${c.title || 'Héroe de Azeroth'}</div>
-                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
-                <div class="podium-stats">
-                    <span>Lv ${c.level}</span> · <span>${c.gs || 850} GS</span> · <span>${c.guild}</span>
-                </div>
-            </div>
-        `;
-    }).join("");
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TABLA DE ARMERÍA
+// ─────────────────────────────────────────────────────────────────────────────
 function renderArmoryRows(chars) {
-    const tableBody = document.getElementById("armoryTableBody");
-    const loadingRow = document.getElementById("armoryLoading");
-    if (!tableBody) return;
-    if (loadingRow) loadingRow.remove();
+    const body    = document.getElementById("armoryTableBody");
+    const loading = document.getElementById("armoryLoading");
+    if (!body) return;
+    if (loading) loading.remove();
 
-    let filtered = chars.filter(c => {
-        const matchesSearch = !currentSearch ||
-            c.name.toLowerCase().includes(currentSearch) ||
-            c.guild.toLowerCase().includes(currentSearch) ||
-            c.class.toLowerCase().includes(currentSearch);
-
-        let matchesFilter = true;
-        if (currentFilter === "online") {
-            matchesFilter = !!c.online;
-        } else if (currentFilter !== "all") {
-            matchesFilter = (c.class.toLowerCase() === currentFilter.toLowerCase());
-        }
-
+    const filtered = chars.filter(c => {
+        const q = currentSearch;
+        const matchesSearch = !q || c.name.toLowerCase().includes(q) ||
+            (c.guild || "").toLowerCase().includes(q) ||
+            (c.class || "").toLowerCase().includes(q);
+        const matchesFilter = currentFilter === "all" || currentFilter === "online"
+            ? (currentFilter === "online" ? !!c.online : true)
+            : (c.class || "").toLowerCase() === currentFilter.toLowerCase();
         return matchesSearch && matchesFilter;
     });
 
-    if (filtered.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">No se encontraron héroes que coincidan con la búsqueda o filtro seleccionado.</td></tr>`;
+    if (!filtered.length) {
+        body.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:2.5rem;">
+            No se encontraron héroes con ese filtro o búsqueda.</td></tr>`;
         return;
     }
 
-    tableBody.innerHTML = filtered.map((c, idx) => {
-        const classClass = getClassBadgeClass(c.class);
-        const statusBadge = c.online
+    const QUALITY_COLOR = { 0:"#9d9d9d",1:"#ffffff",2:"#1eff00",3:"#0070dd",4:"#a335ee",5:"#ff8000" };
+
+    body.innerHTML = filtered.map((c, i) => {
+        const cb      = getClassBadgeClass(c.class);
+        const status  = c.online
             ? `<span class="online-tag">● En Línea</span>`
             : `<span class="offline-tag">○ Desconectado</span>`;
-
-        return `
-            <tr class="armory-row" onclick="inspectCharacter('${c.name}')">
-                <td class="rank-cell">#${idx + 1}</td>
-                <td class="name-cell">
-                    <strong>${c.name}</strong>
-                    <div class="char-title-small">${c.title || 'Héroe del Reino'}</div>
-                </td>
-                <td><span class="badge-class ${classClass}">${c.class}</span></td>
-                <td>${c.race}</td>
-                <td class="level-cell">${c.level}</td>
-                <td class="guild-cell">${c.guild}</td>
-                <td>${statusBadge}</td>
-                <td>
-                    <button class="btn-inspect" onclick="event.stopPropagation(); inspectCharacter('${c.name}')">
-                        🔍 Ver Ficha
-                    </button>
-                </td>
-            </tr>
-        `;
+        const gsColor = c.gs >= 2000 ? "#ffd700" : c.gs >= 1200 ? "#00e5ff" : "#a0a0c0";
+        return `<tr class="armory-row" onclick="inspectCharacter('${c.name}')">
+            <td class="rank-cell">#${i+1}</td>
+            <td class="name-cell">
+                <strong>${c.name}</strong>
+                <div class="char-title-small">${c.title || "Héroe del Reino"}</div>
+            </td>
+            <td><span class="badge-class ${cb}">${c.class}</span></td>
+            <td>${c.race}</td>
+            <td class="level-cell">${c.level}</td>
+            <td class="guild-cell">${c.guild}</td>
+            <td>${status}</td>
+            <td>
+                <span style="color:${gsColor};font-weight:700;">${c.gs || "—"} GS</span>
+                <button class="btn-inspect" onclick="event.stopPropagation();inspectCharacter('${c.name}')">🔍 Ver Ficha</button>
+            </td>
+        </tr>`;
     }).join("");
 }
 
-function setupFiltersAndSearch() {
-    const searchInput = document.getElementById("armorySearchInput");
-    const chips = document.querySelectorAll(".filter-chip");
-
-    if (searchInput) {
-        searchInput.addEventListener("input", (e) => {
-            currentSearch = e.target.value.trim().toLowerCase();
-            renderArmoryRows(allCharacters);
-        });
-    }
-
-    chips.forEach(chip => {
-        chip.addEventListener("click", () => {
-            chips.forEach(c => c.classList.remove("active"));
-            chip.classList.add("active");
-            currentFilter = chip.getAttribute("data-filter");
-            renderArmoryRows(allCharacters);
-        });
-    });
-}
-
-function setupSyncButton() {
-    const syncBtn = document.getElementById("btnSyncArmory");
-    if (syncBtn) {
-        syncBtn.addEventListener("click", () => {
-            fetchLiveArmory();
-        });
-    }
-}
-
-function inspectCharacter(charName) {
-    const char = allCharacters.find(c => c.name.toLowerCase() === charName.toLowerCase()) || allCharacters[0];
-    if (!char) return;
-
-    const modal = document.getElementById("characterModal");
+// ─────────────────────────────────────────────────────────────────────────────
+// MODAL DE INSPECCIÓN — Hito #125: consulta /api/armory/search en vivo
+// ─────────────────────────────────────────────────────────────────────────────
+async function inspectCharacter(charName) {
+    const modal     = document.getElementById("characterModal");
     const modalBody = document.getElementById("characterModalContent");
     if (!modal || !modalBody) return;
 
-    const classBadge = getClassBadgeClass(char.class);
+    // Mostrar spinner mientras carga
+    modalBody.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text-muted);">
+        ⏳ Consultando ficha de <strong>${charName}</strong>...</div>`;
+    modal.classList.add("modal-visible");
+
+    let char = null;
+    let liveProfile = null;
+
+    // Intentar obtener perfil completo con items del backend
+    if (isServerOnline) {
+        try {
+            const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl)
+                ? CONFIG.getApiUrl() : "http://127.0.0.1:8080";
+            const ctrl   = new AbortController();
+            const tid    = setTimeout(() => ctrl.abort(), 3000);
+            const resp   = await fetch(
+                `${apiUrl}/api/armory/search?name=${encodeURIComponent(charName)}`,
+                { signal: ctrl.signal, headers: { "ngrok-skip-browser-warning": "true" } }
+            );
+            clearTimeout(tid);
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data && data.found) liveProfile = data;
+            }
+        } catch (_) { /* fallback local */ }
+    }
+
+    // Fallback: datos del ranking local
+    char = liveProfile || allCharacters.find(c => c.name.toLowerCase() === charName.toLowerCase()) || allCharacters[0];
+    if (!char) { modal.classList.remove("modal-visible"); return; }
+
+    const cb = getClassBadgeClass(char.class);
+    const QUALITY_COLOR = { 0:"#9d9d9d",1:"#ffffff",2:"#1eff00",3:"#0070dd",4:"#a335ee",5:"#ff8000" };
+
+    // Sección de ítems equipados (solo disponible con liveProfile)
+    let itemsHtml = "";
+    if (liveProfile && liveProfile.items && liveProfile.items.length > 0) {
+        const rows = liveProfile.items.map(it => {
+            const col = QUALITY_COLOR[it.quality] || "#fff";
+            return `<tr>
+                <td style="color:var(--text-muted);font-size:.78rem;">${it.slot_name}</td>
+                <td style="color:${col};font-weight:600;">${it.name}</td>
+                <td style="text-align:center;color:#a0c4ff;">${it.ilvl}</td>
+                <td style="text-align:center;color:${col};font-size:.78rem;">${it.quality_name}</td>
+                <td style="text-align:center;color:#00e5ff;">+${it.gs_contribution}</td>
+            </tr>`;
+        }).join("");
+        itemsHtml = `
+        <div class="inspect-lore-box" style="margin-top:1.2rem;">
+            <div class="lore-box-title">⚔️ Equipo Verificado (acore_characters · item_template):</div>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+                    <thead>
+                        <tr style="color:var(--text-muted);border-bottom:1px solid rgba(255,255,255,.08);">
+                            <th style="text-align:left;padding:.3rem .5rem;">Slot</th>
+                            <th style="text-align:left;padding:.3rem .5rem;">Ítem</th>
+                            <th style="padding:.3rem .5rem;">iLvl</th>
+                            <th style="padding:.3rem .5rem;">Calidad</th>
+                            <th style="padding:.3rem .5rem;">GS</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        </div>`;
+    } else if (!liveProfile) {
+        itemsHtml = `<div class="inspect-lore-box" style="margin-top:1rem;">
+            <div class="lore-box-title">⚠️ Detalle de ítems no disponible (servidor offline)</div>
+        </div>`;
+    }
+
+    // Estadísticas PvP y progresión
+    const honor  = char.honor_points !== undefined ? char.honor_points : (char.honor || 0);
+    const kills  = char.total_kills  !== undefined ? char.total_kills  : (char.kills || 0);
+    const ach    = char.achievements || 0;
+    const gold   = char.money_gold   !== undefined ? char.money_gold   : "—";
+    const hours  = char.playtime_hours !== undefined ? `${char.playtime_hours}h` : "—";
+    const gsColor = (char.gear_score || char.gs || 0) >= 2000 ? "#ffd700"
+                  : (char.gear_score || char.gs || 0) >= 1200 ? "#00e5ff" : "#a0c4ff";
 
     modalBody.innerHTML = `
         <div class="inspect-header">
@@ -355,74 +331,102 @@ function inspectCharacter(charName) {
             </div>
             <div>
                 <h2 class="inspect-name">${char.name}</h2>
-                <div class="inspect-title-tag">${char.title || 'Campeón de Azeroth'}</div>
+                <div class="inspect-title-tag">${char.title || "Campeón de Azeroth"}</div>
                 <div class="inspect-badges-row">
-                    <span class="badge-class ${classBadge}">${char.class}</span>
-                    <span class="inspect-pill">${char.race}</span>
-                    <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level} (Vanilla)</span>
-                    <span class="inspect-pill">${char.guild}</span>
+                    <span class="badge-class ${cb}">${char.class}</span>
+                    <span class="inspect-pill">${char.race || ""}</span>
+                    <span class="inspect-pill" style="color:var(--gold-primary);">Nivel ${char.level}${char.level_cap ? " / " + char.level_cap : ""}</span>
+                    <span class="inspect-pill">${char.guild || "Sin hermandad"}</span>
+                    ${liveProfile ? `<span class="inspect-pill" style="color:#39d353;border-color:rgba(57,211,83,.3);">● Datos en vivo</span>` : ""}
                 </div>
             </div>
         </div>
 
         <div class="inspect-stats-grid">
             <div class="inspect-stat-card">
-                <div class="stat-name">Puntuación de Equipo (GS)</div>
-                <div class="stat-val" style="color: #00e5ff;">${char.gs || 850} GS</div>
+                <div class="stat-name">GearScore Real (DB)</div>
+                <div class="stat-val" style="color:${gsColor};">${char.gear_score || char.gs || "—"} GS</div>
             </div>
             <div class="inspect-stat-card">
                 <div class="stat-name">Especialización</div>
-                <div class="stat-val" style="color: var(--gold-primary);">${char.spec || 'Talentos de Era Clásica'}</div>
+                <div class="stat-val" style="color:var(--gold-primary);">${char.spec || "Talentos Clásicos"}</div>
             </div>
             <div class="inspect-stat-card">
-                <div class="stat-name">Rol de Combate</div>
-                <div class="stat-val">${char.role || 'DPS'}</div>
+                <div class="stat-name">Rol</div>
+                <div class="stat-val">${char.role || "DPS"}</div>
             </div>
             <div class="inspect-stat-card">
-                <div class="stat-name">Estado en Reino</div>
-                <div class="stat-val" style="color: ${char.online ? 'var(--status-online)' : 'var(--text-muted)'};">
-                    ${char.online ? '● Conectado (En Mundo)' : '○ Desconectado (Servidor Standby)'}
+                <div class="stat-name">Estado</div>
+                <div class="stat-val" style="color:${char.online ? "var(--status-online)" : "var(--text-muted)"};">
+                    ${char.online ? "● En Mundo" : "○ Desconectado"}
                 </div>
             </div>
+            <div class="inspect-stat-card">
+                <div class="stat-name">Puntos de Honor</div>
+                <div class="stat-val" style="color:#ff6b6b;">${honor.toLocaleString()}</div>
+            </div>
+            <div class="inspect-stat-card">
+                <div class="stat-name">Bajas en PvP</div>
+                <div class="stat-val" style="color:#ff9800;">${kills.toLocaleString()}</div>
+            </div>
+            <div class="inspect-stat-card">
+                <div class="stat-name">Logros</div>
+                <div class="stat-val" style="color:#ffd700;">${ach} 🏆</div>
+            </div>
+            <div class="inspect-stat-card">
+                <div class="stat-name">Oro · Tiempo</div>
+                <div class="stat-val" style="color:#c8a800;">${gold}g · ${hours}</div>
+            </div>
         </div>
 
-        <div class="inspect-lore-box">
-            <div class="lore-box-title">📜 Registro Histórico del Campeón:</div>
-            <p>${char.lore || `Héroe registrado bajo la jurisdicción de <strong>${char.guild}</strong>. Ha participado en campañas de la Era Clásica de Azeroth con acceso a los sagrarios de Theramore y Dalaran.`}</p>
+        ${itemsHtml}
+
+        <div class="inspect-lore-box" style="margin-top:1rem;">
+            <div class="lore-box-title">📜 Registro Histórico:</div>
+            <p>${char.lore || `Héroe registrado bajo la jurisdicción de <strong>${char.guild || "Project JAIna"}</strong>.`}</p>
         </div>
     `;
+}
 
-    modal.classList.add("modal-visible");
+// ─────────────────────────────────────────────────────────────────────────────
+// SETUP EVENTOS
+// ─────────────────────────────────────────────────────────────────────────────
+function setupFiltersAndSearch() {
+    const inp   = document.getElementById("armorySearchInput");
+    const chips = document.querySelectorAll(".filter-chip");
+    if (inp) inp.addEventListener("input", e => { currentSearch = e.target.value.trim().toLowerCase(); renderArmoryRows(allCharacters); });
+    chips.forEach(chip => chip.addEventListener("click", () => {
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        currentFilter = chip.getAttribute("data-filter");
+        renderArmoryRows(allCharacters);
+    }));
+}
+
+function setupSyncButton() {
+    const btn = document.getElementById("btnSyncArmory");
+    if (btn) btn.addEventListener("click", () => fetchLiveArmory());
 }
 
 function setupModalEvents() {
-    const modal = document.getElementById("characterModal");
+    const modal    = document.getElementById("characterModal");
     const closeBtn = document.getElementById("closeCharModalBtn");
     if (!modal) return;
-
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => modal.classList.remove("modal-visible"));
-    }
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.remove("modal-visible");
-    });
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") modal.classList.remove("modal-visible");
-    });
+    if (closeBtn) closeBtn.addEventListener("click", () => modal.classList.remove("modal-visible"));
+    modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("modal-visible"); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") modal.classList.remove("modal-visible"); });
 }
 
-function getClassBadgeClass(className) {
+// ─────────────────────────────────────────────────────────────────────────────
+// UTILIDADES
+// ─────────────────────────────────────────────────────────────────────────────
+function getClassBadgeClass(cls) {
     const map = {
-        "Guerrero": "class-guerrero",
-        "Paladín": "class-paladin",
-        "Cazador": "class-cazador",
-        "Pícaro": "class-picaro",
-        "Sacerdote": "class-sacerdote",
-        "Caballero de la Muerte": "class-dk",
-        "Chamán": "class-chaman",
-        "Mago": "class-mago",
-        "Brujo": "class-brujo",
-        "Druida": "class-druida"
+        "Guerrero":"class-guerrero","Paladin":"class-paladin","Paladín":"class-paladin",
+        "Cazador":"class-cazador","Picaro":"class-picaro","Pícaro":"class-picaro",
+        "Sacerdote":"class-sacerdote","Caballero de la Muerte":"class-dk",
+        "Chaman":"class-chaman","Chamán":"class-chaman",
+        "Mago":"class-mago","Brujo":"class-brujo","Druida":"class-druida"
     };
-    return map[className] || "class-brujo";
+    return map[cls] || "class-brujo";
 }

@@ -16,7 +16,7 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POST`) hacia `/api/register`:
 - Longitud mínima de credenciales (3-16 caracteres de usuario, mínimo 4 en contraseña).
 - Confirmación de contraseña y feedback visual mediante toasts no bloqueantes.
-- Creación autoritativa en `auth.account` de AzerothCore.
+- Creación autoritativa en `auth.account` de JainaCore.
 
 ### `js/store.js` — Catálogo Visual de Tienda & Donaciones
 - Renderizado de artículos cosméticos (monturas, transfiguraciones, auras y títulos).
