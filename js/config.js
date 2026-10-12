@@ -1,5 +1,5 @@
 /**
- * Project Jaina (projectjaina.com) — Configuración Global del Portal Web
+ * Project Jaina — Configuración Global del Portal Web Oficial (GitHub Pages)
  * Auto-detecta si el usuario navega desde archivo local (file://), localhost, Radmin VPN o GitHub Pages.
  */
 

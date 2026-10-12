@@ -10,7 +10,7 @@
   "next_phase_target": "2027-01-15T00:00:00-05:00",
   "active_phase_name": "World of Warcraft Classic (Vanilla)",
   "active_level_cap": 60,
-  "realmlist": "projectjaina.com",
+  "realmlist": "fried-promo.tun.ply.gg:25565",
   "world_tickrate_ms": 12,
   "telemetry": {
     "engine_version": "JainaCore Engine v3.3.5a",

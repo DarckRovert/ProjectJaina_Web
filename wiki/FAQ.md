@@ -18,9 +18,9 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ### ¿Cuál es el realmlist oficial?
 Para conectar tu cliente 3.3.5a al servidor, abre tu archivo `Data\esES\realmlist.wtf` (o `Data\enUS\realmlist.wtf`) y configura:
 ```text
-set realmlist projectjaina.com
+set realmlist fried-promo.tun.ply.gg:25565
 ```
-*(Si estás jugando en red de pruebas LAN o Radmin VPN, utiliza la IP correspondiente indicada en el launcher)*.
+*(Si estás jugando en red de pruebas LAN o Radmin VPN, utiliza la IP asignada `26.140.157.205` o la indicada en el launcher)*.
 
 ### ¿Cómo descargo y juego?
 1. Crea tu cuenta en la sección [Registro](https://darckrovert.github.io/ProjectJaina_Web/registro.html) del portal oficial.

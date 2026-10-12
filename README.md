@@ -43,4 +43,4 @@
 
 El portal se sirve directamente a través de **GitHub Pages**:
 * **URL Pública Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
-* El dominio canónico `projectjaina.com` quedará enlazado en cuanto se complete la delegación de registros DNS en el registrador de dominio.
+* **Cliente de Voz Espacial 3D:** [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)

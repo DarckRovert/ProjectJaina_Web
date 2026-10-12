@@ -1,7 +1,7 @@
 /**
  * ========================================================================
  * Project Jaina - Cliente Web de Voz Espacial 3D (app.js)
- * Reino: Project Jaina | Servidor: https://projectjaina.com/
+ * Reino: Project Jaina | Web Oficial: https://darckrovert.github.io/ProjectJaina_Web/
  * ========================================================================
  * Captura de Micrófono con Supresión de Ruido, Detección de Actividad de Voz (VAD),
  * Señalización WebRTC y Motor de Renderizado Binaural 3D (Web Audio API HRTF).
