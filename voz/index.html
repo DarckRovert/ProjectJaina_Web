@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Jaina — Voz Espacial 3D</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <main class="container">
+        <!-- Encabezado Oficial -->
+        <header class="header">
+            <div class="logo-badge">
+                <span class="flag-icon">🇵🇪</span>
+                <span class="realm-name">REINO ANDINO</span>
+            </div>
+            <h1 class="title">Project Jaina Voz Espacial</h1>
+            <p class="subtitle">Comunicación binaural 3D en tiempo real por proximidad</p>
+        </header>
+
+        <!-- Tarjeta 1: Vinculación con PIN (Estado No Autenticado) -->
+        <section id="login-card" class="card glass">
+            <div class="card-header">
+                <h2>Vincular Personaje</h2>
+                <p>Escribe <code class="code-badge">/voz</code> dentro del juego para obtener tu código PIN.</p>
+            </div>
+            
+            <form id="pin-form" class="pin-form">
+                <div class="input-group" style="margin-bottom: 14px;">
+                    <label for="server-select">SERVIDOR DE VOZ</label>
+                    <select id="server-select" style="width: 100%; padding: 10px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #f8fafc; font-family: inherit; font-size: 13px; cursor: pointer; outline: none;">
+                        <option value="http://26.140.157.205:3050">Radmin VPN (Darck Master - 26.140.157.205:3050)</option>
+                        <option value="http://26.202.12.241:3050">Radmin VPN (FranFranco 32C - 26.202.12.241:3050)</option>
+                        <option value="http://localhost:3050">Servidor Local (127.0.0.1:3050)</option>
+                        <option value="http://193.84.88.26:3050">Theramore Oficial WAN (193.84.88.26:3050)</option>
+                        <option value="custom">Personalizado / Otra IP...</option>
+                    </select>
+                    <input type="text" id="custom-server-input" placeholder="http://tu-ip:3050" style="display: none; margin-top: 8px; width: 100%; padding: 8px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #fff; font-size: 13px; box-sizing: border-box;">
+                </div>
+
+                <div class="input-group">
+                    <label for="pin-input">CÓDIGO PIN (6 DÍGITOS)</label>
+                    <input type="text" id="pin-input" maxlength="6" pattern="\d{6}" placeholder="Ej. 748291" autocomplete="off" required autofocus>
+                </div>
+                
+                <button type="submit" id="btn-connect" class="btn btn-primary">
+                    <span class="btn-text">Conectar a la Voz</span>
+                    <span class="btn-loader hidden"></span>
+                </button>
+            </form>
+
+            <div class="info-alert">
+                <div class="alert-icon">💡</div>
+                <div class="alert-content">
+                    <strong>¿Estás jugando en una cabina de internet?</strong>
+                    <p>Abre esta página en el navegador de tu celular y usa tus audífonos manos libres. Podrás hablar y escuchar en 3D mientras juegas en la PC.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tarjeta 2: Panel de Voz Activo (Estado Autenticado) -->
+        <section id="voice-card" class="card glass hidden">
+            <!-- Barra Superior de Estado -->
+            <div class="session-bar">
+                <div class="char-info">
+                    <div class="avatar-ring" id="avatar-ring">
+                        <div class="avatar-inner">🎙️</div>
+                    </div>
+                    <div>
+                        <div class="char-name" id="char-name">Arthas</div>
+                        <div class="char-status">
+                            <span class="status-dot"></span>
+                            <span id="connection-status">Conectado — Audio 3D Activo</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn-disconnect" class="btn btn-secondary btn-sm">Desconectar</button>
+            </div>
+
+            <!-- Controles de Audio y Micrófono -->
+            <div class="audio-controls">
+                <!-- Monitor de Micrófono -->
+                <div class="control-box">
+                    <div class="control-label">
+                        <span>Micrófono</span>
+                        <span id="mic-status-text" class="status-tag">Escuchando</span>
+                    </div>
+                    
+                    <div class="vu-meter">
+                        <div id="vu-bar" class="vu-bar"></div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button id="btn-toggle-mic" class="btn btn-action">
+                            <span id="mic-icon">🎤</span>
+                            <span id="mic-btn-text">Silenciar Micro</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sliders de Volumen y Sensibilidad -->
+                <div class="control-box">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="slider-volume">Volumen General de Voces</label>
+                            <span id="volume-val">100%</span>
+                        </div>
+                        <input type="range" id="slider-volume" min="0" max="150" value="100">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="slider-gate">Puerta de Ruido (Sensibilidad)</label>
+                            <span id="gate-val">15%</span>
+                        </div>
+                        <input type="range" id="slider-gate" min="1" max="50" value="15">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Radar de Personajes en Rango de Audición (<= 25 yardas) -->
+            <div class="proximity-section">
+                <div class="section-title">
+                    <h3>Personajes en Rango de Audición (&le; 25 yd)</h3>
+                    <span id="nearby-count" class="badge">0 cerca</span>
+                </div>
+
+                <div id="peers-list" class="peers-list">
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-icon">🧭</div>
+                        <p>No hay otros aventureros hablando en un radio de 25 yardas.</p>
+                        <small>Conforme te acerques a otros personajes en el mundo, sus voces se orientarán automáticamente en tus auriculares.</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Project Jaina Oficial | <a href="https://projectjaina.com/" target="_blank" rel="noopener">projectjaina.com</a></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
