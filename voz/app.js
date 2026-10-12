@@ -125,28 +125,52 @@ pinForm.addEventListener('submit', async (e) => {
         }
 
         // Capturar micrófono con filtros de hardware de navegador
-        localStream = await navigator.mediaDevices.getUserMedia({
-            audio: {
-                echoCancellation: true,
-                noiseSuppression: true,
-                autoGainControl: true
-            }
-        });
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true
+                }
+            });
+        } catch (micErr) {
+            console.error('Error al capturar micrófono:', micErr);
+            alert('No se pudo acceder al micrófono: ' + micErr.message + '\n\nVerifica los permisos de audio en tu navegador o conecta tus audífonos con micrófono.');
+            btnConnect.disabled = false;
+            btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
+            return;
+        }
 
         // Configurar analizador de voz para VAD
         setupLocalAudioAnalyser();
 
         const baseUrl = getVoiceServerBaseUrl();
-        // Validar PIN contra el backend
-        const response = await fetch(`${baseUrl}/api/verify-pin`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ pin })
-        });
 
-        const data = await response.json();
-        if (!data.success) {
-            alert(data.error || 'Error verificando PIN');
+        // Validar PIN contra el backend
+        let response, data;
+        try {
+            response = await fetch(`${baseUrl}/api/verify-pin`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pin })
+            });
+            data = await response.json();
+        } catch (netErr) {
+            console.error('Error al conectar con servidor de voz:', netErr);
+            let msg = 'No se pudo conectar al servidor de voz en: ' + baseUrl + '\n\n';
+            if (window.location.protocol === 'https:' && baseUrl.startsWith('http:')) {
+                msg += '⚠️ AVISO DE SEGURIDAD (Contenido Mixto HTTPS):\nTu navegador bloqueó la conexión porque esta página se cargó por HTTPS seguro pero el servidor de voz usa HTTP.\n\nSOLUCIÓN: Abre la interfaz directamente desde tu servidor local en ' + baseUrl + ' o selecciona un servidor seguro.';
+            } else {
+                msg += 'Verifica que el servicio de voz esté iniciado (puerto 3050) y que tu firewall no lo bloquee.';
+            }
+            alert(msg);
+            btnConnect.disabled = false;
+            btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
+            return;
+        }
+
+        if (!data || !data.success) {
+            alert((data && data.error) || 'Error verificando PIN. Asegúrate de escribir /voz dentro del juego para obtener un código fresco.');
             btnConnect.disabled = false;
             btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
             return;
@@ -159,8 +183,8 @@ pinForm.addEventListener('submit', async (e) => {
         connectWebSocket(data.token);
 
     } catch (err) {
-        console.error('Error al iniciar audio o sesión:', err);
-        alert('No se pudo acceder al micrófono: ' + err.message);
+        console.error('Error general de sesión:', err);
+        alert('Error inesperado: ' + err.message);
         btnConnect.disabled = false;
         btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
     }
