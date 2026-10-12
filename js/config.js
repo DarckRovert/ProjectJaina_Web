@@ -1,30 +1,70 @@
 /**
  * Project Jaina — Configuración Global del Portal Web Oficial (GitHub Pages)
- * Auto-detecta si el usuario navega desde archivo local (file://), localhost, Radmin VPN o GitHub Pages.
+ * Sistema de Resolución y Conmutación Resiliente de Endpoints REST
  */
 
 const CONFIG = {
-    // URL por defecto del Micro-Backend (ProjectJaina_WebAPI.py en puerto 8080)
     LOCAL_API: "http://127.0.0.1:8080",
-    RADMIN_API: "http://26.140.157.205:8080",
-    PUBLIC_TUNNEL_API: "https://ingrainedly-easeled-edelmira.ngrok-free.dev", // Endpoint HTTPS permanente de ngrok
+    RADMIN_MASTER_API: "http://26.140.157.205:8080",
+    RADMIN_SPAIN_API: "http://26.202.12.241:8080",
+    PUBLIC_TUNNEL_API: "https://ingrainedly-easeled-edelmira.ngrok-free.dev",
 
-    // Client ID de PayPal (Reemplaza con tu Client ID de PayPal Developer)
-    // Para pruebas inmediatas en sandbox usa 'sb', para producción tu Client ID real.
-    PAYPAL_CLIENT_ID: "sb", 
+    KNOWN_ENDPOINTS: [
+        { id: "radmin_master", name: "Host Maestro Radmin (Darck)", url: "http://26.140.157.205:8080" },
+        { id: "radmin_spain",  name: "Nodo Cómputo Radmin (España)", url: "http://26.202.12.241:8080" },
+        { id: "local",         name: "Servidor Local (Sandbox)",     url: "http://127.0.0.1:8080" },
+        { id: "tunnel",        name: "Túnel HTTPS / Público",       url: "https://ingrainedly-easeled-edelmira.ngrok-free.dev" }
+    ],
 
-    // Obtener la URL activa según el origen
+    PAYPAL_CLIENT_ID: "sb",
+
     getApiUrl: function() {
+        // 1. Override explícito por Query Param (?api=http://...)
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryApi = urlParams.get("api");
+            if (queryApi) {
+                localStorage.setItem("projectjaina_api_url", queryApi.replace(/\/+$/, ""));
+                return queryApi.replace(/\/+$/, "");
+            }
+        } catch (_) {}
+
+        // 2. Override explícito en LocalStorage
+        try {
+            const saved = localStorage.getItem("projectjaina_api_url");
+            if (saved) return saved.replace(/\/+$/, "");
+        } catch (_) {}
+
         const proto = window.location.protocol;
         const host = window.location.hostname;
 
-        // Si se abre directamente desde el explorador de archivos (file:///) o localhost
+        // 3. Entorno local (Archivo, Loopback)
         if (proto === "file:" || host === "localhost" || host === "127.0.0.1" || host === "") {
             return this.LOCAL_API;
-        } else if (host === "26.140.157.205") {
-            return this.RADMIN_API;
         }
-        // Cuando se carga desde GitHub Pages (darckrovert.github.io)
-        return this.PUBLIC_TUNNEL_API;
+
+        // 4. Subred Radmin VPN (Cluster de Colegas: 26.x.x.x)
+        if (host.startsWith("26.")) {
+            return this.RADMIN_MASTER_API;
+        }
+
+        // 5. Red Privada Local (LAN: 192.168.x.x o 10.x.x.x)
+        if (host.startsWith("192.168.") || host.startsWith("10.")) {
+            return `http://${host}:8080`;
+        }
+
+        // 6. GitHub Pages u Origen Público
+        return this.PUBLIC_TUNNEL_API.replace(/\/+$/, "");
+    },
+
+    setApiUrl: function(url) {
+        if (!url) return;
+        localStorage.setItem("projectjaina_api_url", url.replace(/\/+$/, ""));
+        window.location.reload();
+    },
+
+    resetApiUrl: function() {
+        localStorage.removeItem("projectjaina_api_url");
+        window.location.reload();
     }
 };
