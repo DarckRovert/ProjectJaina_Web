@@ -103,38 +103,6 @@
     }
 
     async function fetchProgressionSSOT() {
-        const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) 
-            ? CONFIG.getApiUrl() 
-            : 'http://127.0.0.1:8080';
-
-        // 1. Intentar telemetría de era en vivo desde WebAPI
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-            const resp = await fetch(`${apiUrl}/api/progression`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'ngrok-skip-browser-warning': 'true'
-                },
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-
-            if (resp.ok) {
-                const data = await resp.json();
-                if (data && data.active_phase_id) {
-                    progressionMetadata = data;
-                    renderProgressionChronometer();
-                    return;
-                }
-            }
-        } catch (liveErr) {
-            // Backend offline o timeout
-        }
-
-        // 2. Fallback estático
         try {
             const resp = await fetch(PROGRESSION_SSOT_URL + '?t=' + Date.now());
             if (resp.ok) {
@@ -237,30 +205,60 @@
         if (!progressionMetadata) return;
 
         const now = Date.now();
+        const launchDate = progressionMetadata.server_launch_date
+            ? new Date(progressionMetadata.server_launch_date).getTime()
+            : GRAND_OPENING_TARGET;
 
-        // 1. Tiempo transcurrido en la era activa (TBC)
-        const phaseStart = progressionMetadata.current_phase_start 
-            ? new Date(progressionMetadata.current_phase_start).getTime()
-            : new Date('2026-10-01T00:00:00-05:00').getTime();
-        
-        const phaseElapsedSec = Math.max(0, Math.floor((now - phaseStart) / 1000));
-        const tbcElapsedEl = document.getElementById('tbcElapsedTime');
-        if (tbcElapsedEl) {
-            tbcElapsedEl.textContent = `Tiempo en Era: ${formatShortDuration(phaseElapsedSec)}`;
+        // Elementos DOM
+        const elapsedEl = document.getElementById('currentPhaseElapsedTime') || document.getElementById('tbcElapsedTime');
+        const nextPhaseCountdownEl = document.getElementById('nextPhaseCountdown');
+        const gaugeTextEl = document.getElementById('transitionPercentText');
+        const gaugeFillEl = document.getElementById('transitionGaugeFill');
+
+        // Tarjetas dinámicas del flujo de transición
+        const currentTagEl = document.getElementById('flowStepCurrentTag');
+        const currentNameEl = document.getElementById('flowStepCurrentName');
+        const nextTagEl = document.getElementById('flowStepNextTag');
+        const nextNameEl = document.getElementById('flowStepNextName');
+
+        // CASO 1: ANTES DE LA GRAN APERTURA (PRE-LANZAMIENTO / STANDBY EN ERA VANILLA)
+        if (now < launchDate) {
+            if (elapsedEl) {
+                elapsedEl.textContent = 'Tiempo en Era: 00d 00h 00m (Standby)';
+            }
+            if (nextPhaseCountdownEl) {
+                nextPhaseCountdownEl.textContent = 'Apertura: Bloqueada (Post-Vanilla)';
+            }
+            if (gaugeTextEl) {
+                gaugeTextEl.textContent = '0.0% (En Espera de Apertura · 24 Nov)';
+            }
+            if (gaugeFillEl) {
+                gaugeFillEl.style.width = '0%';
+            }
+
+            if (currentTagEl) currentTagEl.textContent = 'ERA INICIAL (APERTURA 24 NOV)';
+            if (currentNameEl) currentNameEl.textContent = 'Vanilla Classic (Cap 60)';
+            if (nextTagEl) nextTagEl.textContent = 'SIGUIENTE ERA (BLOQUEADA)';
+            if (nextNameEl) nextNameEl.textContent = 'The Burning Crusade (Cap 70)';
+            return;
         }
 
-        // 2. Tiempo restante para la siguiente transición (WotLK Naxxramas)
+        // CASO 2: POST-APERTURA (A PARTIR DEL 24 DE NOVIEMBRE DE 2026 · 100% AUTOMÁTICO)
+        const phaseStart = launchDate;
         const nextTarget = progressionMetadata.next_phase_target
             ? new Date(progressionMetadata.next_phase_target).getTime()
-            : new Date('2027-01-15T00:00:00-05:00').getTime();
+            : new Date('2027-03-01T00:00:00-05:00').getTime();
+
+        const phaseElapsedSec = Math.max(0, Math.floor((now - phaseStart) / 1000));
+        if (elapsedEl) {
+            elapsedEl.textContent = `Tiempo en Era: ${formatShortDuration(phaseElapsedSec)}`;
+        }
 
         const remainingSec = Math.max(0, Math.floor((nextTarget - now) / 1000));
-        const nextPhaseCountdownEl = document.getElementById('nextPhaseCountdown');
         if (nextPhaseCountdownEl) {
             nextPhaseCountdownEl.textContent = `Apertura en: ${formatShortDuration(remainingSec)}`;
         }
 
-        // 3. Barra de porcentaje de transición de era
         const totalPhaseSpan = nextTarget - phaseStart;
         const currentElapsedSpan = now - phaseStart;
         let progressPct = 0;
@@ -268,14 +266,17 @@
             progressPct = Math.min(100, Math.max(0, (currentElapsedSpan / totalPhaseSpan) * 100));
         }
 
-        const gaugeTextEl = document.getElementById('transitionPercentText');
-        const gaugeFillEl = document.getElementById('transitionGaugeFill');
         if (gaugeTextEl) {
             gaugeTextEl.textContent = progressPct.toFixed(1) + '%';
         }
         if (gaugeFillEl) {
             gaugeFillEl.style.width = progressPct.toFixed(1) + '%';
         }
+
+        if (currentTagEl) currentTagEl.textContent = 'ERA ACTUAL EN CURSO';
+        if (currentNameEl) currentNameEl.textContent = progressionMetadata.active_phase_name || 'Vanilla Classic (Cap 60)';
+        if (nextTagEl) nextTagEl.textContent = 'SIGUIENTE TRANSICIÓN';
+        if (nextNameEl) nextNameEl.textContent = 'The Burning Crusade (Cap 70)';
     }
 
     // ------------------------------------------------------------------------
