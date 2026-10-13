@@ -15,6 +15,17 @@
 
 // Catálogo fallback (SSOT local) — sincronizado con SHOP_CATALOG en WebAPI
 const DEFAULT_CATALOG = [
+    // 🪽 CATEGORÍA: ALAS MÍSTICAS & AURAS (Catálogo 59_SpellVisualCatalog)
+    { id:"wings_celestial",    category:"wings",    rarity:"epico",     rarity_label:"AURA MÍSTICA",      name:"Alas Angelicales Celestiales (Blancas / Rojas)",        description:"Canaliza auras sagradas radiantes. Visible para todos los jugadores en el mundo mientras caminas, combates o vuelas.", icon:"🪽", price:"6.00" },
+    { id:"wings_demonic",      category:"wings",    rarity:"epico",     rarity_label:"AURA MÍSTICA",      name:"Alas Demoníacas del Abismo (4 Variantes)",             description:"Auras de fuego vil y vacío cósmico. Despliega alas demoníacas con efecto de partículas ardientes persistentes.", icon:"🦇", price:"7.00" },
+    { id:"wings_elements",     category:"wings",    rarity:"legendario",rarity_label:"ELEMENTAL",         name:"Alas de Hielo de Rasganorte & Fuego de Ragnaros",      description:"El poder polar del Rey Exánime y llamas de Tierras de Fuego. Incluye Alas de Dragón y de Brasas Volcánicas.", icon:"❄️", price:"9.00" },
+    { id:"wings_collection_17",category:"wings",    rarity:"mitico",    rarity_label:"COLECCIÓN SUPREMA", name:"Colección Completa de las 17 Alas Místicas de Dalaran", description:"Desbloqueo vitalicio de las 17 variantes de alas del catálogo de Kaelia Sombraetérea para toda tu cuenta.", icon:"✨", price:"18.00" },
+
+    // 👗 CATEGORÍA: GUARDARROPA TRANSPARENTE (ESTILO TURTLE WOW)
+    { id:"transmog_pass_single",category:"transmog",rarity:"raro",      rarity_label:"ILUSIÓN",           name:"Pase de Ilusión Transparente (Individual)",            description:"Permite ocultar hombreras, pechera, pantalones o cualquier ranura con Kaelia Sombraetérea, manteniendo el 100% de estadísticas.", icon:"👗", price:"3.50" },
+    { id:"transmog_fullset_turtle",category:"transmog",rarity:"legendario",rarity_label:"EDICIÓN TURTLE",name:"Guardarropa Invisible Completo (Set Total de 9 Ranuras)",description:"El icónico sistema de Turtle WoW: oculta todo tu set de armadura para lucir tu anatomía sin perder armadura, gemas ni stats.", icon:"✨", price:"8.50" },
+
+    // 🪙 TOKENS & SERVICIOS
     { id:"pack_tier1",    category:"tokens",     rarity:"raro",      rarity_label:"RARO",      name:"Cofre de la Dama Valiente",        description:"500 Tokens de Jaina + 20 Bolsas de 36 Casillas + Mascota Pingüino de Rasganorte.",       icon:"🪙",  price:"5.00"  },
     { id:"pack_tier2",    category:"mounts",     rarity:"epico",     rarity_label:"ÉPICO",     name:"Arsenal Arcano de Theramore",      description:"1,500 Tokens + Montura Épica Voladora 'Draco del Viento de Hielo' (310% vel) + Compañero Dracónico.", icon:"🐉",  price:"15.00" },
     { id:"pack_tier3",    category:"mounts",     rarity:"legendario",rarity_label:"LEGENDARIO",name:"Soberano de Dalaran",              description:"3,500 Tokens + Riendas del Destrero Celestial + Título 'Soberano de Theramore' + Acceso VIP.",  icon:"👑",  price:"30.00" },
