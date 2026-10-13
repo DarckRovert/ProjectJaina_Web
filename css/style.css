@@ -1625,6 +1625,21 @@ footer .credits-lead {
     box-shadow: 0 0 25px rgba(57, 211, 83, 0.2);
 }
 
+.step-current.era-vanilla {
+    background: rgba(48, 36, 18, 0.8) !important;
+    border-color: rgba(241, 168, 10, 0.7) !important;
+    box-shadow: 0 0 25px rgba(241, 168, 10, 0.3) !important;
+}
+
+.step-current.era-vanilla .flow-step-icon {
+    background: rgba(241, 168, 10, 0.25) !important;
+    color: #f1a80a !important;
+}
+
+.step-current.era-vanilla .current-tag {
+    color: #f1a80a !important;
+}
+
 .step-current .flow-step-icon {
     background: rgba(57, 211, 83, 0.25);
     color: #39d353;

@@ -222,6 +222,7 @@
         const nextNameEl = document.getElementById('flowStepNextName');
 
         // CASO 1: ANTES DE LA GRAN APERTURA (PRE-LANZAMIENTO / STANDBY EN ERA VANILLA)
+        const stepCurrentEl = document.getElementById('flowStepCurrent');
         if (now < launchDate) {
             if (elapsedEl) {
                 elapsedEl.textContent = 'Tiempo en Era: 00d 00h 00m (Standby)';
@@ -230,12 +231,15 @@
                 nextPhaseCountdownEl.textContent = 'Apertura: Bloqueada (Post-Vanilla)';
             }
             if (gaugeTextEl) {
-                gaugeTextEl.textContent = '0.0% (En Espera de Apertura · 24 Nov)';
+                gaugeTextEl.textContent = '0.0%';
             }
             if (gaugeFillEl) {
                 gaugeFillEl.style.width = '0%';
             }
 
+            if (stepCurrentEl) {
+                stepCurrentEl.classList.add('era-vanilla');
+            }
             if (currentTagEl) currentTagEl.textContent = 'ERA INICIAL (APERTURA 24 NOV)';
             if (currentNameEl) currentNameEl.textContent = 'Vanilla Classic (Cap 60)';
             if (nextTagEl) nextTagEl.textContent = 'SIGUIENTE ERA (BLOQUEADA)';
@@ -244,6 +248,9 @@
         }
 
         // CASO 2: POST-APERTURA (A PARTIR DEL 24 DE NOVIEMBRE DE 2026 · 100% AUTOMÁTICO)
+        if (stepCurrentEl) {
+            stepCurrentEl.classList.add('era-vanilla');
+        }
         const phaseStart = launchDate;
         const nextTarget = progressionMetadata.next_phase_target
             ? new Date(progressionMetadata.next_phase_target).getTime()
