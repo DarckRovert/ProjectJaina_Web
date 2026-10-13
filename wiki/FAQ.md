@@ -18,7 +18,7 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ### ¿Cuál es el realmlist oficial?
 Para conectar tu cliente 3.3.5a al servidor, abre tu archivo `Data\esES\realmlist.wtf` (o `Data\enUS\realmlist.wtf`) y configura:
 ```text
-set realmlist fried-promo.tun.ply.gg:25565
+set realmlist cairo-gladly.tun.ply.gg:47617
 ```
 *(Si estás jugando en red de pruebas LAN o Radmin VPN, utiliza la IP asignada `26.140.157.205` o la indicada en el launcher)*.
 
@@ -42,6 +42,20 @@ Al crear un personaje nuevo, podrás elegir entre:
 - **Normal:** La experiencia clásica de WotLK con balance y calidad de vida moderna.
 - **Hardcore:** Muerte permanente de personaje (1 sola vida).
 - **Ironman:** Sin reliquias, sin subasta, sin comercio, equipando únicamente objetos blancos/grises.
+
+---
+
+## 4. Audio Espacial 3D y Chat de Voz
+
+### ¿Cómo funciona la Voz Espacial 3D?
+Project Jaina cuenta con un motor de audio binaural posicional en tiempo real:
+1. En el juego, escribe `/voz` para generar un PIN de emparejamiento efímero de un solo uso.
+2. Ingresa a la sección de [Voz 3D](https://darckrovert.github.io/ProjectJaina_Web/voz/) en tu navegador.
+3. Introduce tu PIN y pulsa **Conectar**.
+4. Escucharás a los jugadores cercanos con posicionamiento binaural 3D (HRTF) según su distancia y orientación en el mundo de juego.
+
+### ¿Qué es el Gestor de Bots con IA (/bots o /chatter)?
+Es la interfaz del addon `Chatter_Companion`, que conecta tus diálogos con los Playerbots y el motor de inferencia neuronal local (LM Studio). Puedes dar órdenes tácticas, solicitar buffs por clase, invitar a compañeros de aventura o debatir sobre el lore de Azeroth en lenguaje natural.
 
 ---
 © 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna

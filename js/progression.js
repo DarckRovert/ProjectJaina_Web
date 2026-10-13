@@ -9,49 +9,18 @@
 (function () {
     'use strict';
 
-    const STATIC_SSOT_URL = 'data/progression.json';
+    const PROGRESSION_SSOT_URL = 'data/progression.json';
     let progressionData = null;
 
     async function loadProgression() {
-        const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) 
-            ? CONFIG.getApiUrl() 
-            : 'http://127.0.0.1:8080';
-
-        // 1. Intentar obtener estado dinámico en vivo desde WebAPI / MySQL
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-            const resp = await fetch(`${apiUrl}/api/progression`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'ngrok-skip-browser-warning': 'true'
-                },
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-
-            if (resp.ok) {
-                const data = await resp.json();
-                if (data && data.phases && data.active_phase_id) {
-                    progressionData = data;
-                    renderTimeline();
-                    return;
-                }
-            }
-        } catch (liveErr) {
-            console.warn('[Progression] WebAPI offline o inalcanzable, recurriendo a SSOT estático:', liveErr.message);
-        }
-
-        // 2. Fallback al archivo estático bundled
-        try {
-            const resp = await fetch(STATIC_SSOT_URL + '?t=' + Date.now());
+            const resp = await fetch(PROGRESSION_SSOT_URL + '?t=' + Date.now());
             if (!resp.ok) throw new Error(`HTTP error ${resp.status}`);
             progressionData = await resp.json();
             renderTimeline();
         } catch (err) {
-            console.warn('[Progression] Error cargando datos estáticos de progresión, usando memoria local:', err);
+            console.warn('[Progression] Error cargando datos de progresión:', err);
+            // Fallback con datos locales si fetch falla
             progressionData = getFallbackProgression();
             renderTimeline();
         }

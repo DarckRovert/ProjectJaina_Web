@@ -32,11 +32,16 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
 ### 💎 Tienda Cosmética y Visuales (`tienda.html`)
 - Catálogo de cosméticos de rol, auras visuales y monturas estéticas (pay-to-win = 0).
 
+### 🎙️ Voz Espacial 3D (`voz/index.html`)
+- Cliente web binaural HRTF interactivo con detección de actividad de voz (VAD).
+- Emparejamiento seguro mediante PIN temporal generado en el juego con `/voz`.
+- Ajustes en tiempo real de ganancia, puerta de ruido (Noise Gate), VU-meter y lista de oradores en rango auditivo (25 yardas).
+
 ---
 
-## 2. Ecosistema de los 18 AddOns Oficiales del Cliente
+## 2. Ecosistema de AddOns Oficiales del Cliente
 
-El cliente `ProjectJaina_FHD` integra la suite oficial de **18 AddOns canónicos** de Project Jaina (`## Interface: 30300`), regulados bajo la política de AddOns de Blizzard y licenciados bajo términos MIT:
+El cliente `ProjectJaina_FHD` integra la suite canónica de AddOns oficiales de Project Jaina (`## Interface: 30300`), regulados bajo la política de AddOns de Blizzard y licenciados bajo términos de código abierto:
 
 ### A. Interfaz Visual y Utilidades
 1. **`ProjectJaina_DragonflightUI`**: Reemplazo integral con interfaz moderna estilo Dragonflight 10.x.
@@ -44,23 +49,24 @@ El cliente `ProjectJaina_FHD` integra la suite oficial de **18 AddOns canónicos
 3. **`ProjectJaina_Graphics`**: Panel de opciones avanzadas para renderizado Direct3D 9, nitidez y estabilidad.
 4. **`ProjectJaina_Talented`**: Editor avanzado de plantillas de talentos con importador/exportador de builds.
 
-### B. Sistemas de Inmersión y Combate
+### B. Sistemas de Inmersión, Combate y Compañeros con IA
 5. **`ProjectJaina_BattlePass`**: Pase de Batalla estacional con misiones diarias y cosméticos de temporada.
 6. **`ProjectJaina_Companion`**: Hub social ligero de grupo, presencia y utilidades sin taint.
-7. **`ProjectJaina_GameModes`**: Selector cinematográfico de desafíos (Normal, Hardcore permadeath, Ironman).
-8. **`ProjectJaina_LoreHUD`**: Subtítulos cinematográficos y telemetría de eventos narrativos de LoreBots.
-9. **`ProjectJaina_MultiBot`**: Control táctico, roles, formaciones e inventario de compañeros Playerbots.
-10. **`ProjectJaina_PrideTrace`**: Diagnóstico de telemetría de vuelo y controles de aeronaves en tiempo real.
-11. **`ProjectJaina_RaidSuite`**: Suite táctica de bandas: CLEU Dispatcher, monitoreo de cooldowns y alertas.
-12. **`ProjectJaina_VisualShop`**: Probador 3D y catálogo visual de cosméticos de rol.
-13. **`ProjectJaina_Voice`**: Interfaz visual y HUD del sistema de Audio Espacial 3D WebRTC con PIN.
-14. **`ProjectJaina_Wardrobe`**: Guardarropa y transfiguración de apariencias estéticas de armaduras y armas.
+7. **`Chatter_Companion`**: Gestor de Playerbots con IA, diálogo en lenguaje natural y órdenes tácticas (/bots, /chatter, /llmc).
+8. **`ProjectJaina_GameModes`**: Selector cinematográfico de desafíos (Normal, Hardcore permadeath, Ironman).
+9. **`ProjectJaina_LoreHUD`**: Subtítulos cinematográficos y telemetría de eventos narrativos de LoreBots.
+10. **`ProjectJaina_MultiBot`**: Control táctico, roles, formaciones e inventario de compañeros Playerbots.
+11. **`ProjectJaina_PrideTrace`**: Diagnóstico de telemetría de vuelo y controles de aeronaves en tiempo real.
+12. **`ProjectJaina_RaidSuite`**: Suite táctica de bandas: CLEU Dispatcher, monitoreo de cooldowns y alertas.
+13. **`ProjectJaina_VisualShop`**: Probador 3D y catálogo visual de cosméticos de rol.
+14. **`ProjectJaina_Voice`**: Interfaz visual y HUD del sistema de Audio Espacial 3D WebRTC con PIN.
+15. **`ProjectJaina_Wardrobe`**: Guardarropa y transfiguración de apariencias estéticas de armaduras y armas.
 
 ### C. Herramientas Administrativas de Game Master (Cliente Maestro)
-15. **`ProjectJaina_AdminTools`**: Panel integral de comandos GM, teletransportes y control de servidor.
-16. **`ProjectJaina_GMGenie`**: Suite de atención a tickets y macros de asistencia comunitaria.
-17. **`ProjectJaina_IntiObjGPS`**: Editor y geolocalizador espacial por lotes para Game Masters.
-18. **`ProjectJaina_TBCBalance`**: Monitor de balance numérico para bandas de The Burning Crusade en modo GM.
+16. **`ProjectJaina_AdminTools`**: Panel integral de comandos GM, teletransportes y control de servidor.
+17. **`ProjectJaina_GMGenie`**: Suite de atención a tickets y macros de asistencia comunitaria.
+18. **`ProjectJaina_IntiObjGPS`**: Editor y geolocalizador espacial por lotes para Game Masters.
+19. **`ProjectJaina_TBCBalance`**: Monitor de balance numérico para bandas de The Burning Crusade en modo GM.
 
 ---
 

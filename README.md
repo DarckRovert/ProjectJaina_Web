@@ -35,6 +35,8 @@
   * **Armería:** Visualizador de perfiles de héroes y equipamiento.
   * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla.
   * **Registro:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6.
+  * **Voz Espacial 3D:** Cliente web de audio binaural posicional HRTF con emparejamiento por PIN in-game.
+  * **Wiki y Lore:** Cronología de eventos mundiales, profecías y documentación técnica del reino.
 * **Activos Gráficos Oficiales:** Ilustraciones Ultra-HD generadas para la cabecera cinemática, escudo heráldico y citadel arcana.
 
 ---

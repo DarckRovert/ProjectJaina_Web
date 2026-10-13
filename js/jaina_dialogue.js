@@ -72,7 +72,7 @@
             try {
                 const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 6500);
+                const timeoutId = setTimeout(() => controller.abort(), 2000);
 
                 const res = await fetch(`${apiUrl}/api/chat`, {
                     method: 'POST',

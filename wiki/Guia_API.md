@@ -26,6 +26,11 @@ Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POS
 - Búsqueda y filtrado de personajes en la base de datos `characters`.
 - Visualización de GearScore, talentos, logros y estadísticas de combate.
 
+### `voz/app.js` — Señalización WebRTC y Motor Binaural HRTF
+- Negociación de canales de audio WebRTC bidireccionales de baja latencia con el microservicio de señalización.
+- Motor de renderizado espacial con `AudioContext` y `PannerNode` (modelo HRTF) en función de las coordenadas (X, Y, Z, O) del juego.
+- Voice Activity Detection (VAD) local y medidor de nivel VU para optimización de ancho de banda.
+
 ---
 
 ## 2. Endpoints del Micro-Backend (`ProjectJaina_WebAPI.py`)
@@ -41,3 +46,14 @@ Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POS
 | `POST` | `/api/shop/paypal/capture` | Procesamiento y captura de pedidos de tienda mediante pasarela PayPal. |
 | `POST` | `/api/shop/simulate_delivery` | Despacho de ítems cosméticos in-game vía comando SOAP en el servidor. |
 | `POST` | `/api/admin/command` | Despacho seguro de comandos administrativos SOAP (`.say`, `.reload`, etc.). |
+
+---
+
+## 3. Endpoints del Coordinador de Voz Espacial (`server.js` - Puerto 3050)
+
+| Protocolo | Ruta | Descripción |
+| :--- | :--- | :--- |
+| `GET` | `/api/status` | Retorna telemetría de oradores conectados, tokens activos y sesiones WebRTC para la Consola GM. |
+| `POST` | `/api/eluna-sync` | Ingesta de telemetría y coordenadas 3D de personajes humanos transmitidas por `65_VoiceProximitySync.lua`. |
+| `GET` | `/api/consume-pins` | Retorna los PINs canjeados para que Eluna notifique al jugador in-game del emparejamiento exitoso. |
+| `WS/WSS`| `/` | Socket de señalización WebRTC para intercambio de SDP (Offer/Answer), candidatos ICE y estado de micrófono. |

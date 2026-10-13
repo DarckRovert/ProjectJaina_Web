@@ -8,12 +8,14 @@ Este documento describe la arquitectura técnica, el sistema de diseño y la int
 - **Frontend**: HTML5 Semántico, Accesible y Optimizado para SEO.
 - **Estilos**: CSS3 Moderno modular (`css/style.css`), Glassmorphism arcano, Grid Layout, Flexbox y animaciones GPU-accelerated.
 - **Lógica**: JavaScript Vanilla Modular (ES6+), Zero-Dependencies:
-  - `js/config.js`: Detección automática de entorno (local, Radmin, GitHub Pages / túnel público).
+  - `js/config.js`: Detección automática y resolución en cascada multi-tier (Localhost, Radmin VPN, Túnel dinámico).
   - `js/register.js`: Manejo de registro seguro con criptografía SRP6 compatible con JainaCore.
   - `js/store.js`: Tienda visual y pasarela de cosméticos/pases de batalla.
   - `js/armory.js`: Visualizador interactivo de perfiles de personajes y estadísticas.
-- **Alojamiento & CDN**: GitHub Pages con despliegue automatizado en `gh-pages` y GitHub Actions (`.github/workflows/deploy-pages.yml`).
+  - `voz/app.js`: Cliente de Audio Espacial 3D WebRTC con renderizado binaural HRTF (Web Audio API), Voice Activity Detection (VAD) y señalización de proximidad.
+- **Alojamiento & CDN**: GitHub Pages con despliegue nativo desde rama `main`.
 - **URL Oficial**: [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
+- **Portal de Voz 3D**: [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)
 
 ---
 
@@ -36,6 +38,8 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 ---
 
 ## 3. Integración con el Núcleo del Servidor
-- **Micro-Backend**: `ProjectJaina_WebAPI.py` (puerto `8080`).
-- **Autenticación**: Hashing criptográfico SRP6 (`srp6_auth.py`) compatible con la base de datos `auth.account` de JainaCore.
+- **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`).
+- **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` HTTP/WSS) para señalización y cálculo de proximidad.
+- **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (puerto `1234`) conectado a través de `mod-llm-chatter` y `03_Playerbot_SocialBridge.lua`.
+- **Autenticación**: Hashing criptográfico SRP6 (`srp6_auth.py`) compatible con la base de datos `acore_auth.account` de JainaCore.
 - **Telemetría**: Estado del reino en tiempo real (población, latencia, versión WotLK 3.3.5a Build 12340).
