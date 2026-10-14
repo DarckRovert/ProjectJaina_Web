@@ -5,15 +5,11 @@
 
 const CONFIG = {
     LOCAL_API: "http://127.0.0.1:8080",
-    RADMIN_MASTER_API: "http://26.140.157.205:8080",
-    RADMIN_SPAIN_API: "http://26.202.12.241:8080",
     PUBLIC_TUNNEL_API: "https://ingrainedly-easeled-edelmira.ngrok-free.dev",
 
     KNOWN_ENDPOINTS: [
-        { id: "radmin_master", name: "Host Maestro Radmin (Darck)", url: "http://26.140.157.205:8080" },
-        { id: "radmin_spain",  name: "Nodo Cómputo Radmin (España)", url: "http://26.202.12.241:8080" },
-        { id: "local",         name: "Servidor Local (Sandbox)",     url: "http://127.0.0.1:8080" },
-        { id: "tunnel",        name: "Túnel HTTPS / Público",       url: "https://ingrainedly-easeled-edelmira.ngrok-free.dev" }
+        { id: "tunnel", name: "Servidor Oficial (HTTPS)", url: "https://ingrainedly-easeled-edelmira.ngrok-free.dev" },
+        { id: "local",  name: "Servidor Local (Sandbox)", url: "http://127.0.0.1:8080" }
     ],
 
     PAYPAL_CLIENT_ID: "sb",
@@ -43,9 +39,9 @@ const CONFIG = {
             return this.LOCAL_API;
         }
 
-        // 4. Subred Radmin VPN (Cluster de Colegas: 26.x.x.x)
+        // 4. Subred de Red Privada
         if (host.startsWith("26.")) {
-            return this.RADMIN_MASTER_API;
+            return `http://${host}:8080`;
         }
 
         // 5. Red Privada Local (LAN: 192.168.x.x o 10.x.x.x)

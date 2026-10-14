@@ -18,7 +18,7 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ### ¿Cuál es el realmlist oficial?
 Para conectar tu cliente 3.3.5a al servidor, abre tu archivo `Data\esES\realmlist.wtf` (o `Data\enUS\realmlist.wtf`) y configura:
 ```text
-set realmlist cairo-rosemary.tun.ply.gg:57898
+set realmlist ambulance-arxiv.tun.ply.gg:49390
 ```
 *(Si estás jugando en red de pruebas LAN o Radmin VPN, utiliza la IP asignada `26.140.157.205` o la indicada en el launcher)*.
 
