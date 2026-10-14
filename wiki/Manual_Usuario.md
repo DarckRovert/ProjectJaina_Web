@@ -66,12 +66,38 @@ El cliente `ProjectJaina_FHD` integra la suite canónica de AddOns oficiales de 
 15. **`ProjectJaina_Wardrobe`**: Guardarropa y transfiguración de apariencias estéticas de armaduras y armas.
 
 ### C. Herramientas Administrativas de Game Master (Cliente Maestro)
-16. **`ProjectJaina_AdminTools`**: Panel integral de comandos GM, teletransportes y control de servidor.
-17. **`ProjectJaina_GMGenie`**: Suite de atención a tickets y macros de asistencia comunitaria.
-18. **`ProjectJaina_IntiObjGPS`**: Editor y geolocalizador espacial por lotes para Game Masters.
-19. **`ProjectJaina_TBCBalance`**: Monitor de balance numérico para bandas de The Burning Crusade en modo GM.
+16. **`ProjectJaina_AdminTools` (v2.1.0)**: Panel integral de administración (`/admin`, `/adt`) con 9 pestañas y panel dedicado `"Mundo"` para supervisión, censo y control en tiempo real de Baluartes y el Galeón de Theramore.
+17. **`WaniGM Tools` (v2.1.0 Deluxe Living World Edition)**: Panel compacto y replegable (`/wgm`, `/jainagm`) creado por Wanitos (FranFranco) & DarckRovert con arte animado de Jaina y Sylvanas, control de parpadeo realista, hover-peek y pestañas `[General]` y `[Mundo 2.5]`.
+18. **`ProjectJaina_GMGenie`**: Suite de atención a tickets, moderación comunitaria y macros de teletransporte con destinos predefinidos para los 6 Baluartes y el Galeón.
+19. **`ProjectJaina_IntiObjGPS`**: Editor y geolocalizador espacial por lotes para Game Masters.
+20. **`ProjectJaina_TBCBalance`**: Monitor de balance numérico para bandas de The Burning Crusade en modo GM.
 
 ---
 
-## 3. Marco Legal y Propiedad Intelectual
+## 3. Consola y Comandos de GM para Mundo Viviente (v2.5)
+
+Los Game Masters disponen de comandos de consola y Eluna nativos para inspección, teletransporte e intervención técnica de los nuevos sistemas:
+
+### 🏰 Baluartes de Hermandad (`.outpost`)
+| Comando | Descripción |
+| :--- | :--- |
+| `.outpost list` | Despliega el censo completo de soberanía, facción y hermandad regente de los 6 enclaves. |
+| `.outpost tele <1..6>` | Teletransporta de inmediato al GM a las coordenadas exactas del Baluarte especificado. |
+| `.outpost reset <1..6>` | Resetea la soberanía del enclave indicado, eliminando guardias y restaurando el estado neutral. |
+| `.outpost reset all` | Resetea masivamente los 6 enclaves del mundo a soberanía neutral. |
+| `.outpost claim <1..6>` | Asigna forzosamente la soberanía del Baluarte a la hermandad del GM ejecutor. |
+
+### 🏴‍☠️ Galeón de los Desertores (`.galleon`)
+| Comando | Descripción |
+| :--- | :--- |
+| `.galleon status` | Consulta la fase actual del evento (`CALM`, `ENGAGED`, `BOARDING`, `DEFEATED`) y tiempos de espera. |
+| `.galleon tele` | Teletransporta al GM a la cubierta superior del galeón frente al Teniente desertor. |
+| `.galleon ladder` | Teletransporta a la escala de abordaje acuática para pruebas de ascenso e interacción. |
+| `.galleon alert` | Dispara forzosamente la sirena de alarma, campanas portuarias y el bombardeo costero. |
+| `.galleon testcannon` | Ejecuta una deflagración de prueba del cañón de artillería naval (`GO 5051`). |
+| `.galleon reset` | Restaura el galeón al estado de calma, limpiando cofres activos y reiniciando el ciclo. |
+
+---
+
+## 4. Marco Legal y Propiedad Intelectual
 Para consultar el marco legal completo, el inventario de licencias MIT/GPL de cada módulo y los descargos de propiedad intelectual de Blizzard Entertainment, Inc., consulte el documento autoritativo [`LEGAL_NOTICES.md`](file:///E:/LEGAL_NOTICES.md).
