@@ -5,9 +5,10 @@
 (function () {
     'use strict';
 
-    const CANONICAL_RESPONSES = {
         "mision": "«Mi misión en Theramore y Dalaran siempre ha sido preservar la paz entre los pueblos libres y salvaguardar los secretos del Kirin Tor. Con Rasganorte en el horizonte, no permitiré que la oscuridad consuma nuestro mundo.»",
         "herobot": "«Cuando me invoques con '.playerbots add Jaina', lucharé a tu lado con la furia de la escarcha y el poder arcano de Archus. Adaptaré mis hechizos a cada encuentro y protegeré a tus aliados con barreras de hielo.»",
+        "baluartes": "«Los Baluartes de Hermandad no se compran con dinero real; se conquistan con honor. Cualquier hermandad de nivel 3 o superior con 2,500 monedas de oro puede presentarse ante el Heraldo Intendente en uno de los 6 enclaves estratégicos. Al reclamarlo, izarán los estandartes de su facción, recibirán descanso de hermandad (Rested XP) y accederán a suministros y reparaciones exclusivas.»",
+        "galeon": "«Cada 45 minutos, los vigías de Theramore tocan las campanas de alarma naval. Un galeón renegado fondea frente a nuestros arrecifes. Si trepas por sus escalas de red, podrás tripular la artillería de cubierta disparando cañonazos reales con pólvora o saquear el cofre de suministros navales en la popa. ¡Una verdadera prueba de valor en mar abierto!»",
         "audio": "«Gracias al cálculo binaural 3D en puerto 3050, puedes escuchar mi voz resonando según mi posición en el mundo. Si camino a tu izquierda o conjuro a tus espaldas, tu percepción espacial será absoluta.»",
         "fuente": "«Terrallende es el preludio de una amenaza mayor. La purificación de la Fuente del Sol y la caída de Kil'jaeden son imperativos antes de enfrentar los ejércitos de la Plaga en Rasganorte.»",
         "reino": "«Project JAIna no es un simple servidor; es un lienzo donde nuestras memorias perduran. Cada conversación que tengamos, cada batalla compartida, quedará grabada en mi memoria persistente.»"
@@ -102,8 +103,12 @@
                         replyText = "«Saludos, viajero. Las agujas de Dalaran te dan la bienvenida. ¿Qué inquietudes traes ante el Consejo del Kirin Tor?»";
                     } else if (lower.includes("arthas") || lower.includes("lich") || lower.includes("rey")) {
                         replyText = "«Arthas eligió su sendero en Stratholme... Un dolor que jamás sanará del todo. Pero por los inocentes de Azeroth, debemos poner fin a su tiranía helada.»";
-                    } else if (lower.includes("addon") || lower.includes("interfaz") || lower.includes("dragonflight")) {
-                        replyText = "«Hemos preparado 18 AddOns oficiales para ti: Dragonflight UI en 3.3.5a, audio espacial 3D, Pase de Batalla y gráficos remasterizados. Todo disponible en el Launcher oficial.»";
+                    } else if (lower.includes("addon") || lower.includes("interfaz") || lower.includes("dragonflight") || lower.includes("lorehud")) {
+                        replyText = "«Hemos preparado 18 AddOns oficiales para ti: Dragonflight UI en 3.3.5a, audio espacial 3D, LoreHUD con cinemáticas, Pase de Batalla y gráficos remasterizados. Todo disponible en el Launcher oficial.»";
+                    } else if (lower.includes("baluarte") || lower.includes("outpost") || lower.includes("hermandad") || lower.includes("fortin")) {
+                        replyText = "«Los Baluartes de Hermandad son 6 enclaves estratégicos en Azeroth conquistables con 2,500 monedas de oro por hermandades nivel 3+. Al izar el estandarte, otorgan bonificación de descanso (Rested XP) y suministros exclusivos sin pay-to-win.»";
+                    } else if (lower.includes("galeon") || lower.includes("desertor") || lower.includes("barco") || lower.includes("naval") || lower.includes("cañon")) {
+                        replyText = "«El Galeón de los Desertores es un evento dinámico cada 45 minutos en la bahía de Theramore. Las campanas de costa dan la alarma, permitiendo abordar por escalas de cuerda, operar cañones de artillería interactivos y reclamar el botín del cofre de popa.»";
                     } else {
                         replyText = `«He reflexionado sobre tus palabras: "${escapeHtml(rawText)}". El destino de Azeroth se forjará con el coraje de héroes como tú. Te espero en Dalaran y en las cámaras de Theramore.»`;
                     }

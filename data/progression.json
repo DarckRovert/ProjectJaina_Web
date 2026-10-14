@@ -10,7 +10,7 @@
   "next_phase_target": "2027-03-01T00:00:00-05:00",
   "active_phase_name": "World of Warcraft Classic",
   "active_level_cap": 60,
-  "realmlist": "cairo-gladly.tun.ply.gg:47617",
+  "realmlist": "cairo-rosemary.tun.ply.gg:57898",
   "world_tickrate_ms": 12,
   "telemetry": {
     "engine_version": "JainaCore Engine v3.3.5a",
@@ -48,6 +48,8 @@
         "La Masacre (Dire Maul)"
       ],
       "world_events": [
+        "Baluartes y Fortines Territoriales de Hermandad (6 Enclaves)",
+        "Galeón Dinámico de los Desertores (Bahía de Theramore)",
         "Apertura de las Puertas de Ahn'Qiraj",
         "Invasión de la Plaga Pre-Naxxramas"
       ],
