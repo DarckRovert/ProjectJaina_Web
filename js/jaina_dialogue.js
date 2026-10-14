@@ -23,8 +23,22 @@
 
         if (!chatLog) return;
 
+        let isGenerating = false;
+
+        function setGeneratingState(generating) {
+            isGenerating = generating;
+            if (sendBtn) sendBtn.disabled = generating;
+            if (chatInput) chatInput.disabled = generating;
+            promptPills.forEach(p => {
+                p.style.pointerEvents = generating ? 'none' : 'auto';
+                p.style.opacity = generating ? '0.6' : '1';
+            });
+            if (!generating && chatInput) chatInput.focus();
+        }
+
         promptPills.forEach(pill => {
             pill.addEventListener('click', () => {
+                if (isGenerating) return;
                 const promptKey = pill.getAttribute('data-prompt');
                 const promptText = pill.innerText;
                 addUserMessage(promptText);
@@ -40,6 +54,7 @@
         }
 
         function handleUserSubmit() {
+            if (isGenerating) return;
             const text = chatInput.value.trim();
             if (!text) return;
             chatInput.value = '';
@@ -59,6 +74,8 @@
         }
 
         async function generateJainaReply(promptKey, rawText) {
+            setGeneratingState(true);
+
             const typingEl = document.createElement('div');
             typingEl.className = 'chat-msg msg-jaina typing';
             typingEl.innerHTML = `
@@ -69,12 +86,13 @@
             chatLog.scrollTop = chatLog.scrollHeight;
 
             let replyText = "";
+            let isNeural = false;
 
             // Intento de conexión con el motor de IA si está hosteado
             try {
                 const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 2000);
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
 
                 const res = await fetch(`${apiUrl}/api/chat`, {
                     method: 'POST',
@@ -89,7 +107,10 @@
 
                 if (res.ok) {
                     const data = await res.json();
-                    if (data.reply) replyText = data.reply;
+                    if (data.reply) {
+                        replyText = data.reply;
+                        if (data.source === 'neural') isNeural = true;
+                    }
                 }
             } catch (e) {
                 // Servidor local o LLM en espera, usar modelo canónico local
@@ -120,16 +141,21 @@
                 typingEl.remove();
                 const msgEl = document.createElement('div');
                 msgEl.className = 'chat-msg msg-jaina';
+                const badgeHtml = isNeural 
+                    ? '<span class="badge-ai-spark">⚡ IA Neuronal</span>'
+                    : '<span class="badge-ai-spark badge-canonical" style="background: rgba(148, 163, 184, 0.2); border-color: rgba(148, 163, 184, 0.4); color: #cbd5e1;">📜 Registro Canónico</span>';
+
                 msgEl.innerHTML = `
                     <img src="images/jaina_crest_logo.jpg" alt="Lady Jaina" class="msg-avatar-img">
                     <div class="msg-bubble">
-                        <div class="msg-sender">Lady Jaina Valiente <span class="badge-ai-spark">IA Neuronal</span></div>
+                        <div class="msg-sender">Lady Jaina Valiente ${badgeHtml}</div>
                         <div class="msg-text">${replyText}</div>
                     </div>
                 `;
                 chatLog.appendChild(msgEl);
                 chatLog.scrollTop = chatLog.scrollHeight;
-            }, 700);
+                setGeneratingState(false);
+            }, 300);
         }
 
         function escapeHtml(str) {

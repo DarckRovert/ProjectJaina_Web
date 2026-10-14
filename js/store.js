@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => { initShop(); });
 function initShop() {
     renderCatalogCards(currentCatalog);
     setupCategoryFilters();
+    setupCheckoutListeners();
     loadRemoteCatalog();
 }
 
@@ -132,20 +133,22 @@ function renderCatalogCards(catalog) {
 // ─────────────────────────────────────────────────────────────────────────────
 function selectPackage(id, name, price) {
     selectedPackage  = { id, name, price };
-    _validatedChar   = null;
 
     const checkout = document.getElementById("checkoutSection");
     const summary  = document.getElementById("selectedPkgSummary");
     if (summary) summary.innerHTML = `Has seleccionado: <strong>${name}</strong> por <strong>$${price} USD</strong>`;
-    if (checkout) { checkout.style.display = "block"; checkout.scrollIntoView({ behavior:"smooth", block:"center" }); }
+    if (checkout) { 
+        checkout.style.display = "block"; 
+        checkout.scrollIntoView({ behavior:"smooth", block:"center" }); 
+    }
 
-    // Limpiar badge de validación previo
-    _clearCharBadge();
-    // Vincular validación en tiempo real al campo de personaje
     const inp = document.getElementById("targetCharacterName");
-    if (inp) {
-        inp.oninput = null;
-        inp.addEventListener("input", _debounce(_validateCharacterLive, 700));
+    const charName = inp?.value.trim();
+    if (charName && charName.length >= 2) {
+        _validateCharacterLive();
+    } else {
+        const btnContainer = document.getElementById("paypal-button-container");
+        if (btnContainer) btnContainer.innerHTML = "";
     }
 }
 
@@ -261,13 +264,12 @@ async function simulateTestDonation() {
             feedback.innerHTML = `<div>⚠️ <strong>Validación Fallida</strong></div>
                 <p style="margin-top:5px;font-size:.88rem;">${data.message || "No se pudo verificar."}</p>`;
         }
-    } catch (_) {
+    } catch (err) {
         if (feedback) {
-            feedback.className = "payment-feedback-box success-box";
-            feedback.innerHTML = `<div>🎉 <strong>¡Simulación Local Registrada!</strong></div>
+            feedback.className = "payment-feedback-box error-box";
+            feedback.innerHTML = `<div>⚠️ <strong>Servidor Offline o Inaccesible</strong></div>
                 <p style="margin-top:5px;font-size:.88rem;">
-                Orden para <strong>${charName.toUpperCase()}</strong> · paquete <strong>${selectedPackage.name}</strong> 
-                en cola. El servidor la procesará cuando esté en línea.</p>`;
+                No se pudo comunicar con el Gateway WebAPI (${err.message}). La simulación en tiempo real requiere que el clúster esté en línea.</p>`;
         }
     }
 }
@@ -307,9 +309,19 @@ function _renderPayPalButtons(container, packageId, price) {
     window.paypal.Buttons({
         createOrder: (data, actions) => {
             const charName = document.getElementById("targetCharacterName")?.value.trim();
-            if (!charName) { alert("Ingresa el nombre de tu personaje para recibir la recompensa."); throw new Error("Nombre requerido"); }
+            if (!charName) { 
+                alert("Ingresa el nombre de tu personaje para recibir la recompensa."); 
+                throw new Error("Nombre requerido"); 
+            }
+            if (!selectedPackage || !selectedPackage.price) {
+                alert("Selecciona un paquete válido.");
+                throw new Error("Paquete no seleccionado");
+            }
             return actions.order.create({
-                purchase_units: [{ amount: { value: price }, description: `Project JAIna - ${selectedPackage?.name || packageId} (Personaje: ${charName})` }]
+                purchase_units: [{ 
+                    amount: { value: String(selectedPackage.price) }, 
+                    description: `Project JAIna - ${selectedPackage.name} (Personaje: ${charName})` 
+                }]
             });
         },
         onApprove: async (data, actions) => {
@@ -363,4 +375,12 @@ function _getApiUrl() {
 function _debounce(fn, ms) {
     let t;
     return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
+}
+
+function setupCheckoutListeners() {
+    const inp = document.getElementById("targetCharacterName");
+    if (inp && !inp.dataset.listenerBound) {
+        inp.addEventListener("input", _debounce(_validateCharacterLive, 600));
+        inp.dataset.listenerBound = "true";
+    }
 }
