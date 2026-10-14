@@ -12,6 +12,9 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
 ### 🌟 Inicio y Lore Viviente (`index.html`)
 - Presentación cinematográfica de la revolución de IA y Lore Viviente en Theramore.
 - Información interactiva sobre Lady Jaina Proudmoore y los HeroBots con consciencia neuronal.
+- **Mundo Viviente & Sistemas Exclusivos (v2.5):**
+  * *Baluartes de Hermandad:* 6 enclaves estratégicos conquistables con oro in-game (Anti-P2W), estandartes dinámicos de facción, zona de descanso (Rested XP) y Heraldo Intendente (`NPC 5061`) con reparaciones y censo.
+  * *Galeón de los Desertores:* Evento naval periódico cada 45 minutos en la bahía de Theramore, campanas de alarma, escalas de abordaje, artillería interactiva (`GO 5051`) y cofre de suministros navales (`GO 2850`) con botín abierto.
 - Guía rápida paso a paso de "¿Cómo Jugar?":
   1. Descargar el cliente optimizado FHD (3.3.5a Build 12340).
   2. Crear tu cuenta criptográfica SRP6 desde el portal web.

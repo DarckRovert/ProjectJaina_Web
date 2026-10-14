@@ -5,6 +5,7 @@
 (function () {
     'use strict';
 
+    const CANONICAL_RESPONSES = {
         "mision": "«Mi misión en Theramore y Dalaran siempre ha sido preservar la paz entre los pueblos libres y salvaguardar los secretos del Kirin Tor. Con Rasganorte en el horizonte, no permitiré que la oscuridad consuma nuestro mundo.»",
         "herobot": "«Cuando me invoques con '.playerbots add Jaina', lucharé a tu lado con la furia de la escarcha y el poder arcano de Archus. Adaptaré mis hechizos a cada encuentro y protegeré a tus aliados con barreras de hielo.»",
         "baluartes": "«Los Baluartes de Hermandad no se compran con dinero real; se conquistan con honor. Cualquier hermandad de nivel 3 o superior con 2,500 monedas de oro puede presentarse ante el Heraldo Intendente en uno de los 6 enclaves estratégicos. Al reclamarlo, izarán los estandartes de su facción, recibirán descanso de hermandad (Rested XP) y accederán a suministros y reparaciones exclusivas.»",
