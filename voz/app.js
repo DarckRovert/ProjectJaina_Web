@@ -485,11 +485,16 @@ function handleProximityUpdate(peers) {
             peerData.gain.gain.setTargetAtTime(p.volume * masterVolume, now, 0.05);
         }
 
-        // Dirección cardinal relativa
+        // Dirección cardinal relativa (Web Audio API: relZ < 0 es Frente, relZ > 0 es Atrás)
         let dirLabel = 'Frente';
         if (p.relX > 2) dirLabel = 'Derecha';
         else if (p.relX < -2) dirLabel = 'Izquierda';
-        if (p.relZ < -2) dirLabel = 'Atrás ' + (p.relX > 2 ? 'Der' : p.relX < -2 ? 'Izq' : '');
+
+        if (p.relZ > 2) {
+            dirLabel = 'Atrás' + (p.relX > 2 ? ' Der' : p.relX < -2 ? ' Izq' : '');
+        } else if (p.relZ < -2) {
+            dirLabel = 'Frente' + (p.relX > 2 ? ' Der' : p.relX < -2 ? ' Izq' : '');
+        }
 
         html += `
             <div class="peer-item ${p.isSpeaking ? 'speaking' : ''}">
