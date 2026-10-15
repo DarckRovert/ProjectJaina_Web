@@ -16,9 +16,16 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
   * *Baluartes de Hermandad:* 6 enclaves estratégicos conquistables con oro in-game (Anti-P2W), estandartes dinámicos de facción, zona de descanso (Rested XP) y Heraldo Intendente (`NPC 5061`) con reparaciones y censo.
   * *Galeón de los Desertores:* Evento naval periódico cada 45 minutos en la bahía de Theramore, campanas de alarma, escalas de abordaje, artillería interactiva (`GO 5051`) y cofre de suministros navales (`GO 2850`) con botín abierto.
 - Guía rápida paso a paso de "¿Cómo Jugar?":
-  1. Descargar el cliente optimizado FHD (3.3.5a Build 12340).
-  2. Crear tu cuenta criptográfica SRP6 desde el portal web.
-  3. Ejecutar el juego en 1 clic mediante `ProjectJaina_Hub.exe` o el lanzador oficial.
+  1. **Conexión al Servidor Principal (Radmin VPN):**
+     * Descarga e instala Radmin VPN desde su [sitio web oficial](https://www.radmin-vpn.com/es/) (100% gratuito).
+     * Enciende Radmin y ve a: **Red ➔ Unirse a una red existente**.
+     * **Red:** `Project_Jaina` | **Contraseña:** `thedarck1993`
+     * Confirma que ves en la lista al host maestro: `🟢 Darck (26.140.157.205)`.
+     * Configura tu `realmlist.wtf` con: `set realmlist 26.140.157.205` (o selecciona el perfil Radmin en el Lanzador Oficial).
+  2. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 en [`registro.html`](../registro.html).
+  3. **Audio Espacial 3D WebRTC:** Entra con tu navegador a `https://26.140.157.205:3050` para autorizar el micrófono y habla por proximidad en el juego con `/voz`.
+  4. **Conexión Alternativa Global (Sin VPN):** Para jugar sin instalar adaptadores de red, utiliza el host Anycast `set realmlist ambulance-arxiv.tun.ply.gg:49390`.
+
 
 ### 🛡️ Registro Seguro de Cuentas (`registro.html`)
 - Formulario de alta instantánea sin almacenamiento de contraseñas en texto plano.

@@ -16,16 +16,27 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ## 2. Conexión e Instalación
 
 ### ¿Cuál es el realmlist oficial?
-Para conectar tu cliente 3.3.5a al servidor, abre tu archivo `Data\esES\realmlist.wtf` (o `Data\enUS\realmlist.wtf`) y configura:
-```text
-set realmlist ambulance-arxiv.tun.ply.gg:49390
-```
-*(Si estás jugando en red de pruebas LAN o Radmin VPN, utiliza la IP asignada `26.140.157.205` o la indicada en el launcher)*.
+Dispones de dos vías de conexión oficiales:
+1. **Servidor Principal (Malla Radmin VPN — Recomendado para Clúster y Audio 3D):**
+   ```text
+   set realmlist 26.140.157.205
+   ```
+   * *Red Radmin:* `Project_Jaina`
+   * *Contraseña:* `thedarck1993`
+2. **Servidor Público Global (Túnel Anycast — Sin VPN):**
+   ```text
+   set realmlist ambulance-arxiv.tun.ply.gg:49390
+   ```
 
-### ¿Cómo descargo y juego?
-1. Crea tu cuenta en la sección [Registro](https://darckrovert.github.io/ProjectJaina_Web/registro.html) del portal oficial.
-2. Descarga el paquete de juego desde los enlaces oficiales provistos por la administración.
-3. Ejecuta el cliente a través de **`ProjectJaina_Setup.exe`** o **`ProjectJaina_Hub.exe`**.
+### ¿Cómo descargo y juego en el Servidor Principal con Radmin VPN?
+1. **Descarga Radmin VPN:** Descárgalo gratis desde [radmin-vpn.com](https://www.radmin-vpn.com/es/).
+2. **Únete a la Red:** Abre Radmin VPN, haz clic en el botón de encendido y selecciona *Red ➔ Unirse a una red existente*:
+   * **Nombre:** `Project_Jaina`
+   * **Contraseña:** `thedarck1993`
+3. **Crea tu cuenta:** Regístrate en la sección [Crear Cuenta](https://darckrovert.github.io/ProjectJaina_Web/registro.html) del portal oficial.
+4. **Configura tu Realmlist:** Abre `Data\esES\realmlist.wtf` con el Bloc de Notas y escribe `set realmlist 26.140.157.205` (o usa el Lanzador Oficial en 1 clic).
+5. **Abre Wow.exe y juega:** Ingresa con tu usuario y contraseña. Para habilitar el chat de voz por micrófono en el juego, ingresa desde tu navegador a `https://26.140.157.205:3050` una sola vez y escribe `/voz` in-game.
+
 
 ### ¿Cómo se instalan los AddOns oficiales?
 El cliente oficial ya viene preconfigurado con la suite de 18 AddOns de Project JAIna en `Interface\AddOns\`. Si deseas actualizarlos manualmente:
