@@ -1,6 +1,6 @@
 /**
- * Project Jaina — Módulo de Guía de Conexión & Utilidades de Copiado (Radmin VPN & Global WAN)
- * Versión: 2.5 (Experiencia de Usuario Simplificada)
+ * Project Jaina — Módulo de Guía de Conexión & Utilidades de Copiado (Anycast Global WAN)
+ * Versión: 2.5 (Experiencia de Usuario Simplificada - Cero VPN)
  */
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -8,7 +8,7 @@ Este documento describe la arquitectura técnica, el sistema de diseño y la int
 - **Frontend**: HTML5 Semántico, Accesible y Optimizado para SEO.
 - **Estilos**: CSS3 Moderno modular (`css/style.css`), Glassmorphism arcano, Grid Layout, Flexbox y animaciones GPU-accelerated.
 - **Lógica**: JavaScript Vanilla Modular (ES6+), Zero-Dependencies:
-  - `js/config.js`: Detección automática y resolución en cascada multi-tier (Localhost, Radmin VPN, Túnel dinámico).
+  - `js/config.js`: Detección automática y resolución en cascada multi-tier (Localhost, Túnel Anycast dinámico).
   - `js/register.js`: Manejo de registro seguro con criptografía SRP6 compatible con JainaCore.
   - `js/store.js`: Tienda visual y pasarela de cosméticos/pases de batalla.
   - `js/armory.js`: Visualizador interactivo de perfiles de personajes y estadísticas.

@@ -91,7 +91,7 @@
             </div>
             <div class="opening-meta-info">
                 <span>🕒 Hora Oficial de Apertura: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
-                <span>🛡️ Servidor Principal: <strong style="color: #00e5ff;">26.140.157.205</strong> (Radmin VPN) · 🌐 Global: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong></span>
+                <span>🌐 Servidor Global Anycast: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong> (Conexión Directa · Cero VPN)</span>
             </div>
         </div>
 
@@ -121,11 +121,9 @@
                 <div class="metric-value" id="totalAccounts">--</div>
             </div>
             <div class="status-metric">
-                <div class="metric-label">Conexión & Realmlist</div>
+                <div class="metric-label">Conexión Global</div>
                 <div class="metric-value" style="font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
-                    <a href="#como-jugar" style="color: #00e5ff; text-decoration: none; font-weight: 700;" title="Servidor Principal vía Radmin VPN">🛡️ 26.140.157.205</a>
-                    <span style="color: var(--text-muted); font-size: 0.72rem;">|</span>
-                    <a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Global sin VPN">🌐 Global ➔</a>
+                    <a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Oficial Anycast sin VPN">🌐 Conectar en 1 Clic ➔</a>
                 </div>
             </div>
         </div>
@@ -600,255 +598,112 @@
         </div>
     </section>
 
-    <!-- GUÍA DE CONEXIÓN AL SERVIDOR PRINCIPAL & PÚBLICO -->
+    <!-- GUÍA DE CONEXIÓN RÁPIDA (ZERO-VPN ANYCAST 1-CLIC) -->
     <section id="como-jugar" class="conn-guide-section">
         <div style="text-align: center; max-width: 850px; margin: 0 auto;">
-            <div class="hero-badge" style="background: rgba(243, 156, 18, 0.15); border-color: rgba(243, 156, 18, 0.4); color: var(--gold-primary);">⚡ GUÍA DE CONEXIÓN RÁPIDA</div>
-            <h2 class="section-title">¿Cómo Unirte a Project JAIna?</h2>
-            <p class="section-subtitle">Conéctate en menos de 2 minutos al Servidor Principal con baja latencia y Audio 3D, o juega directamente sin VPN.</p>
+            <div class="hero-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399;">🌐 CERO PROGRAMAS EXTERNOS · SIN VPN</div>
+            <h2 class="section-title">¿Cómo Entrar a Jugar en 3 Pasos?</h2>
+            <p class="section-subtitle">Conéctate directamente desde cualquier parte del mundo sin instalar VPNs, sin configurar routers y en menos de 2 minutos.</p>
         </div>
 
-        <!-- SELECTOR DE PESTAÑAS (TABS) -->
-        <div class="conn-tabs-nav" role="tablist">
-            <button class="conn-tab-btn active" id="tabBtn-radmin" data-tab="radmin" role="tab" aria-selected="true">
-                🛡️ Servidor Principal (Radmin VPN — Clúster & Voz 3D)
-            </button>
-            <button class="conn-tab-btn" id="tabBtn-global" data-tab="global" role="tab" aria-selected="false">
-                🌐 Conexión Pública Global (Sin VPN — Acceso Directo)
-            </button>
+        <div class="conn-master-banner" style="border-color: rgba(16, 185, 129, 0.3); margin-top: 2rem;">
+            <div class="conn-master-info">
+                <div class="conn-live-beacon" style="background: #10b981; box-shadow: 0 0 12px #10b981;"></div>
+                <div class="conn-master-text">
+                    <h4>Reino Oficial Project Jaina (Infraestructura Anycast Global)</h4>
+                    <p>Acceso directo público mundial · Baja latencia · Audio Espacial 3D · Gráficos HD nativos</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">ESTADO DEL SERVIDOR:</span>
+                <span class="conn-ip-badge" style="color: #34d399; border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1);">🟢 ONLINE (ANYCAST L4)</span>
+            </div>
         </div>
 
-        <!-- PANE 1: RADMIN VPN (SERVIDOR PRINCIPAL DE DESARROLLO & ROL VIVIENTE) -->
-        <div class="conn-tab-pane active" id="tabPane-radmin" role="tabpanel">
+        <!-- CUADRÍCULA DE 3 PASOS SIMPLES -->
+        <div class="conn-steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
             
-            <!-- BANNER DEL NODO MAESTRO -->
-            <div class="conn-master-banner">
-                <div class="conn-master-info">
-                    <div class="conn-live-beacon"></div>
-                    <div class="conn-master-text">
-                        <h4>Malla Soberana de Project Jaina (Radmin VPN Mesh)</h4>
-                        <p>Túnel LAN de alto rendimiento · Cero lag · Tráfico WebRTC para Micrófono & Audio Espacial 3D</p>
+            <!-- PASO 1: REGISTRO -->
+            <div class="conn-step-card">
+                <div class="conn-step-header">
+                    <div class="conn-step-badge">1</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">REGISTRO INSTANTÁNEO</div>
+                        <h3 class="conn-step-title">Crea tu Cuenta de Juego</h3>
                     </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 0.8rem; color: var(--text-muted);">HOST MAESTRO:</span>
-                    <span class="conn-ip-badge" id="radminHostIp">26.140.157.205</span>
+                <p class="conn-step-desc">
+                    Elige tu nombre de usuario y contraseña con seguridad criptográfica SRP6. Tu cuenta queda activa de inmediato en la base de datos oficial.
+                </p>
+                <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.75rem 1rem; font-size: 0.88rem; margin-top: 1rem;">
+                    ⚔️ Crear Cuenta Gratis
+                </a>
+                <div class="conn-callout-tip green-tip" style="margin-top: 1rem;">
+                    🛡️ <strong>100% Gratuito:</strong> Sin suscripciones, sin Pay-to-Win y sin correos de verificación.
                 </div>
             </div>
 
-            <!-- CUADRÍCULA DE 4 PASOS -->
-            <div class="conn-steps-grid">
-                
-                <!-- PASO 1 -->
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">1</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">DESCARGA GRATUITA</div>
-                            <h3 class="conn-step-title">Instala Radmin VPN</h3>
-                        </div>
+            <!-- PASO 2: DESCARGA -->
+            <div class="conn-step-card">
+                <div class="conn-step-header">
+                    <div class="conn-step-badge">2</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">DESCARGA RÁPIDA</div>
+                        <h3 class="conn-step-title">Elige tu Descarga</h3>
                     </div>
-                    <p class="conn-step-desc">
-                        Descarga el cliente ligero de VPN para Windows. Es 100% gratuito, seguro y no requiere registros ni tarjetas.
-                    </p>
-                    <a href="https://www.radmin-vpn.com/es/" target="_blank" rel="noopener noreferrer" class="btn-radmin-download" title="Descarga oficial y segura desde radmin-vpn.com">
-                        📥 Descargar Radmin VPN Oficial
+                </div>
+                <p class="conn-step-desc">
+                    Descarga el juego listo para jugar, o si ya tienes un cliente WoW 3.3.5a, baja solo el lanzador ligero:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem;">
+                    <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399;" title="Cliente Completo HD de 37 GB en Google Drive">
+                        📦 Cliente Completo HD (Google Drive 37 GB)
                     </a>
-                    <div class="conn-callout-tip green-tip" style="margin-top: 1rem;">
-                        💡 <strong>Instalación rápida:</strong> Ejecuta el instalador, pulsa "Instalar" y tardará menos de 30 segundos.
-                    </div>
+                    <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem;" title="Lanzador y Patcher oficial para quienes ya tienen WoW 3.3.5a">
+                        ⚡ Lanzador Solo (~40 MB - Si ya tienes WoW)
+                    </a>
                 </div>
-
-                <!-- PASO 2 -->
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">2</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">UNIRSE A LA RED</div>
-                            <h3 class="conn-step-title">Conéctate a la Red</h3>
-                        </div>
-                    </div>
-                    <p class="conn-step-desc">
-                        Abre Radmin VPN, presiona el <strong>botón de Encendido</strong> (círculo azul/verde) y ve al menú superior: <em>Red ➔ Unirse a una red existente</em>.
-                    </p>
-                    
-                    <div class="conn-credential-box">
-                        <div>
-                            <div class="conn-credential-label">Nombre de Red:</div>
-                            <div class="conn-credential-value" id="radminNetName">Project_Jaina</div>
-                        </div>
-                        <button class="conn-copy-btn" onclick="copyConnectionData('radminNetName', this)">📋 Copiar</button>
-                    </div>
-
-                    <div class="conn-credential-box">
-                        <div>
-                            <div class="conn-credential-label">Contraseña de Red:</div>
-                            <div class="conn-credential-value" id="radminNetPass">Solicitar en Discord (Privada)</div>
-                        </div>
-                        <button class="conn-copy-btn" onclick="copyConnectionData('radminNetPass', this)">📋 Copiar</button>
-                    </div>
-
-                    <div class="conn-callout-tip" style="margin-top: 0.5rem;">
-                        ✨ <strong>Confirmación:</strong> En tu lista de Radmin aparecerá el servidor maestro: <strong style="color: #2ecc71;">🟢 Darck (26.140.157.205)</strong>.
-                    </div>
+                <div class="conn-callout-tip frost-tip" style="margin-top: 1rem;">
+                    ✨ <strong>Todo Incluido:</strong> El Cliente Completo ya trae texturas HD, interfaz Dragonflight y audio 3D.
                 </div>
-
-                <!-- PASO 3 -->
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">3</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">CONFIGURACIÓN REALMLIST</div>
-                            <h3 class="conn-step-title">Configura el Realmlist</h3>
-                        </div>
-                    </div>
-                    <p class="conn-step-desc">
-                        Ajusta tu cliente de WoW 3.3.5a para apuntar al Host Maestro de DarckRovert:
-                    </p>
-                    
-                    <div class="conn-credential-box" style="margin-bottom: 0.9rem;">
-                        <div style="overflow: hidden;">
-                            <div class="conn-credential-label">Línea de Realmlist.wtf:</div>
-                            <div class="conn-credential-value" id="radminRealmVal" style="font-size: 0.85rem;">set realmlist 26.140.157.205</div>
-                        </div>
-                        <button class="conn-copy-btn" onclick="copyConnectionData('radminRealmVal', this)">📋 Copiar</button>
-                    </div>
-
-                    <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.8rem;">
-                        📂 <strong>Ruta del archivo:</strong> Abre con el Bloc de Notas el archivo <code>Data/esES/realmlist.wtf</code> (o <code>Data/enUS/</code>) y pega la línea.
-                    </div>
-
-                    <div class="conn-callout-tip frost-tip">
-                        ⚡ <strong>¿Usas el Launcher?</strong> Abre nuestro <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download style="color: #00e5ff; font-weight: bold; text-decoration: underline;">Lanzador Oficial</a>, elige el perfil <em>"Radmin VPN"</em> y pulsa Jugar. ¡Lo hace en 1 clic!
-                    </div>
-                </div>
-
-                <!-- PASO 4 -->
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">4</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">ENTRAR A AZEROTH</div>
-                            <h3 class="conn-step-title">Crea tu Cuenta y Juega</h3>
-                        </div>
-                    </div>
-                    <p class="conn-step-desc">
-                        Crea tu usuario y contraseña con seguridad criptográfica SRP6 e inicia sesión directamente en el juego:
-                    </p>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;">
-                        <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem;">🛡️ 1. Registro Instantáneo de Cuenta</a>
-                        <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399;" title="Cliente Completo HD preconfigurado de 37 GB">📦 2. Descargar Cliente Completo HD (Google Drive 37 GB)</a>
-                        <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem;" title="Lanzador y Patcher oficial para quienes ya tienen WoW 3.3.5a">⚡ 3. Descargar Solo Lanzador / Setup (~40 MB)</a>
-                    </div>
-
-                    <div class="conn-callout-tip frost-tip" style="margin-bottom: 0.8rem;">
-                        🎙️ <strong>Audio Espacial 3D & Micrófono:</strong> Abre en tu navegador <a href="https://26.140.157.205:3050" target="_blank" style="color: #00e5ff; font-weight: bold; text-decoration: underline;">https://26.140.157.205:3050</a>, acepta el certificado SSL una sola vez y habla por proximidad en el juego con <code>/voz</code>.
-                    </div>
-
-                    <div class="conn-callout-tip green-tip">
-                        🛡️ <strong>¡Todo Listo!</strong> Abre <code>Wow.exe</code> o pulsa Jugar en el Lanzador para sumergirte en el lore viviente.
-                    </div>
-                </div>
-
             </div>
 
-            <!-- FAQ RÁPIDO & RESOLUCIÓN DE DUDAS -->
-            <div class="conn-faq-bar">
-                <div class="conn-faq-item">
-                    <h5>🟡 ¿El botón de Radmin está apagado?</h5>
-                    <p>Asegúrate de pulsar el botón grande redondo de encendido en Radmin VPN. Cuando esté encendido, mostrará tu IP de Radmin y un círculo azul o verde.</p>
+            <!-- PASO 3: ENTRAR A JUGAR -->
+            <div class="conn-step-card">
+                <div class="conn-step-header">
+                    <div class="conn-step-badge">3</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">EN 1 CLIC</div>
+                        <h3 class="conn-step-title">¡Entra a Azeroth!</h3>
+                    </div>
                 </div>
-                <div class="conn-faq-item">
-                    <h5>🔒 ¿Dice "No se pudo conectar al servidor"?</h5>
-                    <p>Revisa que en tu archivo <code>realmlist.wtf</code> diga exactamente <code>set realmlist 26.140.157.205</code> y que no abras el juego desde <code>Launcher.exe</code> de Blizzard, sino desde <code>Wow.exe</code>.</p>
+                <p class="conn-step-desc">
+                    Abre <code>ProjectJaina_Launcher.exe</code> (o <code>Iniciar_Juego.bat</code>), pulsa <strong>ENTRAR A AZEROTH</strong> y pon tus datos del Paso 1.
+                </p>
+                <div class="conn-callout-tip frost-tip" style="margin-top: 1rem;">
+                    ⚡ <strong>Auto-Configuración:</strong> El lanzador enruta automáticamente el tráfico por el túnel Anycast sin que tengas que editar archivos.
                 </div>
-                <div class="conn-faq-item">
-                    <h5>💬 ¿Necesitas asistencia del Staff?</h5>
-                    <p>Únete a nuestro <a href="https://discord.gg/YFpGGy8RGR" target="_blank" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Discord Oficial de Project Jaina</a>. El equipo técnico te asistirá en menos de 5 minutos.</p>
+                <div class="conn-callout-tip green-tip" style="margin-top: 0.6rem;">
+                    🎙️ <strong>Voz Espacial 3D:</strong> Activa el micrófono en el juego con <code>/voz</code> para hablar por proximidad.
                 </div>
             </div>
 
         </div>
 
-        <!-- PANE 2: CONEXIÓN PÚBLICA GLOBAL (ANYCAST TUNNEL / PLAYIT.GG) -->
-        <div class="conn-tab-pane" id="tabPane-global" role="tabpanel">
-            
-            <div class="conn-master-banner" style="border-color: rgba(243, 156, 18, 0.3);">
-                <div class="conn-master-info">
-                    <div class="conn-live-beacon" style="background: var(--gold-primary); box-shadow: 0 0 12px var(--gold-primary);"></div>
-                    <div class="conn-master-text">
-                        <h4>Reino Público Global Anycast (Sin VPN Requerida)</h4>
-                        <p>Túneles dedicados con balanceo mundial para aventureros internacionales</p>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 0.8rem; color: var(--text-muted);">HOST PÚBLICO:</span>
-                    <span class="conn-ip-badge" style="color: var(--gold-primary); border-color: rgba(243, 156, 18, 0.4); background: rgba(243, 156, 18, 0.1);">ambulance-absurd.tun.ply.gg:58735</span>
-                </div>
+        <!-- FAQ RÁPIDO & RESOLUCIÓN DE DUDAS -->
+        <div class="conn-faq-bar" style="margin-top: 2rem;">
+            <div class="conn-faq-item">
+                <h5>🌐 ¿Necesito instalar programas de VPN?</h5>
+                <p><strong>No.</strong> Nuestro servidor cuenta con túneles dedicados Anycast (Playit). Puedes conectarte directamente a través de tu internet habitual.</p>
             </div>
-
-            <div class="conn-steps-grid">
-                
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">1</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">CERO PROGRAMAS EXTERNOS</div>
-                            <h3 class="conn-step-title">Sin Instalaciones de VPN</h3>
-                        </div>
-                    </div>
-                    <p class="conn-step-desc">
-                        Esta opción utiliza túneles perimetrales Playit.gg. No requieres Radmin VPN ni software adicional; conéctate directamente desde cualquier rincón del mundo.
-                    </p>
-                    <div class="conn-callout-tip green-tip">
-                        🌐 <strong>Ideal para:</strong> Jugadores que prefieran conexión directa sin instalar adaptadores de red virtuales.
-                    </div>
-                </div>
-
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">2</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">CONFIGURACIÓN REALMLIST</div>
-                            <h3 class="conn-step-title">Pega el Realmlist Global</h3>
-                        </div>
-                    </div>
-                    <p class="conn-step-desc">
-                        Al usar el <strong>Lanzador Oficial</strong>, la conexión se configura automáticamente en 1 clic. Si configuras manualmente con el proxy loopback Anycast, usa:
-                    </p>
-                    <div class="conn-credential-box">
-                        <div style="overflow: hidden;">
-                            <div class="conn-credential-label">Línea de Realmlist.wtf (Vía Lanzador Oficial):</div>
-                            <div class="conn-credential-value" id="globalRealmVal" style="font-size: 0.85rem;">set realmlist 127.0.0.1</div>
-                        </div>
-                        <button class="conn-copy-btn" onclick="copyConnectionData('globalRealmVal', this)">📋 Copiar</button>
-                    </div>
-                    <div class="conn-callout-tip frost-tip" style="margin-top: 0.6rem;">
-                        ⚡ <strong>Nota técnica WoW 3.3.5a:</strong> El cliente de WoW no admite puertos en <code>realmlist.wtf</code>. Para jugar en el Reino Global sin VPN, ejecuta el juego desde el <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download style="color: #00e5ff; font-weight: bold; text-decoration: underline;">Lanzador Oficial</a> (enruta automáticamente el puerto Anycast 58735).
-                    </div>
-                </div>
-
-                <div class="conn-step-card">
-                    <div class="conn-step-header">
-                        <div class="conn-step-badge">3</div>
-                        <div>
-                            <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">REGISTRO Y ACCESO</div>
-                            <h3 class="conn-step-title">Crear Cuenta y Jugar</h3>
-                        </div>
-                    </div>
-                    <p class="conn-step-desc">
-                        Registra tu cuenta gratis en el portal y descarga el Cliente Completo HD o el Lanzador ligero:
-                    </p>
-                    <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                        <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem;">🛡️ 1. Registro Instantáneo de Cuenta</a>
-                        <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399;" title="Cliente Completo HD preconfigurado de 37 GB">📦 2. Descargar Cliente Completo HD (Google Drive 37 GB)</a>
-                        <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem;" title="Lanzador y Patcher oficial para quienes ya tienen WoW 3.3.5a">⚡ 3. Descargar Solo Lanzador / Setup (~40 MB)</a>
-                    </div>
-                </div>
-
+            <div class="conn-faq-item">
+                <h5>📁 ¿Ya tengo World of Warcraft 3.3.5a?</h5>
+                <p>Solo descarga nuestro <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download style="color: #00e5ff; font-weight: bold; text-decoration: underline;">Lanzador Oficial</a> (~40 MB), cópialo a tu carpeta de WoW y pulsa Jugar. ¡Configura todo en 1 clic!</p>
             </div>
-
+            <div class="conn-faq-item">
+                <h5>💬 ¿Necesitas asistencia o soporte?</h5>
+                <p>Únete a nuestro <a href="https://discord.gg/YFpGGy8RGR" target="_blank" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Discord Oficial de Project Jaina</a>. La comunidad y el staff te ayudarán al instante.</p>
+            </div>
         </div>
 
     </section>

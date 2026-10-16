@@ -16,29 +16,19 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ## 2. Conexión e Instalación
 
 ### ¿Cuál es el realmlist oficial?
-Dispones de dos vías de conexión oficiales:
-1. **Servidor Principal (Malla Radmin VPN — Recomendado para Clúster y Audio 3D):**
-   ```text
-   set realmlist 26.140.157.205
-   ```
-   * *Red Radmin:* `Project_Jaina`
-   * *Contraseña:* `Solicitar en Discord (Privada)`
-2. **Servidor Público Global (Túnel Anycast — Sin VPN):**
-   Inicia el juego desde el **Lanzador Oficial** (`ProjectJaina_Launcher.exe` o `Iniciar_Juego.bat`).
-   - El lanzador auto-enruta el puerto Anycast 58735 de Playit.gg de forma transparente.
-   - En tu archivo `realmlist.wtf` debe figurar:
-   ```text
-   set realmlist 127.0.0.1
-   ```
+El cliente oficial se conecta de forma automática y transparente sin necesidad de configurar archivos ni instalar VPNs:
+```text
+set realmlist 127.0.0.1
+```
+*El Lanzador Oficial (`ProjectJaina_Launcher.exe`) gestiona la conexión Anycast L4 de alta velocidad directamente hacia el clúster sin que tengas que configurar puertos.*
 
-### ¿Cómo descargo y juego en el Servidor Principal con Radmin VPN?
-1. **Descarga Radmin VPN:** Descárgalo gratis desde [radmin-vpn.com](https://www.radmin-vpn.com/es/).
-2. **Únete a la Red:** Abre Radmin VPN, haz clic en el botón de encendido y selecciona *Red ➔ Unirse a una red existente*:
-   * **Nombre:** `Project_Jaina`
-   * **Contraseña:** `Solicitar en Discord (Privada)`
-3. **Crea tu cuenta:** Regístrate en la sección [Crear Cuenta](https://darckrovert.github.io/ProjectJaina_Web/registro.html) del portal oficial.
-4. **Configura tu Realmlist:** Abre `Data\esES\realmlist.wtf` con el Bloc de Notas y escribe `set realmlist 26.140.157.205` (o usa el Lanzador Oficial en 1 clic).
-5. **Abre Wow.exe y juega:** Ingresa con tu usuario y contraseña. Para habilitar el chat de voz por micrófono en el juego, ingresa desde tu navegador a `https://26.140.157.205:3050` una sola vez y escribe `/voz` in-game.
+### ¿Cómo descargo y juego en Project JAIna (Cero VPN)?
+1. **Crea tu cuenta:** Regístrate en 5 segundos en [Crear Cuenta](https://darckrovert.github.io/ProjectJaina_Web/registro.html) con cifrado militar SRP6.
+2. **Descarga el Cliente o Lanzador:** 
+   - Si no tienes World of Warcraft 3.3.5a: Descarga el cliente completo oficial (37 GB) desde el enlace de Google Drive o BitTorrent en el portal.
+   - Si ya tienes un cliente 3.3.5a: Descarga solo el **Lanzador Oficial** (~40 MB) y colócalo en tu carpeta de juego.
+3. **Abre el Lanzador y Juega:** Ejecuta `ProjectJaina_Launcher.exe` y haz clic en **¡JUGAR AHORA!**. ¡Listo! Sin instalar VPNs, sin pedir contraseñas de red y sin configurar IPs.
+4. **Chat de Proximidad 3D:** Ingresa a la sección de [Voz](https://darckrovert.github.io/ProjectJaina_Web/voz/index.html) y escribe `/voz` dentro del juego para vincular tu micrófono.
 
 
 ### ¿Cómo se instalan los AddOns oficiales?

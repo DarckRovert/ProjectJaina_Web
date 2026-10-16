@@ -3318,7 +3318,7 @@ body.theme-horde .faction-pill.active {
 }
 
 /* ==============================================================================
-   GUÍA DE CONEXIÓN AL SERVIDOR PRINCIPAL & RADMIN VPN (Obsidian & Frost Edition)
+   GUÍA DE CONEXIÓN AL REINO GLOBAL (Obsidian & Frost Edition - Cero VPN)
    ============================================================================== */
 .conn-guide-section {
     padding: 5rem 2rem;
@@ -3618,8 +3618,8 @@ body.theme-horde .faction-pill.active {
     color: #c8e6c9;
 }
 
-/* Botón Descarga Radmin */
-.btn-radmin-download {
+/* Botón Secundario Descarga */
+.btn-alt-download {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3638,7 +3638,7 @@ body.theme-horde .faction-pill.active {
     margin-top: 0.5rem;
 }
 
-.btn-radmin-download:hover {
+.btn-alt-download:hover {
     background: linear-gradient(135deg, #0096c7 0%, #00b4d8 100%);
     box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
     transform: translateY(-2px);

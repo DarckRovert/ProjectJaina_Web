@@ -9,8 +9,7 @@ Documentación técnica de los módulos JavaScript del cliente que alimentan el 
 ### `js/config.js` — Fuente Única de Verdad (SSOT) de Red
 Gestiona la resolución dinámica de endpoints según el origen desde donde navegue el usuario:
 - **Local / Sandbox**: `http://127.0.0.1:8080`
-- **Radmin VPN**: `http://26.140.157.205:8080`
-- **Producción / Web Pública**: Túnel seguro o endpoint de backend configurable (`CONFIG.getApiUrl()`).
+- **Producción / Web Pública**: Túnel Anycast seguro o endpoint de backend configurable (`CONFIG.getApiUrl()`).
 
 ### `js/register.js` — Registro Autoritativo SRP6
 Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POST`) hacia `/api/register`:
