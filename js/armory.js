@@ -261,15 +261,15 @@ function renderArmoryRows(chars) {
 
     let filtered = chars.filter(c => {
         const matchesSearch = !currentSearch ||
-            c.name.toLowerCase().includes(currentSearch) ||
-            c.guild.toLowerCase().includes(currentSearch) ||
-            c.class.toLowerCase().includes(currentSearch);
+            normalizeStr(c.name).includes(normalizeStr(currentSearch)) ||
+            normalizeStr(c.guild).includes(normalizeStr(currentSearch)) ||
+            normalizeStr(c.class).includes(normalizeStr(currentSearch));
 
         let matchesFilter = true;
         if (currentFilter === "online") {
             matchesFilter = !!c.online;
         } else if (currentFilter !== "all") {
-            matchesFilter = (c.class.toLowerCase() === currentFilter.toLowerCase());
+            matchesFilter = (normalizeStr(c.class) === normalizeStr(currentFilter));
         }
 
         return matchesSearch && matchesFilter;
@@ -411,18 +411,23 @@ function setupModalEvents() {
     });
 }
 
+function normalizeStr(s) {
+    return s ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
+}
+
 function getClassBadgeClass(className) {
     const map = {
-        "Guerrero": "class-guerrero",
-        "Paladín": "class-paladin",
-        "Cazador": "class-cazador",
-        "Pícaro": "class-picaro",
-        "Sacerdote": "class-sacerdote",
-        "Caballero de la Muerte": "class-dk",
-        "Chamán": "class-chaman",
-        "Mago": "class-mago",
-        "Brujo": "class-brujo",
-        "Druida": "class-druida"
+        "guerrero": "class-guerrero",
+        "paladin": "class-paladin",
+        "cazador": "class-cazador",
+        "picaro": "class-picaro",
+        "sacerdote": "class-sacerdote",
+        "caballero de la muerte": "class-dk",
+        "chaman": "class-chaman",
+        "mago": "class-mago",
+        "brujo": "class-brujo",
+        "druida": "class-druida"
     };
-    return map[className] || "class-brujo";
+    const key = normalizeStr(className);
+    return map[key] || "class-brujo";
 }
