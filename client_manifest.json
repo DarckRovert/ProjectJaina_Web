@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
-  "generated_at": 1792186410,
+  "generated_at": 1792191937,
   "client_root": "ProjectJaina_CDN",
   "file_count": 1,
-  "total_size_bytes": 21565989,
+  "total_size_bytes": 21567075,
   "files": {
     "ProjectJaina_Launcher.exe": {
-      "size": 21565989,
-      "sha256": "ea63d5927856cba7ab52d2e870a6546bfb5168d31177e0a462ce947eb55bdf0c"
+      "size": 21567075,
+      "sha256": "d2e5cf5740bdd5fbf068bf6b553714cbd3820cfcfb7c5fd2ddbebb0cea55a2c5"
     }
   }
 }
