@@ -39,7 +39,7 @@
     "guid": 28,
     "name": "Toodige",
     "race": "Tauren",
-    "class": "Chaman",
+    "class": "Chamán",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -51,7 +51,7 @@
     "spec": "Restauracion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Chaman Nv60 - GS 1455 - 571 pts honor."
+    "lore": "Personaje en acore_characters. Chamán Nv60 - GS 1455 - 571 pts honor."
   },
   {
     "guid": 36,
@@ -111,7 +111,7 @@
     "guid": 3,
     "name": "Kileen",
     "race": "Draenei",
-    "class": "Paladin",
+    "class": "Paladín",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -123,7 +123,7 @@
     "spec": "Represion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Paladin Nv60 - GS 1480 - 1425 pts honor."
+    "lore": "Personaje en acore_characters. Paladín Nv60 - GS 1480 - 1425 pts honor."
   },
   {
     "guid": 37,
@@ -147,7 +147,7 @@
     "guid": 25,
     "name": "Sanzym",
     "race": "Orco",
-    "class": "Picaro",
+    "class": "Pícaro",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -159,7 +159,7 @@
     "spec": "Combate",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Picaro Nv60 - GS 1480 - 547 pts honor."
+    "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 1480 - 547 pts honor."
   },
   {
     "guid": 26,
@@ -273,7 +273,7 @@
     "guid": 63,
     "name": "Tyrin",
     "race": "Elfo de Sangre",
-    "class": "Paladin",
+    "class": "Paladín",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -285,13 +285,13 @@
     "spec": "Represion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Paladin Nv60 - GS 1387 - 1217 pts honor."
+    "lore": "Personaje en acore_characters. Paladín Nv60 - GS 1387 - 1217 pts honor."
   },
   {
     "guid": 13,
     "name": "Jomwyn",
     "race": "Enano",
-    "class": "Paladin",
+    "class": "Paladín",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -303,7 +303,7 @@
     "spec": "Represion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Paladin Nv60 - GS 1394 - 1350 pts honor."
+    "lore": "Personaje en acore_characters. Paladín Nv60 - GS 1394 - 1350 pts honor."
   },
   {
     "guid": 52,
@@ -345,7 +345,7 @@
     "guid": 35,
     "name": "Nonzu",
     "race": "Trol",
-    "class": "Picaro",
+    "class": "Pícaro",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -357,7 +357,7 @@
     "spec": "Combate",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Picaro Nv60 - GS 1430 - 20098 pts honor."
+    "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 1430 - 20098 pts honor."
   },
   {
     "guid": 77,
@@ -453,7 +453,7 @@
     "guid": 708,
     "name": "Mahomiir",
     "race": "Draenei",
-    "class": "Chaman",
+    "class": "Chamán",
     "level": 60,
     "gender": "Masculino",
     "online": true,
@@ -465,13 +465,13 @@
     "spec": "Restauracion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Chaman Nv60 - GS 1367 - 1166 pts honor."
+    "lore": "Personaje en acore_characters. Chamán Nv60 - GS 1367 - 1166 pts honor."
   },
   {
     "guid": 613,
     "name": "Erirodan",
     "race": "Elfo de Sangre",
-    "class": "Paladin",
+    "class": "Paladín",
     "level": 60,
     "gender": "Masculino",
     "online": true,
@@ -483,7 +483,7 @@
     "spec": "Represion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Paladin Nv60 - GS 1550 - 18129 pts honor."
+    "lore": "Personaje en acore_characters. Paladín Nv60 - GS 1550 - 18129 pts honor."
   },
   {
     "guid": 650,
@@ -525,7 +525,7 @@
     "guid": 705,
     "name": "Salia",
     "race": "Elfo de la Noche",
-    "class": "Picaro",
+    "class": "Pícaro",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -537,13 +537,13 @@
     "spec": "Combate",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Picaro Nv60 - GS 1475 - 7859 pts honor."
+    "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 1475 - 7859 pts honor."
   },
   {
     "guid": 695,
     "name": "Emrea",
     "race": "Elfo de Sangre",
-    "class": "Picaro",
+    "class": "Pícaro",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -555,13 +555,13 @@
     "spec": "Combate",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Picaro Nv60 - GS 1471 - 974 pts honor."
+    "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 1471 - 974 pts honor."
   },
   {
     "guid": 658,
     "name": "Lenmaha",
     "race": "Draenei",
-    "class": "Chaman",
+    "class": "Chamán",
     "level": 60,
     "gender": "Masculino",
     "online": true,
@@ -573,13 +573,13 @@
     "spec": "Restauracion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Chaman Nv60 - GS 1366 - 6169 pts honor."
+    "lore": "Personaje en acore_characters. Chamán Nv60 - GS 1366 - 6169 pts honor."
   },
   {
     "guid": 668,
     "name": "Kugukon",
     "race": "Trol",
-    "class": "Chaman",
+    "class": "Chamán",
     "level": 60,
     "gender": "Masculino",
     "online": true,
@@ -591,7 +591,7 @@
     "spec": "Restauracion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Chaman Nv60 - GS 1399 - 15689 pts honor."
+    "lore": "Personaje en acore_characters. Chamán Nv60 - GS 1399 - 15689 pts honor."
   },
   {
     "guid": 819,
@@ -759,7 +759,7 @@
     "guid": 898,
     "name": "Nahooth",
     "race": "Draenei",
-    "class": "Chaman",
+    "class": "Chamán",
     "level": 60,
     "gender": "Masculino",
     "online": true,
@@ -771,7 +771,7 @@
     "spec": "Restauracion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Chaman Nv60 - GS 1462 - 2116 pts honor."
+    "lore": "Personaje en acore_characters. Chamán Nv60 - GS 1462 - 2116 pts honor."
   },
   {
     "guid": 746,
@@ -831,7 +831,7 @@
     "guid": 638,
     "name": "Duleen",
     "race": "Draenei",
-    "class": "Chaman",
+    "class": "Chamán",
     "level": 60,
     "gender": "Femenino",
     "online": true,
@@ -843,7 +843,7 @@
     "spec": "Restauracion",
     "role": "Hibrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Chaman Nv60 - GS 1409 - 7565 pts honor."
+    "lore": "Personaje en acore_characters. Chamán Nv60 - GS 1409 - 7565 pts honor."
   },
   {
     "guid": 70,
