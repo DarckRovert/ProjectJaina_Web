@@ -39,6 +39,19 @@ El cliente oficial ya viene preconfigurado con la suite de 18 AddOns de Project 
 
 ---
 
+### ¿Qué reinos están disponibles en el juego?
+El ecosistema cuenta con soporte multi-reino en clúster bi-regional:
+- **Project Jaina (Reino 1):** El reino principal de Living Lore, economía balanceada y eventos mundiales.
+- **WanitosGym (Reino 2):** Reino complementario de desafíos y contingencia.
+
+### ¿Qué facciones puedo elegir al registrarme?
+El sistema de registro y el lanzador oficial integran 3 facciones canónicas:
+- **Alianza:** Los defensores de Theramore y Ventormenta.
+- **Horda:** La fuerza de Orgrimmar y los Clanes de Durotar.
+- **Kirin Tor (Dalaran):** Los magos arcanos de Dalaran guiados por el Ojo Violeta.
+
+---
+
 ## 3. Modos de Juego y Características
 
 ### ¿Qué modos de juego están disponibles?
@@ -55,11 +68,13 @@ Al crear un personaje nuevo, podrás elegir entre:
 Project Jaina cuenta con un motor de audio binaural posicional en tiempo real:
 1. En el juego, escribe `/voz` para generar un PIN de emparejamiento efímero de un solo uso.
 2. Ingresa a la sección de [Voz 3D](https://darckrovert.github.io/ProjectJaina_Web/voz/) en tu navegador.
-3. Introduce tu PIN y pulsa **Conectar**.
-4. Escucharás a los jugadores cercanos con posicionamiento binaural 3D (HRTF) según su distancia y orientación en el mundo de juego.
+3. Elige tu nodo de servidor preferido (**Perú** o **España**) con soporte cifrado HTTPS/WSS (certificados Multi-SAN SSL que autorizan la captura de micrófono sin advertencias).
+4. Introduce tu PIN y pulsa **Conectar**.
+5. Escucharás a los jugadores cercanos con posicionamiento binaural 3D (HRTF) según su distancia y orientación en el mundo de juego.
 
 ### ¿Qué es el Gestor de Bots con IA (/bots o /chatter)?
 Es la interfaz del addon `Chatter_Companion`, que conecta tus diálogos con los Playerbots y el motor de inferencia neuronal local (LM Studio). Puedes dar órdenes tácticas, solicitar buffs por clase, invitar a compañeros de aventura o debatir sobre el lore de Azeroth en lenguaje natural.
 
 ---
 © 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
+

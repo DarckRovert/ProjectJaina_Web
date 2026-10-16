@@ -30,13 +30,18 @@
 
 * **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`).
 * **Living Lore & AI Revolution:** Sección interactiva que narra el despertar de los LoreBots y la integración del puente neuronal LLM.
+* **Topología Multi-Reino y Clúster Bi-Nodo:**
+  * **Reino 1 (Project Jaina):** Puerto 8085 (Servidor Principal).
+  * **Reino 2 (WanitosGym):** Puerto 8086 en Nodo Perú / Puerto 8085 en Nodo España.
+* **Tríada de Facciones Canónicas:** Soporte autoritativo para **Alianza**, **Horda** y el **Kirin Tor de Dalaran**.
 * **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
 * **Subpáginas Especializadas:**
-  * **Armería:** Visualizador de perfiles de héroes y equipamiento.
-  * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla.
-  * **Registro:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6.
-  * **Voz Espacial 3D:** Cliente web de audio binaural posicional HRTF con emparejamiento por PIN in-game.
-  * **Wiki y Lore:** Cronología de eventos mundiales, profecías y documentación técnica del reino.
+  * **Armería v2.5:** Visualizador de perfiles de héroes, GearScore, talentos, badges de 10 clases (incluyendo Caballero de la Muerte) y búsqueda insensible a acentos (`normalizeStr`).
+  * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla con despacho transaccional idempotente.
+  * **Registro:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6 y selección de facción canónica.
+  * **Voz Espacial 3D:** Cliente web de audio binaural posicional HRTF con emparejamiento por PIN in-game, selector dinámico dual-node (Perú y España) y cifrado Multi-SAN SSL.
+  * **Wiki y Lore:** Cronología de eventos mundiales, profecías, manual de usuario y documentación técnica de arquitectura.
+  * **Descargas CDN Directas:** Descarga en 1 clic del Lanzador Oficial Standalone v2.1.1 (`ProjectJaina_Launcher_Oficial.zip`) y enlace magnet / torrent para el cliente FHD (36.8 GB).
 * **Activos Gráficos Oficiales:** Ilustraciones Ultra-HD generadas para la cabecera cinemática, escudo heráldico y citadel arcana.
 
 ---
@@ -46,3 +51,5 @@
 El portal se sirve directamente a través de **GitHub Pages**:
 * **URL Pública Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
 * **Cliente de Voz Espacial 3D:** [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)
+* **Descarga del Lanzador Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip](https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip)
+

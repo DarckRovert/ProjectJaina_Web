@@ -4,6 +4,14 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.5.1] - 2026-10-16 — Cacería de Bugs, Paridad Canónica de Facciones y Resiliencia Bi-Regional
+- **Paridad Canónica de Facciones en Lanzador v2.1.1:** Incorporada la facción Kirin Tor Dalaran (`KIRIN_TOR`) en el modal nativo de registro del lanzador y sincronizado el backend `ProjectJaina_Launcher_V2.py` y `ProjectJaina_WebAPI.py`.
+- **Armería Full-Stack Resiliente e Insignias de Clase:** Corregida la asignación errónea de insignias de Brujo a Paladines, Pícaros y Chamanes mediante normalización ortográfica sin tildes en `armory.js`, `data/armory.json` y `ProjectJaina_WebAPI.py`. Desbloqueados los botones de filtro de clase.
+- **Voz Espacial 3D Bi-Regional WebRTC:** Actualizados los certificados SSL X.509 con Subject Alternative Names (SAN) para admitir simultáneamente el Nodo Maestro Perú (`26.140.157.205`) y el Nodo Cómputo España (`26.202.12.241`). Unificados los selectores HTTPS en `voz/index.html` y `KNOWN_SERVERS` en `voz/app.js`.
+- **Onboarding Limpio y Enlaces Directos:** Añadidos enlaces directos CDN HTTPS para el lanzador y paquete ZIP, enlaces BitTorrent oficiales (`.torrent` y Magnet), y sincronizados los scripts de arranque (`Iniciar_Juego.bat` / `Iniciar_Launcher.bat`).
+
+---
+
 ## [v2.5.0] - 2026-10-16 — Transición Cero VPN (Playit Anycast L4) y Lanzador 1-Clic
 - **Erradicación Total de Radmin VPN:** Eliminada cualquier necesidad de redes privadas virtuales para los jugadores. Toda la conectividad opera de forma nativa y transparente mediante túneles Playit Anycast L4 de nivel de transporte.
 - **Onboarding de 1 Clic:** Reestructurada la guía de conexión pública a un flujo simplificado de 3 pasos (Registro SRP6 -> Descarga -> ¡Jugar!).
