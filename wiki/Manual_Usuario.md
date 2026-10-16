@@ -16,9 +16,11 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
   * *Baluartes de Hermandad:* 6 enclaves estratégicos conquistables con oro in-game (Anti-P2W), estandartes dinámicos de facción, zona de descanso (Rested XP) y Heraldo Intendente (`NPC 5061`) con reparaciones y censo.
   * *Galeón de los Desertores:* Evento naval periódico cada 45 minutos en la bahía de Theramore, campanas de alarma, escalas de abordaje, artillería interactiva (`GO 5051`) y cofre de suministros navales (`GO 2850`) con botín abierto.
 - Guía rápida paso a paso de "¿Cómo Jugar?":
-  1. Descargar el cliente optimizado FHD (3.3.5a Build 12340).
-  2. Crear tu cuenta criptográfica SRP6 desde el portal web.
-  3. Ejecutar el juego en 1 clic mediante `ProjectJaina_Hub.exe` o el lanzador oficial.
+  1. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 en [`registro.html`](../registro.html).
+  2. **Descarga en 1 Clic (Sin VPN):** Descarga el cliente completo o el Lanzador Oficial (`ProjectJaina_Launcher.exe`) desde el portal.
+  3. **Conexión Global Directa:** Ejecuta el Lanzador Oficial y pulsa **¡JUGAR AHORA!**. El motor Anycast L4 conecta de inmediato con `127.0.0.1` sin que tengas que instalar ningún adaptador de red ni introducir contraseñas.
+  4. **Audio Espacial 3D WebRTC:** Entra al portal de voz con tu navegador para autorizar el micrófono y habla por proximidad en el juego con el comando `/voz`.
+
 
 ### 🛡️ Registro Seguro de Cuentas (`registro.html`)
 - Formulario de alta instantánea sin almacenamiento de contraseñas en texto plano.

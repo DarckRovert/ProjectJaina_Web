@@ -39,12 +39,7 @@ const CONFIG = {
             return this.LOCAL_API;
         }
 
-        // 4. Subred de Red Privada
-        if (host.startsWith("26.")) {
-            return `http://${host}:8080`;
-        }
-
-        // 5. Red Privada Local (LAN: 192.168.x.x o 10.x.x.x)
+        // 4. Red Privada Local (LAN: 192.168.x.x o 10.x.x.x)
         if (host.startsWith("192.168.") || host.startsWith("10.")) {
             return `http://${host}:8080`;
         }

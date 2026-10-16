@@ -92,14 +92,35 @@
         // Cargar metadatos canónicos de progresión
         await fetchProgressionSSOT();
 
-        // Sondeo inicial contra el servidor/API
-        await syncServerTelemetry();
+        // Escucha reactiva al despachador autoritativo de app.js (elimina doble tráfico HTTP)
+        window.addEventListener('jaina:telemetry', (e) => {
+            const data = e.detail;
+            if (!data) return;
+
+            isServerLive = (data.isOnline === true || data.status === 'ONLINE' || data.world_online === true);
+
+            if (data.server_uptime_seconds !== undefined) {
+                serverUptimeSeconds = Number(data.server_uptime_seconds) || 0;
+            } else if (!isServerLive) {
+                serverUptimeSeconds = 0;
+            }
+
+            if (data.world_tickrate_ms) {
+                const tickEl = document.getElementById('paramTickrate');
+                if (tickEl) tickEl.textContent = `~${data.world_tickrate_ms} ms (Estable)`;
+            }
+
+            renderServerTelemetryUI();
+            renderProgressionChronometer();
+        });
 
         // Reloj tickeando en vivo local cada segundo para el Uptime
         setInterval(tickLocalChronometers, 1000);
 
-        // Sondeo de telemetría de servidor periódica cada 12 segundos
-        setInterval(syncServerTelemetry, 12000);
+        // Sondeo de fallback con AbortController solo si app.js no estuviese presente
+        if (typeof window.dispatchEvent !== 'function') {
+            setInterval(syncServerTelemetry, 15000);
+        }
     }
 
     async function fetchProgressionSSOT() {
@@ -115,6 +136,9 @@
     }
 
     async function syncServerTelemetry() {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
+
         try {
             const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) 
                 ? CONFIG.getApiUrl() 
@@ -122,11 +146,13 @@
 
             const resp = await fetch(`${apiUrl}/api/status`, {
                 method: 'GET',
+                signal: controller.signal,
                 headers: { 
                     'Accept': 'application/json',
                     'ngrok-skip-browser-warning': 'true'
                 }
             });
+            clearTimeout(timeoutId);
 
             if (resp.ok) {
                 const data = await resp.json();
@@ -138,13 +164,11 @@
                     const startEpoch = new Date(data.server_start_time).getTime();
                     serverUptimeSeconds = Math.max(0, Math.floor((Date.now() - startEpoch) / 1000));
                 } else if (isServerLive) {
-                    // Servidor detectado activo por socket, calcular desde inicio relativo o persistido
                     if (!serverBootEpoch) {
                         serverBootEpoch = Date.now() - (serverUptimeSeconds * 1000);
                     }
                 }
 
-                // Actualizar parámetros adicionales si vienen de la API
                 if (data.world_tickrate_ms) {
                     const tickEl = document.getElementById('paramTickrate');
                     if (tickEl) tickEl.textContent = `~${data.world_tickrate_ms} ms (Estable)`;
@@ -153,13 +177,9 @@
                 throw new Error('API offline');
             }
         } catch (err) {
-            // Servidor en modo autónomo/espera
+            clearTimeout(timeoutId);
             isServerLive = false;
-            // Si el servidor está en standby, calculamos tiempo de sesión relativo a la fase activa
-            if (progressionMetadata && progressionMetadata.server_start_time) {
-                const fallbackStart = new Date(progressionMetadata.server_start_time).getTime();
-                serverUptimeSeconds = Math.max(0, Math.floor((Date.now() - fallbackStart) / 1000));
-            }
+            serverUptimeSeconds = 0;
         }
 
         renderServerTelemetryUI();

@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 4. Envío del Formulario SRP6
+    // 4. Envío del Formulario SRP6 con Protección de Entrada
     if (regForm) {
         regForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -99,6 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const confirmPassword = document.getElementById("regConfirmPassword").value;
             const email = document.getElementById("regEmail").value.trim();
             const clan = document.querySelector('input[name="clan"]:checked')?.value || "PROJECT_JAINA";
+
+            // Saneamiento Alfanumérico Estricto (Requisito Canónico WoW 3.3.5a)
+            const USERNAME_REGEX = /^[a-zA-Z0-9]{3,16}$/;
+            if (!USERNAME_REGEX.test(username)) {
+                showMessage("El nombre de usuario debe tener entre 3 y 16 caracteres alfanuméricos (letras y números sin espacios ni símbolos).", "error");
+                return;
+            }
 
             if (password !== confirmPassword) {
                 showMessage("Las contraseñas no coinciden. Por favor verifica antes de continuar.", "error");
@@ -110,14 +117,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showMessage("El formato del correo electrónico es inválido. Corrige el campo o déjalo en blanco.", "error");
+                return;
+            }
+
             submitBtn.disabled = true;
-            submitBtn.innerHTML = "⏳ Generando Hash SRP6 & Conectando a Base de Datos...";
+            submitBtn.innerHTML = "⏳ Generando Hash SRP6 & Conectando al Reino...";
             showMessage("Procesando credenciales criptográficas y registrando en acore_auth...", "info");
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6000);
 
             try {
                 const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
                 const response = await fetch(`${apiUrl}/api/register`, {
                     method: "POST",
+                    signal: controller.signal,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json",
@@ -130,12 +146,32 @@ document.addEventListener("DOMContentLoaded", () => {
                         clan: clan
                     })
                 });
+                clearTimeout(timeoutId);
 
-                const result = await response.json();
+                const responseText = await response.text();
+                let result = null;
+                try {
+                    result = JSON.parse(responseText);
+                } catch (_) {
+                    result = { 
+                        ok: false, 
+                        message: `El servidor web devolvió una respuesta no válida (HTTP ${response.status}).` 
+                    };
+                }
 
                 if (response.ok && result.ok) {
-                    showMessage(`🎉 ¡ÉXITO! Cuenta '${username.toUpperCase()}' creada y activada al instante en el reino. Ya puedes iniciar sesión en World of Warcraft o con tu Launcher oficial.`, "success");
+                    showMessage(`🎉 ¡ÉXITO! Cuenta '${username.toUpperCase()}' creada y activada al instante en el reino. Ya puedes iniciar sesión en World of Warcraft con el realmlist oficial.`, "success");
                     regForm.reset();
+                    
+                    // Reset integral del estado visual de facción hacia Alianza
+                    factionPills.forEach(p => {
+                        const isAlliance = p.getAttribute("data-faction") === "alliance";
+                        p.classList.toggle("active", isAlliance);
+                        const r = p.querySelector('input[type="radio"]');
+                        if (r) r.checked = isAlliance;
+                    });
+                    document.body.className = "theme-alliance";
+
                     if (strengthBar) strengthBar.style.width = "0%";
                     if (strengthText) strengthText.innerText = "Seguridad: Ingresa una contraseña";
                     if (matchIndicator) matchIndicator.innerText = "";
@@ -143,7 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     showMessage(`⚠️ No se pudo registrar: ${result.message || 'El usuario ya existe o hubo un error en la base de datos.'}`, "error");
                 }
             } catch (err) {
-                showMessage("🛡️ El servidor local se encuentra en espera o estás navegando fuera de la red VPN. Si estás jugando en clúster, conéctate a la red Radmin VPN (Project_Jaina) o contacta al staff.", "error");
+                clearTimeout(timeoutId);
+                if (err.name === "AbortError") {
+                    showMessage("⏱️ Tiempo de espera agotado. El servidor de autenticación está demorando en responder. Por favor reintenta en unos instantes.", "error");
+                } else {
+                    showMessage("🛡️ No se pudo establecer conexión con el servidor de autenticación. Verifica que el reino se encuentre en estado ONLINE o reintenta en breve.", "error");
+                }
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = "⚔️ CREAR CUENTA SRP6 AL INSTANTE";
@@ -163,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
             msgBox.style.background = "rgba(231, 76, 60, 0.18)";
             msgBox.style.borderColor = "rgba(231, 76, 60, 0.5)";
             msgBox.style.color = "#ff6b6b";
-        } else {
+        } else if (type === "info") {
             msgBox.style.background = "rgba(52, 152, 219, 0.18)";
             msgBox.style.borderColor = "rgba(52, 152, 219, 0.5)";
             msgBox.style.color = "#3498db";

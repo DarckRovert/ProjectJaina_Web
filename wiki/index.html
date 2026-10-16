@@ -232,7 +232,9 @@
             <li><a href="../index.html#mundo-viviente">Mundo Viviente</a></li>
             <li><a href="../armeria.html">Armería</a></li>
             <li><a href="../tienda.html">Tienda</a></li>
+            <li><a href="../voz/index.html" style="color: #00e5ff; font-weight: bold;">🎙️ Voz 3D</a></li>
             <li><a href="index.html" class="active">📖 Wiki de Lore</a></li>
+            <li><a href="../index.html#como-jugar">¿Cómo Jugar?</a></li>
             <li><a href="../registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
         </ul>
     </nav>
@@ -257,6 +259,7 @@
         <div class="wiki-tab" data-tab="lore" onclick="switchTab('lore', this)">🌍 Lore del Reino</div>
         <div class="wiki-tab" data-tab="heroes" onclick="switchTab('heroes', this)">⚔️ Héroes Legendarios</div>
         <div class="wiki-tab" data-tab="prophecies" onclick="switchTab('prophecies', this)">🔮 Profecías Activas</div>
+        <div class="wiki-tab" data-tab="manuales" onclick="switchTab('manuales', this)">📚 Guías & Manuales</div>
     </div>
 
     <!-- CONTENIDO: TIMELINE -->
@@ -327,6 +330,73 @@
         <div class="wiki-section-title">🔮 Profecías Activas del Kirin Tor</div>
         <div id="propheciesContainer">
             <div class="wiki-loading">⏳ Descifrando las profecías...</div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO: GUÍAS & MANUALES -->
+    <div id="tab-manuales" class="wiki-section" style="display:none;">
+        <div class="wiki-section-title">📚 Biblioteca de Guías, Manuales & Conexión</div>
+        <div class="lore-cards-grid">
+            <div class="lore-card" style="border-color: rgba(0, 229, 255, 0.3);">
+                <div class="lore-card-icon">⚡</div>
+                <div class="lore-card-title" style="color: #00e5ff;">Conexión Global Directa — Cero VPN</div>
+                <div class="lore-card-text">
+                    El reino opera mediante un túnel Anycast L4 de alta velocidad y baja latencia:<br><br>
+                    • <strong>Reino:</strong> <code>Project JAIna (WotLK 3.3.5a)</code><br>
+                    • <strong>Acceso:</strong> <code>Público / 1 Clic (Sin contraseñas de red)</code><br>
+                    • <strong>Lanzador Oficial:</strong> <code>ProjectJaina_Launcher.exe</code><br>
+                    • <strong>Realmlist:</strong> <code>set realmlist 127.0.0.1</code><br>
+                    • <strong>Audio 3D WebRTC:</strong> <a href="../voz/index.html" target="_blank" style="color: #00e5ff; text-decoration: underline;">Portal de Voz Integrado</a>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <a href="../index.html#como-jugar" style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(0, 229, 255, 0.15); border: 1px solid rgba(0, 229, 255, 0.4); border-radius: 6px; color: #00e5ff; font-size: 0.78rem; text-decoration: none; font-weight: 700;">⚡ Ver Guía Rápida de Conexión ➔</a>
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(243, 156, 18, 0.3);">
+                <div class="lore-card-icon">📖</div>
+                <div class="lore-card-title" style="color: var(--gold-primary);">Manual de Usuario Oficial</div>
+                <div class="lore-card-text">
+                    Compendio técnico exhaustivo que documenta:<br><br>
+                    • La suite de <strong>18 AddOns oficiales</strong> preinstalados (Dragonflight UI, Chatter Companion, VisualShop, etc.).<br>
+                    • Comandos de jugador (<code>/voz</code>, <code>/bots</code>, <code>/chatter</code>).<br>
+                    • Comandos de Game Master para Baluartes (<code>.outpost</code>) y Galeón (<code>.galleon</code>).
+                </div>
+                <div style="margin-top: 1rem;">
+                    <a href="Manual_Usuario.md" target="_blank" style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(243, 156, 18, 0.15); border: 1px solid rgba(243, 156, 18, 0.4); border-radius: 6px; color: var(--gold-primary); font-size: 0.78rem; text-decoration: none; font-weight: 700;">📄 Leer Manual Completo (MD) ➔</a>
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(46, 204, 113, 0.3);">
+                <div class="lore-card-icon">❓</div>
+                <div class="lore-card-title" style="color: #2ecc71;">Preguntas Frecuentes (FAQ)</div>
+                <div class="lore-card-text">
+                    Respuestas directas a las dudas más habituales:<br><br>
+                    • Requisitos de cliente (WotLK 3.3.5a Build 12340).<br>
+                    • Solución a errores de conexión ("Desconectado del servidor").<br>
+                    • Modos de juego (Normal, Hardcore permadeath, Ironman).<br>
+                    • Activación de micrófono WebRTC para Voz 3D espacial.
+                </div>
+                <div style="margin-top: 1rem;">
+                    <a href="FAQ.md" target="_blank" style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.4); border-radius: 6px; color: #2ecc71; font-size: 0.78rem; text-decoration: none; font-weight: 700;">❓ Consultar FAQ Completo (MD) ➔</a>
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(163, 53, 238, 0.3);">
+                <div class="lore-card-icon">🏛️</div>
+                <div class="lore-card-title" style="color: #d2a8ff;">Arquitectura & API para Devs</div>
+                <div class="lore-card-text">
+                    Especificaciones para programadores e integradores:<br><br>
+                    • Stack del portal (Zero-deps Vanilla ES6+, Glassmorphism arcano).<br>
+                    • Endpoints del micro-backend <code>ProjectJaina_WebAPI.py</code> (puerto 8080).<br>
+                    • Protocolo de señalización WebRTC y sincronización Eluna (puerto 3050).<br>
+                    • Esquemas criptográficos SRP6 en <code>auth.account</code>.
+                </div>
+                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <a href="Arquitectura.md" target="_blank" style="padding: 0.35rem 0.65rem; background: rgba(163, 53, 238, 0.15); border: 1px solid rgba(163, 53, 238, 0.4); border-radius: 6px; color: #d2a8ff; font-size: 0.74rem; text-decoration: none; font-weight: 700;">🏛️ Arquitectura</a>
+                    <a href="Guia_API.md" target="_blank" style="padding: 0.35rem 0.65rem; background: rgba(163, 53, 238, 0.15); border: 1px solid rgba(163, 53, 238, 0.4); border-radius: 6px; color: #d2a8ff; font-size: 0.74rem; text-decoration: none; font-weight: 700;">🔌 Guía de API</a>
+                </div>
+            </div>
         </div>
     </div>
 

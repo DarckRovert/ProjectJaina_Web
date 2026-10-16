@@ -1,0 +1,193 @@
+[
+  {
+    "id": "pack_tier1",
+    "category": "tokens",
+    "rarity": "raro",
+    "rarity_label": "RARO",
+    "name": "Cofre de la Dama Valiente",
+    "description": "500 Tokens de Jaina + 4 Bolsas de Gran Capacidad + Fichas de Evento para la Tesorería.",
+    "price": "5.00",
+    "currency": "USD",
+    "tokens": 500,
+    "icon": "🪙",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 500, "name": "Token de Jaina" },
+      { "type": "item", "entry": 910000, "count": 10, "name": "Ficha de Evento" }
+    ]
+  },
+  {
+    "id": "pack_tier2",
+    "category": "mounts",
+    "rarity": "epico",
+    "rarity_label": "ÉPICO",
+    "name": "Arsenal Arcano de Theramore",
+    "description": "1,500 Tokens de Jaina + Montura Épica Terrestre/Voladora 'Tigre Espectral Raudo' (310% vel).",
+    "price": "15.00",
+    "currency": "USD",
+    "tokens": 1500,
+    "icon": "🐉",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 1500, "name": "Token de Jaina" },
+      { "type": "mount", "entry": 49284, "count": 1, "name": "Reins of the Swift Spectral Tiger", "data": "49284" }
+    ]
+  },
+  {
+    "id": "pack_tier3",
+    "category": "mounts",
+    "rarity": "legendario",
+    "rarity_label": "LEGENDARIO",
+    "name": "Soberano de Dalaran",
+    "description": "3,500 Tokens de Jaina + Riendas del Destrero Celestial + Título Honorífico 'Soberano de Theramore'.",
+    "price": "30.00",
+    "currency": "USD",
+    "tokens": 3500,
+    "icon": "👑",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 3500, "name": "Token de Jaina" },
+      { "type": "mount", "entry": 54811, "count": 1, "name": "Celestial Steed", "data": "74856" },
+      { "type": "title", "entry": 145, "count": 1, "name": "Soberano de Theramore" }
+    ]
+  },
+  {
+    "id": "pack_tier4",
+    "category": "mounts",
+    "rarity": "mitico",
+    "rarity_label": "MÍTICO",
+    "name": "Bendición del Consejo de los Seis",
+    "description": "8,000 Tokens de Jaina + Montura Mítica 'Invencible de Arthas' (Riendas de Invencible).",
+    "price": "60.00",
+    "currency": "USD",
+    "tokens": 8000,
+    "icon": "🔮",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 8000, "name": "Token de Jaina" },
+      { "type": "mount", "entry": 50818, "count": 1, "name": "Invincible's Reins", "data": "72286" }
+    ]
+  },
+  {
+    "id": "pack_supporter",
+    "category": "battlepass",
+    "rarity": "epico",
+    "rarity_label": "PASE VIP",
+    "name": "Pase de Batalla VIP Project JAIna",
+    "description": "Desbloquea los 100 niveles prémium del Pase de Batalla de la temporada actual al instante.",
+    "price": "10.00",
+    "currency": "USD",
+    "tokens": 0,
+    "icon": "🏆",
+    "rewards": [
+      { "type": "vip", "entry": 1, "count": 1, "name": "Acceso VIP Pase de Batalla" }
+    ]
+  },
+  {
+    "id": "service_rename",
+    "category": "services",
+    "rarity": "especial",
+    "rarity_label": "SERVICIO",
+    "name": "Servicio: Cambio de Nombre o Raza",
+    "description": "400 Tokens de Jaina para canjear servicios cosméticos y de identidad con Kaelia Sombraetérea.",
+    "price": "4.00",
+    "currency": "USD",
+    "tokens": 400,
+    "icon": "📜",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 400, "name": "Token de Jaina" }
+    ]
+  },
+  {
+    "id": "wings_celestial",
+    "category": "wings",
+    "rarity": "epico",
+    "rarity_label": "AURA MÍSTICA",
+    "name": "Alas Angelicales Celestiales (Blancas / Rojas)",
+    "description": "Desbloqueo inmediato in-game de las Alas Angelicales Blancas + 10 Fichas de Evento.",
+    "price": "6.00",
+    "currency": "USD",
+    "tokens": 600,
+    "icon": "🪽",
+    "rewards": [
+      { "type": "aura", "entry": 1, "count": 1, "name": "Alas Angelicales Blancas", "data": "exp" },
+      { "type": "item", "entry": 910000, "count": 10, "name": "Ficha de Evento" }
+    ]
+  },
+  {
+    "id": "wings_demonic",
+    "category": "wings",
+    "rarity": "epico",
+    "rarity_label": "AURA MÍSTICA",
+    "name": "Alas Demoníacas del Abismo (4 Variantes)",
+    "description": "Desbloqueo inmediato in-game de las Alas Demoníacas Rojas + 12 Fichas de Evento.",
+    "price": "7.00",
+    "currency": "USD",
+    "tokens": 700,
+    "icon": "🦇",
+    "rewards": [
+      { "type": "aura", "entry": 4, "count": 1, "name": "Alas Demoníacas Rojas", "data": "oro" },
+      { "type": "item", "entry": 910000, "count": 12, "name": "Ficha de Evento" }
+    ]
+  },
+  {
+    "id": "wings_elements",
+    "category": "wings",
+    "rarity": "legendario",
+    "rarity_label": "ELEMENTAL",
+    "name": "Alas de Hielo de Rasganorte & Fuego de Ragnaros",
+    "description": "Desbloqueo de las legendarias Alas de Hielo + 15 Fichas de Evento.",
+    "price": "9.00",
+    "currency": "USD",
+    "tokens": 900,
+    "icon": "❄️",
+    "rewards": [
+      { "type": "aura", "entry": 13, "count": 1, "name": "Alas de Hielo", "data": "rep" },
+      { "type": "item", "entry": 910000, "count": 15, "name": "Ficha de Evento" }
+    ]
+  },
+  {
+    "id": "wings_collection_17",
+    "category": "wings",
+    "rarity": "mitico",
+    "rarity_label": "COLECCIÓN SUPREMA",
+    "name": "Colección Completa de las 17 Alas Místicas de Dalaran",
+    "description": "50 Fichas de Evento + Desbloqueo de 3 Auras Mayores a tu elección.",
+    "price": "18.00",
+    "currency": "USD",
+    "tokens": 1800,
+    "icon": "✨",
+    "rewards": [
+      { "type": "aura", "entry": 1, "count": 1, "name": "Alas Angelicales Blancas" },
+      { "type": "aura", "entry": 4, "count": 1, "name": "Alas Demoníacas Rojas" },
+      { "type": "aura", "entry": 13, "count": 1, "name": "Alas de Hielo" },
+      { "type": "item", "entry": 910000, "count": 50, "name": "Ficha de Evento" }
+    ]
+  },
+  {
+    "id": "transmog_pass_single",
+    "category": "transmog",
+    "rarity": "raro",
+    "rarity_label": "ILUSIÓN",
+    "name": "Pase de Ilusión Transparente (Individual)",
+    "description": "350 Tokens de Jaina para transfigurar ranuras invisibles con Kaelia Sombraetérea.",
+    "price": "3.50",
+    "currency": "USD",
+    "tokens": 350,
+    "icon": "👗",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 350, "name": "Token de Jaina" }
+    ]
+  },
+  {
+    "id": "transmog_fullset_turtle",
+    "category": "transmog",
+    "rarity": "legendario",
+    "rarity_label": "EXCLUSIVO JAINACORE",
+    "name": "Guardarropa Invisible Completo (Set Total de 9 Ranuras)",
+    "description": "850 Tokens de Jaina para transfigurar el conjunto completo de 9 piezas transparentes.",
+    "price": "8.50",
+    "currency": "USD",
+    "tokens": 850,
+    "icon": "✨",
+    "rewards": [
+      { "type": "item", "entry": 900100, "count": 850, "name": "Token de Jaina" }
+    ]
+  }
+]

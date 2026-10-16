@@ -27,6 +27,7 @@
             <li><a href="registro.html">Crear Cuenta</a></li>
             <li><a href="armeria.html">Armería</a></li>
             <li><a href="tienda.html">Tienda & Donar</a></li>
+            <li><a href="voz/index.html" style="color: #00e5ff; font-weight: bold;">🎙️ Voz 3D</a></li>
             <li><a href="wiki/index.html">📖 Wiki de Lore</a></li>
             <li><a href="#como-jugar">¿Cómo Jugar?</a></li>
             <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
@@ -47,9 +48,10 @@
             </div>
         </div>
 
-        <div class="hero-actions">
-            <a href="registro.html" class="btn-primary">⚔️ Registrar Cuenta SRP6</a>
-            <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download="ProjectJaina_Launcher_Oficial.zip" class="btn-secondary" title="Descarga directa en 1 clic del instalador y actualizador oficial">⚡ Descargar Lanzador Oficial (~40 MB)</a>
+        <div class="hero-actions" style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem;">
+            <a href="registro.html" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem; box-shadow: 0 0 25px rgba(245, 158, 11, 0.45); letter-spacing: 0.5px;">⚔️ Crear Cuenta SRP6</a>
+            <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0c4a6e 100%); border-color: #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); letter-spacing: 0.5px;" title="Descarga directa del Lanzador Oficial v2.1 (~20 MB) ejecutable en 1 Clic">⚡ Descargar Lanzador Oficial v2.1 (~20 MB)</a>
+            <a href="#como-jugar" class="btn-secondary" style="font-size: 0.95rem; padding: 0.85rem 1.4rem; border-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px);">📦 Guía de Descargas & Cliente Completo ➔</a>
         </div>
 
         <!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
@@ -89,7 +91,7 @@
             </div>
             <div class="opening-meta-info">
                 <span>🕒 Hora Oficial de Apertura: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
-                <span>🌐 Realmlist Global Directo: <strong>set realmlist ambulance-arxiv.tun.ply.gg:49390</strong></span>
+                <span>🌐 Servidor Global Anycast: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong> (Conexión Directa · Cero VPN)</span>
             </div>
         </div>
 
@@ -98,8 +100,8 @@
             <div class="status-metric">
                 <div class="metric-label">Estado del Servidor</div>
                 <div class="metric-value">
-                    <span id="statusDot" class="pulse-dot"></span>
-                    <span id="statusText">ONLINE</span>
+                    <span id="statusDot" class="pulse-dot offline"></span>
+                    <span id="statusText" style="color: var(--text-muted);">COMPROBANDO...</span>
                 </div>
             </div>
             <div class="status-metric">
@@ -119,8 +121,10 @@
                 <div class="metric-value" id="totalAccounts">--</div>
             </div>
             <div class="status-metric">
-                <div class="metric-label">Realmlist Oficial</div>
-                <div class="metric-value" style="font-size: 0.92rem; color: var(--gold-primary);">ambulance-arxiv.tun.ply.gg:49390</div>
+                <div class="metric-label">Conexión Global</div>
+                <div class="metric-value" style="font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
+                    <a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Oficial Anycast sin VPN">🌐 Conectar en 1 Clic ➔</a>
+                </div>
             </div>
         </div>
     </header>
@@ -551,49 +555,148 @@
         </div>
     </section>
 
-    <!-- GUÍA DE CONEXIÓN EN 3 PASOS -->
-    <section id="como-jugar" class="factions-section">
-        <h2 class="section-title">¿Cómo Ingresar a Project Jaina?</h2>
-        <p class="section-subtitle">Configuración rápida en 3 sencillos pasos para sumergirte en Azeroth</p>
+    <!-- GUÍA DE CONEXIÓN RÁPIDA (ZERO-VPN ANYCAST 1-CLIC) -->
+    <section id="como-jugar" class="conn-guide-section">
+        <div style="text-align: center; max-width: 850px; margin: 0 auto;">
+            <div class="hero-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399;">🌐 CERO PROGRAMAS EXTERNOS · SIN VPN</div>
+            <h2 class="section-title">¿Cómo Entrar a Jugar en 3 Pasos?</h2>
+            <p class="section-subtitle">Conéctate directamente desde cualquier parte del mundo sin instalar VPNs, sin configurar routers y en menos de 2 minutos.</p>
+        </div>
 
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-number">01</div>
-                <h3 class="step-title">Conexión Global Sin VPN</h3>
-                <p class="step-desc">El reino opera con túneles dedicados de baja latencia con protección perimetral. ¡Juega desde cualquier país sin instalar VPNs!</p>
-                <div class="code-box">
-                    <div><strong>Acceso:</strong> Global Directo Anycast (Sin VPN)</div>
-                    <div><strong>Reino:</strong> Project JAIna (WotLK 3.3.5a)</div>
-                    <div><strong>Estado:</strong> Servidor Público Abierto</div>
+        <div class="conn-master-banner" style="border-color: rgba(16, 185, 129, 0.3); margin-top: 2rem;">
+            <div class="conn-master-info">
+                <div class="conn-live-beacon" style="background: #10b981; box-shadow: 0 0 12px #10b981;"></div>
+                <div class="conn-master-text">
+                    <h4>Reino Oficial Project Jaina (Infraestructura Anycast Global)</h4>
+                    <p>Acceso directo público mundial · Baja latencia · Audio Espacial 3D · Gráficos HD nativos</p>
                 </div>
             </div>
-
-            <div class="step-card">
-                <div class="step-number">02</div>
-                <h3 class="step-title">Crea tu Cuenta SRP6</h3>
-                <p class="step-desc">Ve a nuestra sección de <a href="registro.html" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Crear Cuenta</a>. Tu usuario y contraseña se cifran con SRP6 militar y se activan al instante en la base de datos de juego.</p>
-                <div style="margin-top: 1.2rem;">
-                    <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.6rem 1rem; font-size: 0.85rem;">🛡️ Registro Instantáneo</a>
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-number">03</div>
-                <h3 class="step-title">Descarga el Lanzador o Cliente y Juega</h3>
-                <p class="step-desc">Elige la opción que mejor se adapte a tu computadora y conéctate en 1 clic:</p>
-                <div class="code-box">
-                    <code>set realmlist ambulance-arxiv.tun.ply.gg:49390</code>
-                </div>
-                <div style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem;">
-                    <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download="ProjectJaina_Launcher_Oficial.zip" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem;" title="Descarga directa instantánea">⚡ Descargar Lanzador Oficial & AddOns (~40 MB)</a>
-                    <a href="https://drive.google.com/drive/folders/1cAZsKnyrFK4IALW3a4NaCLIiYR1jJb7E?usp=sharing" target="_blank" style="display: block; text-align: center; font-size: 0.75rem; color: #93c5fd; text-decoration: underline;">☁️ Espejo alternativo en Google Drive</a>
-                    <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem; border: 1px solid rgba(255,255,255,0.2);">📦 Descargar Cliente Completo HD (~16.5 GB)</a>
-                </div>
-                <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">
-                    El lanzador auto-detecta tu WoW, instala los AddOns y calibra la memoria D3D9 automáticamente.
-                </p>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">ESTADO DEL SERVIDOR:</span>
+                <span class="conn-ip-badge" style="color: #34d399; border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1);">🟢 ONLINE (ANYCAST L4)</span>
             </div>
         </div>
+
+        <!-- CUADRÍCULA DE 3 PASOS SIMPLES -->
+        <div class="conn-steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
+            
+            <!-- PASO 1: REGISTRO -->
+            <div class="conn-step-card">
+                <div class="conn-step-header">
+                    <div class="conn-step-badge">1</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">REGISTRO INSTANTÁNEO</div>
+                        <h3 class="conn-step-title">Crea tu Cuenta de Juego</h3>
+                    </div>
+                </div>
+                <p class="conn-step-desc">
+                    Elige tu nombre de usuario y contraseña con seguridad criptográfica SRP6. Tu cuenta queda activa de inmediato en la base de datos oficial.
+                </p>
+                <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.75rem 1rem; font-size: 0.88rem; margin-top: 1rem;">
+                    ⚔️ Crear Cuenta Gratis
+                </a>
+                <div class="conn-callout-tip green-tip" style="margin-top: 1rem;">
+                    🛡️ <strong>100% Gratuito:</strong> Sin suscripciones, sin Pay-to-Win y sin correos de verificación.
+                </div>
+            </div>
+
+            <!-- PASO 2: DESCARGA INTELIGENTE -->
+            <div class="conn-step-card" style="border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+                <div class="conn-step-header">
+                    <div class="conn-step-badge frost-badge">2</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 700; letter-spacing: 0.5px;">CENTRO DE DESCARGAS</div>
+                        <h3 class="conn-step-title">Elige tu Opción</h3>
+                    </div>
+                </div>
+
+                <!-- Opción A: Recomendado (Ya tengo WoW 3.3.5a) -->
+                <div style="background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Opción 1 (Recomendada)</span>
+                        <span style="font-size: 0.68rem; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; padding: 1px 6px; border-radius: 4px; font-weight: 700;">20 MB</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #ffffff; font-weight: 600; margin-bottom: 0.2rem;">¿Ya tienes World of Warcraft 3.3.5a?</div>
+                    <p style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.35; margin-bottom: 0.6rem;">
+                        Descarga el lanzador oficial ejecutable en 1 Clic. Ábrelo, vincula tu carpeta de WoW y configura la conexión Anycast y los 17 AddOns al instante.
+                    </p>
+                    <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="btn-primary" style="display: block; text-align: center; padding: 0.6rem 0.8rem; font-size: 0.82rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border-color: #38bdf8; font-weight: 700;" title="Descargar Lanzador Oficial v2.1 (~20 MB .EXE)">
+                        ⚡ Descargar Lanzador Oficial (~20 MB .EXE)
+                    </a>
+                    <div style="margin-top: 6px; text-align: center; font-size: 0.70rem; color: var(--text-muted);">
+                        ¿Prefieres versión comprimida? <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download="ProjectJaina_Launcher_Oficial.zip" style="color: #38bdf8; text-decoration: underline;" title="Descargar paquete ZIP con documentos y utilidades">Descargar .ZIP portable (40 MB)</a>
+                    </div>
+                </div>
+
+                <!-- Opción B: Cliente Completo HD (P2P BitTorrent) -->
+                <div style="background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 0.5px;">🧲 Opción 2 (Cliente Completo)</span>
+                        <span style="font-size: 0.68rem; background: rgba(245, 158, 11, 0.2); color: #fde68a; padding: 1px 6px; border-radius: 4px; font-weight: 700;">36 GB HD</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #ffffff; font-weight: 600; margin-bottom: 0.2rem;">¿No tienes el juego instalado?</div>
+                    <p style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.35; margin-bottom: 0.6rem;">
+                        Descarga el cliente completo con texturas HD, interfaz Dragonflight y audio 3D sin límites de velocidad ni caídas.
+                    </p>
+                    <div style="display: flex; gap: 0.4rem;">
+                        <a href="magnet:?xt=urn:btih:c58119dc62195cbbefdbc133f30f171cda9f55fb&amp;dn=ProjectJaina_Cliente_FHD&amp;tr=udp%3A//tracker.opentrackr.org%3A1337/announce&amp;tr=udp%3A//open.stealth.si%3A80/announce&amp;tr=udp%3A//tracker.torrent.eu.org%3A451/announce&amp;tr=udp%3A//tracker.openbittorrent.com%3A6969/announce&amp;tr=udp%3A//exodus.desync.com%3A6969/announce&amp;tr=udp%3A//tracker.moeking.me%3A6969/announce&amp;tr=udp%3A//explodie.org%3A6969/announce&amp;tr=http%3A//tracker.openbittorrent.com%3A80/announce" class="btn-secondary" style="flex: 1.2; text-align: center; padding: 0.55rem 0.4rem; font-size: 0.76rem; border-color: rgba(255, 215, 0, 0.5); color: var(--gold-primary); font-weight: 700;" title="Abrir enlace Magnet directamente en uTorrent o qBittorrent">
+                            ⚡ Enlace Magnet (1 Clic)
+                        </a>
+                        <a href="downloads/ProjectJaina_Cliente_FHD.torrent" download="ProjectJaina_Cliente_FHD.torrent" class="btn-secondary" style="flex: 1; text-align: center; padding: 0.55rem 0.4rem; font-size: 0.76rem; border-color: rgba(0, 229, 255, 0.4); color: #00e5ff; font-weight: 700;" title="Descargar archivo .torrent P2P">
+                            📁 Archivo .Torrent
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Opción C: Espejo de Respaldo Nube (Discreto / Contingencia) -->
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 0.6rem 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+                    <div style="font-size: 0.72rem; color: var(--text-muted);">
+                        ☁️ ¿Tu red bloquea P2P? <span style="color: #cbd5e1;">Espejo en Google Drive</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" style="font-size: 0.72rem; color: #34d399; font-weight: 700; text-decoration: underline;" title="Carpeta de Google Drive (Espejo de contingencia)">
+                        Abrir Espejo ➔
+                    </a>
+                </div>
+            </div>
+
+            <!-- PASO 3: ENTRAR A JUGAR -->
+            <div class="conn-step-card">
+                <div class="conn-step-header">
+                    <div class="conn-step-badge">3</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.5px;">EN 1 CLIC</div>
+                        <h3 class="conn-step-title">¡Entra a Azeroth!</h3>
+                    </div>
+                </div>
+                <p class="conn-step-desc">
+                    Abre <code>ProjectJaina_Launcher.exe</code> (o <code>Iniciar_Juego.bat</code>), pulsa <strong>ENTRAR A AZEROTH</strong> y pon tus datos del Paso 1.
+                </p>
+                <div class="conn-callout-tip frost-tip" style="margin-top: 1rem;">
+                    ⚡ <strong>Auto-Configuración:</strong> El lanzador enruta automáticamente el tráfico por el túnel Anycast sin que tengas que editar archivos.
+                </div>
+                <div class="conn-callout-tip green-tip" style="margin-top: 0.6rem;">
+                    🎙️ <strong>Voz Espacial 3D:</strong> Activa el micrófono en el juego con <code>/voz</code> para hablar por proximidad.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FAQ RÁPIDO & RESOLUCIÓN DE DUDAS -->
+        <div class="conn-faq-bar" style="margin-top: 2rem;">
+            <div class="conn-faq-item">
+                <h5>🌐 ¿Necesito instalar programas de VPN?</h5>
+                <p><strong>No.</strong> Nuestro servidor cuenta con túneles dedicados Anycast (Playit). Puedes conectarte directamente a través de tu internet habitual.</p>
+            </div>
+            <div class="conn-faq-item">
+                <h5>📁 ¿Ya tengo World of Warcraft 3.3.5a?</h5>
+                <p>Solo descarga nuestro <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download style="color: #00e5ff; font-weight: bold; text-decoration: underline;">Lanzador Oficial</a> (~40 MB), cópialo a tu carpeta de WoW y pulsa Jugar. ¡Configura todo en 1 clic!</p>
+            </div>
+            <div class="conn-faq-item">
+                <h5>💬 ¿Necesitas asistencia o soporte?</h5>
+                <p>Únete a nuestro <a href="https://discord.gg/YFpGGy8RGR" target="_blank" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Discord Oficial de Project Jaina</a>. La comunidad y el staff te ayudarán al instante.</p>
+            </div>
+        </div>
+
     </section>
 
     <!-- AVISO LEGAL & ATRIBUCIÓN INTELECTUAL -->
@@ -631,5 +734,6 @@
     <script src="js/progression.js?v=20261012d"></script>
     <script src="js/countdown.js?v=20261012d"></script>
     <script src="js/jaina_dialogue.js?v=20261012d"></script>
+    <script src="js/connection_guide.js?v=20261014a"></script>
 </body>
 </html>

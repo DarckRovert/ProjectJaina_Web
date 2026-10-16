@@ -13,25 +13,127 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-// Catálogo fallback (SSOT local) — sincronizado con SHOP_CATALOG en WebAPI
+// Catálogo fallback (SSOT local) — sincronizado con store_catalog.json en WebAPI
 const DEFAULT_CATALOG = [
-    // 🪽 CATEGORÍA: ALAS MÍSTICAS & AURAS (Catálogo 59_SpellVisualCatalog)
-    { id:"wings_celestial",    category:"wings",    rarity:"epico",     rarity_label:"AURA MÍSTICA",      name:"Alas Angelicales Celestiales (Blancas / Rojas)",        description:"Canaliza auras sagradas radiantes. Visible para todos los jugadores en el mundo mientras caminas, combates o vuelas.", icon:"🪽", price:"6.00" },
-    { id:"wings_demonic",      category:"wings",    rarity:"epico",     rarity_label:"AURA MÍSTICA",      name:"Alas Demoníacas del Abismo (4 Variantes)",             description:"Auras de fuego vil y vacío cósmico. Despliega alas demoníacas con efecto de partículas ardientes persistentes.", icon:"🦇", price:"7.00" },
-    { id:"wings_elements",     category:"wings",    rarity:"legendario",rarity_label:"ELEMENTAL",         name:"Alas de Hielo de Rasganorte & Fuego de Ragnaros",      description:"El poder polar del Rey Exánime y llamas de Tierras de Fuego. Incluye Alas de Dragón y de Brasas Volcánicas.", icon:"❄️", price:"9.00" },
-    { id:"wings_collection_17",category:"wings",    rarity:"mitico",    rarity_label:"COLECCIÓN SUPREMA", name:"Colección Completa de las 17 Alas Místicas de Dalaran", description:"Desbloqueo vitalicio de las 17 variantes de alas del catálogo de Kaelia Sombraetérea para toda tu cuenta.", icon:"✨", price:"18.00" },
-
-    // 👗 CATEGORÍA: GUARDARROPA TRANSPARENTE ESPECTRAL (JAINACORE)
-    { id:"transmog_pass_single",category:"transmog",rarity:"raro",      rarity_label:"ILUSIÓN",           name:"Pase de Ilusión Transparente (Individual)",            description:"Permite ocultar hombreras, pechera, pantalones o cualquier ranura con Kaelia Sombraetérea, manteniendo el 100% de estadísticas.", icon:"👗", price:"3.50" },
-    { id:"transmog_fullset_turtle",category:"transmog",rarity:"legendario",rarity_label:"EXCLUSIVO JAINACORE",name:"Guardarropa Invisible Completo (Set Total de 9 Ranuras)",description:"Indumentaria translúcida arcana: oculta tu set de armadura de 9 piezas para lucir tu anatomía o vestimenta sin perder armadura, gemas ni stats.", icon:"✨", price:"8.50" },
-
-    // 🪙 TOKENS & SERVICIOS
-    { id:"pack_tier1",    category:"tokens",     rarity:"raro",      rarity_label:"RARO",      name:"Cofre de la Dama Valiente",        description:"500 Tokens de Jaina + 20 Bolsas de 36 Casillas + Mascota Pingüino de Rasganorte.",       icon:"🪙",  price:"5.00"  },
-    { id:"pack_tier2",    category:"mounts",     rarity:"epico",     rarity_label:"ÉPICO",     name:"Arsenal Arcano de Theramore",      description:"1,500 Tokens + Montura Épica Voladora 'Draco del Viento de Hielo' (310% vel) + Compañero Dracónico.", icon:"🐉",  price:"15.00" },
-    { id:"pack_tier3",    category:"mounts",     rarity:"legendario",rarity_label:"LEGENDARIO",name:"Soberano de Dalaran",              description:"3,500 Tokens + Riendas del Destrero Celestial + Título 'Soberano de Theramore' + Acceso VIP.",  icon:"👑",  price:"30.00" },
-    { id:"pack_tier4",    category:"mounts",     rarity:"mitico",    rarity_label:"MÍTICO",    name:"Bendición del Consejo de los Seis",description:"8,000 Tokens + Montura 'Invencible de Arthas' + Cambio de Raza/Facción + Set de Transfiguración Mítica.", icon:"🔮",  price:"60.00" },
-    { id:"pack_supporter",category:"battlepass", rarity:"epico",     rarity_label:"PASE VIP",  name:"Pase de Batalla VIP Project JAIna",description:"Desbloquea los 100 niveles prémium del Pase de Batalla con cosméticos y títulos exclusivos.",    icon:"🏆",  price:"10.00" },
-    { id:"service_rename",category:"services",   rarity:"especial",  rarity_label:"SERVICIO",  name:"Servicio: Cambio de Nombre o Raza",description:"Rebautiza o renueva la raza de tu héroe con activación directa en pantalla de selección.",       icon:"📜",  price:"4.00"  }
+    {
+        id: "pack_tier1", category: "tokens", rarity: "raro", rarity_label: "RARO",
+        name: "Cofre de la Dama Valiente",
+        description: "500 Tokens de Jaina + 4 Bolsas de Gran Capacidad + Fichas de Evento para la Tesorería.",
+        price: "5.00", currency: "USD", tokens: 500, icon: "🪙",
+        rewards: [
+            { type: "item", entry: 900100, count: 500, name: "Token de Jaina" },
+            { type: "item", entry: 910000, count: 10, name: "Ficha de Evento" }
+        ]
+    },
+    {
+        id: "pack_tier2", category: "mounts", rarity: "epico", rarity_label: "ÉPICO",
+        name: "Arsenal Arcano de Theramore",
+        description: "1,500 Tokens de Jaina + Montura Épica Terrestre/Voladora 'Tigre Espectral Raudo' (310% vel).",
+        price: "15.00", currency: "USD", tokens: 1500, icon: "🐉",
+        rewards: [
+            { type: "item", entry: 900100, count: 1500, name: "Token de Jaina" },
+            { type: "mount", entry: 49284, count: 1, name: "Reins of the Swift Spectral Tiger", data: "49284" }
+        ]
+    },
+    {
+        id: "pack_tier3", category: "mounts", rarity: "legendario", rarity_label: "LEGENDARIO",
+        name: "Soberano de Dalaran",
+        description: "3,500 Tokens de Jaina + Riendas del Destrero Celestial + Título Honorífico 'Soberano de Theramore'.",
+        price: "30.00", currency: "USD", tokens: 3500, icon: "👑",
+        rewards: [
+            { type: "item", entry: 900100, count: 3500, name: "Token de Jaina" },
+            { type: "mount", entry: 54811, count: 1, name: "Celestial Steed", data: "74856" },
+            { type: "title", entry: 145, count: 1, name: "Soberano de Theramore" }
+        ]
+    },
+    {
+        id: "pack_tier4", category: "mounts", rarity: "mitico", rarity_label: "MÍTICO",
+        name: "Bendición del Consejo de los Seis",
+        description: "8,000 Tokens de Jaina + Montura Mítica 'Invencible de Arthas' (Riendas de Invencible).",
+        price: "60.00", currency: "USD", tokens: 8000, icon: "🔮",
+        rewards: [
+            { type: "item", entry: 900100, count: 8000, name: "Token de Jaina" },
+            { type: "mount", entry: 50818, count: 1, name: "Invincible's Reins", data: "72286" }
+        ]
+    },
+    {
+        id: "pack_supporter", category: "battlepass", rarity: "epico", rarity_label: "PASE VIP",
+        name: "Pase de Batalla VIP Project JAIna",
+        description: "Desbloquea los 100 niveles prémium del Pase de Batalla de la temporada actual al instante.",
+        price: "10.00", currency: "USD", tokens: 0, icon: "🏆",
+        rewards: [
+            { type: "vip", entry: 1, count: 1, name: "Acceso VIP Pase de Batalla" }
+        ]
+    },
+    {
+        id: "service_rename", category: "services", rarity: "especial", rarity_label: "SERVICIO",
+        name: "Servicio: Cambio de Nombre o Raza",
+        description: "400 Tokens de Jaina para canjear servicios cosméticos y de identidad con Kaelia Sombraetérea.",
+        price: "4.00", currency: "USD", tokens: 400, icon: "📜",
+        rewards: [
+            { type: "item", entry: 900100, count: 400, name: "Token de Jaina" }
+        ]
+    },
+    {
+        id: "wings_celestial", category: "wings", rarity: "epico", rarity_label: "AURA MÍSTICA",
+        name: "Alas Angelicales Celestiales (Blancas / Rojas)",
+        description: "Desbloqueo inmediato in-game de las Alas Angelicales Blancas + 10 Fichas de Evento.",
+        price: "6.00", currency: "USD", tokens: 600, icon: "🪽",
+        rewards: [
+            { type: "aura", entry: 1, count: 1, name: "Alas Angelicales Blancas", data: "exp" },
+            { type: "item", entry: 910000, count: 10, name: "Ficha de Evento" }
+        ]
+    },
+    {
+        id: "wings_demonic", category: "wings", rarity: "epico", rarity_label: "AURA MÍSTICA",
+        name: "Alas Demoníacas del Abismo (4 Variantes)",
+        description: "Desbloqueo inmediato in-game de las Alas Demoníacas Rojas + 12 Fichas de Evento.",
+        price: "7.00", currency: "USD", tokens: 700, icon: "🦇",
+        rewards: [
+            { type: "aura", entry: 4, count: 1, name: "Alas Demoníacas Rojas", data: "oro" },
+            { type: "item", entry: 910000, count: 12, name: "Ficha de Evento" }
+        ]
+    },
+    {
+        id: "wings_elements", category: "wings", rarity: "legendario", rarity_label: "ELEMENTAL",
+        name: "Alas de Hielo de Rasganorte & Fuego de Ragnaros",
+        description: "Desbloqueo de las legendarias Alas de Hielo + 15 Fichas de Evento.",
+        price: "9.00", currency: "USD", tokens: 900, icon: "❄️",
+        rewards: [
+            { type: "aura", entry: 13, count: 1, name: "Alas de Hielo", data: "rep" },
+            { type: "item", entry: 910000, count: 15, name: "Ficha de Evento" }
+        ]
+    },
+    {
+        id: "wings_collection_17", category: "wings", rarity: "mitico", rarity_label: "COLECCIÓN SUPREMA",
+        name: "Colección Completa de las 17 Alas Místicas de Dalaran",
+        description: "50 Fichas de Evento + Desbloqueo de 3 Auras Mayores a tu elección.",
+        price: "18.00", currency: "USD", tokens: 1800, icon: "✨",
+        rewards: [
+            { type: "aura", entry: 1, count: 1, name: "Alas Angelicales Blancas" },
+            { type: "aura", entry: 4, count: 1, name: "Alas Demoníacas Rojas" },
+            { type: "aura", entry: 13, count: 1, name: "Alas de Hielo" },
+            { type: "item", entry: 910000, count: 50, name: "Ficha de Evento" }
+        ]
+    },
+    {
+        id: "transmog_pass_single", category: "transmog", rarity: "raro", rarity_label: "ILUSIÓN",
+        name: "Pase de Ilusión Transparente (Individual)",
+        description: "350 Tokens de Jaina para transfigurar ranuras invisibles con Kaelia Sombraetérea.",
+        price: "3.50", currency: "USD", tokens: 350, icon: "👗",
+        rewards: [
+            { type: "item", entry: 900100, count: 350, name: "Token de Jaina" }
+        ]
+    },
+    {
+        id: "transmog_fullset_turtle", category: "transmog", rarity: "legendario", rarity_label: "EXCLUSIVO JAINACORE",
+        name: "Guardarropa Invisible Completo (Set Total de 9 Ranuras)",
+        description: "850 Tokens de Jaina para transfigurar el conjunto completo de 9 piezas transparentes.",
+        price: "8.50", currency: "USD", tokens: 850, icon: "✨",
+        rewards: [
+            { type: "item", entry: 900100, count: 850, name: "Token de Jaina" }
+        ]
+    }
 ];
 
 // Colores de rareza canónicos de WoW
@@ -56,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => { initShop(); });
 function initShop() {
     renderCatalogCards(currentCatalog);
     setupCategoryFilters();
+    setupCheckoutListeners();
     loadRemoteCatalog();
 }
 
@@ -77,9 +180,23 @@ async function loadRemoteCatalog() {
                 currentCatalog = data;
                 renderCatalogCards(currentCatalog);
                 console.info("[Tienda] Catálogo cargado desde WebAPI:", data.length, "paquetes.");
+                return;
             }
         }
     } catch (_) { /* fallback al catálogo local */ }
+
+    // Fallback secundario estático a data/store_catalog.json
+    try {
+        const respLocal = await fetch("data/store_catalog.json");
+        if (respLocal.ok) {
+            const dataLocal = await respLocal.json();
+            if (Array.isArray(dataLocal) && dataLocal.length > 0) {
+                currentCatalog = dataLocal;
+                renderCatalogCards(currentCatalog);
+                console.info("[Tienda] Catálogo cargado desde data/store_catalog.json");
+            }
+        }
+    } catch (_) { /* fallback a DEFAULT_CATALOG */ }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -101,7 +218,22 @@ function renderCatalogCards(catalog) {
 
     container.innerHTML = filtered.map(pkg => {
         const r = RARITY_COLORS[pkg.rarity] || RARITY_COLORS.epico;
-        const tokens = pkg.tokens ? `<div style="font-size:.8rem;color:${r.text};margin-top:.3rem;">🪙 ${Number(pkg.tokens).toLocaleString()} Tokens de Jaina</div>` : "";
+        const tokens = pkg.tokens ? `<div style="font-size:.8rem;color:${r.text};margin-top:.3rem;font-weight:600;">🪙 ${Number(pkg.tokens).toLocaleString()} Tokens de Jaina</div>` : "";
+        
+        let rewardsHtml = "";
+        if (pkg.rewards && pkg.rewards.length > 0) {
+            const itemsList = pkg.rewards.map(rw => {
+                let icon = "🎁";
+                if (rw.type === "mount") icon = "🐎";
+                else if (rw.type === "title") icon = "👑";
+                else if (rw.type === "aura") icon = "🪽";
+                else if (rw.type === "vip") icon = "⭐";
+                else if (rw.name && rw.name.includes("Token")) icon = "🪙";
+                return `<span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px 6px;margin:2px 2px 0 0;font-size:0.73rem;color:#e2e8f0;">${icon} ${rw.count > 1 ? rw.count + 'x ' : ''}${rw.name}</span>`;
+            }).join("");
+            rewardsHtml = `<div style="margin-top:0.45rem;display:flex;flex-wrap:wrap;gap:2px;">${itemsList}</div>`;
+        }
+
         return `
         <div class="shop-card rarity-${pkg.rarity}"
              id="card-${pkg.id}"
@@ -114,6 +246,7 @@ function renderCatalogCards(catalog) {
                 <div class="shop-title" style="color:${r.text};">${pkg.name}</div>
                 <div class="shop-desc">${pkg.description}</div>
                 ${tokens}
+                ${rewardsHtml}
             </div>
             <div class="shop-card-bottom">
                 <div class="shop-price">$${pkg.price} <span>USD</span></div>
@@ -132,20 +265,22 @@ function renderCatalogCards(catalog) {
 // ─────────────────────────────────────────────────────────────────────────────
 function selectPackage(id, name, price) {
     selectedPackage  = { id, name, price };
-    _validatedChar   = null;
 
     const checkout = document.getElementById("checkoutSection");
     const summary  = document.getElementById("selectedPkgSummary");
     if (summary) summary.innerHTML = `Has seleccionado: <strong>${name}</strong> por <strong>$${price} USD</strong>`;
-    if (checkout) { checkout.style.display = "block"; checkout.scrollIntoView({ behavior:"smooth", block:"center" }); }
+    if (checkout) { 
+        checkout.style.display = "block"; 
+        checkout.scrollIntoView({ behavior:"smooth", block:"center" }); 
+    }
 
-    // Limpiar badge de validación previo
-    _clearCharBadge();
-    // Vincular validación en tiempo real al campo de personaje
     const inp = document.getElementById("targetCharacterName");
-    if (inp) {
-        inp.oninput = null;
-        inp.addEventListener("input", _debounce(_validateCharacterLive, 700));
+    const charName = inp?.value.trim();
+    if (charName && charName.length >= 2) {
+        _validateCharacterLive();
+    } else {
+        const btnContainer = document.getElementById("paypal-button-container");
+        if (btnContainer) btnContainer.innerHTML = "";
     }
 }
 
@@ -261,13 +396,12 @@ async function simulateTestDonation() {
             feedback.innerHTML = `<div>⚠️ <strong>Validación Fallida</strong></div>
                 <p style="margin-top:5px;font-size:.88rem;">${data.message || "No se pudo verificar."}</p>`;
         }
-    } catch (_) {
+    } catch (err) {
         if (feedback) {
-            feedback.className = "payment-feedback-box success-box";
-            feedback.innerHTML = `<div>🎉 <strong>¡Simulación Local Registrada!</strong></div>
+            feedback.className = "payment-feedback-box error-box";
+            feedback.innerHTML = `<div>⚠️ <strong>Servidor Offline o Inaccesible</strong></div>
                 <p style="margin-top:5px;font-size:.88rem;">
-                Orden para <strong>${charName.toUpperCase()}</strong> · paquete <strong>${selectedPackage.name}</strong> 
-                en cola. El servidor la procesará cuando esté en línea.</p>`;
+                No se pudo comunicar con el Gateway WebAPI (${err.message}). La simulación en tiempo real requiere que el clúster esté en línea.</p>`;
         }
     }
 }
@@ -307,9 +441,19 @@ function _renderPayPalButtons(container, packageId, price) {
     window.paypal.Buttons({
         createOrder: (data, actions) => {
             const charName = document.getElementById("targetCharacterName")?.value.trim();
-            if (!charName) { alert("Ingresa el nombre de tu personaje para recibir la recompensa."); throw new Error("Nombre requerido"); }
+            if (!charName) { 
+                alert("Ingresa el nombre de tu personaje para recibir la recompensa."); 
+                throw new Error("Nombre requerido"); 
+            }
+            if (!selectedPackage || !selectedPackage.price) {
+                alert("Selecciona un paquete válido.");
+                throw new Error("Paquete no seleccionado");
+            }
             return actions.order.create({
-                purchase_units: [{ amount: { value: price }, description: `Project JAIna - ${selectedPackage?.name || packageId} (Personaje: ${charName})` }]
+                purchase_units: [{ 
+                    amount: { value: String(selectedPackage.price) }, 
+                    description: `Project JAIna - ${selectedPackage.name} (Personaje: ${charName})` 
+                }]
             });
         },
         onApprove: async (data, actions) => {
@@ -363,4 +507,12 @@ function _getApiUrl() {
 function _debounce(fn, ms) {
     let t;
     return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
+}
+
+function setupCheckoutListeners() {
+    const inp = document.getElementById("targetCharacterName");
+    if (inp && !inp.dataset.listenerBound) {
+        inp.addEventListener("input", _debounce(_validateCharacterLive, 600));
+        inp.dataset.listenerBound = "true";
+    }
 }

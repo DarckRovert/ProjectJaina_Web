@@ -16,16 +16,20 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ## 2. Conexión e Instalación
 
 ### ¿Cuál es el realmlist oficial?
-Para conectar tu cliente 3.3.5a al servidor, abre tu archivo `Data\esES\realmlist.wtf` (o `Data\enUS\realmlist.wtf`) y configura:
+El cliente oficial se conecta de forma automática y transparente sin necesidad de configurar archivos ni instalar VPNs:
 ```text
-set realmlist ambulance-arxiv.tun.ply.gg:49390
+set realmlist 127.0.0.1
 ```
-*(Si estás jugando en red de pruebas LAN o Radmin VPN, utiliza la IP asignada `26.140.157.205` o la indicada en el launcher)*.
+*El Lanzador Oficial (`ProjectJaina_Launcher.exe`) gestiona la conexión Anycast L4 de alta velocidad directamente hacia el clúster sin que tengas que configurar puertos.*
 
-### ¿Cómo descargo y juego?
-1. Crea tu cuenta en la sección [Registro](https://darckrovert.github.io/ProjectJaina_Web/registro.html) del portal oficial.
-2. Descarga el paquete de juego desde los enlaces oficiales provistos por la administración.
-3. Ejecuta el cliente a través de **`ProjectJaina_Setup.exe`** o **`ProjectJaina_Hub.exe`**.
+### ¿Cómo descargo y juego en Project JAIna (Cero VPN)?
+1. **Crea tu cuenta:** Regístrate en 5 segundos en [Crear Cuenta](https://darckrovert.github.io/ProjectJaina_Web/registro.html) con cifrado militar SRP6.
+2. **Descarga el Cliente o Lanzador:** 
+   - Si no tienes World of Warcraft 3.3.5a: Descarga el cliente completo oficial (37 GB) desde el enlace de Google Drive o BitTorrent en el portal.
+   - Si ya tienes un cliente 3.3.5a: Descarga solo el **Lanzador Oficial** (~40 MB) y colócalo en tu carpeta de juego.
+3. **Abre el Lanzador y Juega:** Ejecuta `ProjectJaina_Launcher.exe` y haz clic en **¡JUGAR AHORA!**. ¡Listo! Sin instalar VPNs, sin pedir contraseñas de red y sin configurar IPs.
+4. **Chat de Proximidad 3D:** Ingresa a la sección de [Voz](https://darckrovert.github.io/ProjectJaina_Web/voz/index.html) y escribe `/voz` dentro del juego para vincular tu micrófono.
+
 
 ### ¿Cómo se instalan los AddOns oficiales?
 El cliente oficial ya viene preconfigurado con la suite de 18 AddOns de Project JAIna en `Interface\AddOns\`. Si deseas actualizarlos manualmente:

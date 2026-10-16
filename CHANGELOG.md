@@ -4,15 +4,23 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.5.0] - 2026-10-16 — Transición Cero VPN (Playit Anycast L4) y Lanzador 1-Clic
+- **Erradicación Total de Radmin VPN:** Eliminada cualquier necesidad de redes privadas virtuales para los jugadores. Toda la conectividad opera de forma nativa y transparente mediante túneles Playit Anycast L4 de nivel de transporte.
+- **Onboarding de 1 Clic:** Reestructurada la guía de conexión pública a un flujo simplificado de 3 pasos (Registro SRP6 -> Descarga -> ¡Jugar!).
+- **Auto-Actualización del Lanzador:** Integrado protocolo atómico de actualización hot-swap (`.old` swap) y selector de instalación para nuevos usuarios en `ProjectJaina_Launcher.exe`.
+- **Integración de Cliente Oficial:** Vinculado el repositorio oficial de descarga directa para el cliente completo (37 GB) y paquetes livianos.
+
+---
+
 ## [v2.1.0] - 2026-10-12 — Despliegue de Voz Espacial 3D, Resiliencia Multi-Tier y Navegación Unificada
 
 ### 🎙️ Audio Espacial 3D WebRTC
 - **Portal de Voz Dedicado (`voz/`):** Despliegue del cliente web de voz posicional (`voz/index.html` y `voz/app.js`) con motor de audio binaural Web Audio API (HRTF panner), VAD (Voice Activity Detection), visualizador de VU-meter y control de puerta de ruido.
-- **Selector de Servidores y Detección Automática:** Erradicada la IP estática obsoleta de VPS; implementada selección dinámica entre desarrollo local (`localhost:3050`), red Radmin VPN (`26.140.157.205:3050`) y servidores personalizados.
+- **Selector de Servidores y Detección Automática:** Erradicada la IP estática obsoleta de VPS; implementada selección dinámica entre desarrollo local (`localhost:3050`), red directa (`26.140.157.205:3050`) y servidores personalizados.
 - **Integración de Navegación Global:** Añadido el acceso a Voz 3D en la barra de navegación superior en las 5 páginas principales (`index.html`, `armeria.html`, `tienda.html`, `registro.html`, `wiki/index.html`).
 
 ### 🌐 Resiliencia y Conectividad WebAPI
-- **Cascada de Resolución Multi-Tier (`js/config.js`):** Eliminada la dependencia fija del túnel ngrok expirado; introducido mecanismo de sondeo secuencial con timeout de 1.5s vía `AbortController` (Localhost -> Radmin VPN -> Túnel).
+- **Cascada de Resolución Multi-Tier (`js/config.js`):** Eliminada la dependencia fija del túnel ngrok expirado; introducido mecanismo de sondeo secuencial con timeout de 1.5s vía `AbortController` (Localhost -> Red Directa -> Túnel Anycast).
 - **Actualización de Paquetes de Descarga:** Sincronizado `downloads/ProjectJaina_AddOns_Pack.zip` con la suite completa de addons y telemetría de voz.
 - **Normalización de Identidad:** Corregida la referencia histórica de addon a `ProjectJaina_Voice`.
 

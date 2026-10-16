@@ -33,14 +33,13 @@
             
             <form id="pin-form" class="pin-form">
                 <div class="input-group" style="margin-bottom: 14px;">
-                    <label for="server-select">SERVIDOR DE VOZ</label>
+                    <label for="server-select">SERVIDOR DE VOZ ESPACIAL</label>
                     <select id="server-select" style="width: 100%; padding: 10px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #f8fafc; font-family: inherit; font-size: 13px; cursor: pointer; outline: none;">
-                        <option value="http://26.140.157.205:3050">Host Maestro Radmin (Darck - 26.140.157.205:3050)</option>
-                        <option value="http://26.202.12.241:3050">Nodo Cómputo 32 Cores (España - 26.202.12.241:3050)</option>
-                        <option value="http://localhost:3050">Servidor Local (127.0.0.1:3050)</option>
-                        <option value="custom">Personalizado / Otra IP o Dominio...</option>
+                        <option value="https://localhost:3050">Servidor Local HTTPS (127.0.0.1:3050)</option>
+                        <option value="http://localhost:3050">Servidor Local HTTP (127.0.0.1:3050)</option>
+                        <option value="custom">Servidor Personalizado / Dominio Externo...</option>
                     </select>
-                    <input type="text" id="custom-server-input" placeholder="http://tu-ip:3050" style="display: none; margin-top: 8px; width: 100%; padding: 8px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #fff; font-size: 13px; box-sizing: border-box;">
+                    <input type="text" id="custom-server-input" placeholder="https://tu-ip:3050" style="display: none; margin-top: 8px; width: 100%; padding: 8px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #fff; font-size: 13px; box-sizing: border-box;">
                 </div>
 
                 <div class="input-group">
