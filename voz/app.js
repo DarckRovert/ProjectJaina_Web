@@ -34,7 +34,11 @@ const KNOWN_SERVERS = [
     'https://localhost:3050',
     'http://localhost:3050',
     'https://127.0.0.1:3050',
-    'http://127.0.0.1:3050'
+    'http://127.0.0.1:3050',
+    'https://26.140.157.205:3050',
+    'http://26.140.157.205:3050',
+    'https://26.202.12.241:3050',
+    'http://26.202.12.241:3050'
 ];
 
 function initServerSelector() {
