@@ -22,7 +22,7 @@ Dispones de dos vías de conexión oficiales:
    set realmlist 26.140.157.205
    ```
    * *Red Radmin:* `Project_Jaina`
-   * *Contraseña:* `thedarck1993`
+   * *Contraseña:* `Solicitar en Discord (Privada)`
 2. **Servidor Público Global (Túnel Anycast — Sin VPN):**
    ```text
    set realmlist ambulance-arxiv.tun.ply.gg:49390
@@ -32,7 +32,7 @@ Dispones de dos vías de conexión oficiales:
 1. **Descarga Radmin VPN:** Descárgalo gratis desde [radmin-vpn.com](https://www.radmin-vpn.com/es/).
 2. **Únete a la Red:** Abre Radmin VPN, haz clic en el botón de encendido y selecciona *Red ➔ Unirse a una red existente*:
    * **Nombre:** `Project_Jaina`
-   * **Contraseña:** `thedarck1993`
+   * **Contraseña:** `Solicitar en Discord (Privada)`
 3. **Crea tu cuenta:** Regístrate en la sección [Crear Cuenta](https://darckrovert.github.io/ProjectJaina_Web/registro.html) del portal oficial.
 4. **Configura tu Realmlist:** Abre `Data\esES\realmlist.wtf` con el Bloc de Notas y escribe `set realmlist 26.140.157.205` (o usa el Lanzador Oficial en 1 clic).
 5. **Abre Wow.exe y juega:** Ingresa con tu usuario y contraseña. Para habilitar el chat de voz por micrófono en el juego, ingresa desde tu navegador a `https://26.140.157.205:3050` una sola vez y escribe `/voz` in-game.

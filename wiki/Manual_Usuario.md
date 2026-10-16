@@ -19,7 +19,7 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
   1. **Conexión al Servidor Principal (Radmin VPN):**
      * Descarga e instala Radmin VPN desde su [sitio web oficial](https://www.radmin-vpn.com/es/) (100% gratuito).
      * Enciende Radmin y ve a: **Red ➔ Unirse a una red existente**.
-     * **Red:** `Project_Jaina` | **Contraseña:** `thedarck1993`
+     * **Red:** `Project_Jaina` | **Contraseña:** `Solicitar en Discord (Privada)`
      * Confirma que ves en la lista al host maestro: `🟢 Darck (26.140.157.205)`.
      * Configura tu `realmlist.wtf` con: `set realmlist 26.140.157.205` (o selecciona el perfil Radmin en el Lanzador Oficial).
   2. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 en [`registro.html`](../registro.html).
