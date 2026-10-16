@@ -3,8 +3,8 @@
   "min_version": "1.0.0",
   "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
   "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "size_bytes": 21562187,
-  "sha256": "cf2a427efb6eed41daea65a5dce0c75155ae6e660301dbec4ea9dc5ea012b91e",
-  "changelog": "Versión Oficial 2.0.0 — Detección de Cliente Drive 37 GB, LAA 4GB y Auto-Update nativo.",
-  "updated_at": 1792176258
+  "size_bytes": 21561700,
+  "sha256": "1aba76d8dd8ffb088fd7ed9ef75450006774cd44674eaf9d430ee2159b2016ec",
+  "changelog": "Versión Oficial 2.0.0 — Cero VPN Anycast L4, Detección de Cliente 37 GB, LAA 4GB y Auto-Update nativo.",
+  "updated_at": 1792176997
 }
