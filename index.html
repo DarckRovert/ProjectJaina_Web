@@ -48,9 +48,10 @@
             </div>
         </div>
 
-        <div class="hero-actions">
+        <div class="hero-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
             <a href="registro.html" class="btn-primary">⚔️ Registrar Cuenta SRP6</a>
-            <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download="ProjectJaina_Launcher_Oficial.zip" class="btn-secondary" title="Descarga directa en 1 clic del instalador y actualizador oficial">⚡ Descargar Lanzador Oficial (~40 MB)</a>
+            <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);" title="Descarga directa del Cliente Completo HD Oficial (37 GB) en Google Drive">📦 Descargar Cliente Completo HD (37 GB)</a>
+            <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download="ProjectJaina_Launcher_Oficial.zip" class="btn-secondary" title="Descarga directa del instalador y actualizador oficial (~40 MB) si ya tienes WoW 3.3.5a">⚡ Lanzador Oficial (~40 MB)</a>
         </div>
 
         <!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
@@ -90,7 +91,7 @@
             </div>
             <div class="opening-meta-info">
                 <span>🕒 Hora Oficial de Apertura: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
-                <span>🛡️ Servidor Principal: <strong style="color: #00e5ff;">26.140.157.205</strong> (Radmin VPN) · 🌐 Global: <strong style="color: var(--gold-primary);">ambulance-arxiv.tun.ply.gg:49390</strong></span>
+                <span>🛡️ Servidor Principal: <strong style="color: #00e5ff;">26.140.157.205</strong> (Radmin VPN) · 🌐 Global: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong></span>
             </div>
         </div>
 
@@ -136,6 +137,49 @@
             <h2 class="timeline-title">LÍNEA DE FASES & REINOS PROGRESIVOS</h2>
             <p class="timeline-subtitle">Evolución canónica de contenido, bandas y temporadas gobernadas por el Motor de Lore Viviente de Gravity AI</p>
             <div id="activeEraBadge" class="active-era-pill">🌟 Era Activa: <strong>World of Warcraft Classic</strong> (Cap Nivel 60)</div>
+        </div>
+
+        <!-- TARJETA OFICIAL DE CUENTA REGRESIVA: GRAN APERTURA (24/11/2026) -->
+        <div class="grand-opening-card" id="grandOpeningCard">
+            <div class="opening-badge-header">
+                <span class="opening-sparkle">✨</span>
+                <span class="opening-badge-text">GRAN APERTURA OFICIAL DEL MUNDO</span>
+                <span class="opening-sparkle">✨</span>
+            </div>
+            <h3 class="opening-title">CUENTA REGRESIVA PARA LA APERTURA</h3>
+            <p class="opening-subtitle">El Reino Maestro abrirá sus portales intercontinentales para toda la comunidad el 24 de Noviembre de 2026. Los cronómetros están sincronizados con la hora oficial de Lima y el reloj atómico del motor JainaCore.</p>
+
+            <div class="countdown-clock-grid">
+                <div class="countdown-tile">
+                    <div class="countdown-number" id="openingDays">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-tile">
+                    <div class="countdown-number" id="openingHours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-tile">
+                    <div class="countdown-number" id="openingMinutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-tile">
+                    <div class="countdown-number highlight-pulse" id="openingSeconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+
+            <div class="opening-progress-track">
+                <div class="opening-progress-fill" id="openingProgressFill" style="width: 0%;"></div>
+            </div>
+
+            <div class="opening-meta-info">
+                <span>🎯 Fecha Objetivo: <strong>24 Noviembre 2026 (00:00 UTC-5)</strong></span>
+                <span>🏛️ Era Inicial: <strong>Vanilla Classic (Nivel 60)</strong></span>
+                <span>⚡ Estado del Servidor: <strong id="openingServerStatusText">En Preparación</strong></span>
+            </div>
         </div>
 
         <!-- HUD DE TELEMETRÍA EN VIVO & TRANSICIÓN DE ERAS -->
@@ -692,9 +736,11 @@
                         Crea tu usuario y contraseña con seguridad criptográfica SRP6 e inicia sesión directamente en el juego:
                     </p>
                     
-                    <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.75rem 1rem; font-size: 0.88rem; margin-bottom: 1rem;">
-                        ⚔️ Registro Instantáneo de Cuenta
-                    </a>
+                    <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;">
+                        <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem;">🛡️ 1. Registro Instantáneo de Cuenta</a>
+                        <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399;" title="Cliente Completo HD preconfigurado de 37 GB">📦 2. Descargar Cliente Completo HD (Google Drive 37 GB)</a>
+                        <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem;" title="Lanzador y Patcher oficial para quienes ya tienen WoW 3.3.5a">⚡ 3. Descargar Solo Lanzador / Setup (~40 MB)</a>
+                    </div>
 
                     <div class="conn-callout-tip frost-tip" style="margin-bottom: 0.8rem;">
                         🎙️ <strong>Audio Espacial 3D & Micrófono:</strong> Abre en tu navegador <a href="https://26.140.157.205:3050" target="_blank" style="color: #00e5ff; font-weight: bold; text-decoration: underline;">https://26.140.157.205:3050</a>, acepta el certificado SSL una sola vez y habla por proximidad en el juego con <code>/voz</code>.
@@ -738,7 +784,7 @@
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <span style="font-size: 0.8rem; color: var(--text-muted);">HOST PÚBLICO:</span>
-                    <span class="conn-ip-badge" style="color: var(--gold-primary); border-color: rgba(243, 156, 18, 0.4); background: rgba(243, 156, 18, 0.1);">ambulance-arxiv.tun.ply.gg:49390</span>
+                    <span class="conn-ip-badge" style="color: var(--gold-primary); border-color: rgba(243, 156, 18, 0.4); background: rgba(243, 156, 18, 0.1);">ambulance-absurd.tun.ply.gg:58735</span>
                 </div>
             </div>
 
@@ -769,14 +815,17 @@
                         </div>
                     </div>
                     <p class="conn-step-desc">
-                        Abre tu archivo <code>Data/esES/realmlist.wtf</code> con el Bloc de Notas y sustituye su contenido por el host público:
+                        Al usar el <strong>Lanzador Oficial</strong>, la conexión se configura automáticamente en 1 clic. Si configuras manualmente con el proxy loopback Anycast, usa:
                     </p>
                     <div class="conn-credential-box">
                         <div style="overflow: hidden;">
-                            <div class="conn-credential-label">Host de Reino Global:</div>
-                            <div class="conn-credential-value" id="globalRealmVal" style="font-size: 0.82rem;">set realmlist ambulance-arxiv.tun.ply.gg:49390</div>
+                            <div class="conn-credential-label">Línea de Realmlist.wtf (Vía Lanzador Oficial):</div>
+                            <div class="conn-credential-value" id="globalRealmVal" style="font-size: 0.85rem;">set realmlist 127.0.0.1</div>
                         </div>
                         <button class="conn-copy-btn" onclick="copyConnectionData('globalRealmVal', this)">📋 Copiar</button>
+                    </div>
+                    <div class="conn-callout-tip frost-tip" style="margin-top: 0.6rem;">
+                        ⚡ <strong>Nota técnica WoW 3.3.5a:</strong> El cliente de WoW no admite puertos en <code>realmlist.wtf</code>. Para jugar en el Reino Global sin VPN, ejecuta el juego desde el <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download style="color: #00e5ff; font-weight: bold; text-decoration: underline;">Lanzador Oficial</a> (enruta automáticamente el puerto Anycast 58735).
                     </div>
                 </div>
 
@@ -789,11 +838,12 @@
                         </div>
                     </div>
                     <p class="conn-step-desc">
-                        Registra tu cuenta gratis en el portal y descarga nuestro Lanzador Oficial o Cliente Completo HD:
+                        Registra tu cuenta gratis en el portal y descarga el Cliente Completo HD o el Lanzador ligero:
                     </p>
                     <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                        <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem;">🛡️ Registro Instantáneo</a>
-                        <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem;">⚡ Descargar Lanzador (~40 MB)</a>
+                        <a href="registro.html" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem;">🛡️ 1. Registro Instantáneo de Cuenta</a>
+                        <a href="https://drive.google.com/drive/folders/1O_E2NbAnVLq5FBAcMMoy8X3-a0VmKgGe?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: block; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399;" title="Cliente Completo HD preconfigurado de 37 GB">📦 2. Descargar Cliente Completo HD (Google Drive 37 GB)</a>
+                        <a href="downloads/ProjectJaina_Launcher_Oficial.zip" download class="btn-secondary" style="display: block; text-align: center; padding: 0.55rem 1rem; font-size: 0.80rem;" title="Lanzador y Patcher oficial para quienes ya tienen WoW 3.3.5a">⚡ 3. Descargar Solo Lanzador / Setup (~40 MB)</a>
                     </div>
                 </div>
 

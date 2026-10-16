@@ -24,7 +24,7 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
      * Configura tu `realmlist.wtf` con: `set realmlist 26.140.157.205` (o selecciona el perfil Radmin en el Lanzador Oficial).
   2. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 en [`registro.html`](../registro.html).
   3. **Audio Espacial 3D WebRTC:** Entra con tu navegador a `https://26.140.157.205:3050` para autorizar el micrófono y habla por proximidad en el juego con `/voz`.
-  4. **Conexión Alternativa Global (Sin VPN):** Para jugar sin instalar adaptadores de red, utiliza el host Anycast `set realmlist ambulance-arxiv.tun.ply.gg:49390`.
+  4. **Conexión Alternativa Global (Sin VPN):** Para jugar sin instalar adaptadores de red, ejecuta el juego desde el Lanzador Oficial (`ProjectJaina_Launcher.exe`), el cual enruta automáticamente el puerto Anycast 58735 con `set realmlist 127.0.0.1`.
 
 
 ### 🛡️ Registro Seguro de Cuentas (`registro.html`)

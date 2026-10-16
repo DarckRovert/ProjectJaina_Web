@@ -24,8 +24,11 @@ Dispones de dos vías de conexión oficiales:
    * *Red Radmin:* `Project_Jaina`
    * *Contraseña:* `Solicitar en Discord (Privada)`
 2. **Servidor Público Global (Túnel Anycast — Sin VPN):**
+   Inicia el juego desde el **Lanzador Oficial** (`ProjectJaina_Launcher.exe` o `Iniciar_Juego.bat`).
+   - El lanzador auto-enruta el puerto Anycast 58735 de Playit.gg de forma transparente.
+   - En tu archivo `realmlist.wtf` debe figurar:
    ```text
-   set realmlist ambulance-arxiv.tun.ply.gg:49390
+   set realmlist 127.0.0.1
    ```
 
 ### ¿Cómo descargo y juego en el Servidor Principal con Radmin VPN?
