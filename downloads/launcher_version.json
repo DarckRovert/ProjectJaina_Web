@@ -1,10 +1,10 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "min_version": "1.0.0",
   "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
   "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "size_bytes": 21564712,
-  "sha256": "212a2f5b02f9399032ff12bd688c05855abd70aa8b03dedd15367e3f49cc898b",
+  "size_bytes": 21564303,
+  "sha256": "a742683364f2a7105c74d55ddb9cdcf0b58bfc7cba25080b40c867aa42982ed2",
   "changelog": "Versión Oficial 2.1.0 — Registro en 1 Clic integrado en Launcher, Descarga P2P Torrent/Magnet y Cero VPN.",
-  "updated_at": 1792180238
+  "updated_at": 1792180400
 }

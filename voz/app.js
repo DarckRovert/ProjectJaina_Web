@@ -31,12 +31,10 @@ const serverSelect = document.getElementById('server-select');
 const customServerInput = document.getElementById('custom-server-input');
 
 const KNOWN_SERVERS = [
-    'https://26.140.157.205:3050',
-    'https://26.202.12.241:3050',
     'https://localhost:3050',
     'http://localhost:3050',
-    'http://26.140.157.205:3050',
-    'http://26.202.12.241:3050'
+    'https://127.0.0.1:3050',
+    'http://127.0.0.1:3050'
 ];
 
 function initServerSelector() {
@@ -55,12 +53,8 @@ function initServerSelector() {
             }
         }
     } else {
-        // En entorno local usa localhost; en produccion web por defecto apunta al Host Maestro con HTTPS
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            serverSelect.value = window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
-        } else {
-            serverSelect.value = 'https://26.140.157.205:3050';
-        }
+        // En entorno local o web por defecto apunta a localhost/127.0.0.1 (Loopback Seguro)
+        serverSelect.value = window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
     }
 
     serverSelect.addEventListener('change', () => {
@@ -91,10 +85,7 @@ function getVoiceServerBaseUrl() {
     if (serverSelect && serverSelect.value !== 'custom') {
         return serverSelect.value.replace(/\/+$/, '');
     }
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        return window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
-    }
-    return 'https://26.140.157.205:3050';
+    return window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
 }
 
 // Configuración de WebRTC (STUN público de alta velocidad)
