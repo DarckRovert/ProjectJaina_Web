@@ -15,20 +15,25 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POST`) hacia `/api/register`:
 - Longitud mínima de credenciales (3-16 caracteres de usuario, mínimo 4 en contraseña).
 - Confirmación de contraseña y feedback visual mediante toasts no bloqueantes.
-- Creación autoritativa en `auth.account` de JainaCore.
+- Creación autoritativa en `auth.account` de JainaCore con soporte de 3 facciones canónicas: `ALIANZA`, `HORDA` y `KIRIN_TOR` (Dalaran).
+- Normalización automática de facciones legadas (`EL_SEQUITO` $\rightarrow$ `HORDA`).
 
 ### `js/store.js` — Catálogo Visual de Tienda & Donaciones
 - Renderizado de artículos cosméticos (monturas, transfiguraciones, auras y títulos).
-- Integración con pasarela PayPal / Donaciones y asignación automática por SOAP o comando de servidor.
+- Integración con pasarela PayPal / Donaciones y asignación automática por SOAP o comando de servidor con idempotencia transaccional (`uq_order_reward`).
 
 ### `js/armory.js` — Inspección de Héroes y Estadísticas
-- Búsqueda y filtrado de personajes en la base de datos `characters`.
+- Búsqueda y filtrado de personajes en la base de datos `characters` con inmunidad a diacríticos (`normalizeStr` con descompositor Unicode `NFD` y regex `[\u0300-\u036f]`).
+- Mapeo preciso de insignias para las 10 clases oficiales de WotLK (incluyendo `Caballero de la Muerte`, `Paladín`, `Pícaro`, `Chamán`).
 - Visualización de GearScore, talentos, logros y estadísticas de combate.
 
 ### `voz/app.js` — Señalización WebRTC y Motor Binaural HRTF
 - Negociación de canales de audio WebRTC bidireccionales de baja latencia con el microservicio de señalización.
+- Selector interactivo de servidor dual-node: **Nodo 1 Perú** (`26.140.157.205`) y **Nodo 2 España** (`26.202.12.241`).
+- Soporte para certificados SSL Multi-SAN X.509 vía `jaina_voice_gateway.py` (Puerto 3051 HTTPS / WSS).
 - Motor de renderizado espacial con `AudioContext` y `PannerNode` (modelo HRTF) en función de las coordenadas (X, Y, Z, O) del juego.
 - Voice Activity Detection (VAD) local y medidor de nivel VU para optimización de ancho de banda.
+
 
 ---
 

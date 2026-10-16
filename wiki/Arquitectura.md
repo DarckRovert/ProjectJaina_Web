@@ -37,9 +37,20 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 
 ---
 
-## 3. Integración con el Núcleo del Servidor
+## 3. Integración con el Núcleo del Servidor y Clúster Bi-Regional
+- **Malla Bi-Regional Soberana**:
+  - **Nodo Maestro Perú (`node_1_master` - 26.140.157.205)**: Aloja MySQL 8.4 autoritativo, AuthServer y WorldServer de producción.
+  - **Nodo Cómputo España (`node_2_compute` - 26.202.12.241)**: Computa audio 3D espacial WebRTC, inferencia neuronal de HeroBots y contingencia activa.
+  - **Conmutación Automática (Sentinel Failover)**: Si el nodo maestro de Perú o el nodo de España sufren una desconexión, el demonio Centinela delega dinámicamente la carga de ambos reinos al nodo superviviente sin requerir intervención del usuario.
+- **Topología Multi-Reino**:
+  - **Reino 1: Project Jaina (Global)**: ID 1, Puerto `8085` (Anycast L4). Progresión de Era Clásica (Nivel 60).
+  - **Reino 2: WanitosGym**: ID 2, Puerto `8085` (España) con delegación automática a Puerto `8086` (Perú contingencia).
+- **Facciones Canónicas Tripartitas**:
+  - 🦁 **La Alianza de Jaina** (`PROJECT_JAINA` / `ALLIANCE`)
+  - 🔮 **Kirin Tor Dalaran** (`KIRIN_TOR`)
+  - 🐺 **La Horda de Orgrimmar** (`HORDE`)
 - **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`).
-- **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` HTTP/WSS) para señalización y cálculo de proximidad.
+- **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` HTTPS/WSS con certificado multi-SAN).
 - **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (puerto `1234`) conectado a través de `mod-llm-chatter` y `03_Playerbot_SocialBridge.lua`.
 - **Autenticación**: Hashing criptográfico SRP6 (`srp6_auth.py`) compatible con la base de datos `acore_auth.account` de JainaCore.
 - **Telemetría**: Estado del reino en tiempo real (población, latencia, versión WotLK 3.3.5a Build 12340).
