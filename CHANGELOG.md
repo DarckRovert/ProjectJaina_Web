@@ -4,6 +4,21 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.6.1] - 2026-10-17 — Saneamiento Full-Stack: Persistencia Real en BugTracker, Calibración de Cliente y Hardening de Endpoints
+- **BugTracker con Persistencia Real MySQL (`bugs.html` & `ProjectJaina_WebAPI.py`):** Erradicados los mocks con `alert()` y `setTimeout()`. Implementada la tabla `website_bug_reports` en MySQL, endpoints REST nativos `GET /api/bugs` y `POST /api/bugs` con sanitización estricta contra inyección y XSS, estados vacíos/carga y renderizado asíncrono reactivo.
+- **Calibración Anticaída de Cliente y Lanzadores (`Config.wtf`):** Normalizado `textureCacheSize "64"` e inyectado `environmentDetail "1.0"`, `timingTestError "0"` y `rawMouseEnable "1"`, eliminando congelamientos de hilo en pantallas de carga y saturación de memoria de 32 bits de Direct3D 9 (`Texture.cpp:2057`).
+
+---
+
+## [v2.6.0] - 2026-10-16 — Supremacía Tecnológica: AoWoW Soberano, BugTracker, Discord SSO 1-Clic y Motor Delta HTTP 206
+- **Base de Datos Soberana AoWoW (`database.html`):** Explorador indexado de objetos, criaturas y hechizos con visualizador de tooltips idénticos a WotLK 3.3.5a y conectividad en vivo con `acore_world`.
+- **BugTracker Comunitario (`bugs.html`):** Portal interactivo para envío y seguimiento de incidencias de juego con trazabilidad de estado.
+- **Discord OAuth2 SSO 1-Clic:** Registro instantáneo de cuentas con cifrado seguro SRP6 vinculado a perfiles de Discord vía `/api/auth/discord/register`.
+- **Lanzador Standalone v2.2.0 con Parchado por Chunks:** Integración del motor diferencial de bloques de 4 MB mediante cabeceras HTTP 206 Partial Content (`client_delta_manifest.json`), permitiendo actualizaciones masivas de parches en segundos.
+- **Mitigación de Hardware y Ratones 1000 Hz:** Inyección de `rawMouseEnable 1` y aumento de caché de texturas a 128 MB en `Config.wtf` oficial, eliminando giros de cámara descontrolados con ratones gaming modernos.
+
+---
+
 ## [v2.5.1] - 2026-10-16 — Cacería de Bugs, Paridad Canónica de Facciones y Resiliencia Bi-Regional
 - **Paridad Canónica de Facciones en Lanzador v2.1.1:** Incorporada la facción Kirin Tor Dalaran (`KIRIN_TOR`) en el modal nativo de registro del lanzador y sincronizado el backend `ProjectJaina_Launcher_V2.py` y `ProjectJaina_WebAPI.py`.
 - **Armería Full-Stack Resiliente e Insignias de Clase:** Corregida la asignación errónea de insignias de Brujo a Paladines, Pícaros y Chamanes mediante normalización ortográfica sin tildes en `armory.js`, `data/armory.json` y `ProjectJaina_WebAPI.py`. Desbloqueados los botones de filtro de clase.

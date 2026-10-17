@@ -284,7 +284,7 @@
             <p style="color: var(--text-muted); font-size: 0.92rem;">Auditado empíricamente bajo estándares Staff L9 (Claude Mythos 5 & DarckRovert).</p>
         </div>
 
-        <div class="tracker-issues-list">
+        <div class="tracker-issues-list" id="trackerIssuesList">
             <div class="issue-card">
                 <div>
                     <div class="issue-title">🛡️ Hito #181 — Implementación de Discord OAuth2 SSO & Base de Datos Web AoWoW</div>
@@ -375,21 +375,85 @@
     <script src="js/card_tilt.js"></script>
     <script src="js/audio_ambient.js"></script>
     <script>
-        function submitBugReport(e) {
-            e.preventDefault();
-            const title = document.getElementById("bugTitle").value;
-            const cat = document.getElementById("bugCategory").value;
-            const desc = document.getElementById("bugDesc").value;
-
-            const feedback = document.getElementById("bugFeedback");
-            feedback.style.display = "block";
-            feedback.style.background = "rgba(46, 204, 113, 0.2)";
-            feedback.style.border = "1px solid rgba(46, 204, 113, 0.5)";
-            feedback.style.color = "#2ecc71";
-            feedback.innerHTML = `✅ <strong>¡Reporte recibido con éxito!</strong><br>Ticket registrado bajo categoría <code>${cat}</code>. Gracias por contribuir a la excelencia de Project JAIna.`;
-
-            document.getElementById("bugReportForm").reset();
+        function getApiBaseUrl() {
+            if (window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+                return "http://127.0.0.1:8080";
+            }
+            return `${window.location.protocol}//${window.location.hostname}:8080`;
         }
+
+        async function submitBugReport(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector("button[type='submit']");
+            const originalText = btn.innerHTML;
+            const title = document.getElementById("bugTitle").value.trim();
+            const category = document.getElementById("bugCategory").value;
+            const description = document.getElementById("bugDesc").value.trim();
+            const feedback = document.getElementById("bugFeedback");
+
+            if (!title || !description) return;
+
+            btn.disabled = true;
+            btn.innerHTML = "⏳ ENVIANDO REPORTE A INGENIERÍA...";
+            feedback.style.display = "none";
+
+            const apiUrl = getApiBaseUrl();
+
+            try {
+                const res = await fetch(`${apiUrl}/api/bugs`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ title, category, description })
+                });
+                const data = await res.json();
+                if (res.ok && data.ok) {
+                    feedback.style.display = "block";
+                    feedback.style.background = "rgba(46, 204, 113, 0.2)";
+                    feedback.style.border = "1px solid rgba(46, 204, 113, 0.5)";
+                    feedback.style.color = "#2ecc71";
+                    feedback.innerHTML = `✅ <strong>¡Reporte recibido con éxito!</strong><br>Ticket oficial: <code>${data.ticket_id}</code>.<br>${data.message}`;
+                    document.getElementById("bugReportForm").reset();
+                    loadRecentBugs();
+                } else {
+                    throw new Error(data.error || "Fallo de respuesta del servidor");
+                }
+            } catch (err) {
+                feedback.style.display = "block";
+                feedback.style.background = "rgba(231, 76, 60, 0.2)";
+                feedback.style.border = "1px solid rgba(231, 76, 60, 0.5)";
+                feedback.style.color = "#e74c3c";
+                feedback.innerHTML = `⚠️ <strong>Error al registrar el reporte:</strong> ${err.message}. Verifica que WebAPI (puerto 8080) esté activo.`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        async function loadRecentBugs() {
+            const listContainer = document.getElementById("trackerIssuesList");
+            if (!listContainer) return;
+            const apiUrl = getApiBaseUrl();
+            try {
+                const res = await fetch(`${apiUrl}/api/bugs`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.ok && Array.isArray(data.bugs) && data.bugs.length > 0) {
+                        const dynamicItems = data.bugs.slice(0, 5).map(b => `
+                            <div class="issue-card" style="border-left: 3px solid #00e5ff;">
+                                <div>
+                                    <div class="issue-title">🏷️ [${b.ticket_id}] — ${b.title}</div>
+                                    <div class="issue-meta">${b.description} · <span style="color:#00e5ff;">${b.category.toUpperCase()}</span> · ${b.created_at}</div>
+                                </div>
+                                <span class="issue-badge active">⏳ ${b.status}</span>
+                            </div>
+                        `).join("");
+                        listContainer.insertAdjacentHTML('afterbegin', dynamicItems);
+                    }
+                }
+            } catch (_) {}
+        }
+
+        document.addEventListener("DOMContentLoaded", loadRecentBugs);
     </script>
     <script src="js/navbar.js"></script>
 </body>

@@ -37,11 +37,13 @@
 * **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
 * **Subpáginas Especializadas:**
   * **Armería v2.5:** Visualizador de perfiles de héroes, GearScore, talentos, badges de 10 clases (incluyendo Caballero de la Muerte) y búsqueda insensible a acentos (`normalizeStr`).
+  * **Base de Datos Soberana AoWoW (`database.html`):** Motor de búsqueda indexado de objetos, criaturas y hechizos con visualizador de tooltips idénticos a WotLK 3.3.5a y conectividad en vivo con `acore_world`.
+  * **BugTracker Comunitario (`bugs.html`):** Portal interactivo de reporte y seguimiento de incidencias comunitarias con trazabilidad de estado.
   * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla con despacho transaccional idempotente.
-  * **Registro:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6 y selección de facción canónica.
+  * **Registro & Discord SSO:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6, selección de facción canónica y registro express en 1 clic con OAuth2 de Discord (`/api/auth/discord/register`).
   * **Voz Espacial 3D:** Cliente web de audio binaural posicional HRTF con emparejamiento por PIN in-game, selector dinámico dual-node (Perú y España) y cifrado Multi-SAN SSL.
   * **Wiki y Lore:** Cronología de eventos mundiales, profecías, manual de usuario y documentación técnica de arquitectura.
-  * **Descargas CDN Directas:** Descarga en 1 clic del Lanzador Oficial Standalone v2.1.1 (`ProjectJaina_Launcher_Oficial.zip`) y enlace magnet / torrent para el cliente FHD (36.8 GB).
+  * **Descargas CDN Directas:** Descarga en 1 clic del Lanzador Oficial Standalone v2.2.0 (`ProjectJaina_Launcher_Oficial.zip`) con motor de parchado delta por chunks HTTP 206 y enlace magnet / torrent para el cliente FHD (36.8 GB).
 * **Activos Gráficos Oficiales:** Ilustraciones Ultra-HD generadas para la cabecera cinemática, escudo heráldico y citadel arcana.
 
 ---
