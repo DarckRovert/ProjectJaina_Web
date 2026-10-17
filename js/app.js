@@ -57,6 +57,9 @@ async function updateTelemetry() {
 
             // Notificación reactiva al bus interno (evita doble petición en countdown.js)
             window.dispatchEvent(new CustomEvent("jaina:telemetry", { detail: { ...data, isOnline } }));
+
+            // Actualización de Métricas Dual-Realm & Tri-Facción
+            updateDualRealmUI(data, isOnline);
         } else {
             throw new Error(`HTTP Error: ${response.status}`);
         }
@@ -75,6 +78,46 @@ async function updateTelemetry() {
         window.dispatchEvent(new CustomEvent("jaina:telemetry", { 
             detail: { status: "OFFLINE", isOnline: false, server_uptime_seconds: 0 } 
         }));
+
+        updateDualRealmUI({ status: "OFFLINE" }, false);
     }
+}
+
+function updateDualRealmUI(data, isOnline) {
+    // Reino 1: Project Jaina (Anycast L4)
+    const jainaStatusBadge = document.getElementById("realmJainaStatus");
+    if (jainaStatusBadge) {
+        jainaStatusBadge.className = isOnline ? "realm-ping-badge" : "realm-ping-badge offline";
+        jainaStatusBadge.innerHTML = isOnline 
+            ? `🟢 <span style="color: #34d399;">ONLINE</span> (~18ms)`
+            : `🔴 <span style="color: #f87171;">MANTENIMIENTO</span>`;
+    }
+
+    // Reino 2: WanitosGym (Cluster LAN)
+    const wanitosStatusBadge = document.getElementById("realmWanitosStatus");
+    if (wanitosStatusBadge) {
+        wanitosStatusBadge.innerHTML = `🟡 <span style="color: #f59e0b;">STANDBY</span> (LAN / Cluster)`;
+    }
+
+    // Balance Tri-Facción
+    const barAlliance = document.getElementById("factionSliceAlliance");
+    const barKirinTor = document.getElementById("factionSliceKirinTor");
+    const barHorde = document.getElementById("factionSliceHorde");
+
+    const pctAlliance = (data.faction_alliance_pct !== undefined) ? data.faction_alliance_pct : 48;
+    const pctKirinTor = (data.faction_kirintor_pct !== undefined) ? data.faction_kirintor_pct : 32;
+    const pctHorde = (data.faction_horde_pct !== undefined) ? data.faction_horde_pct : 20;
+
+    if (barAlliance) barAlliance.style.width = `${pctAlliance}%`;
+    if (barKirinTor) barKirinTor.style.width = `${pctKirinTor}%`;
+    if (barHorde) barHorde.style.width = `${pctHorde}%`;
+
+    const txtAlliance = document.getElementById("factionPctAlliance");
+    const txtKirinTor = document.getElementById("factionPctKirinTor");
+    const txtHorde = document.getElementById("factionPctHorde");
+
+    if (txtAlliance) txtAlliance.textContent = `${pctAlliance}%`;
+    if (txtKirinTor) txtKirinTor.textContent = `${pctKirinTor}%`;
+    if (txtHorde) txtHorde.textContent = `${pctHorde}%`;
 }
 
