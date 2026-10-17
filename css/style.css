@@ -3899,7 +3899,7 @@ body.theme-horde .faction-pill.active {
 
 .hw-selectors-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
     gap: 10px;
     margin-bottom: 1rem;
 }
