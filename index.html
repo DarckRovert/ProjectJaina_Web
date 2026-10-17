@@ -30,6 +30,17 @@
             <li><a href="voz/index.html" style="color: #00e5ff; font-weight: bold;">🎙️ Voz 3D</a></li>
             <li><a href="wiki/index.html">📖 Wiki de Lore</a></li>
             <li><a href="#como-jugar">¿Cómo Jugar?</a></li>
+            <li>
+                <button id="ambientAudioBtn" class="ambient-audio-btn" title="Activar Ecosonido Arcano de Dalaran">
+                    <div class="equalizer-wave">
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                    </div>
+                    <span class="audio-label">Ecos de Dalaran</span>
+                </button>
+            </li>
             <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
         </ul>
     </nav>
@@ -124,6 +135,58 @@
                 <div class="metric-label">Conexión Global</div>
                 <div class="metric-value" style="font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
                     <a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Oficial Anycast sin VPN">🌐 Conectar en 1 Clic ➔</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- DUAL-REALM TELEMETRY & TRI-FACTION BALANCE HUD -->
+        <div class="dual-realm-grid">
+            <div class="realm-card-live">
+                <div class="realm-info-block">
+                    <h4>⚡ Project Jaina <span style="font-size: 0.70rem; color: var(--gold-primary); font-family: sans-serif; font-weight: 700;">[REINO PRINCIPAL]</span></h4>
+                    <p>Infraestructura Anycast L4 · WotLK 3.3.5a HD · Lore Viviente & HeroBots</p>
+                </div>
+                <div class="realm-ping-badge" id="realmJainaStatus">
+                    🟢 <span style="color: #34d399;">ONLINE</span> (~18ms)
+                </div>
+            </div>
+
+            <div class="realm-card-live">
+                <div class="realm-info-block">
+                    <h4>🧪 WanitosGym <span style="font-size: 0.70rem; color: #a78bfa; font-family: sans-serif; font-weight: 700;">[REINO LABORATORIO]</span></h4>
+                    <p>Cluster Multi-Nodo LAN · Pruebas de Carga & Sandbox Experimental</p>
+                </div>
+                <div class="realm-ping-badge" id="realmWanitosStatus" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); color: #f59e0b;">
+                    🟡 <span>STANDBY</span> (LAN / Cluster)
+                </div>
+            </div>
+        </div>
+
+        <!-- BALANCE TRI-FACCIÓN EN VIVO -->
+        <div class="faction-balance-container">
+            <div class="faction-balance-header">
+                <span style="color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                    ⚖️ Balance Demográfico y de Fuerzas en Azeroth
+                </span>
+                <span style="font-size: 0.74rem; color: var(--text-muted);">Actualizado en tiempo real</span>
+            </div>
+            <div class="faction-bar-track">
+                <div class="faction-slice alliance" id="factionSliceAlliance" style="width: 48%;" title="Alianza (48%)"></div>
+                <div class="faction-slice kirintor" id="factionSliceKirinTor" style="width: 32%;" title="Kirin Tor & Neutrales (32%)"></div>
+                <div class="faction-slice horde" id="factionSliceHorde" style="width: 20%;" title="Horda (20%)"></div>
+            </div>
+            <div class="faction-legend-row">
+                <div class="faction-legend-item">
+                    <span class="legend-dot alliance"></span>
+                    <span>🦁 Alianza: <strong id="factionPctAlliance" style="color: #38bdf8;">48%</strong></span>
+                </div>
+                <div class="faction-legend-item">
+                    <span class="legend-dot kirintor"></span>
+                    <span>🔮 Kirin Tor / Independiente: <strong id="factionPctKirinTor" style="color: #c084fc;">32%</strong></span>
+                </div>
+                <div class="faction-legend-item">
+                    <span class="legend-dot horde"></span>
+                    <span>🐺 Horda: <strong id="factionPctHorde" style="color: #f87171;">20%</strong></span>
                 </div>
             </div>
         </div>
@@ -437,37 +500,27 @@
             </div>
         </div>
 
-        <!-- CINTA DE LOS 6 ENCLAVES DE AZEROTH -->
-        <div class="outposts-poi-strip">
-            <div class="outposts-poi-title">
-                <span>📍</span>
-                <span>Los 6 Enclaves Territoriales Reclamables en Azeroth:</span>
+        <!-- VISOR TÁCTICO INTERACTIVO DE LOS 6 ENCLAVES DE AZEROTH -->
+        <div class="enclaves-radar-container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.4rem;">📍</span>
+                    <div>
+                        <h3 style="font-family: 'Cinzel', serif; font-size: 1.15rem; color: #ffffff; margin: 0;">Radar Táctico de Enclaves & Baluartes Conquistables</h3>
+                        <span style="font-size: 0.74rem; color: var(--text-muted);">Selecciona un enclave para inspeccionar coordenadas, guardias vivos y copiar macros TomTom</span>
+                    </div>
+                </div>
+                <span style="font-size: 0.72rem; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); color: var(--gold-primary); padding: 4px 10px; border-radius: 20px; font-weight: 700;">
+                    ● 6 FORTINES DISPONIBLES
+                </span>
             </div>
-            <div class="outposts-poi-grid">
-                <div class="outpost-poi-pill">
-                    <span class="outpost-poi-name">🏰 Torre de los Desertores</span>
-                    <span class="outpost-poi-zone">Marjal Revolcafango (Theramore)</span>
-                </div>
-                <div class="outpost-poi-pill">
-                    <span class="outpost-poi-name">🌾 Granja de Ceñidorada</span>
-                    <span class="outpost-poi-zone">Páramos de Poniente</span>
-                </div>
-                <div class="outpost-poi-pill">
-                    <span class="outpost-poi-name">🛡️ Bastión de la Maza</span>
-                    <span class="outpost-poi-zone">Montañas de Crestagrana</span>
-                </div>
-                <div class="outpost-poi-pill">
-                    <span class="outpost-poi-name">⚔️ Atalaya de la Cruzada</span>
-                    <span class="outpost-poi-zone">Tierras de la Peste</span>
-                </div>
-                <div class="outpost-poi-pill">
-                    <span class="outpost-poi-name">⚓ Faro de la Costa Sur</span>
-                    <span class="outpost-poi-zone">Tanaris / Mares del Sur</span>
-                </div>
-                <div class="outpost-poi-pill">
-                    <span class="outpost-poi-name">🌲 Reducto de Vallefresno</span>
-                    <span class="outpost-poi-zone">Bosque de Vallefresno</span>
-                </div>
+
+            <div class="enclaves-pills-nav" id="enclavesPillsNav">
+                <!-- Generado dinámicamente por js/interactive_enclaves.js -->
+            </div>
+
+            <div class="enclave-detail-view" id="enclaveDetailView">
+                <!-- Renderizado dinámico del enclave seleccionado -->
             </div>
         </div>
     </section>
@@ -657,6 +710,42 @@
                         Abrir Espejo ➔
                     </a>
                 </div>
+
+                <!-- DIAGNÓSTICO INTERACTIVO DE HARDWARE (CAN I RUN IT?) -->
+                <div class="hardware-checker-card">
+                    <div class="hw-check-header">
+                        <div class="hw-check-title">
+                            <span>💻</span>
+                            <span>Comprobador de Rendimiento de tu PC</span>
+                        </div>
+                        <span style="font-size: 0.70rem; color: var(--gold-primary); font-weight: 700;">TEST EN VIVO</span>
+                    </div>
+                    <div class="hw-selectors-grid">
+                        <div>
+                            <label style="display: block; font-size: 0.70rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 700;">MEMORIA RAM:</label>
+                            <select class="hw-select" id="hwRamSelect">
+                                <option value="2">2 GB (Mínimo Estándar)</option>
+                                <option value="4">4 GB (Recomendado 720p)</option>
+                                <option value="8" selected>8 GB (Ideal Full HD)</option>
+                                <option value="16">16 GB o más (Ultra 144+ FPS)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.70rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 700;">TARJETA GRÁFICA:</label>
+                            <select class="hw-select" id="hwGpuSelect">
+                                <option value="intel_integrated">Gráficos Integrados Intel HD / Iris</option>
+                                <option value="apu_vega">AMD Radeon Vega APU / Ryzen</option>
+                                <option value="dedicated_low">GPU Básica (GTX 750 / GT 1030)</option>
+                                <option value="dedicated_mid" selected>GPU Media (GTX 1060 / 1650 / RX 580)</option>
+                                <option value="dedicated_high">GPU Alta (RTX 2060 / RTX 3060+ / RX 6600+)</option>
+                                <option value="apple_silicon">Apple Silicon (Mac M1 / M2 / M3)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="hwResultBox" class="hw-result-badge">
+                        <!-- Calculado en tiempo real por js/hardware_checker.js -->
+                    </div>
+                </div>
             </div>
 
             <!-- PASO 3: ENTRAR A JUGAR -->
@@ -730,10 +819,13 @@
     <!-- SCRIPTS -->
     <script src="js/particles.js?v=20261012d"></script>
     <script src="js/config.js?v=20261012d"></script>
-    <script src="js/app.js?v=20261012d"></script>
+    <script src="js/app.js?v=20261016a"></script>
     <script src="js/progression.js?v=20261012d"></script>
     <script src="js/countdown.js?v=20261012d"></script>
     <script src="js/jaina_dialogue.js?v=20261012d"></script>
     <script src="js/connection_guide.js?v=20261014a"></script>
+    <script src="js/audio_ambient.js?v=20261016a"></script>
+    <script src="js/hardware_checker.js?v=20261016a"></script>
+    <script src="js/interactive_enclaves.js?v=20261016a"></script>
 </body>
 </html>
