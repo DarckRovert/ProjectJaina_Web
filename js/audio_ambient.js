@@ -59,24 +59,26 @@ class ArcaneAmbientAudio {
         this.masterGain.gain.exponentialRampToValueAtTime(0.35, this.ctx.currentTime + 3.0);
         this.masterGain.connect(this.ctx.destination);
 
-        // Capa 1: Drone Arcano Grave (Fundamento A2 - 110Hz y E3 - 164.8Hz)
-        this.createDrone(110.0, "sine", 0.22);
-        this.createDrone(164.81, "triangle", 0.15);
-        this.createDrone(220.0, "sine", 0.09);
-
         // Capa 2: Filtro Resonante Biquad con LFO (Respiración Mística)
         const filter = this.ctx.createBiquadFilter();
         filter.type = "lowpass";
         filter.frequency.setValueAtTime(450, this.ctx.currentTime);
         filter.Q.setValueAtTime(3.5, this.ctx.currentTime);
+        filter.connect(this.masterGain);
 
         const lfo = this.ctx.createOscillator();
         const lfoGain = this.ctx.createGain();
         lfo.frequency.setValueAtTime(0.12, this.ctx.currentTime); // 1 ciclo cada ~8 seg
         lfoGain.gain.setValueAtTime(200, this.ctx.currentTime);
-        lfo.connect(filter.frequency);
+        lfo.connect(lfoGain);
+        lfoGain.connect(filter.frequency);
         lfo.start();
-        this.nodes.push(lfo);
+        this.nodes.push(filter, lfo, lfoGain);
+
+        // Capa 1: Drone Arcano Grave (Fundamento A2 - 110Hz y E3 - 164.8Hz) - enrutados a través del filtro
+        this.createDrone(110.0, "sine", 0.22, filter);
+        this.createDrone(164.81, "triangle", 0.15, filter);
+        this.createDrone(220.0, "sine", 0.09, filter);
 
         // Capa 3: Campanas de Cristal de Dalaran (Chimes estocásticos)
         this.startCrystalChimes();
@@ -84,7 +86,7 @@ class ArcaneAmbientAudio {
         this.updateUI(true);
     }
 
-    createDrone(freq, type, volume) {
+    createDrone(freq, type, volume, destination = null) {
         if (!this.ctx) return;
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
@@ -97,7 +99,7 @@ class ArcaneAmbientAudio {
 
         gain.gain.setValueAtTime(volume, this.ctx.currentTime);
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(destination || this.masterGain);
 
         osc.start();
         this.nodes.push(osc, gain);
@@ -124,6 +126,16 @@ class ArcaneAmbientAudio {
 
             chimeOsc.connect(chimeGain);
             chimeGain.connect(this.masterGain);
+
+            chimeOsc.onended = () => {
+                try { chimeOsc.disconnect(); } catch (e) {}
+                try { chimeGain.disconnect(); } catch (e) {}
+                const i1 = this.nodes.indexOf(chimeOsc);
+                if (i1 !== -1) this.nodes.splice(i1, 1);
+                const i2 = this.nodes.indexOf(chimeGain);
+                if (i2 !== -1) this.nodes.splice(i2, 1);
+            };
+            this.nodes.push(chimeOsc, chimeGain);
 
             chimeOsc.start(now);
             chimeOsc.stop(now + 3.6);

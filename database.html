@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos Soberana (AoWoW) — Project JAIna</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+    <style>
+        .db-search-bar {
+            display: flex;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+        .db-search-input {
+            flex: 1;
+            background: rgba(10, 16, 26, 0.85);
+            border: 1px solid var(--border-gold);
+            color: #fff;
+            padding: 0.9rem 1.4rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .db-search-input:focus {
+            border-color: #00e5ff;
+            box-shadow: 0 0 15px rgba(0,229,255,0.4);
+        }
+        .db-category-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 2.5rem;
+        }
+        .db-chip {
+            background: rgba(20, 30, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-muted);
+            padding: 0.5rem 1.1rem;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .db-chip:hover, .db-chip.active {
+            background: rgba(0, 229, 255, 0.15);
+            border-color: #00e5ff;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,229,255,0.25);
+        }
+        .db-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .db-card {
+            background: rgba(13, 20, 32, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 1.4rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .db-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+        .db-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        .db-card.rarity-legendario::before { background: #ff8000; }
+        .db-card.rarity-epico::before { background: #a335ee; }
+        .db-card.rarity-raro::before { background: #0070dd; }
+        .db-card.rarity-mitico::before { background: #e5cc80; }
+        
+        .db-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0.8rem;
+        }
+        .db-item-icon {
+            font-size: 2rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.4);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .db-item-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .db-item-title.legendario { color: #ff8000; text-shadow: 0 0 10px rgba(255,128,0,0.3); }
+        .db-item-title.epico { color: #a335ee; text-shadow: 0 0 10px rgba(163,53,238,0.3); }
+        .db-item-title.raro { color: #0070dd; }
+        .db-item-title.mitico { color: #e5cc80; }
+
+        .db-item-type {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .db-item-desc {
+            color: #d1d5db;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .db-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 0.8rem;
+            color: var(--text-muted);
+        }
+        .db-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR AAA DE ALTA FIDELIDAD -->
+    <nav class="navbar" id="mainNavbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
+                <div class="brand-subtitle">BASE DE DATOS SOBERANA (AoWoW)</div>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navbarLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jainacore.html">JainaCore</a></li>
+            
+            <!-- DROPDOWN: EXPLORAR -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Explorar</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="index.html#linea-de-fases" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⏳</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Línea de Fases & Eras</span>
+                            <span class="dropdown-item-desc">Vanilla 60 a WotLK 80 Progresivo</span>
+                        </div>
+                    </a>
+                    <a href="index.html#living-lore" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧠</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Lore Viviente & Simulador IA</span>
+                            <span class="dropdown-item-desc">HeroBots y LLM neuronal local</span>
+                        </div>
+                    </a>
+                    <a href="index.html#mundo-viviente" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🏰</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Baluartes & Galeón Naval</span>
+                            <span class="dropdown-item-desc">Enclaves de hermandad y eventos vivos</span>
+                        </div>
+                    </a>
+                    <a href="index.html#addons-showcase" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧩</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Suite de 18 AddOns HD</span>
+                            <span class="dropdown-item-desc">DragonflightUI, Audio 3D y más</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: SERVICIOS -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Servicios</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="database.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📚</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Base de Datos del Reino</span>
+                            <span class="dropdown-item-desc">Items, hechizos y tablas de botín</span>
+                        </div>
+                    </a>
+                    <a href="armeria.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⚔️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Armería de Campeones</span>
+                            <span class="dropdown-item-desc">Inspección de personajes y talentos</span>
+                        </div>
+                    </a>
+                    <a href="tienda.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💎</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Tienda & Donaciones</span>
+                            <span class="dropdown-item-desc">Cosméticos exclusivos y apoyo</span>
+                        </div>
+                    </a>
+                    <a href="registro.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🛡️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Crear Cuenta SRP6</span>
+                            <span class="dropdown-item-desc">Registro criptográfico instantáneo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: COMUNIDAD -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Comunidad</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="wiki/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📖</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Wiki Oficial de Project JAIna</span>
+                            <span class="dropdown-item-desc">Guías completas, comandos y mecánicas</span>
+                        </div>
+                    </a>
+                    <a href="voz/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🎙️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Voz Espacial 3D (WebRTC)</span>
+                            <span class="dropdown-item-desc">Audio posicional por proximidad</span>
+                        </div>
+                    </a>
+                    <a href="bugs.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🐛</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">BugTracker Oficial</span>
+                            <span class="dropdown-item-desc">Reportes de incidencias y parches</span>
+                        </div>
+                    </a>
+                    <a href="https://discord.gg/YFpGGy8RGR" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💬</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Discord Oficial</span>
+                            <span class="dropdown-item-desc">Comunidad activa y soporte directo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+        </ul>
+
+        <div class="nav-actions-tray">
+            <button id="ambientAudioBtn" class="ambient-audio-btn" title="Activar Ecosonido Arcano de Dalaran">
+                <div class="equalizer-wave">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+                <span class="audio-label">Ecos de Dalaran</span>
+            </button>
+            <a href="registro.html" class="btn-cta-nav">Jugar Gratis</a>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
+        </div>
+    </nav>
+
+    <!-- HERO BASE DE DATOS -->
+    <header class="subpage-hero">
+        <div class="hero-badge">📚 Enciclopedia Oficial JainaCore · WotLK 3.3.5a</div>
+        <h1 class="subpage-title">Base de Datos Soberana de Azeroth</h1>
+        <p class="subpage-desc">Explora el arsenal, monturas legendarias, alas arcanas, recompensas del Pase de Batalla y los 6 enclaves territoriales de hermandad en tiempo real.</p>
+    </header>
+
+    <main style="padding: 1rem 1.5rem 5rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 2;">
+        
+        <!-- SEARCH BAR -->
+        <div class="db-search-bar">
+            <input type="text" id="dbSearchInput" class="db-search-input" placeholder="🔍 Buscar por nombre de objeto, montura, enclave o aura... (ej: Invencible, Alas, Desertores)">
+        </div>
+
+        <!-- CATEGORY CHIPS -->
+        <div class="db-category-chips">
+            <button class="db-chip active" data-cat="all">✨ Todos los Registros</button>
+            <button class="db-chip" data-cat="mounts">🐉 Monturas Épicas</button>
+            <button class="db-chip" data-cat="wings">🪽 Auras & Alas Místicas</button>
+            <button class="db-chip" data-cat="enclaves">🏰 Enclaves de Hermandad</button>
+            <button class="db-chip" data-cat="transmog">👗 Guardarropa Espectral</button>
+            <button class="db-chip" data-cat="battlepass">🏆 Pase de Batalla</button>
+            <button class="db-chip" data-cat="tokens">🪙 Monedas & Consumibles</button>
+        </div>
+
+        <!-- RESULTS GRID -->
+        <div class="db-grid" id="dbResultsGrid">
+            <!-- Renderizado dinámico vía JavaScript -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.76rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            Base de datos indexada directamente desde JainaCore 3.3.5a (Build 12340). World of Warcraft® y Blizzard Entertainment son marcas registradas de Blizzard Entertainment, Inc.
+        </p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/particles.js"></script>
+    <script src="js/card_tilt.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/audio_ambient.js"></script>
+    <script>
+        const DB_ITEMS = [
+            { id: 1, name: "Riendas del Destrero Celestial", cat: "mounts", rarity: "legendario", icon: "🐎", desc: "Montura voladora translúcida nacida del brillo astral de Algalon. Se adapta a la velocidad máxima aprendida (hasta 310%).", entry: 54811, req: "Nivel 20 · Equitación Experta" },
+            { id: 2, name: "Riendas de Invencible", cat: "mounts", rarity: "mitico", icon: "💀", desc: "El legendario corcel no-muerto de Arthas Menethil. Permite vuelo aéreo y desplazamiento terrestre a velocidad de 310%.", entry: 50818, req: "Nivel 80 · Artesano Jinete" },
+            { id: 3, name: "Tigre Espectral Raudo", cat: "mounts", rarity: "epico", icon: "🐅", desc: "Imponente felino espectral de Theramore con armadura ceremonial de platino y gemas de maná purificado.", entry: 49284, req: "Nivel 40 · Equitación Hábil" },
+            { id: 4, name: "Alas del Serafín Sagrado", cat: "wings", rarity: "legendario", icon: "🪽", desc: "Aura visual divina permanente. Proyecta seis alas de luz áurea con partículas de santidad celestial al caminar y combatir.", entry: 900201, req: "Cosmético Universal · Cero Taint" },
+            { id: 5, name: "Alas de Vacío & Sombras", cat: "wings", rarity: "epico", icon: "🦇", desc: "Plumas etéreas imbuidas en la entropía del Vacío abisal. Deja estela de cenizas espectrales en movimiento.", entry: 900202, req: "Cosmético Universal" },
+            { id: 6, name: "Resplandor de Escarcha de Dalaran", cat: "wings", rarity: "epico", icon: "❄️", desc: "Emanación rúnica de cristales de hielo perpetuo idéntica al aura personal de Lady Jaina en el sagrario del Kirin Tor.", entry: 900203, req: "Cosmético Universal" },
+            { id: 7, name: "🏰 Torre de los Desertores", cat: "enclaves", rarity: "mitico", icon: "🏰", desc: "Enclave naval en la Bahía de Theramore (58.2, 54.6). Bonificación de hermandad: +10% Velocidad de montura y Rested XP acelerado.", entry: "Enclave #1", req: "Hermandad Nivel 3+ · 2,500 Oro" },
+            { id: 8, name: "🌾 Granja de Ceñidorada", cat: "enclaves", rarity: "raro", icon: "🌾", desc: "Granja fortificada en Páramos de Poniente (44.6, 52.8). Bonificación: +15% regeneración fuera de combate y doble acumulación de descanso.", entry: "Enclave #2", req: "Hermandad Nivel 3+ · 2,500 Oro" },
+            { id: 9, name: "🛡️ Bastión de la Maza", cat: "enclaves", rarity: "epico", icon: "🛡️", desc: "Atalaya militar en Crestagrana (32.4, 48.0). Bonificación: +5% Armadura global y -50% en costes de reparación de equipo.", entry: "Enclave #3", req: "Hermandad Nivel 3+ · 2,500 Oro" },
+            { id: 10, name: "⚔️ Atalaya de la Cruzada", cat: "enclaves", rarity: "legendario", icon: "⚔️", desc: "Baluarte sagrado en Tierras de la Peste (61.8, 38.2). Bonificación: +10% daño sagrado/mágico contra objetivos No-muertos.", entry: "Enclave #4", req: "Hermandad Nivel 3+ · 2,500 Oro" },
+            { id: 11, name: "👗 Guardarropa Espectral Invisible", cat: "transmog", rarity: "epico", icon: "👗", desc: "Ilusión de ocultación estética para hombreras, pechera, guantes o botas, permitiendo lucir vestimentas sin perder armadura real.", entry: 900301, req: "NPC Estilista de Ilusiones" },
+            { id: 12, name: "🏆 Pase de Batalla Estacional (VIP)", cat: "battlepass", rarity: "legendario", icon: "🏆", desc: "Acceso desbloqueado al carril de recompensas VIP: monturas exclusivas de temporada, tokens de Jaina y transfiguraciones únicas.", entry: "Pase #1", req: "Temporada I Activa" },
+            { id: 13, name: "🪙 Ficha de Evento de Dalaran", cat: "tokens", rarity: "raro", icon: "🪙", desc: "Moneda de cambio oficial canjeable con intendentes arcanos en las Atarazanas de Theramore por gemas y recetas de profesión.", entry: 910000, req: "Moneda de Intercambio" }
+        ];
+
+        function renderDbGrid(items) {
+            const container = document.getElementById("dbResultsGrid");
+            if (!container) return;
+            if (items.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">No se encontraron registros que coincidan con la búsqueda.</div>';
+                return;
+            }
+            container.innerHTML = items.map(it => `
+                <div class="db-card rarity-${it.rarity}">
+                    <div class="db-card-header">
+                        <div class="db-item-icon">${it.icon}</div>
+                        <div>
+                            <h3 class="db-item-title ${it.rarity}">${it.name}</h3>
+                            <span class="db-item-type">${it.cat.toUpperCase()} · ${it.rarity.toUpperCase()}</span>
+                        </div>
+                    </div>
+                    <p class="db-item-desc">${it.desc}</p>
+                    <div class="db-item-meta">
+                        <span class="db-tag">ID: ${it.entry}</span>
+                        <span>${it.req}</span>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderDbGrid(DB_ITEMS);
+
+            const searchInput = document.getElementById("dbSearchInput");
+            const chips = document.querySelectorAll(".db-chip");
+            let activeCat = "all";
+
+            function filterItems() {
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+                const filtered = DB_ITEMS.filter(it => {
+                    const matchCat = (activeCat === "all" || it.cat === activeCat);
+                    const matchQuery = !query || it.name.toLowerCase().includes(query) || it.desc.toLowerCase().includes(query) || String(it.entry).includes(query);
+                    return matchCat && matchQuery;
+                });
+                renderDbGrid(filtered);
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener("input", filterItems);
+            }
+
+            chips.forEach(chip => {
+                chip.addEventListener("click", () => {
+                    chips.forEach(c => c.classList.remove("active"));
+                    chip.classList.add("active");
+                    activeCat = chip.getAttribute("data-cat");
+                    filterItems();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
