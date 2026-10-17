@@ -1,1 +1,1 @@
-feat(web): sincronizacion portal Project Jaina 2026-10-16_21:20 
+feat(web): sincronizacion portal Project Jaina 2026-10-16_21:27 
