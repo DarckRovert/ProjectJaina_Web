@@ -515,6 +515,13 @@
                 if (Array.isArray(data) && data.length) { renderHeroes(data.slice(0, 12)); return; }
             }
         } catch (_) {}
+        try {
+            const fbResp = await fetch("../data/armory.json");
+            if (fbResp.ok) {
+                const fbData = await fbResp.json();
+                if (Array.isArray(fbData) && fbData.length) { renderHeroes(fbData.slice(0, 12)); return; }
+            }
+        } catch (_) {}
         container.innerHTML = `<div class="wiki-loading">○ Servidor offline — conecta el clúster para ver héroes en vivo.</div>`;
     }
 
