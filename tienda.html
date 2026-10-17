@@ -9,8 +9,8 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+    <!-- NAVBAR AAA DE ALTA FIDELIDAD -->
+    <nav class="navbar" id="mainNavbar">
         <a href="index.html" class="brand-container">
             <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
             <div>
@@ -18,32 +18,141 @@
                 <div class="brand-subtitle">TIENDA & DONACIONES OFICIALES</div>
             </div>
         </a>
-        <ul class="nav-links">
+
+        <ul class="nav-links" id="navbarLinks">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="jainacore.html">JainaCore</a></li>
-            <li><a href="index.html#linea-de-fases">Línea de Fases</a></li>
-            <li><a href="index.html#mundo-viviente">Mundo Viviente</a></li>
-            <li><a href="registro.html">Crear Cuenta</a></li>
-            <li><a href="database.html">Base de Datos</a></li>
-            <li><a href="armeria.html">Armería</a></li>
-            <li><a href="tienda.html" class="active">Tienda & Donar</a></li>
-            <li><a href="voz/index.html" style="color: #00e5ff; font-weight: bold;">🎙️ Voz 3D</a></li>
-            <li><a href="wiki/index.html">📖 Wiki</a></li>
-            <li><a href="bugs.html">🐛 BugTracker</a></li>
-            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
-            <li>
-                <button id="ambientAudioBtn" class="ambient-audio-btn" title="Activar Ecosonido Arcano de Dalaran">
-                    <div class="equalizer-wave">
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                    </div>
-                    <span class="audio-label">Ecos de Dalaran</span>
+            
+            <!-- DROPDOWN: EXPLORAR -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Explorar</span>
+                    <span class="dropdown-chevron">▼</span>
                 </button>
+                <div class="nav-dropdown-menu">
+                    <a href="index.html#linea-de-fases" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⏳</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Línea de Fases & Eras</span>
+                            <span class="dropdown-item-desc">Vanilla 60 a WotLK 80 Progresivo</span>
+                        </div>
+                    </a>
+                    <a href="index.html#living-lore" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧠</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Lore Viviente & Simulador IA</span>
+                            <span class="dropdown-item-desc">HeroBots y LLM neuronal local</span>
+                        </div>
+                    </a>
+                    <a href="index.html#mundo-viviente" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🏰</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Baluartes & Galeón Naval</span>
+                            <span class="dropdown-item-desc">Enclaves de hermandad y eventos vivos</span>
+                        </div>
+                    </a>
+                    <a href="index.html#addons-showcase" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧩</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Suite de 18 AddOns HD</span>
+                            <span class="dropdown-item-desc">DragonflightUI, Audio 3D y más</span>
+                        </div>
+                    </a>
+                </div>
             </li>
-            <li><a href="registro.html" class="btn-cta-nav">Jugar Gratis</a></li>
+
+            <!-- DROPDOWN: SERVICIOS -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Servicios</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="database.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📚</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Base de Datos del Reino</span>
+                            <span class="dropdown-item-desc">Items, hechizos y tablas de botín</span>
+                        </div>
+                    </a>
+                    <a href="armeria.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⚔️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Armería de Campeones</span>
+                            <span class="dropdown-item-desc">Inspección de personajes y talentos</span>
+                        </div>
+                    </a>
+                    <a href="tienda.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💎</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Tienda & Donaciones</span>
+                            <span class="dropdown-item-desc">Cosméticos exclusivos y apoyo</span>
+                        </div>
+                    </a>
+                    <a href="registro.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🛡️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Crear Cuenta SRP6</span>
+                            <span class="dropdown-item-desc">Registro criptográfico instantáneo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: COMUNIDAD -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Comunidad</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="wiki/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📖</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Wiki Oficial de Project JAIna</span>
+                            <span class="dropdown-item-desc">Guías completas, comandos y mecánicas</span>
+                        </div>
+                    </a>
+                    <a href="voz/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🎙️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Voz Espacial 3D (WebRTC)</span>
+                            <span class="dropdown-item-desc">Audio posicional por proximidad</span>
+                        </div>
+                    </a>
+                    <a href="bugs.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🐛</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">BugTracker Oficial</span>
+                            <span class="dropdown-item-desc">Reportes de incidencias y parches</span>
+                        </div>
+                    </a>
+                    <a href="https://discord.gg/YFpGGy8RGR" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💬</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Discord Oficial</span>
+                            <span class="dropdown-item-desc">Comunidad activa y soporte directo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
         </ul>
+
+        <div class="nav-actions-tray">
+            <button id="ambientAudioBtn" class="ambient-audio-btn" title="Activar Ecosonido Arcano de Dalaran">
+                <div class="equalizer-wave">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+                <span class="audio-label">Ecos de Dalaran</span>
+            </button>
+            <a href="registro.html" class="btn-cta-nav">Jugar Gratis</a>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
+        </div>
     </nav>
 
     <!-- HERO TIENDA -->
@@ -146,8 +255,31 @@
 
     <!-- SCRIPTS -->
     <script src="js/particles.js"></script>
+    <script src="js/card_tilt.js"></script>
     <script src="js/config.js"></script>
     <script src="js/store.js"></script>
     <script src="js/audio_ambient.js"></script>
+
+    <!-- Mobile Nav Toggle Controller -->
+    <script>
+        (function() {
+            const toggleBtn = document.getElementById('mobileNavToggle');
+            const navLinks = document.getElementById('navbarLinks');
+            if (toggleBtn && navLinks) {
+                toggleBtn.addEventListener('click', () => {
+                    const isOpen = navLinks.classList.toggle('nav-open');
+                    toggleBtn.textContent = isOpen ? '✕' : '☰';
+                    toggleBtn.setAttribute('aria-expanded', isOpen);
+                });
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('nav-open');
+                        toggleBtn.textContent = '☰';
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
