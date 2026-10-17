@@ -313,26 +313,6 @@
     <script src="js/register.js"></script>
     <script src="js/audio_ambient.js"></script>
 
-    <!-- Mobile Nav Toggle Controller -->
-    <script>
-        (function() {
-            const toggleBtn = document.getElementById('mobileNavToggle');
-            const navLinks = document.getElementById('navbarLinks');
-            if (toggleBtn && navLinks) {
-                toggleBtn.addEventListener('click', () => {
-                    const isOpen = navLinks.classList.toggle('nav-open');
-                    toggleBtn.textContent = isOpen ? '✕' : '☰';
-                    toggleBtn.setAttribute('aria-expanded', isOpen);
-                });
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('nav-open');
-                        toggleBtn.textContent = '☰';
-                        toggleBtn.setAttribute('aria-expanded', 'false');
-                    });
-                });
-            }
-        })();
-    </script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>

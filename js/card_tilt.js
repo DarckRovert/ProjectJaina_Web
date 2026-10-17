@@ -26,7 +26,16 @@
         '.param-box',
         '.conn-step-card',
         '.conn-master-banner',
-        '.hero-banner-container'
+        '.hero-banner-container',
+        '.lore-card',
+        '.timeline-card',
+        '.db-card',
+        '.podium-card',
+        '.tier-card',
+        '.store-card',
+        '.bug-card',
+        '.enclave-card',
+        '.enclave-detail-view'
     ].join(',');
 
     function initCardTilt() {
@@ -119,4 +128,23 @@
     // Re-evaluar si se agregan elementos dinámicos
     window.addEventListener('load', initCardTilt);
     window.reinitCardTilt = initCardTilt;
+
+    // MutationObserver debounced para nodos insertados por APIs asíncronas
+    if (typeof MutationObserver !== 'undefined') {
+        let timer = null;
+        const observer = new MutationObserver(() => {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+                initCardTilt();
+            }, 100);
+        });
+
+        if (document.body) {
+            observer.observe(document.body, { childList: true, subtree: true });
+        } else {
+            document.addEventListener('DOMContentLoaded', () => {
+                observer.observe(document.body, { childList: true, subtree: true });
+            });
+        }
+    }
 })();
