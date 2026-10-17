@@ -16,11 +16,11 @@ Sí. El acceso al servidor y la descarga de todos los addons del ecosistema es 1
 ## 2. Conexión e Instalación
 
 ### ¿Cuál es el realmlist oficial?
-El cliente oficial se conecta de forma automática y transparente sin necesidad de configurar archivos ni instalar VPNs:
+El cliente se conecta de forma directa sin necesidad de Hamachi ni VPNs:
 ```text
-set realmlist 127.0.0.1
+set realmlist ambulance-absurd.tun.ply.gg:58735
 ```
-*El Lanzador Oficial (`ProjectJaina_Launcher.exe`) gestiona la conexión Anycast L4 de alta velocidad directamente hacia el clúster sin que tengas que configurar puertos.*
+*También puedes utilizar el Lanzador Oficial (`ProjectJaina_Launcher.exe`), el cual autoconfigura la conexión con 1 solo clic.*
 
 ### ¿Cómo descargo y juego en Project JAIna (Cero VPN)?
 1. **Crea tu cuenta:** Regístrate en 5 segundos en [Crear Cuenta](https://darckrovert.github.io/ProjectJaina_Web/registro.html) con cifrado militar SRP6.
