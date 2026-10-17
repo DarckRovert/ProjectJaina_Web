@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (response.ok && result.ok) {
-                    showMessage(`🎉 ¡ÉXITO! Cuenta '${username.toUpperCase()}' creada y activada al instante en el reino. Ya puedes iniciar sesión en World of Warcraft con el realmlist oficial.`, "success");
+                    renderSuccessOnboardingCard(username.toUpperCase(), null);
                     regForm.reset();
                     
                     // Reset integral del estado visual de facción hacia Alianza
@@ -190,6 +190,61 @@ document.addEventListener("DOMContentLoaded", () => {
                 submitBtn.innerHTML = "⚔️ CREAR CUENTA SRP6 AL INSTANTE";
             }
         });
+    }
+
+    function renderSuccessOnboardingCard(userAccount, tempPassword) {
+        if (!msgBox) return;
+        msgBox.className = "register-feedback-box";
+        msgBox.style.display = "block";
+        msgBox.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 78, 59, 0.4) 100%)";
+        msgBox.style.borderColor = "rgba(16, 185, 129, 0.6)";
+        msgBox.style.padding = "1.2rem";
+        msgBox.style.borderRadius = "12px";
+        msgBox.style.boxShadow = "0 8px 30px rgba(16, 185, 129, 0.25)";
+
+        let credsHtml = `• <strong>Usuario WoW:</strong> <span style="color:var(--gold-primary); font-size:1.15rem; font-weight:800; letter-spacing:0.5px;">${userAccount}</span><br>`;
+        if (tempPassword) {
+            credsHtml += `• <strong>Contraseña Temporal:</strong> <span style="color:#2ecc71; font-family:monospace; font-size:1.1rem; background:rgba(0,0,0,0.5); padding:2px 8px; border-radius:4px; font-weight:700;">${tempPassword}</span><br><small style="color:#a7f3d0;">(Guarda tu contraseña para ingresar al juego)</small><br>`;
+        } else {
+            credsHtml += `<small style="color:#a7f3d0;">✓ Contraseña verificada y guardada con protocolo SRP6.</small><br>`;
+        }
+
+        msgBox.innerHTML = `
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:0.8rem;">
+                <div style="background:#10b981; color:#fff; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1rem; box-shadow:0 0 15px rgba(16,185,129,0.7);">✓</div>
+                <div>
+                    <h3 style="margin:0; font-size:1.1rem; color:#ffffff;">¡Cuenta Activada en Project JAIna!</h3>
+                    <div style="font-size:0.8rem; color:#6ee7b7;">Lista para ingresar a Azeroth en 1 Clic</div>
+                </div>
+            </div>
+
+            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:0.8rem; margin-bottom:0.9rem; font-size:0.85rem; color:#e2e8f0; line-height:1.45;">
+                ${credsHtml}
+            </div>
+
+            <div style="background:rgba(0,0,0,0.5); border:1px dashed rgba(245,158,11,0.5); border-radius:8px; padding:0.6rem 0.8rem; margin-bottom:0.9rem;">
+                <span style="display:block; font-size:0.72rem; color:var(--text-muted); margin-bottom:4px; font-weight:700; text-transform:uppercase;">Realmlist Oficial Anycast (Cero VPN):</span>
+                <code style="display:block; font-family:'Consolas',monospace; font-size:0.84rem; color:var(--gold-primary); font-weight:700; word-break:break-all;">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+            </div>
+
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                <button type="button" class="btn-primary" onclick="if(window.downloadRealmlistFile){window.downloadRealmlistFile();}else{window.location.href='index.html#como-jugar';}" style="flex:1; min-width:180px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
+                    📥 Descargar realmlist.wtf
+                </button>
+                <button type="button" class="btn-secondary" onclick="if(window.copyRealmlistOfficial){window.copyRealmlistOfficial(this);}else{navigator.clipboard.writeText('set realmlist ambulance-absurd.tun.ply.gg:58735');alert('¡Copiado!');}" style="flex:1; min-width:160px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
+                    📋 Copiar Realmlist
+                </button>
+            </div>
+
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="btn-secondary" style="flex:1; min-width:180px; text-align:center; padding:0.55rem 0.8rem; font-size:0.78rem; border-color:#38bdf8; color:#38bdf8;" title="Descarga el lanzador oficial ejecutable">
+                    ⚡ Descargar Lanzador (~20 MB)
+                </a>
+                <a href="index.html#como-jugar" class="btn-secondary" style="flex:1; min-width:160px; text-align:center; padding:0.55rem 0.8rem; font-size:0.78rem;">
+                    📦 ¿Cómo Jugar? Guía ➔
+                </a>
+            </div>
+        `;
     }
 
     function showMessage(text, type) {
@@ -243,12 +298,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await res.json();
             if (data.ok) {
                 if (data.existing) {
-                    showMessage(`✅ <strong>¡Bienvenido de vuelta!</strong><br>Tu cuenta de juego vinculada a Discord es: <strong style="color:var(--gold-primary); font-size:1.15rem;">${data.username}</strong>.<br>Usa tus credenciales en el cliente o lanzador oficial para ingresar.`, "success");
+                    renderSuccessOnboardingCard(data.username, null);
                 } else {
-                    showMessage(`🎉 <strong>¡Cuenta Creada Exitosamente con Discord!</strong><br><br>
-                        • <strong>Usuario WoW:</strong> <span style="color:var(--gold-primary); font-size:1.15rem;">${data.username}</span><br>
-                        • <strong>Contraseña Temporal:</strong> <span style="color:#2ecc71; font-family:monospace; font-size:1.1rem; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:4px;">${data.temp_password}</span><br><br>
-                        <small style="color:var(--text-muted)">Guarda tu contraseña. Ya puedes iniciar sesión de inmediato en el juego.</small>`, "success");
+                    renderSuccessOnboardingCard(data.username, data.temp_password);
                 }
             } else {
                 showMessage(`⚠️ ${data.message || "Error al procesar el registro con Discord."}`, "error");

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project JAIna — El Primer Servidor de WoW con Lore Viviente e IA | WotLK 3.3.5a</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261017b">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
 <body>
@@ -180,6 +180,43 @@
             <a href="registro.html" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem; box-shadow: 0 0 25px rgba(245, 158, 11, 0.45); letter-spacing: 0.5px;">⚔️ Crear Cuenta SRP6</a>
             <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0c4a6e 100%); border-color: #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); letter-spacing: 0.5px;" title="Descarga directa del Lanzador Oficial v2.1 (~20 MB) ejecutable en 1 Clic">⚡ Descargar Lanzador Oficial v2.1 (~20 MB)</a>
             <a href="#como-jugar" class="btn-secondary" style="font-size: 0.95rem; padding: 0.85rem 1.4rem; border-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px);">📦 Guía de Descargas & Cliente Completo ➔</a>
+        </div>
+
+        <!-- HERO QUICK-CONNECT & REALMLIST WIDGET (ANYCAST 1-CLIC) -->
+        <div class="hero-quick-connect" id="heroQuickConnect">
+            <div class="quick-connect-header">
+                <div class="quick-connect-badge">
+                    <span class="live-dot-pulse"></span>
+                    <span>Conexión Directa al Reino · Cero VPN</span>
+                </div>
+                <div class="quick-connect-ping-wrap">
+                    <button type="button" class="btn-ping-test" data-action="ping-test" title="Probar latencia en tiempo real hacia el servidor Anycast">
+                        📶 Probar Latencia
+                    </button>
+                </div>
+            </div>
+
+            <div class="quick-connect-body">
+                <div class="quick-connect-code-box">
+                    <span class="quick-connect-label">Tu Realmlist Oficial:</span>
+                    <code id="heroRealmlistCode" class="quick-connect-code">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+                </div>
+
+                <div class="quick-connect-actions">
+                    <button type="button" class="btn-quick-action btn-copy-hero" data-action="copy-realmlist" title="Copiar línea de realmlist al portapapeles">
+                        📋 Copiar Realmlist
+                    </button>
+                    <button type="button" class="btn-quick-action btn-dl-hero" data-action="download-realmlist" title="Descargar archivo realmlist.wtf preparado para arrastrar a tu carpeta de WoW">
+                        📥 Descargar realmlist.wtf
+                    </button>
+                </div>
+            </div>
+
+            <div class="quick-connect-footer">
+                <div class="quick-connect-pill">🌐 Anycast Global Playit L4</div>
+                <div class="quick-connect-pill">⚡ WotLK 3.3.5a (12340)</div>
+                <div class="quick-connect-pill">📁 Arrástralo a: <code>Data\esES\</code> (o tu idioma)</div>
+            </div>
         </div>
 
         <!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
@@ -875,7 +912,7 @@
             </div>
 
             <!-- PASO 3: ENTRAR A JUGAR -->
-            <div class="conn-step-card">
+            <div class="conn-step-card" style="border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
                 <div class="conn-step-header">
                     <div class="conn-step-badge">3</div>
                     <div>
@@ -884,19 +921,51 @@
                     </div>
                 </div>
                 <p class="conn-step-desc">
-                    Abre <code>ProjectJaina_Launcher.exe</code> (o <code>Iniciar_Juego.bat</code>), pulsa <strong>ENTRAR A AZEROTH</strong> y pon tus datos del Paso 1.
+                    Si usas el <strong>Lanzador Oficial</strong>, solo pulsa <em>ENTRAR A AZEROTH</em>. Si usas tu propio cliente WoW, configura tu <code>realmlist.wtf</code> en segundos:
                 </p>
-                <div class="conn-callout-tip frost-tip" style="margin-top: 1rem;">
-                    ⚡ <strong>Auto-Configuración:</strong> El lanzador enruta automáticamente el tráfico por el túnel Anycast sin que tengas que editar archivos.
-                </div>
-                <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px; padding: 10px; margin-top: 0.6rem;">
-                    <span style="font-size: 0.70rem; color: var(--text-muted); display: block; margin-bottom: 4px;">¿Conexión manual? Configura tu <code>realmlist.wtf</code>:</span>
-                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
-                        <code style="color: var(--gold-primary); font-size: 0.76rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; word-break: break-all;">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
-                        <button onclick="navigator.clipboard.writeText('set realmlist ambulance-absurd.tun.ply.gg:58735'); alert('¡Realmlist oficial copiado al portapapeles!')" style="background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 4px; color: var(--gold-primary); font-size: 0.70rem; font-weight: 700; padding: 3px 8px; cursor: pointer; white-space: nowrap;">📋 Copiar</button>
+
+                <!-- CAJA DE ACCIONES DE REALMLIST -->
+                <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 8px; padding: 10px; margin-top: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 0.70rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Realmlist Anycast Global:</span>
+                        <span style="font-size: 0.68rem; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 1px 6px; border-radius: 4px; font-weight: 700;">Cero VPN</span>
+                    </div>
+                    <code style="display: block; color: var(--gold-primary); font-size: 0.76rem; font-family: 'JetBrains Mono', Consolas, monospace; font-weight: 700; word-break: break-all; background: rgba(0,0,0,0.5); padding: 5px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 8px;">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+                    
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                        <button type="button" class="btn-primary" data-action="download-realmlist" style="flex: 1; padding: 0.5rem 0.6rem; font-size: 0.76rem; text-align: center;" title="Descargar realmlist.wtf autoconfigurado">
+                            📥 Descargar .wtf
+                        </button>
+                        <button type="button" class="btn-secondary" data-action="copy-realmlist" style="flex: 1; padding: 0.5rem 0.6rem; font-size: 0.76rem; text-align: center;" title="Copiar texto del realmlist">
+                            📋 Copiar
+                        </button>
                     </div>
                 </div>
-                <div class="conn-callout-tip green-tip" style="margin-top: 0.6rem;">
+
+                <!-- SELECTOR DE RUTA INTERACTIVO SEGÚN IDIOMA DEL CLIENTE -->
+                <div class="locale-folder-helper" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 10px; margin-top: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 0.70rem; color: #38bdf8; font-weight: 700;">📂 ¿DÓNDE PEGAR EL ARCHIVO?</span>
+                        <span style="font-size: 0.65rem; color: var(--text-muted);">Elige tu idioma:</span>
+                    </div>
+
+                    <div class="locale-tabs-bar" style="display: flex; gap: 4px; margin-bottom: 8px;">
+                        <button type="button" class="locale-tab-btn active" data-locale="esES" onclick="switchLocalePath('esES')" title="Español de España">🇪🇸 esES</button>
+                        <button type="button" class="locale-tab-btn" data-locale="esMX" onclick="switchLocalePath('esMX')" title="Español Latinoamericano">🇲🇽 esMX</button>
+                        <button type="button" class="locale-tab-btn" data-locale="enUS" onclick="switchLocalePath('enUS')" title="English US">🇺🇸 enUS</button>
+                        <button type="button" class="locale-tab-btn" data-locale="root" onclick="switchLocalePath('root')" title="Directorio Raíz">📁 Raíz</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; background: rgba(0,0,0,0.4); padding: 5px 8px; border-radius: 4px; border: 1px dashed rgba(56, 189, 248, 0.3);">
+                        <code id="localeCurrentPathCode" style="font-size: 0.72rem; color: #7dd3fc; font-family: 'JetBrains Mono', Consolas, monospace; word-break: break-all;">World of Warcraft\Data\esES\realmlist.wtf</code>
+                        <button type="button" onclick="copyActiveLocalePath(this)" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 4px; color: #38bdf8; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; cursor: pointer; white-space: nowrap;">Copiar</button>
+                    </div>
+                    <div id="localeCurrentPathDesc" style="font-size: 0.67rem; color: var(--text-muted); margin-top: 4px;">
+                        Ruta estándar para clientes instalados en Español de España.
+                    </div>
+                </div>
+
+                <div class="conn-callout-tip green-tip" style="margin-top: 0.8rem;">
                     🎙️ <strong>Voz Espacial 3D:</strong> Activa el micrófono en el juego con <code>/voz</code> para hablar por proximidad.
                 </div>
             </div>
@@ -957,7 +1026,7 @@
     <script src="js/progression.js?v=20261012d"></script>
     <script src="js/countdown.js?v=20261012d"></script>
     <script src="js/jaina_dialogue.js?v=20261012d"></script>
-    <script src="js/connection_guide.js?v=20261014a"></script>
+    <script src="js/connection_guide.js?v=20261017b"></script>
     <script src="js/audio_ambient.js?v=20261016a"></script>
     <script src="js/hardware_checker.js?v=20261016a"></script>
     <script src="js/interactive_enclaves.js?v=20261016a"></script>

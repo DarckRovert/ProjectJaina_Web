@@ -4971,5 +4971,329 @@ body.pj-modal-open {
     }
 }
 
+/* ==========================================================================
+   PROJECT JAINA 3.0 — HERO QUICK-CONNECT, LOCALE SWITCHER & PORTAL TOASTS
+   ========================================================================== */
 
+/* 1. Hero Quick-Connect Card */
+.hero-quick-connect {
+    max-width: 860px;
+    margin: 1.8rem auto 1.5rem auto;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(20, 29, 47, 0.95) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65), 0 0 25px rgba(245, 158, 11, 0.18);
+    backdrop-filter: blur(14px);
+    position: relative;
+    z-index: 10;
+    text-align: left;
+}
 
+.quick-connect-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quick-connect-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--gold-primary);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.live-dot-pulse {
+    width: 9px;
+    height: 9px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    animation: livePulseAnim 1.8s infinite;
+}
+
+@keyframes livePulseAnim {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.btn-ping-test {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #34d399;
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-ping-test:hover {
+    background: rgba(16, 185, 129, 0.25);
+    border-color: #34d399;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    transform: translateY(-1px);
+}
+
+.quick-connect-body {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.quick-connect-code-box {
+    flex: 1 1 360px;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.quick-connect-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quick-connect-code {
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 0.90rem;
+    color: var(--gold-primary);
+    font-weight: 800;
+    word-break: break-all;
+}
+
+.quick-connect-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 0 0 auto;
+}
+
+.btn-quick-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.btn-copy-hero {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    color: var(--gold-primary);
+}
+
+.btn-copy-hero:hover {
+    background: var(--gold-primary);
+    color: #0b0f19;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-dl-hero {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1px solid #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+}
+
+.btn-dl-hero:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.55);
+    transform: translateY(-2px);
+}
+
+.quick-connect-footer {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 0.85rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.74rem;
+    color: #94a3b8;
+}
+
+.quick-connect-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quick-connect-pill code {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 0.74rem;
+}
+
+/* 2. Locale Folder Helper (Step 3) */
+.locale-tabs-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.locale-tab-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+    border-radius: 6px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.locale-tab-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #ffffff;
+}
+
+.locale-tab-btn.active {
+    background: rgba(56, 189, 248, 0.25);
+    border-color: #38bdf8;
+    color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* 3. Floating Portal Toast Notification System */
+.portal-toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+    max-width: 440px;
+    width: calc(100% - 48px);
+}
+
+.portal-toast {
+    pointer-events: auto;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 29, 47, 0.98) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(245, 158, 11, 0.2);
+    backdrop-filter: blur(16px);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    transform: translateX(110%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-toast.toast-show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.portal-toast.toast-closing {
+    transform: translateX(110%);
+    opacity: 0;
+}
+
+.portal-toast.toast-success {
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(16, 185, 129, 0.25);
+}
+
+.portal-toast.toast-warning {
+    border-color: rgba(245, 158, 11, 0.6);
+}
+
+.portal-toast.toast-info {
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(56, 189, 248, 0.25);
+}
+
+.toast-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.toast-content {
+    flex: 1;
+}
+
+.toast-content code {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--gold-primary);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', Consolas, monospace;
+}
+
+.toast-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.toast-close:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 640px) {
+    .quick-connect-body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .quick-connect-actions {
+        width: 100%;
+    }
+    .btn-quick-action {
+        flex: 1;
+    }
+    .portal-toast-container {
+        bottom: 16px;
+        right: 16px;
+        width: calc(100% - 32px);
+    }
+}
