@@ -4392,5 +4392,584 @@ body.theme-horde .faction-pill.active {
     color: #0b1120;
 }
 
+/* =============================================================================
+   PROJECT JAINA — SUITE MAESTRA DE AUTENTICACIÓN Y LOGIN MODAL
+   ============================================================================= */
+
+/* Botón Iniciar Sesión en Navbar */
+.auth-nav-container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-login-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(14, 21, 37, 0.75);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    color: var(--gold-primary, #f59e0b);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 0.52rem 1.15rem;
+    border-radius: 8px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.btn-login-nav:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: #fbbf24;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+
+.btn-login-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* User Pill Logueado en Navbar */
+.pj-user-pill-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.pj-user-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(14, 21, 37, 0.9), rgba(26, 37, 65, 0.85));
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
+    transition: all 0.25s ease;
+}
+
+.pj-user-pill-btn:hover {
+    border-color: #38bdf8;
+    background: linear-gradient(135deg, rgba(20, 30, 55, 0.95), rgba(35, 50, 85, 0.9));
+    box-shadow: 0 6px 22px rgba(56, 189, 248, 0.35);
+    transform: translateY(-1px);
+}
+
+.pj-pill-avatar {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.pj-pill-name {
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 0.4px;
+}
+
+.pj-pill-gm {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0b1120;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 1px 5px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.pj-pill-chevron {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+/* Menú Desplegable de Usuario */
+.pj-user-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 270px;
+    background: rgba(10, 15, 29, 0.96);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+}
+
+.pj-user-dropdown.pj-ud-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.pj-ud-header {
+    margin-bottom: 0.6rem;
+}
+
+.pj-ud-user {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #f8fafc;
+}
+
+.pj-ud-title {
+    font-size: 0.75rem;
+    color: #38bdf8;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.pj-ud-email {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 2px;
+    word-break: break-all;
+}
+
+.pj-ud-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0.65rem 0;
+}
+
+.pj-ud-section-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #94a3b8;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.pj-ud-chars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.pj-user-char-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.75rem;
+}
+
+.pj-char-badge {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.68rem;
+}
+
+.pj-char-name {
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.pj-char-meta {
+    margin-left: auto;
+    color: #64748b;
+    font-size: 0.70rem;
+}
+
+.pj-user-no-chars {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-style: italic;
+    padding: 4px 0;
+}
+
+.pj-ud-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.45rem 0.5rem;
+    border-radius: 6px;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.80rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pj-ud-link:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    transform: translateX(3px);
+}
+
+.pj-ud-link-icon {
+    font-size: 0.9rem;
+}
+
+.pj-ud-logout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #f87171;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.80rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pj-ud-logout:hover {
+    background: #ef4444;
+    color: #fff;
+}
+
+/* =============================================================================
+   MODAL DE LOGIN (KIRIN TOR / DALARAN GLASSMORPHISM)
+   ============================================================================= */
+.pj-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 7, 14, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+    z-index: 999999;
+    padding: 1.5rem;
+}
+
+.pj-modal-overlay.pj-modal-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+body.pj-modal-open {
+    overflow: hidden;
+}
+
+.pj-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, rgba(14, 20, 38, 0.96), rgba(8, 12, 24, 0.98));
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-radius: 18px;
+    padding: 2.2rem 2rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(245, 158, 11, 0.22);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pj-modal-overlay.pj-modal-visible .pj-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.pj-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.pj-modal-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.pj-modal-header {
+    text-align: center;
+    margin-bottom: 1.4rem;
+}
+
+.pj-modal-rune {
+    font-size: 2.2rem;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.5));
+}
+
+.pj-modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gold-primary, #f59e0b);
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.pj-modal-subtitle {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-top: 0.35rem;
+    line-height: 1.4;
+}
+
+.pj-modal-subtitle strong {
+    color: #38bdf8;
+}
+
+/* Alertas del Modal */
+.pj-modal-alert {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    animation: pjFadeIn 0.25s ease;
+}
+
+.pj-modal-alert.pj-alert-error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+}
+
+.pj-modal-alert.pj-alert-success {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #86efac;
+}
+
+@keyframes pjFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Formulario */
+.pj-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.pj-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.pj-form-group label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: #cbd5e1;
+    text-transform: uppercase;
+}
+
+.pj-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pj-input-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 1rem;
+    color: #64748b;
+    pointer-events: none;
+}
+
+.pj-input-wrap input {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 0.78rem 2.8rem 0.78rem 2.6rem;
+    color: #f8fafc;
+    font-size: 0.92rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s ease;
+}
+
+.pj-input-wrap input:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+    background: rgba(20, 29, 52, 0.95);
+}
+
+.pj-pass-toggle {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.pj-pass-toggle:hover {
+    color: #e2e8f0;
+}
+
+.pj-form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    margin-top: -2px;
+}
+
+.pj-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.pj-checkbox-label input {
+    accent-color: #f59e0b;
+}
+
+.pj-forgot-link {
+    color: #38bdf8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pj-forgot-link:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+}
+
+/* Botón Submit */
+.pj-btn-login-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0b1120;
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.8px;
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0.4rem;
+}
+
+.pj-btn-login-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(245, 158, 11, 0.6);
+    filter: brightness(1.08);
+}
+
+.pj-btn-login-submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.pj-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(11, 17, 32, 0.3);
+    border-top-color: #0b1120;
+    border-radius: 50%;
+    animation: pjSpin 0.8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes pjSpin {
+    to { transform: rotate(360deg); }
+}
+
+.pj-modal-footer {
+    text-align: center;
+    margin-top: 1.4rem;
+    font-size: 0.82rem;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pj-register-link {
+    color: #f59e0b;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pj-register-link:hover {
+    color: #fbbf24;
+    text-decoration: underline;
+}
+
+/* Adaptación responsive en móviles */
+@media (max-width: 768px) {
+    .btn-login-nav .btn-login-text {
+        display: none;
+    }
+    .btn-login-nav {
+        padding: 0.48rem 0.75rem;
+    }
+    .pj-user-pill-btn .pj-pill-name {
+        max-width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .pj-modal-card {
+        padding: 1.8rem 1.4rem;
+    }
+}
+
 
 

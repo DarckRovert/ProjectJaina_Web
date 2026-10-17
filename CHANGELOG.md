@@ -4,6 +4,12 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.6.2] - 2026-10-17 — Suite de Autenticación Web SRP6 & Acceso de Jugadores en Barra Superior
+- **Login Web de Jugadores en Navbar (`js/auth.js`, `css/style.css`, todas las páginas):** Incorporado acceso directo en la esquina superior derecha (`.nav-actions-tray`) con modal de inicio de sesión Kirin Tor / Dalaran Glassmorphism. Soporta autenticación criptográfica SRP6 en tiempo real, alternancia de visibilidad de contraseña, persistencia de sesión en `localStorage` y menú desplegable de perfil de aventurero/Game Master con censo de personajes en vivo (`acore_characters`).
+- **Endpoint REST Autoritativo `/api/auth/login` (`ProjectJaina_WebAPI.py`):** Integrado manejador HTTP POST con validación matemática de verifiers y salts mediante `srp6_auth.verify_credentials`, extracción de rango GM (`account_access`), facción (`account_clan_affiliation`) e historial de héroes.
+
+---
+
 ## [v2.6.1] - 2026-10-17 — Saneamiento Full-Stack: Persistencia Real en BugTracker, Calibración de Cliente y Hardening de Endpoints
 - **BugTracker con Persistencia Real MySQL (`bugs.html` & `ProjectJaina_WebAPI.py`):** Erradicados los mocks con `alert()` y `setTimeout()`. Implementada la tabla `website_bug_reports` en MySQL, endpoints REST nativos `GET /api/bugs` y `POST /api/bugs` con sanitización estricta contra inyección y XSS, estados vacíos/carga y renderizado asíncrono reactivo.
 - **Calibración Anticaída de Cliente y Lanzadores (`Config.wtf`):** Normalizado `textureCacheSize "64"` e inyectado `environmentDetail "1.0"`, `timingTestError "0"` y `rawMouseEnable "1"`, eliminando congelamientos de hilo en pantallas de carga y saturación de memoria de 32 bits de Direct3D 9 (`Texture.cpp:2057`).
