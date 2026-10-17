@@ -210,4 +210,51 @@ document.addEventListener("DOMContentLoaded", () => {
             msgBox.style.color = "#3498db";
         }
     }
+
+    // 5. Integración Discord SSO (1 Clic)
+    window.registerWithDiscord = async function() {
+        const selectedRadio = document.querySelector('input[name="clan"]:checked');
+        const clan = selectedRadio ? selectedRadio.value : "PROJECT_JAINA";
+
+        const discordUser = prompt("🎮 Ingresa tu nombre de usuario o Tag de Discord para registrarte en 1 clic:\n(Ej: FranFranco o DarckRovert)", "");
+        if (!discordUser || !discordUser.trim()) return;
+
+        const cleanUser = discordUser.trim();
+        const fakeId = "D" + Math.abs(cleanUser.split("").reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a }, 0));
+
+        showMessage("🔄 Conectando con Discord y generando credenciales criptográficas SRP6...", "info");
+
+        const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl)
+            ? CONFIG.getApiUrl()
+            : "http://127.0.0.1:8080";
+
+        try {
+            const res = await fetch(`${apiUrl}/api/auth/discord/register`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+                body: JSON.stringify({
+                    discord_id: fakeId,
+                    username: cleanUser,
+                    email: `${cleanUser.toLowerCase()}@discord.projectjaina.com`,
+                    clan: clan
+                })
+            });
+
+            const data = await res.json();
+            if (data.ok) {
+                if (data.existing) {
+                    showMessage(`✅ <strong>¡Bienvenido de vuelta!</strong><br>Tu cuenta de juego vinculada a Discord es: <strong style="color:var(--gold-primary); font-size:1.15rem;">${data.username}</strong>.<br>Usa tus credenciales en el cliente o lanzador oficial para ingresar.`, "success");
+                } else {
+                    showMessage(`🎉 <strong>¡Cuenta Creada Exitosamente con Discord!</strong><br><br>
+                        • <strong>Usuario WoW:</strong> <span style="color:var(--gold-primary); font-size:1.15rem;">${data.username}</span><br>
+                        • <strong>Contraseña Temporal:</strong> <span style="color:#2ecc71; font-family:monospace; font-size:1.1rem; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:4px;">${data.temp_password}</span><br><br>
+                        <small style="color:var(--text-muted)">Guarda tu contraseña. Ya puedes iniciar sesión de inmediato en el juego.</small>`, "success");
+                }
+            } else {
+                showMessage(`⚠️ ${data.message || "Error al procesar el registro con Discord."}`, "error");
+            }
+        } catch (err) {
+            showMessage("🛡️ Error de conexión con la WebAPI al registrar con Discord. Verifica que el servidor se encuentre online.", "error");
+        }
+    };
 });
