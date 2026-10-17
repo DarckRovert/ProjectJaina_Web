@@ -154,8 +154,33 @@ function initEnclavesRadar() {
         if (copyBtn) {
             copyBtn.addEventListener("click", async () => {
                 const macro = copyBtn.getAttribute("data-macro");
-                try {
-                    await navigator.clipboard.writeText(macro);
+                let success = false;
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(macro);
+                        success = true;
+                    } catch (err) {
+                        success = false;
+                    }
+                }
+
+                if (!success) {
+                    try {
+                        const tempEl = document.createElement("textarea");
+                        tempEl.value = macro;
+                        tempEl.style.position = "fixed";
+                        tempEl.style.opacity = "0";
+                        document.body.appendChild(tempEl);
+                        tempEl.select();
+                        success = document.execCommand("copy");
+                        document.body.removeChild(tempEl);
+                    } catch (e) {
+                        success = false;
+                    }
+                }
+
+                if (success) {
                     const originalText = copyBtn.innerHTML;
                     copyBtn.innerHTML = "✅ ¡Copiado!";
                     copyBtn.style.background = "#2ecc71";
@@ -165,7 +190,7 @@ function initEnclavesRadar() {
                         copyBtn.style.background = "";
                         copyBtn.style.color = "";
                     }, 2000);
-                } catch (e) {
+                } else {
                     prompt("Copia este comando /way para tu addon TomTom:", macro);
                 }
             });
