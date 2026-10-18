@@ -378,15 +378,29 @@
     </footer>
 
     <!-- SCRIPTS -->
+    <script src="js/config.js"></script>
     <script src="js/particles.js"></script>
     <script src="js/card_tilt.js"></script>
     <script src="js/audio_ambient.js"></script>
     <script>
+        function escapeHtml(text) {
+            if (!text) return "";
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
         function getApiBaseUrl() {
+            if (typeof CONFIG !== "undefined" && typeof CONFIG.getApiUrl === "function") {
+                return CONFIG.getApiUrl();
+            }
             if (window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
                 return "http://127.0.0.1:8080";
             }
-            return `${window.location.protocol}//${window.location.hostname}:8080`;
+            return "https://ingrainedly-easeled-edelmira.ngrok-free.dev";
         }
 
         async function submitBugReport(e) {
@@ -409,7 +423,11 @@
             try {
                 const res = await fetch(`${apiUrl}/api/bugs`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "ngrok-skip-browser-warning": "true"
+                    },
                     body: JSON.stringify({ title, category, description })
                 });
                 const data = await res.json();
@@ -418,7 +436,7 @@
                     feedback.style.background = "rgba(46, 204, 113, 0.2)";
                     feedback.style.border = "1px solid rgba(46, 204, 113, 0.5)";
                     feedback.style.color = "#2ecc71";
-                    feedback.innerHTML = `✅ <strong>¡Reporte recibido con éxito!</strong><br>Ticket oficial: <code>${data.ticket_id}</code>.<br>${data.message}`;
+                    feedback.innerHTML = `✅ <strong>¡Reporte recibido con éxito!</strong><br>Ticket oficial: <code>${escapeHtml(data.ticket_id)}</code>.<br>${escapeHtml(data.message)}`;
                     document.getElementById("bugReportForm").reset();
                     loadRecentBugs();
                 } else {
@@ -429,7 +447,7 @@
                 feedback.style.background = "rgba(231, 76, 60, 0.2)";
                 feedback.style.border = "1px solid rgba(231, 76, 60, 0.5)";
                 feedback.style.color = "#e74c3c";
-                feedback.innerHTML = `⚠️ <strong>Error al registrar el reporte:</strong> ${err.message}. Verifica que WebAPI (puerto 8080) esté activo.`;
+                feedback.innerHTML = `⚠️ <strong>Error al registrar el reporte:</strong> ${escapeHtml(err.message)}. Verifica que WebAPI (puerto 8080) esté activo.`;
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalText;
@@ -441,17 +459,23 @@
             if (!listContainer) return;
             const apiUrl = getApiBaseUrl();
             try {
-                const res = await fetch(`${apiUrl}/api/bugs`);
+                const res = await fetch(`${apiUrl}/api/bugs`, {
+                    headers: {
+                        "Accept": "application/json",
+                        "ngrok-skip-browser-warning": "true"
+                    }
+                });
                 if (res.ok) {
                     const data = await res.json();
                     if (data.ok && Array.isArray(data.bugs) && data.bugs.length > 0) {
-                        const dynamicItems = data.bugs.slice(0, 5).map(b => `
-                            <div class="issue-card" style="border-left: 3px solid #00e5ff;">
+                        listContainer.querySelectorAll(".dynamic-bug-card").forEach(el => el.remove());
+                        const dynamicItems = data.bugs.slice(0, 10).map(b => `
+                            <div class="issue-card dynamic-bug-card" style="border-left: 3px solid #00e5ff;">
                                 <div>
-                                    <div class="issue-title">🏷️ [${b.ticket_id}] — ${b.title}</div>
-                                    <div class="issue-meta">${b.description} · <span style="color:#00e5ff;">${b.category.toUpperCase()}</span> · ${b.created_at}</div>
+                                    <div class="issue-title">🏷️ [${escapeHtml(b.ticket_id)}] — ${escapeHtml(b.title)}</div>
+                                    <div class="issue-meta">${escapeHtml(b.description)} · <span style="color:#00e5ff;">${escapeHtml((b.category || 'GENERAL').toUpperCase())}</span> · ${escapeHtml(b.created_at)}</div>
                                 </div>
-                                <span class="issue-badge active">⏳ ${b.status}</span>
+                                <span class="issue-badge active">⏳ ${escapeHtml(b.status)}</span>
                             </div>
                         `).join("");
                         listContainer.insertAdjacentHTML('afterbegin', dynamicItems);

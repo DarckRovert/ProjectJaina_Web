@@ -223,15 +223,15 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div style="background:rgba(0,0,0,0.5); border:1px dashed rgba(245,158,11,0.5); border-radius:8px; padding:0.6rem 0.8rem; margin-bottom:0.9rem;">
-                <span style="display:block; font-size:0.72rem; color:var(--text-muted); margin-bottom:4px; font-weight:700; text-transform:uppercase;">Realmlist Oficial Anycast (Cero VPN):</span>
-                <code style="display:block; font-family:'Consolas',monospace; font-size:0.84rem; color:var(--gold-primary); font-weight:700; word-break:break-all;">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+                <span style="display:block; font-size:0.72rem; color:var(--text-muted); margin-bottom:4px; font-weight:700; text-transform:uppercase;">Realmlist Oficial Anycast (Lanzador):</span>
+                <code style="display:block; font-family:'Consolas',monospace; font-size:0.84rem; color:var(--gold-primary); font-weight:700; word-break:break-all;">set realmlist 127.0.0.1</code>
             </div>
 
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
                 <button type="button" class="btn-primary" onclick="if(window.downloadRealmlistFile){window.downloadRealmlistFile();}else{window.location.href='index.html#como-jugar';}" style="flex:1; min-width:180px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
                     📥 Descargar realmlist.wtf
                 </button>
-                <button type="button" class="btn-secondary" onclick="if(window.copyRealmlistOfficial){window.copyRealmlistOfficial(this);}else{navigator.clipboard.writeText('set realmlist ambulance-absurd.tun.ply.gg:58735');alert('¡Copiado!');}" style="flex:1; min-width:160px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
+                <button type="button" class="btn-secondary" onclick="if(window.copyRealmlistOfficial){window.copyRealmlistOfficial(this);}else{navigator.clipboard.writeText('set realmlist 127.0.0.1');alert('¡Copiado!');}" style="flex:1; min-width:160px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
                     📋 Copiar Realmlist
                 </button>
             </div>

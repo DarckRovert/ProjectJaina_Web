@@ -9,7 +9,7 @@
   "current_phase_start": "2026-11-24T00:00:00-05:00",
   "next_phase_target": "2027-03-01T00:00:00-05:00",
   "active_phase_name": "World of Warcraft Classic",
-  "realmlist": "ambulance-absurd.tun.ply.gg:58735",
+  "realmlist": "127.0.0.1",
   "auth_public": "ambulance-absurd.tun.ply.gg:58735",
   "world_public": "ambulance-ergonomic.tun.ply.gg:11356",
   "telemetry": {

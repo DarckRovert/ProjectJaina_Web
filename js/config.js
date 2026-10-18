@@ -9,6 +9,7 @@ const CONFIG = {
 
     KNOWN_ENDPOINTS: [
         { id: "tunnel", name: "Servidor Oficial (HTTPS)", url: "https://ingrainedly-easeled-edelmira.ngrok-free.dev" },
+        { id: "radmin", name: "Servidor Radmin VPN (Malla)", url: "http://26.140.157.205:8080" },
         { id: "local",  name: "Servidor Local (Sandbox)", url: "http://127.0.0.1:8080" }
     ],
 
@@ -39,8 +40,8 @@ const CONFIG = {
             return this.LOCAL_API;
         }
 
-        // 4. Red Privada Local (LAN: 192.168.x.x o 10.x.x.x)
-        if (host.startsWith("192.168.") || host.startsWith("10.")) {
+        // 4. Red Privada Local / Radmin VPN (LAN: 192.168.x.x, 10.x.x.x, 172.x.x.x o Radmin: 26.x.x.x)
+        if (host.startsWith("192.168.") || host.startsWith("10.") || host.startsWith("26.") || host.startsWith("172.")) {
             return `http://${host}:8080`;
         }
 

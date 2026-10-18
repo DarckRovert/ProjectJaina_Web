@@ -3,7 +3,25 @@
  * Versión: 3.0 (Cero Fricción · Descarga Directa de realmlist.wtf · Switcher de Idiomas · Test de Latencia)
  */
 
-const OFFICIAL_REALMLIST_LINE = "set realmlist ambulance-absurd.tun.ply.gg:58735";
+// WoW 3.3.5a no admite ":puerto" en realmlist.wtf (provoca WSAHOST_NOT_FOUND 11001).
+// Con el Lanzador Oficial, el tráfico se enruta mediante proxy loopback (127.0.0.1:3724 -> Anycast:58735).
+// En conexión directa sin lanzador, se conecta a través de la IP de Radmin en el puerto 3724 estándar.
+const REALMLIST_MODES = {
+    anycast: {
+        line: "set realmlist 127.0.0.1",
+        host: "127.0.0.1",
+        label: "Lanzador Oficial (Anycast Global · Cero VPN)",
+        desc: "Requiere el Lanzador Oficial abierto (enruta 127.0.0.1:3724 al túnel Anycast)."
+    },
+    radmin: {
+        line: "set realmlist 26.140.157.205",
+        host: "26.140.157.205",
+        label: "Directo Radmin VPN (Sin Lanzador)",
+        desc: "Conexión directa nativa al puerto 3724 dentro de la red Radmin VPN 'Project_Jaina'."
+    }
+};
+
+const OFFICIAL_REALMLIST_LINE = REALMLIST_MODES.anycast.line;
 const OFFICIAL_REALMLIST_HOST = "ambulance-absurd.tun.ply.gg:58735";
 
 const WOW_LOCALE_PATHS = {
@@ -103,9 +121,10 @@ function switchConnectionTab(tabId) {
  * Descarga Directa del archivo realmlist.wtf preparado en 1 Clic
  * Evita que el usuario tenga que abrir bloc de notas o cometa errores tipográficos.
  */
-function downloadRealmlistFile() {
+function downloadRealmlistFile(mode = "anycast") {
     try {
-        const fileContent = `${OFFICIAL_REALMLIST_LINE}\r\n`;
+        const target = REALMLIST_MODES[mode] || REALMLIST_MODES.anycast;
+        const fileContent = `${target.line}\r\n`;
         const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         
@@ -121,7 +140,11 @@ function downloadRealmlistFile() {
             URL.revokeObjectURL(url);
         }, 300);
 
-        showPortalToast("📥 <strong>¡Archivo realmlist.wtf descargado!</strong><br>Arrástralo a tu carpeta <code>World of Warcraft\\Data\\esES\\</code> (o tu idioma) y ¡listo!", "success", 5000);
+        if (mode === "radmin") {
+            showPortalToast("📥 <strong>¡Archivo realmlist.wtf descargado (Radmin Directo)!</strong><br>Arrástralo a <code>World of Warcraft\\Data\\esES\\</code> y conéctate a la red Radmin.", "success", 5000);
+        } else {
+            showPortalToast("📥 <strong>¡Archivo realmlist.wtf descargado!</strong><br>Configurado con <code>" + target.line + "</code>. Recuerda abrir el <strong>Lanzador Oficial</strong> para activar el túnel Anycast.", "success", 5500);
+        }
     } catch (err) {
         console.error("Error al generar realmlist.wtf:", err);
         fallbackCopy(OFFICIAL_REALMLIST_LINE);
@@ -132,10 +155,11 @@ function downloadRealmlistFile() {
 /**
  * Copia el Realmlist Oficial al portapapeles con feedback visual
  */
-function copyRealmlistOfficial(btnElement) {
+function copyRealmlistOfficial(btnElement, mode = "anycast") {
+    const target = REALMLIST_MODES[mode] || REALMLIST_MODES.anycast;
     copyTextToClipboard(
-        OFFICIAL_REALMLIST_LINE,
-        "📋 <strong>¡Realmlist Oficial Copiado!</strong><br><code>" + OFFICIAL_REALMLIST_LINE + "</code><br>Pégalo dentro de tu archivo <code>realmlist.wtf</code>.",
+        target.line,
+        "📋 <strong>¡Realmlist Copiado!</strong><br><code>" + target.line + "</code><br>" + target.desc,
         btnElement
     );
 }

@@ -313,21 +313,63 @@ window.actionUnstuckCharacter = async function(guid, name) {
  * Acción: Teletransportar Personaje a una Capital Segura
  */
 window.openTeleportModal = function(guid, name) {
-    const dest = prompt(
-        `🕊️ Elige el destino para ${name}:\n\n` +
-        `1. theramore  -> Isla de Theramore (Santuario Jaina)\n` +
-        `2. dalaran    -> Ciudad de Dalaran (Kirin Tor)\n` +
-        `3. stormwind  -> Ciudad de Ventormenta (Alianza)\n` +
-        `4. orgrimmar  -> Orgrimmar (Horda)\n` +
-        `5. ironforge  -> Ciudad de Forjaz\n` +
-        `6. undercity  -> Entrañas (Undercity)\n\n` +
-        `Escribe el nombre del destino (ej: theramore o dalaran):`,
-        "theramore"
-    );
+    let modal = document.getElementById("pjTeleportModal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "pjTeleportModal";
+        modal.style.cssText = "position: fixed; inset: 0; background: rgba(5, 10, 20, 0.85); backdrop-filter: blur(8px); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 1rem;";
+        modal.innerHTML = `
+            <div style="background: #0f172a; border: 1px solid rgba(245, 158, 11, 0.5); border-radius: 14px; max-width: 480px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.9); padding: 1.8rem; position: relative; animation: pjModalFade 0.25s ease-out;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.8rem;">
+                    <h3 style="margin: 0; color: #f59e0b; font-size: 1.25rem; display: flex; align-items: center; gap: 8px;">
+                        <span>🕊️</span> Traslado de Campeón
+                    </h3>
+                    <button type="button" id="pjCloseTeleportModal" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer; line-height: 1;">&times;</button>
+                </div>
+                <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.2rem;">
+                    Selecciona el santuario o capital segura de destino para <strong id="pjTeleportTargetName" style="color: #38bdf8;"></strong>:
+                </p>
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="pjTeleportSelect" style="display: block; font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Ciudad de Destino:</label>
+                    <select id="pjTeleportSelect" style="width: 100%; background: #1e293b; color: #f8fafc; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 0.75rem; font-size: 0.92rem; outline: none;">
+                        <option value="theramore">🏝️ Isla de Theramore (Santuario Jaina)</option>
+                        <option value="dalaran">✨ Dalaran (Kirin Tor - Northrend)</option>
+                        <option value="stormwind">🦁 Ciudad de Ventormenta (Alianza)</option>
+                        <option value="ironforge">⚒️ Ciudad de Forjaz (Alianza)</option>
+                        <option value="orgrimmar">🐺 Orgrimmar (Horda)</option>
+                        <option value="undercity">💀 Entrañas / Undercity (Horda)</option>
+                        <option value="gadgetzan">🏜️ Gadgetzan (Tanaris - Neutral)</option>
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" id="pjCancelTeleportBtn" class="btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">Cancelar</button>
+                    <button type="button" id="pjConfirmTeleportBtn" class="btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.88rem;">🕊️ Confirmar Traslado</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
 
-    if (!dest || !dest.trim()) return;
+        const closeBtn = document.getElementById("pjCloseTeleportModal");
+        const cancelBtn = document.getElementById("pjCancelTeleportBtn");
+        const closeModal = () => { modal.style.display = "none"; };
 
-    actionTeleportCharacter(guid, name, dest.trim().toLowerCase());
+        closeBtn.onclick = closeModal;
+        cancelBtn.onclick = closeModal;
+        modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.style.display !== "none") closeModal();
+        });
+    }
+
+    document.getElementById("pjTeleportTargetName").textContent = name;
+    modal.style.display = "flex";
+
+    const confirmBtn = document.getElementById("pjConfirmTeleportBtn");
+    confirmBtn.onclick = () => {
+        const dest = document.getElementById("pjTeleportSelect").value;
+        modal.style.display = "none";
+        actionTeleportCharacter(guid, name, dest);
+    };
 };
 
 async function actionTeleportCharacter(guid, name, dest) {
@@ -336,7 +378,7 @@ async function actionTeleportCharacter(guid, name, dest) {
     const user = JSON.parse(rawUser);
 
     if (window.showPortalToast) {
-        showPortalToast(`⏳ Trasladando a <strong>${name}</strong> hacia ${dest}...`, "info", 2500);
+        showPortalToast(`⏳ Trasladando a <strong>${name}</strong> hacia ${dest}...`, "info", 3000);
     }
 
     try {
@@ -356,10 +398,11 @@ async function actionTeleportCharacter(guid, name, dest) {
             }
             fetchAccountDetails(user.username);
         } else {
+            const warnMsg = data.message || 'Error al teletransportar.';
             if (window.showPortalToast) {
-                showPortalToast(`⚠️ ${data.message || 'Error al teletransportar.'}`, "warning");
+                showPortalToast(`⚠️ ${warnMsg}`, "warning", 6000);
             } else {
-                alert(data.message);
+                alert(warnMsg);
             }
         }
     } catch (e) {
