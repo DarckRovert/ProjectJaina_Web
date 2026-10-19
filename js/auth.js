@@ -322,6 +322,7 @@
                         <div class="pj-ud-section-label">⚔️ Mis Personajes (${charCount})</div>
                         <div class="pj-ud-chars">${charsHtml}</div>
                         <div class="pj-ud-divider"></div>
+                        <a href="${basePath}cuenta.html" class="pj-ud-link" style="color:var(--gold-primary); font-weight:700; background:rgba(245,158,11,0.1); border-radius:6px;"><span class="pj-ud-link-icon">👑</span> Panel de Mi Cuenta</a>
                         <a href="${basePath}armeria.html" class="pj-ud-link"><span class="pj-ud-link-icon">🛡️</span> Armería de Campeones</a>
                         <a href="${basePath}tienda.html" class="pj-ud-link"><span class="pj-ud-link-icon">💎</span> Tienda & Donaciones</a>
                         <a href="${basePath}bugs.html" class="pj-ud-link"><span class="pj-ud-link-icon">🐛</span> Reportar un Error</a>

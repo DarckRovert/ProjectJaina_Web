@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cuenta SRP6 — Project JAIna | Living Lore & AI</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261017b">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
 <body class="theme-alliance">
@@ -68,6 +68,13 @@
                     <span class="dropdown-chevron">▼</span>
                 </button>
                 <div class="nav-dropdown-menu">
+                    <a href="cuenta.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">👑</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Panel de Mi Cuenta</span>
+                            <span class="dropdown-item-desc">Gestión integral, personajes y unstuck</span>
+                        </div>
+                    </a>
                     <a href="database.html" class="dropdown-item-link">
                         <span class="dropdown-item-icon">📚</span>
                         <div class="dropdown-item-text">
@@ -164,6 +171,18 @@
 
     <!-- MAIN FORM CONTAINER -->
     <main style="padding: 1rem 1.5rem 4rem; position: relative; z-index: 2;">
+        
+        <!-- BANNER DE GARANTÍA NO-WIPE PARA REGISTRO -->
+        <div style="max-width: 520px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.9)); border: 1px solid #38bdf8; border-radius: 12px; padding: 1rem 1.2rem; text-align: center; box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);">
+            <div style="font-size: 0.82rem; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                ● FASE BETA PÚBLICA ACTIVA
+            </div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: #ffd700;">Garantía 100% Sin Reinicios (No-Wipe)</div>
+            <p style="font-size: 0.83rem; color: #cbd5e1; margin: 4px 0 0; line-height: 1.4;">
+                Los personajes y el progreso que consigas desde hoy permanecerán intactos para el lanzamiento oficial.
+            </p>
+        </div>
+
         <div class="form-container register-card-elevated">
             
             <!-- FACTION SELECTOR -->
@@ -261,9 +280,9 @@
                         <strong class="info-val" style="color: var(--gold-primary);">Project JAIna (WotLK 3.3.5a)</strong>
                     </div>
                     <div class="info-pill-item" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.6rem; margin-top: 0.4rem;">
-                        <span class="info-label">🌐 Conexión Global Directa (Cero VPN):</span>
+                        <span class="info-label">🌐 Conexión Global Anycast (Lanzador Oficial):</span>
                         <code class="info-code" style="color: var(--gold-primary);">set realmlist 127.0.0.1</code>
-                        <small style="display:block; font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Red Anycast L4 de Alta Velocidad · Lanzador Oficial gestiona la conexión con 1 solo clic</small>
+                        <small style="display:block; font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">El Lanzador Oficial enruta el tráfico al túnel Anycast. (Directo sin lanzador vía Radmin VPN: 26.140.157.205)</small>
                     </div>
                     <div style="text-align: center; margin-top: 0.6rem; padding-top: 0.4rem; border-top: 1px dashed rgba(255,255,255,0.1);">
                         <a href="index.html#como-jugar" style="color: var(--gold-primary); font-size: 0.78rem; text-decoration: underline; font-weight: 600;">⚡ ¿Cómo jugar? Guía rápida de 3 pasos ➔</a>
@@ -310,6 +329,7 @@
     <script src="js/particles.js"></script>
     <script src="js/card_tilt.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/connection_guide.js"></script>
     <script src="js/register.js"></script>
     <script src="js/audio_ambient.js"></script>
 

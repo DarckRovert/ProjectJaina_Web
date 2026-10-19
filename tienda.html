@@ -68,6 +68,13 @@
                     <span class="dropdown-chevron">▼</span>
                 </button>
                 <div class="nav-dropdown-menu">
+                    <a href="cuenta.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">👑</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Panel de Mi Cuenta</span>
+                            <span class="dropdown-item-desc">Gestión integral, personajes y unstuck</span>
+                        </div>
+                    </a>
                     <a href="database.html" class="dropdown-item-link">
                         <span class="dropdown-item-icon">📚</span>
                         <div class="dropdown-item-text">
@@ -173,11 +180,78 @@
     <!-- CONTENT -->
     <main style="padding: 1rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
         
+        <!-- BARRA SUPERIOR: SELECTOR DE DIVISAS & GARANTÍA NO-WIPE -->
+        <div class="shop-top-controls" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 12px; padding: 1rem 1.5rem; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.4rem;">🛡️</span>
+                <div>
+                    <div style="font-size: 0.95rem; font-weight: 800; color: #38bdf8; letter-spacing: 0.5px;">BETA PÚBLICA OFICIAL · GARANTÍA 100% NO-WIPE</div>
+                    <div style="font-size: 0.8rem; color: #94a3b8;">Conserva el 100% de tu progreso, personajes y recompensas para la apertura oficial.</div>
+                </div>
+            </div>
+            <div class="currency-toggle-container" style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 0.85rem; color: #cbd5e1; font-weight: 600;">Moneda:</span>
+                <div class="currency-pills" style="display: flex; background: rgba(0, 0, 0, 0.5); border-radius: 8px; padding: 3px; border: 1px solid rgba(255, 255, 255, 0.12);">
+                    <button id="currBtnPEN" class="curr-pill active" onclick="setCurrency('PEN')" style="padding: 6px 14px; border-radius: 6px; border: none; font-size: 0.85rem; font-weight: bold; cursor: pointer; background: #0284c7; color: white; transition: all .2s;">🇵🇪 Soles (S/.)</button>
+                    <button id="currBtnUSD" class="curr-pill" onclick="setCurrency('USD')" style="padding: 6px 14px; border-radius: 6px; border: none; font-size: 0.85rem; font-weight: bold; cursor: pointer; background: transparent; color: #94a3b8; transition: all .2s;">🇺🇸 Dólares ($)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMUNIDAD TRANSPARENTE: META MENSUAL DE INFRAESTRUCTURA (ZERO-P2W) -->
+        <div class="server-funding-card" id="serverFundingSection" style="margin-bottom: 2rem;">
+            <div class="funding-header">
+                <div class="funding-badge">
+                    <span>🛡️</span>
+                    <span>SOSTENIMIENTO COMUNITARIO · ZERO PAY-TO-WIN</span>
+                </div>
+                <div class="funding-status-badge">
+                    <span>📅</span>
+                    <span id="fundingMonthLabel">Noviembre 2026</span>
+                </div>
+            </div>
+
+            <h3 class="funding-title">
+                <span>⚡</span> Meta Mensual de Operación & Infraestructura
+            </h3>
+            <p class="funding-desc">
+                El 100% de las donaciones se destina al sostenimiento transparente de los costos operativos mensuales (OPEX). Ni un solo artículo otorga ventajas numéricas ni pay-to-win. Tu aporte mantiene los túneles Anycast de latencia ultra-baja y el clúster de hardware dedicado.
+            </p>
+
+            <div class="funding-track">
+                <div class="funding-fill" id="fundingProgressFill" style="width: 25%;"></div>
+            </div>
+
+            <div class="funding-meta-row">
+                <div>
+                    Recaudado: <strong id="fundingRaisedText" style="color: #38bdf8;">S/. 45.00 PEN ($12.30 USD)</strong> de <span id="fundingTargetText" style="color: #ffd700;">S/. 180.00 PEN ($49.20 USD)</span>
+                </div>
+                <div>
+                    Progreso: <strong id="fundingPctText" style="color: #34d399;">25.0%</strong> · <span style="color: #94a3b8;"><strong id="fundingSupportersCount" style="color: #ffffff;">4</strong> Patrocinadores</span>
+                </div>
+            </div>
+
+            <div class="funding-expenses-grid">
+                <div class="funding-expense-chip">
+                    <strong>🌐 Playit Anycast L4 Premium</strong>
+                    <span>Enrutamiento sin VPN y ping optimizado (S/. 45/mes)</span>
+                </div>
+                <div class="funding-expense-chip">
+                    <strong>⚡ Nodos Ryzen 7 8700G & Ryzen 9 5900X</strong>
+                    <span>Hardware dedicado, energía y fibra óptica (S/. 110/mes)</span>
+                </div>
+                <div class="funding-expense-chip">
+                    <strong>🔒 DNS & SSL Cloudflare Pro</strong>
+                    <span>Protección DDoS L7 y dominios seguros (S/. 25/mes)</span>
+                </div>
+            </div>
+        </div>
+
         <!-- CATEGORY FILTERS -->
         <div class="shop-filter-bar">
             <button class="shop-cat-btn active" data-category="all">✨ Todos los Paquetes</button>
             <button class="shop-cat-btn" data-category="wings">🪽 Alas & Auras Místicas</button>
-            <button class="shop-cat-btn" data-category="transmog">👗 Guardarropa Invisible Espectral</button>
+            <button class="shop-cat-btn" data-category="transmog">👗 Guardarropa Invisible</button>
             <button class="shop-cat-btn" data-category="tokens">🪙 Tokens & Monedas</button>
             <button class="shop-cat-btn" data-category="mounts">🐉 Monturas & Épicos</button>
             <button class="shop-cat-btn" data-category="battlepass">🏆 Pase de Batalla</button>
@@ -192,39 +266,81 @@
         </div>
 
         <!-- CHECKOUT MODAL SECTION -->
-        <div id="checkoutSection" class="checkout-modal-card" style="display: none;">
-            <div class="checkout-header">
-                <h2 class="checkout-title">Confirmar Contribución</h2>
-                <button class="checkout-close-btn" onclick="closeCheckout()">&times;</button>
+        <div id="checkoutSection" class="checkout-modal-card" style="display: none; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 14px; padding: 2rem; box-shadow: 0 10px 40px rgba(0,0,0,0.6);">
+            <div class="checkout-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+                <h2 class="checkout-title" style="margin: 0; color: #ffd700; font-size: 1.3rem;">Confirmar Contribución & Despacho</h2>
+                <button class="checkout-close-btn" onclick="closeCheckout()" style="background: none; border: none; color: #94a3b8; font-size: 1.8rem; cursor: pointer;">&times;</button>
             </div>
             
-            <p id="selectedPkgSummary" class="checkout-summary-text"></p>
+            <p id="selectedPkgSummary" class="checkout-summary-text" style="font-size: 1.05rem; margin: 1.2rem 0; color: #e2e8f0;"></p>
 
-            <div class="form-group" style="margin-top: 1.5rem;">
-                <label for="targetCharacterName">
+            <div class="form-group" style="margin-top: 1.2rem;">
+                <label for="targetCharacterName" style="display: block; font-weight: 600; margin-bottom: 6px;">
                     <span>Nombre de tu Personaje Destinatario:</span>
-                    <small class="label-hint">Debe existir en acore_characters</small>
+                    <small class="label-hint" style="color: #38bdf8; margin-left: 8px;">(Debe existir en acore_characters)</small>
                 </label>
-                <div class="input-with-icon">
-                    <span class="input-icon">⚔️</span>
-                    <input type="text" id="targetCharacterName" class="form-control" placeholder="Ej: Darckrovert" required style="font-size: 1.15rem; font-weight: bold; color: var(--gold-primary);">
+                <div class="input-with-icon" style="position: relative;">
+                    <span class="input-icon" style="position: absolute; left: 12px; top: 12px; font-size: 1.1rem;">⚔️</span>
+                    <input type="text" id="targetCharacterName" class="form-control" placeholder="Ej: Darckrovert" required style="width: 100%; box-sizing: border-box; padding: 10px 12px 10px 42px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.5); background: rgba(0,0,0,0.5); font-size: 1.15rem; font-weight: bold; color: var(--gold-primary);">
                 </div>
                 <small style="color: var(--text-muted); display: block; margin-top: 6px;">
-                    El servidor enviará automáticamente los Tokens de Jaina y recompensas al buzón de este personaje en menos de 10 segundos.
+                    ⚡ Entrega garantizada: En tu inventario de inmediato si tienes espacio, o en tu buzón postal de Dalaran si estás desconectado o con bolsas llenas.
                 </small>
             </div>
 
-            <!-- SIMULATED OR PAYPAL BUTTON -->
-            <div id="paypal-button-container" style="margin-top: 1.8rem;"></div>
+            <!-- MÉTODOS DE PAGO: SELECTOR VISUAL -->
+            <div class="payment-methods-box" style="margin-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.2rem;">
+                <div style="font-weight: 700; color: #cbd5e1; margin-bottom: 0.8rem; font-size: 0.95rem;">Selecciona tu Medio de Contribución:</div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 1.2rem;">
+                    <!-- Yape / Plin Card -->
+                    <div id="methodCardYape" class="pay-method-card active" onclick="setPaymentMethod('yape')" style="cursor: pointer; background: rgba(115, 34, 134, 0.2); border: 2px solid #a855f7; border-radius: 10px; padding: 12px; text-align: center; transition: all .2s;">
+                        <div style="font-size: 1.3rem;">📱</div>
+                        <div style="font-weight: 800; color: #d8b4fe; font-size: 1rem;">Yape / Plin (Perú)</div>
+                        <div style="font-size: 0.78rem; color: #e9d5ff;">Transferencia móvil directa en Soles (S/.)</div>
+                    </div>
 
-            <div style="margin-top: 1.2rem; text-align: center;">
-                <button class="btn-secondary btn-block" onclick="simulateTestDonation()" style="font-size: 0.88rem; padding: 0.6rem;">
-                    🧪 Simular Entrega In-Game Inmediata (Prueba de Clúster)
+                    <!-- PayPal Card -->
+                    <div id="methodCardPaypal" class="pay-method-card" onclick="setPaymentMethod('paypal')" style="cursor: pointer; background: rgba(2, 132, 199, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px; text-align: center; transition: all .2s;">
+                        <div style="font-size: 1.3rem;">💳</div>
+                        <div style="font-weight: 800; color: #38bdf8; font-size: 1rem;">PayPal / Tarjeta</div>
+                        <div style="font-size: 0.78rem; color: #94a3b8;">Visa, Mastercard, Saldo Internacional (USD)</div>
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR YAPE/PLIN -->
+                <div id="yapeDetailsContainer" style="display: block; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <div style="color: #e9d5ff; font-weight: 700; font-size: 0.95rem;">📲 Aportar vía Yape o Plin:</div>
+                            <div style="color: #cbd5e1; font-size: 0.85rem; margin-top: 4px;">Titular: <strong>Project Jaina / Administración</strong></div>
+                            <div style="color: #ffd700; font-size: 1.15rem; font-weight: 800; margin-top: 4px;">Número Móvil: <span style="letter-spacing: 1px;">923-018-934</span></div>
+                        </div>
+                        <div id="yapeRefBox" style="background: rgba(168, 85, 247, 0.15); border: 1px dashed #c084fc; border-radius: 8px; padding: 8px 14px; text-align: center;">
+                            <div style="font-size: 0.75rem; color: #d8b4fe;">Código de Referencia:</div>
+                            <div id="yapeRefCode" style="font-size: 1.05rem; font-weight: 900; color: #fff; letter-spacing: 1px;">PJ-REF-0000</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin: 0.8rem 0 0 0;">
+                        * Tras realizar tu donación, pulsa el botón abajo o envía la captura a nuestro Discord/WhatsApp con tu Código de Referencia para confirmación en menos de 60 segundos.
+                    </p>
+                </div>
+
+                <!-- CONTENEDOR PAYPAL -->
+                <div id="paypal-button-container" style="display: none; margin-top: 1.2rem;"></div>
+            </div>
+
+            <div style="margin-top: 1.2rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="confirmYapePayment()" style="flex: 1; min-width: 220px; padding: 0.75rem; background: linear-gradient(135deg, #7e22ce, #9333ea); border-color: #c084fc; font-weight: 700;">
+                    ✅ He Realizado el Pago / Notificar Acreditación
+                </button>
+                <button class="btn-secondary" onclick="simulateTestDonation()" style="flex: 1; min-width: 200px; font-size: 0.88rem; padding: 0.75rem; border-color: rgba(255,255,255,0.2);">
+                    🧪 Simular Entrega In-Game Inmediata
                 </button>
             </div>
 
             <!-- FEEDBACK MESSAGE -->
-            <div id="paymentFeedback" class="payment-feedback-box" style="display: none;"></div>
+            <div id="paymentFeedback" class="payment-feedback-box" style="display: none; margin-top: 1.2rem;"></div>
         </div>
     </main>
 

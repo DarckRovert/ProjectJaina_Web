@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project JAIna — El Primer Servidor de WoW con Lore Viviente e IA | WotLK 3.3.5a</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261017b">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
 <body>
@@ -75,6 +75,13 @@
                     <span class="dropdown-chevron">▼</span>
                 </button>
                 <div class="nav-dropdown-menu">
+                    <a href="cuenta.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">👑</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Panel de Mi Cuenta</span>
+                            <span class="dropdown-item-desc">Gestión integral, personajes y unstuck</span>
+                        </div>
+                    </a>
                     <a href="database.html" class="dropdown-item-link">
                         <span class="dropdown-item-icon">📚</span>
                         <div class="dropdown-item-text">
@@ -182,6 +189,75 @@
             <a href="#como-jugar" class="btn-secondary" style="font-size: 0.95rem; padding: 0.85rem 1.4rem; border-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px);">📦 Guía de Descargas & Cliente Completo ➔</a>
         </div>
 
+        <!-- BANNER DE CAMPAÑA: BETA PÚBLICA ABIERTA · GARANTÍA 100% NO-WIPE -->
+        <div class="beta-nowipe-banner" style="margin: 2rem auto 0; max-width: 960px; background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(15, 23, 42, 0.92) 50%, rgba(168, 85, 247, 0.25) 100%); border: 2px solid #38bdf8; border-radius: 16px; padding: 1.4rem 2rem; box-shadow: 0 0 35px rgba(56, 189, 248, 0.3); text-align: center; position: relative; backdrop-filter: blur(12px);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; font-size: 0.8rem; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 0.75rem; box-shadow: 0 0 15px rgba(2, 132, 199, 0.6);">
+                <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80;"></span>
+                ACCESO PÚBLICO OFICIAL · YA DISPONIBLE
+            </div>
+            <h3 style="color: #ffd700; font-size: 1.45rem; margin: 0 0 0.5rem 0; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                🛡️ ¡BETA PÚBLICA ABIERTA! · GARANTÍA 100% NO-WIPE
+            </h3>
+            <p style="color: #e2e8f0; font-size: 0.98rem; line-height: 1.6; margin: 0 auto; max-width: 820px;">
+                Crea tu personaje hoy mismo y comienza tu aventura en Azeroth. 
+                <strong style="color: #38bdf8;">TODO tu avance, nivel, equipamiento, logros y recompensas se mantendrán al 100%</strong> para el lanzamiento oficial del 24 de Noviembre. ¡Cero reinicios ni pérdidas de progreso!
+            </p>
+        </div>
+
+        <!-- HERO QUICK-CONNECT & REALMLIST WIDGET (ANYCAST 1-CLIC) -->
+        <div class="hero-quick-connect" id="heroQuickConnect">
+            <div class="quick-connect-header">
+                <div class="quick-connect-badge">
+                    <span class="live-dot-pulse"></span>
+                    <span>Conexión Directa al Reino · Servidor Online</span>
+                </div>
+                <div class="quick-connect-ping-wrap">
+                    <button type="button" class="btn-ping-test" data-action="ping-test" title="Probar latencia en tiempo real hacia el servidor Anycast">
+                        📶 Probar Latencia
+                    </button>
+                </div>
+            </div>
+
+            <!-- SELECTOR DE MÉTODO DE ACCESO -->
+            <div class="hero-mode-tabs">
+                <button type="button" class="hero-mode-btn active" data-mode="anycast" onclick="switchRealmlistHeroMode('anycast')" title="Conexión directa Anycast global L4 sin necesidad de VPN">
+                    🌐 Anycast Global WAN (Cero VPN · Directo)
+                </button>
+                <button type="button" class="hero-mode-btn radmin-tab" data-mode="radmin" onclick="switchRealmlistHeroMode('radmin')" title="Conexión directa vía red Radmin VPN">
+                    🟣 Red Radmin VPN (Privada)
+                </button>
+            </div>
+
+            <div class="quick-connect-body">
+                <div class="quick-connect-code-box">
+                    <span id="heroRealmlistLabel" class="quick-connect-label">TU REALMLIST OFICIAL (ANYCAST GLOBAL):</span>
+                    <code id="heroRealmlistCode" class="quick-connect-code">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+                    <div id="heroRealmlistDesc" class="quick-connect-subdesc">
+                        ⚡ <strong>Anycast Global L4 (Cero VPN):</strong> Conexión pública directa al reino sin necesidad de programas externos ni VPN.
+                    </div>
+                </div>
+
+                <div class="quick-connect-actions">
+                    <button type="button" class="btn-quick-action btn-copy-hero" data-action="copy-realmlist" title="Copiar línea de realmlist al portapapeles">
+                        📋 Copiar Realmlist
+                    </button>
+                    <button type="button" class="btn-quick-action btn-dl-hero" data-action="download-realmlist" title="Descargar archivo realmlist.wtf autoconfigurado">
+                        📥 Descargar realmlist.wtf
+                    </button>
+                </div>
+            </div>
+
+            <div class="quick-connect-port-alert">
+                🚀 <strong>Conexión 100% Nativa:</strong> World of Warcraft 3.3.5a procesa el puerto <code>:58735</code> directamente. Puedes arrastrar el archivo descargado a tu carpeta de WoW o abrir nuestro <strong>Lanzador Oficial</strong> para sincronizarlo automáticamente.
+            </div>
+
+            <div class="quick-connect-footer">
+                <div class="quick-connect-pill">🌐 Anycast Global Playit L4</div>
+                <div class="quick-connect-pill">⚡ WotLK 3.3.5a (12340)</div>
+                <div class="quick-connect-pill">📁 Arrástralo a: <code>Data\esES\</code> (o tu idioma)</div>
+            </div>
+        </div>
+
         <!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
         <div class="grand-opening-card" id="grandOpeningCard">
             <div class="opening-badge-header">
@@ -219,7 +295,7 @@
             </div>
             <div class="opening-meta-info">
                 <span>🕒 Hora Oficial de Apertura: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
-                <span>🌐 Servidor Global Anycast: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong> (Conexión Directa · Cero VPN)</span>
+                <span>🌐 Servidor Global Anycast: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong> (Enrutado por Lanzador Oficial)</span>
             </div>
         </div>
 
@@ -253,6 +329,64 @@
                 <div class="metric-value" style="font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
                     <a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Oficial Anycast sin VPN">🌐 Conectar en 1 Clic ➔</a>
                 </div>
+            </div>
+        </div>
+
+        <!-- COMUNIDAD TRANSPARENTE: META MENSUAL DE INFRAESTRUCTURA (ZERO-P2W) -->
+        <div class="server-funding-card" id="serverFundingSection">
+            <div class="funding-header">
+                <div class="funding-badge">
+                    <span>🛡️</span>
+                    <span>SOSTENIMIENTO COMUNITARIO · ZERO PAY-TO-WIN</span>
+                </div>
+                <div class="funding-status-badge">
+                    <span>📅</span>
+                    <span id="fundingMonthLabel">Noviembre 2026</span>
+                </div>
+            </div>
+
+            <h3 class="funding-title">
+                <span>⚡</span> Meta de Infraestructura & Baja Latencia
+            </h3>
+            <p class="funding-desc">
+                Project JAIna opera con una filosofía estricta <strong>100% No-Pay-to-Win</strong>. Cada contribución voluntaria financia de forma transparente los servidores físicos dedicados (Ryzen 7 8700G en Perú + Ryzen 9 5900X en España), el túnel Anycast L4 de baja latencia global y la seguridad criptográfica del reino.
+            </p>
+
+            <div class="funding-track">
+                <div class="funding-fill" id="fundingProgressFill" style="width: 25%;"></div>
+            </div>
+
+            <div class="funding-meta-row">
+                <div>
+                    Recaudado: <strong id="fundingRaisedText" style="color: #38bdf8;">S/. 45.00 PEN ($12.30 USD)</strong> de <span id="fundingTargetText" style="color: #ffd700;">S/. 180.00 PEN ($49.20 USD)</span>
+                </div>
+                <div>
+                    Progreso: <strong id="fundingPctText" style="color: #34d399;">25.0%</strong> · <span style="color: #94a3b8;"><strong id="fundingSupportersCount" style="color: #ffffff;">4</strong> Patrocinadores</span>
+                </div>
+            </div>
+
+            <div class="funding-expenses-grid">
+                <div class="funding-expense-chip">
+                    <strong>🌐 Playit Anycast L4 Premium</strong>
+                    <span>Enrutamiento sin VPN y ping optimizado (S/. 45/mes)</span>
+                </div>
+                <div class="funding-expense-chip">
+                    <strong>⚡ Nodos Ryzen 7 8700G & Ryzen 9 5900X</strong>
+                    <span>Hardware dedicado, energía y fibra óptica (S/. 110/mes)</span>
+                </div>
+                <div class="funding-expense-chip">
+                    <strong>🔒 DNS & SSL Cloudflare Pro</strong>
+                    <span>Protección DDoS L7 y dominios seguros (S/. 25/mes)</span>
+                </div>
+            </div>
+
+            <div class="funding-actions">
+                <a href="tienda.html" class="btn-funding-donate">
+                    <span>💎</span> Apoyar al Servidor en la Tienda (Yape / Plin / PayPal)
+                </a>
+                <a href="tienda.html" class="btn-funding-secondary">
+                    📜 Ver Catálogo Cosmético (Sin Ventajas de Poder)
+                </a>
             </div>
         </div>
 
@@ -875,7 +1009,7 @@
             </div>
 
             <!-- PASO 3: ENTRAR A JUGAR -->
-            <div class="conn-step-card">
+            <div class="conn-step-card" style="border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
                 <div class="conn-step-header">
                     <div class="conn-step-badge">3</div>
                     <div>
@@ -884,12 +1018,54 @@
                     </div>
                 </div>
                 <p class="conn-step-desc">
-                    Abre <code>ProjectJaina_Launcher.exe</code> (o <code>Iniciar_Juego.bat</code>), pulsa <strong>ENTRAR A AZEROTH</strong> y pon tus datos del Paso 1.
+                    Si usas el <strong>Lanzador Oficial</strong>, solo pulsa <em>ENTRAR A AZEROTH</em>. Si usas tu propio cliente WoW, configura tu <code>realmlist.wtf</code> en segundos:
                 </p>
-                <div class="conn-callout-tip frost-tip" style="margin-top: 1rem;">
-                    ⚡ <strong>Auto-Configuración:</strong> El lanzador enruta automáticamente el tráfico por el túnel Anycast sin que tengas que editar archivos.
+
+                <!-- CAJA DE ACCIONES DE REALMLIST -->
+                <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 8px; padding: 10px; margin-top: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span id="step3RealmlistLabel" style="font-size: 0.70rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Realmlist Oficial Anycast (Cero VPN):</span>
+                        <span style="font-size: 0.68rem; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 1px 6px; border-radius: 4px; font-weight: 700;">Directo WAN</span>
+                    </div>
+                    <code id="step3RealmlistCode" style="display: block; color: var(--gold-primary); font-size: 0.76rem; font-family: 'JetBrains Mono', Consolas, monospace; font-weight: 700; word-break: break-all; background: rgba(0,0,0,0.5); padding: 5px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 4px;">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+                    <div style="font-size: 0.68rem; color: #94a3b8; margin-bottom: 8px; line-height: 1.35;">
+                        💡 <em>Conexión pública Anycast sin VPN. Si usas la red privada Radmin VPN, selecciona la pestaña arriba para copiar <code>26.140.157.205</code>.</em>
+                    </div>
+                    
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                        <button type="button" class="btn-primary" data-action="download-realmlist" style="flex: 1; padding: 0.5rem 0.6rem; font-size: 0.76rem; text-align: center;" title="Descargar realmlist.wtf autoconfigurado">
+                            📥 Descargar .wtf
+                        </button>
+                        <button type="button" class="btn-secondary" data-action="copy-realmlist" style="flex: 1; padding: 0.5rem 0.6rem; font-size: 0.76rem; text-align: center;" title="Copiar texto del realmlist">
+                            📋 Copiar
+                        </button>
+                    </div>
                 </div>
-                <div class="conn-callout-tip green-tip" style="margin-top: 0.6rem;">
+
+                <!-- SELECTOR DE RUTA INTERACTIVO SEGÚN IDIOMA DEL CLIENTE -->
+                <div class="locale-folder-helper" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 10px; margin-top: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 0.70rem; color: #38bdf8; font-weight: 700;">📂 ¿DÓNDE PEGAR EL ARCHIVO?</span>
+                        <span style="font-size: 0.65rem; color: var(--text-muted);">Elige tu idioma:</span>
+                    </div>
+
+                    <div class="locale-tabs-bar" style="display: flex; gap: 4px; margin-bottom: 8px;">
+                        <button type="button" class="locale-tab-btn active" data-locale="esES" onclick="switchLocalePath('esES')" title="Español de España">🇪🇸 esES</button>
+                        <button type="button" class="locale-tab-btn" data-locale="esMX" onclick="switchLocalePath('esMX')" title="Español Latinoamericano">🇲🇽 esMX</button>
+                        <button type="button" class="locale-tab-btn" data-locale="enUS" onclick="switchLocalePath('enUS')" title="English US">🇺🇸 enUS</button>
+                        <button type="button" class="locale-tab-btn" data-locale="root" onclick="switchLocalePath('root')" title="Directorio Raíz">📁 Raíz</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; background: rgba(0,0,0,0.4); padding: 5px 8px; border-radius: 4px; border: 1px dashed rgba(56, 189, 248, 0.3);">
+                        <code id="localeCurrentPathCode" style="font-size: 0.72rem; color: #7dd3fc; font-family: 'JetBrains Mono', Consolas, monospace; word-break: break-all;">World of Warcraft\Data\esES\realmlist.wtf</code>
+                        <button type="button" onclick="copyActiveLocalePath(this)" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 4px; color: #38bdf8; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; cursor: pointer; white-space: nowrap;">Copiar</button>
+                    </div>
+                    <div id="localeCurrentPathDesc" style="font-size: 0.67rem; color: var(--text-muted); margin-top: 4px;">
+                        Ruta estándar para clientes instalados en Español de España.
+                    </div>
+                </div>
+
+                <div class="conn-callout-tip green-tip" style="margin-top: 0.8rem;">
                     🎙️ <strong>Voz Espacial 3D:</strong> Activa el micrófono en el juego con <code>/voz</code> para hablar por proximidad.
                 </div>
             </div>
@@ -950,7 +1126,7 @@
     <script src="js/progression.js?v=20261012d"></script>
     <script src="js/countdown.js?v=20261012d"></script>
     <script src="js/jaina_dialogue.js?v=20261012d"></script>
-    <script src="js/connection_guide.js?v=20261014a"></script>
+    <script src="js/connection_guide.js?v=20261017b"></script>
     <script src="js/audio_ambient.js?v=20261016a"></script>
     <script src="js/hardware_checker.js?v=20261016a"></script>
     <script src="js/interactive_enclaves.js?v=20261016a"></script>

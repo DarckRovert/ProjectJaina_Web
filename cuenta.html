@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Mi Cuenta — Project JAIna | Living Lore & AI</title>
+    <link rel="stylesheet" href="css/style.css?v=20261017c">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+</head>
+<body>
+
+    <!-- NAVBAR AAA DE ALTA FIDELIDAD -->
+    <nav class="navbar" id="mainNavbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
+                <div class="brand-subtitle">PANEL DE CONTROL DE CUENTA</div>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navbarLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jainacore.html">JainaCore</a></li>
+            
+            <!-- DROPDOWN: EXPLORAR -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Explorar</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="index.html#linea-de-fases" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⏳</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Línea de Fases & Eras</span>
+                            <span class="dropdown-item-desc">Vanilla 60 a WotLK 80 Progresivo</span>
+                        </div>
+                    </a>
+                    <a href="index.html#living-lore" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧠</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Lore Viviente & Simulador IA</span>
+                            <span class="dropdown-item-desc">HeroBots y LLM neuronal local</span>
+                        </div>
+                    </a>
+                    <a href="index.html#mundo-viviente" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🏰</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Baluartes & Guerra Naval</span>
+                            <span class="dropdown-item-desc">Enclaves territoriales y combate en mar</span>
+                        </div>
+                    </a>
+                    <a href="index.html#addons-showcase" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧩</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Suite de 18 AddOns HD</span>
+                            <span class="dropdown-item-desc">DragonflightUI, Audio 3D y más</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: SERVICIOS -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Servicios</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="cuenta.html" class="dropdown-item-link active">
+                        <span class="dropdown-item-icon">👑</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Panel de Mi Cuenta</span>
+                            <span class="dropdown-item-desc">Gestión integral, personajes y unstuck</span>
+                        </div>
+                    </a>
+                    <a href="armeria.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⚔️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Armería de Campeones</span>
+                            <span class="dropdown-item-desc">Inspección de personajes y talentos</span>
+                        </div>
+                    </a>
+                    <a href="database.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📚</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Base de Datos del Reino</span>
+                            <span class="dropdown-item-desc">Items, hechizos y tablas de botín</span>
+                        </div>
+                    </a>
+                    <a href="tienda.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💎</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Tienda & Donaciones</span>
+                            <span class="dropdown-item-desc">Cosméticos exclusivos y apoyo</span>
+                        </div>
+                    </a>
+                    <a href="registro.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🛡️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Crear Cuenta SRP6</span>
+                            <span class="dropdown-item-desc">Registro criptográfico instantáneo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: COMUNIDAD -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Comunidad</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="wiki/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📖</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Wiki Oficial de Project JAIna</span>
+                            <span class="dropdown-item-desc">Guías completas, comandos y mecánicas</span>
+                        </div>
+                    </a>
+                    <a href="voz/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🎙️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Voz Espacial 3D (WebRTC)</span>
+                            <span class="dropdown-item-desc">Audio posicional por proximidad</span>
+                        </div>
+                    </a>
+                    <a href="bugs.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🐛</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">BugTracker Oficial</span>
+                            <span class="dropdown-item-desc">Reportes de incidencias y parches</span>
+                        </div>
+                    </a>
+                    <a href="https://discord.gg/YFpGGy8RGR" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💬</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Discord Oficial</span>
+                            <span class="dropdown-item-desc">Comunidad activa y soporte directo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
+        </ul>
+
+        <div class="nav-actions-tray">
+            <button id="ambientAudioBtn" class="ambient-audio-btn" title="Activar Ecosonido Arcano de Dalaran">
+                <div class="equalizer-wave">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+                <span class="audio-label">Ecos de Dalaran</span>
+            </button>
+            <a href="registro.html" class="btn-cta-nav">Jugar Gratis</a>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
+        </div>
+    </nav>
+
+    <!-- SUBPAGE HERO -->
+    <header class="subpage-hero">
+        <div class="hero-badge">👑 GESTIÓN AUTORITATIVA DE JUGADOR · TELEMETRÍA EN TIEMPO REAL</div>
+        <h1 class="subpage-title">Panel de Control de Cuenta</h1>
+        <p class="subpage-desc">Consulta todo lo referente a tu cuenta: tus campeones, GearScore, monedas de oro, ubicación, herramientas de desatasco (Unstuck), traslado de emergencia y seguridad criptográfica SRP6.</p>
+    </header>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="account-dashboard-wrapper">
+        
+        <!-- VISTA DE CARGA -->
+        <div id="dashLoadingView" style="text-align: center; padding: 4rem 1rem;">
+            <div class="pj-spinner" style="width: 45px; height: 45px; margin: 0 auto 1.5rem auto; border-width: 4px;"></div>
+            <h3 style="color: var(--gold-primary);">Sincronizando Perfil de Juego con JainaCore...</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Consultando acore_auth y base de datos de personajes en tiempo real.</p>
+        </div>
+
+        <!-- VISTA 1: INVITACIÓN / NO LOGUEADO -->
+        <div id="dashGuestView" class="dash-guest-card" style="display: none;">
+            <div class="dash-guest-icon">🛡️</div>
+            <h2 style="color: #ffffff; font-size: 1.6rem; margin-bottom: 0.6rem;">Accede a tu Panel de Control</h2>
+            <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.8rem; max-width: 520px; margin-left: auto; margin-right: auto;">
+                Inicia sesión con tu cuenta de juego de World of Warcraft para ver todos tus personajes, oro acumulado, desatascar aventureros caídos y cambiar tu contraseña.
+            </p>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" class="btn-primary" onclick="window.ProjectJainaAuth.openLogin()" style="font-size: 1rem; padding: 0.8rem 2rem;">
+                    👤 Iniciar Sesión en Mi Cuenta
+                </button>
+                <a href="registro.html" class="btn-secondary" style="font-size: 1rem; padding: 0.8rem 1.6rem;">
+                    ⚔️ Crear Cuenta Gratis (1 Clic)
+                </a>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.8rem; color: var(--text-muted);">
+                🔒 Seguridad Militar SRP6 (RFC 5054) · Tus credenciales se validan directamente con <strong>acore_auth</strong>.
+            </div>
+        </div>
+
+        <!-- VISTA 2: PANEL DE CONTROL COMPLETO (LOGUEADO) -->
+        <div id="dashLoggedView" style="display: none;">
+
+            <!-- TARJETA MAESTRA DE CUENTA -->
+            <div class="dash-master-card">
+                <div class="dash-master-top">
+                    <div class="dash-user-identity">
+                        <div class="dash-avatar-shield">👑</div>
+                        <div class="dash-user-titles">
+                            <h2>
+                                <span id="dashAcctName">USUARIO</span>
+                                <span id="dashAcctId" class="dash-acct-id-tag">#0</span>
+                            </h2>
+                            <div class="dash-user-subline">
+                                <span id="dashAcctGmTitle" class="dash-gm-badge">Aventurero de Azeroth</span>
+                                <span id="dashAcctFaction">🦁 Alianza & Theramore</span>
+                                <span style="color: #10b981; font-weight: 700;">● Cuenta Activa (SRP6)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span id="dashCharCountBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">0 Campeones</span>
+                        <button type="button" class="btn-secondary" onclick="window.ProjectJainaAuth.logout()" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                            🚪 Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CUADRÍCULA METADATOS DE CUENTA -->
+                <div class="dash-meta-grid">
+                    <div class="dash-meta-item">
+                        <span class="dash-meta-label">Correo Electrónico</span>
+                        <span class="dash-meta-val" id="dashAcctEmail">usuario@projectjaina.com</span>
+                    </div>
+                    <div class="dash-meta-item">
+                        <span class="dash-meta-label">Fecha de Registro</span>
+                        <span class="dash-meta-val" id="dashAcctJoinDate">Desconocida</span>
+                    </div>
+                    <div class="dash-meta-item">
+                        <span class="dash-meta-label">Último Acceso al Reino</span>
+                        <span class="dash-meta-val" id="dashAcctLastLogin">Sin accesos</span>
+                    </div>
+                    <div class="dash-meta-item">
+                        <span class="dash-meta-label">Última Dirección IP</span>
+                        <span class="dash-meta-val" id="dashAcctLastIp" style="font-family: monospace;">127.0.0.1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PESTAÑAS DEL PANEL -->
+            <div class="dash-tabs-bar" role="tablist">
+                <button type="button" class="dash-tab-btn active" data-tab="personajes" onclick="switchDashTab('personajes')">
+                    <span>⚔️</span> Mis Personajes (<span id="dashTabCharsCount">Roster</span>)
+                </button>
+                <button type="button" class="dash-tab-btn" data-tab="servicios" onclick="switchDashTab('servicios')">
+                    <span>🕊️</span> Servicios & Desatasco (Unstuck)
+                </button>
+                <button type="button" class="dash-tab-btn" data-tab="seguridad" onclick="switchDashTab('seguridad')">
+                    <span>🔒</span> Seguridad & Clave SRP6
+                </button>
+                <button type="button" class="dash-tab-btn" data-tab="conexion" onclick="switchDashTab('conexion')">
+                    <span>🌐</span> Conexión & Descargas
+                </button>
+            </div>
+
+            <!-- CONTENIDO PESTAÑA 1: PERSONAJES -->
+            <div id="dashTabPane-personajes" class="dash-tab-pane active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <h3 style="color: #ffffff; margin: 0; font-size: 1.25rem;">Roster de Campeones de Azeroth</h3>
+                        <p style="color: var(--text-muted); font-size: 0.82rem; margin: 2px 0 0 0;">Visualiza nivel, GearScore, dinero y posición geográfica en tiempo real.</p>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="fetchAccountDetails(CURRENT_ACCOUNT_DATA.account.username)" style="padding: 0.4rem 0.8rem; font-size: 0.78rem;">
+                        🔄 Actualizar Datos
+                    </button>
+                </div>
+
+                <div id="dashCharactersGrid" class="dash-characters-grid">
+                    <!-- Inyectado por js/cuenta.js -->
+                </div>
+            </div>
+
+            <!-- CONTENIDO PESTAÑA 2: SERVICIOS & DESATASCO -->
+            <div id="dashTabPane-servicios" class="dash-tab-pane">
+                <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 0.8rem;">
+                        <span style="font-size: 1.8rem;">⚡</span>
+                        <div>
+                            <h3 style="margin: 0; color: #38bdf8;">Herramienta de Desatasco (Unstuck Autorizado)</h3>
+                            <p style="margin: 0; color: #cbd5e1; font-size: 0.82rem;">Si tu personaje cayó al vacío por una desconexión o quedó atrapado en un mapa bugeado, esta función lo traslada inmediatamente a su Posada o Capital.</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.8rem; color: #94a3b8; line-height: 1.45;">
+                        • <strong>Si el personaje está desconectado:</strong> Sus coordenadas se reubican directamente en la base de datos a su punto de vinculación de piedra de hogar.<br>
+                        • <strong>Si el personaje está en línea:</strong> El sistema emite la orden de teletransporte al servidor mediante SOAP en tiempo real.
+                    </div>
+                </div>
+
+                <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 12px; padding: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 0.8rem;">
+                        <span style="font-size: 1.8rem;">🕊️</span>
+                        <div>
+                            <h3 style="margin: 0; color: var(--gold-primary);">Teletransporte Rápido a Ciudades Seguras</h3>
+                            <p style="margin: 0; color: #cbd5e1; font-size: 0.82rem;">Puedes enviar a cualquiera de tus personajes a los santuarios de Theramore, Dalaran, Ventormenta u Orgrimmar desde la tarjeta de cada héroe en la pestaña <em>Mis Personajes</em>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENIDO PESTAÑA 3: SEGURIDAD & CONTRASEÑA -->
+            <div id="dashTabPane-seguridad" class="dash-tab-pane">
+                <div style="max-width: 600px; margin: 0 auto; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 14px; padding: 1.8rem; box-shadow: 0 12px 30px rgba(0,0,0,0.6);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem;">
+                        <span style="font-size: 1.8rem;">🔒</span>
+                        <div>
+                            <h3 style="margin: 0; color: #ffffff;">Cambio de Contraseña (SRP6)</h3>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.8rem;">Cifra tu nueva clave con SHA-1 intercalado y estándar militar RFC 5054.</p>
+                        </div>
+                    </div>
+
+                    <div id="dashSecurityMsg" style="display: none; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.85rem; border: 1px solid;"></div>
+
+                    <form id="dashPasswordForm">
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px;">Contraseña Actual:</label>
+                            <input type="password" id="dashCurrentPass" class="form-control" placeholder="Ingresa tu contraseña actual" required style="width: 100%;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px;">Nueva Contraseña:</label>
+                            <input type="password" id="dashNewPass" class="form-control" placeholder="Mínimo 4 caracteres" required minlength="4" style="width: 100%;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px;">Confirmar Nueva Contraseña:</label>
+                            <input type="password" id="dashConfirmPass" class="form-control" placeholder="Repite la nueva contraseña" required minlength="4" style="width: 100%;">
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem 1rem; font-size: 0.92rem;">
+                            🛡️ Actualizar Contraseña SRP6
+                        </button>
+                    </form>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.74rem; color: var(--text-muted); line-height: 1.45;">
+                        🛡️ <strong>Garantía Criptográfica:</strong> Tu contraseña nunca se almacena en texto plano en la base de datos de JainaCore. Al cambiarla, se generan de inmediato 32 bytes de Salt criptográfico y su Verifier Little-Endian.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENIDO PESTAÑA 4: CONEXIÓN & DESCARGAS -->
+            <div id="dashTabPane-conexion" class="dash-tab-pane">
+                <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 1.8rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem;">
+                        <div>
+                            <span style="font-size: 0.75rem; color: #34d399; font-weight: 800; text-transform: uppercase;">🌐 INFRAESTRUCTURA ANYCAST GLOBAL</span>
+                            <h3 style="margin: 2px 0 0 0; color: #ffffff;">Conexión Directa al Servidor (Cero VPN)</h3>
+                        </div>
+                        <button type="button" class="btn-ping-test" data-action="ping-test" style="font-size: 0.8rem; padding: 0.45rem 0.9rem;">
+                            📶 Probar Latencia en Vivo
+                        </button>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.5); border: 1px dashed rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 1rem;">
+                        <span style="display: block; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 700;">REALMLIST OFICIAL (LANZADOR ANYCAST):</span>
+                        <code style="font-family: 'JetBrains Mono', monospace; color: var(--gold-primary); font-size: 0.92rem; font-weight: 800; word-break: break-all;">set realmlist 127.0.0.1</code>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button type="button" class="btn-primary" onclick="downloadRealmlistFile()" style="flex: 1; min-width: 190px; padding: 0.7rem 1rem;">
+                            📥 Descargar realmlist.wtf
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="copyRealmlistOfficial(this)" style="flex: 1; min-width: 180px; padding: 0.7rem 1rem;">
+                            📋 Copiar Realmlist
+                        </button>
+                        <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="btn-secondary" style="flex: 1; min-width: 200px; padding: 0.7rem 1rem; border-color: #38bdf8; color: #38bdf8; text-align: center;">
+                            ⚡ Descargar Lanzador (~20 MB)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.76rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            World of Warcraft® y Blizzard Entertainment son marcas comerciales de Blizzard Entertainment, Inc. Servidor de investigación académica sobre JainaCore v3.3.5a con fines no comerciales.
+        </p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/particles.js"></script>
+    <script src="js/card_tilt.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/connection_guide.js?v=20261017b"></script>
+    <script src="js/audio_ambient.js"></script>
+    <script src="js/auth.js?v=20261017b"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/cuenta.js?v=20261017a"></script>
+</body>
+</html>
