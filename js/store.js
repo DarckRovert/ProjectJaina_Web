@@ -206,6 +206,7 @@ function initShop() {
     setupCheckoutListeners();
     loadRemoteCatalog();
     loadServerFundingGoal();
+    loadPaymentConfig();
     setCurrency("PEN");
 }
 
@@ -439,7 +440,57 @@ function closeCheckout() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CONFIRMACIÓN DE PAGO VÍA YAPE / PLIN
+// CONFIGURACIÓN DINÁMICA DE PAGOS (payment_config.json)
+// ─────────────────────────────────────────────────────────────────────────────
+let paymentConfig = null;
+
+async function loadPaymentConfig() {
+    try {
+        const apiUrl = _getApiUrl();
+        const ctrl = new AbortController();
+        setTimeout(() => ctrl.abort(), 2000);
+        const resp = await fetch(`${apiUrl}/api/shop/payment_config`, {
+            signal: ctrl.signal,
+            headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
+        });
+        if (resp.ok) {
+            paymentConfig = await resp.json();
+            _applyPaymentConfig();
+            return;
+        }
+    } catch (_) { /* fallback local */ }
+
+    try {
+        const resp = await fetch("data/payment_config.json");
+        if (resp.ok) {
+            paymentConfig = await resp.json();
+            _applyPaymentConfig();
+        }
+    } catch (e) {
+        console.warn("[PAYMENT CONFIG] No se pudo cargar payment_config.json:", e);
+    }
+}
+
+function _applyPaymentConfig() {
+    if (!paymentConfig || !paymentConfig.yape_plin) return;
+    const yp = paymentConfig.yape_plin;
+    const titEl = document.getElementById("yapeTitular");
+    const phoEl = document.getElementById("yapePhone");
+    
+    if (titEl && yp.titular) {
+        titEl.innerText = yp.titular;
+    }
+    if (phoEl) {
+        if (yp.phone && yp.phone !== "Configuración Requerida") {
+            phoEl.innerText = yp.phone;
+        } else {
+            phoEl.innerHTML = `<span style="color: #fbbf24; font-size: 0.95rem; font-weight: 600;">(Consulta por WhatsApp / Discord)</span>`;
+        }
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CONFIRMACIÓN DE PAGO VÍA YAPE / PLIN (FLUJO REAL CON PERSISTENCIA EN DB)
 // ─────────────────────────────────────────────────────────────────────────────
 async function confirmYapePayment() {
     const charName = document.getElementById("targetCharacterName")?.value.trim();
@@ -456,22 +507,80 @@ async function confirmYapePayment() {
         return;
     }
 
-    if (feedback) {
-        feedback.style.display = "block";
-        feedback.className     = "payment-feedback-box success-box";
-        const penAmount = Number(selectedPackage.price_pen || 0).toFixed(2);
-        feedback.innerHTML     = `
-            <div style="font-size:1.05rem;font-weight:800;color:#38bdf8;">📲 Solicitud de Acreditación Registrada</div>
-            <p style="margin:8px 0;font-size:0.9rem;line-height:1.5;">
-                Hemos registrado tu orden para <strong>${charName}</strong> por el paquete <strong>${selectedPackage.name}</strong> (<strong>S/. ${penAmount}</strong>).
-            </p>
-            <div style="background:rgba(0,0,0,0.4);border:1px dashed #38bdf8;padding:8px 12px;border-radius:6px;margin:8px 0;">
-                Código de Referencia: <strong style="color:#ffd700;letter-spacing:1px;">${refCode}</strong>
-            </div>
-            <p style="margin:6px 0;font-size:0.83rem;color:#cbd5e1;">
-                El sistema valida el comprobante y el buzón postal de Dalaran despachará tus recompensas de inmediato (o directamente a tus bolsas si estás conectado).
-            </p>
-        `;
+    const btn = document.getElementById("btnConfirmYape");
+    if (btn) {
+        btn.disabled = true;
+        btn.innerText = "⏳ Registrando Orden en Base de Datos...";
+    }
+
+    try {
+        const apiUrl = _getApiUrl();
+        const payload = {
+            character_name: charName,
+            package_id: selectedPackage.id,
+            reference_code: refCode,
+            payment_method: "YAPE"
+        };
+
+        const res = await fetch(`${apiUrl}/api/shop/yape/submit`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (feedback) {
+            feedback.style.display = "block";
+            if (res.ok && data.ok) {
+                feedback.className = "payment-feedback-box success-box";
+                const waUrl = data.whatsapp_url || (paymentConfig?.yape_plin?.whatsapp_e164 ? 
+                    `https://wa.me/${paymentConfig.yape_plin.whatsapp_e164.replace('+','').replace(/\s+/g,'')}?text=${encodeURIComponent(`Hola, acabo de aportar por Yape para ${charName} por ${selectedPackage.name}. Referencia: ${refCode}`)}` : "");
+                const discordUrl = data.discord_url || "https://discord.gg/YFpGGy8RGR";
+
+                const waBtn = waUrl ? 
+                    `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; padding:10px 18px; background:#22c55e; color:#052e16; font-weight:800; text-decoration:none; border-radius:8px; font-size:0.95rem; box-shadow: 0 4px 14px rgba(34,197,94,0.4);">📲 Enviar Comprobante por WhatsApp</a>` : '';
+                const discordBtn = `<a href="${discordUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; margin-left:8px; padding:10px 18px; background:#5865f2; color:#fff; font-weight:800; text-decoration:none; border-radius:8px; font-size:0.95rem; box-shadow: 0 4px 14px rgba(88,101,242,0.4);">💬 Enviar por Discord</a>`;
+
+                feedback.innerHTML = `
+                    <div style="font-size:1.15rem;font-weight:800;color:#38bdf8;">🎉 ¡Orden Registrada en Cola Oficial!</div>
+                    <p style="margin:8px 0;font-size:0.92rem;line-height:1.5;">
+                        Se ha registrado formalmente tu solicitud para <strong>${charName}</strong> por el paquete <strong>${data.package_name || selectedPackage.name}</strong> (<strong>S/. ${Number(data.price_pen || selectedPackage.price_pen || 0).toFixed(2)}</strong>).
+                    </p>
+                    <div style="background:rgba(0,0,0,0.4);border:1px dashed #38bdf8;padding:10px 14px;border-radius:6px;margin:10px 0;">
+                        Código de Referencia: <strong style="color:#ffd700;letter-spacing:1px;font-size:1.15rem;">${refCode}</strong>
+                    </div>
+                    <p style="margin:6px 0;font-size:0.85rem;color:#cbd5e1;">
+                        Tu orden ha quedado encolada en estado <strong>PENDIENTE DE VERIFICACIÓN</strong>. Pulsa abajo para enviar tu captura de comprobante y recibir tus recompensas in-game en menos de 60 segundos:
+                    </p>
+                    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                        ${waBtn}
+                        ${discordBtn}
+                    </div>
+                `;
+            } else {
+                feedback.className = "payment-feedback-box error-box";
+                feedback.innerHTML = `
+                    <div style="font-size:1rem;font-weight:800;color:#f87171;">⚠️ Error de Registro</div>
+                    <p style="margin:6px 0;font-size:0.88rem;">${data.message || "No se pudo registrar la solicitud."}</p>
+                `;
+            }
+        }
+    } catch (err) {
+        if (feedback) {
+            feedback.style.display = "block";
+            feedback.className     = "payment-feedback-box error-box";
+            feedback.innerHTML     = `
+                <div style="font-size:1rem;font-weight:800;color:#f87171;">⚠️ Registro Offline</div>
+                <p style="margin:6px 0;font-size:0.88rem;">
+                    No se pudo contactar al servidor Gateway (${err.message}). Por favor envía tu comprobante con el código <strong style="color:#ffd700;">${refCode}</strong> directamente a nuestro Discord oficial: <a href="https://discord.gg/YFpGGy8RGR" target="_blank" style="color:#38bdf8;font-weight:bold;">discord.gg/YFpGGy8RGR</a>.
+                </p>
+            `;
+        }
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = "✅ He Realizado el Pago / Notificar Acreditación";
+        }
     }
 }
 
@@ -543,58 +652,6 @@ function _clearCharBadge() {
     const b = document.getElementById("charValidationBadge");
     if (b) b.style.display = "none";
     _validatedChar = null;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SIMULACIÓN DE ENTREGA (Prueba de Clúster)
-// ─────────────────────────────────────────────────────────────────────────────
-async function simulateTestDonation() {
-    const charName = document.getElementById("targetCharacterName")?.value.trim();
-    const feedback = document.getElementById("paymentFeedback");
-
-    if (!charName) {
-        alert("Escribe el nombre exacto de tu personaje antes de continuar.");
-        document.getElementById("targetCharacterName")?.focus();
-        return;
-    }
-    if (!selectedPackage) {
-        alert("Selecciona un paquete de la tienda primero.");
-        return;
-    }
-
-    if (feedback) {
-        feedback.style.display = "block";
-        feedback.className     = "payment-feedback-box";
-        feedback.innerHTML     = `⏳ Verificando personaje <strong>${charName}</strong> en la base de datos...`;
-    }
-
-    try {
-        const apiUrl = _getApiUrl();
-        const res = await fetch(`${apiUrl}/api/shop/simulate_delivery`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
-            body: JSON.stringify({ character_name: charName, package_id: selectedPackage.id })
-        });
-        const data = await res.json();
-        if (res.ok && data.ok) {
-            feedback.className = "payment-feedback-box success-box";
-            feedback.innerHTML = `<div>🎉 <strong>¡Verificación Exitosa!</strong></div>
-                <p style="margin-top:5px;font-size:.88rem;">${data.message}</p>`;
-        } else {
-            feedback.className = "payment-feedback-box error-box";
-            feedback.innerHTML = `<div>⚠️ <strong>Validación Fallida</strong></div>
-                <p style="margin-top:5px;font-size:.88rem;">${data.message || "No se pudo verificar."}</p>`;
-        }
-    } catch (err) {
-        if (feedback) {
-            feedback.className = "payment-feedback-box error-box";
-            feedback.innerHTML = `<div>⚠️ <strong>Servidor Offline o Inaccesible</strong></div>
-                <p style="margin-top:5px;font-size:.88rem;">
-                No se pudo comunicar con el Gateway WebAPI (${err.message}). La simulación en tiempo real requiere que el clúster esté en línea.</p>`;
-        }
-    }
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // PAYPAL SDK
 // ─────────────────────────────────────────────────────────────────────────────
