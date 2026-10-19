@@ -126,11 +126,35 @@ function updateDualRealmUI(data, isOnline) {
 // TELEMETRÍA DE SOSTENIBILIDAD & META COMUNITARIA (ZERO-P2W)
 // ─────────────────────────────────────────────────────────────────────────────
 async function loadServerFundingGoal() {
+    let data = null;
     try {
-        const resp = await fetch("data/server_goal.json");
-        if (!resp.ok) return;
-        const data = await resp.json();
+        const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl)
+            ? CONFIG.getApiUrl()
+            : "http://127.0.0.1:8080";
+        const ctrl = new AbortController();
+        const timeout = setTimeout(() => ctrl.abort(), 2000);
+        const respRemote = await fetch(`${apiUrl}/api/shop/goal`, {
+            signal: ctrl.signal,
+            headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
+        });
+        clearTimeout(timeout);
+        if (respRemote.ok) {
+            data = await respRemote.json();
+        }
+    } catch (_) {}
 
+    if (!data) {
+        try {
+            const respLocal = await fetch("data/server_goal.json");
+            if (respLocal.ok) {
+                data = await respLocal.json();
+            }
+        } catch (_) {}
+    }
+
+    if (!data) return;
+
+    try {
         const targetPen = Number(data.monthly_target_pen || 180).toFixed(2);
         const raisedPen = Number(data.current_raised_pen || 0).toFixed(2);
         const targetUsd = Number(data.monthly_target_usd || 49.20).toFixed(2);
