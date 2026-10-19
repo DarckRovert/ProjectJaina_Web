@@ -5,6 +5,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     initDashboard();
+    setupInlineLoginForm();
+    setupPaperdollModalEvents();
 
     // Escuchar cambios de autenticación globales
     window.addEventListener("pj:auth:changed", (e) => {
@@ -247,6 +249,9 @@ function renderCharacterRoster(characters, account) {
 
                 <!-- Barra de Acciones del Personaje -->
                 <div class="dash-char-actions">
+                    <button type="button" class="btn-char-action btn-paperdoll" onclick="openVisualPaperdoll(${c.guid})" title="Inspeccionar Ficha Canónica de Armadura y Equipamiento 3.3.5a" style="border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.12);">
+                        👘 Ver Equipo
+                    </button>
                     <button type="button" class="btn-char-action btn-unstuck" onclick="actionUnstuckCharacter(${c.guid}, '${c.name}')" title="Desatascar y enviar a Posada/Capital si quedó atrapado o caído al vacío">
                         ⚡ Desatascar (Unstuck)
                     </button>
@@ -501,3 +506,327 @@ window.switchDashTab = function(tabName) {
         pane.classList.toggle("active", isTarget);
     });
 };
+
+/* ==============================================================================
+   FORMULARIO INLINE DIRECTO DE AUTENTICACIÓN (#dashGuestView)
+   ============================================================================== */
+function setupInlineLoginForm() {
+    const form = document.getElementById("dashInlineLoginForm");
+    const alertBox = document.getElementById("dashInlineLoginAlert");
+    const userInp = document.getElementById("dashInlineUser");
+    const passInp = document.getElementById("dashInlinePass");
+    const toggleBtn = document.getElementById("dashInlineTogglePass");
+    const submitBtn = document.getElementById("dashInlineSubmitBtn");
+
+    if (toggleBtn && passInp) {
+        toggleBtn.onclick = () => {
+            const isPass = passInp.getAttribute("type") === "password";
+            passInp.setAttribute("type", isPass ? "text" : "password");
+            toggleBtn.textContent = isPass ? "🔒" : "👁️";
+        };
+    }
+
+    if (!form) return;
+
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const username = userInp ? userInp.value.trim() : "";
+        const password = passInp ? passInp.value : "";
+
+        if (!username || !password) {
+            showInlineAlert("Por favor introduce tu usuario y contraseña de juego.", "error");
+            return;
+        }
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "⏳ Autenticando con acore_auth...";
+        }
+
+        try {
+            const apiUrl = getApiUrl();
+            const res = await fetch(`${apiUrl}/api/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "ngrok-skip-browser-warning": "true"
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await res.json().catch(() => null);
+
+            if (res.ok && data && data.ok) {
+                showInlineAlert(`✓ ¡Bienvenido, ${data.user.username}! Cargando perfil...`, "success");
+                localStorage.setItem("pj_auth_user", JSON.stringify(data.user));
+                if (data.token) {
+                    localStorage.setItem("pj_auth_token", data.token);
+                }
+                window.dispatchEvent(new CustomEvent("pj:auth:changed", { detail: { user: data.user, loggedIn: true } }));
+                setTimeout(() => {
+                    initDashboard();
+                }, 500);
+            } else {
+                const msg = (data && data.message) ? data.message : "Credenciales inválidas o cuenta inexistente.";
+                showInlineAlert(`⚠️ ${msg}`, "error");
+            }
+        } catch (err) {
+            showInlineAlert("🛡️ Error de conexión con el servidor de autenticación.", "error");
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "🔑 ENTRAR A MI PERFIL";
+            }
+        }
+    };
+
+    function showInlineAlert(msg, type) {
+        if (!alertBox) return;
+        alertBox.innerHTML = msg;
+        alertBox.style.display = "block";
+        if (type === "success") {
+            alertBox.style.background = "rgba(16, 185, 129, 0.15)";
+            alertBox.style.borderColor = "rgba(16, 185, 129, 0.5)";
+            alertBox.style.color = "#34d399";
+        } else {
+            alertBox.style.background = "rgba(239, 68, 68, 0.15)";
+            alertBox.style.borderColor = "rgba(239, 68, 68, 0.5)";
+            alertBox.style.color = "#f87171";
+        }
+    }
+}
+
+/* ==============================================================================
+   FICHA DE EQUIPO VISUAL INTERACTIVA (PAPERDOLL CANÓNICO WOTLK 3.3.5a)
+   ============================================================================== */
+const ITEM_ICON_CACHE = {};
+
+const WOW_SLOT_DEFS = {
+    0: { name: "Cabeza", emoji: "🪖" },
+    1: { name: "Cuello", emoji: "📿" },
+    2: { name: "Hombros", emoji: "🛡️" },
+    14: { name: "Espalda", emoji: "🧣" },
+    4: { name: "Pecho", emoji: "🥋" },
+    3: { name: "Camisa", emoji: "👕" },
+    18: { name: "Tabardo", emoji: "⚜️" },
+    8: { name: "Muñecas", emoji: "⛓️" },
+
+    9: { name: "Manos", emoji: "🧤" },
+    5: { name: "Cinturón", emoji: "🎗️" },
+    6: { name: "Piernas", emoji: "👖" },
+    7: { name: "Pies", emoji: "👢" },
+    10: { name: "Anillo 1", emoji: "💍" },
+    11: { name: "Anillo 2", emoji: "💍" },
+    12: { name: "Abalorio 1", emoji: "🔮" },
+    13: { name: "Abalorio 2", emoji: "🧿" },
+
+    15: { name: "Mano Principal", emoji: "⚔️" },
+    16: { name: "Mano Secundaria", emoji: "🛡️" },
+    17: { name: "A Distancia / Reliquia", emoji: "🏹" }
+};
+
+const LEFT_SLOT_IDS = [0, 1, 2, 14, 4, 3, 18, 8];
+const RIGHT_SLOT_IDS = [9, 5, 6, 7, 10, 11, 12, 13];
+const BOTTOM_SLOT_IDS = [15, 16, 17];
+
+const QUALITY_NAMES = {
+    0: "Pobre",
+    1: "Común",
+    2: "Poco Común",
+    3: "Raro",
+    4: "Épico",
+    5: "Legendario",
+    7: "Reliquia"
+};
+
+function renderSlotItemHtml(slotId, item) {
+    const sDef = WOW_SLOT_DEFS[slotId] || { name: `Ranura ${slotId}`, emoji: "📦" };
+    if (!item) {
+        return `
+            <div class="pd-slot-item pd-slot-empty">
+                <div class="pd-slot-icon-box">
+                    <span class="pd-slot-icon-empty">${sDef.emoji}</span>
+                </div>
+                <div class="pd-slot-info">
+                    <span class="pd-slot-name-label">${sDef.name}</span>
+                    <span class="pd-slot-item-title" style="color: #64748b; font-style: italic;">Ranura Vacía</span>
+                </div>
+            </div>
+        `;
+    }
+
+    const q = item.quality !== undefined ? item.quality : 1;
+    const qName = QUALITY_NAMES[q] || "Común";
+    const cachedIcon = ITEM_ICON_CACHE[item.entry] || null;
+    const initialImgSrc = cachedIcon 
+        ? `https://wow.zamimg.com/images/wow/icons/large/${cachedIcon}.jpg`
+        : `https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg`;
+
+    return `
+        <a href="https://www.wowhead.com/wotlk/item=${item.entry}" data-wowhead="item=${item.entry}&domain=wotlk" class="pd-slot-item q-${q}" target="_blank" rel="noopener noreferrer">
+            <div class="pd-slot-icon-box q-${q}">
+                <img class="pd-slot-icon-img" id="pdIcon-${item.entry}-${slotId}" src="${initialImgSrc}" alt="${item.name}" onerror="this.src='https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'">
+            </div>
+            <div class="pd-slot-info">
+                <span class="pd-slot-name-label">${sDef.name}</span>
+                <span class="pd-slot-item-title q-${q}">${item.name}</span>
+                <span class="pd-slot-ilvl-tag">iLvl ${item.ilvl || 0} · ${qName}</span>
+            </div>
+        </a>
+    `;
+}
+
+async function resolvePaperdollIcons(items) {
+    if (!items || !items.length) return;
+    for (const it of items) {
+        if (!it.entry) continue;
+        if (ITEM_ICON_CACHE[it.entry]) {
+            updateItemIconElements(it.entry, ITEM_ICON_CACHE[it.entry]);
+            continue;
+        }
+
+        try {
+            const res = await fetch(`https://nether.wowhead.com/wotlk/tooltip/item/${it.entry}`, { mode: "cors" });
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.icon) {
+                    ITEM_ICON_CACHE[it.entry] = data.icon;
+                    updateItemIconElements(it.entry, data.icon);
+                }
+            }
+        } catch (_) {}
+    }
+}
+
+function updateItemIconElements(entry, iconName) {
+    const imgs = document.querySelectorAll(`[id^="pdIcon-${entry}-"]`);
+    imgs.forEach(img => {
+        img.src = `https://wow.zamimg.com/images/wow/icons/large/${iconName}.jpg`;
+    });
+}
+
+window.openVisualPaperdoll = function(guid) {
+    const overlay = document.getElementById("pjPaperdollOverlay");
+    const content = document.getElementById("pjPaperdollContent");
+    if (!overlay || !content) return;
+
+    let char = null;
+    if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.characters) {
+        char = CURRENT_ACCOUNT_DATA.characters.find(c => c.guid == guid);
+    }
+
+    if (!char) {
+        if (window.showPortalToast) {
+            showPortalToast("⚠️ No se encontró la ficha del personaje seleccionado.", "warning");
+        } else {
+            alert("No se encontró la información del personaje seleccionado.");
+        }
+        return;
+    }
+
+    const items = char.items || [];
+    const itemsBySlot = {};
+    items.forEach(it => { itemsBySlot[it.slot] = it; });
+
+    const classColors = {
+        1: "#C79C6E", 2: "#F58CBA", 3: "#ABD473", 4: "#FFF569", 5: "#FFFFFF",
+        6: "#C41F3B", 7: "#0070DE", 8: "#69CCF0", 9: "#9482C9", 11: "#FF7D0A"
+    };
+    const cColor = classColors[char.class] || "#f59e0b";
+    const factionIcon = char.faction === "alliance" ? "🦁" : "🐺";
+
+    const leftColHtml = LEFT_SLOT_IDS.map(s => renderSlotItemHtml(s, itemsBySlot[s])).join("");
+    const rightColHtml = RIGHT_SLOT_IDS.map(s => renderSlotItemHtml(s, itemsBySlot[s])).join("");
+    const bottomWeaponsHtml = BOTTOM_SLOT_IDS.map(s => renderSlotItemHtml(s, itemsBySlot[s])).join("");
+
+    content.innerHTML = `
+        <div class="paperdoll-hero-header">
+            <div class="pd-hero-avatar" style="border-color: ${cColor}; color: ${cColor};">
+                <span>⚔️</span>
+            </div>
+            <div class="pd-hero-titles">
+                <h2 id="pdHeroName" style="color: ${cColor};">
+                    ${char.name} <span style="font-size: 0.9rem; color: #94a3b8; font-weight: 400;">(Nivel ${char.level})</span>
+                </h2>
+                <div class="pd-hero-meta">
+                    <span style="color: ${cColor}; font-weight: 700;">${char.class_name || 'Clase'}</span>
+                    <span>·</span>
+                    <span>${factionIcon} ${char.race_name || 'Raza'}</span>
+                    <span>·</span>
+                    <span style="color: #7dd3fc;">📍 ${char.zone_name || 'Ubicación'}</span>
+                    <span>·</span>
+                    <span style="color: #ffd700;">🏰 ${char.guild_name || 'Sin Hermandad'}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="paperdoll-layout-grid">
+            <!-- Columna Izquierda (8 Ranuras) -->
+            <div class="pd-column">
+                ${leftColHtml}
+            </div>
+
+            <!-- Podio Central (GearScore y Resumen) -->
+            <div class="pd-center-podium">
+                <div class="pd-gs-badge">
+                    <div class="pd-gs-num">${char.gear_score || 0}</div>
+                    <div class="pd-gs-label">GearScore</div>
+                </div>
+                <h4 style="margin: 0; color: #ffffff; font-size: 1.1rem; font-family: 'Cinzel', serif;">Ficha de Armería Canónica</h4>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin: 6px 0 14px 0; max-width: 260px;">
+                    ${items.length} de 19 piezas de equipo enlazadas autoritativamente con la base de datos de AzerothCore.
+                </p>
+                <div style="font-size: 0.78rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 6px 12px; color: #e2e8f0;">
+                    💡 <em>Pasa el cursor sobre cualquier objeto para ver estadísticas completas vía Wowhead.</em>
+                </div>
+            </div>
+
+            <!-- Columna Derecha (8 Ranuras) -->
+            <div class="pd-column">
+                ${rightColHtml}
+            </div>
+
+            <!-- Fila Inferior (Armas y Reliquias) -->
+            <div class="pd-bottom-weapons">
+                ${bottomWeaponsHtml}
+            </div>
+        </div>
+    `;
+
+    overlay.classList.add("active");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    // Disparar resolución asíncrona de iconos e integración Wowhead
+    resolvePaperdollIcons(items);
+    if (window.$WowheadPower && typeof window.$WowheadPower.refreshLinks === "function") {
+        setTimeout(() => window.$WowheadPower.refreshLinks(), 100);
+    }
+};
+
+window.closeVisualPaperdoll = function() {
+    const overlay = document.getElementById("pjPaperdollOverlay");
+    if (overlay) {
+        overlay.classList.remove("active");
+        overlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+};
+
+function setupPaperdollModalEvents() {
+    const overlay = document.getElementById("pjPaperdollOverlay");
+    const closeBtn = document.getElementById("pjClosePaperdollBtn");
+
+    if (closeBtn) closeBtn.onclick = window.closeVisualPaperdoll;
+    if (overlay) {
+        overlay.onclick = (e) => {
+            if (e.target === overlay) window.closeVisualPaperdoll();
+        };
+    }
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay && overlay.classList.contains("active")) {
+            window.closeVisualPaperdoll();
+        }
+    });
+}
