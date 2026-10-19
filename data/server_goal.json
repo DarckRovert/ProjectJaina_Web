@@ -1,0 +1,27 @@
+{
+  "monthly_target_pen": 180.00,
+  "monthly_target_usd": 49.20,
+  "current_raised_pen": 45.00,
+  "current_raised_usd": 12.30,
+  "progress_pct": 25.0,
+  "supporters_count": 4,
+  "month_name": "Noviembre 2026",
+  "last_updated": "2026-10-19T02:30:00-05:00",
+  "expenses": [
+    {
+      "concept": "Túnel Anycast L4 Playit Premium (Perú + Global)",
+      "cost_pen": 45.00,
+      "cost_usd": 12.30
+    },
+    {
+      "concept": "Subsidio Eléctrico & Clúster Nodos Ryzen 7 8700G (PE) + Ryzen 9 5900X (ES)",
+      "cost_pen": 110.00,
+      "cost_usd": 30.00
+    },
+    {
+      "concept": "Enrutamiento DNS Seguro, Dominios & SSL Cloudflare Pro",
+      "cost_pen": 25.00,
+      "cost_usd": 6.90
+    }
+  ]
+}

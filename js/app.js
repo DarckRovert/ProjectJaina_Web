@@ -5,6 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     updateTelemetry();
+    loadServerFundingGoal();
     // Sondeo único y coordinado cada 10 segundos
     setInterval(updateTelemetry, 10000);
 });
@@ -120,4 +121,38 @@ function updateDualRealmUI(data, isOnline) {
     if (txtKirinTor) txtKirinTor.textContent = `${pctKirinTor}%`;
     if (txtHorde) txtHorde.textContent = `${pctHorde}%`;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TELEMETRÍA DE SOSTENIBILIDAD & META COMUNITARIA (ZERO-P2W)
+// ─────────────────────────────────────────────────────────────────────────────
+async function loadServerFundingGoal() {
+    try {
+        const resp = await fetch("data/server_goal.json");
+        if (!resp.ok) return;
+        const data = await resp.json();
+
+        const targetPen = Number(data.monthly_target_pen || 180).toFixed(2);
+        const raisedPen = Number(data.current_raised_pen || 0).toFixed(2);
+        const targetUsd = Number(data.monthly_target_usd || 49.20).toFixed(2);
+        const raisedUsd = Number(data.current_raised_usd || 0).toFixed(2);
+        const pct = Math.min(100, Math.max(0, (Number(data.current_raised_pen || 0) / Number(data.monthly_target_pen || 180)) * 100)).toFixed(1);
+
+        const fillEl = document.getElementById("fundingProgressFill");
+        const raisedEl = document.getElementById("fundingRaisedText");
+        const targetEl = document.getElementById("fundingTargetText");
+        const pctEl = document.getElementById("fundingPctText");
+        const suppEl = document.getElementById("fundingSupportersCount");
+        const monthEl = document.getElementById("fundingMonthLabel");
+
+        if (fillEl) fillEl.style.width = `${pct}%`;
+        if (raisedEl) raisedEl.innerText = `S/. ${raisedPen} PEN ($${raisedUsd} USD)`;
+        if (targetEl) targetEl.innerText = `S/. ${targetPen} PEN ($${targetUsd} USD)`;
+        if (pctEl) pctEl.innerText = `${pct}%`;
+        if (suppEl && data.supporters_count !== undefined) suppEl.innerText = data.supporters_count;
+        if (monthEl && data.month_name) monthEl.innerText = data.month_name;
+    } catch (_) {
+        // Fallback a los valores estáticos presentes en el DOM
+    }
+}
+
 

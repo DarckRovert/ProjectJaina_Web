@@ -16,6 +16,18 @@
 // Catálogo fallback (SSOT local) — sincronizado con store_catalog.json en WebAPI
 const DEFAULT_CATALOG = [
     {
+        id: "pack_welcome", category: "tokens", rarity: "raro", rarity_label: "BIENVENIDA",
+        name: "Pack de Bienvenida al Reino",
+        description: "4 Carteras de Tejido de Escarcha (20c) + Mascota Exclusiva 'Osezno de Blizzard' + 10 Fichas de Evento + 100 Tokens de Jaina.",
+        price_pen: 7.00, price_usd: 1.99, price: "1.99", currency: "PEN", tokens: 100, icon: "🎁",
+        rewards: [
+            { type: "item", entry: 900100, count: 100, name: "Token de Jaina" },
+            { type: "item", entry: 41599, count: 4, name: "Cartera de Tejido de Escarcha (20c)" },
+            { type: "item", entry: 44819, count: 1, name: "Osezno de Blizzard" },
+            { type: "item", entry: 910000, count: 10, name: "Ficha de Evento" }
+        ]
+    },
+    {
         id: "pack_tier1", category: "tokens", rarity: "raro", rarity_label: "RARO",
         name: "Cofre de la Dama Valiente",
         description: "500 Tokens de Jaina + 4 Bolsas de Viajero Arcano (20c) + 10 Fichas de Evento para la Tesorería.",
@@ -58,12 +70,42 @@ const DEFAULT_CATALOG = [
         ]
     },
     {
+        id: "pack_club_kirintor", category: "services", rarity: "legendario", rarity_label: "MEMBRESÍA VIP",
+        name: "Membresía Mensual: Club Kirin Tor",
+        description: "Acceso VIP completo al Pase de Batalla + 300 Tokens de Jaina mensuales + 20 Fichas de Evento + Rango Honorífico Kirin Tor.",
+        price_pen: 18.00, price_usd: 5.00, price: "5.00", currency: "PEN", tokens: 300, icon: "🏰",
+        rewards: [
+            { type: "vip", entry: 1, count: 1, name: "Acceso VIP Pase de Batalla" },
+            { type: "item", entry: 900100, count: 300, name: "Token de Jaina" },
+            { type: "item", entry: 910000, count: 20, name: "Ficha de Evento" }
+        ]
+    },
+    {
         id: "pack_supporter", category: "battlepass", rarity: "epico", rarity_label: "PASE VIP",
         name: "Pase de Batalla VIP Project JAIna",
         description: "Desbloquea los 100 niveles prémium del Pase de Batalla de la temporada actual con cosméticos exclusivos.",
         price_pen: 25.00, price_usd: 7.00, price: "7.00", currency: "PEN", tokens: 0, icon: "🏆",
         rewards: [
             { type: "vip", entry: 1, count: 1, name: "Acceso VIP Pase de Batalla" }
+        ]
+    },
+    {
+        id: "pack_bp_skip5", category: "battlepass", rarity: "epico", rarity_label: "SALTO TIERS",
+        name: "Acelerador de Pase (+5 Niveles)",
+        description: "Acredita +5 niveles instantáneos a tu Pase de Batalla activo (hasta Nivel 50) para reclamar recompensas de temporada.",
+        price_pen: 10.00, price_usd: 2.80, price: "2.80", currency: "PEN", tokens: 0, icon: "⚡",
+        rewards: [
+            { type: "bp_levels", entry: 5, count: 5, name: "+5 Niveles de Pase de Batalla" }
+        ]
+    },
+    {
+        id: "pack_dual_spec", category: "services", rarity: "raro", rarity_label: "COMODIDAD",
+        name: "Desbloqueo de Doble Especialización",
+        description: "1,000 monedas de oro (1,000g) en mano/correo para activar de inmediato la Doble Especialización con tu instructor de clase + 100 Tokens.",
+        price_pen: 10.00, price_usd: 2.80, price: "2.80", currency: "PEN", tokens: 100, icon: "⚖️",
+        rewards: [
+            { type: "money", entry: 10000000, count: 1, name: "1,000 Monedas de Oro (1,000g)" },
+            { type: "item", entry: 900100, count: 100, name: "Token de Jaina" }
         ]
     },
     {
@@ -163,6 +205,7 @@ function initShop() {
     setupCategoryFilters();
     setupCheckoutListeners();
     loadRemoteCatalog();
+    loadServerFundingGoal();
     setCurrency("PEN");
 }
 
@@ -318,6 +361,8 @@ function renderCatalogCards(catalog) {
                 else if (rw.type === "title") icon = "👑";
                 else if (rw.type === "aura") icon = "🪽";
                 else if (rw.type === "vip") icon = "⭐";
+                else if (rw.type === "money") icon = "💰";
+                else if (rw.type === "bp_levels") icon = "⚡";
                 else if (rw.name && rw.name.includes("Token")) icon = "🪙";
                 return `<span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px 6px;margin:2px 2px 0 0;font-size:0.73rem;color:#e2e8f0;">${icon} ${rw.count > 1 ? rw.count + 'x ' : ''}${rw.name}</span>`;
             }).join("");
@@ -660,3 +705,37 @@ function setupCheckoutListeners() {
         inp.dataset.listenerBound = "true";
     }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TELEMETRÍA DE SOSTENIBILIDAD & META COMUNITARIA (ZERO-P2W)
+// ─────────────────────────────────────────────────────────────────────────────
+async function loadServerFundingGoal() {
+    try {
+        const resp = await fetch("data/server_goal.json");
+        if (!resp.ok) return;
+        const data = await resp.json();
+
+        const targetPen = Number(data.monthly_target_pen || 180).toFixed(2);
+        const raisedPen = Number(data.current_raised_pen || 0).toFixed(2);
+        const targetUsd = Number(data.monthly_target_usd || 49.20).toFixed(2);
+        const raisedUsd = Number(data.current_raised_usd || 0).toFixed(2);
+        const pct = Math.min(100, Math.max(0, (Number(data.current_raised_pen || 0) / Number(data.monthly_target_pen || 180)) * 100)).toFixed(1);
+
+        const fillEl = document.getElementById("fundingProgressFill");
+        const raisedEl = document.getElementById("fundingRaisedText");
+        const targetEl = document.getElementById("fundingTargetText");
+        const pctEl = document.getElementById("fundingPctText");
+        const suppEl = document.getElementById("fundingSupportersCount");
+        const monthEl = document.getElementById("fundingMonthLabel");
+
+        if (fillEl) fillEl.style.width = `${pct}%`;
+        if (raisedEl) raisedEl.innerText = `S/. ${raisedPen} PEN ($${raisedUsd} USD)`;
+        if (targetEl) targetEl.innerText = `S/. ${targetPen} PEN ($${targetUsd} USD)`;
+        if (pctEl) pctEl.innerText = `${pct}%`;
+        if (suppEl && data.supporters_count !== undefined) suppEl.innerText = data.supporters_count;
+        if (monthEl && data.month_name) monthEl.innerText = data.month_name;
+    } catch (_) {
+        // Fallback a los valores estáticos presentes en el DOM
+    }
+}
+
