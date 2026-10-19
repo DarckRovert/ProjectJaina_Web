@@ -18,18 +18,19 @@ const DEFAULT_CATALOG = [
     {
         id: "pack_tier1", category: "tokens", rarity: "raro", rarity_label: "RARO",
         name: "Cofre de la Dama Valiente",
-        description: "500 Tokens de Jaina + 4 Bolsas de Gran Capacidad + Fichas de Evento para la Tesorería.",
-        price: "5.00", currency: "USD", tokens: 500, icon: "🪙",
+        description: "500 Tokens de Jaina + 4 Bolsas de Viajero Arcano (20c) + 10 Fichas de Evento para la Tesorería.",
+        price_pen: 15.00, price_usd: 4.00, price: "4.00", currency: "PEN", tokens: 500, icon: "🪙",
         rewards: [
             { type: "item", entry: 900100, count: 500, name: "Token de Jaina" },
-            { type: "item", entry: 910000, count: 10, name: "Ficha de Evento" }
+            { type: "item", entry: 910000, count: 10, name: "Ficha de Evento" },
+            { type: "item", entry: 21841, count: 4, name: "Bolsa de Viajero Arcano" }
         ]
     },
     {
         id: "pack_tier2", category: "mounts", rarity: "epico", rarity_label: "ÉPICO",
         name: "Arsenal Arcano de Theramore",
-        description: "1,500 Tokens de Jaina + Montura Épica Terrestre/Voladora 'Tigre Espectral Raudo' (310% vel).",
-        price: "15.00", currency: "USD", tokens: 1500, icon: "🐉",
+        description: "1,500 Tokens de Jaina + Montura Épica Terrestre y Voladora 'Tigre Espectral Raudo' (310% vel).",
+        price_pen: 35.00, price_usd: 9.50, price: "9.50", currency: "PEN", tokens: 1500, icon: "🐉",
         rewards: [
             { type: "item", entry: 900100, count: 1500, name: "Token de Jaina" },
             { type: "mount", entry: 49284, count: 1, name: "Reins of the Swift Spectral Tiger", data: "49284" }
@@ -38,8 +39,8 @@ const DEFAULT_CATALOG = [
     {
         id: "pack_tier3", category: "mounts", rarity: "legendario", rarity_label: "LEGENDARIO",
         name: "Soberano de Dalaran",
-        description: "3,500 Tokens de Jaina + Riendas del Destrero Celestial + Título Honorífico 'Soberano de Theramore'.",
-        price: "30.00", currency: "USD", tokens: 3500, icon: "👑",
+        description: "3,500 Tokens de Jaina + Riendas del Destrero Celestial Titánico + Título Honorífico 'Soberano de Theramore'.",
+        price_pen: 65.00, price_usd: 17.50, price: "17.50", currency: "PEN", tokens: 3500, icon: "👑",
         rewards: [
             { type: "item", entry: 900100, count: 3500, name: "Token de Jaina" },
             { type: "mount", entry: 54811, count: 1, name: "Celestial Steed", data: "74856" },
@@ -49,8 +50,8 @@ const DEFAULT_CATALOG = [
     {
         id: "pack_tier4", category: "mounts", rarity: "mitico", rarity_label: "MÍTICO",
         name: "Bendición del Consejo de los Seis",
-        description: "8,000 Tokens de Jaina + Montura Mítica 'Invencible de Arthas' (Riendas de Invencible).",
-        price: "60.00", currency: "USD", tokens: 8000, icon: "🔮",
+        description: "8,000 Tokens de Jaina + Montura Mítica 'Invencible de Arthas' (Riendas de Invencible con huellas de escarcha).",
+        price_pen: 120.00, price_usd: 32.00, price: "32.00", currency: "PEN", tokens: 8000, icon: "🔮",
         rewards: [
             { type: "item", entry: 900100, count: 8000, name: "Token de Jaina" },
             { type: "mount", entry: 50818, count: 1, name: "Invincible's Reins", data: "72286" }
@@ -59,17 +60,17 @@ const DEFAULT_CATALOG = [
     {
         id: "pack_supporter", category: "battlepass", rarity: "epico", rarity_label: "PASE VIP",
         name: "Pase de Batalla VIP Project JAIna",
-        description: "Desbloquea los 100 niveles prémium del Pase de Batalla de la temporada actual al instante.",
-        price: "10.00", currency: "USD", tokens: 0, icon: "🏆",
+        description: "Desbloquea los 100 niveles prémium del Pase de Batalla de la temporada actual con cosméticos exclusivos.",
+        price_pen: 25.00, price_usd: 7.00, price: "7.00", currency: "PEN", tokens: 0, icon: "🏆",
         rewards: [
             { type: "vip", entry: 1, count: 1, name: "Acceso VIP Pase de Batalla" }
         ]
     },
     {
         id: "service_rename", category: "services", rarity: "especial", rarity_label: "SERVICIO",
-        name: "Servicio: Cambio de Nombre o Raza",
-        description: "400 Tokens de Jaina para canjear servicios cosméticos y de identidad con Kaelia Sombraetérea.",
-        price: "4.00", currency: "USD", tokens: 400, icon: "📜",
+        name: "Servicio: Cambio de Nombre, Raza o Facción",
+        description: "400 Tokens de Jaina para canjear servicios cosméticos y de identidad de personaje con Kaelia Sombraetérea.",
+        price_pen: 12.00, price_usd: 3.50, price: "3.50", currency: "PEN", tokens: 400, icon: "📜",
         rewards: [
             { type: "item", entry: 900100, count: 400, name: "Token de Jaina" }
         ]
@@ -77,38 +78,38 @@ const DEFAULT_CATALOG = [
     {
         id: "wings_celestial", category: "wings", rarity: "epico", rarity_label: "AURA MÍSTICA",
         name: "Alas Angelicales Celestiales (Blancas / Rojas)",
-        description: "Desbloqueo inmediato in-game de las Alas Angelicales Blancas + 10 Fichas de Evento.",
-        price: "6.00", currency: "USD", tokens: 600, icon: "🪽",
+        description: "Desbloqueo inmediato in-game de las Alas Angelicales Blancas animadas + 15 Fichas de Evento.",
+        price_pen: 20.00, price_usd: 5.50, price: "5.50", currency: "PEN", tokens: 600, icon: "🪽",
         rewards: [
             { type: "aura", entry: 1, count: 1, name: "Alas Angelicales Blancas", data: "exp" },
-            { type: "item", entry: 910000, count: 10, name: "Ficha de Evento" }
+            { type: "item", entry: 910000, count: 15, name: "Ficha de Evento" }
         ]
     },
     {
         id: "wings_demonic", category: "wings", rarity: "epico", rarity_label: "AURA MÍSTICA",
         name: "Alas Demoníacas del Abismo (4 Variantes)",
-        description: "Desbloqueo inmediato in-game de las Alas Demoníacas Rojas + 12 Fichas de Evento.",
-        price: "7.00", currency: "USD", tokens: 700, icon: "🦇",
+        description: "Desbloqueo in-game de las Alas Demoníacas Rojas con partículas de fuego vil + 15 Fichas de Evento.",
+        price_pen: 20.00, price_usd: 5.50, price: "5.50", currency: "PEN", tokens: 700, icon: "🦇",
         rewards: [
             { type: "aura", entry: 4, count: 1, name: "Alas Demoníacas Rojas", data: "oro" },
-            { type: "item", entry: 910000, count: 12, name: "Ficha de Evento" }
+            { type: "item", entry: 910000, count: 15, name: "Ficha de Evento" }
         ]
     },
     {
         id: "wings_elements", category: "wings", rarity: "legendario", rarity_label: "ELEMENTAL",
         name: "Alas de Hielo de Rasganorte & Fuego de Ragnaros",
-        description: "Desbloqueo de las legendarias Alas de Hielo + 15 Fichas de Evento.",
-        price: "9.00", currency: "USD", tokens: 900, icon: "❄️",
+        description: "Desbloqueo de las legendarias Alas de Hielo de Sindragosa con estela de escarcha + 20 Fichas de Evento.",
+        price_pen: 25.00, price_usd: 7.00, price: "7.00", currency: "PEN", tokens: 800, icon: "❄️",
         rewards: [
             { type: "aura", entry: 13, count: 1, name: "Alas de Hielo", data: "rep" },
-            { type: "item", entry: 910000, count: 15, name: "Ficha de Evento" }
+            { type: "item", entry: 910000, count: 20, name: "Ficha de Evento" }
         ]
     },
     {
         id: "wings_collection_17", category: "wings", rarity: "mitico", rarity_label: "COLECCIÓN SUPREMA",
         name: "Colección Completa de las 17 Alas Místicas de Dalaran",
-        description: "50 Fichas de Evento + Desbloqueo de 3 Auras Mayores a tu elección.",
-        price: "18.00", currency: "USD", tokens: 1800, icon: "✨",
+        description: "50 Fichas de Evento + Desbloqueo permanente de las 17 variantes de alas en tu cuenta de juego.",
+        price_pen: 50.00, price_usd: 13.50, price: "13.50", currency: "PEN", tokens: 1800, icon: "✨",
         rewards: [
             { type: "aura", entry: 1, count: 1, name: "Alas Angelicales Blancas" },
             { type: "aura", entry: 4, count: 1, name: "Alas Demoníacas Rojas" },
@@ -119,8 +120,8 @@ const DEFAULT_CATALOG = [
     {
         id: "transmog_pass_single", category: "transmog", rarity: "raro", rarity_label: "ILUSIÓN",
         name: "Pase de Ilusión Transparente (Individual)",
-        description: "350 Tokens de Jaina para transfigurar ranuras invisibles con Kaelia Sombraetérea.",
-        price: "3.50", currency: "USD", tokens: 350, icon: "👗",
+        description: "350 Tokens de Jaina para transfigurar ranuras invisibles de equipamiento con Kaelia Sombraetérea.",
+        price_pen: 10.00, price_usd: 2.80, price: "2.80", currency: "PEN", tokens: 350, icon: "👗",
         rewards: [
             { type: "item", entry: 900100, count: 350, name: "Token de Jaina" }
         ]
@@ -128,8 +129,8 @@ const DEFAULT_CATALOG = [
     {
         id: "transmog_fullset_turtle", category: "transmog", rarity: "legendario", rarity_label: "EXCLUSIVO JAINACORE",
         name: "Guardarropa Invisible Completo (Set Total de 9 Ranuras)",
-        description: "850 Tokens de Jaina para transfigurar el conjunto completo de 9 piezas transparentes.",
-        price: "8.50", currency: "USD", tokens: 850, icon: "✨",
+        description: "850 Tokens de Jaina para transfigurar el vestidor completo de 9 piezas transparentes sin perder gemas ni stats.",
+        price_pen: 25.00, price_usd: 6.80, price: "6.80", currency: "PEN", tokens: 850, icon: "✨",
         rewards: [
             { type: "item", entry: 900100, count: 850, name: "Token de Jaina" }
         ]
@@ -145,10 +146,12 @@ const RARITY_COLORS = {
     especial:   { border:"#1eff00", glow:"rgba(30,255,0,.20)",   text:"#1eff00" }
 };
 
-let selectedPackage  = null;
-let currentCatalog   = [...DEFAULT_CATALOG];
-let currentCategory  = "all";
-let _validatedChar   = null;    // Resultado de validación en vivo del personaje
+let selectedPackage   = null;
+let currentCatalog    = [...DEFAULT_CATALOG];
+let currentCategory   = "all";
+let currentCurrency   = "PEN";    // Moneda por defecto: Soles peruanos (PEN S/.)
+let currentPaymentMethod = "yape"; // Medio por defecto: Yape / Plin (Perú)
+let _validatedChar    = null;     // Resultado de validación en vivo del personaje
 
 document.addEventListener("DOMContentLoaded", () => { initShop(); });
 
@@ -160,6 +163,93 @@ function initShop() {
     setupCategoryFilters();
     setupCheckoutListeners();
     loadRemoteCatalog();
+    setCurrency("PEN");
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SELECTOR DE DIVISAS (PEN S/. vs USD $)
+// ─────────────────────────────────────────────────────────────────────────────
+function setCurrency(curr) {
+    currentCurrency = curr === "USD" ? "USD" : "PEN";
+    
+    const btnPEN = document.getElementById("currBtnPEN");
+    const btnUSD = document.getElementById("currBtnUSD");
+    
+    if (btnPEN && btnUSD) {
+        if (currentCurrency === "PEN") {
+            btnPEN.style.background = "#0284c7";
+            btnPEN.style.color = "#ffffff";
+            btnUSD.style.background = "transparent";
+            btnUSD.style.color = "#94a3b8";
+        } else {
+            btnUSD.style.background = "#0284c7";
+            btnUSD.style.color = "#ffffff";
+            btnPEN.style.background = "transparent";
+            btnPEN.style.color = "#94a3b8";
+        }
+    }
+    
+    renderCatalogCards(currentCatalog);
+    
+    if (selectedPackage) {
+        updateCheckoutSummary();
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SELECTOR DE MÉTODO DE PAGO (Yape / Plin vs PayPal)
+// ─────────────────────────────────────────────────────────────────────────────
+function setPaymentMethod(method) {
+    currentPaymentMethod = method;
+    const yapeCard = document.getElementById("methodCardYape");
+    const paypalCard = document.getElementById("methodCardPaypal");
+    const yapeContainer = document.getElementById("yapeDetailsContainer");
+    const paypalContainer = document.getElementById("paypal-button-container");
+    
+    if (method === "yape") {
+        if (yapeCard) {
+            yapeCard.style.background = "rgba(115, 34, 134, 0.35)";
+            yapeCard.style.border = "2px solid #c084fc";
+        }
+        if (paypalCard) {
+            paypalCard.style.background = "rgba(2, 132, 199, 0.08)";
+            paypalCard.style.border = "1px solid rgba(56, 189, 248, 0.25)";
+        }
+        if (yapeContainer) yapeContainer.style.display = "block";
+        if (paypalContainer) paypalContainer.style.display = "none";
+    } else {
+        if (paypalCard) {
+            paypalCard.style.background = "rgba(2, 132, 199, 0.25)";
+            paypalCard.style.border = "2px solid #38bdf8";
+        }
+        if (yapeCard) {
+            yapeCard.style.background = "rgba(115, 34, 134, 0.1)";
+            yapeCard.style.border = "1px solid rgba(168, 85, 247, 0.25)";
+        }
+        if (yapeContainer) yapeContainer.style.display = "none";
+        if (paypalContainer) {
+            paypalContainer.style.display = "block";
+            if (selectedPackage) {
+                initPayPalButton(selectedPackage.id, selectedPackage.price_usd || selectedPackage.price);
+            }
+        }
+    }
+}
+
+function generateRefCode() {
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    return `PJ-REF-${randomNum}`;
+}
+
+function updateCheckoutSummary() {
+    if (!selectedPackage) return;
+    const summary = document.getElementById("selectedPkgSummary");
+    if (!summary) return;
+    
+    const penStr = `S/. ${Number(selectedPackage.price_pen || 0).toFixed(2)}`;
+    const usdStr = `$${Number(selectedPackage.price_usd || selectedPackage.price || 0).toFixed(2)} USD`;
+    
+    summary.innerHTML = `Has seleccionado: <strong style="color:#ffd700;">${selectedPackage.name}</strong> por <strong style="color:#38bdf8;">${penStr}</strong> <span style="color:#94a3b8;font-size:0.9rem;">(${usdStr})</span>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -234,6 +324,12 @@ function renderCatalogCards(catalog) {
             rewardsHtml = `<div style="margin-top:0.45rem;display:flex;flex-wrap:wrap;gap:2px;">${itemsList}</div>`;
         }
 
+        const pricePen = Number(pkg.price_pen || pkg.price || 0).toFixed(2);
+        const priceUsd = Number(pkg.price_usd || pkg.price || 0).toFixed(2);
+        const displayPrice = currentCurrency === "PEN" 
+            ? `S/. ${pricePen} <span style="font-size:0.75rem;color:#94a3b8;">PEN</span>`
+            : `$${priceUsd} <span style="font-size:0.75rem;color:#94a3b8;">USD</span>`;
+
         return `
         <div class="shop-card rarity-${pkg.rarity}"
              id="card-${pkg.id}"
@@ -249,10 +345,10 @@ function renderCatalogCards(catalog) {
                 ${rewardsHtml}
             </div>
             <div class="shop-card-bottom">
-                <div class="shop-price">$${pkg.price} <span>USD</span></div>
+                <div class="shop-price">${displayPrice}</div>
                 <button class="btn-primary btn-block"
                         style="border-color:${r.border};background:linear-gradient(135deg,${r.glow},transparent);"
-                        onclick="selectPackage('${pkg.id}','${pkg.name}','${pkg.price}')">
+                        onclick="selectPackage('${pkg.id}','${pkg.name}',${pkg.price_pen || 0},${pkg.price_usd || 0})">
                     ✨ Adquirir Recompensa
                 </button>
             </div>
@@ -263,12 +359,19 @@ function renderCatalogCards(catalog) {
 // ─────────────────────────────────────────────────────────────────────────────
 // SELECCIÓN DE PAQUETE
 // ─────────────────────────────────────────────────────────────────────────────
-function selectPackage(id, name, price) {
-    selectedPackage  = { id, name, price };
+function selectPackage(id, name, price_pen, price_usd) {
+    selectedPackage = { id, name, price_pen, price_usd, price: price_usd };
 
     const checkout = document.getElementById("checkoutSection");
-    const summary  = document.getElementById("selectedPkgSummary");
-    if (summary) summary.innerHTML = `Has seleccionado: <strong>${name}</strong> por <strong>$${price} USD</strong>`;
+    updateCheckoutSummary();
+
+    const refElem = document.getElementById("yapeRefCode");
+    if (refElem) {
+        refElem.innerText = generateRefCode();
+    }
+
+    setPaymentMethod(currentPaymentMethod);
+
     if (checkout) { 
         checkout.style.display = "block"; 
         checkout.scrollIntoView({ behavior:"smooth", block:"center" }); 
@@ -280,7 +383,7 @@ function selectPackage(id, name, price) {
         _validateCharacterLive();
     } else {
         const btnContainer = document.getElementById("paypal-button-container");
-        if (btnContainer) btnContainer.innerHTML = "";
+        if (btnContainer && currentPaymentMethod === "paypal") btnContainer.innerHTML = "";
     }
 }
 
@@ -288,6 +391,43 @@ function closeCheckout() {
     const c = document.getElementById("checkoutSection");
     if (c) c.style.display = "none";
     _clearCharBadge();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CONFIRMACIÓN DE PAGO VÍA YAPE / PLIN
+// ─────────────────────────────────────────────────────────────────────────────
+async function confirmYapePayment() {
+    const charName = document.getElementById("targetCharacterName")?.value.trim();
+    const feedback = document.getElementById("paymentFeedback");
+    const refCode  = document.getElementById("yapeRefCode")?.innerText.trim() || generateRefCode();
+
+    if (!charName) {
+        alert("Escribe el nombre exacto de tu personaje antes de continuar.");
+        document.getElementById("targetCharacterName")?.focus();
+        return;
+    }
+    if (!selectedPackage) {
+        alert("Selecciona un paquete de la tienda primero.");
+        return;
+    }
+
+    if (feedback) {
+        feedback.style.display = "block";
+        feedback.className     = "payment-feedback-box success-box";
+        const penAmount = Number(selectedPackage.price_pen || 0).toFixed(2);
+        feedback.innerHTML     = `
+            <div style="font-size:1.05rem;font-weight:800;color:#38bdf8;">📲 Solicitud de Acreditación Registrada</div>
+            <p style="margin:8px 0;font-size:0.9rem;line-height:1.5;">
+                Hemos registrado tu orden para <strong>${charName}</strong> por el paquete <strong>${selectedPackage.name}</strong> (<strong>S/. ${penAmount}</strong>).
+            </p>
+            <div style="background:rgba(0,0,0,0.4);border:1px dashed #38bdf8;padding:8px 12px;border-radius:6px;margin:8px 0;">
+                Código de Referencia: <strong style="color:#ffd700;letter-spacing:1px;">${refCode}</strong>
+            </div>
+            <p style="margin:6px 0;font-size:0.83rem;color:#cbd5e1;">
+                El sistema valida el comprobante y el buzón postal de Dalaran despachará tus recompensas de inmediato (o directamente a tus bolsas si estás conectado).
+            </p>
+        `;
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -318,7 +458,9 @@ async function _validateCharacterLive() {
                      <span style="color:${gsColor}">${data.gear_score} GS</span> · 
                      ${data.guild} · ${data.achievements} logros`
                 );
-                initPayPalButton(selectedPackage.id, selectedPackage.price);
+                if (currentPaymentMethod === "paypal" && selectedPackage) {
+                    initPayPalButton(selectedPackage.id, selectedPackage.price_usd || selectedPackage.price);
+                }
             } else {
                 _validatedChar = null;
                 _showCharBadge("❌", "#ff5252", `«${charName}» no encontrado en acore_characters. Verifica el nombre exacto.`);
@@ -331,7 +473,9 @@ async function _validateCharacterLive() {
         }
     } catch (_) {
         _showCharBadge("⚠️", "#ffb74d", "No se pudo verificar online. La entrega se procesará manualmente.");
-        initPayPalButton(selectedPackage?.id, selectedPackage?.price);
+        if (currentPaymentMethod === "paypal" && selectedPackage) {
+            initPayPalButton(selectedPackage.id, selectedPackage.price_usd || selectedPackage.price);
+        }
     }
 }
 

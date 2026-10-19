@@ -5153,6 +5153,78 @@ body.pj-modal-open {
     font-size: 0.74rem;
 }
 
+/* Hero Mode Tabs (Anycast vs Radmin) */
+.hero-mode-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.hero-mode-btn {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+    border-radius: 8px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-mode-btn:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #e2e8f0;
+}
+
+.hero-mode-btn.active {
+    background: rgba(245, 158, 11, 0.18);
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+.hero-mode-btn.active.radmin-tab {
+    background: rgba(168, 85, 247, 0.18);
+    border-color: #c084fc;
+    color: #c084fc;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
+}
+
+.quick-connect-subdesc {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    margin-top: 4px;
+}
+
+.quick-connect-subdesc code {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 0.72rem;
+}
+
+.quick-connect-port-alert {
+    margin-top: 0.75rem;
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.72rem;
+    color: #cbd5e1;
+    line-height: 1.45;
+}
+
+.quick-connect-port-alert strong {
+    color: #38bdf8;
+}
+
 /* 2. Locale Folder Helper (Step 3) */
 .locale-tabs-bar {
     display: flex;
