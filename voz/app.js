@@ -43,6 +43,23 @@ const KNOWN_SERVERS = [
 
 function initServerSelector() {
     if (!serverSelect) return;
+
+    // Si la web se sirve directamente desde el Voice Coordinator (puerto 3050)
+    if (window.location.port === '3050' || window.location.origin.includes(':3050')) {
+        let optDirect = serverSelect.querySelector('option[value="direct"]');
+        if (!optDirect) {
+            optDirect = document.createElement('option');
+            optDirect.value = 'direct';
+            optDirect.textContent = `⚡ Conexión Directa Local (${window.location.origin})`;
+            serverSelect.insertBefore(optDirect, serverSelect.firstChild);
+        }
+        serverSelect.value = 'direct';
+        if (customServerInput) customServerInput.style.display = 'none';
+        const localHint = document.getElementById('local-server-hint');
+        if (localHint) localHint.style.display = 'none';
+        return;
+    }
+
     const saved = localStorage.getItem('projectjaina_voice_server');
     
     if (saved) {
@@ -82,6 +99,10 @@ function initServerSelector() {
 }
 
 function getVoiceServerBaseUrl() {
+    // Si la web se sirve directamente desde el Voice Coordinator (puerto 3050)
+    if (window.location.port === '3050' || window.location.origin.includes(':3050') || (serverSelect && serverSelect.value === 'direct')) {
+        return window.location.origin;
+    }
     const saved = localStorage.getItem('projectjaina_voice_server');
     if (saved && (KNOWN_SERVERS.includes(saved) || (customServerInput && saved === customServerInput.value.trim()))) {
         return saved.replace(/\/+$/, '');
@@ -165,13 +186,7 @@ pinForm.addEventListener('submit', async (e) => {
             data = await response.json();
         } catch (netErr) {
             console.error('Error al conectar con servidor de voz:', netErr);
-            let msg = 'No se pudo conectar al servidor de voz en: ' + baseUrl + '\n\n';
-            if (window.location.protocol === 'https:' && baseUrl.startsWith('http:')) {
-                msg += '⚠️ AVISO DE SEGURIDAD (Contenido Mixto HTTPS):\nTu navegador bloqueó la conexión porque esta página se cargó por HTTPS seguro pero el servidor de voz usa HTTP.\n\nSOLUCIÓN: Abre la interfaz directamente desde tu servidor local en ' + baseUrl + ' o selecciona un servidor seguro.';
-            } else {
-                msg += 'Verifica que el servicio de voz esté iniciado (puerto 3050) y que tu firewall no lo bloquee.';
-            }
-            alert(msg);
+            handleVoiceConnectionError(baseUrl, netErr);
             btnConnect.disabled = false;
             btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
             return;
@@ -197,6 +212,60 @@ pinForm.addEventListener('submit', async (e) => {
         btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
     }
 });
+
+function handleVoiceConnectionError(baseUrl, netErr) {
+    const isCrossOrigin = window.location.origin !== baseUrl;
+    const isHttpsTarget = baseUrl.startsWith('https:');
+    const isLocalOrPrivateTarget = baseUrl.includes('localhost') || baseUrl.includes('127.0.0.1') || baseUrl.includes('26.') || baseUrl.includes('192.168.');
+
+    let alertBox = document.getElementById('voice-conn-alert');
+    if (!alertBox) {
+        alertBox = document.createElement('div');
+        alertBox.id = 'voice-conn-alert';
+        alertBox.className = 'info-alert';
+        pinForm.parentNode.insertBefore(alertBox, pinForm.nextSibling);
+    }
+    alertBox.classList.remove('hidden');
+
+    if (window.location.protocol === 'https:' && baseUrl.startsWith('http:')) {
+        alertBox.style.cssText = 'border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.12); margin-top: 16px; display: flex; gap: 12px; padding: 14px 16px; border-radius: 8px; text-align: left;';
+        alertBox.innerHTML = `
+            <div class="alert-icon" style="font-size: 1.4rem;">⚠️</div>
+            <div class="alert-content">
+                <strong style="color: #f59e0b; display: block; font-size: 0.9rem; margin-bottom: 4px;">Contenido Mixto Bloqueado (HTTPS ➔ HTTP)</strong>
+                <p style="color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">Esta página se cargó por HTTPS seguro pero el servidor de voz seleccionado usa HTTP sin cifrar. Tu navegador impide peticiones inseguras cruzadas.</p>
+                <div style="margin-top: 10px;">
+                    <a href="${baseUrl}/" class="btn btn-secondary btn-sm" style="color: #00ccff; text-decoration: none;">Abrir ${baseUrl} directamente</a>
+                </div>
+            </div>
+        `;
+        alert(`⚠️ AVISO DE CONTENIDO MIXTO:\nTu navegador bloqueó la conexión a ${baseUrl} porque esta página se cargó por HTTPS pero el servidor seleccionado usa HTTP.\n\nSOLUCIÓN: Abre la interfaz directamente desde tu servidor local en: ${baseUrl}/`);
+    } else if (isCrossOrigin && isHttpsTarget && isLocalOrPrivateTarget) {
+        alertBox.style.cssText = 'border-left: 3px solid #00ccff; background: rgba(0, 204, 255, 0.1); margin-top: 16px; display: flex; gap: 12px; padding: 14px 16px; border-radius: 8px; text-align: left;';
+        alertBox.innerHTML = `
+            <div class="alert-icon" style="font-size: 1.4rem;">🔒</div>
+            <div class="alert-content">
+                <strong style="color: #00ccff; display: block; font-size: 0.9rem; margin-bottom: 4px;">Autorización de Certificado SSL Requerida</strong>
+                <p style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.4;">El servidor local (<code>${baseUrl}</code>) utiliza un certificado SSL seguro auto-firmado para WebRTC. Los navegadores modernos bloquean peticiones en segundo plano desde páginas externas (como GitHub Pages) hasta que autorices el certificado.</p>
+                <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="${baseUrl}/" class="btn btn-primary btn-sm" style="text-decoration: none; padding: 8px 16px; font-weight: 600;">👉 Abrir Aplicación Directa (${baseUrl})</a>
+                    <a href="${baseUrl}/api/status" target="_blank" class="btn btn-secondary btn-sm" style="text-decoration: none; padding: 8px 14px;">Autorizar en Pestaña</a>
+                </div>
+            </div>
+        `;
+        alert(`🔒 AUTORIZACIÓN DE CERTIFICADO REQUERIDA:\n\nEl servidor de voz local en ${baseUrl} utiliza un certificado SSL auto-firmado para WebRTC.\nTu navegador bloqueó la conexión en segundo plano desde GitHub Pages.\n\nSOLUCIONES:\n1. Recomendada: Abre la aplicación directamente en tu navegador en:\n   ${baseUrl}/\n   (En Edge/Chrome pulsa "Configuración avanzada" -> "Continuar").\n\n2. O autoriza el certificado abriendo en una pestaña:\n   ${baseUrl}/api/status\n   y luego regresa aquí y pulsa "Conectar a la Voz".`);
+    } else {
+        alertBox.style.cssText = 'border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.1); margin-top: 16px; display: flex; gap: 12px; padding: 14px 16px; border-radius: 8px; text-align: left;';
+        alertBox.innerHTML = `
+            <div class="alert-icon" style="font-size: 1.4rem;">❌</div>
+            <div class="alert-content">
+                <strong style="color: #ef4444; display: block; font-size: 0.9rem; margin-bottom: 4px;">No se pudo conectar al Servidor de Voz</strong>
+                <p style="color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">No hay respuesta en <code>${baseUrl}</code>. Comprueba que el microservicio esté iniciado ejecutando <code>Iniciar_Voz_Espacial.bat</code> en la carpeta del servidor.</p>
+            </div>
+        `;
+        alert(`No se pudo conectar al servidor de voz en: ${baseUrl}\n\nVerifica que el servicio esté iniciado (puerto 3050) ejecutando Iniciar_Voz_Espacial.bat.`);
+    }
+}
 
 // --------------------------------------------------------------------------
 // 2. Analizador de Micrófono & VAD (Voice Activity Detection)
