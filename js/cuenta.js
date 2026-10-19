@@ -35,6 +35,7 @@ function initDashboard() {
     const loadingView = document.getElementById("dashLoadingView");
 
     if (!user) {
+        if (window.closeVisualPaperdoll) window.closeVisualPaperdoll();
         if (loadingView) loadingView.style.display = "none";
         if (loggedView) loggedView.style.display = "none";
         if (guestView) guestView.style.display = "block";
@@ -666,7 +667,7 @@ function renderSlotItemHtml(slotId, item) {
     return `
         <a href="https://www.wowhead.com/wotlk/item=${item.entry}" data-wowhead="item=${item.entry}&domain=wotlk" class="pd-slot-item q-${q}" target="_blank" rel="noopener noreferrer">
             <div class="pd-slot-icon-box q-${q}">
-                <img class="pd-slot-icon-img" id="pdIcon-${item.entry}-${slotId}" src="${initialImgSrc}" alt="${item.name}" onerror="this.src='https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'">
+                <img class="pd-slot-icon-img" id="pdIcon-${item.entry}-${slotId}" src="${initialImgSrc}" alt="${item.name}" onerror="this.onerror=null; this.src='https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'">
             </div>
             <div class="pd-slot-info">
                 <span class="pd-slot-name-label">${sDef.name}</span>
@@ -714,6 +715,18 @@ window.openVisualPaperdoll = function(guid) {
     let char = null;
     if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.characters) {
         char = CURRENT_ACCOUNT_DATA.characters.find(c => c.guid == guid);
+    }
+
+    if (!char) {
+        try {
+            const rawUser = localStorage.getItem("pj_auth_user");
+            if (rawUser) {
+                const u = JSON.parse(rawUser);
+                if (u && u.characters) {
+                    char = u.characters.find(c => c.guid == guid);
+                }
+            }
+        } catch (_) {}
     }
 
     if (!char) {
