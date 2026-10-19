@@ -652,6 +652,7 @@ function _clearCharBadge() {
     const b = document.getElementById("charValidationBadge");
     if (b) b.style.display = "none";
     _validatedChar = null;
+}
 // ─────────────────────────────────────────────────────────────────────────────
 // PAYPAL SDK
 // ─────────────────────────────────────────────────────────────────────────────
