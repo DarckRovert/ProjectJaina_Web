@@ -100,6 +100,24 @@ Los Game Masters disponen de comandos de consola y Eluna nativos para inspecció
 | `.galleon testcannon` | Ejecuta una deflagración de prueba del cañón de artillería naval (`GO 5051`). |
 | `.galleon reset` | Restaura el galeón al estado de calma, limpiando cofres activos y reiniciando el ciclo. |
 
+### ⚔️ Escuadrón Élite de Compañeros IA (`.escuadron` / `.party ia`)
+| Comando | Descripción |
+| :--- | :--- |
+| `.escuadron convocar` | Invoca a Silka (Tanque), Rogotten (DPS Ret), Aezrah (Healer) y Melissah (DPS Brujo) a la party, calibrados a nivel 60. |
+| `.escuadron disolver` | Remueve a los 4 compañeros del grupo con diálogos canónicos de despedida. |
+| `.escuadron postura defensiva` | Conmuta la estrategia del escuadrón a control de masas, absorción de daño y curas prioritarias. |
+| `.escuadron postura ofensiva` | Activa ráfagas de DPS máximo, ataques concentrados y ejecución rápida de objetivos. |
+| `.escuadron postura pasiva` | Detiene el combate activo de los compañeros y los coloca en seguimiento estricto del jugador. |
+
+### 🧭 Buscador de Mazmorras Instantáneo y Despacho PvP (`.rdf` / `.bg`)
+| Comando | Descripción |
+| :--- | :--- |
+| `.rdf go [mazmorra]` (o `.lfg go`) | Teletransporta de inmediato al líder y a su escuadrón a la entrada de la mazmorra clásica correspondiente a su nivel. |
+| `.rdf bots` | Auto-completa la party del jugador con 1 Tanque, 1 Sanador y 3 DPS para la cola de RDF. |
+| `.rdf list` | Muestra el catálogo de las 18 mazmorras clásicas de Vanilla con sus rangos de nivel. |
+| `.rdf tank` / `.rdf heal` / `.rdf dps` | Invoca o añade un bot de rol específico al grupo. |
+| `.bg bots` | Acelera la apertura de Campos de Batalla (WSG, AB, AV) forzando el despacho de bots en brackets 2v2/4v4. |
+
 ---
 
 ## 4. Marco Legal y Propiedad Intelectual

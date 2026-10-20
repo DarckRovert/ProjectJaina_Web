@@ -60,6 +60,11 @@ Al crear un personaje nuevo, podrás elegir entre:
 - **Hardcore:** Muerte permanente de personaje (1 sola vida).
 - **Ironman:** Sin reliquias, sin subasta, sin comercio, equipando únicamente objetos blancos/grises.
 
+### ¿Puedo hacer mazmorras o campos de batalla si juego en solitario?
+¡Absolutamente! Project Jaina cuenta con dos sistemas integrados para jugadores solitarios:
+1. **Despacho Instantáneo RDF y Matchmaking PvP (Hito #205):** Abre el Buscador de Mazmorras (`I`) y encola. El motor interceptará tu solicitud y auto-reclutará de inmediato los roles faltantes (1 Tanque, 1 Sanador y 3 DPS) sincronizados a tu nivel, aceptando la propuesta y teletransportando a todo el grupo con las recompensas oficiales de RDF. Además, puedes escribir `.rdf go` para viajar instantáneamente con tu escuadrón a la entrada de la mazmorra correspondiente a tu nivel. En PvP, los campos de batalla (Garganta Grito de Guerra, Cuenca de Arathi, Valle de Alterac) inician con umbrales optimizados (2v2 / 4v4) acelerados por el motor nativo.
+2. **Escuadrón Élite de Compañeros IA (Hito #204):** Puedes invocar en cualquier momento al escuadrón canónico escribiendo `.escuadron convocar` (o `.party ia convocar`). Se unirán **Silka** (Paladín Tanque), **Rogotten** (Paladín DPS), **Aezrah** (Sacerdotisa Sanadora) y **Melissah** (Bruja DPS), con control táctico in-game (`.escuadron postura defensiva/ofensiva/pasiva`), chat real en la ventana de grupo y auxilio dinámico ante caídas de vida crítica.
+
 ---
 
 ## 4. Audio Espacial 3D y Chat de Voz
