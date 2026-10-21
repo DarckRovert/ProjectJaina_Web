@@ -12,22 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const strengthBar = document.getElementById("passStrengthBar");
     const strengthText = document.getElementById("passStrengthText");
     const matchIndicator = document.getElementById("passMatchIndicator");
-    const factionPills = document.querySelectorAll(".faction-pill");
 
-    // 1. Selector de Facciones y Temas Dinámicos
-    factionPills.forEach(pill => {
-        pill.addEventListener("click", () => {
-            factionPills.forEach(p => p.classList.remove("active"));
-            pill.classList.add("active");
-            const radio = pill.querySelector('input[type="radio"]');
-            if (radio) radio.checked = true;
-
-            const faction = pill.getAttribute("data-faction");
-            document.body.className = `theme-${faction}`;
-        });
-    });
-
-    // 2. Medidor de Fuerza de Contraseña
+    // 1. Medidor de Fuerza de Contraseña
     if (passwordInput && strengthBar && strengthText) {
         passwordInput.addEventListener("input", () => {
             const val = passwordInput.value;
@@ -98,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("regPassword").value;
             const confirmPassword = document.getElementById("regConfirmPassword").value;
             const email = document.getElementById("regEmail").value.trim();
-            const clan = document.querySelector('input[name="clan"]:checked')?.value || "PROJECT_JAINA";
 
             // Saneamiento Alfanumérico Estricto (Requisito Canónico WoW 3.3.5a)
             const USERNAME_REGEX = /^[a-zA-Z0-9]{3,16}$/;
@@ -142,8 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify({
                         username: username,
                         password: password,
-                        email: email,
-                        clan: clan
+                        email: email
                     })
                 });
                 clearTimeout(timeoutId);
@@ -162,15 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok && result.ok) {
                     renderSuccessOnboardingCard(username.toUpperCase(), null);
                     regForm.reset();
-                    
-                    // Reset integral del estado visual de facción hacia Alianza
-                    factionPills.forEach(p => {
-                        const isAlliance = p.getAttribute("data-faction") === "alliance";
-                        p.classList.toggle("active", isAlliance);
-                        const r = p.querySelector('input[type="radio"]');
-                        if (r) r.checked = isAlliance;
-                    });
-                    document.body.className = "theme-alliance";
 
                     if (strengthBar) strengthBar.style.width = "0%";
                     if (strengthText) strengthText.innerText = "Seguridad: Ingresa una contraseña";
@@ -268,9 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 5. Integración Discord SSO (1 Clic)
     window.registerWithDiscord = async function() {
-        const selectedRadio = document.querySelector('input[name="clan"]:checked');
-        const clan = selectedRadio ? selectedRadio.value : "PROJECT_JAINA";
-
         const discordUser = prompt("🎮 Ingresa tu nombre de usuario o Tag de Discord para registrarte en 1 clic:\n(Ej: FranFranco o DarckRovert)", "");
         if (!discordUser || !discordUser.trim()) return;
 
@@ -290,8 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({
                     discord_id: fakeId,
                     username: cleanUser,
-                    email: `${cleanUser.toLowerCase()}@discord.projectjaina.com`,
-                    clan: clan
+                    email: `${cleanUser.toLowerCase()}@discord.projectjaina.com`
                 })
             });
 
