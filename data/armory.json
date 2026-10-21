@@ -8,14 +8,14 @@
     "gender": "Masculino",
     "online": false,
     "guild": "El Kirin Tor",
-    "gs": 1925,
+    "gs": 2515,
     "honor": 0,
     "kills": 0,
     "playtime_hours": 244.0,
     "spec": "Destruccion",
     "role": "DPS",
     "title": "Administrador de Proyecto",
-    "lore": "Personaje en acore_characters. Brujo Nv60 - GS 1925 - 0 pts honor."
+    "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2515 - 0 pts honor."
   },
   {
     "guid": 667,
@@ -44,14 +44,14 @@
     "gender": "Femenino",
     "online": false,
     "guild": "Circle of Giants",
-    "gs": 1618,
+    "gs": 1419,
     "honor": 1425,
     "kills": 39,
     "playtime_hours": 45.5,
     "spec": "Armas",
     "role": "Tanque / Mele",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 1618 - 1425 pts honor."
+    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 1419 - 1425 pts honor."
   },
   {
     "guid": 689,
@@ -62,14 +62,14 @@
     "gender": "Masculino",
     "online": false,
     "guild": "Order of Gold",
-    "gs": 1386,
+    "gs": 2295,
     "honor": 792,
     "kills": 28,
     "playtime_hours": 45.0,
     "spec": "Escarcha",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Mago Nv60 - GS 1386 - 792 pts honor."
+    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2295 - 792 pts honor."
   },
   {
     "guid": 13,
@@ -240,7 +240,7 @@
     "class": "Sacerdote",
     "level": 60,
     "gender": "Masculino",
-    "online": false,
+    "online": true,
     "guild": "Steadfast Defenders",
     "gs": 1367,
     "honor": 1170,

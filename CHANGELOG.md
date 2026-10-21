@@ -4,6 +4,38 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.7.1] - 2026-10-21 — Estabilidad Crítica: Corrección Watchdog SOAP, Lua ENUM y Hardening Web Full-Stack
+
+### 🔴 Correcciones Críticas de Infraestructura
+
+- **Bug Raíz — Bucle de Reinicios de `worldserver.exe` (ProjectJaina_Sentinel.py):** El script `sync_credentials.py` había actualizado la contraseña de `DARCK` a `Politica93` en `acore_auth`. El Sentinel mantenía el hardcode `DARCK:darck` para las consultas SOAP del watchdog (`probe_soap_liveness`). Al recibir `HTTP 401 Unauthorized`, el watchdog interpretaba un *deadlock*, disparando 5 `SIGKILL` consecutivos (22:01–22:04) hasta activar el circuit breaker. **Causa raíz erradicada:**
+  - `network_target.json` actualizado en las 3 réplicas (Launchers, Lab raíz, Distribución Pública Cluster Colegas) con `soap_user: DARCK`, `soap_pass: Politica93`.
+  - `probe_soap_liveness` blindado: respuestas HTTP `401/403` ahora clasificadas como `ALIVE_AUTH_WARNING` y **nunca** matan el proceso.
+  - Período de gracia de 60 s tras arranque (`in_startup_grace`) para evitar falsos positivos mientras cargan 2670 bots y 90 scripts Lua.
+- **Bug SOAP Auth en WebAPI (`ProjectJaina_WebAPI.py`):** `SOAP_AUTH` tenía hardcodeado `DARCK:darck`. Corregido para leer `soap_user`/`soap_pass` dinámicamente de `get_cluster_target()` con fallback `Politica93`. Afectaba desatasco de personajes online, teletransporte in-game y entrega automática de tienda.
+- **Bug ENUM MySQL en `92_WorldNewsChronicle.lua`:** El Pregonero ejecutaba `UPDATE ... SET status = 'DONE'`. La columna es `ENUM('PENDING','PROCESSING','READY','DELIVERED','ERROR')`; MySQL 8.4 insertaba cadena vacía `''`. Corregido a `status = 'DELIVERED'` en las 3 réplicas del clúster. Saneadas 9 filas huérfanas con `status = ''` en `acore_characters.lorebot_llm_queue`.
+
+### 🟡 Correcciones de Lanzadores
+
+- **`ProjectJaina_Console.py`, `Jaina_AI_Ticket_Sentinel.py`, `progression_governor.py`:** Actualizados para leer `soap_pass` desde `network_target.json` con fallback `"Politica93"` (eliminando hardcodes `darck`).
+
+### 🟢 Correcciones y Limpieza Web
+
+- **Bug Transferencia de Puntos (`js/cuenta.js` + `ProjectJaina_WebAPI.py`):** Frontend enviaba `target_username`; backend esperaba `target_user`. Causaba HTTP 400. Corregido en ambos lados mediante compatibilidad `target_user || target_username`.
+- **Limpieza de Código Muerto (`js/cuenta.js`):** Eliminada función `setupSecurityForm` y su llamada. El form `dashPasswordForm` no existe en el HTML; el cambio de contraseña opera a través del modal `uwActionModal` (`submitChangePasswordModal`). Eliminaba warnings en consola.
+- **Limpieza de Código Muerto (`js/countdown.js`):** Eliminado el fallback `|| document.getElementById('tbcElapsedTime')` — ID de era TBC que no existe en el HTML actual.
+
+### 🏥 Estado del Sistema tras Correcciones
+
+| Componente | PID | Estado |
+|---|---|---|
+| `worldserver.exe` | 5944 | ✅ HEALTHY — port 8085, 50 chars online, tick 12ms |
+| `ProjectJaina_Sentinel.py` | 29744 | ✅ HEALTHY — port 8089, fail_streak: 0 |
+| `ProjectJaina_WebAPI.py` | 20524 | ✅ HEALTHY — port 8080, Politica93 activo |
+| MySQL 8.4 | 15876 | ✅ ONLINE — port 3306, lorebot_queue saneada |
+
+---
+
 ## [v2.7.0] - 2026-10-20 — Simetría Canónica Bifacción (Hito #207): Cuenta Universal, HeroBot Thrall, Hermandades Oficiales y Onboarding Minuto Cero v3.1
 - **Eliminación del Selector Artificial de 3ª Facción (`registro.html` & `js/register.js`):** Suprimido el selector `.faction-selector-container` (Kirin Tor Dalaran) no canónico en WoW 3.3.5a. Reemplazado por la píldora informativa universal: *"🌐 Una Sola Cuenta para Todo Azeroth — eliges facción y raza in-game al crear personaje."* La selección de facción queda exclusivamente en el cliente de juego, tal como lo implementa el motor WoW nativo.
 - **HeroBot Canónico Thrall (Jefe de Guerra de la Horda):** Creación e inyección del personaje `Thrall` (GUID 2284, Orco Chamán Nv60, Tier 2 Ten Storms, Doomhammer) en Orgrimmar con identidad neuronal `llm_bot_identities` para diálogo autónomo in-game.

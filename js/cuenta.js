@@ -75,7 +75,7 @@ async function fetchAccountDetails(username) {
             if (loggedView) loggedView.style.display = "block";
             renderAccountMasterCard(data.account, data.character_count);
             renderCharacterRoster(data.characters, data.account);
-            setupSecurityForm(data.account);
+            // Cambio de contraseña gestionado por uwActionModal (submitChangePasswordModal)
         } else {
             throw new Error(data.message || "No se pudo obtener el perfil de la cuenta.");
         }
@@ -461,79 +461,7 @@ async function actionTeleportCharacter(guid, name, dest) {
     }
 }
 
-/**
- * Formulario de Cambio de Contraseña SRP6
- */
-function setupSecurityForm(account) {
-    const form = document.getElementById("dashPasswordForm");
-    const msgBox = document.getElementById("dashSecurityMsg");
-    if (!form) return;
 
-    form.onsubmit = async (e) => {
-        e.preventDefault();
-
-        const currentPass = document.getElementById("dashCurrentPass").value;
-        const newPass = document.getElementById("dashNewPass").value;
-        const confirmPass = document.getElementById("dashConfirmPass").value;
-
-        if (newPass !== confirmPass) {
-            showSecurityMsg("Las contraseñas nuevas no coinciden.", "error");
-            return;
-        }
-
-        if (newPass.length < 4) {
-            showSecurityMsg("La nueva contraseña debe tener al menos 4 caracteres.", "error");
-            return;
-        }
-
-        showSecurityMsg("⏳ Generando nuevo Salt y Verifier SRP6...", "info");
-
-        try {
-            const apiUrl = getApiUrl();
-            const res = await fetch(`${apiUrl}/api/account/change-password`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
-                body: JSON.stringify({
-                    username: account.username,
-                    current_password: currentPass,
-                    new_password: newPass
-                })
-            });
-
-            const data = await res.json();
-            if (res.ok && data.ok) {
-                showSecurityMsg(`✓ ${data.message}`, "success");
-                form.reset();
-                if (window.showPortalToast) {
-                    showPortalToast("🔒 ¡Contraseña actualizada exitosamente con SRP6!", "success");
-                }
-            } else {
-                showSecurityMsg(`⚠️ ${data.message || 'Error al cambiar contraseña.'}`, "error");
-            }
-        } catch (err) {
-            showSecurityMsg("🛡️ Error de conexión con el servidor de autenticación.", "error");
-        }
-    };
-
-    function showSecurityMsg(txt, type) {
-        if (!msgBox) return;
-        msgBox.innerHTML = txt;
-        msgBox.style.display = "block";
-        if (type === "success") {
-            msgBox.style.background = "rgba(16, 185, 129, 0.15)";
-            msgBox.style.borderColor = "rgba(16, 185, 129, 0.5)";
-            msgBox.style.color = "#34d399";
-        } else if (type === "error") {
-            msgBox.style.background = "rgba(239, 68, 68, 0.15)";
-            msgBox.style.borderColor = "rgba(239, 68, 68, 0.5)";
-            msgBox.style.color = "#f87171";
-        } else {
-            msgBox.style.background = "rgba(56, 189, 248, 0.15)";
-            msgBox.style.borderColor = "rgba(56, 189, 248, 0.5)";
-            msgBox.style.color = "#38bdf8";
-        }
-    }
-}
 
 /**
  * Switcher de Pestañas del Panel de Cuenta
@@ -1406,7 +1334,7 @@ window.submitTransferPoints = async function(e) {
         const res = await fetch(`${apiUrl}/api/account/transfer-points`, {
             method: "POST",
             headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
-            body: JSON.stringify({ username: username, target_username: targetUser, amount: amount })
+            body: JSON.stringify({ username: username, target_username: targetUser, target_user: targetUser, amount: amount })
         });
         const data = await res.json();
         if (res.ok && data.ok) {
