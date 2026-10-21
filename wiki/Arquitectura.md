@@ -45,10 +45,10 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 - **Topología Multi-Reino**:
   - **Reino 1: Project Jaina (Global)**: ID 1, Puerto `8085` (Anycast L4). Progresión de Era Clásica (Nivel 60).
   - **Reino 2: WanitosGym**: ID 2, Puerto `8085` (España) con delegación automática a Puerto `8086` (Perú contingencia).
-- **Facciones Canónicas Tripartitas**:
-  - 🦁 **La Alianza de Jaina** (`PROJECT_JAINA` / `ALLIANCE`)
-  - 🔮 **Kirin Tor Dalaran** (`KIRIN_TOR`)
-  - 🐺 **La Horda de Orgrimmar** (`HORDE`)
+- **Bifacción Canónica Simétrica y Hermandades Oficiales**:
+  - 🦁 **La Alianza & El Kirin Tor**: Liderada por Lady Jaina Valiente con la hermandad canónica `<El Kirin Tor>` (Guild ID 21).
+  - 🐺 **La Horda de Orgrimmar**: Liderada por el Jefe de Guerra Thrall con la hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22).
+  - Cuenta universal con libre selección de raza y facción *in-game*, con auto-incorporación y bienvenida en el primer inicio de sesión.
 - **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`).
 - **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` HTTPS/WSS con certificado multi-SAN).
 - **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (puerto `1234`) conectado a través de `mod-llm-chatter` y `03_Playerbot_SocialBridge.lua`.

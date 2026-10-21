@@ -4,6 +4,15 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.7.0] - 2026-10-20 — Simetría Canónica Bifacción (Hito #207): Cuenta Universal, HeroBot Thrall, Hermandades Oficiales y Onboarding Minuto Cero v3.1
+- **Eliminación del Selector Artificial de 3ª Facción (`registro.html` & `js/register.js`):** Suprimido el selector `.faction-selector-container` (Kirin Tor Dalaran) no canónico en WoW 3.3.5a. Reemplazado por la píldora informativa universal: *"🌐 Una Sola Cuenta para Todo Azeroth — eliges facción y raza in-game al crear personaje."* La selección de facción queda exclusivamente en el cliente de juego, tal como lo implementa el motor WoW nativo.
+- **HeroBot Canónico Thrall (Jefe de Guerra de la Horda):** Creación e inyección del personaje `Thrall` (GUID 2284, Orco Chamán Nv60, Tier 2 Ten Storms, Doomhammer) en Orgrimmar con identidad neuronal `llm_bot_identities` para diálogo autónomo in-game.
+- **Hermandad "La Horda de Orgrimmar" (Guild ID 22):** Fundación de la hermandad gemela y simétrica a "El Kirin Tor" (Guild ID 21), con Thrall como Guildmaster, rangos canónicos y banco de 10,000g. Sincronizada en los 3 reinos del clúster.
+- **Onboarding "Minuto Cero" v3.1 (`87_PlayerFirstLogin_Onboarding.lua`):** Detección in-game canónica por `player:IsHorde()`. Alianza → carta Jaina + Égida Dalaran + rep Kirin Tor + auto-incorporación a `<El Kirin Tor>`. Horda → carta Thrall + Ansia de Sangre + auto-incorporación a `<La Horda de Orgrimmar>`. Blindaje asíncrono Anti-UAF. Paridad SHA-256 en 4 copias del clúster.
+- **Documentación Wiki Actualizada:** `FAQ.md`, `Arquitectura.md` y `Guia_API.md` actualizados con bifacción canónica, hermandades oficiales y tabla completa de endpoints.
+
+---
+
 ## [v2.6.2] - 2026-10-17 — Suite de Autenticación Web SRP6 & Acceso de Jugadores en Barra Superior
 - **Login Web de Jugadores en Navbar (`js/auth.js`, `css/style.css`, todas las páginas):** Incorporado acceso directo en la esquina superior derecha (`.nav-actions-tray`) con modal de inicio de sesión Kirin Tor / Dalaran Glassmorphism. Soporta autenticación criptográfica SRP6 en tiempo real, alternancia de visibilidad de contraseña, persistencia de sesión en `localStorage` y menú desplegable de perfil de aventurero/Game Master con censo de personajes en vivo (`acore_characters`).
 - **Endpoint REST Autoritativo `/api/auth/login` (`ProjectJaina_WebAPI.py`):** Integrado manejador HTTP POST con validación matemática de verifiers y salts mediante `srp6_auth.verify_credentials`, extracción de rango GM (`account_access`), facción (`account_clan_affiliation`) e historial de héroes.

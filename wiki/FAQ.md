@@ -44,11 +44,10 @@ El ecosistema cuenta con soporte multi-reino en clúster bi-regional:
 - **Project Jaina (Reino 1):** El reino principal de Living Lore, economía balanceada y eventos mundiales.
 - **WanitosGym (Reino 2):** Reino complementario de desafíos y contingencia.
 
-### ¿Qué facciones puedo elegir al registrarme?
-El sistema de registro y el lanzador oficial integran 3 facciones canónicas:
-- **Alianza:** Los defensores de Theramore y Ventormenta.
-- **Horda:** La fuerza de Orgrimmar y los Clanes de Durotar.
-- **Kirin Tor (Dalaran):** Los magos arcanos de Dalaran guiados por el Ojo Violeta.
+### ¿Cómo elijo mi facción?
+Una sola cuenta te otorga acceso total al reino. Eliges libremente tu facción (**Alianza** u **Horda**) y tu raza al crear tus personajes dentro del juego:
+- **Alianza:** Los héroes de la Alianza reciben la bendición de Lady Jaina Valiente e incorporación de honor a la hermandad canónica `<El Kirin Tor>` (Guild ID 21).
+- **Horda:** Los guerreros de la Horda reciben el grito de guerra y provisiones de Thrall e incorporación a la hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22).
 
 ---
 
