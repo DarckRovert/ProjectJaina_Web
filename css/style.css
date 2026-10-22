@@ -6697,5 +6697,66 @@ body.pj-modal-open {
     color: #f87171;
 }
 
+/* 3. ESTILOS DE LA CASA DE CAMBIO OFICIAL & MERCADO P2P */
+.uw-modal-box.wide {
+    max-width: 720px;
+}
 
+.market-tabs-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    overflow-x: auto;
+}
 
+.market-tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.market-tab-btn.active {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.35));
+    border-color: var(--gold-primary);
+    color: #fbbf24;
+}
+
+.market-table-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.market-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.market-table th {
+    background: rgba(15, 23, 42, 0.9);
+    color: #94a3b8;
+    padding: 10px 12px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.market-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #e2e8f0;
+}
+
+.market-table tr:hover td {
+    background: rgba(245, 158, 11, 0.05);
+}

@@ -94,17 +94,6 @@ function updateDualRealmUI(data, isOnline) {
             : `🔴 <span style="color: #f87171;">MANTENIMIENTO</span>`;
     }
 
-    // Reino 2: Forja de Hierro - PvP Hardcore (Perú)
-    const forjaStatusBadge = document.getElementById("realmForjaStatus");
-    if (forjaStatusBadge) {
-        const isForjaOnline = Boolean(data && data.realm2_online);
-        forjaStatusBadge.style.background = isForjaOnline ? "rgba(16, 185, 129, 0.12)" : "rgba(245, 158, 11, 0.12)";
-        forjaStatusBadge.style.borderColor = isForjaOnline ? "rgba(16, 185, 129, 0.35)" : "rgba(245, 158, 11, 0.35)";
-        forjaStatusBadge.style.color = isForjaOnline ? "#34d399" : "#f59e0b";
-        forjaStatusBadge.innerHTML = isForjaOnline
-            ? `🟢 <span style="color: #34d399;">ONLINE</span> (Playit Anycast)`
-            : `🟡 <span style="color: #f59e0b;">STANDBY</span> (Playit Anycast)`;
-    }
 
     // Reino 3: WanitosGym - Laboratorio (España)
     const wanitosStatusBadge = document.getElementById("realmWanitosStatus");

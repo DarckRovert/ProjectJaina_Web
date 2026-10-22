@@ -831,7 +831,11 @@ window.toggleAccordion = function(id) {
 
 window.closeUwModal = function() {
     const modal = document.getElementById("uwActionModal");
-    if (modal) modal.style.display = "none";
+    if (modal) {
+        modal.style.display = "none";
+        const box = modal.querySelector(".uw-modal-box");
+        if (box) box.classList.remove("wide");
+    }
 };
 
 // Cerrar modal con tecla Escape
@@ -937,26 +941,34 @@ window.openAccountActionModal = function(action) {
 
         case "trade_pd":
             html = `
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
-                    <span style="font-size:1.8rem;">🤝</span>
-                    <div>
-                        <h3 style="margin:0; color:#fff;">Comercio de Puntos de Donación (PD)</h3>
-                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Intercambia PD por oro legalmente dentro de la economía del reino.</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:1.8rem;">🤝</span>
+                        <div>
+                            <h3 style="margin:0; color:#fff; font-size:1.25rem;">Casa de Cambio Oficial & Mercado P2P</h3>
+                            <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Custodia autoritativa (Escrow) de Oro y Puntos de Donación (PD).</p>
+                        </div>
+                    </div>
+                    <div style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.4); border-radius:8px; padding:6px 12px; text-align:right;">
+                        <div style="font-size:0.75rem; color:#cbd5e1;">Tu Saldo Actual:</div>
+                        <div style="font-size:1.05rem; font-weight:800; color:var(--gold-primary);">🪙 ${acct.dp ?? 0} PD</div>
                     </div>
                 </div>
-                <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:1rem; margin-bottom:1rem; line-height:1.5;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span style="color:#cbd5e1; font-size:0.85rem;">Tasa oficial del Banco de Theramore:</span>
-                        <strong style="color:#34d399;">1 PD = 500 Monedas de Oro</strong>
-                    </div>
-                    <div style="font-size:0.78rem; color:#94a3b8;">
-                        • El oro se deposita instantáneamente en el correo in-game del héroe seleccionado.<br>
-                        • Sin riesgo de estafas ni transferencias de terceros no autorizadas.
+
+                <!-- NAVEGACIÓN DE PESTAÑAS -->
+                <div class="market-tabs-nav">
+                    <button type="button" class="market-tab-btn active" id="tabBtnBuy" onclick="switchMarketTab('buy')">🛒 Comprar Oro</button>
+                    <button type="button" class="market-tab-btn" id="tabBtnSell" onclick="switchMarketTab('sell')">🪙 Publicar Venta</button>
+                    <button type="button" class="market-tab-btn" id="tabBtnOrders" onclick="switchMarketTab('orders')">📜 Mis Publicaciones</button>
+                    <button type="button" class="market-tab-btn" id="tabBtnToken" onclick="switchMarketTab('token')">🎫 Ficha de Jaina</button>
+                </div>
+
+                <!-- CONTENEDOR DINÁMICO DE PESTAÑA -->
+                <div id="marketTabContainer" style="min-height: 220px;">
+                    <div style="text-align:center; padding:2rem; color:var(--gold-primary);">
+                        ⏳ Cargando Casa de Cambio...
                     </div>
                 </div>
-                <button type="button" class="btn-primary" onclick="openCharServicePrompt('gold')" style="width:100%; padding:0.75rem;">
-                    🪙 Canjear PD por Oro de Juego (10,000g = 20 PD)
-                </button>
             `;
             break;
 
@@ -1100,8 +1112,21 @@ window.openAccountActionModal = function(action) {
             break;
     }
 
+    const modalBox = modal.querySelector(".uw-modal-box");
+    if (modalBox) {
+        if (action === "trade_pd") {
+            modalBox.classList.add("wide");
+        } else {
+            modalBox.classList.remove("wide");
+        }
+    }
+
     content.innerHTML = html;
     modal.style.display = "flex";
+
+    if (action === "trade_pd") {
+        window.switchMarketTab("buy");
+    }
 };
 
 /**
@@ -1454,6 +1479,398 @@ window.submitChangePasswordModal = async function(e) {
             msgEl.style.background = "rgba(239,68,68,0.2)";
             msgEl.style.color = "#f87171";
             msgEl.textContent = `Error de red: ${err.message}`;
+    }
+};
+
+/* =========================================================================
+   CONTROLADORES DE LA CASA DE CAMBIO OFICIAL & MERCADO P2P ESCROW
+   ========================================================================= */
+
+window.switchMarketTab = async function(tab) {
+    const container = document.getElementById("marketTabContainer");
+    if (!container || !CURRENT_ACCOUNT_DATA) return;
+
+    // Actualizar botones de tabs
+    ["buy", "sell", "orders", "token"].forEach(t => {
+        const btn = document.getElementById(`tabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        if (btn) {
+            if (t === tab) btn.classList.add("active");
+            else btn.classList.remove("active");
         }
+    });
+
+    const apiUrl = getApiUrl();
+    const acct = CURRENT_ACCOUNT_DATA.account;
+    const chars = CURRENT_ACCOUNT_DATA.characters || [];
+
+    if (tab === "buy") {
+        container.innerHTML = `
+            <div style="text-align:center; padding:2rem; color:var(--gold-primary);">
+                ⏳ Consultando ofertas de oro en el Banco de Theramore...
+            </div>
+        `;
+        try {
+            const res = await fetch(`${apiUrl}/api/market/listings`, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+            });
+            const data = await res.json();
+            const listings = (data && data.listings) ? data.listings : [];
+
+            if (listings.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:2.5rem 1rem; background:rgba(0,0,0,0.3); border-radius:10px; border:1px dashed rgba(255,255,255,0.15);">
+                        <div style="font-size:2rem; margin-bottom:0.5rem;">🪙</div>
+                        <h4 style="color:#f1f5f9; margin:0 0 6px 0;">No hay ofertas activas en este momento</h4>
+                        <p style="font-size:0.85rem; color:#94a3b8; max-width:440px; margin:0 auto 1.2rem auto;">
+                            Sé el primero en vender oro legalmente en el reino y recibe Puntos de Donación (PD) en tu cuenta.
+                        </p>
+                        <button type="button" class="btn-primary" onclick="switchMarketTab('sell')" style="padding:0.6rem 1.4rem;">
+                            ➕ Publicar Oro en Venta
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            let rows = "";
+            listings.forEach(l => {
+                rows += `
+                    <tr>
+                        <td>
+                            <strong style="color:#fff;">${l.seller_char}</strong>
+                            <div style="font-size:0.75rem; color:#94a3b8;">${l.created_at.split(' ')[0]}</div>
+                        </td>
+                        <td>
+                            <span style="font-weight:800; color:var(--gold-primary); font-size:1.05rem;">🪙 ${l.gold.toLocaleString()}g</span>
+                        </td>
+                        <td>
+                            <span style="font-weight:800; color:#38bdf8; font-size:1.05rem;">💎 ${l.price_pd} PD</span>
+                        </td>
+                        <td style="color:#cbd5e1; font-size:0.8rem;">
+                            ~${l.rate_per_1000g} PD/1kg
+                        </td>
+                        <td style="text-align:right;">
+                            <button type="button" class="btn-primary" onclick="promptBuyMarketGold(${l.id}, ${l.gold}, ${l.price_pd}, '${l.seller_char}')" style="padding:0.4rem 0.9rem; font-size:0.82rem;">
+                                Comprar
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="market-table-wrap">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>Vendedor</th>
+                                <th>Oro</th>
+                                <th>Precio</th>
+                                <th>Tasa</th>
+                                <th style="text-align:right;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        } catch (err) {
+            container.innerHTML = `<div style="color:#f87171; padding:1rem; text-align:center;">Error al cargar ofertas: ${err.message}</div>`;
+        }
+
+    } else if (tab === "sell") {
+        if (chars.length === 0) {
+            container.innerHTML = `
+                <div style="text-align:center; padding:2rem; color:#f87171;">
+                    No tienes personajes creados en este reino para vender oro.
+                </div>
+            `;
+            return;
+        }
+
+        let charOptions = "";
+        chars.forEach(c => {
+            const gold = Math.floor((c.money || 0) / 10000);
+            const statusLabel = c.online ? "🔴 [CONECTADO - Desconéctalo para vender]" : "🟢 [Desconectado]";
+            charOptions += `<option value="${c.guid}" data-gold="${gold}" data-online="${c.online ? 1 : 0}">${c.name} (Nivel ${c.level}) — ${gold.toLocaleString()}g ${statusLabel}</option>`;
+        });
+
+        container.innerHTML = `
+            <form onsubmit="submitListGoldMarket(event)">
+                <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); border-radius:8px; padding:0.8rem 1rem; margin-bottom:1rem; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+                    🛡️ <strong>Regla de Custodia Segura (Zero-Dupe):</strong> El personaje seleccionado debe estar <strong>desconectado del juego</strong> para transferir el oro a las bóvedas de custodia del Banco Central sin fallos de sincronización en memoria.
+                </div>
+
+                <div style="margin-bottom:12px;">
+                    <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Selecciona tu personaje vendedor:</label>
+                    <select id="marketSellCharGuid" class="form-control" style="width:100%;" onchange="updateMarketSellPreview()">
+                        ${charOptions}
+                    </select>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Cantidad de oro a vender:</label>
+                        <input type="number" id="marketSellGoldAmount" class="form-control" style="width:100%;" required min="500" step="500" value="1000" oninput="updateMarketSellPreview()">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Precio total solicitado (PD):</label>
+                        <input type="number" id="marketSellPricePd" class="form-control" style="width:100%;" required min="1" step="1" value="2" oninput="updateMarketSellPreview()">
+                    </div>
+                </div>
+
+                <!-- DESGLOSE EN TIEMPO REAL -->
+                <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:0.8rem 1rem; margin-bottom:1.2rem;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:4px;">
+                        <span style="color:#94a3b8;">Comisión del Servidor (10%):</span>
+                        <span id="marketSellFeeDisplay" style="color:#f87171; font-weight:700;">-1 PD</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.95rem; font-weight:800; border-top:1px solid rgba(255,255,255,0.08); padding-top:6px;">
+                        <span style="color:#cbd5e1;">Recibirás neto al venderse:</span>
+                        <span id="marketSellNetDisplay" style="color:#34d399;">💎 1 PD</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; padding:0.8rem; font-size:0.95rem;">
+                    🪙 Depositar en Custodia & Publicar Oferta
+                </button>
+            </form>
+        `;
+        setTimeout(window.updateMarketSellPreview, 50);
+
+    } else if (tab === "orders") {
+        container.innerHTML = `
+            <div style="text-align:center; padding:2rem; color:var(--gold-primary);">
+                ⏳ Consultando tus órdenes de mercado...
+            </div>
+        `;
+        try {
+            const res = await fetch(`${apiUrl}/api/market/my-orders?username=${encodeURIComponent(acct.username)}`, {
+                headers: { "ngrok-skip-browser-warning": "true" }
+            });
+            const data = await res.json();
+            const orders = (data && data.orders) ? data.orders : [];
+
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:2rem; color:#94a3b8;">
+                        No tienes publicaciones ni compras registradas en el mercado.
+                    </div>
+                `;
+                return;
+            }
+
+            let rows = "";
+            orders.forEach(o => {
+                let badge = "";
+                let actionBtn = "";
+                if (o.status === "ACTIVE") {
+                    badge = `<span style="color:#fbbf24; font-weight:800; font-size:0.78rem;">🟡 ACTIVA</span>`;
+                    actionBtn = `
+                        <button type="button" class="btn-secondary" onclick="cancelMarketListing(${o.id})" style="padding:0.3rem 0.6rem; font-size:0.75rem; color:#f87171; border-color:rgba(239,68,68,0.4);">
+                            Cancelar
+                        </button>
+                    `;
+                } else if (o.status === "COMPLETED") {
+                    badge = `<span style="color:#34d399; font-weight:800; font-size:0.78rem;">🟢 COMPLETADA</span>`;
+                    actionBtn = `<span style="color:#94a3b8; font-size:0.75rem;">Acreditado</span>`;
+                } else {
+                    badge = `<span style="color:#94a3b8; font-weight:700; font-size:0.78rem;">⚪ ${o.status}</span>`;
+                    actionBtn = `<span style="color:#94a3b8; font-size:0.75rem;">Devuelto</span>`;
+                }
+
+                rows += `
+                    <tr>
+                        <td>
+                            <strong style="color:#fff;">#${o.id} · ${o.seller_char}</strong>
+                            <div style="font-size:0.75rem; color:#94a3b8;">${o.created_at.split(' ')[0]}</div>
+                        </td>
+                        <td><span style="color:var(--gold-primary); font-weight:700;">🪙 ${o.gold.toLocaleString()}g</span></td>
+                        <td><span style="color:#38bdf8; font-weight:700;">💎 ${o.price_pd} PD</span></td>
+                        <td>${badge}</td>
+                        <td style="text-align:right;">${actionBtn}</td>
+                    </tr>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="market-table-wrap">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>Orden</th>
+                                <th>Oro</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <th style="text-align:right;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        } catch (err) {
+            container.innerHTML = `<div style="color:#f87171; padding:1rem; text-align:center;">Error al cargar órdenes: ${err.message}</div>`;
+        }
+
+    } else if (tab === "token") {
+        container.innerHTML = `
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:1rem; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:1rem;">
+                <span style="font-size:2.4rem;">🎫</span>
+                <div>
+                    <h4 style="margin:0; color:#fff;">Ficha de Jaina (WoW Token Canónico)</h4>
+                    <p style="margin:2px 0 0 0; font-size:0.8rem; color:#94a3b8;">Item ID: 900100 · Moneda puente entre la economía in-game y el portal web.</p>
+                </div>
+            </div>
+            <div style="font-size:0.85rem; color:#cbd5e1; line-height:1.6; margin-bottom:1.2rem;">
+                <p>• <strong>¿Cómo funciona?</strong> La Ficha de Jaina se puede adquirir en la <a href="tienda.html" style="color:var(--gold-primary); text-decoration:underline;">Tienda Oficial</a> o comerciar dentro del juego en la Casa de Subastas por oro.</p>
+                <p>• <strong>Canje In-Game Inmediato:</strong> Al hacer <strong>clic derecho</strong> sobre una Ficha de Jaina en las bolsas de tu personaje, el ítem se consume y añade automáticamente <strong>+100 Puntos de Donación (PD)</strong> a tu cuenta web en tiempo real.</p>
+                <p>• <strong>Comercio Libre y Seguro:</strong> Puedes vender la Ficha a otros jugadores directamente por ventanilla de intercambio o en la Casa de Subastas canónica sin ninguna restricción ni riesgo.</p>
+            </div>
+            <a href="tienda.html" class="btn-primary" style="display:block; text-align:center; padding:0.75rem; text-decoration:none;">
+                💎 Ver Fichas y Packs en la Tienda Oficial
+            </a>
+        `;
+    }
+};
+
+window.updateMarketSellPreview = function() {
+    const sel = document.getElementById("marketSellCharGuid");
+    const goldInput = document.getElementById("marketSellGoldAmount");
+    const priceInput = document.getElementById("marketSellPricePd");
+    const feeEl = document.getElementById("marketSellFeeDisplay");
+    const netEl = document.getElementById("marketSellNetDisplay");
+    if (!sel || !goldInput || !priceInput || !feeEl || !netEl) return;
+
+    const price = parseInt(priceInput.value, 10) || 0;
+    const fee = Math.max(1, Math.round(price * 0.10));
+    const net = Math.max(0, price - fee);
+
+    feeEl.textContent = `-${fee} PD`;
+    netEl.textContent = `💎 ${net} PD`;
+};
+
+window.promptBuyMarketGold = async function(listingId, gold, pricePd, sellerChar) {
+    if (!CURRENT_ACCOUNT_DATA) return;
+    const acct = CURRENT_ACCOUNT_DATA.account;
+    const chars = CURRENT_ACCOUNT_DATA.characters || [];
+
+    if ((acct.dp || 0) < pricePd) {
+        alert(`Saldo insuficiente. Tienes ${acct.dp || 0} PD y esta orden cuesta ${pricePd} PD.\nPuedes adquirir PD en la Tienda Oficial.`);
+        return;
+    }
+
+    if (chars.length === 0) {
+        alert("No tienes personajes en este reino para recibir el oro.");
+        return;
+    }
+
+    let charNames = chars.map(c => c.name);
+    let chosenChar = prompt(`Vas a comprar ${gold.toLocaleString()}g por ${pricePd} PD (Vendedor: ${sellerChar}).\n\nIngresa el nombre del personaje que recibirá el oro en su buzón de correo:`, charNames[0]);
+    if (!chosenChar) return;
+
+    chosenChar = chosenChar.trim();
+    const apiUrl = getApiUrl();
+
+    try {
+        const res = await fetch(`${apiUrl}/api/market/buy`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            body: JSON.stringify({
+                username: acct.username,
+                listing_id: listingId,
+                buyer_char_name: chosenChar
+            })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            alert(`✓ ${data.message}`);
+            fetchAccountDetails(acct.username);
+            switchMarketTab("buy");
+        } else {
+            alert(`✕ ${data.message || 'Error al comprar orden.'}`);
+        }
+    } catch (err) {
+        alert(`Error de conexión: ${err.message}`);
+    }
+};
+
+window.submitListGoldMarket = async function(e) {
+    e.preventDefault();
+    if (!CURRENT_ACCOUNT_DATA) return;
+    const sel = document.getElementById("marketSellCharGuid");
+    const goldInput = document.getElementById("marketSellGoldAmount");
+    const priceInput = document.getElementById("marketSellPricePd");
+
+    const opt = sel.options[sel.selectedIndex];
+    const isOnline = parseInt(opt.getAttribute("data-online"), 10) === 1;
+    const charGold = parseInt(opt.getAttribute("data-gold"), 10) || 0;
+    const charGuid = parseInt(sel.value, 10);
+    const goldAmt = parseInt(goldInput.value, 10) || 0;
+    const pricePd = parseInt(priceInput.value, 10) || 0;
+
+    if (isOnline) {
+        alert("⚠️ Tu personaje está CONECTADO al juego.\n\nPara garantizar la custodia sin errores de guardado en el servidor, debes desconectar a tu personaje del juego antes de publicar.");
+        return;
+    }
+
+    if (charGold < goldAmt) {
+        alert(`Tu personaje solo tiene ${charGold.toLocaleString()}g. No puedes vender ${goldAmt.toLocaleString()}g.`);
+        return;
+    }
+
+    const acct = CURRENT_ACCOUNT_DATA.account;
+    const apiUrl = getApiUrl();
+
+    try {
+        const res = await fetch(`${apiUrl}/api/market/list-gold`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            body: JSON.stringify({
+                username: acct.username,
+                char_guid: charGuid,
+                gold_amount: goldAmt,
+                price_pd: pricePd
+            })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            alert(`✓ ${data.message}`);
+            fetchAccountDetails(acct.username);
+            switchMarketTab("orders");
+        } else {
+            alert(`✕ ${data.message || 'Error al publicar oferta.'}`);
+        }
+    } catch (err) {
+        alert(`Error al publicar: ${err.message}`);
+    }
+};
+
+window.cancelMarketListing = async function(listingId) {
+    if (!confirm(`¿Estás seguro de cancelar la orden #${listingId}? El oro será devuelto inmediatamente al buzón de correo de tu personaje.`)) {
+        return;
+    }
+
+    const acct = CURRENT_ACCOUNT_DATA.account;
+    const apiUrl = getApiUrl();
+
+    try {
+        const res = await fetch(`${apiUrl}/api/market/cancel`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            body: JSON.stringify({
+                username: acct.username,
+                listing_id: listingId
+            })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            alert(`✓ ${data.message}`);
+            switchMarketTab("orders");
+        } else {
+            alert(`✕ ${data.message || 'Error al cancelar orden.'}`);
+        }
+    } catch (err) {
+        alert(`Error al cancelar: ${err.message}`);
     }
 };
