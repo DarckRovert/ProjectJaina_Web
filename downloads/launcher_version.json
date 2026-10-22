@@ -3,8 +3,8 @@
   "min_version": "1.0.0",
   "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
   "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "size_bytes": 15412676,
-  "sha256": "f6289afafeac4a540bdb6578d2a82814abacb4eaab39c0b7ebadefc5d1b5cea4",
-  "changelog": "Versi\u00f3n Oficial 2.1.1 \u2014 Lanzador Standalone 1 Clic (~20 MB), Proxy El\u00e1stico Bi-Regional HA (Per\u00fa <-> Espa\u00f1a) y Registro Resiliente de Facci\u00f3n.",
-  "updated_at": 1792190131
+  "size_bytes": 19262320,
+  "sha256": "d4b5c7a3e693b1ce805518d661fbdcc944c2cf59f358580d8d52cd4a7232ee0b",
+  "changelog": "Versión Oficial 2.1.1 — Lanzador Standalone 1 Clic con soporte Radmin VPN (Reino Wanitos Fran 26.202.12.241), Anti-Crash D3D9 y Proxy HA.",
+  "updated_at": 1792470761
 }

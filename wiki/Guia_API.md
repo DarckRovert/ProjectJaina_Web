@@ -15,8 +15,13 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POST`) hacia `/api/register`:
 - Longitud mínima de credenciales (3-16 caracteres de usuario, mínimo 4 en contraseña).
 - Confirmación de contraseña y feedback visual mediante toasts no bloqueantes.
-- Creación autoritativa en `auth.account` de JainaCore con soporte de 3 facciones canónicas: `ALIANZA`, `HORDA` y `KIRIN_TOR` (Dalaran).
-- Normalización automática de facciones legadas (`EL_SEQUITO` $\rightarrow$ `HORDA`).
+- Creación autoritativa en `auth.account` de JainaCore bajo el estándar criptográfico SRP6 RFC 5054.
+- Concesión de acceso universal para todo Azeroth con selección libre in-game de raza y facción (Alianza u Horda).
+
+### `js/cuenta.js` — Panel de Gestión de Cuenta & Personajes (Estándar UltimoWoW)
+- Consulta y renderizado reactivo de información de cuenta (PD, PV, estado 2FA, sanciones).
+- Tarjetas de personajes con GearScore, nivel, clase, raza y monedero de oro/plata/cobre.
+- Ejecución de micro-servicios: desatascar, revivir, cambio de contraseña SRP6, canje de promociones, transferencias de puntos y votos.
 
 ### `js/store.js` — Catálogo Visual de Tienda & Donaciones
 - Renderizado de artículos cosméticos (monturas, transfiguraciones, auras y títulos).
@@ -41,8 +46,16 @@ Maneja la captura, validación previa en cliente y envío asíncrono (`fetch POS
 
 | Método | Ruta | Descripción |
 | :--- | :--- | :--- |
-| `GET` | `/api/gameserver/status` | Devuelve estado del reino (online/offline), uptime, jugadores conectados y servicios. |
+| `GET` | `/api/status` | Devuelve estado del reino (online/offline), uptime, jugadores conectados y servicios. |
 | `POST` | `/api/register` | Crea una cuenta en la base de datos `acore_auth` utilizando criptografía SRP6 (salt + verifier). |
+| `POST` | `/api/auth/login` | Autenticación web segura de cuenta mediante validación matemática SRP6 RFC 5054. |
+| `GET/POST` | `/api/account/details` | Datos completos de cuenta, balance de PD/PV, permisos y lista de personajes con GS e inventario. |
+| `POST` | `/api/account/change-password` | Cambio seguro de contraseña web y de juego recalculando salt y verifier SRP6. |
+| `POST` | `/api/account/promo` | Canje de códigos promocionales con acreditación inmediata de PD/PV. |
+| `POST` | `/api/account/vote` | Registro de voto por el servidor y recompensa en Puntos de Votación (PV). |
+| `POST` | `/api/account/transfer-points` | Transferencia segura de Puntos de Donación (PD) entre cuentas de juego. |
+| `POST` | `/api/character/service` | Servicios de personaje in-game: desatascar (`unstuck`), revivir, renombrar, etc. |
+| `GET` | `/api/account/history` | Historial de transacciones de puntos y servicios de cuenta. |
 | `GET` | `/api/armory` | Perfiles completos de personajes (nivel, clase, raza, GearScore, equipamiento, estadísticas). |
 | `GET` | `/api/shop/catalog` | Catálogo visual de monturas, auras, cosméticos y pases de batalla. |
 | `GET` | `/api/progression` | Telemetría de la fase de progresión activa (`vanilla`, `tbc`, `wotlk`) y level cap. |

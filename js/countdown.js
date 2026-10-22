@@ -230,7 +230,7 @@
             : GRAND_OPENING_TARGET;
 
         // Elementos DOM
-        const elapsedEl = document.getElementById('currentPhaseElapsedTime') || document.getElementById('tbcElapsedTime');
+        const elapsedEl = document.getElementById('currentPhaseElapsedTime');
         const nextPhaseCountdownEl = document.getElementById('nextPhaseCountdown');
         const gaugeTextEl = document.getElementById('transitionPercentText');
         const gaugeFillEl = document.getElementById('transitionGaugeFill');

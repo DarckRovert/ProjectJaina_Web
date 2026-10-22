@@ -6,7 +6,7 @@
     "whatsapp_e164": "",
     "qr_image": "",
     "instructions": "Transfiere el monto exacto vía Yape o Plin. Luego pulsa 'Notificar Donación' para registrar tu orden en el sistema y enviar tu comprobante directamente a nuestro WhatsApp o Discord.",
-    "support_discord": "https://discord.gg/YFpGGy8RGR"
+    "support_discord": "https://discord.gg/769jdzAYP"
   },
   "paypal": {
     "enabled": true,

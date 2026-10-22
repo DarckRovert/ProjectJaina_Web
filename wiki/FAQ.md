@@ -41,14 +41,14 @@ El cliente oficial ya viene preconfigurado con la suite de 18 AddOns de Project 
 
 ### ¿Qué reinos están disponibles en el juego?
 El ecosistema cuenta con soporte multi-reino en clúster bi-regional:
-- **Project Jaina (Reino 1):** El reino principal de Living Lore, economía balanceada y eventos mundiales.
-- **WanitosGym (Reino 2):** Reino complementario de desafíos y contingencia.
+- **Project Jaina (Reino 1 - Perú):** El reino principal de Living Lore, economía balanceada, HeroBots autónomos y eventos mundiales (Puerto 8085).
+- **Forja de Hierro (Reino 2 - Perú):** Reino oficial PvP Hardcore con progresión Vanilla y desafío extremo de supervivencia (Puerto 8086).
+- **WanitosGym (Reino 3 - España):** Reino laboratorio y sandbox experimental gestionado por el equipo en España (Standby / Cluster LAN).
 
-### ¿Qué facciones puedo elegir al registrarme?
-El sistema de registro y el lanzador oficial integran 3 facciones canónicas:
-- **Alianza:** Los defensores de Theramore y Ventormenta.
-- **Horda:** La fuerza de Orgrimmar y los Clanes de Durotar.
-- **Kirin Tor (Dalaran):** Los magos arcanos de Dalaran guiados por el Ojo Violeta.
+### ¿Cómo elijo mi facción?
+Una sola cuenta te otorga acceso total al reino. Eliges libremente tu facción (**Alianza** u **Horda**) y tu raza al crear tus personajes dentro del juego:
+- **Alianza:** Los héroes de la Alianza reciben la bendición de Lady Jaina Valiente e incorporación de honor a la hermandad canónica `<El Kirin Tor>` (Guild ID 21).
+- **Horda:** Los guerreros de la Horda reciben el grito de guerra y provisiones de Thrall e incorporación a la hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22).
 
 ---
 
@@ -59,6 +59,11 @@ Al crear un personaje nuevo, podrás elegir entre:
 - **Normal:** La experiencia clásica de WotLK con balance y calidad de vida moderna.
 - **Hardcore:** Muerte permanente de personaje (1 sola vida).
 - **Ironman:** Sin reliquias, sin subasta, sin comercio, equipando únicamente objetos blancos/grises.
+
+### ¿Puedo hacer mazmorras o campos de batalla si juego en solitario?
+¡Absolutamente! Project Jaina cuenta con dos sistemas integrados para jugadores solitarios:
+1. **Despacho Instantáneo RDF y Matchmaking PvP (Hito #205):** Abre el Buscador de Mazmorras (`I`) y encola. El motor interceptará tu solicitud y auto-reclutará de inmediato los roles faltantes (1 Tanque, 1 Sanador y 3 DPS) sincronizados a tu nivel, aceptando la propuesta y teletransportando a todo el grupo con las recompensas oficiales de RDF. Además, puedes escribir `.rdf go` para viajar instantáneamente con tu escuadrón a la entrada de la mazmorra correspondiente a tu nivel. En PvP, los campos de batalla (Garganta Grito de Guerra, Cuenca de Arathi, Valle de Alterac) inician con umbrales optimizados (2v2 / 4v4) acelerados por el motor nativo.
+2. **Escuadrón Élite de Compañeros IA (Hito #204):** Puedes invocar en cualquier momento al escuadrón canónico escribiendo `.escuadron convocar` (o `.party ia convocar`). Se unirán **Silka** (Paladín Tanque), **Rogotten** (Paladín DPS), **Aezrah** (Sacerdotisa Sanadora) y **Melissah** (Bruja DPS), con control táctico in-game (`.escuadron postura defensiva/ofensiva/pasiva`), chat real en la ventana de grupo y auxilio dinámico ante caídas de vida crítica.
 
 ---
 

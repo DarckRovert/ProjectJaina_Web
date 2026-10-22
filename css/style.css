@@ -5979,4 +5979,723 @@ body.pj-modal-open {
     color: #ffffff !important;
 }
 
+/* ==========================================================================
+   BETA PÚBLICA OFICIAL & PROGRAMA BUG BOUNTY TESTER (NO-WIPE)
+   ========================================================================== */
+.beta-announcement-card {
+    background: linear-gradient(135deg, rgba(8, 14, 28, 0.96) 0%, rgba(15, 23, 42, 0.98) 50%, rgba(30, 27, 75, 0.95) 100%);
+    border: 2px solid rgba(56, 189, 248, 0.6);
+    border-radius: 20px;
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(56, 189, 248, 0.25);
+    margin: 2.5rem auto;
+    max-width: 1100px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+.beta-announcement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #38bdf8, #f59e0b, #a855f7, #38bdf8);
+    background-size: 300% 100%;
+    animation: betaGlowBar 4s linear infinite;
+}
+
+@keyframes betaGlowBar {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.beta-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(2, 132, 199, 0.6);
+    margin-bottom: 1rem;
+}
+
+.beta-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin: 1.6rem 0;
+    text-align: left;
+}
+
+.beta-pillar-item {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.beta-pillar-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.beta-pillar-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.beta-pillar-title {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+}
+
+.beta-pillar-desc {
+    color: #cbd5e1;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ==========================================================================
+   FORMULARIO INLINE DE LOGIN (DIRECTO EN PÁGINA CUENTA)
+   ========================================================================== */
+.dash-inline-login-box {
+    max-width: 460px;
+    margin: 1.5rem auto 0 auto;
+    background: rgba(11, 17, 32, 0.8);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 14px;
+    padding: 1.6rem;
+    text-align: left;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.dash-inline-input-group {
+    margin-bottom: 1rem;
+}
+
+.dash-inline-input-group label {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.dash-inline-input-group input {
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: #ffffff;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.dash-inline-input-group input:focus {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+/* ==========================================================================
+   INSPECTOR DE EQUIPO VISUAL / PAPERDOLL DE PERSONAJE (ARMERÍA INTERACTIVA)
+   ========================================================================== */
+.paperdoll-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.88);
+    backdrop-filter: blur(14px);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.paperdoll-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.paperdoll-modal {
+    background: linear-gradient(145deg, #0b1120 0%, #0f172a 60%, #1e1b4b 100%);
+    border: 2px solid rgba(245, 158, 11, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 50px rgba(56, 189, 248, 0.2);
+    max-width: 980px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 1.8rem 2rem;
+    position: relative;
+    animation: pdModalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pdModalPop {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.paperdoll-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #94a3b8;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.paperdoll-close-btn:hover {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: #ef4444;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.paperdoll-hero-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.pd-hero-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 2px solid var(--gold-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.pd-hero-titles h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+}
+
+.pd-hero-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+/* Grilla Canónica del Paperdoll (2 Columnas + Centro + Fila Inferior de Armas) */
+.paperdoll-layout-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .paperdoll-layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pd-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pd-center-podium {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12) 0%, rgba(15, 23, 42, 0.8) 70%);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 16px;
+    text-align: center;
+    min-height: 380px;
+}
+
+.pd-gs-badge {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.4));
+    border: 2px solid var(--gold-primary);
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+    margin-bottom: 1.2rem;
+    animation: gsRingPulse 3s infinite ease-in-out;
+}
+
+@keyframes gsRingPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+    50% { box-shadow: 0 0 35px rgba(245, 158, 11, 0.7); }
+}
+
+.pd-gs-num {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffd700;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+}
+
+.pd-gs-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #cbd5e1;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.pd-bottom-weapons {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 1rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+}
+
+/* Slot de Ítem Individual */
+.pd-slot-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 6px 10px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.pd-slot-item:hover {
+    background: rgba(30, 41, 59, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.pd-slot-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    border: 2px solid #475569;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.pd-slot-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pd-slot-icon-empty {
+    font-size: 1.2rem;
+    opacity: 0.35;
+}
+
+.pd-slot-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pd-slot-name-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.pd-slot-item-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.pd-slot-ilvl-tag {
+    font-size: 0.72rem;
+    font-family: monospace;
+    color: #e2e8f0;
+}
+
+/* Bordes y Colores de Calidad Canónica de WoW */
+.q-0 { border-color: #9d9d9d !important; color: #9d9d9d !important; } /* Pobre */
+.q-1 { border-color: #ffffff !important; color: #ffffff !important; } /* Común */
+.q-2 { border-color: #1eff00 !important; color: #1eff00 !important; } /* Poco Común */
+.q-3 { border-color: #0070dd !important; color: #0070dd !important; } /* Raro */
+.q-4 { border-color: #a335ee !important; color: #a335ee !important; box-shadow: 0 0 8px rgba(163, 53, 238, 0.4); } /* Épico */
+.q-5 { border-color: #ff8000 !important; color: #ff8000 !important; box-shadow: 0 0 12px rgba(255, 128, 0, 0.6); } /* Legendario */
+.q-7 { border-color: #e6cc80 !important; color: #e6cc80 !important; } /* Reliquia */
+
+.pd-slot-empty {
+    opacity: 0.6;
+}
+.pd-slot-empty:hover {
+    opacity: 0.9;
+}
+
+/* ==============================================================================
+   PANEL DE CUENTA — ESTÁNDAR ULTIMOWOW AAA & HERRAMIENTAS MODULARES
+   ============================================================================== */
+
+.dash-info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 860px) {
+    .dash-info-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dash-info-block {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(20, 29, 47, 0.95) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dash-info-block-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dash-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+}
+
+.dash-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.dash-info-row .label {
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+}
+
+.dash-info-row .val {
+    color: #ffffff;
+    font-weight: 600;
+    text-align: right;
+    font-size: 0.88rem;
+}
+
+.badge-pd {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #000;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.badge-pv {
+    background: linear-gradient(135deg, #a855f7, #7e22ce);
+    color: #fff;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+/* Acordeón de Utilidades y Herramientas */
+.dash-tools-section {
+    margin-top: 2.5rem;
+}
+
+.dash-section-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dash-accordion-item {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dash-accordion-item:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.dash-accordion-item.open {
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+.dash-accordion-header {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(20, 29, 47, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: none;
+    padding: 1.1rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.dash-accordion-header:hover {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 29, 47, 0.98) 100%);
+    color: var(--gold-primary);
+}
+
+.dash-accordion-header .chevron {
+    font-size: 0.9rem;
+    color: var(--gold-primary);
+    transition: transform 0.3s ease;
+}
+
+.dash-accordion-item.open .dash-accordion-header .chevron {
+    transform: rotate(180deg);
+}
+
+.dash-accordion-body {
+    display: none;
+    padding: 1.5rem;
+    background: rgba(10, 15, 26, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dash-accordion-item.open .dash-accordion-body {
+    display: block;
+}
+
+/* Rejilla de Opciones y Herramientas (2 Columnas UltimoWoW) */
+.uw-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 768px) {
+    .uw-tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.uw-tool-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.uw-tool-card:hover {
+    background: linear-gradient(135deg, rgba(20, 29, 47, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+    border-color: rgba(245, 158, 11, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.2);
+}
+
+.uw-tool-icon-box {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.9) 75%);
+    border: 1.5px solid rgba(245, 158, 11, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+
+.uw-tool-icon-box.purple {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(15, 23, 42, 0.9) 75%);
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+}
+
+.uw-tool-icon-box.cyan {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0.9) 75%);
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.uw-tool-icon-box.green {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, rgba(15, 23, 42, 0.9) 75%);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.uw-tool-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.uw-tool-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.uw-tool-desc {
+    font-size: 0.76rem;
+    color: #94a3b8;
+}
+
+/* Modales Dinámicos de Utilidades */
+.uw-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.uw-modal-box {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(20, 29, 47, 0.98) 100%);
+    border: 1px solid var(--gold-primary);
+    border-radius: 14px;
+    max-width: 540px;
+    width: 100%;
+    padding: 1.8rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.25);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.uw-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.uw-modal-close:hover {
+    color: #f87171;
+}
+
+
 
