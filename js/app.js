@@ -94,31 +94,37 @@ function updateDualRealmUI(data, isOnline) {
             : `🔴 <span style="color: #f87171;">MANTENIMIENTO</span>`;
     }
 
-    // Reino 2: WanitosGym (Cluster LAN)
-    const wanitosStatusBadge = document.getElementById("realmWanitosStatus");
-    if (wanitosStatusBadge) {
-        wanitosStatusBadge.innerHTML = `🟡 <span style="color: #f59e0b;">STANDBY</span> (LAN / Cluster)`;
+    // Reino 2: Forja de Hierro - PvP Hardcore (Perú)
+    const forjaStatusBadge = document.getElementById("realmForjaStatus");
+    if (forjaStatusBadge) {
+        forjaStatusBadge.innerHTML = `🟡 <span style="color: #f59e0b;">STANDBY</span> (Puerto 8086)`;
     }
 
-    // Balance Tri-Facción
+    // Reino 3: WanitosGym - Laboratorio (España)
+    const wanitosStatusBadge = document.getElementById("realmWanitosStatus");
+    if (wanitosStatusBadge) {
+        wanitosStatusBadge.innerHTML = `🟣 <span style="color: #c084fc;">STANDBY</span> (Nodo España)`;
+    }
+
+    // Balance Bi-Facción Canónico (Alianza vs Horda)
     const barAlliance = document.getElementById("factionSliceAlliance");
-    const barKirinTor = document.getElementById("factionSliceKirinTor");
     const barHorde = document.getElementById("factionSliceHorde");
 
-    const pctAlliance = (data.faction_alliance_pct !== undefined) ? data.faction_alliance_pct : 48;
-    const pctKirinTor = (data.faction_kirintor_pct !== undefined) ? data.faction_kirintor_pct : 32;
-    const pctHorde = (data.faction_horde_pct !== undefined) ? data.faction_horde_pct : 20;
+    let rawAlliance = (data.faction_alliance_pct !== undefined) ? data.faction_alliance_pct : 52;
+    let rawHorde = (data.faction_horde_pct !== undefined) ? data.faction_horde_pct : 48;
+    
+    // Normalizar a 100% entre ambas facciones
+    const total = (rawAlliance + rawHorde) > 0 ? (rawAlliance + rawHorde) : 100;
+    const pctAlliance = Math.round((rawAlliance / total) * 100);
+    const pctHorde = 100 - pctAlliance;
 
     if (barAlliance) barAlliance.style.width = `${pctAlliance}%`;
-    if (barKirinTor) barKirinTor.style.width = `${pctKirinTor}%`;
     if (barHorde) barHorde.style.width = `${pctHorde}%`;
 
     const txtAlliance = document.getElementById("factionPctAlliance");
-    const txtKirinTor = document.getElementById("factionPctKirinTor");
     const txtHorde = document.getElementById("factionPctHorde");
 
     if (txtAlliance) txtAlliance.textContent = `${pctAlliance}%`;
-    if (txtKirinTor) txtKirinTor.textContent = `${pctKirinTor}%`;
     if (txtHorde) txtHorde.textContent = `${pctHorde}%`;
 }
 

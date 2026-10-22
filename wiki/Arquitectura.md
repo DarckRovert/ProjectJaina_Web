@@ -43,8 +43,9 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
   - **Nodo Cómputo España (`node_2_compute` - 26.202.12.241)**: Computa audio 3D espacial WebRTC, inferencia neuronal de HeroBots y contingencia activa.
   - **Conmutación Automática (Sentinel Failover)**: Si el nodo maestro de Perú o el nodo de España sufren una desconexión, el demonio Centinela delega dinámicamente la carga de ambos reinos al nodo superviviente sin requerir intervención del usuario.
 - **Topología Multi-Reino**:
-  - **Reino 1: Project Jaina (Global)**: ID 1, Puerto `8085` (Anycast L4). Progresión de Era Clásica (Nivel 60).
-  - **Reino 2: WanitosGym**: ID 2, Puerto `8085` (España) con delegación automática a Puerto `8086` (Perú contingencia).
+  - **Reino 1: Project Jaina [Reino Principal]**: ID 1, Puerto `8085` (Perú / Anycast L4). Progresión canónica de Era Clásica (Nivel 60), Lore Viviente y HeroBots autónomos.
+  - **Reino 2: Forja de Hierro [Reino PvP Hardcore]**: ID 2, Puerto `8086` (Perú / DarckRovert). Progresión extrema PvP Hardcore, desafío de supervivencia y progresión Vanilla.
+  - **Reino 3: WanitosGym [Reino Laboratorio - España]**: ID 3, Puerto `8087` (España / FranFranco `26.202.12.241`). Entorno sandbox y laboratorio experimental administrado en el nodo de España.
 - **Bifacción Canónica Simétrica y Hermandades Oficiales**:
   - 🦁 **La Alianza & El Kirin Tor**: Liderada por Lady Jaina Valiente con la hermandad canónica `<El Kirin Tor>` (Guild ID 21).
   - 🐺 **La Horda de Orgrimmar**: Liderada por el Jefe de Guerra Thrall con la hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22).

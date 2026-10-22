@@ -141,7 +141,7 @@
                             <span class="dropdown-item-desc">Reportes de incidencias y parches</span>
                         </div>
                     </a>
-                    <a href="https://discord.gg/YFpGGy8RGR" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
+                    <a href="https://discord.gg/769jdzAYP" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
                         <span class="dropdown-item-icon">💬</span>
                         <div class="dropdown-item-text">
                             <span class="dropdown-item-title">Discord Oficial</span>
@@ -431,12 +431,12 @@
             </div>
         </div>
 
-        <!-- DUAL-REALM TELEMETRY & TRI-FACTION BALANCE HUD -->
+        <!-- MULTI-REALM TELEMETRY & FACTION BALANCE HUD -->
         <div class="dual-realm-grid">
             <div class="realm-card-live">
                 <div class="realm-info-block">
                     <h4>⚡ Project Jaina <span style="font-size: 0.70rem; color: var(--gold-primary); font-family: sans-serif; font-weight: 700;">[REINO PRINCIPAL]</span></h4>
-                    <p>Infraestructura Anycast L4 · WotLK 3.3.5a HD · Lore Viviente & HeroBots</p>
+                    <p>Reino 1 (Perú) · Infraestructura Anycast L4 · WotLK 3.3.5a HD · Lore Viviente & HeroBots</p>
                 </div>
                 <div class="realm-ping-badge" id="realmJainaStatus">
                     🟢 <span style="color: #34d399;">ONLINE</span> (~18ms)
@@ -445,16 +445,26 @@
 
             <div class="realm-card-live">
                 <div class="realm-info-block">
-                    <h4>🧪 WanitosGym <span style="font-size: 0.70rem; color: #a78bfa; font-family: sans-serif; font-weight: 700;">[REINO LABORATORIO]</span></h4>
-                    <p>Cluster Multi-Nodo LAN · Pruebas de Carga & Sandbox Experimental</p>
+                    <h4>⚔️ Forja de Hierro <span style="font-size: 0.70rem; color: #f87171; font-family: sans-serif; font-weight: 700;">[PVP HARDCORE]</span></h4>
+                    <p>Reino 2 (Perú) · PvP Hardcore 3.3.5a · Progresión Vanilla & Desafío Extremo</p>
                 </div>
-                <div class="realm-ping-badge" id="realmWanitosStatus" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); color: #f59e0b;">
-                    🟡 <span>STANDBY</span> (LAN / Cluster)
+                <div class="realm-ping-badge" id="realmForjaStatus" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); color: #f59e0b;">
+                    🟡 <span>STANDBY</span> (Puerto 8086)
+                </div>
+            </div>
+
+            <div class="realm-card-live">
+                <div class="realm-info-block">
+                    <h4>🧪 WanitosGym <span style="font-size: 0.70rem; color: #a78bfa; font-family: sans-serif; font-weight: 700;">[REINO LABORATORIO]</span></h4>
+                    <p>Reino 3 (España) · Cluster Multi-Nodo LAN · Sandbox Experimental</p>
+                </div>
+                <div class="realm-ping-badge" id="realmWanitosStatus" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); color: #c084fc;">
+                    🟣 <span>STANDBY</span> (Nodo España)
                 </div>
             </div>
         </div>
 
-        <!-- BALANCE TRI-FACCIÓN EN VIVO -->
+        <!-- BALANCE DE FACCIONES EN VIVO -->
         <div class="faction-balance-container">
             <div class="faction-balance-header">
                 <span style="color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
@@ -463,22 +473,17 @@
                 <span style="font-size: 0.74rem; color: var(--text-muted);">Actualizado en tiempo real</span>
             </div>
             <div class="faction-bar-track">
-                <div class="faction-slice alliance" id="factionSliceAlliance" style="width: 48%;" title="Alianza (48%)"></div>
-                <div class="faction-slice kirintor" id="factionSliceKirinTor" style="width: 32%;" title="Kirin Tor & Neutrales (32%)"></div>
-                <div class="faction-slice horde" id="factionSliceHorde" style="width: 20%;" title="Horda (20%)"></div>
+                <div class="faction-slice alliance" id="factionSliceAlliance" style="width: 52%;" title="Alianza (52%)"></div>
+                <div class="faction-slice horde" id="factionSliceHorde" style="width: 48%;" title="Horda (48%)"></div>
             </div>
-            <div class="faction-legend-row">
+            <div class="faction-legend-row" style="justify-content: center; gap: 40px;">
                 <div class="faction-legend-item">
                     <span class="legend-dot alliance"></span>
-                    <span>🦁 Alianza: <strong id="factionPctAlliance" style="color: #38bdf8;">48%</strong></span>
-                </div>
-                <div class="faction-legend-item">
-                    <span class="legend-dot kirintor"></span>
-                    <span>🔮 Kirin Tor / Independiente: <strong id="factionPctKirinTor" style="color: #c084fc;">32%</strong></span>
+                    <span>🦁 Alianza: <strong id="factionPctAlliance" style="color: #38bdf8;">52%</strong></span>
                 </div>
                 <div class="faction-legend-item">
                     <span class="legend-dot horde"></span>
-                    <span>🐺 Horda: <strong id="factionPctHorde" style="color: #f87171;">20%</strong></span>
+                    <span>🐺 Horda: <strong id="factionPctHorde" style="color: #f87171;">48%</strong></span>
                 </div>
             </div>
         </div>
@@ -1125,7 +1130,7 @@
             </div>
             <div class="conn-faq-item">
                 <h5>💬 ¿Necesitas asistencia o soporte?</h5>
-                <p>Únete a nuestro <a href="https://discord.gg/YFpGGy8RGR" target="_blank" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Discord Oficial de Project Jaina</a>. La comunidad y el staff te ayudarán al instante.</p>
+                <p>Únete a nuestro <a href="https://discord.gg/769jdzAYP" target="_blank" style="color: var(--gold-primary); text-decoration: underline; font-weight: bold;">Discord Oficial de Project Jaina</a>. La comunidad y el staff te ayudarán al instante.</p>
             </div>
         </div>
 
