@@ -97,13 +97,25 @@ function updateDualRealmUI(data, isOnline) {
     // Reino 2: Forja de Hierro - PvP Hardcore (Perú)
     const forjaStatusBadge = document.getElementById("realmForjaStatus");
     if (forjaStatusBadge) {
-        forjaStatusBadge.innerHTML = `🟡 <span style="color: #f59e0b;">STANDBY</span> (Puerto 8086)`;
+        const isForjaOnline = Boolean(data && data.realm2_online);
+        forjaStatusBadge.style.background = isForjaOnline ? "rgba(16, 185, 129, 0.12)" : "rgba(245, 158, 11, 0.12)";
+        forjaStatusBadge.style.borderColor = isForjaOnline ? "rgba(16, 185, 129, 0.35)" : "rgba(245, 158, 11, 0.35)";
+        forjaStatusBadge.style.color = isForjaOnline ? "#34d399" : "#f59e0b";
+        forjaStatusBadge.innerHTML = isForjaOnline
+            ? `🟢 <span style="color: #34d399;">ONLINE</span> (Playit Anycast)`
+            : `🟡 <span style="color: #f59e0b;">STANDBY</span> (Playit Anycast)`;
     }
 
     // Reino 3: WanitosGym - Laboratorio (España)
     const wanitosStatusBadge = document.getElementById("realmWanitosStatus");
     if (wanitosStatusBadge) {
-        wanitosStatusBadge.innerHTML = `🟣 <span style="color: #c084fc;">STANDBY</span> (Nodo España)`;
+        const isWanitosOnline = Boolean(data && data.realm3_online);
+        wanitosStatusBadge.style.background = isWanitosOnline ? "rgba(16, 185, 129, 0.12)" : "rgba(168, 85, 247, 0.12)";
+        wanitosStatusBadge.style.borderColor = isWanitosOnline ? "rgba(16, 185, 129, 0.35)" : "rgba(168, 85, 247, 0.35)";
+        wanitosStatusBadge.style.color = isWanitosOnline ? "#34d399" : "#c084fc";
+        wanitosStatusBadge.innerHTML = isWanitosOnline
+            ? `🟢 <span style="color: #34d399;">ONLINE</span> (Radmin VPN)`
+            : `🟣 <span style="color: #c084fc;">STANDBY</span> (Radmin VPN)`;
     }
 
     // Balance Bi-Facción Canónico (Alianza vs Horda)
