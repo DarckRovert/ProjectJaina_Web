@@ -31,8 +31,9 @@
 * **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`).
 * **Living Lore & AI Revolution:** Sección interactiva que narra el despertar de los LoreBots y la integración del puente neuronal LLM.
 * **Topología Multi-Reino y Clúster Bi-Nodo:**
-  * **Reino 1 (Project Jaina):** Puerto 8085 (Servidor Principal).
-  * **Reino 2 (WanitosGym):** Puerto 8086 en Nodo Perú / Puerto 8085 en Nodo España.
+  * **Reino 1 (Project Jaina):** Puerto 8085 (Servidor Principal, DB: `acore_characters`).
+  * **Reino 2 (Forja de Hierro):** Puerto 8086 (PvP Hardcore Vanilla, DB: `acore_characters_forjadehierro`).
+  * **Reino 3 (WanitosGym):** Puerto 8087 (Nodo de Cómputo y Laboratorio España).
 * **Bifacción Canónica Simétrica:** Sistema autoritativo con soporte para **Alianza** y **Horda**. Una sola cuenta otorga acceso total al reino; la facción se selecciona in-game al crear personaje. Hermandades canónicas oficiales: `<El Kirin Tor>` (Guild 21, Lady Jaina) y `<La Horda de Orgrimmar>` (Guild 22, Jefe de Guerra Thrall) con auto-incorporación y bienvenida inmersiva en el primer inicio de sesión.
 * **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
 * **Subpáginas Especializadas:**
