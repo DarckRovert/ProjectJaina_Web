@@ -1479,6 +1479,7 @@ window.submitChangePasswordModal = async function(e) {
             msgEl.style.background = "rgba(239,68,68,0.2)";
             msgEl.style.color = "#f87171";
             msgEl.textContent = `Error de red: ${err.message}`;
+        }
     }
 };
 
