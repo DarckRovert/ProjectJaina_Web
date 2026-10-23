@@ -59,7 +59,7 @@ El cliente `ProjectJaina_FHD` integra la suite canónica de AddOns oficiales de 
 5. **`ProjectJaina_BattlePass`**: Pase de Batalla estacional con misiones diarias y cosméticos de temporada.
 6. **`ProjectJaina_Companion`**: Hub social ligero de grupo, presencia y utilidades sin taint.
 7. **`Chatter_Companion`**: Gestor de Playerbots con IA, diálogo en lenguaje natural y órdenes tácticas (/bots, /chatter, /llmc).
-8. **`ProjectJaina_GameModes`**: Selector cinematográfico de desafíos (Normal, Hardcore permadeath, Ironman).
+8. **`ProjectJaina_GameModes`**: Selector cinematográfico AAA de modalidades de juego (Aventurero Normal, Hardcore con muerte permanente, Ironman solitario y Reto Andino x1 blizzlike) mediante comando `/modos` o `/jainamodes`.
 9. **`ProjectJaina_LoreHUD`**: Subtítulos cinematográficos y telemetría de eventos narrativos de LoreBots.
 10. **`ProjectJaina_MultiBot`**: Control táctico, roles, formaciones e inventario de compañeros Playerbots.
 11. **`ProjectJaina_PrideTrace`**: Diagnóstico de telemetría de vuelo y controles de aeronaves en tiempo real.
@@ -70,10 +70,9 @@ El cliente `ProjectJaina_FHD` integra la suite canónica de AddOns oficiales de 
 
 ### C. Herramientas Administrativas de Game Master (Cliente Maestro)
 16. **`ProjectJaina_AdminTools` (v2.1.0)**: Panel integral de administración (`/admin`, `/adt`) con 9 pestañas y panel dedicado `"Mundo"` para supervisión, censo y control en tiempo real de Baluartes y el Galeón de Theramore.
-17. **`WaniGM Tools` (v2.1.0 Deluxe Living World Edition)**: Panel compacto y replegable (`/wgm`, `/jainagm`) creado por Wanitos (FranFranco) & DarckRovert con arte animado de Jaina y Sylvanas, control de parpadeo realista, hover-peek y pestañas `[General]` y `[Mundo 2.5]`.
-18. **`ProjectJaina_GMGenie`**: Suite de atención a tickets, moderación comunitaria y macros de teletransporte con destinos predefinidos para los 6 Baluartes y el Galeón.
-19. **`ProjectJaina_IntiObjGPS`**: Editor y geolocalizador espacial por lotes para Game Masters.
-20. **`ProjectJaina_TBCBalance`**: Monitor de balance numérico para bandas de The Burning Crusade en modo GM.
+17. **`ProjectJaina_GMGenie` (v3.1.0 Sovereign Edition — JainaGM Suite)**: Suite unificada de Game Master que absorbe e integra el Panel de Control JainaGM (5 pestañas operativas: General, Tele, Mundo Baluartes, Items, Utils) con arte animado de Jaina & Sylvanas con ciclo de parpadeo realista, sistema de tickets de soporte, HUD de staff y comandos rápidos (`/gm`, `/jainagm`, `/staff`, `/control`).
+18. **`ProjectJaina_IntiObjGPS`**: Editor y geolocalizador espacial por lotes para Game Masters.
+19. **`ProjectJaina_TBCBalance`**: Monitor de balance numérico para bandas de The Burning Crusade en modo GM.
 
 ---
 
