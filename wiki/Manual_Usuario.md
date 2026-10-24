@@ -139,16 +139,11 @@ Los Game Masters disponen de comandos de consola y Eluna nativos para inspecció
 ## 4. Marco Legal y Propiedad Intelectual
 Para consultar el marco legal completo, el inventario de licencias MIT/GPL de cada módulo y los descargos de propiedad intelectual de Blizzard Entertainment, Inc., consulte el documento autoritativo [`LEGAL_NOTICES.md`](file:///E:/LEGAL_NOTICES.md).
 
-## ⚔️ Escuadrón Élite y HeroBots Trascendentes (IA Omniclase 10/10)
 
-Project Jaina incorpora un motor táctico de inteligencia artificial de nivel Staff L9 (`91_SuperBots_TacticalOverdrive.lua`, `93_EliteSquad_Companions.lua`, `12_HeroBot_JainaBridge.lua`):
-- **Cero Fugas Suicidas:** Se ha desactivado el retroceso descontrolado que causaba wipes en mazmorras.
-- **Inmunidad a OOM:** Los casters nunca se quedan sin maná ni caen a golpear con báculos cuerpo a cuerpo.
-- **Flanqueo Táctico:** Los DPS melee se posicionan automáticamente a la espalda de los enemigos para anular bloqueos/paradas y evitar cleaves o alientos de dragón.
-- **Interrupción de Hechizos:** Los compañeros interrumpen quirúrgicamente los lanzamientos de hechizos enemigos (Pummel, Kick, Mind Freeze, Wind Shear, Counterspell, Hammer of Justice, Bash).
-- **Escuadrón Élite (`.escuadron convocar` / `.party ia convocar`):**
-  - **Silka (Tanque):** Detecta inmediatamente si un enemigo ataca al jugador o a Aezrah y ejecuta provocaciones activas (`Hand of Reckoning` / `Righteous Defense`) para proteger al grupo.
-  - **Aezrah (Sanadora):** Sistema de triage clínico en 4 niveles priorizando al jugador (< 45% HP) con Escudo Sagrado, Supresión de Dolor, Penitencia y Sanación Relámpago.
-  - **Rogotten (DPS):** Aturde casters hostiles con Martillo de Justicia, protege al jugador ante daño físico con Mano de Protección y remata enemigos con Martillo de Cólera.
-  - **Melissah (Bruja):** Aplica Piedra de Alma al líder del grupo para resurrección en combate, provee Piedras de Salud, aturde en área con Furia de las Sombras y maldice a los objetivos principales.
-- **Archimaga Suprema Lady Jaina:** Al unirte a Lady Jaina (Afinidad >= 15), invoca su Elemental de Agua, desata Ventiscas con 75% de ralentización, ejecuta Contrahechizos contra jefes y casters, realiza combos de Congelación Profunda y Lanza de Hielo, e invoca festines de refrigerio de Dalaran.
+### 11. Convivencia con Playerbots y Asistencia en Grupo (Hito #228)
+* **Invitación a Grupo:** Cualquier jugador humano puede invitar a cualquier Playerbot del mundo (`/invite [Nombre]`). El bot aceptará de forma inmediata e incondicional (`AiPlayerbot.GroupInvitationPermission = 2`).
+* **Comportamiento en Grupo:** Al unirse, el bot se vincula al líder humano como su Maestro. Lo seguirá fielmente, asistirá en combate según su rol (Tanque, Sanador o DPS), completará y aceptará misiones del grupo, despojará botín y recolectará hierbas o minerales (`+follow,+quest,+accept all quests,+loot,+gather,+grind`).
+* **Consultas y Asistencia de Juego:** Puedes susurrar o hablarle por chat local a cualquier Playerbot para pedirle consejos sobre monturas y equitación, formas de farmear oro, qué mazmorras hacer a tu nivel, cómo anotarte a PvP o cómo optimizar tus profesiones y talentos.
+* **Matchmaking Instantáneo en Mazmorras y PvP:**
+  - Al anotarte en el Buscador de Mazmorras (RDF), el sistema convoca o alinea automáticamente a los compañeros faltantes.
+  - Al anotarte a un Campo de Batalla (WSG, Arathi, Alterac, Ojo de la Tormenta, Isla de la Conquista) mediante la tecla `H`, los Playerbots elegibles de tu nivel se anotan de inmediato para iniciar la partida.
