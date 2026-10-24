@@ -37,7 +37,7 @@ flowchart LR
 | **Frontend Web** | `https://darckrovert.github.io/ProjectJaina_Web/` | HTTPS (GitHub Pages) | Interfaz visual, páginas HTML/CSS/JS. |
 | **Túnel REST API** | `https://ingrainedly-easeled-edelmira.ngrok-free.dev` | HTTPS (Ngrok L7) | Traspaso seguro de consultas y registros. |
 | **Backend REST Local** | `http://127.0.0.1:8080` | HTTP (Python WebAPI) | Endpoints `/api/register`, `/api/status`, `/api/armory`, etc. |
-| **Descarga de Cliente** | [Carpeta Oficial de Google Drive](https://drive.google.com/file/d/1VlsfI9WvZ6kyaz03pwC3peJ_hSA3-2MZ/view?usp=sharing) | HTTPS (Google Cloud) | Distribución de los 35.96 GB de datos del cliente. |
+| **Descarga de Cliente** | [Carpeta Oficial de Google Drive](https://drive.google.com/file/d/1VlsfI9WvZ6kyaz03pwC3peJ_hSA3-2MZ/view?usp=drive_link) | HTTPS (Google Cloud) | Distribución de los 35.96 GB de datos del cliente. |
 
 ---
 
