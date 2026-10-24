@@ -111,8 +111,16 @@ Project Jaina cuenta con un motor de audio binaural posicional en tiempo real:
 5. Escucharás a los jugadores cercanos con posicionamiento binaural 3D (HRTF) según su distancia y orientación en el mundo de juego.
 
 ### ¿Qué es el Gestor de Bots con IA (/bots o /chatter)?
-Es la interfaz del addon `Chatter_Companion`, que conecta tus diálogos con los Playerbots y el motor de inferencia neuronal local (LM Studio). Puedes dar órdenes tácticas, solicitar buffs por clase, invitar a compañeros de aventura o debatir sobre el lore de Azeroth en lenguaje natural.
+### ¿Cómo organiza automáticamente las bolsas e inventario el AddOn Dragonflight UI?
+En la esquina superior derecha de tu mochila principal (o de la ventana del banco / banco de hermandad), verás un botón elegante con icono de escoba mágica (`INV_Pet_Broom`) y orfebrería de Dalaran. Al hacer clic, el ordenador inteligente clasifica tus objetos por categoría (armas, armaduras, consumibles, materiales de profesión, gemas y misceláneos), consolidando acumulaciones incompletas al instante.
+
+### ¿Cómo protege el servidor la integridad de la red ante escaneos de internet?
+El puerto de juego (8085) está protegido perimetralmente contra sondas externas o crawlers de internet (como Shodan o peticiones HTTPS/TLS no solicitadas). Si un bot externo intenta enviar encabezados TLS ClientHello o paquetes malformados, el subsistema de red `WorldSocket::ReadHeaderHandler` los detecta, aborta la conexión TCP inmediatamente con `CloseSocket()` y previene cualquier saturación de recursos sin afectar la fluidez del juego de los usuarios reales.
+
+### ¿Qué ocurre si un personaje sube de nivel mientras está en cola para un Campo de Batalla?
+Para salvaguardar el balance competitivo y evitar abusos de nivel en brackets PvP (por ejemplo, estar en el bracket 20-29 con nivel 30), el motor `BattleGroundHandler` verifica tu nivel en el momento exacto en que la cola se completa. Si superas el límite del bracket (`level > maxlevel`), el servidor cancela la invitación de forma segura y te retira de la cola, invitándote a anotarte en el nuevo bracket correspondiente a tu nivel.
 
 ---
 © 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
+
 

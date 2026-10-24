@@ -67,13 +67,13 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
 El cliente `ProjectJaina_FHD` integra la suite canónica de AddOns oficiales de Project Jaina (`## Interface: 30300`), regulados bajo la política de AddOns de Blizzard y licenciados bajo términos de código abierto:
 
 ### A. Interfaz Visual y Utilidades
-1. **`ProjectJaina_DragonflightUI`**: Reemplazo integral con interfaz moderna estilo Dragonflight 10.x.
+1. **`ProjectJaina_DragonflightUI`**: Reemplazo integral con interfaz moderna estilo Dragonflight 10.x, incluyendo organizador automático inteligente de mochilas, banco personal y banco de hermandad con 1-clic (icono de escoba mágica con orfebrería de Dalaran) y barras de acción dinámicas.
 2. **`ProjectJaina_AbbreviatedStatus`**: Abreviación numérica compacta (k, M) en barras de vida, maná y energía.
 3. **`ProjectJaina_Graphics`**: Panel de opciones avanzadas para renderizado Direct3D 9, nitidez y estabilidad.
 4. **`ProjectJaina_Talented`**: Editor avanzado de plantillas de talentos con importador/exportador de builds.
 
 ### B. Sistemas de Inmersión, Combate y Compañeros con IA
-5. **`ProjectJaina_BattlePass`**: Pase de Batalla estacional con misiones diarias y cosméticos de temporada.
+5. **`ProjectJaina_BattlePass`**: Pase de Batalla estacional con misiones diarias, recompensas cosméticas exclusivas y tipografía normalizada para renderizado nativo 3.3.5a en español.
 6. **`ProjectJaina_Companion`**: Hub social ligero de grupo, presencia y utilidades sin taint.
 7. **`Chatter_Companion`**: Gestor de Playerbots con IA, diálogo en lenguaje natural y órdenes tácticas (/bots, /chatter, /llmc).
 8. **`ProjectJaina_GameModes`**: Selector cinematográfico AAA de modalidades de juego (Aventurero Normal, Hardcore con muerte permanente, Ironman solitario y Reto Andino x1 blizzlike) mediante comando `/modos` o `/jainamodes`.

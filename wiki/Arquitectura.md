@@ -42,10 +42,10 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
   - **Nodo Maestro Perú (`node_1_master` - 26.140.157.205)**: Aloja MySQL 8.4 autoritativo, AuthServer y WorldServer de producción.
   - **Nodo Cómputo España (`node_2_compute` - 26.202.12.241)**: Computa audio 3D espacial WebRTC, inferencia neuronal de HeroBots y contingencia activa.
   - **Conmutación Automática (Sentinel Failover)**: Si el nodo maestro de Perú o el nodo de España sufren una desconexión, el demonio Centinela delega dinámicamente la carga de ambos reinos al nodo superviviente sin requerir intervención del usuario.
-- **Topología Multi-Reino**:
-  - **Reino 1: Project Jaina [Reino Principal]**: ID 1, Puerto `8085` (Perú / Anycast L4, DB: `acore_characters`). Progresión canónica de Era Clásica (Nivel 60), Lore Viviente y HeroBots autónomos.
-  - **Reino 2: Forja de Hierro [Reino PvP Hardcore]**: ID 2, Puerto `8086` (Perú / DarckRovert, DB: `acore_characters_forjadehierro`). Progresión extrema PvP Hardcore, desafío de supervivencia y progresión Vanilla.
-  - **Reino 3: WanitosGym [Reino Laboratorio - España]**: ID 3, Puerto `8087` (España / FranFranco `26.202.12.241`, DB: Réplica de Standby / Nodo España). Entorno sandbox y laboratorio experimental administrado en el nodo de España.
+- **Topología de Reinos y Consolidación de Producción (Hito #223):**
+  - **Reino 1: Project Jaina [Reino Oficial de Producción]**: ID 1, Puerto `8085` (Perú / Anycast L4 `ambulance-ergonomic.tun.ply.gg:11356`, DB: `acore_characters`). Progresión canónica de Era Clásica (Nivel 60), Lore Viviente y HeroBots autónomos. **Unifica todas las modalidades de juego** (Normal, Hardcore Permadeath, Ironman Solitario, Die & Rise, Reto Andino) mediante el sistema in-game (`/modos`), eliminando la fragmentación poblacional y optimizando la RAM del servidor.
+  - **Entorno Sandbox Aislado de Pruebas**: Puerto `8086` (Localhost 127.0.0.1, DB: `acore_characters_forjadehierro`). Reservado exclusivamente para ensayos técnicos de laboratorio; desacoplado del flujo WAN.
+  - **Reino 3: WanitosGym [Reino Laboratorio - España]**: ID 3, Puerto `8087` (España / FranFranco `26.202.12.241`, DB: Réplica de Standby / Nodo España). Entorno sandbox y laboratorio experimental administrado de forma soberana en el nodo satélite de España.
 - **Bifacción Canónica Simétrica y Hermandades Oficiales**:
   - 🦁 **La Alianza & El Kirin Tor**: Liderada por Lady Jaina Valiente con la hermandad canónica `<El Kirin Tor>` (Guild ID 21).
   - 🐺 **La Horda de Orgrimmar**: Liderada por el Jefe de Guerra Thrall con la hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22).

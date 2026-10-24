@@ -4,6 +4,25 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.9.0] - 2026-10-24 — Blindaje de Infraestructura de Producción, Hardening de WebAPI, Ciberdefensa WAN y Normalización de Addons Client-Side (Hitos #225 y #226)
+
+### 🛡️ Ciberdefensa & Resiliencia de Servidor
+- **Forense y Mitigación de Escaneos WAN en WorldServer (Hito #226):**
+  - Análisis forense de sondas TLS ClientHello (`0x16 0x00 ...`) recibidas en el túnel Anycast Playit (`ambulance-ergonomic.tun.ply.gg:11356`). Certificado el comportamiento de desconexión asíncrona segura (`CloseSocket()`) ante opcodes no WoW, garantizando 0 caídas, 0 vulnerabilidades RCE y 1-2 ms de latencia sostenida en el bucle principal.
+  - Validación estricta de brackets en Campos de Batalla en `BattleGroundHandler.cpp` de AzerothCore: expulsión automática y cancelación de invitaciones si un personaje sube de nivel fuera del bracket mientras está en cola en el mundo abierto (`level > maxlevel`).
+- **Hardening de Micro-Backend WebAPI (`ProjectJaina_WebAPI.py`):**
+  - Mitigación de excepciones `ConnectionAbortedError [WinError 10053]`, `ConnectionResetError` y `BrokenPipeError` durante la escritura de respuestas HTTP en `do_GET` y `do_POST`, previniendo trazas ruidosas en consola por desconexiones tempranas de clientes.
+- **Sincronización del Censo de Armería en Vivo:**
+  - Regeneración y consolidación de perfiles de personajes vivos en la base de datos y endpoints de armería.
+
+### 🎨 Experiencia Client-Side & Suite de AddOns
+- **Normalización Tipográfica ASCII en `ProjectJaina_BattlePass`:**
+  - Sustitución de caracteres Unicode no estándar por distintivos deterministas `[VIP]`, `[GRATIS]`, `[OK]` y `(ACTUAL)`, erradicando fallos de renderizado y artefactos en fuentes nativas del cliente 3.3.5a en español.
+- **Modernización de `ProjectJaina_DragonflightUI` (Organizador de Mochilas y Banco):**
+  - Rediseño e integración del botón de ordenamiento de inventario en `SushiSort.lua` con icono nativo `INV_Pet_Broom`, orfebrería de Dalaran (`UI-ActionButton-Border`), tooltips enriquecidos en español y guardas defensivas ante variables globales nulas.
+
+---
+
 ## [v2.8.0] - 2026-10-23 — Supremacía Documental, Estandarización Universal de Enlaces y Conmutador 1-Clic
 
 ### 🌐 Portal Web & Ecosistema de Documentación
