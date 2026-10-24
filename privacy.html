@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad — Project JAIna | Living Lore & AI</title>
+    <link rel="stylesheet" href="css/style.css?v=20261017c">
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+</head>
+<body>
+
+    <!-- NAVBAR AAA DE ALTA FIDELIDAD -->
+    <nav class="navbar" id="mainNavbar">
+        <a href="index.html" class="brand-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
+            <div>
+                <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
+                <div class="brand-subtitle">POLÍTICA DE PRIVACIDAD</div>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navbarLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jainacore.html">JainaCore</a></li>
+            <li><a href="database.html">Base de Datos</a></li>
+            <li><a href="bugs.html">Tracker</a></li>
+            <li><a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer">Discord Oficial</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="registro.html" class="btn-cta-nav">Jugar Gratis</a>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="subpage-hero">
+        <div class="hero-badge">🔒 Protección Criptográfica & Transparencia</div>
+        <h1 class="subpage-title">Política de Privacidad (Privacy Policy)</h1>
+        <p class="subpage-desc">Información clara y transparente sobre cómo se recopilan, procesan y resguardan los datos en Project JAIna y en la aplicación de Discord Project Jaina Sentinel.</p>
+    </header>
+
+    <main style="max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 5rem; position: relative; z-index: 2; color: #e2e8f0; line-height: 1.7;">
+        
+        <div style="background: rgba(13, 20, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2.5rem; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+            
+            <section style="margin-bottom: 2rem;">
+                <h2 style="color: var(--gold-primary); font-size: 1.4rem; margin-top: 0; display: flex; align-items: center; gap: 8px;">
+                    <span>🛡️ 1. Responsable del Tratamiento de Datos</span>
+                </h2>
+                <p>
+                    El responsable del tratamiento de los datos técnicos y de cuenta es el equipo directivo de <strong>Project JAIna</strong>, liderado por <em>DarckRovert</em> (Dirección General) y el equipo de arquitectura técnica del motor <em>JainaCore</em>.
+                </p>
+            </section>
+
+            <section style="margin-bottom: 2rem;">
+                <h2 style="color: var(--gold-primary); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+                    <span>🔍 2. Datos Recopilados y Almacenados</span>
+                </h2>
+                <p>
+                    Únicamente recopilamos los datos estrictamente necesarios para la prestación del servicio de juego, la seguridad de la red y las integraciones comunitarias:
+                </p>
+                <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>
+                        <strong>Cuentas de Juego WoW:</strong> Nombre de usuario (alfanumérico), parámetros criptográficos <em>Salt</em> (32 bytes) y <em>Verifier</em> (32 bytes) bajo protocolo <strong>SRP6</strong>, y correo electrónico de contacto opcional. <strong>NUNCA</strong> almacenamos contraseñas en texto plano ni tenemos acceso a ellas.
+                    </li>
+                    <li>
+                        <strong>Integración con Discord (Bot & SSO):</strong> Al utilizar el registro 1-clic con Discord o interactuar con <strong>Project Jaina Sentinel</strong> (App ID: <code>1563652716859887807</code>), se almacena el <code>discord_id</code> numérico público y el nombre de usuario de Discord en la tabla <code>account_discord_meta</code> para asociar su cuenta de juego a su rol comunitario.
+                    </li>
+                    <li>
+                        <strong>Logs Técnicos y de Conexión:</strong> Dirección IP de origen durante la sesión activa con el único fin de proveer protección perimetral anti-fuerza bruta en el firewall (mitigación de ataques DoS/DDoS).
+                    </li>
+                    <li>
+                        <strong>Rich Presence (RPC):</strong> El lanzador se comunica localmente con la aplicación de escritorio de Discord mediante Named Pipes Win32 (<code>\\.\pipe\discord-ipc-*</code>) sin transmitir datos a servidores externos de terceros.
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom: 2rem;">
+                <h2 style="color: var(--gold-primary); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+                    <span>🎯 3. Finalidad del Tratamiento</span>
+                </h2>
+                <p>Los datos recopilados se utilizan exclusivamente para:</p>
+                <ol style="padding-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Permitir la autenticación segura y persistente en los reinos de juego de JainaCore.</li>
+                    <li>Atender y resolver peticiones de ayuda in-game mediante el módulo <strong>Jaina AI Ticket Sentinel</strong>.</li>
+                    <li>Monitorear la salud y latencia del clúster de servidores e informar el estado en el canal <code>#🌐┃estado-de-reinos</code>.</li>
+                    <li>Prevenir accesos no autorizados y fraudes en la economía del reino.</li>
+                </ol>
+            </section>
+
+            <section style="margin-bottom: 2rem;">
+                <h2 style="color: var(--gold-primary); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+                    <span>🚫 4. Cero Venta o Cesión a Terceros</span>
+                </h2>
+                <p style="background: rgba(46, 204, 113, 0.1); border-left: 3px solid #2ecc71; padding: 0.8rem 1rem; border-radius: 0 6px 6px 0; font-size: 0.95rem; color: #a7f3d0;">
+                    <strong>Compromiso Ético Absoluto:</strong> Project JAIna <strong>NO</strong> vende, arrienda, comercializa ni comparte ninguna información de los usuarios con empresas de publicidad, brokers de datos ni plataformas comerciales.
+                </p>
+            </section>
+
+            <section style="margin-bottom: 2rem;">
+                <h2 style="color: var(--gold-primary); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+                    <span>📜 5. Cumplimiento de Políticas de Desarrolladores de Discord</span>
+                </h2>
+                <p>
+                    Nuestra aplicación opera en estricta conformidad con la <a href="https://discord.com/developers/docs/policies-and-agreements/developer-policy" target="_blank" rel="noopener noreferrer" style="color: #5865F2; text-decoration: underline;">Política de Desarrolladores de Discord</a>. No almacenamos mensajes de texto de canales de Discord salvo cuando se emite un reporte explícito a través de comandos autorizados de soporte.
+                </p>
+            </section>
+
+            <section style="margin-bottom: 1rem;">
+                <h2 style="color: var(--gold-primary); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+                    <span>🗑️ 6. Derechos de Acceso y Supresión de Datos</span>
+                </h2>
+                <p>
+                    Cualquier usuario puede solicitar la consulta, desvinculación de su cuenta de Discord o eliminación definitiva de sus datos personales y personajes del clúster enviando una solicitud mediante el canal oficial <code>#🎫┃soporte-y-tickets</code> en <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline;">Discord Oficial</a> o mediante un ticket in-game (<code>/ticket</code>). La solicitud será atendida y procesada en un plazo máximo de 48 horas.
+                </p>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    Última actualización: 24 de Octubre de 2026 · Versión 2.0 (SSOT Oficial)
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-crest-container">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="footer-crest-img">
+        </div>
+        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
+        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.76rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            <a href="terms.html" style="color: var(--gold-primary); text-decoration: underline;">Condiciones del Servicio</a> · 
+            <a href="privacy.html" style="color: var(--gold-primary); text-decoration: underline;">Política de Privacidad</a> · 
+            <a href="https://discord.gg/cXxMuRJrfy" target="_blank" style="color: var(--gold-primary); text-decoration: underline;">Discord Oficial</a>
+        </p>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>
