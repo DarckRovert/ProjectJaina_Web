@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({
                     discord_id: fakeId,
                     username: cleanUser,
-                    email: `${cleanUser.toLowerCase()}@discord.projectjaina.com`
+                    email: `${cleanUser.toLowerCase()}@discord.darckrovert.github.io/ProjectJaina_Web`
                 })
             });
 

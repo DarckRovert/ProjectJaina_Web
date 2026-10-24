@@ -91,7 +91,7 @@ async function fetchAccountDetails(username) {
             renderAccountMasterCard({
                 id: cachedUser.id || 1,
                 username: cachedUser.username,
-                email: cachedUser.email || `${cachedUser.username.toLowerCase()}@projectjaina.com`,
+                email: cachedUser.email || `${cachedUser.username.toLowerCase()}@projectjaina.local`,
                 joindate: "Registrada en acore_auth",
                 last_ip: "127.0.0.1",
                 last_login: "Sesión activa",
