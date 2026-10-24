@@ -30,10 +30,16 @@
 
 * **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`).
 * **Living Lore & AI Revolution:** Sección interactiva que narra el despertar de los LoreBots y la integración del puente neuronal LLM.
-* **Topología Multi-Reino y Clúster Bi-Nodo:**
-  * **Reino 1 (Project Jaina):** Puerto 8085 (Servidor Principal, DB: `acore_characters`).
-  * **Reino 2 (Forja de Hierro):** Puerto 8086 (PvP Hardcore Vanilla, DB: `acore_characters_forjadehierro`).
-  * **Reino 3 (WanitosGym):** Puerto 8087 (Nodo de Cómputo y Laboratorio España).
+* **Topología Soberana Consolidada:**
+  * **Reino 1 Oficial (Project Jaina):** Puerto 8085 (Servidor Principal, Anycast Zero-VPN L4 `ambulance-ergonomic.tun.ply.gg:11356`, DB: `acore_characters`). Alberga de forma unificada las 7 modalidades de juego mediante el selector in-game (`80_GameModesSystem.lua`).
+  * **Reino 3 (WanitosGym):** Puerto 8087 (Nodo de Cómputo y Laboratorio España / Standby).
+* **7 Modos de Juego In-Game:** Normal Blizzlike con QoL, Hardcore Permadeath (con Santuario Anti-DC de 30s), Ironman Solitario, Die & Rise (metamorfosis necrótica de 3 vidas), Reto Andino x1 clásico, y Herencia de Almas (+100% XP x2 tras perecer).
+* **Arquitectura Económica & Divisas de Circuito Cerrado:**
+  * **Ficha de Jaina (Item 900200):** WoW Token canónico canjeable por 100 PD o transable libremente por oro.
+  * **Token de Jaina (Item 900100):** Divisa soberana 1:1 para cosméticos y monturas en tienda.
+  * **Ficha de Evento (Item 910000):** Divisa para la Tienda Visual 3D (`/alas`) para auras y alas celestiales.
+  * **Onboarding Gratuito:** 5 Fichas gratuitas al crear la primera cuenta.
+  * **AHBot Dynamic Buyer:** Inyección automática de liquidez y compra de materiales de profesiones a los 45s con 80% de probabilidad.
 * **Bifacción Canónica Simétrica:** Sistema autoritativo con soporte para **Alianza** y **Horda**. Una sola cuenta otorga acceso total al reino; la facción se selecciona in-game al crear personaje. Hermandades canónicas oficiales: `<El Kirin Tor>` (Guild 21, Lady Jaina) y `<La Horda de Orgrimmar>` (Guild 22, Jefe de Guerra Thrall) con auto-incorporación y bienvenida inmersiva en el primer inicio de sesión.
 * **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
 * **Subpáginas Especializadas:**
@@ -43,16 +49,18 @@
   * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla con despacho transaccional idempotente.
   * **Registro & Discord SSO:** Formulario seguro para creación de cuentas con hashing criptográfico SRP6, acceso universal al reino (sin selección de facción en el registro) y registro express en 1 clic con OAuth2 de Discord (`/api/auth/discord/register`).
   * **Voz Espacial 3D:** Cliente web de audio binaural posicional HRTF con emparejamiento por PIN in-game, selector dinámico dual-node (Perú y España) y cifrado Multi-SAN SSL.
-  * **Wiki y Lore:** Cronología de eventos mundiales, profecías, manual de usuario y documentación técnica de arquitectura.
-  * **Descargas CDN Directas:** Descarga en 1 clic del Lanzador Oficial Standalone v2.2.0 (`ProjectJaina_Launcher_Oficial.zip`) con motor de parchado delta por chunks HTTP 206 y enlace magnet / torrent para el cliente FHD (36.8 GB).
+  * **Wiki y Lore:** Cronología de eventos mundiales, profecías, manual de usuario, guías de modos y economía.
+  * **Descargas CDN & Espejos Oficiales:** Descarga en 1 clic del Lanzador Oficial Standalone v2.2.0 (`ProjectJaina_Launcher_Oficial.zip`), espejos directos Google Drive y enlaces BitTorrent.
 * **Activos Gráficos Oficiales:** Ilustraciones Ultra-HD generadas para la cabecera cinemática, escudo heráldico y citadel arcana.
 
 ---
 
-## 🚀 3. Despliegue en GitHub Pages
+## 🚀 3. Despliegue en GitHub Pages y Enlaces Oficiales
 
 El portal se sirve directamente a través de **GitHub Pages**:
 * **URL Pública Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
 * **Cliente de Voz Espacial 3D:** [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)
-* **Descarga del Lanzador Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip](https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip)
+* **Descarga del Lanzador Oficial (.ZIP Directo):** [https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip](https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip)
+* **Descarga del Lanzador Completo (.RAR Espejo Google Drive):** [https://drive.google.com/file/d/19emgLBtqUhxqf9SM_HM3PMYNqoaVG6WB/view?usp=drive_link](https://drive.google.com/file/d/19emgLBtqUhxqf9SM_HM3PMYNqoaVG6WB/view?usp=drive_link)
+* **Descarga del Cliente Completo FHD (.RAR Espejo Google Drive):** [https://drive.google.com/file/d/1VlsfI9WvZ6kyaz03pwC3peJ_hSA3-2MZ/view?usp=drive_link](https://drive.google.com/file/d/1VlsfI9WvZ6kyaz03pwC3peJ_hSA3-2MZ/view?usp=drive_link)
 

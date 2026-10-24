@@ -40,9 +40,8 @@ El cliente oficial ya viene preconfigurado con la suite de 18 AddOns de Project 
 ---
 
 ### ¿Qué reinos están disponibles en el juego?
-El ecosistema cuenta con soporte multi-reino en clúster bi-regional:
-- **Project Jaina (Reino 1 - Perú):** El reino principal de Living Lore, economía balanceada, HeroBots autónomos y eventos mundiales (Puerto 8085).
-- **Forja de Hierro (Reino 2 - Perú):** Reino oficial PvP Hardcore con progresión Vanilla y desafío extremo de supervivencia (Puerto 8086).
+El ecosistema cuenta con una arquitectura de servidor soberana y clúster bi-regional:
+- **Project Jaina (Reino 1 Soberano - Perú):** El reino principal y unificado de Living Lore, economía balanceada, HeroBots autónomos y eventos mundiales (Puerto 8085 / Playit Anycast). **Consolida todas las modalidades de juego** (Normal, Hardcore Permadeath, Ironman Solitario, Die & Rise, Reto Andino) mediante el selector cinematográfico in-game (`/modos`), evitando la fragmentación de la población.
 - **WanitosGym (Reino 3 - España):** Reino laboratorio y sandbox experimental gestionado por el equipo en España (Standby / Cluster LAN).
 
 ### ¿Cómo elijo mi facción?

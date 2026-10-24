@@ -4,6 +4,23 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v2.8.0] - 2026-10-23 — Supremacía Documental, Estandarización Universal de Enlaces y Conmutador 1-Clic
+
+### 🌐 Portal Web & Ecosistema de Documentación
+- **Expansión Canónica del Portal Web (Hito #217):**
+  - Nuevas secciones interactivas y visuales en `index.html` para **Modos de Juego** (7 modalidades in-game: Normal, Hardcore con Santuario Anti-DC, Ironman, Die & Rise, Reto Andino, Herencia x2 XP) y **Economía del Reino** (Ficha de Jaina 900200, Token de Jaina 900100, Ficha de Evento 910000, 5 Fichas gratuitas de bienvenida y AHBot Dynamic Buyer).
+  - Pestañas interactivas dedicadas en `wiki/index.html` (`💀 Modos de Juego` y `🪙 Economía & Divisas`).
+  - Actualización integral del `Manual_Usuario.md` y `FAQ.md` con las mecánicas de supervivencia, comandos GM y economía de circuito cerrado.
+- **Estandarización Universal de Enlaces Google Drive (Hito #224):**
+  - Auditoría global y estandarización matemática a `?usp=drive_link` tanto para el **Cliente Completo RAR** (`1VlsfI9WvZ6kyaz03pwC3peJ_hSA3-2MZ`) como para el **Lanzador Oficial RAR** (`19emgLBtqUhxqf9SM_HM3PMYNqoaVG6WB`) en todo el portal, descargas y documentación.
+
+### 🕹️ Centro de Operaciones & Consola GM (:8088)
+- **Conmutador 1-Clic Soberano (Hito #218):**
+  - Mapeo simétrico y reactivo de modos de red (`local`, `radmin`, `global`) con persistencia desacoplada de MySQL en `network_target.json`.
+  - Retroalimentación cromática en vivo (Cyan / Púrpura / Esmeralda) y toasts informativos deterministas.
+
+---
+
 ## [v2.7.1] - 2026-10-21 — Estabilidad Crítica: Corrección Watchdog SOAP, Lua ENUM y Hardening Web Full-Stack
 
 ### 🔴 Correcciones Críticas de Infraestructura
