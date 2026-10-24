@@ -121,6 +121,23 @@ El puerto de juego (8085) está protegido perimetralmente contra sondas externas
 Para salvaguardar el balance competitivo y evitar abusos de nivel en brackets PvP (por ejemplo, estar en el bracket 20-29 con nivel 30), el motor `BattleGroundHandler` verifica tu nivel en el momento exacto en que la cola se completa. Si superas el límite del bracket (`level > maxlevel`), el servidor cancela la invitación de forma segura y te retira de la cola, invitándote a anotarte en el nuevo bracket correspondiente a tu nivel.
 
 ---
+
+### ¿Por qué los bots de Project JAIna son muy superiores en 1v1 y PvP a los bots de otros servidores privados?
+En servidores privados tradicionales de WotLK con IA básica (como los vistos en videos populares donde duelan 1v1 contra cada clase), los bots sufren de 4 fallas críticas:
+1. **Se quedan estáticos ante Stuns y CC (Loss of Control):** Se sientan durante 6 segundos enteros en Porrazo, Golpe bajo o Miedo sin tirar Abalorio ni raciales.
+2. **No coordinan Ventanas de Burst:** Atacan de forma plana y secuencial sin sincronizar stuns con cooldowns mayores.
+3. **No Reflejan ni Absorben Hechizos:** Permiten que el jugador les castee hechizos destructivos en la cara.
+4. **Reacción Lenta:** Evalúan decisiones cada 2 segundos.
+
+En **Project JAIna**, los bots operan bajo el **Motor Apex Gladiator 1v1 (`91_SuperBots_TacticalOverdrive.lua`)**:
+- **Reacción Sub-segundo (400ms):** Tiempos de respuesta de rango gladiador R1 profesional.
+- **Ruptura Reactiva de CC (Anti-Loss-of-Control):** Rompen stuns, raíces y miedos de inmediato usando el Abalorio PvP universal, raciales (*Sálvese quien pueda*, *Voluntad de los Renegados*) y defensivos de clase (*Traslación*, *Entereza ligada al hielo*, *Ira rabiosa*, *Mano de libertad*, *Piel de corteza*, *Bloque de hielo*).
+- **Reflejo Predictivo y Derivación:** Interceptan en tiempo real cualquier casteo hostil proyectil (Guerrero activa *Reflejo de hechizos*, Chamán planta *Tótem derribador*, Pícaro/DK activan *Capa de las sombras* / *Caparazón antimagia*).
+- **Apilamiento de Burst Ofensivo:** Encadenan stuns con cooldowns de daño letal (Alas de Paladín + Martillo de cólera, Filotormenta de Guerrero, Danza de las Sombras de Pícaro, Congelación profunda + Venas heladas de Mago, Gárgola de Caballero de la Muerte, etc.).
+- **Inmunidad a Desecación de Maná/Energía:** Cuentan con un watchdog de combate que mantiene sus recursos altos para sostener rotaciones letales completas.
+
+---
+
 © 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
 
 
