@@ -96,7 +96,7 @@
                             <input type="checkbox" id="pjRememberMe" checked>
                             <span>Recordar sesión</span>
                         </label>
-                        <a href="https://discord.gg/769jdzAYP" target="_blank" rel="noopener noreferrer" class="pj-forgot-link">¿Olvidaste tu clave?</a>
+                        <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" class="pj-forgot-link">¿Olvidaste tu clave?</a>
                     </div>
 
                     <button type="submit" id="pjBtnSubmitLogin" class="pj-btn-login-submit">

@@ -544,7 +544,7 @@ async function confirmYapePayment() {
                 feedback.className = "payment-feedback-box success-box";
                 const waUrl = data.whatsapp_url || (paymentConfig?.yape_plin?.whatsapp_e164 ? 
                     `https://wa.me/${paymentConfig.yape_plin.whatsapp_e164.replace('+','').replace(/\s+/g,'')}?text=${encodeURIComponent(`Hola, acabo de aportar por Yape para ${charName} por ${selectedPackage.name}. Referencia: ${refCode}`)}` : "");
-                const discordUrl = data.discord_url || "https://discord.gg/769jdzAYP";
+                const discordUrl = data.discord_url || "https://discord.gg/cXxMuRJrfy";
 
                 const waBtn = waUrl ? 
                     `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; padding:10px 18px; background:#22c55e; color:#052e16; font-weight:800; text-decoration:none; border-radius:8px; font-size:0.95rem; box-shadow: 0 4px 14px rgba(34,197,94,0.4);">📲 Enviar Comprobante por WhatsApp</a>` : '';
@@ -581,7 +581,7 @@ async function confirmYapePayment() {
             feedback.innerHTML     = `
                 <div style="font-size:1rem;font-weight:800;color:#f87171;">⚠️ Registro Offline</div>
                 <p style="margin:6px 0;font-size:0.88rem;">
-                    No se pudo contactar al servidor Gateway (${err.message}). Por favor envía tu comprobante con el código <strong style="color:#ffd700;">${refCode}</strong> directamente a nuestro Discord oficial: <a href="https://discord.gg/769jdzAYP" target="_blank" style="color:#38bdf8;font-weight:bold;">discord.gg/769jdzAYP</a>.
+                    No se pudo contactar al servidor Gateway (${err.message}). Por favor envía tu comprobante con el código <strong style="color:#ffd700;">${refCode}</strong> directamente a nuestro Discord oficial: <a href="https://discord.gg/cXxMuRJrfy" target="_blank" style="color:#38bdf8;font-weight:bold;">discord.gg/cXxMuRJrfy</a>.
                 </p>
             `;
         }
