@@ -6760,3 +6760,486 @@ body.pj-modal-open {
 .market-table tr:hover td {
     background: rgba(245, 158, 11, 0.05);
 }
+
+/* ==============================================================================
+   SECCIÓN DE MODOS DE JUEGO & DESAFÍOS DE SUPERVIVENCIA (HITO #217)
+   ============================================================================== */
+.game-modes-section {
+    position: relative;
+    max-width: 1280px;
+    margin: 4.5rem auto 5rem;
+    padding: 0 1.5rem;
+    z-index: 2;
+}
+
+.modes-badge-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #f87171;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+    margin-bottom: 1rem;
+}
+
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.2rem;
+}
+
+.mode-card {
+    background: rgba(13, 17, 28, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.mode-card:hover {
+    transform: translateY(-7px);
+}
+
+.mode-card.normal {
+    border-color: rgba(56, 189, 248, 0.3);
+}
+.mode-card.normal:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+.mode-card.hardcore {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: linear-gradient(165deg, rgba(30, 10, 10, 0.88) 0%, rgba(13, 17, 28, 0.95) 100%);
+}
+.mode-card.hardcore:hover {
+    border-color: #ef4444;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(239, 68, 68, 0.35);
+}
+
+.mode-card.ironman {
+    border-color: rgba(148, 163, 184, 0.4);
+    background: linear-gradient(165deg, rgba(20, 24, 36, 0.88) 0%, rgba(13, 17, 28, 0.95) 100%);
+}
+.mode-card.ironman:hover {
+    border-color: #e2e8f0;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(226, 232, 240, 0.25);
+}
+
+.mode-card.dierise {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: linear-gradient(165deg, rgba(6, 30, 20, 0.88) 0%, rgba(13, 17, 28, 0.95) 100%);
+}
+.mode-card.dierise:hover {
+    border-color: #10b981;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+.mode-card.retoandino {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: linear-gradient(165deg, rgba(35, 25, 10, 0.88) 0%, rgba(13, 17, 28, 0.95) 100%);
+}
+.mode-card.retoandino:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.3);
+}
+
+.mode-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.mode-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.mode-pill {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid currentColor;
+}
+
+.mode-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+    color: #f1f5f9;
+}
+
+.mode-desc {
+    font-size: 0.86rem;
+    color: #94a3b8;
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+}
+
+.mode-rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem 0;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mode-rules-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.mode-rules-list li span.bullet {
+    color: var(--gold-primary);
+    font-weight: bold;
+}
+
+.mode-footer-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    color: #e2e8f0;
+}
+
+/* MECÁNICAS ESPECIALES DUALES */
+.modes-special-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 860px) {
+    .modes-special-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.special-mechanic-card {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.8rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.special-mechanic-icon {
+    font-size: 2.4rem;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.special-mechanic-content h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: #ffd700;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+}
+
+.special-mechanic-content p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ==============================================================================
+   SECCIÓN DE ECONOMÍA & MONEDAS SOBERANAS (HITO #217)
+   ============================================================================== */
+.economy-section {
+    position: relative;
+    max-width: 1280px;
+    margin: 4.5rem auto 5rem;
+    padding: 0 1.5rem;
+    z-index: 2;
+}
+
+.economy-badge-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #fbbf24;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    margin-bottom: 1rem;
+}
+
+.economy-onboarding-banner {
+    background: linear-gradient(135deg, rgba(30, 27, 75, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem 2rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.economy-onboarding-banner::after {
+    content: "GRATIS";
+    position: absolute;
+    right: -25px;
+    top: 15px;
+    background: #ec4899;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 4px 35px;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 10px rgba(236, 72, 153, 0.5);
+}
+
+.onboarding-info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    color: #f3e8ff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+}
+
+.onboarding-info p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.5;
+    max-width: 720px;
+}
+
+.onboarding-rewards-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.onboarding-pill {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffd700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.currency-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.8rem;
+    margin-top: 2rem;
+}
+
+.currency-card {
+    background: rgba(13, 17, 28, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.currency-card:hover {
+    transform: translateY(-6px);
+}
+
+.currency-card.event-token {
+    border-color: rgba(236, 72, 153, 0.35);
+}
+.currency-card.event-token:hover {
+    border-color: #ec4899;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(236, 72, 153, 0.3);
+}
+
+.currency-card.jaina-token {
+    border-color: rgba(56, 189, 248, 0.35);
+}
+.currency-card.jaina-token:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+.currency-card.wow-token {
+    border-color: rgba(245, 158, 11, 0.35);
+}
+.currency-card.wow-token:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.3);
+}
+
+.currency-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.currency-icon-badge {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6));
+}
+
+.currency-id-tag {
+    font-size: 0.72rem;
+    font-family: monospace;
+    font-weight: 700;
+    color: #94a3b8;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.currency-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+}
+
+.currency-card-subtitle {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.currency-card-desc {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+}
+
+.currency-qa-block {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid var(--gold-primary);
+}
+
+.currency-qa-block strong {
+    display: block;
+    font-size: 0.78rem;
+    color: #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.currency-qa-block span {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* SUB-BLOQUE: SUBASTAS VIVAS & ANTI-P2W */
+.economy-pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 860px) {
+    .economy-pillars-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.economy-pillar-card {
+    background: rgba(13, 17, 28, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.economy-pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.economy-pillar-icon {
+    font-size: 2rem;
+}
+
+.economy-pillar-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffd700;
+    margin: 0;
+}
+
+.economy-pillar-desc {
+    font-size: 0.86rem;
+    color: #94a3b8;
+    line-height: 1.55;
+    margin: 0;
+}
+

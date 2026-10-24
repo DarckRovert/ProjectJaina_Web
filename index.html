@@ -37,6 +37,20 @@
                             <span class="dropdown-item-desc">Vanilla 60 a WotLK 80 Progresivo</span>
                         </div>
                     </a>
+                    <a href="#modos-de-juego" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💀</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Modos de Juego & Retos</span>
+                            <span class="dropdown-item-desc">Normal, Hardcore, Ironman, Die & Rise y Reto Andino</span>
+                        </div>
+                    </a>
+                    <a href="#economia-del-reino" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🪙</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Economía & Monedas</span>
+                            <span class="dropdown-item-desc">Tokens de Jaina, Fichas de Evento y Subastas Vivas</span>
+                        </div>
+                    </a>
                     <a href="#living-lore" class="dropdown-item-link">
                         <span class="dropdown-item-icon">🧠</span>
                         <div class="dropdown-item-text">
@@ -577,6 +591,266 @@
         <div class="timeline-scroll-wrapper">
             <div id="timelineRail" class="timeline-rail">
                 <!-- Nodos renderizados dinámicamente por js/progression.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================================
+         MODOS DE JUEGO & DESAFÍOS DE SUPERVIVENCIA (HITO #217)
+         ============================================================================== -->
+    <section id="modos-de-juego" class="game-modes-section">
+        <div style="text-align: center;">
+            <div class="modes-badge-top">💀 SISTEMA OFICIAL DE DESAFÍOS IN-GAME</div>
+            <h2 class="section-title">Modos de Juego & Desafíos de Supervivencia</h2>
+            <p class="section-subtitle">Elige tu senda en Azeroth: desde la experiencia clásica Blizzlike hasta la muerte definitiva con herencia de almas y protección divina anti-desconexión.</p>
+        </div>
+
+        <div class="modes-grid">
+            <!-- MODO NORMAL -->
+            <div class="mode-card normal">
+                <div>
+                    <div class="mode-header">
+                        <span class="mode-icon">🛡️</span>
+                        <span class="mode-pill" style="color: #38bdf8;">Aventurero</span>
+                    </div>
+                    <h3 class="mode-title">Modo Normal</h3>
+                    <p class="mode-desc">La experiencia canónica y progresiva de Wrath of the Lich King 3.3.5a HD. Ideal para disfrutar la historia, hermandades y raids sin riesgo de pérdida de personaje.</p>
+                    <ul class="mode-rules-list">
+                        <li><span class="bullet">✔</span> Resurrecciones ilimitadas en cementerios y piedras de alma.</li>
+                        <li><span class="bullet">✔</span> Comercio, correo, casa de subastas y hermandades al 100%.</li>
+                        <li><span class="bullet">✔</span> Curva de progresión estándar con HeroBots de apoyo.</li>
+                    </ul>
+                </div>
+                <div class="mode-footer-badge" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                    🎮 Activo por Defecto al Crear Personaje
+                </div>
+            </div>
+
+            <!-- MODO HARDCORE -->
+            <div class="mode-card hardcore">
+                <div>
+                    <div class="mode-header">
+                        <span class="mode-icon">☠️</span>
+                        <span class="mode-pill" style="color: #ef4444;">1 Sola Vida</span>
+                    </div>
+                    <h3 class="mode-title">Modo Hardcore</h3>
+                    <p class="mode-desc">Muerte Permanente estricta. Si tu salud llega a cero por cualquier motivo, tu alma queda sellada para siempre en el mundo terrenal como espíritu errante.</p>
+                    <ul class="mode-rules-list">
+                        <li><span class="bullet">✖</span> Bloqueo total de resurrección por ángel o curandero.</li>
+                        <li><span class="bullet">✔</span> Se erige una lápida ornamental física en tu lugar de caída.</li>
+                        <li><span class="bullet">✔</span> Activa el aura de <strong>Herencia de Almas (+100% XP x2)</strong>.</li>
+                    </ul>
+                </div>
+                <div class="mode-footer-badge" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                    ⚡ Activación: Habla con Kaelia o usa <code>/modo</code>
+                </div>
+            </div>
+
+            <!-- MODO IRONMAN -->
+            <div class="mode-card ironman">
+                <div>
+                    <div class="mode-header">
+                        <span class="mode-icon">⛓️</span>
+                        <span class="mode-pill" style="color: #cbd5e1;">Aislamiento</span>
+                    </div>
+                    <h3 class="mode-title">Modo Ironman</h3>
+                    <p class="mode-desc">La prueba máxima de autosuficiencia y templanza. Una sola vida combinada con el aislamiento económico y social absoluto en las tierras de Azeroth.</p>
+                    <ul class="mode-rules-list">
+                        <li><span class="bullet">✖</span> Prohibido comerciar, usar buzón o comprar en subastas.</li>
+                        <li><span class="bullet">✖</span> Prohibido unirse a grupos o recibir buffs externos.</li>
+                        <li><span class="bullet">✔</span> Únicamente equipamiento de calidad gris y blanca.</li>
+                    </ul>
+                </div>
+                <div class="mode-footer-badge" style="border-color: rgba(148, 163, 184, 0.4); color: #e2e8f0;">
+                    🏆 Título Exclusivo & Reconocimiento en Armería
+                </div>
+            </div>
+
+            <!-- MODO DIE & RISE -->
+            <div class="mode-card dierise">
+                <div>
+                    <div class="mode-header">
+                        <span class="mode-icon">🧟</span>
+                        <span class="mode-pill" style="color: #10b981;">3 Vidas</span>
+                    </div>
+                    <h3 class="mode-title">Die & Rise</h3>
+                    <p class="mode-desc">Metamorfosis necrótica progresiva. Inicias con 3 vidas. Cada muerte altera tu carne convirtiéndote en no-muerto con debuffs profanos acumulativos.</p>
+                    <ul class="mode-rules-list">
+                        <li><span class="bullet">✔</span> Transformación visual en esqueleto y aura fría profana.</li>
+                        <li><span class="bullet">✔</span> Puedes purificar tu cuerpo en Santuarios Sagrados.</li>
+                        <li><span class="bullet">✖</span> La tercera muerte sella tu destino de forma irrevocable.</li>
+                    </ul>
+                </div>
+                <div class="mode-footer-badge" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+                    🔮 Mecánica Exclusiva de JainaCore
+                </div>
+            </div>
+
+            <!-- RETO ANDINO X1 -->
+            <div class="mode-card retoandino">
+                <div>
+                    <div class="mode-header">
+                        <span class="mode-icon">🏔️</span>
+                        <span class="mode-pill" style="color: #f59e0b;">Purista 2008</span>
+                    </div>
+                    <h3 class="mode-title">Reto Andino x1</h3>
+                    <p class="mode-desc">Para los nostálgicos del esfuerzo genuino. Experiencia x1 estricta en misiones, monstruos y profesiones exactamente como en los servidores de 2008.</p>
+                    <ul class="mode-rules-list">
+                        <li><span class="bullet">✔</span> Multiplicadores x1 sin ningún acelerador de experiencia.</li>
+                        <li><span class="bullet">✔</span> Aprendizaje paulatino de habilidades por instructor.</li>
+                        <li><span class="bullet">✔</span> Compatible con modo Normal o desafíos de vidas.</li>
+                    </ul>
+                </div>
+                <div class="mode-footer-badge" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
+                    📜 Emblema de Resistencia en tu Perfil
+                </div>
+            </div>
+        </div>
+
+        <!-- MECÁNICAS DE SALVAGUARDA & HERENCIA -->
+        <div class="modes-special-grid">
+            <div class="special-mechanic-card">
+                <div class="special-mechanic-icon">✨</div>
+                <div class="special-mechanic-content">
+                    <h4>Mecánica de Herencia de Almas (+100% XP x2)</h4>
+                    <p>En Project Jaina, tu esfuerzo jamás se pierde. Si un héroe en modo Hardcore, Ironman o Die & Rise cae en batalla tras superar el nivel 1, su esencia bendice tu cuenta: <strong>tu siguiente personaje recibirá automáticamente el bono Herencia x2 XP</strong> hasta alcanzar el nivel máximo que logró el héroe caído.</p>
+                </div>
+            </div>
+
+            <div class="special-mechanic-card">
+                <div class="special-mechanic-icon">🛡️</div>
+                <div class="special-mechanic-content">
+                    <h4>Santuario Anti-DC (Protección Activa contra Cortes de Red)</h4>
+                    <p>Desarrollado bajo estándar L9: Si el servidor detecta una pérdida súbita de paquetes o desconexión abrupta de tu conexión a internet mientras estás en combate peligroso, el núcleo activa de inmediato el <strong>Santuario Divino de Inmunidad Temporal</strong>, impidiendo que mueras injustamente por problemas de ISP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================================
+         ARQUITECTURA ECONÓMICA & DIVISAS SOBERANAS (HITO #217)
+         ============================================================================== -->
+    <section id="economia-del-reino" class="economy-section">
+        <div style="text-align: center;">
+            <div class="economy-badge-top">🪙 ECOSISTEMA ECONÓMICO BLINDADO · ZERO PAY-TO-WIN</div>
+            <h2 class="section-title">Arquitectura Económica & Sistema de Divisas</h2>
+            <p class="section-subtitle">Economía viva y sostenible de circuito cerrado: botín justo, casas de subastas dinámicas con liquidez garantizada y cosméticos de prestigio.</p>
+        </div>
+
+        <!-- BANNER DE ONBOARDING MINUTO CERO -->
+        <div class="economy-onboarding-banner">
+            <div class="onboarding-info">
+                <h3>🎁 Regalo de Bienvenida "Minuto Cero" para Nuevos Jugadores</h3>
+                <p>Al iniciar sesión por primera vez con cualquier personaje nuevo, el núcleo <code>87_PlayerFirstLogin_Onboarding.lua</code> deposita de forma 100% gratuita en tu inventario y buzón oficial:</p>
+            </div>
+            <div class="onboarding-rewards-pills">
+                <div class="onboarding-pill">🪽 5x Fichas de Evento (910000)</div>
+                <div class="onboarding-pill">🪙 6x Tokens de Jaina (900100)</div>
+                <div class="onboarding-pill">💰 10 Monedas de Oro</div>
+                <div class="onboarding-pill">🎒 4x Mochilas de 16 Casillas</div>
+            </div>
+        </div>
+
+        <!-- GRID DE LAS 3 DIVISAS SOBERANAS -->
+        <div class="currency-cards-grid">
+            <!-- FICHA DE EVENTO -->
+            <div class="currency-card event-token">
+                <div>
+                    <div class="currency-card-header">
+                        <span class="currency-icon-badge">🪽</span>
+                        <span class="currency-id-tag">ENTRY: 910000</span>
+                    </div>
+                    <div class="currency-card-subtitle">Divisa Cosmética de Prestigio</div>
+                    <h3 class="currency-card-title">Ficha de Evento</h3>
+                    <p class="currency-card-desc">Moneda especial canjeable en la Tienda Visual 3D interactiva (comando <code>/alas</code> o NPC Kaelia) para lucir 17 tipos de alas celestiales, auras místicas y bonus de 3 días.</p>
+                    
+                    <div class="currency-qa-block">
+                        <strong>¿Cómo se Consigue?</strong>
+                        <span>• <strong>5 Fichas GRATIS</strong> al crear tu personaje en el Onboarding inicial.<br>
+                        • Canje in-game con Tokens de Jaina en la tienda (200 &rarr; 10x, 800 &rarr; 50x, 1500 &rarr; 100x).<br>
+                        • Recompensas en eventos mundiales del Gobernador de Lore y packs del portal.</span>
+                    </div>
+
+                    <div class="currency-qa-block">
+                        <strong>¿En Qué se Gasta?</strong>
+                        <span>• Alas sin bonus: <strong>4 Fichas</strong>.<br>
+                        • Alas con bonus de profesión/recolección: <strong>5 Fichas</strong>.<br>
+                        • Alas con bonus de oro, exp o reputación: <strong>6 Fichas</strong>.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOKEN DE JAINA -->
+            <div class="currency-card jaina-token">
+                <div>
+                    <div class="currency-card-header">
+                        <span class="currency-icon-badge">🪙</span>
+                        <span class="currency-id-tag">ENTRY: 900100</span>
+                    </div>
+                    <div class="currency-card-subtitle">Micro-Moneda Soberana 1:1</div>
+                    <h3 class="currency-card-title">Token de Jaina</h3>
+                    <p class="currency-card-desc">Divisa oficial de conveniencia y soporte comunitario. Acumulable en bolsas hasta 10,000 unidades y utilizable dentro y fuera del juego.</p>
+                    
+                    <div class="currency-qa-block">
+                        <strong>¿Cómo Funciona?</strong>
+                        <span>• <strong>Clic Derecho in-game:</strong> Se consume la moneda y acredita de forma atómica <strong>+1 Punto de Donación (PD)</strong> a tu cuenta web.<br>
+                        • <strong>Tienda In-Game:</strong> Se utiliza directamente en el AddOn <code>ProjectJaina_Store</code> para comprar monturas, compañeros y bolsas.</span>
+                    </div>
+
+                    <div class="currency-qa-block">
+                        <strong>¿Cómo se Consigue?</strong>
+                        <span>• 5 Tokens de bienvenida al crear personaje (+1 por carta oficial).<br>
+                        • Desafíos de temporada y logros del Pase de Batalla.<br>
+                        • Contribuciones voluntarias de infraestructura en la Tesorería web.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FICHA DE JAINA (WOW TOKEN) -->
+            <div class="currency-card wow-token">
+                <div>
+                    <div class="currency-card-header">
+                        <span class="currency-icon-badge">🎫</span>
+                        <span class="currency-id-tag">ENTRY: 900200</span>
+                    </div>
+                    <div class="currency-card-subtitle">WoW Token Mayor (100 PD)</div>
+                    <h3 class="currency-card-title">Ficha de Jaina</h3>
+                    <p class="currency-card-desc">El equivalente canónico al WoW Token oficial de Blizzard. Diseñado para conectar la economía de oro del juego con los puntos de donación de la web.</p>
+                    
+                    <div class="currency-qa-block">
+                        <strong>¿Cómo Funciona?</strong>
+                        <span>• <strong>100% Comerciable:</strong> Puedes venderla en la Casa de Subastas por oro a otros jugadores o intercambiarla en mano.<br>
+                        • <strong>Clic Derecho in-game:</strong> Al consumirse otorga <strong>+100 Puntos de Donación (PD)</strong> a tu cuenta web.</span>
+                    </div>
+
+                    <div class="currency-qa-block">
+                        <strong>Impacto en el Jugador Free-to-Play</strong>
+                        <span>Permite a cualquier jugador dedicado conseguir pases de batalla VIP o servicios cosméticos simplemente jugando y acumulando oro en el reino.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PILARES DE SALUD ECONÓMICA -->
+        <div class="economy-pillars-grid">
+            <div class="economy-pillar-card">
+                <div class="economy-pillar-header">
+                    <span class="economy-pillar-icon">🏛️</span>
+                    <h4 class="economy-pillar-title">Motor de Subastas Vivas (Liquidez Garantizada)</h4>
+                </div>
+                <p class="economy-pillar-desc">
+                    Respaldado por <code>95_AuctionHouse_Economy_Engine.lua</code>: Más de 1,200 ítems sembrados en un mercado unificado cross-faction. Cuando publicas tus materiales de profesión recolectados (menas, hierbas, telas), un agente comprador inteligente los evalúa tras 45 segundos y los adquiere con un 80% de probabilidad al precio de mercado, enviando el oro a tu buzón y reteniendo la comisión oficial del 5%.
+                </p>
+            </div>
+
+            <div class="economy-pillar-card">
+                <div class="economy-pillar-header">
+                    <span class="economy-pillar-icon">👗</span>
+                    <h4 class="economy-pillar-title">Sumideros de Oro & Transfiguración Invisible</h4>
+                </div>
+                <p class="economy-pillar-desc">
+                    El oro conserva su valor a través de sumideros activos: El vestidor de piezas invisibles y guardarropa (<code>60_WardrobeSystem.lua</code> / <code>/armario</code>) cobra 15 monedas de oro por ranura ocultada, la Doble Especialización 1,000 monedas de oro, y las comisiones de subasta retiran liquidez de forma continua para impedir la hiperinflación.
+                </p>
             </div>
         </div>
     </section>

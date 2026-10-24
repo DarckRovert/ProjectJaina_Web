@@ -35,8 +35,25 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
 - Registro histórico de eventos mundiales (`world_lore_events`) en tiempo real.
 - Estado de los líderes legendarios (Thrall, Varian, Sylvanas, Jaina).
 
+### 💀 Modos de Juego & Desafíos In-Game
+- **Normal (Aventurero):** Reglas canónicas WotLK 3.3.5a HD con resurrecciones ilimitadas y libre comercio.
+- **Hardcore:** 1 sola vida, muerte permanente irrevocable con lápida física y bloqueo de ángeles.
+- **Ironman:** 1 sola vida con autosuficiencia estricta: sin comercio, sin buzón, sin subastas, sin hermandades y únicamente equipamiento blanco y gris.
+- **Die & Rise:** 3 vidas iniciales con metamorfosis necrótica progresiva (esqueleto, aura fría profana) y purificación en santuarios.
+- **Reto Andino x1:** Multiplicadores x1 estricto como en 2008 para puristas del esfuerzo clásico.
+- **Herencia de Almas:** Si tu héroe Hardcore/Ironman/Die&Rise muere tras superar el nivel 1, tu siguiente personaje recibe **+100% XP (x2)** hasta el nivel del mártir caído.
+- **Santuario Anti-DC:** Inmunidad temporal de emergencia si tu conexión sufre una desconexión súbita en combate.
+
+### 🪙 Arquitectura Económica & Divisas Soberanas
+- **Token de Jaina (Item 900100):** Micro-moneda 1:1. Clic derecho in-game acredita **+1 Punto de Donación (PD)** en tu cuenta web. Se utiliza en el AddOn de tienda in-game.
+- **Ficha de Jaina — WoW Token (Item 900200):** Token canónico de 100 PD. Se puede vender libremente por oro en la Casa de Subastas o consumirse para recibir **+100 PD** en la web.
+- **Ficha de Evento (Item 910000):** Moneda cosmética para la **Tienda Visual 3D (`/alas`)** para activar 17 tipos de alas y auras con bonus de 3 días.
+- **Onboarding de Minuto Cero:** Todo personaje nuevo recibe **5 Fichas de Evento gratis**, 6 Tokens de Jaina, 10 de oro y 4 mochilas de 16 casillas al entrar por primera vez.
+- **Motor de Subastas Vivas (AH Engine):** Agente comprador autónomo que evalúa materiales publicados por jugadores y los compra en 45 segundos con un 80% de probabilidad, garantizando liquidez en profesiones.
+
 ### 💎 Tienda Cosmética y Visuales (`tienda.html`)
 - Catálogo de cosméticos de rol, auras visuales y monturas estéticas (pay-to-win = 0).
+- Guía rápida interactiva de divisas y canje automatizado mediante correo SOAP in-game.
 
 ### 🎙️ Voz Espacial 3D (`voz/index.html`)
 - Cliente web binaural HRTF interactivo con detección de actividad de voz (VAD).

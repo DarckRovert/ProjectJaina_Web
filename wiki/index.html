@@ -381,6 +381,8 @@
     <div class="wiki-tabs">
         <div class="wiki-tab active" data-tab="timeline" onclick="switchTab('timeline', this)">⚡ Timeline de Eventos</div>
         <div class="wiki-tab" data-tab="lore" onclick="switchTab('lore', this)">🌍 Lore del Reino</div>
+        <div class="wiki-tab" data-tab="modos" onclick="switchTab('modos', this)">💀 Modos de Juego</div>
+        <div class="wiki-tab" data-tab="economia" onclick="switchTab('economia', this)">🪙 Economía & Divisas</div>
         <div class="wiki-tab" data-tab="heroes" onclick="switchTab('heroes', this)">⚔️ Héroes Legendarios</div>
         <div class="wiki-tab" data-tab="prophecies" onclick="switchTab('prophecies', this)">🔮 Profecías Activas</div>
         <div class="wiki-tab" data-tab="manuales" onclick="switchTab('manuales', this)">📚 Guías & Manuales</div>
@@ -519,6 +521,153 @@
                 <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
                     <a href="Arquitectura.md" target="_blank" style="padding: 0.35rem 0.65rem; background: rgba(163, 53, 238, 0.15); border: 1px solid rgba(163, 53, 238, 0.4); border-radius: 6px; color: #d2a8ff; font-size: 0.74rem; text-decoration: none; font-weight: 700;">🏛️ Arquitectura</a>
                     <a href="Guia_API.md" target="_blank" style="padding: 0.35rem 0.65rem; background: rgba(163, 53, 238, 0.15); border: 1px solid rgba(163, 53, 238, 0.4); border-radius: 6px; color: #d2a8ff; font-size: 0.74rem; text-decoration: none; font-weight: 700;">🔌 Guía de API</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO: MODOS DE JUEGO -->
+    <div id="tab-modos" class="wiki-section" style="display:none;">
+        <div class="wiki-section-title">💀 Guía Exhaustiva de Modos de Juego & Desafíos</div>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem; max-width: 850px; line-height: 1.6;">
+            Project Jaina implementa en su núcleo Eluna (<code>80_GameModesSystem.lua</code>) un conjunto de modos de juego que modifican las reglas canónicas del servidor. Puedes consultar tu modo activo con <code>/modo</code> o activarlo al hablar con <strong>Kaelia Sombraetérea</strong> en Dalaran o tu zona inicial.
+        </p>
+        <div class="lore-cards-grid">
+            <div class="lore-card" style="border-color: rgba(56, 189, 248, 0.4);">
+                <div class="lore-card-icon">🛡️</div>
+                <div class="lore-card-title" style="color: #38bdf8;">Modo Normal (Aventurero)</div>
+                <div class="lore-card-text">
+                    La experiencia canónica y progresiva de WotLK 3.3.5a HD.<br><br>
+                    • Resurrección ilimitada en cementerios y piedras de resurrección.<br>
+                    • Libre acceso a la Casa de Subastas, comercio entre jugadores, buzón de correo y hermandades.<br>
+                    • HeroBots y Playerbots disponibles para complementar mazmorras y raids.<br>
+                    • Compatible con el Pase de Batalla de 50 niveles.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(239, 68, 68, 0.4);">
+                <div class="lore-card-icon">☠️</div>
+                <div class="lore-card-title" style="color: #f87171;">Modo Hardcore (Muerte Permanente)</div>
+                <div class="lore-card-text">
+                    Una sola vida. Tu salud nunca puede llegar a 0.<br><br>
+                    • <strong>Sin Resurrección:</strong> Todo hechizo de reanimación (Piedra de Alma, Renacer, Intervención Divina) queda bloqueado.<br>
+                    • Al morir, se genera una lápida física (GO 192256) en tu ubicación y tu alma queda ligada al mundo como espíritu.<br>
+                    • <strong>Herencia de Almas:</strong> Si superas nivel 1, tu cuenta recibe un bono de <strong>+100% XP (x2)</strong> para tu próximo personaje hasta tu nivel máximo alcanzado.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(148, 163, 184, 0.4);">
+                <div class="lore-card-icon">⛓️</div>
+                <div class="lore-card-title" style="color: #cbd5e1;">Modo Ironman (Autosuficiencia Total)</div>
+                <div class="lore-card-text">
+                    Muerte permanente combinada con el aislamiento socioeconómico absoluto.<br><br>
+                    • Prohibido comerciar con jugadores (Trade) o recibir correo con objetos.<br>
+                    • Prohibido usar la Casa de Subastas y desvinculación automática de hermandades.<br>
+                    • Solo puedes equipar piezas de calidad Pobre (Gris) y Común (Blanca). Las piezas Verdes/Azules/Épicas quedan bloqueadas.<br>
+                    • Prohibido agruparse para misiones o mazmorras.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="lore-card-icon">🧟</div>
+                <div class="lore-card-title" style="color: #34d399;">Die & Rise (Metamorfosis Necrótica)</div>
+                <div class="lore-card-text">
+                    Inicias tu travesía con 3 vidas otorgadas por el Consejo Arcano.<br><br>
+                    • <strong>1ª Muerte:</strong> Resucitas con debuff profano y apariencia cadavérica.<br>
+                    • <strong>2ª Muerte:</strong> Transformación esquelética permanente (Noggenfogger 14782) y aura fría.<br>
+                    • <strong>Purificación Divina:</strong> Puedes restaurar vidas rezando en Santuarios Sagrados dedicados a la Luz.<br>
+                    • <strong>3ª Muerte:</strong> Muerte definitiva irrevocable.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(245, 158, 11, 0.4);">
+                <div class="lore-card-icon">🏔️</div>
+                <div class="lore-card-title" style="color: #fbbf24;">Reto Andino x1 (Progresión 2008)</div>
+                <div class="lore-card-text">
+                    El ritmo puro y pausado de la era dorada de World of Warcraft.<br><br>
+                    • Multiplicadores de experiencia en x1.00 estricto para muertes, misiones y exploración.<br>
+                    • Sin beneficios de descanso inflados ni atajos de teletransporte.<br>
+                    • Otorga título e insignia honorífica en la Armería web de Campeones al alcanzar el nivel máximo.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(168, 85, 247, 0.4);">
+                <div class="lore-card-icon">🛡️</div>
+                <div class="lore-card-title" style="color: #c084fc;">Santuario Anti-DC (Seguridad de Red L9)</div>
+                <div class="lore-card-text">
+                    Protección activa ante contingencias técnicas de red.<br><br>
+                    • Si el núcleo detecta una desconexión abrupta o pérdida de paquetes mientras tu personaje está en combate en modo Hardcore/Ironman/Die&Rise, el servidor aplica de forma preventiva el <strong>Santuario Divino de Inmunidad</strong> (Spell 45438).<br>
+                    • Tu personaje no perecerá por microcortes de tu proveedor de fibra óptica o WiFi.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO: ECONOMÍA & DIVISAS -->
+    <div id="tab-economia" class="wiki-section" style="display:none;">
+        <div class="wiki-section-title">🪙 Manual del Ecosistema Económico & Monedas Soberanas</div>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem; max-width: 850px; line-height: 1.6;">
+            La economía de Project Jaina está diseñada bajo el principio de circuito cerrado con cero pay-to-win. Los jugadores pueden disfrutar de todas las características cosméticas jugando o apoyando el sostenimiento del hardware.
+        </p>
+
+        <!-- BANNER DE BIENVENIDA -->
+        <div style="background: rgba(30, 27, 75, 0.6); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+            <h4 style="color: #ffd700; margin: 0 0 0.5rem 0; font-size: 1.15rem;">🎁 Paquete de Bienvenida "Minuto Cero" (Gratuito para Todo Jugador)</h4>
+            <p style="color: #cbd5e1; font-size: 0.88rem; margin: 0 0 1rem 0; line-height: 1.5;">
+                En su primer inicio de sesión (<code>87_PlayerFirstLogin_Onboarding.lua</code>), cada nuevo personaje recibe automáticamente:
+            </p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <span style="background: rgba(0,0,0,0.4); border: 1px solid #ffd700; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #ffd700; font-weight: bold;">🪽 5x Fichas de Evento (910000)</span>
+                <span style="background: rgba(0,0,0,0.4); border: 1px solid #38bdf8; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #38bdf8; font-weight: bold;">🪙 6x Tokens de Jaina (900100)</span>
+                <span style="background: rgba(0,0,0,0.4); border: 1px solid #34d399; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #34d399; font-weight: bold;">💰 10 Monedas de Oro</span>
+                <span style="background: rgba(0,0,0,0.4); border: 1px solid #a855f7; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #e9d5ff; font-weight: bold;">🎒 4x Bolsas de 16 Casillas</span>
+            </div>
+        </div>
+
+        <div class="lore-cards-grid">
+            <div class="lore-card" style="border-color: rgba(236, 72, 153, 0.4);">
+                <div class="lore-card-icon">🪽</div>
+                <div class="lore-card-title" style="color: #f472b6;">Ficha de Evento (Item 910000)</div>
+                <div class="lore-card-text">
+                    <strong>Naturaleza:</strong> Divisa cosmética de prestigio.<br><br>
+                    • <strong>¿Cómo se consigue?:</strong><br>
+                    1. <strong>5 Fichas GRATIS</strong> al crear tu personaje en el Onboarding de Minuto Cero.<br>
+                    2. Canje in-game con Tokens de Jaina en la tienda (200 &rarr; 10x, 800 &rarr; 50x, 1500 &rarr; 100x).<br>
+                    3. Recompensas de eventos mundiales y packs de la web.<br><br>
+                    • <strong>¿En qué se gasta?:</strong> En la <strong>Tienda Visual 3D (comando <code>/alas</code>)</strong> para activar alas celestiales, auras y bonus de 3 días (4 fichas sin bonus, 5 con bonus de profesiones, 6 con bonus de oro/exp/rep).
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(56, 189, 248, 0.4);">
+                <div class="lore-card-icon">🪙</div>
+                <div class="lore-card-title" style="color: #38bdf8;">Token de Jaina (Item 900100)</div>
+                <div class="lore-card-text">
+                    <strong>Naturaleza:</strong> Micro-moneda soberana 1:1.<br><br>
+                    • <strong>Canje In-Game:</strong> Clic derecho en el ítem dentro del juego consume la moneda y acredita de forma atómica <strong>+1 Punto de Donación (PD)</strong> a tu cuenta web.<br>
+                    • <strong>Uso In-Game:</strong> Moneda oficial para adquirir monturas, bolsas de 20/22 casillas, compañeros y servicios cosméticos en el AddOn <code>ProjectJaina_Store</code>.<br>
+                    • <strong>Seguridad:</strong> Validación autoritativa en RAM del core. Imposible de hackear mediante alteración de paquetes cliente.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(245, 158, 11, 0.4);">
+                <div class="lore-card-icon">🎫</div>
+                <div class="lore-card-title" style="color: #fbbf24;">Ficha de Jaina — WoW Token (Item 900200)</div>
+                <div class="lore-card-text">
+                    <strong>Naturaleza:</strong> WoW Token Mayor (100 PD).<br><br>
+                    • <strong>Economía Abierta:</strong> Se puede comerciar libremente entre jugadores o listar en la Casa de Subastas a cambio de oro del juego.<br>
+                    • <strong>Canje In-Game:</strong> Clic derecho acredita de inmediato <strong>+100 PD</strong> en tu cuenta web.<br>
+                    • <strong>Democratización:</strong> Permite que un jugador sin recursos económicos acceda a membresías VIP o pases de batalla simplemente farmeando oro in-game.
+                </div>
+            </div>
+
+            <div class="lore-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="lore-card-icon">🏛️</div>
+                <div class="lore-card-title" style="color: #34d399;">Motor de Subastas Vivas (AH Engine)</div>
+                <div class="lore-card-text">
+                    <strong>Solución a servidores de baja población inicial:</strong><br><br>
+                    • Sembrado con más de 1,200 materiales canónicos (telas, menas, hierbas, elixires, recetas).<br>
+                    • <strong>Agente Comprador Autónomo (<code>95_AuctionHouse_Economy_Engine.lua</code>):</strong> Detecta cuando un jugador humano publica materiales y, tras 45 segundos, simula la compra por aventureros bots con un 80% de probabilidad.<br>
+                    • El oro se envía por correo oficial con la <strong>comisión del 5% ya retenida</strong>.
                 </div>
             </div>
         </div>

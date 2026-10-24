@@ -52,13 +52,23 @@ Una sola cuenta te otorga acceso total al reino. Eliges libremente tu facción (
 
 ---
 
-## 3. Modos de Juego y Características
+## 3. Modos de Juego y Desafíos de Supervivencia
 
 ### ¿Qué modos de juego están disponibles?
-Al crear un personaje nuevo, podrás elegir entre:
-- **Normal:** La experiencia clásica de WotLK con balance y calidad de vida moderna.
-- **Hardcore:** Muerte permanente de personaje (1 sola vida).
-- **Ironman:** Sin reliquias, sin subasta, sin comercio, equipando únicamente objetos blancos/grises.
+Al crear un personaje o hablar con Kaelia Sombraetérea (o mediante el comando `/modo`), puedes elegir entre:
+- **Normal (Aventurero):** La experiencia canónica de WotLK 3.3.5a HD con resurrecciones ilimitadas, libre comercio y apoyo de HeroBots.
+- **Hardcore:** Muerte permanente estricta (1 sola vida). Si tu salud llega a 0, tu alma queda sellada para siempre y se erige una lápida física (GO 192256).
+- **Ironman:** Desafío extremo de autosuficiencia. 1 sola vida + prohibición absoluta de comercio, correo, subastas, grupos y hermandades; únicamente equipamiento gris y blanco.
+- **Die & Rise (Metamorfosis Necrótica):** Comienzas con 3 vidas. Cada muerte altera tu carne en esqueleto no-muerto con auras profanas. Puedes restaurar vidas rezando en Santuarios Sagrados de la Luz. La 3ª muerte es definitiva.
+- **Reto Andino x1:** Multiplicadores x1.00 estrictos como en 2008 para puristas del esfuerzo clásico.
+
+### ¿Qué ocurre si mi personaje Hardcore o Ironman muere? ¿Pierdo todo?
+¡No! En Project Jaina tu esfuerzo jamás se pierde gracias a la **Herencia de Almas**:
+- Si tu héroe en modo Hardcore, Ironman o Die & Rise cae en combate tras superar el nivel 1, bendice tu cuenta.
+- **Tu siguiente personaje creado en la cuenta recibirá automáticamente un bono de +100% XP (x2)** hasta alcanzar el nivel máximo que logró el héroe caído.
+
+### ¿Qué pasa si se me corta el internet en medio de un combate peligroso?
+El servidor cuenta con el **Santuario Anti-DC (Protección Activa de Desconexión L9)**: Si el núcleo detecta una pérdida súbita de paquetes o desconexión abrupta mientras estás en combate en un modo de muerte permanente, activa de inmediato un Santuario Divino de Inmunidad temporal, evitando que perezcas por fallos de tu proveedor de internet.
 
 ### ¿Puedo hacer mazmorras o campos de batalla si juego en solitario?
 ¡Absolutamente! Project Jaina cuenta con dos sistemas integrados para jugadores solitarios:
@@ -67,7 +77,31 @@ Al crear un personaje nuevo, podrás elegir entre:
 
 ---
 
-## 4. Audio Espacial 3D y Chat de Voz
+## 4. Economía del Reino & Sistema de Divisas
+
+### ¿Qué divisas existen en el servidor y para qué sirven?
+Project Jaina cuenta con 3 divisas especiales estructuradas para garantizar un ecosistema **Zero Pay-to-Win**:
+1. **Token de Jaina (Item 900100):** Micro-moneda soberana 1:1. Al hacerle clic derecho dentro del juego, se consume y acredita atómicamente **+1 Punto de Donación (PD)** en tu cuenta web. También se usa como divisa en el AddOn de tienda in-game (`ProjectJaina_Store`) para comprar monturas, bolsas y mascotas.
+2. **Ficha de Jaina (Item 900200):** WoW Token Oficial. Al consumirse otorga **+100 PD** a tu cuenta web. Es 100% comerciable entre jugadores en mano o en la Casa de Subastas por oro del juego, permitiendo que jugadores free-to-play adquieran membresías VIP o cosméticos jugando.
+3. **Ficha de Evento (Item 910000):** Moneda puramente cosmética. Se utiliza en la **Tienda Visual 3D (comando `/alas`)** para desbloquear 17 modelos de alas celestiales/demoníacas y auras con bonus de 3 días.
+4. **Moneda de Oro:** Moneda base del juego para instrucción de hechizos, rutas de vuelo, reparaciones y comercio.
+
+### ¿Cómo se consigue la Ficha de Evento (910000)?
+Existen 4 formas de obtenerla:
+1. **Regalo de Minuto Cero (100% Gratis):** Cada nuevo personaje recibe automáticamente **5 Fichas de Evento** en su inventario al entrar por primera vez al mundo (junto con 5 Tokens de Jaina, 10 de oro y 4 mochilas de 16 casillas). Con esas 5 fichas puedes comprar tus primeras alas de inmediato.
+2. **Canje In-Game con Tokens de Jaina:** En la tienda integrada in-game puedes canjear Tokens de Jaina por paquetes de Fichas de Evento (200 Tokens &rarr; 10 Fichas, 800 Tokens &rarr; 50 Fichas, 1,500 Tokens &rarr; 100 Fichas).
+3. **Packs del Portal Web:** Paquetes de apoyo comunitario (como el Pack de Bienvenida o la Membresía Kirin Tor) incluyen entre 10 y 50 Fichas de Evento como valor agregado.
+4. **Eventos Mundiales:** Recompensas enviadas por correo por el Gobernador de Lore tras superar eventos del reino.
+
+### ¿Cómo funciona la Casa de Subastas si hay pocos jugadores conectados?
+El servidor integra el **Motor de Subastas Vivas (`95_AuctionHouse_Economy_Engine.lua`)**:
+- Las casas de subasta cuentan con más de 1,200 materiales canónicos precargados en un mercado unificado cross-faction.
+- Si publicas tus materiales recolectados (menas, hierbas, telas, elixires), un **Agente Comprador Autónomo** evalúa tu subasta tras 45 segundos y tiene un **80% de probabilidad de comprarla** al precio justo de mercado.
+- El oro se te entrega en tu buzón por correo oficial de la casa de subastas con la comisión oficial del 5% ya retenida. ¡Tus horas de farmeo siempre tienen recompensa!
+
+---
+
+## 5. Audio Espacial 3D y Chat de Voz
 
 ### ¿Cómo funciona la Voz Espacial 3D?
 Project Jaina cuenta con un motor de audio binaural posicional en tiempo real:

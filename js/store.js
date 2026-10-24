@@ -16,6 +16,15 @@
 // Catálogo fallback (SSOT local) — sincronizado con store_catalog.json en WebAPI
 const DEFAULT_CATALOG = [
     {
+        id: "pack_jaina_token_single", category: "tokens", rarity: "epico", rarity_label: "FICHA WOW",
+        name: "Ficha de Jaina (WoW Token)",
+        description: "Ficha oficial comerciable in-game por oro. Al consumirse con clic derecho acredita +100 Puntos de Donación (PD) a tu cuenta web.",
+        price_pen: 7.00, price_usd: 1.99, price: "1.99", currency: "PEN", tokens: 100, icon: "🎫",
+        rewards: [
+            { type: "item", entry: 900200, count: 1, name: "Ficha de Jaina" }
+        ]
+    },
+    {
         id: "pack_welcome", category: "tokens", rarity: "raro", rarity_label: "BIENVENIDA",
         name: "Pack de Bienvenida al Reino",
         description: "4 Carteras de Tejido de Escarcha (20c) + Mascota Exclusiva 'Osezno de Blizzard' + 10 Fichas de Evento + 100 Tokens de Jaina.",
