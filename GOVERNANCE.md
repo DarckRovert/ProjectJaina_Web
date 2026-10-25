@@ -2,7 +2,7 @@
 
 **Proyecto:** Project Jaina (Project Jaina WotLK 3.3.5a — Ecosistema Vivo & Multijugador Global)  
 **Estándar de Ingeniería:** Staff Software Engineer L9 (Mythos 5)  
-**Fecha de Actualización:** 25 de Octubre de 2026 (v5.38.0)
+**Fecha de Actualización:** 25 de Octubre de 2026 (v5.38.1)
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
@@ -131,7 +131,7 @@ Todo agente de IA, desarrollador o administrador que ingrese al repositorio debe
 | [E:\JainaCore_Server\server\lua_scripts\GOVERNANCE.md](file:///E:/JainaCore_Server/server/lua_scripts/GOVERNANCE.md) | `E:\JainaCore_Server\server\lua_scripts` | Gobernanza autoritativa de Eluna Lua Engine, blindaje de punteros de mundo (`IsPlayerValid`), discriminación estricta de bots, Evento 42 y población circadiana. |
 | [INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md](file:///E:/ProjectJaina_Lab/INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md) | `E:\ProjectJaina_Lab` | Diagnóstico de CGNAT Bitel (`10.53.0.1`), túneles Playit Anycast L4, Ngrok L7, reglas de firewall y puertos. |
 | [DISTRIBUCION_MANIFEST.json](file:///E:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) | `E:\ProjectJaina_Distribucion_Publica` | Manifiesto criptográfico autoritativo SHA-256 de los paquetes de distribución (Cliente, Clúster Colegas, Launcher). |
-| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #251, cacería de bugs y arquitectura profunda. |
+| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #252, cacería de bugs y arquitectura profunda. |
 
 ---
 
