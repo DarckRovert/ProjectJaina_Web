@@ -138,6 +138,19 @@ En **Project JAIna**, los bots operan bajo el **Motor Apex Gladiator 1v1 (`91_Su
 
 ---
 
+## 5. Comunidad y Soporte Oficial
+
+### ¿Dónde puedo recibir ayuda directa o unirme a la comunidad?
+Únete al **Discord Oficial de Project Jaina** a través de la invitación permanente universal:  
+👉 [https://discord.gg/cXxMuRJrfy](https://discord.gg/cXxMuRJrfy)
+
+En el servidor de Discord cuentas con:
+- **`#🌐┃estado-de-reinos`**: Telemetría en tiempo real, latencias y avisos del clúster despachados por el Centinela.
+- **`#🎫┃soporte-y-tickets`**: Atención técnica personalizada y resolución de incidencias.
+- **Comandos de Barra Diagonal (`/estado`, `/soporte`, `/descargas`, `/reglas`, `/ping`)**: Operados por el bot oficial verificado **Proyecto Jaina Sentinel** (`1563652716859887807`).
+
+---
+
 © 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
 
 
