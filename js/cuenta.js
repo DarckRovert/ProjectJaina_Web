@@ -1423,8 +1423,8 @@ window.actionExecuteVote = async function() {
             alert(`✓ ¡Voto contabilizado con éxito! Se han sumado +5 Puntos de Votación (PV) a tu cuenta.`);
             closeUwModal();
             fetchAccountDetails(username);
-            // Abrir páginas de votos en segundo plano
-            window.open("https://top100arena.com", "_blank");
+            // Abrir página de votación oficial de GTop100 (Site ID: 106798)
+            window.open("https://gtop100.com/World-of-Warcraft/server-106798?vote=1", "_blank");
         } else {
             alert(`✕ ${data.message || 'No se pudo emitir el voto.'}`);
         }
