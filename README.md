@@ -59,6 +59,9 @@
 
 El portal se sirve directamente a través de **GitHub Pages**:
 * **URL Pública Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
+* **Comunidad Oficial Discord (Invitación Permanente):** [https://discord.gg/cXxMuRJrfy](https://discord.gg/cXxMuRJrfy)
+* **Condiciones del Servicio:** [https://darckrovert.github.io/ProjectJaina_Web/terms.html](https://darckrovert.github.io/ProjectJaina_Web/terms.html)
+* **Política de Privacidad:** [https://darckrovert.github.io/ProjectJaina_Web/privacy.html](https://darckrovert.github.io/ProjectJaina_Web/privacy.html)
 * **Cliente de Voz Espacial 3D:** [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)
 * **Descarga del Lanzador Oficial (.ZIP Directo):** [https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip](https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip)
 * **Descarga del Lanzador Completo (.RAR Espejo Google Drive):** [https://drive.google.com/file/d/19emgLBtqUhxqf9SM_HM3PMYNqoaVG6WB/view?usp=drive_link](https://drive.google.com/file/d/19emgLBtqUhxqf9SM_HM3PMYNqoaVG6WB/view?usp=drive_link)

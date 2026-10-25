@@ -53,5 +53,8 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 - **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`).
 - **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` HTTPS/WSS con certificado multi-SAN).
 - **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (puerto `1234`) conectado a través de `mod-llm-chatter` y `03_Playerbot_SocialBridge.lua`.
-- **Autenticación**: Hashing criptográfico SRP6 (`srp6_auth.py`) compatible con la base de datos `acore_auth.account` de JainaCore.
+- **Autenticación**: Hashing criptográfico SRP6 (`srp6_auth.py`) compatible con la base de datos `acore_auth.account` de JainaCore y Discord OAuth2 SSO 1-clic.
+- **Centinela de Discord y Comunidad**: Bot oficial *Proyecto Jaina Sentinel* (App ID `1563652716859887807`) con telemetría en tiempo real y comunidad permanente en `https://discord.gg/cXxMuRJrfy`.
+- **Gobernanza Legal**: Cumplimiento de directivas de privacidad y términos comunitarios vía `terms.html` y `privacy.html`.
+- **Blindaje Perimetral**: `ProjectJaina_Shield.py` con integración de Playit Anycast Edge Firewall (`tools/audit_playit_api.py`).
 - **Telemetría**: Estado del reino en tiempo real (población, latencia, versión WotLK 3.3.5a Build 12340).
