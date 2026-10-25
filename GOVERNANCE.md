@@ -2,7 +2,7 @@
 
 **Proyecto:** Project Jaina (Project Jaina WotLK 3.3.5a — Ecosistema Vivo & Multijugador Global)  
 **Estándar de Ingeniería:** Staff Software Engineer L9 (Mythos 5)  
-**Fecha de Actualización:** 24 de Octubre de 2026  
+**Fecha de Actualización:** 25 de Octubre de 2026 (v5.38.0)
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
@@ -14,7 +14,7 @@ El disco `E:\` aloja la totalidad de la infraestructura de desarrollo, simulaci�
 
 | Directorio | Rol Técnico | Tecnologías Clave |
 | :--- | :--- | :--- |
-| [`E:\JainaCore_Server`](file:///E:/JainaCore_Server) | **Backend de Producción & Motor JainaCore (SSOT)** | JainaCore C++20 x64, `mod-ale` (Eluna Lua Engine con pacer incremental `00_Eluna_Engine_Pacer.lua`), `mod-playerbots` (250 a 1000 bots multihilo), `mod-llm-chatter`, `mod-anticheat`, MySQL 8.4 (Puerto 3306 con `innodb_flush_log_at_trx_commit=2`), SOAP API (Puerto 7878), Scripts Lua (`server/lua_scripts/`), WorldServer (Puerto 8085 con buffer 64KB) y AuthServer (Puerto 3724). |
+| [`E:\JainaCore_Server`](file:///E:/JainaCore_Server) | **Backend de Producción & Motor JainaCore (SSOT)** | JainaCore C++20 x64, `mod-ale` (Eluna Lua Engine v3.0 con suite de blindaje omnicanal de punteros `IsPlayerValid`/`IsPlayerInWorld`), `mod-playerbots` (humanización 10/10, retardos cognitivos 150-380ms, caminata RPG y emotes activos), motor de población dinámica circadiana (`96_DynamicPopulation_Pacer.lua` de 40 a 300 bots), `mod-llm-chatter`, `mod-anticheat`, MySQL 8.4 (Puerto 3306 con `innodb_flush_log_at_trx_commit=2`), SOAP API (Puerto 7878), Scripts Lua (`server/lua_scripts/`), WorldServer (Puerto 8085 con buffer 64KB) y AuthServer (Puerto 3724). |
 | [`E:\JainaCore`](file:///E:/JainaCore) | **Repositorio Oficial & Portal Engine de JainaCore** | Portal web oficial ([darckrovert.github.io/JainaCore](https://darckrovert.github.io/JainaCore/)), documentación técnica, arquitectura y licencias GPLv2. |
 | [`E:\ProjectJaina_FHD`](file:///E:/ProjectJaina_FHD) | **Cliente Maestro Canónico (GM & Desarrollador)** | World of Warcraft 3.3.5a (Build 12340), Texturas FHD/HD (23.8 GB), UI Dragonflight, Suite completa de AddOns oficiales, herramientas exclusivas de GM (`ProjectJaina_AdminTools`, `GMGenie`), perfiles personales WTF, mitigación de ratones 1000 Hz (`rawMouseEnable 1`) y lanzadores de laboratorio. |
 | [`E:\ProjectJaina_Lab`](file:///E:/ProjectJaina_Lab) | **Centro de Operaciones, Consola GM y Túneles** | `ProjectJaina_Console.py` (Dashboard Web Puerto 8088 con Catálogo & Spawner Universal, Inspector 360° Paperdoll, Editor Web de Configs con respaldos `.bak`, Tacómetro Tick Diff, Tickets GM y Radar Leaflet/Three.js), `ProjectJaina_Shield.py` (Sovereign Shield & Anti-DDoS con mitigación Playit Anycast), `tools/audit_playit_api.py`, `ProjectJaina_WebAPI.py` (Puerto 8080), lanzadores unificados `.bat`, configuración de red SSOT (`network_target.json`). |
@@ -128,9 +128,10 @@ Todo agente de IA, desarrollador o administrador que ingrese al repositorio debe
 | [E:\ProjectJaina_FHD\GOVERNANCE.md](file:///E:/ProjectJaina_FHD/GOVERNANCE.md) | `E:\ProjectJaina_FHD` | Cliente maestro de GM/Dev, límites de memoria 32-bit (`farclip 800`, `gxApi D3D9`), suite de AddOns y parches delta. |
 | [E:\ProjectJaina_Web\GOVERNANCE.md](file:///E:/ProjectJaina_Web/GOVERNANCE.md) | `E:\ProjectJaina_Web` | Portal público en GitHub Pages, cabecera mandatoria `ngrok-skip-browser-warning`, SRP6, Discord SSO, `terms.html`/`privacy.html` y pipeline Git. |
 | [E:\JainaCore_Server\GOVERNANCE.md](file:///E:/JainaCore_Server/GOVERNANCE.md) | `E:\JainaCore_Server` | Motor C++20 x64, prevención de carreras en MySQL 8.4 (3306), mod-playerbots, mod-llm-chatter, scripts Eluna Lua y SOAP (7878). |
+| [E:\JainaCore_Server\server\lua_scripts\GOVERNANCE.md](file:///E:/JainaCore_Server/server/lua_scripts/GOVERNANCE.md) | `E:\JainaCore_Server\server\lua_scripts` | Gobernanza autoritativa de Eluna Lua Engine, blindaje de punteros de mundo (`IsPlayerValid`), discriminación estricta de bots, Evento 42 y población circadiana. |
 | [INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md](file:///E:/ProjectJaina_Lab/INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md) | `E:\ProjectJaina_Lab` | Diagnóstico de CGNAT Bitel (`10.53.0.1`), túneles Playit Anycast L4, Ngrok L7, reglas de firewall y puertos. |
 | [DISTRIBUCION_MANIFEST.json](file:///E:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) | `E:\ProjectJaina_Distribucion_Publica` | Manifiesto criptográfico autoritativo SHA-256 de los paquetes de distribución (Cliente, Clúster Colegas, Launcher). |
-| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #244, cacería de bugs y arquitectura profunda. |
+| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #251, cacería de bugs y arquitectura profunda. |
 
 ---
 
