@@ -487,33 +487,26 @@ function updateDirectPaymentLinks() {
     const donateBtn = document.getElementById("directPaypalDonateBtn");
     const meBtn = document.getElementById("directPaypalMeBtn");
 
-    const baseEmail = (paymentConfig?.paypal?.business_email) || "darckrovert@gmail.com";
-    const baseDonate = (paymentConfig?.paypal?.donate_url) || `https://www.paypal.com/donate/?business=${encodeURIComponent(baseEmail)}&currency_code=USD&item_name=Project+JAIna`;
     const baseMe = (paymentConfig?.paypal?.paypal_me) || "https://paypal.me/darckrovert";
 
     if (!pkg) {
         if (donateBtn) {
-            donateBtn.href = baseDonate;
-            donateBtn.innerHTML = `🪙 Donación Libre Directa vía PayPal Donate`;
+            donateBtn.href = baseMe;
+            donateBtn.innerHTML = `🪙 Donación Directa vía PayPal.Me (@DarckRovert)`;
         }
         if (meBtn) {
             meBtn.href = baseMe;
-            meBtn.innerHTML = `⚡ O aportar directamente vía PayPal.Me (@DarckRovert)`;
+            meBtn.innerHTML = `⚡ Enviar aporte vía PayPal.Me (@DarckRovert)`;
         }
         return;
     }
 
     const priceUsd = Number(pkg.price_usd || pkg.price || 0).toFixed(2);
-    const itemName = charName 
-        ? `Project JAIna - ${pkg.name} (${charName})`
-        : `Project JAIna - ${pkg.name}`;
-
-    const dynamicDonateUrl = `https://www.paypal.com/donate/?business=${encodeURIComponent(baseEmail)}&currency_code=USD&amount=${priceUsd}&item_name=${encodeURIComponent(itemName)}`;
     const dynamicMeUrl = `${baseMe.replace(/\/+$/, '')}/${priceUsd}usd`;
 
     if (donateBtn) {
-        donateBtn.href = dynamicDonateUrl;
-        donateBtn.innerHTML = `🪙 Aportar $${priceUsd} USD vía PayPal Donate${charName ? ' (' + charName + ')' : ''}`;
+        donateBtn.href = dynamicMeUrl;
+        donateBtn.innerHTML = `🪙 Aportar $${priceUsd} USD vía PayPal.Me (@DarckRovert)${charName ? ' (' + charName + ')' : ''}`;
     }
     if (meBtn) {
         meBtn.href = dynamicMeUrl;
