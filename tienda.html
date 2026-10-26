@@ -322,50 +322,45 @@
 
             <!-- MÉTODOS DE PAGO: SELECTOR VISUAL -->
             <div class="payment-methods-box" style="margin-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.2rem;">
-                <div style="font-weight: 700; color: #cbd5e1; margin-bottom: 0.8rem; font-size: 0.95rem;">Selecciona tu Medio de Contribución:</div>
+                <div style="font-weight: 700; color: #cbd5e1; margin-bottom: 0.8rem; font-size: 0.95rem;">Selecciona tu Medio de Contribución Oficial:</div>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 1.2rem;">
-                    <!-- Yape / Plin Card -->
-                    <div id="methodCardYape" class="pay-method-card active" onclick="setPaymentMethod('yape')" style="cursor: pointer; background: rgba(115, 34, 134, 0.2); border: 2px solid #a855f7; border-radius: 10px; padding: 12px; text-align: center; transition: all .2s;">
-                        <div style="font-size: 1.3rem;">📱</div>
-                        <div style="font-weight: 800; color: #d8b4fe; font-size: 1rem;">Yape / Plin (Perú)</div>
-                        <div style="font-size: 0.78rem; color: #e9d5ff;">Transferencia móvil directa en Soles (S/.)</div>
-                    </div>
-
                     <!-- PayPal Card -->
-                    <div id="methodCardPaypal" class="pay-method-card" onclick="setPaymentMethod('paypal')" style="cursor: pointer; background: rgba(2, 132, 199, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px; text-align: center; transition: all .2s;">
+                    <div id="methodCardPaypal" class="pay-method-card active" onclick="setPaymentMethod('paypal')" style="cursor: pointer; background: rgba(2, 132, 199, 0.25); border: 2px solid #38bdf8; border-radius: 10px; padding: 12px; text-align: center; transition: all .2s;">
                         <div style="font-size: 1.3rem;">💳</div>
-                        <div style="font-weight: 800; color: #38bdf8; font-size: 1rem;">PayPal / Tarjeta</div>
-                        <div style="font-size: 0.78rem; color: #94a3b8;">Visa, Mastercard, Saldo Internacional (USD)</div>
+                        <div style="font-weight: 800; color: #38bdf8; font-size: 1rem;">PayPal / Tarjeta (Internacional)</div>
+                        <div style="font-size: 0.78rem; color: #cbd5e1;">Acreditación instantánea automática in-game</div>
                     </div>
-                </div>
 
-                <!-- CONTENEDOR YAPE/PLIN -->
-                <div id="yapeDetailsContainer" style="display: block; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <div>
-                            <div style="color: #e9d5ff; font-weight: 700; font-size: 0.95rem;">📲 Aportar vía Yape o Plin:</div>
-                            <div style="color: #cbd5e1; font-size: 0.85rem; margin-top: 4px;">Titular: <strong id="yapeTitular">Cargando...</strong></div>
-                            <div style="color: #ffd700; font-size: 1.15rem; font-weight: 800; margin-top: 4px;">Número Móvil: <span id="yapePhone" style="letter-spacing: 1px;">Cargando...</span></div>
-                        </div>
-                        <div id="yapeRefBox" style="background: rgba(168, 85, 247, 0.15); border: 1px dashed #c084fc; border-radius: 8px; padding: 8px 14px; text-align: center;">
-                            <div style="font-size: 0.75rem; color: #d8b4fe;">Código de Referencia:</div>
-                            <div id="yapeRefCode" style="font-size: 1.05rem; font-weight: 900; color: #fff; letter-spacing: 1px;">PJ-REF-0000</div>
-                        </div>
+                    <!-- GitHub Sponsors Card -->
+                    <div id="methodCardGithub" class="pay-method-card" onclick="setPaymentMethod('github')" style="cursor: pointer; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 12px; text-align: center; transition: all .2s;">
+                        <div style="font-size: 1.3rem;">💖</div>
+                        <div style="font-weight: 800; color: #f43f5e; font-size: 1rem;">GitHub Sponsors (Oficial)</div>
+                        <div style="font-size: 0.78rem; color: #94a3b8;">Patrocinador oficial de repositorios open-source</div>
                     </div>
-                    <p style="font-size: 0.8rem; color: #94a3b8; margin: 0.8rem 0 0 0;">
-                        * Tras realizar tu donación, pulsa el botón abajo o envía la captura a nuestro Discord/WhatsApp con tu Código de Referencia para confirmación en menos de 60 segundos.
-                    </p>
                 </div>
 
                 <!-- CONTENEDOR PAYPAL -->
-                <div id="paypal-button-container" style="display: none; margin-top: 1.2rem;"></div>
-            </div>
+                <div id="paypalDetailsContainer" style="display: block;">
+                    <div id="paypal-button-container" style="margin-top: 1.2rem;"></div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <a href="https://www.paypal.com/donate/?hosted_button_id=L69ANPSR8BJDU" target="_blank" class="btn-secondary" style="display: inline-block; padding: 0.65rem 1.2rem; font-size: 0.9rem; text-decoration: none; border-radius: 8px; border: 1px solid rgba(56,189,248,0.4); background: rgba(2,132,199,0.15); color: #38bdf8; font-weight: 700;">
+                            🪙 Donación Libre Directa vía PayPal Donate
+                        </a>
+                    </div>
+                </div>
 
-            <div style="margin-top: 1.2rem; display: flex; gap: 10px; flex-wrap: wrap;">
-                <button class="btn-primary" id="btnConfirmYape" onclick="confirmYapePayment()" style="flex: 1; min-width: 220px; padding: 0.85rem; background: linear-gradient(135deg, #7e22ce, #9333ea); border-color: #c084fc; font-weight: 800; font-size: 1rem; box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);">
-                    ✅ He Realizado el Pago / Notificar Acreditación
-                </button>
+                <!-- CONTENEDOR GITHUB SPONSORS -->
+                <div id="githubDetailsContainer" style="display: none; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 1.4rem; margin-bottom: 1rem; text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">💖</div>
+                    <div style="color: #fda4af; font-weight: 800; font-size: 1.1rem;">Patrocinio Open-Source en GitHub Sponsors</div>
+                    <p style="color: #cbd5e1; font-size: 0.85rem; max-width: 520px; margin: 0.6rem auto 1.2rem auto; line-height: 1.5;">
+                        Apoya directamente el desarrollo de Project Jaina y JainaCore a través de la plataforma oficial de GitHub Sponsors. Tu patrocinio impulsa la infraestructura del servidor, el motor de bots IA y el audio espacial 3D.
+                    </p>
+                    <a href="https://github.com/sponsors/DarckRovert" target="_blank" class="btn-primary" style="display: inline-block; padding: 0.75rem 1.6rem; font-size: 0.95rem; text-decoration: none; background: linear-gradient(135deg, #e11d48, #be123c); border-color: #fb7185; font-weight: 800; border-radius: 8px; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);">
+                        🌟 Convertirme en Sponsor en GitHub (@DarckRovert)
+                    </a>
+                </div>
             </div>
 
             <!-- FEEDBACK MESSAGE -->

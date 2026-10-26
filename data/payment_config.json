@@ -1,15 +1,12 @@
 {
-  "yape_plin": {
-    "enabled": true,
-    "titular": "Darck Rovert / Administración",
-    "phone": "Configuración Requerida",
-    "whatsapp_e164": "",
-    "qr_image": "",
-    "instructions": "Transfiere el monto exacto vía Yape o Plin. Luego pulsa 'Notificar Donación' para registrar tu orden en el sistema y enviar tu comprobante directamente a nuestro WhatsApp o Discord.",
-    "support_discord": "https://discord.gg/cXxMuRJrfy"
-  },
   "paypal": {
     "enabled": true,
-    "currency": "USD"
+    "currency": "USD",
+    "donate_url": "https://www.paypal.com/donate/?hosted_button_id=L69ANPSR8BJDU"
+  },
+  "github_sponsors": {
+    "enabled": true,
+    "sponsor_url": "https://github.com/sponsors/DarckRovert",
+    "author": "DarckRovert"
   }
 }

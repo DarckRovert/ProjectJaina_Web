@@ -200,8 +200,8 @@ const RARITY_COLORS = {
 let selectedPackage   = null;
 let currentCatalog    = [...DEFAULT_CATALOG];
 let currentCategory   = "all";
-let currentCurrency   = "PEN";    // Moneda por defecto: Soles peruanos (PEN S/.)
-let currentPaymentMethod = "yape"; // Medio por defecto: Yape / Plin (Perú)
+let currentCurrency   = "USD";    // Moneda por defecto: Dólares Internacionales (USD $)
+let currentPaymentMethod = "paypal"; // Medio por defecto: PayPal / Tarjeta Internacional
 let _validatedChar    = null;     // Resultado de validación en vivo del personaje
 
 document.addEventListener("DOMContentLoaded", () => { initShop(); });
@@ -216,7 +216,8 @@ function initShop() {
     loadRemoteCatalog();
     loadServerFundingGoal();
     loadPaymentConfig();
-    setCurrency("PEN");
+    setCurrency("USD");
+    setPaymentMethod("paypal");
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -250,38 +251,38 @@ function setCurrency(curr) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SELECTOR DE MÉTODO DE PAGO (Yape / Plin vs PayPal)
+// SELECTOR DE MÉTODO DE PAGO (PayPal Oficial vs GitHub Sponsors)
 // ─────────────────────────────────────────────────────────────────────────────
 function setPaymentMethod(method) {
-    currentPaymentMethod = method;
-    const yapeCard = document.getElementById("methodCardYape");
+    currentPaymentMethod = method === "github" ? "github" : "paypal";
     const paypalCard = document.getElementById("methodCardPaypal");
-    const yapeContainer = document.getElementById("yapeDetailsContainer");
-    const paypalContainer = document.getElementById("paypal-button-container");
+    const githubCard = document.getElementById("methodCardGithub");
+    const paypalDetails = document.getElementById("paypalDetailsContainer");
+    const githubDetails = document.getElementById("githubDetailsContainer");
     
-    if (method === "yape") {
-        if (yapeCard) {
-            yapeCard.style.background = "rgba(115, 34, 134, 0.35)";
-            yapeCard.style.border = "2px solid #c084fc";
+    if (currentPaymentMethod === "github") {
+        if (githubCard) {
+            githubCard.style.background = "rgba(244, 63, 94, 0.25)";
+            githubCard.style.border = "2px solid #f43f5e";
         }
         if (paypalCard) {
             paypalCard.style.background = "rgba(2, 132, 199, 0.08)";
             paypalCard.style.border = "1px solid rgba(56, 189, 248, 0.25)";
         }
-        if (yapeContainer) yapeContainer.style.display = "block";
-        if (paypalContainer) paypalContainer.style.display = "none";
+        if (githubDetails) githubDetails.style.display = "block";
+        if (paypalDetails) paypalDetails.style.display = "none";
     } else {
         if (paypalCard) {
             paypalCard.style.background = "rgba(2, 132, 199, 0.25)";
             paypalCard.style.border = "2px solid #38bdf8";
         }
-        if (yapeCard) {
-            yapeCard.style.background = "rgba(115, 34, 134, 0.1)";
-            yapeCard.style.border = "1px solid rgba(168, 85, 247, 0.25)";
+        if (githubCard) {
+            githubCard.style.background = "rgba(255, 255, 255, 0.05)";
+            githubCard.style.border = "1px solid rgba(255, 255, 255, 0.15)";
         }
-        if (yapeContainer) yapeContainer.style.display = "none";
-        if (paypalContainer) {
-            paypalContainer.style.display = "block";
+        if (githubDetails) githubDetails.style.display = "none";
+        if (paypalDetails) {
+            paypalDetails.style.display = "block";
             if (selectedPackage) {
                 initPayPalButton(selectedPackage.id, selectedPackage.price_usd || selectedPackage.price);
             }
@@ -299,10 +300,8 @@ function updateCheckoutSummary() {
     const summary = document.getElementById("selectedPkgSummary");
     if (!summary) return;
     
-    const penStr = `S/. ${Number(selectedPackage.price_pen || 0).toFixed(2)}`;
     const usdStr = `$${Number(selectedPackage.price_usd || selectedPackage.price || 0).toFixed(2)} USD`;
-    
-    summary.innerHTML = `Has seleccionado: <strong style="color:#ffd700;">${selectedPackage.name}</strong> por <strong style="color:#38bdf8;">${penStr}</strong> <span style="color:#94a3b8;font-size:0.9rem;">(${usdStr})</span>`;
+    summary.innerHTML = `Has seleccionado: <strong style="color:#ffd700;">${selectedPackage.name}</strong> por <strong style="color:#38bdf8;">${usdStr}</strong>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -481,21 +480,8 @@ async function loadPaymentConfig() {
 }
 
 function _applyPaymentConfig() {
-    if (!paymentConfig || !paymentConfig.yape_plin) return;
-    const yp = paymentConfig.yape_plin;
-    const titEl = document.getElementById("yapeTitular");
-    const phoEl = document.getElementById("yapePhone");
-    
-    if (titEl && yp.titular) {
-        titEl.innerText = yp.titular;
-    }
-    if (phoEl) {
-        if (yp.phone && yp.phone !== "Configuración Requerida") {
-            phoEl.innerText = yp.phone;
-        } else {
-            phoEl.innerHTML = `<span style="color: #fbbf24; font-size: 0.95rem; font-weight: 600;">(Consulta por WhatsApp / Discord)</span>`;
-        }
-    }
+    if (!paymentConfig) return;
+    // Configuración activa para PayPal y GitHub Sponsors
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
