@@ -301,7 +301,9 @@ function updateCheckoutSummary() {
     if (!summary) return;
     
     const usdStr = `$${Number(selectedPackage.price_usd || selectedPackage.price || 0).toFixed(2)} USD`;
-    summary.innerHTML = `Has seleccionado: <strong style="color:#ffd700;">${selectedPackage.name}</strong> por <strong style="color:#38bdf8;">${usdStr}</strong>`;
+    const penStr = `S/. ${Number(selectedPackage.price_pen || 0).toFixed(2)} PEN`;
+    summary.innerHTML = `Has seleccionado: <strong style="color:#ffd700;">${selectedPackage.name}</strong> por <strong style="color:#38bdf8;">${usdStr}</strong> <span style="color:#94a3b8;font-size:0.9rem;">(${penStr})</span>`;
+    updateDirectPaymentLinks();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -479,9 +481,53 @@ async function loadPaymentConfig() {
     }
 }
 
+function updateDirectPaymentLinks() {
+    const pkg = selectedPackage;
+    const charName = document.getElementById("targetCharacterName")?.value.trim() || "";
+    const donateBtn = document.getElementById("directPaypalDonateBtn");
+    const meBtn = document.getElementById("directPaypalMeBtn");
+
+    const baseEmail = (paymentConfig?.paypal?.business_email) || "darckrovert@gmail.com";
+    const baseDonate = (paymentConfig?.paypal?.donate_url) || `https://www.paypal.com/donate/?business=${encodeURIComponent(baseEmail)}&currency_code=USD&item_name=Project+JAIna`;
+    const baseMe = (paymentConfig?.paypal?.paypal_me) || "https://paypal.me/darckrovert";
+
+    if (!pkg) {
+        if (donateBtn) {
+            donateBtn.href = baseDonate;
+            donateBtn.innerHTML = `🪙 Donación Libre Directa vía PayPal Donate`;
+        }
+        if (meBtn) {
+            meBtn.href = baseMe;
+            meBtn.innerHTML = `⚡ O aportar directamente vía PayPal.Me (@DarckRovert)`;
+        }
+        return;
+    }
+
+    const priceUsd = Number(pkg.price_usd || pkg.price || 0).toFixed(2);
+    const itemName = charName 
+        ? `Project JAIna - ${pkg.name} (${charName})`
+        : `Project JAIna - ${pkg.name}`;
+
+    const dynamicDonateUrl = `https://www.paypal.com/donate/?business=${encodeURIComponent(baseEmail)}&currency_code=USD&amount=${priceUsd}&item_name=${encodeURIComponent(itemName)}`;
+    const dynamicMeUrl = `${baseMe.replace(/\/+$/, '')}/${priceUsd}usd`;
+
+    if (donateBtn) {
+        donateBtn.href = dynamicDonateUrl;
+        donateBtn.innerHTML = `🪙 Aportar $${priceUsd} USD vía PayPal Donate${charName ? ' (' + charName + ')' : ''}`;
+    }
+    if (meBtn) {
+        meBtn.href = dynamicMeUrl;
+        meBtn.innerHTML = `⚡ Enviar $${priceUsd} USD vía PayPal.Me (@DarckRovert)`;
+    }
+}
+
 function _applyPaymentConfig() {
     if (!paymentConfig) return;
-    // Configuración activa para PayPal y GitHub Sponsors
+    updateDirectPaymentLinks();
+    const ghLink = document.querySelector("#githubDetailsContainer a.btn-primary");
+    if (ghLink && paymentConfig.github_sponsors?.sponsor_url) {
+        ghLink.href = paymentConfig.github_sponsors.sponsor_url;
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -754,6 +800,9 @@ function _debounce(fn, ms) {
 function setupCheckoutListeners() {
     const inp = document.getElementById("targetCharacterName");
     if (inp && !inp.dataset.listenerBound) {
+        inp.addEventListener("input", () => {
+            updateDirectPaymentLinks();
+        });
         inp.addEventListener("input", _debounce(_validateCharacterLive, 600));
         inp.dataset.listenerBound = "true";
     }

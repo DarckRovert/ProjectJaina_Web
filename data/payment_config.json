@@ -2,6 +2,7 @@
   "paypal": {
     "enabled": true,
     "currency": "USD",
+    "business_email": "darckrovert@gmail.com",
     "donate_url": "https://www.paypal.com/donate/?business=darckrovert@gmail.com&currency_code=USD&item_name=Project+JAIna",
     "paypal_me": "https://paypal.me/darckrovert"
   },
