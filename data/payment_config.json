@@ -2,7 +2,8 @@
   "paypal": {
     "enabled": true,
     "currency": "USD",
-    "donate_url": "https://www.paypal.com/donate/?hosted_button_id=L69ANPSR8BJDU"
+    "donate_url": "https://www.paypal.com/donate/?business=darckrovert@gmail.com&currency_code=USD&item_name=Project+JAIna",
+    "paypal_me": "https://paypal.me/darckrovert"
   },
   "github_sponsors": {
     "enabled": true,
