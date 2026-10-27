@@ -81,8 +81,13 @@ class JainaJukeboxEngine {
 
     initYTPlayer() {
         const initialTrack = this.tracks[this.currentTrackIndex];
-        const container = document.getElementById("ytIframeMount");
-        if (!container) return;
+        let container = document.getElementById("ytIframeMount");
+        if (!container) {
+            container = document.createElement("div");
+            container.id = "ytIframeMount";
+            container.style.cssText = "position:fixed; bottom:-9999px; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;";
+            document.body.appendChild(container);
+        }
 
         try {
             this.ytPlayer = new YT.Player("ytIframeMount", {
@@ -125,7 +130,28 @@ class JainaJukeboxEngine {
     }
 
     bindDOM() {
-        // Botones de control en la sección principal
+        // Asegurar la presencia del Mini-Player Flotante si la página no lo tiene definido
+        if (!document.getElementById("floatingJukeboxDock")) {
+            const dock = document.createElement("div");
+            dock.id = "floatingJukeboxDock";
+            dock.className = "floating-jukebox-dock hidden-dock";
+            dock.innerHTML = `
+                <div class="mini-jb-vinyl" id="miniJbVinyl"></div>
+                <div class="mini-jb-info">
+                    <span class="mini-jb-title" id="miniJbTitle">Peacebloom Burn Slow</span>
+                    <span class="mini-jb-artist" id="miniJbArtist">Barrens Boys</span>
+                </div>
+                <div class="mini-jb-actions">
+                    <button class="mini-jb-btn" id="miniJbPlay" title="Reproducir / Pausar">▶</button>
+                    <button class="mini-jb-btn" id="miniJbNext" title="Siguiente Pista">⏭</button>
+                    <a href="index.html#fonoteca-taberna" class="mini-jb-btn" title="Ir a la Fonoteca" style="text-decoration: none;">🎶</a>
+                    <button class="mini-jb-close" id="miniJbClose" title="Ocultar Mini-Player">×</button>
+                </div>
+            `;
+            document.body.appendChild(dock);
+        }
+
+        // Botones de control en la sección principal (si existen)
         const btnPlay = document.getElementById("jbBtnPlay");
         const btnPrev = document.getElementById("jbBtnPrev");
         const btnNext = document.getElementById("jbBtnNext");
