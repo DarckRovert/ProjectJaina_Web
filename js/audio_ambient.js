@@ -18,10 +18,13 @@ class ArcaneAmbientAudio {
         this.button = document.getElementById("ambientAudioBtn");
         if (!this.button) return;
 
-        // Si Jukebox Engine está presente, Jukebox gobierna el botón y evita doble reproducción
-        if (!window.jainaJukebox) {
-            this.button.addEventListener("click", () => this.toggle());
-        }
+        // Si Jukebox Engine está presente, delega el control para evitar doble reproducción simultánea
+        this.button.addEventListener("click", () => {
+            if (window.jainaJukebox) {
+                return;
+            }
+            this.toggle();
+        });
 
         // Manejo de visibilidad de página (pausar si la pestaña se oculta)
         document.addEventListener("visibilitychange", () => {
