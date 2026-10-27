@@ -306,8 +306,8 @@
                         <div class="dash-info-row">
                             <span class="label">💰 Saldo de Puntos:</span>
                             <div class="val" style="display: flex; gap: 8px;">
-                                <span class="badge-pd">🪙 PD: <span id="dashAccountPD">0</span></span>
-                                <span class="badge-pv">💎 PV: <span id="dashAccountPV">0</span></span>
+                                <span class="badge-pd" onclick="openAccountActionModal('buy_pd')" style="cursor: pointer; transition: transform 0.2s;" title="Clic para Adquirir o Ver PD">🪙 PD: <span id="dashAccountPD">0</span></span>
+                                <span class="badge-pv" onclick="openAccountActionModal('redeem_pv')" style="cursor: pointer; transition: transform 0.2s;" title="Clic para Canjear tus PV por Oro o PD">💎 PV: <span id="dashAccountPV">0</span></span>
                             </div>
                         </div>
                         <div class="dash-info-row">
