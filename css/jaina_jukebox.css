@@ -1,0 +1,853 @@
+/* ==============================================================================
+   Project JAIna — Estilos de la Fonoteca, Jukebox Lo-Fi & Refugio de Creadores
+   Estética: Warm Tavern / Glassmorphism / Obsidian & Gold / Micro-animaciones
+   Estándar: Staff Software Engineer L9 (Mythos 5)
+   ============================================================================== */
+
+/* -----------------------------------------------------------------------------
+   1. SECCIÓN DE BIENVENIDA: ESTA ES TU CASA (REFUGIO DE CREADORES)
+   ----------------------------------------------------------------------------- */
+.creators-haven-section {
+    position: relative;
+    padding: 5rem 1.5rem;
+    background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.08) 0%, rgba(7, 9, 15, 0.95) 70%);
+    border-top: 1px solid rgba(245, 158, 11, 0.2);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+    overflow: hidden;
+}
+
+.creators-haven-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/creators_tavern_welcome.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.14;
+    filter: blur(2px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.creators-haven-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.creators-hero-banner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+    background: rgba(13, 18, 30, 0.85);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.15);
+    backdrop-filter: blur(16px);
+    margin-bottom: 3.5rem;
+}
+
+@media (max-width: 900px) {
+    .creators-hero-banner {
+        grid-template-columns: 1fr;
+        padding: 1.8rem;
+    }
+}
+
+.creators-lead-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 158, 11, 0.18);
+    border: 1px solid #f59e0b;
+    color: #fcd34d;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+.creators-hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.creators-hero-title span {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.creators-hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+}
+
+.creators-hero-img-wrap {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 25px rgba(245, 158, 11, 0.25);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.creators-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.creators-hero-img-wrap:hover .creators-hero-img {
+    transform: scale(1.03);
+}
+
+.creators-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 15, 0.92) 100%);
+    font-size: 0.85rem;
+    color: #fcd34d;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* 4 Pilares de Apoyo */
+.creators-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.creators-pillar-card {
+    background: rgba(13, 18, 30, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 1.8rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+}
+
+.creators-pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gold-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.creators-pillar-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+.creators-pillar-card:hover::before {
+    opacity: 1;
+}
+
+.pillar-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.pillar-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.6rem;
+}
+
+.pillar-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* -----------------------------------------------------------------------------
+   2. LA FONOTECA DE LA TABERNA: JUKEBOX & PEACEBLOOM LOUNGE
+   ----------------------------------------------------------------------------- */
+.jukebox-section {
+    position: relative;
+    padding: 5rem 1.5rem;
+    background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.06) 0%, rgba(7, 9, 15, 0.98) 75%);
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    overflow: hidden;
+}
+
+.jukebox-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.jukebox-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.jukebox-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.jukebox-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.jukebox-title span {
+    background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.jukebox-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Reproductor Principal & Vinilo */
+.jukebox-main-card {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    background: rgba(13, 18, 30, 0.9);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 35px rgba(245, 158, 11, 0.15);
+    backdrop-filter: blur(18px);
+}
+
+@media (max-width: 950px) {
+    .jukebox-main-card {
+        grid-template-columns: 1fr;
+        padding: 1.8rem;
+    }
+}
+
+.jb-turntable-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.jb-vinyl-assembly {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 480px) {
+    .jb-vinyl-assembly {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+.jb-vinyl-disc {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #27272a 0%, #18181b 20%, #09090b 45%, #27272a 46%, #09090b 47%, #18181b 75%, #000 100%);
+    border: 4px solid #111;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 25px rgba(245, 158, 11, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.jb-vinyl-disc.spinning {
+    animation: spinVinyl 12s linear infinite;
+}
+
+@keyframes spinVinyl {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.jb-vinyl-label {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background-image: url('../images/peacebloom_lofi_cover.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #f59e0b;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(245, 158, 11, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.jb-vinyl-spindle {
+    width: 16px;
+    height: 16px;
+    background: #000;
+    border: 2px solid #e2e8f0;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255,255,255,0.6);
+}
+
+/* Información del Track Actual */
+.jb-track-info-box {
+    text-align: center;
+    width: 100%;
+}
+
+.jb-track-badge {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    padding: 0.25rem 0.8rem;
+    border-radius: 9999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.5px;
+}
+
+.jb-track-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.4rem;
+}
+
+.jb-track-artist {
+    color: #38bdf8;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.jb-track-genre {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 0.8rem;
+}
+
+.jb-track-desc {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* Ecualizador Reactivo */
+.jb-visualizer-wave {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    height: 32px;
+    margin-bottom: 1.5rem;
+}
+
+.jb-eq-bar {
+    width: 5px;
+    height: 6px;
+    background: linear-gradient(180deg, #38bdf8 0%, #f59e0b 100%);
+    border-radius: 3px;
+    transition: height 0.15s ease;
+}
+
+.jb-eq-bar.active-pulse:nth-child(1) { animation: eqBounce 0.8s ease-in-out infinite alternate; }
+.jb-eq-bar.active-pulse:nth-child(2) { animation: eqBounce 1.1s ease-in-out infinite alternate 0.2s; }
+.jb-eq-bar.active-pulse:nth-child(3) { animation: eqBounce 0.7s ease-in-out infinite alternate 0.4s; }
+.jb-eq-bar.active-pulse:nth-child(4) { animation: eqBounce 1.3s ease-in-out infinite alternate 0.1s; }
+.jb-eq-bar.active-pulse:nth-child(5) { animation: eqBounce 0.9s ease-in-out infinite alternate 0.3s; }
+.jb-eq-bar.active-pulse:nth-child(6) { animation: eqBounce 1.2s ease-in-out infinite alternate 0.5s; }
+.jb-eq-bar.active-pulse:nth-child(7) { animation: eqBounce 0.8s ease-in-out infinite alternate 0.2s; }
+.jb-eq-bar.active-pulse:nth-child(8) { animation: eqBounce 1.0s ease-in-out infinite alternate 0.4s; }
+
+@keyframes eqBounce {
+    0% { height: 6px; opacity: 0.5; }
+    100% { height: 30px; opacity: 1; filter: drop-shadow(0 0 6px #38bdf8); }
+}
+
+/* Controles de Reproducción */
+.jb-controls-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.jb-ctrl-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.jb-ctrl-btn:hover {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: #f59e0b;
+    color: #fcd34d;
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.jb-play-main-btn {
+    width: 62px;
+    height: 62px;
+    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+    border: 2px solid #fcd34d;
+    color: #07090f;
+    font-size: 1.6rem;
+    font-weight: 900;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+}
+
+.jb-play-main-btn:hover {
+    background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 35px rgba(245, 158, 11, 0.7);
+}
+
+/* Control de Volumen */
+.jb-volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.jb-vol-mute-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.jb-vol-mute-btn:hover {
+    color: #fff;
+}
+
+.jb-vol-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 140px;
+    height: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    transition: background 0.2s;
+}
+
+.jb-vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #f59e0b;
+    cursor: pointer;
+    box-shadow: 0 0 8px #f59e0b;
+}
+
+/* Botón de Enlace al Creador */
+.jb-creator-support-action {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-support-channel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+    padding: 0.55rem 1.4rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.btn-support-channel:hover {
+    background: #ef4444;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Panel Derecho: Playlist & Embebido */
+.jb-playlist-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.jb-playlist-header {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.jb-playlist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.8rem;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.jb-playlist-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.jb-playlist-row:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.4);
+    transform: translateX(4px);
+}
+
+.jb-playlist-row.active-track {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: #f59e0b;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+}
+
+.jb-row-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.jb-row-num {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    width: 18px;
+}
+
+.jb-row-play-btn {
+    background: none;
+    border: none;
+    color: #fcd34d;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.jb-row-meta {
+    text-align: left;
+}
+
+.jb-row-title {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.jb-row-artist {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.jb-row-genre {
+    color: #38bdf8;
+}
+
+.jb-row-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jb-row-badge {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.jb-row-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.jb-row-link:hover {
+    color: #fff;
+}
+
+/* Reproductor IFrame Embebido Oculto/Activo */
+.jb-video-embed-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    margin-top: auto;
+}
+
+/* -----------------------------------------------------------------------------
+   3. MINI-PLAYER FLOTANTE (DOCK EN ESQUINA INFERIOR)
+   ----------------------------------------------------------------------------- */
+.floating-jukebox-dock {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(13, 18, 30, 0.88);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    border-radius: 50px;
+    padding: 8px 16px 8px 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.3);
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.floating-jukebox-dock.hidden-dock {
+    transform: translateY(120px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.mini-jb-vinyl {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-image: url('../images/peacebloom_lofi_cover.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    flex-shrink: 0;
+}
+
+.mini-jb-vinyl.spinning {
+    animation: spinVinyl 12s linear infinite;
+}
+
+.mini-jb-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 170px;
+    overflow: hidden;
+}
+
+.mini-jb-title {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mini-jb-artist {
+    color: #38bdf8;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mini-jb-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-jb-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mini-jb-btn:hover {
+    background: #f59e0b;
+    color: #000;
+    border-color: #fcd34d;
+}
+
+.mini-jb-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.2s;
+}
+
+.mini-jb-close:hover {
+    color: #ef4444;
+}
+
+/* -----------------------------------------------------------------------------
+   4. BOTÓN NAVBAR: FONOTECA & LO-FI (#ambientAudioBtn)
+   ----------------------------------------------------------------------------- */
+.ambient-audio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fcd34d;
+    padding: 0.45rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+}
+
+.ambient-audio-btn:hover {
+    background: rgba(245, 158, 11, 0.25);
+    border-color: #f59e0b;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+    transform: translateY(-1px);
+}
+
+.ambient-audio-btn.playing {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: #f59e0b;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+}
+
+.equalizer-wave {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 14px;
+}
+
+.equalizer-wave .eq-bar {
+    width: 2.5px;
+    height: 4px;
+    background: #fcd34d;
+    border-radius: 2px;
+    transition: height 0.2s ease;
+}
+
+.ambient-audio-btn.playing .equalizer-wave .eq-bar:nth-child(1) { animation: navEqPulse 0.7s ease infinite alternate; }
+.ambient-audio-btn.playing .equalizer-wave .eq-bar:nth-child(2) { animation: navEqPulse 1.0s ease infinite alternate 0.2s; }
+.ambient-audio-btn.playing .equalizer-wave .eq-bar:nth-child(3) { animation: navEqPulse 0.6s ease infinite alternate 0.4s; }
+.ambient-audio-btn.playing .equalizer-wave .eq-bar:nth-child(4) { animation: navEqPulse 1.2s ease infinite alternate 0.1s; }
+
+@keyframes navEqPulse {
+    0% { height: 4px; }
+    100% { height: 14px; background: #38bdf8; }
+}
+
