@@ -305,5 +305,83 @@
     "rewards": [
       { "type": "item", "entry": 900100, "count": 850, "name": "Token de Jaina" }
     ]
+  },
+  {
+    "id": "apparel_archmage",
+    "category": "transmog",
+    "rarity": "epico",
+    "rarity_label": "INDUMENTARIA TELA",
+    "name": "Indumentaria: Hábito Arcano del Archimago",
+    "description": "Ropajes de alta costura para taumaturgos. Incluye Toga del Archimago, Diadema Mística y 350 Tokens de Jaina para transfigurar.",
+    "price_pen": 18.00,
+    "price_usd": 5.00,
+    "price": "5.00",
+    "currency": "USD",
+    "tokens": 500,
+    "icon": "🧙",
+    "rewards": [
+      { "type": "item", "entry": 13346, "count": 1, "name": "Toga del Archimago" },
+      { "type": "item", "entry": 10250, "count": 1, "name": "Diadema de Mago Épica" },
+      { "type": "item", "entry": 900100, "count": 350, "name": "Token de Jaina" }
+    ]
+  },
+  {
+    "id": "apparel_vanguard",
+    "category": "transmog",
+    "rarity": "epico",
+    "rarity_label": "INDUMENTARIA PLACAS",
+    "name": "Indumentaria: Armadura de Campeón de la Vanguardia",
+    "description": "Set de placas pulidas de la Gran Alianza / Horda de Hierro. Incluye Coraza Bruñida, Hombreras de Guerra y 350 Tokens de Jaina.",
+    "price_pen": 18.00,
+    "price_usd": 5.00,
+    "price": "5.00",
+    "currency": "USD",
+    "tokens": 500,
+    "icon": "🛡️",
+    "rewards": [
+      { "type": "item", "entry": 14551, "count": 1, "name": "Coraza de la Vanguardia Bruñida" },
+      { "type": "item", "entry": 14552, "count": 1, "name": "Hombreras de Campeón" },
+      { "type": "item", "entry": 900100, "count": 350, "name": "Token de Jaina" }
+    ]
+  },
+  {
+    "id": "apparel_shadow",
+    "category": "transmog",
+    "rarity": "epico",
+    "rarity_label": "INDUMENTARIA CUERO",
+    "name": "Indumentaria: Ropajes del Asesino de las Sombras",
+    "description": "Atuendo de cuero negro y máscara sombría para pícaros, cazadores y druidas. Incluye Túnica Sombría, Máscara y 350 Tokens de Jaina.",
+    "price_pen": 18.00,
+    "price_usd": 5.00,
+    "price": "5.00",
+    "currency": "USD",
+    "tokens": 500,
+    "icon": "🗡️",
+    "rewards": [
+      { "type": "item", "entry": 15086, "count": 1, "name": "Túnica de Asesino Sombrío" },
+      { "type": "item", "entry": 10252, "count": 1, "name": "Máscara de las Sombras" },
+      { "type": "item", "entry": 900100, "count": 350, "name": "Token de Jaina" }
+    ]
+  },
+  {
+    "id": "apparel_gala_tuxedo",
+    "category": "transmog",
+    "rarity": "raro",
+    "rarity_label": "ROPA SOCIAL & FIESTA",
+    "name": "Atuendo de Gala Noble & Esmoquin de Dalaran",
+    "description": "Conjunto formal de vestir para eventos sociales, banquetes y bodas. Incluye Chaqueta, Pantalones y Camisa de Esmoquin + Vestido Elegante.",
+    "price_pen": 12.00,
+    "price_usd": 3.20,
+    "price": "3.20",
+    "currency": "USD",
+    "tokens": 350,
+    "icon": "👔",
+    "rewards": [
+      { "type": "item", "entry": 10036, "count": 1, "name": "Chaqueta de esmoquin" },
+      { "type": "item", "entry": 10035, "count": 1, "name": "Pantalones de esmoquin" },
+      { "type": "item", "entry": 10034, "count": 1, "name": "Camisa de esmoquin blanca" },
+      { "type": "item", "entry": 6833, "count": 1, "name": "Vestido negro elegante" }
+    ]
   }
 ]
+

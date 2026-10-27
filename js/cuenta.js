@@ -375,24 +375,31 @@ window.openTeleportModal = function(guid, name) {
                     </h3>
                     <button type="button" id="pjCloseTeleportModal" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer; line-height: 1;">&times;</button>
                 </div>
-                <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.2rem;">
+                <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.8rem;">
                     Selecciona el santuario o capital segura de destino para <strong id="pjTeleportTargetName" style="color: #38bdf8;"></strong>:
                 </p>
+                <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 0.65rem 0.9rem; margin-bottom: 1.1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.84rem; color: #cbd5e1;">Costo: <strong style="color: #f59e0b;">🪙 5 PD</strong></span>
+                    <span style="font-size: 0.84rem; color: #94a3b8;">Reutilización: <strong style="color: #38bdf8;">⏱️ 30 min</strong></span>
+                </div>
                 <div style="margin-bottom: 1.5rem;">
                     <label for="pjTeleportSelect" style="display: block; font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Ciudad de Destino:</label>
                     <select id="pjTeleportSelect" style="width: 100%; background: #1e293b; color: #f8fafc; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 0.75rem; font-size: 0.92rem; outline: none;">
                         <option value="theramore">🏝️ Isla de Theramore (Santuario Jaina)</option>
-                        <option value="dalaran">✨ Dalaran (Kirin Tor - Northrend)</option>
+                        <option value="dalaran">✨ Dalaran (Kirin Tor - Requiere Nivel 70+)</option>
                         <option value="stormwind">🦁 Ciudad de Ventormenta (Alianza)</option>
                         <option value="ironforge">⚒️ Ciudad de Forjaz (Alianza)</option>
+                        <option value="darnassus">🌙 Darnassus (Alianza - Instructores Druida)</option>
                         <option value="orgrimmar">🐺 Orgrimmar (Horda)</option>
                         <option value="undercity">💀 Entrañas / Undercity (Horda)</option>
+                        <option value="thunderbluff">🌾 Cima del Trueno (Horda - Instructores Druida/Tauren)</option>
+                        <option value="moonglade">🌿 Claro de la Luna / Moonglade (Santuario Druida)</option>
                         <option value="gadgetzan">🏜️ Gadgetzan (Tanaris - Neutral)</option>
                     </select>
                 </div>
                 <div style="display: flex; justify-content: flex-end; gap: 10px;">
                     <button type="button" id="pjCancelTeleportBtn" class="btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">Cancelar</button>
-                    <button type="button" id="pjConfirmTeleportBtn" class="btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.88rem;">🕊️ Confirmar Traslado</button>
+                    <button type="button" id="pjConfirmTeleportBtn" class="btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.88rem;">🕊️ Confirmar Traslado (5 PD)</button>
                 </div>
             </div>
         `;
@@ -1084,6 +1091,68 @@ window.openAccountActionModal = function(action) {
             `;
             break;
 
+        case "redeem_pv":
+            const charsPv = CURRENT_ACCOUNT_DATA.characters || [];
+            const charPvOpts = charsPv.map(c => `<option value="${c.guid}">${c.name} (Nivel ${c.level} - ${c.class_name || 'Héroe'})</option>`).join("");
+            const curVp = acct.vp ?? 0;
+            const curDp = acct.dp ?? 0;
+
+            html = `
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
+                    <span style="font-size:1.8rem;">💎</span>
+                    <div>
+                        <h3 style="margin:0; color:#fff;">Canjear Puntos de Votación (PV)</h3>
+                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Usa tus PV ganados al votar o con cupones para canjear Oro, PD o Fichas.</p>
+                    </div>
+                </div>
+
+                <div style="background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:0.8rem 1rem; margin-bottom:1.2rem; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.85rem; color:#cbd5e1;">Tu saldo disponible:</span>
+                    <div>
+                        <strong style="color:#38bdf8; font-size:1.15rem; margin-right:12px;">💎 ${curVp} PV</strong>
+                        <span style="color:var(--gold-primary); font-size:0.95rem;">🪙 ${curDp} PD</span>
+                    </div>
+                </div>
+
+                <form onsubmit="submitRedeemPv(event)">
+                    <div style="margin-bottom:14px;">
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Selecciona la Recompensa a Canjear:</label>
+                        <select id="redeemPvRewardSelect" class="form-control" style="width:100%;" onchange="onRedeemPvRewardChange()">
+                            <optgroup label="💰 Oro Directo al Personaje (Sin gastar tus PD)">
+                                <option value="gold_100">100 Monedas de Oro — Costo: 10 PV</option>
+                                <option value="gold_300">300 Monedas de Oro — Costo: 25 PV</option>
+                                <option value="gold_500">500 Monedas de Oro — Costo: 40 PV</option>
+                            </optgroup>
+                            <optgroup label="🪙 Convertir PV a Puntos de Donación (PD)">
+                                <option value="convert_pd">10 PV ➔ 5 PD (Puntos de Donación)</option>
+                                <option value="convert_pd_20">20 PV ➔ 10 PD (Puntos de Donación)</option>
+                                <option value="convert_pd_50">50 PV ➔ 25 PD (Puntos de Donación)</option>
+                            </optgroup>
+                            <optgroup label="🎁 Fichas Especiales & Cosméticos">
+                                <option value="event_tokens">5x Fichas de Evento (Alas Cosméticas) — Costo: 15 PV</option>
+                                <option value="jaina_tokens">3x Monedas de Jaina (Comerciante Épico) — Costo: 20 PV</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div id="redeemPvCharGroup" style="margin-bottom:16px;">
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Personaje Destino:</label>
+                        ${charsPv.length > 0 ? `
+                            <select id="redeemPvCharGuid" class="form-control" style="width:100%;">
+                                ${charPvOpts}
+                            </select>
+                        ` : `
+                            <div style="color:#f87171; font-size:0.8rem;">No tienes personajes creados en el reino todavía.</div>
+                        `}
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width:100%; padding:0.8rem; font-size:0.95rem;">
+                        ✨ Confirmar Canje de Puntos de Voto
+                    </button>
+                </form>
+            `;
+            break;
+
         case "buy_pd":
             html = `
                 <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
@@ -1146,8 +1215,8 @@ window.openCharServicePrompt = function(service) {
     }
 
     const serviceMeta = {
-        "unstuck": { title: "Desbloquear Personaje (Unstuck)", desc: "Mueve el personaje a su Posada o Capital vinculada.", cost: 0, icon: "🐹" },
-        "revive": { title: "Revivir Personaje", desc: "Restaura la vida de tu personaje si murió en un sitio inaccesible.", cost: 0, icon: "🕊️" },
+        "unstuck": { title: "Desbloquear Personaje (Unstuck)", desc: "Mueve el personaje a su Posada o Capital vinculada (Gratis - Cooldown 15 min).", cost: 0, icon: "🐹" },
+        "revive": { title: "Revivir Personaje", desc: "Restaura la vida de tu personaje caído (Requiere estar muerto - Cooldown 30 min).", cost: 10, icon: "🕊️" },
         "rename": { title: "Renombrar Personaje", desc: "Permite cambiar el nombre en la pantalla de selección de personajes.", cost: 15, icon: "📜" },
         "customize": { title: "Personalizar Personaje", desc: "Modifica apariencia física, rostro, peinado y género.", cost: 10, icon: "🧝" },
         "changerace": { title: "Cambiar de Raza", desc: "Elige una nueva raza compatible con la clase de tu campeón.", cost: 25, icon: "🎭" },
@@ -1430,6 +1499,57 @@ window.actionExecuteVote = async function() {
         }
     } catch (err) {
         alert(`Error al votar: ${err.message}`);
+    }
+};
+
+window.onRedeemPvRewardChange = function() {
+    const sel = document.getElementById("redeemPvRewardSelect");
+    const charGrp = document.getElementById("redeemPvCharGroup");
+    if (!sel || !charGrp) return;
+    const val = sel.value;
+    if (val.startsWith("convert_pd")) {
+        charGrp.style.display = "none";
+    } else {
+        charGrp.style.display = "block";
+    }
+};
+
+window.submitRedeemPv = async function(e) {
+    e.preventDefault();
+    if (!CURRENT_ACCOUNT_DATA) return;
+    const username = CURRENT_ACCOUNT_DATA.account.username;
+    const rewardSelect = document.getElementById("redeemPvRewardSelect");
+    const charSelect = document.getElementById("redeemPvCharGuid");
+    if (!rewardSelect) return;
+
+    const reward_id = rewardSelect.value;
+    const requiresChar = !reward_id.startsWith("convert_pd");
+    let guid = null;
+    if (requiresChar) {
+        if (!charSelect || !charSelect.value) {
+            alert("Debes seleccionar un personaje para recibir la recompensa.");
+            return;
+        }
+        guid = parseInt(charSelect.value, 10);
+    }
+
+    const apiUrl = getApiUrl();
+    try {
+        const res = await fetch(`${apiUrl}/api/account/redeem-pv`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            body: JSON.stringify({ username: username, reward_id: reward_id, guid: guid })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            alert(`✓ ${data.message}`);
+            closeUwModal();
+            fetchAccountDetails(username);
+        } else {
+            alert(`✕ ${data.message || 'Error al procesar el canje de PV.'}`);
+        }
+    } catch (err) {
+        alert(`Error de conexión al canjear PV: ${err.message}`);
     }
 };
 
