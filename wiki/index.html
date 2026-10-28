@@ -3,853 +3,831 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki de Lore — Crónicas de Project JAIna</title>
-    <meta name="description" content="Timeline narrativo en vivo del Reino de Theramore & Project JAIna. Crónicas, profecías y eventos mundiales generados por la IA.">
+    <title>Wiki & Códice de Sistemas — Project JAIna | WotLK 3.3.5a HD</title>
+    <meta name="description" content="Guía oficial completa, comandos de bots, modos de desafío Hardcore/Ironman, mazmorras con escalado dinámico, motor Apex PvE y compendio de AddOns de Project JAIna.">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../images/jaina_crest_logo.jpg">
     <style>
-        /* ── Timeline de Lore ── */
-        .wiki-hero {
-            background: linear-gradient(160deg, rgba(0,0,0,.98) 0%, rgba(8,8,24,.97) 100%);
-            border-bottom: 1px solid rgba(139,90,43,.25);
-            padding: 4rem 1.5rem 3rem;
+        :root {
+            --wiki-sidebar-width: 290px;
+            --wiki-gold: #c8a800;
+            --wiki-gold-light: #f3e5ab;
+            --wiki-border: rgba(200, 168, 0, 0.22);
+            --wiki-card-bg: rgba(15, 18, 28, 0.82);
+            --wiki-code-bg: rgba(0, 0, 0, 0.65);
+        }
+
+        body {
+            background-color: #06080e;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.65;
+        }
+
+        /* ── Hero de la Wiki ── */
+        .wiki-header {
+            background: radial-gradient(circle at 50% 20%, rgba(200, 168, 0, 0.12), transparent 70%),
+                        linear-gradient(180deg, rgba(6, 8, 14, 0.98) 0%, rgba(10, 14, 24, 0.95) 100%);
+            border-bottom: 1px solid var(--wiki-border);
+            padding: 3.5rem 1.5rem 2.5rem;
             text-align: center;
         }
-        .wiki-hero-tag {
+        .wiki-tag {
             display: inline-block;
-            background: rgba(200,168,0,.12);
-            border: 1px solid rgba(200,168,0,.3);
-            color: #c8a800;
-            font-size: .75rem;
-            font-weight: 700;
-            letter-spacing: .12em;
-            padding: .35rem .9rem;
-            border-radius: 20px;
-            margin-bottom: 1.2rem;
+            background: rgba(200, 168, 0, 0.14);
+            border: 1px solid var(--wiki-gold);
+            color: var(--wiki-gold-light);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            padding: 0.35rem 0.95rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
         .wiki-title {
-            font-size: clamp(2rem,5vw,3.2rem);
+            font-size: clamp(2.1rem, 4.5vw, 3.2rem);
             font-weight: 900;
-            background: linear-gradient(135deg, #c8a800, #e8d88a, #a07800);
+            background: linear-gradient(135deg, #ffffff 30%, #e2d28f 70%, #c8a800 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: .8rem;
+            margin: 0 0 0.8rem;
         }
-        .wiki-subtitle {
-            color: var(--text-muted);
+        .wiki-desc {
+            color: var(--text-muted, #94a3b8);
+            font-size: 1.05rem;
+            max-width: 780px;
+            margin: 0 auto 1.8rem;
+        }
+
+        /* ── Buscador Reactivo ── */
+        .wiki-search-box {
+            max-width: 620px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .wiki-search-input {
+            width: 100%;
+            background: rgba(10, 14, 24, 0.85);
+            border: 1px solid var(--wiki-border);
+            border-radius: 12px;
+            padding: 0.85rem 1.2rem 0.85rem 2.8rem;
+            color: #ffffff;
             font-size: 1rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
-        .wiki-status-badge {
-            display: inline-flex;
+        .wiki-search-input:focus {
+            border-color: var(--wiki-gold);
+            box-shadow: 0 0 15px rgba(200, 168, 0, 0.35);
+        }
+        .wiki-search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            opacity: 0.6;
+        }
+
+        /* ── Layout Dual (Sidebar + Contenido) ── */
+        .wiki-container {
+            display: flex;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+            gap: 2.5rem;
+        }
+        .wiki-sidebar {
+            width: var(--wiki-sidebar-width);
+            flex-shrink: 0;
+            position: sticky;
+            top: 5.5rem;
+            height: calc(100vh - 7rem);
+            overflow-y: auto;
+            background: var(--wiki-card-bg);
+            border: 1px solid var(--wiki-border);
+            border-radius: 14px;
+            padding: 1.25rem 0.75rem;
+            box-sizing: border-box;
+        }
+        .wiki-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .wiki-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(200, 168, 0, 0.25);
+            border-radius: 3px;
+        }
+        .wiki-nav-group-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--wiki-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.6rem 0.8rem 0.3rem;
+            margin-top: 0.6rem;
+        }
+        .wiki-nav-link {
+            display: flex;
             align-items: center;
-            gap: .5rem;
-            padding: .4rem 1rem;
-            border-radius: 20px;
-            font-size: .8rem;
-            font-weight: 600;
-            border: 1px solid rgba(57,211,83,.4);
-            color: #39d353;
-            background: rgba(57,211,83,.08);
-            transition: all .3s;
+            gap: 0.65rem;
+            padding: 0.55rem 0.85rem;
+            border-radius: 8px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .wiki-nav-link:hover, .wiki-nav-link.active {
+            background: rgba(200, 168, 0, 0.12);
+            color: var(--wiki-gold-light);
+            border-left: 3px solid var(--wiki-gold);
         }
 
-        /* ── Tabs ── */
-        .wiki-tabs {
-            display: flex;
-            gap: .5rem;
-            border-bottom: 1px solid rgba(255,255,255,.08);
-            padding: 0 1.5rem;
-            overflow-x: auto;
-            max-width: 1200px;
-            margin: 0 auto;
+        .wiki-content {
+            flex-grow: 1;
+            min-width: 0;
         }
-        .wiki-tab {
-            padding: .8rem 1.4rem;
-            cursor: pointer;
-            font-size: .88rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            border-bottom: 2px solid transparent;
-            white-space: nowrap;
-            transition: all .25s;
-        }
-        .wiki-tab.active { color: #c8a800; border-bottom-color: #c8a800; }
-        .wiki-tab:hover  { color: #e8d88a; }
 
-        /* ── Timeline ── */
-        .timeline-container {
-            max-width: 900px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
-            position: relative;
-        }
-        .timeline-container::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 0; bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, rgba(200,168,0,.4), rgba(200,168,0,.05));
-            transform: translateX(-50%);
-        }
-        .timeline-event {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-        .timeline-event:nth-child(even) { flex-direction: row-reverse; }
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 1.2rem;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 2px solid #c8a800;
-            background: #111;
-            transform: translateX(-50%);
-            z-index: 1;
-            box-shadow: 0 0 10px rgba(200,168,0,.5);
-        }
-        .timeline-dot.active  { background: #39d353; border-color: #39d353; box-shadow: 0 0 12px rgba(57,211,83,.6); }
-        .timeline-dot.pending { background: #333; border-color: #555; box-shadow: none; }
-        .timeline-card {
-            flex: 1;
-            background: rgba(255,255,255,.03);
-            border: 1px solid rgba(200,168,0,.15);
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            max-width: 380px;
-            transition: all .3s;
-        }
-        .timeline-card:hover {
-            border-color: rgba(200,168,0,.35);
-            background: rgba(255,255,255,.05);
-            transform: translateY(-3px);
-        }
-        .timeline-event:nth-child(even) .timeline-card { margin-left: auto; }
-        .timeline-date {
-            font-size: .72rem;
-            color: #c8a800;
-            font-weight: 700;
-            letter-spacing: .08em;
-            margin-bottom: .4rem;
-        }
-        .timeline-event-title {
-            font-size: 1rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: .4rem;
-        }
-        .timeline-event-desc {
-            font-size: .84rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-        .timeline-status-pill {
-            display: inline-block;
-            font-size: .68rem;
-            font-weight: 700;
-            padding: .15rem .55rem;
-            border-radius: 10px;
-            margin-top: .5rem;
-            letter-spacing: .06em;
-        }
-        .pill-active   { background: rgba(57,211,83,.15);  color: #39d353;  border: 1px solid rgba(57,211,83,.3);  }
-        .pill-pending  { background: rgba(255,183,77,.1);  color: #ffb74d;  border: 1px solid rgba(255,183,77,.25); }
-        .pill-complete, .pill-completed { background: rgba(0,112,221,.15);  color: #0070dd;  border: 1px solid rgba(0,112,221,.3);  }
-        .timeline-dot.complete, .timeline-dot.completed { background: #0070dd; border-color: #0070dd; box-shadow: 0 0 10px rgba(0,112,221,.6); }
-
-        /* ── Secciones de Wiki ── */
+        /* ── Módulos y Secciones ── */
         .wiki-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
+            background: var(--wiki-card-bg);
+            border: 1px solid var(--wiki-border);
+            border-radius: 16px;
+            padding: 2.2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            scroll-margin-top: 5.5rem;
         }
-        .wiki-section-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #c8a800;
+        .wiki-sec-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1rem;
             margin-bottom: 1.5rem;
-            padding-bottom: .6rem;
-            border-bottom: 1px solid rgba(200,168,0,.2);
         }
-        .lore-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
-            gap: 1.5rem;
+        .wiki-sec-icon {
+            font-size: 1.8rem;
         }
-        .lore-card {
-            background: rgba(255,255,255,.03);
-            border: 1px solid rgba(255,255,255,.07);
-            border-radius: 12px;
-            padding: 1.4rem;
-            transition: all .3s;
+        .wiki-sec-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
         }
-        .lore-card:hover {
-            border-color: rgba(200,168,0,.25);
-            background: rgba(255,255,255,.05);
-        }
-        .lore-card-icon { font-size: 2rem; margin-bottom: .8rem; }
-        .lore-card-title { font-size: 1rem; font-weight: 700; color: #e8d88a; margin-bottom: .4rem; }
-        .lore-card-text  { font-size: .84rem; color: var(--text-muted); line-height: 1.55; }
-
-        /* ── Loader ── */
-        .wiki-loading {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 3rem;
-            font-size: .9rem;
+        .wiki-sec-badge {
+            font-size: 0.72rem;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 700;
+            margin-left: auto;
         }
 
-        @media (max-width: 700px) {
-            .timeline-container::before { left: 18px; }
-            .timeline-event, .timeline-event:nth-child(even) { flex-direction: column; }
-            .timeline-dot { left: 18px; }
-            .timeline-card, .timeline-event:nth-child(even) .timeline-card { max-width: 100%; margin-left: 40px; }
+        /* ── Tablas de la Wiki ── */
+        .wiki-table-wrap {
+            overflow-x: auto;
+            margin: 1.25rem 0;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .wiki-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .wiki-table th {
+            background: rgba(200, 168, 0, 0.1);
+            color: var(--wiki-gold-light);
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--wiki-border);
+        }
+        .wiki-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+        }
+        .wiki-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* ── Cajas de Código y Botón Copiar Macro ── */
+        .wiki-cmd-card {
+            background: var(--wiki-code-bg);
+            border: 1px solid rgba(200, 168, 0, 0.2);
+            border-radius: 10px;
+            padding: 0.85rem 1.1rem;
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .wiki-cmd-text {
+            font-family: "JetBrains Mono", Consolas, Monaco, monospace;
+            color: #38bdf8;
+            font-size: 0.95rem;
+            font-weight: 600;
+            word-break: break-all;
+        }
+        .btn-copy-macro {
+            background: rgba(200, 168, 0, 0.15);
+            border: 1px solid var(--wiki-gold);
+            color: var(--wiki-gold-light);
+            padding: 0.35rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-copy-macro:hover {
+            background: var(--wiki-gold);
+            color: #000000;
+        }
+
+        .wiki-callout {
+            border-left: 4px solid var(--wiki-gold);
+            background: rgba(200, 168, 0, 0.06);
+            padding: 1rem 1.25rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1.25rem 0;
+            font-size: 0.92rem;
+        }
+        .wiki-callout.tip {
+            border-left-color: #34d399;
+            background: rgba(52, 211, 153, 0.06);
+        }
+        .wiki-callout.alert {
+            border-left-color: #f87171;
+            background: rgba(248, 113, 113, 0.06);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .wiki-container {
+                flex-direction: column;
+            }
+            .wiki-sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR AAA DE ALTA FIDELIDAD -->
+    <!-- NAVBAR CANÓNICO -->
     <nav class="navbar" id="mainNavbar">
         <a href="../index.html" class="brand-container">
-            <img src="../images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
+            <img src="../images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="brand-logo-img">
             <div>
                 <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
-                <div class="brand-subtitle">WIKI DE LORE & CRÓNICAS</div>
+                <div class="brand-subtitle">LIVING LORE & AI REVOLUTION</div>
             </div>
         </a>
 
         <ul class="nav-links" id="navbarLinks">
             <li><a href="../index.html">Inicio</a></li>
             <li><a href="../jainacore.html">JainaCore</a></li>
-            
-            <!-- DROPDOWN: EXPLORAR -->
-            <li class="nav-item-dropdown">
-                <button class="dropdown-trigger" type="button" aria-expanded="false">
-                    <span>Explorar</span>
-                    <span class="dropdown-chevron">▼</span>
-                </button>
-                <div class="nav-dropdown-menu">
-                    <a href="../index.html#linea-de-fases" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">⏳</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Línea de Fases & Eras</span>
-                            <span class="dropdown-item-desc">Vanilla 60 a WotLK 80 Progresivo</span>
-                        </div>
-                    </a>
-                    <a href="../index.html#living-lore" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">🧠</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Lore Viviente & Simulador IA</span>
-                            <span class="dropdown-item-desc">HeroBots y LLM neuronal local</span>
-                        </div>
-                    </a>
-                    <a href="../index.html#mundo-viviente" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">🏰</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Baluartes & Galeón Naval</span>
-                            <span class="dropdown-item-desc">Enclaves de hermandad y eventos vivos</span>
-                        </div>
-                    </a>
-                    <a href="../index.html#addons-showcase" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">🧩</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Suite de 18 AddOns HD</span>
-                            <span class="dropdown-item-desc">DragonflightUI, Audio 3D y más</span>
-                        </div>
-                    </a>
-                </div>
-            </li>
-
-            <!-- DROPDOWN: SERVICIOS -->
-            <li class="nav-item-dropdown">
-                <button class="dropdown-trigger" type="button" aria-expanded="false">
-                    <span>Servicios</span>
-                    <span class="dropdown-chevron">▼</span>
-                </button>
-                <div class="nav-dropdown-menu">
-                    <a href="../database.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">📚</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Base de Datos del Reino</span>
-                            <span class="dropdown-item-desc">Items, hechizos y tablas de botín</span>
-                        </div>
-                    </a>
-                    <a href="../armeria.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">⚔️</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Armería de Campeones</span>
-                            <span class="dropdown-item-desc">Inspección de personajes y talentos</span>
-                        </div>
-                    </a>
-                    <a href="../tienda.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">💎</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Tienda & Donaciones</span>
-                            <span class="dropdown-item-desc">Cosméticos exclusivos y apoyo</span>
-                        </div>
-                    </a>
-                    <a href="../registro.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">🛡️</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Crear Cuenta SRP6</span>
-                            <span class="dropdown-item-desc">Registro criptográfico instantáneo</span>
-                        </div>
-                    </a>
-                </div>
-            </li>
-
-            <!-- DROPDOWN: COMUNIDAD -->
-            <li class="nav-item-dropdown">
-                <button class="dropdown-trigger" type="button" aria-expanded="false">
-                    <span>Comunidad</span>
-                    <span class="dropdown-chevron">▼</span>
-                </button>
-                <div class="nav-dropdown-menu">
-                    <a href="index.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">📖</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Wiki Oficial de Project JAIna</span>
-                            <span class="dropdown-item-desc">Guías completas, comandos y mecánicas</span>
-                        </div>
-                    </a>
-                    <a href="../voz/index.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">🎙️</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Voz Espacial 3D (WebRTC)</span>
-                            <span class="dropdown-item-desc">Audio posicional por proximidad</span>
-                        </div>
-                    </a>
-                    <a href="../bugs.html" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">🐛</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">BugTracker Oficial</span>
-                            <span class="dropdown-item-desc">Reportes de incidencias y parches</span>
-                        </div>
-                    </a>
-                    <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
-                        <span class="dropdown-item-icon">💬</span>
-                        <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Discord Oficial</span>
-                            <span class="dropdown-item-desc">Comunidad activa y soporte directo</span>
-                        </div>
-                    </a>
-                </div>
-            </li>
-
-            <li><a href="../index.html#como-jugar">¿Cómo Jugar?</a></li>
+            <li><a href="index.html" class="active">Wiki Oficial</a></li>
+            <li><a href="../armeria.html">Armería</a></li>
+            <li><a href="../tienda.html">Tienda</a></li>
+            <li><a href="../cuenta.html">Mi Cuenta</a></li>
         </ul>
 
         <div class="nav-actions-tray">
-            <button id="ambientAudioBtn" class="ambient-audio-btn" title="Activar Ecosonido Arcano de Dalaran">
-                <div class="equalizer-wave">
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                </div>
-                <span class="audio-label">Ecos de Dalaran</span>
-            </button>
             <a href="../registro.html" class="btn-cta-nav">Jugar Gratis</a>
-            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú">☰</button>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="wiki-hero">
-        <div class="wiki-hero-tag">📜 CRÓNICAS DEL REINO · GENERADAS POR IA</div>
-        <h1 class="wiki-title">Crónicas de Theramore</h1>
-        <p class="wiki-subtitle">
-            El motor narrativo de Project JAIna documenta cada evento, profecía y decisión clave
-            del reino en tiempo real. Esta wiki es generada por los LoreBots y el Gobernador de
-            Eventos Mundiales — sin intervención humana.
-        </p>
-        <span class="wiki-status-badge" id="wikiLiveBadge">
-            ⏳ Conectando con el motor narrativo...
-        </span>
+    <!-- HEADER WIKI -->
+    <header class="wiki-header">
+        <span class="wiki-tag">📖 Códice Integral & Base de Conocimiento</span>
+        <h1 class="wiki-title">Wiki de Sistemas & Guía del Jugador</h1>
+        <p class="wiki-desc">Documentación técnica autoritativa, comandos de bots, mecánicas de supervivencia, escalado de mazmorras y catálogo de AddOns de Project JAIna (v5.48.0).</p>
+
+        <div class="wiki-search-box">
+            <span class="wiki-search-icon">🔍</span>
+            <input type="text" id="wikiSearch" class="wiki-search-input" placeholder="Buscar comando, modo de juego, addon, mecánico de bot (ej. 'follow', 'hardcore', 'mbot')...">
+        </div>
     </header>
 
-    <!-- TABS -->
-    <div class="wiki-tabs">
-        <div class="wiki-tab active" data-tab="timeline" onclick="switchTab('timeline', this)">⚡ Timeline de Eventos</div>
-        <div class="wiki-tab" data-tab="lore" onclick="switchTab('lore', this)">🌍 Lore del Reino</div>
-        <div class="wiki-tab" data-tab="modos" onclick="switchTab('modos', this)">💀 Modos de Juego</div>
-        <div class="wiki-tab" data-tab="economia" onclick="switchTab('economia', this)">🪙 Economía & Divisas</div>
-        <div class="wiki-tab" data-tab="heroes" onclick="switchTab('heroes', this)">⚔️ Héroes Legendarios</div>
-        <div class="wiki-tab" data-tab="prophecies" onclick="switchTab('prophecies', this)">🔮 Profecías Activas</div>
-        <div class="wiki-tab" data-tab="manuales" onclick="switchTab('manuales', this)">📚 Guías & Manuales</div>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="wiki-container">
+        
+        <!-- SIDEBAR DE NAVEGACIÓN -->
+        <aside class="wiki-sidebar">
+            <div class="wiki-nav-group-title">Guía de Supervivencia</div>
+            <a href="#modulo-1" class="wiki-nav-link active"><span>🚀</span> 1. Inicio & Primer Login</a>
+            <a href="#modulo-2" class="wiki-nav-link"><span>🤖</span> 2. Bots & Motor PvE v4.0</a>
+            <a href="#modulo-3" class="wiki-nav-link"><span>💀</span> 3. Modos de Desafío</a>
+            
+            <div class="wiki-nav-group-title">Encuentros & Mazmorras</div>
+            <a href="#modulo-4" class="wiki-nav-link"><span>🏰</span> 4. Mazmorras, Bandas & RDF</a>
+            <a href="#modulo-5" class="wiki-nav-link"><span>👗</span> 5. Guardarropa & NPC Kaelia</a>
+            <a href="#modulo-6" class="wiki-nav-link"><span>🪙</span> 6. Economía & Subastas</a>
+
+            <div class="wiki-nav-group-title">Mundo Viviente & AddOns</div>
+            <a href="#modulo-7" class="wiki-nav-link"><span>🚩</span> 7. Baluartes & Galeón Naval</a>
+            <a href="#modulo-8" class="wiki-nav-link"><span>🎙️</span> 8. Voz Espacial 3D (WebRTC)</a>
+            <a href="#modulo-9" class="wiki-nav-link"><span>🧩</span> 9. Compendio de AddOns & Comandos</a>
+            <a href="#modulo-10" class="wiki-nav-link"><span>📜</span> 10. Crónicas de Theramore</a>
+        </aside>
+
+        <!-- CONTENIDO DE LA WIKI -->
+        <main class="wiki-content" id="wikiContent">
+
+            <!-- MÓDULO 1: INICIO & PRIMER LOGIN -->
+            <section id="modulo-1" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🚀</span>
+                    <h2 class="wiki-sec-title">1. Inicio Rápido & Experiencia "Minuto Cero"</h2>
+                    <span class="wiki-sec-badge">Script 87_Onboarding</span>
+                </div>
+
+                <p>Al conectarte por primera vez a <strong>Project JAIna</strong>, tu personaje no aparece desprovisto. El motor autoritativo de bienvenida detecta tu facción y te otorga automáticamente el <strong>Paquete de Equipamiento Minuto Cero</strong>:</p>
+
+                <div class="wiki-table-wrap">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>Facción</th>
+                                <th>Carta Oficial</th>
+                                <th>Hermandad Canónica</th>
+                                <th>Suministros Otorgados</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong style="color: #60a5fa;">Alianza</strong></td>
+                                <td>Correspondencia de Lady Jaina Valiente</td>
+                                <td><code>&lt;El Kirin Tor&gt;</code></td>
+                                <td>4 Bolsas de 16 casillas, 10 Oro, 5 Tokens de Jaina, 5 Fichas de Evento, Bendición Arcanomántica.</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #f87171;">Horda</strong></td>
+                                <td>Edicto Militar del Jefe de Guerra Thrall</td>
+                                <td><code>&lt;La Horda de Orgrimmar&gt;</code></td>
+                                <td>4 Bolsas de 16 casillas, 10 Oro, 5 Tokens de Jaina, 5 Fichas de Evento, Fortaleza de los Baldíos.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="wiki-callout tip">
+                    💡 <strong>Conexión Directa Anycast sin VPN:</strong> Abre el archivo <code>realmlist.wtf</code> en tu carpeta de WoW y pega exactamente la siguiente línea:
+                </div>
+
+                <div class="wiki-cmd-card">
+                    <span class="wiki-cmd-text">set realmlist ambulance-absurd.tun.ply.gg:58735</span>
+                    <button class="btn-copy-macro" onclick="copyText('set realmlist ambulance-absurd.tun.ply.gg:58735', this)">Copiar Realmlist</button>
+                </div>
+
+                <div class="wiki-callout">
+                    ⚙️ <strong>Solución al Bug de Ratones Gaming a 1000 Hz:</strong> Si al mover la cámara dentro de WoW 3.3.5a la pantalla gira de forma descontrolada, pega esta macro en el chat una sola vez:
+                </div>
+                <div class="wiki-cmd-card">
+                    <span class="wiki-cmd-text">/run SetCVar("rawMouseEnable", 1)</span>
+                    <button class="btn-copy-macro" onclick="copyText('/run SetCVar("rawMouseEnable", 1)', this)">Copiar Macro</button>
+                </div>
+            </section>
+
+            <!-- MÓDULO 2: PLAYERBOTS & APEX PVE V4.0 -->
+            <section id="modulo-2" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🤖</span>
+                    <h2 class="wiki-sec-title">2. Manual Maestro de Bots & Motor Apex PvE v4.0</h2>
+                    <span class="wiki-sec-badge">Apex Engine v4.0</span>
+                </div>
+
+                <p>En Project JAIna los Playerbots no son robots pasivos: están gobernados por el motor táctico <strong>Apex Mythic Raider v4.0</strong> (C++ y Eluna), dotados de consciencia espacial O(1) y comportamiento equivalente a jugadores humanos experimentados.</p>
+
+                <h3 style="color: var(--wiki-gold); margin-top: 1.5rem;">¿Cómo Reclutar y Liderar Bots?</h3>
+                <p>Puedes sumar cualquier bot a tu grupo de 3 maneras:</p>
+                <ol>
+                    <li><strong>Mediante el AddOn MultiBot:</strong> Pulsa el botón del minimapa o escribe <code>/mbot</code> para abrir el panel visual.</li>
+                    <li><strong>Por Susurro en Capitales:</strong> Haz clic sobre cualquier bot que veas caminando y susúrrale la palabra <code>party</code> o <code>ayuda</code>.</li>
+                    <li><strong>Por Comando Directo:</strong> Escribe en el chat <code>.bot add NombreDelBot</code> o <code>.playerbots add NombreDelBot</code>.</li>
+                </ol>
+
+                <h3 style="color: var(--wiki-gold); margin-top: 1.5rem;">Top 20 Comandos de Susurro de Combate</h3>
+                <p>Susurra estos comandos directamente al bot (o úsalos en grupo con el AddOn MultiBot):</p>
+
+                <div class="wiki-table-wrap">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>Comando de Susurro</th>
+                                <th>Categoría</th>
+                                <th>Efecto Inmediato en el Bot</th>
+                                <th>Acción Rápida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>follow</code></td>
+                                <td>Movimiento</td>
+                                <td>Sigue de cerca a tu personaje respetando distancia.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('follow', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>stay</code></td>
+                                <td>Movimiento</td>
+                                <td>Permanece quieto en la posición exacta actual.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('stay', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>flee</code></td>
+                                <td>Movimiento</td>
+                                <td>Abandona el combate y corre hacia tu posición.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('flee', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>attack</code></td>
+                                <td>Combate</td>
+                                <td>Ataca inmediatamente a tu objetivo actual seleccionado.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('attack', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>tank attack</code></td>
+                                <td>Combate</td>
+                                <td>El tanque pullea, usa taunt y afianza el agro inicial.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('tank attack', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>pull rti</code></td>
+                                <td>Combate</td>
+                                <td>Pullea únicamente el objetivo marcado con Calavera/Cruz.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('pull rti', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>co +dps</code></td>
+                                <td>Estrategia</td>
+                                <td>Asigna rol de daño sostenido con rotación óptima.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('co +dps', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>co +heal</code></td>
+                                <td>Estrategia</td>
+                                <td>Asigna rol sanador con triaje de vida en banda.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('co +heal', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>co +tank</code></td>
+                                <td>Estrategia</td>
+                                <td>Asigna rol de mitigación y generación masiva de amenaza.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('co +tank', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>loot</code></td>
+                                <td>Utilidad</td>
+                                <td>Despoja cadáveres cercanos de criaturas derrotadas.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('loot', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>revive</code></td>
+                                <td>Utilidad</td>
+                                <td>Castea resurrección sobre aliados caídos en el área.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('revive', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>summon</code></td>
+                                <td>Utilidad</td>
+                                <td>Teletransporta al bot hacia tu posición si se ha atascado.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('summon', this)">Copiar</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>release</code></td>
+                                <td>Utilidad</td>
+                                <td>Libera espíritu tras un wipe de grupo para correr juntos.</td>
+                                <td><button class="btn-copy-macro" onclick="copyText('release', this)">Copiar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="color: var(--wiki-gold); margin-top: 1.5rem;">Innovaciones del Motor Apex PvE v4.0 en Mazmorras</h3>
+                <ul>
+                    <li><strong>Radar de Peligros en Suelo (Anti-Charcos O(1)):</strong> Los bots detectan fuego, veneno o áreas de daño (DynamicObjects) en un radio de 45 yardas y huyen hacia el vector libre más seguro sin oscilar.</li>
+                    <li><strong>Posicionamiento de Dragones:</strong> Los tanques sitúan a los dragones a 180° del grupo; los DPS y sanadores se posicionan automáticamente en los flancos perpendiculares (90° / 270°) respetando el radio de colisión para evitar colazos y alientos.</li>
+                    <li><strong>Rotación Coordinada de Cortes:</strong> El sistema bloquea temporalmente las interrupciones para que dos bots jamás malgasten sus cortes en el mismo casteo de un jefe.</li>
+                    <li><strong>Veto a Burbuja en Tanques:</strong> Los paladines tanque tienen vetado el uso de <em>Escudo divino</em> (pompa que pierde el aggro y causa wipes). En su lugar usan <em>Protección divina</em> e <em>Imposición de manos</em>.</li>
+                    <li><strong>Persistencia de Grupo al Desloguear:</strong> Si cierras sesión, tus bots no mueren ni se borran. Se quedan deambulando pacíficamente y se reagrupan contigo al volver a entrar (Script 92).</li>
+                </ul>
+            </section>
+
+            <!-- MÓDULO 3: MODOS DE DESAFÍO -->
+            <section id="modulo-3" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">💀</span>
+                    <h2 class="wiki-sec-title">3. Códice de Modos de Juego & Desafíos</h2>
+                    <span class="wiki-sec-badge">Script 80_GameModes</span>
+                </div>
+
+                <p>Al crear un personaje o hablar con el Heraldo de Desafíos en tu zona de inicio, puedes activar una de las 5 sendas de juego autoritativas:</p>
+
+                <div class="wiki-table-wrap">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>Modalidad</th>
+                                <th>Vidas</th>
+                                <th>Reglas & Restricciones</th>
+                                <th>Recompensa de Victoria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong style="color: #38bdf8;">Normal</strong></td>
+                                <td>Infinitas</td>
+                                <td>Juego progresivo Blizzlike con escalado de mazmorras y bots de asistencia.</td>
+                                <td>Progresión canónica estándar.</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #f87171;">Hardcore (1 Vida)</strong></td>
+                                <td>1 Vida</td>
+                                <td>Muerte permanente. Bloqueo total de cementerios y hechizos de resurrección. Lápida in-game y anuncio global.</td>
+                                <td>Título exclusivo <code>&lt;El Inmortal&gt;</code>, Tabardo Sagrado y 100 Tokens de Jaina.</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #fbbf24;">Ironman</strong></td>
+                                <td>1 Vida</td>
+                                <td>Solo equipo blanco o gris. Prohibido buzón postal, subastas, talentos prestados y grupos con personajes no-Ironman.</td>
+                                <td>Título <code>&lt;Hombre de Hierro&gt;</code>, montura exclusiva y mención en el Salón de la Fama.</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #c084fc;">Die & Rise (3 Vidas)</strong></td>
+                                <td>3 Vidas</td>
+                                <td>1ª Muerte: Cicatriz de plaga. 2ª Muerte: Piel necrótica. 3ª Muerte: Transformación permanente en alma en pena.</td>
+                                <td>Metamorfosis cosmética de no-muerto y título <code>&lt;Resurrecto&gt;</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #34d399;">Reto Andino x1</strong></td>
+                                <td>Infinitas</td>
+                                <td>XP x1 pura en monstruos, misiones y profesiones sin ningún acelerador ni bonus de cuenta.</td>
+                                <td><strong>Herencia de Almas:</strong> Si alcanzas nivel 60/80, tu siguiente personaje hereda un bonus de XP x2 permanente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="wiki-callout tip">
+                    🛡️ <strong>DC Protection (Protección contra Caídas de Red):</strong> En modalidades de muerte permanente (Hardcore / Ironman), si el servidor detecta una desconexión brusca en pleno combate, se activa de inmediato un <em>Escudo Divino de 30 segundos</em> para salvar a tu avatar de muertes injustas causadas por microcortes de tu proveedor de internet.
+                </div>
+            </section>
+
+            <!-- MÓDULO 4: MAZMORRAS, BANDAS & RDF -->
+            <section id="modulo-4" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🏰</span>
+                    <h2 class="wiki-sec-title">4. Mazmorras, Bandas y Buscador RDF Instantáneo</h2>
+                    <span class="wiki-sec-badge">Scripts 88 y 90</span>
+                </div>
+
+                <p>En Project JAIna nunca tendrás que esperar horas para entrar a una mazmorra gracias a dos sistemas que trabajan en conjunto:</p>
+
+                <h3 style="color: var(--wiki-gold);">1. Escalado Dinámico de Mazmorras (Script 88)</h3>
+                <p>Si deseas ingresar a una mazmorra de 5 jugadores en solitario o con 1 o 2 amigos, la vida de las criaturas y el daño entrante se modulan de forma no lineal:</p>
+                <div class="wiki-cmd-card">
+                    <span class="wiki-cmd-text">HP_Criatura = Base * (Jugadores_Presentes / 5) ^ 0.65</span>
+                </div>
+                <p>Esto asegura que la mazmorra siga requiriendo habilidad táctica pero sea matemáticamente completable sin necesidad de un grupo completo.</p>
+
+                <h3 style="color: var(--wiki-gold); margin-top: 1.5rem;">2. Buscador de Mazmorras RDF Instantáneo (Script 90)</h3>
+                <p>Abre el panel de Mazmorras (tecla <code>I</code>) y selecciona tu rol. Si no hay jugadores humanos suficientes en cola, el despachador automático recluta bots de tu nivel en menos de 5 segundos, autoconfigura sus roles y te teletransporta a la entrada de la estancia listo para el combate.</p>
+            </section>
+
+            <!-- MÓDULO 5: GUARDARROPA & TRANSFIGURACIÓN -->
+            <section id="modulo-5" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">👗</span>
+                    <h2 class="wiki-sec-title">5. Guardarropa, Ilusiones & Transfiguración</h2>
+                    <span class="wiki-sec-badge">Scripts 60 y 61</span>
+                </div>
+
+                <p>Personaliza la apariencia visual de tu armadura sin comprometer tus estadísticas de combate:</p>
+                <ul>
+                    <li><strong>PNJ Kaelia Sombraetérea (Entry 990150):</strong> Estilista draenei ubicada cerca de los bancos principales en Ventormenta, Forjaz, Orgrimmar y Dalaran. Mediante un menú interactivo Gossip te permite ocultar visualmente: yelmo, hombreras, capa, camisa, tabardo y guantes sin costo.</li>
+                    <li><strong>AddOn ProjectJaina_Wardrobe:</strong> Escribe <code>/wardrobe</code> para abrir el catálogo 3D de piezas coleccionadas. Permite previsualizar conjuntos enteros y aplicar transfiguraciones por una pequeña tarifa en monedas del juego.</li>
+                </ul>
+            </section>
+
+            <!-- MÓDULO 6: ECONOMÍA & SUBASTAS -->
+            <section id="modulo-6" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🪙</span>
+                    <h2 class="wiki-sec-title">6. Economía del Reino, Monedas & Subastas Vivas</h2>
+                    <span class="wiki-sec-badge">Scripts 66, 70 y 95</span>
+                </div>
+
+                <p>El reino cuenta con una economía viva omnicanal diseñada para jugadores solitarios y hermandades:</p>
+                <ul>
+                    <li><strong>Tokens de Jaina:</strong> Moneda de prestigio conseguida al derrotar jefes finales de mazmorras y bandas, completar hazañas del Pase de Batalla o participar en eventos de mundo. Canjeable en Dalaran por monturas, títulos y servicios.</li>
+                    <li><strong>Subastador Bot Autónomo (Script 95):</strong> Los bots colocan a la venta plantas, minerales, telas, gemas y equipo de nivel adecuado en las Casas de Subastas de Ventormenta y Orgrimmar, y compran activamente los objetos que los jugadores ponen a la venta con precios de mercado dinámicos.</li>
+                    <li><strong>Entrega Instantánea de Tienda Web (Script 66):</strong> Al canjear cualquier artículo cosmético en la tienda web, el motor de entrega in-game despacha el paquete directo a tu inventario o buzón postal en menos de 3 segundos sin requerir reinicios.</li>
+                </ul>
+            </section>
+
+            <!-- MÓDULO 7: BALUARTES & GALEÓN NAVAL -->
+            <section id="modulo-7" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🚩</span>
+                    <h2 class="wiki-sec-title">7. Baluartes Territoriales & Galeón Desertor</h2>
+                    <span class="wiki-sec-badge">Scripts 14 y 15</span>
+                </div>
+
+                <p>Azeroth cobra vida con eventos y estructuras estratégicas en mundo abierto:</p>
+                <ul>
+                    <li><strong>Baluartes de Hermandad (Script 14):</strong> Existen 6 fortalezas repartidas por los continentes. Tu hermandad puede conquistar el estandarte del enclave para izar su bandera, otorgando a todos sus miembros bonificación de descanso acelerado (Rested XP) y acceso a intendentes de campaña.</li>
+                    <li><strong>El Galeón de los Desertores (Script 15):</strong> Frente a la costa de Theramore aparece periódicamente un buque de guerra rebelde. Los aventureros deben tripular los cañones costeros, abordar la nave y derrotar al capitán pirata para abrir el cofre de botín naval.</li>
+                </ul>
+            </section>
+
+            <!-- MÓDULO 8: VOZ ESPACIAL 3D -->
+            <section id="modulo-8" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🎙️</span>
+                    <h2 class="wiki-sec-title">8. Audio Espacial 3D por Proximidad (WebRTC)</h2>
+                    <span class="wiki-sec-badge">Script 65 & WebRTC</span>
+                </div>
+
+                <p>Conversa con otros jugadores de forma inmersiva sin necesidad de Discord ni canales de voz externos:</p>
+                <ul>
+                    <li>El AddOn oficial <code>ProjectJaina_Voice</code> sincroniza tus coordenadas espaciales ($X, Y, Z$) y tu orientación con el motor de audio WebRTC.</li>
+                    <li><strong>Efecto Binaural HRTF:</strong> Si un compañero te habla a tu izquierda, escucharás su voz en tu auricular izquierdo. Al alejarte, el sonido se atenúa suavemente con la distancia.</li>
+                    <li>Comando de prueba y calibración: <code>/voz</code> o <code>/voice</code>.</li>
+                </ul>
+            </section>
+
+            <!-- MÓDULO 9: COMPENDIO DE ADDONS & COMANDOS -->
+            <section id="modulo-9" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">🧩</span>
+                    <h2 class="wiki-sec-title">9. Compendio Oficial de AddOns & Comandos /Slash</h2>
+                    <span class="wiki-sec-badge">16 AddOns Canónicos</span>
+                </div>
+
+                <p>Lista autoritativa de comandos de consola disponibles para los AddOns incluidos en tu cliente de juego:</p>
+
+                <div class="wiki-table-wrap">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>AddOn Oficial</th>
+                                <th>Comando /Slash</th>
+                                <th>Función Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ProjectJaina_MultiBot</strong></td>
+                                <td><code>/mbot</code></td>
+                                <td>Abre el panel maestro de control táctico y equipamiento de Playerbots.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Companion</strong></td>
+                                <td><code>/pjc</code> o <code>/companion</code></td>
+                                <td>Abre el hub de escuadrón, barra de foco con calavera y cacerías de sangre.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Wardrobe</strong></td>
+                                <td><code>/wardrobe</code></td>
+                                <td>Abre el vestidor 3D y catálogo de transfiguración cosmética.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_BattlePass</strong></td>
+                                <td><code>/bp</code></td>
+                                <td>Muestra el progreso estacional, misiones y recompensas del Pase de Batalla.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_GameModes</strong></td>
+                                <td><code>/modos</code> o <code>/hardcore</code></td>
+                                <td>Panel de selección de retos (Hardcore, Ironman, Die & Rise, Reto x1).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Store</strong></td>
+                                <td><code>/tienda</code> o <code>/shop</code></td>
+                                <td>Tienda mística in-game de monturas y cosméticos de Dalaran.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_VisualShop</strong></td>
+                                <td><code>/visual</code></td>
+                                <td>Probador 3D de auras mágicas, alas visuales y efectos de hechizo.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Voice</strong></td>
+                                <td><code>/voz</code> o <code>/voice</code></td>
+                                <td>Panel de calibración de micrófono y volumen de audio espacial 3D.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Graphics</strong></td>
+                                <td><code>/graficos</code></td>
+                                <td>Calibración de texturas HD y presets anti-crash de memoria 32-bit.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_LoreHUD</strong></td>
+                                <td><code>/lorehud</code></td>
+                                <td>Configuración de subtítulos flotantes cinemáticos de eventos de lore.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_RaidSuite</strong></td>
+                                <td><code>/raidsuite</code></td>
+                                <td>Gestor integral de asaltos y bandas: asignación de marcas y notas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Polyglot</strong></td>
+                                <td><code>/polyglot</code></td>
+                                <td>Traductor universal para conversar entre la Alianza y la Horda.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ProjectJaina_Talented</strong></td>
+                                <td>Tecla <code>N</code></td>
+                                <td>Calculador de talentos avanzado con soporte de plantillas y exportación.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- MÓDULO 10: CRÓNICAS DE THERAMORE -->
+            <section id="modulo-10" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">📜</span>
+                    <h2 class="wiki-sec-title">10. Crónicas de Theramore & Living Lore</h2>
+                    <span class="wiki-sec-badge">Memoria Histórica</span>
+                </div>
+                <p>«Theramore no es solo una fortaleza de piedra en el Marjal Revolcafango; es el último bastión donde el honor y la magia arcana resisten frente a las sombras que emergen del Trono Helado...»</p>
+                <p>Las decisiones de los aventureros en mazmorras y eventos de mundo quedan registradas en la memoria de Lady Jaina Valiente (GUID 1002). Puedes interactuar con ella en Theramore y Dalaran para consultar el rumbo de la campaña militar y recibir misiones de lore viviente adaptadas a tu nivel.</p>
+            </section>
+
+        </main>
     </div>
 
-    <!-- CONTENIDO: TIMELINE -->
-    <div id="tab-timeline" class="wiki-section">
-        <div class="wiki-section-title">⚡ Timeline de Eventos Mundiales</div>
-        <div id="timelineContainer" class="timeline-container">
-            <div class="wiki-loading">⏳ Cargando crónicas desde world_lore_events...</div>
-        </div>
-    </div>
-
-    <!-- CONTENIDO: LORE -->
-    <div id="tab-lore" class="wiki-section" style="display:none;">
-        <div class="wiki-section-title">🌍 Fundamentos del Reino de Theramore</div>
-        <div class="lore-cards-grid">
-            <div class="lore-card">
-                <div class="lore-card-icon">🧙‍♀️</div>
-                <div class="lore-card-title">Lady Jaina Proudmoore</div>
-                <div class="lore-card-text">Archimaga del Kirin Tor, gobernante de Theramore y avatar del intelecto artificial del servidor. Sus hechizos de Escarcha resuenan en cada byte de Project JAIna.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">🏰</div>
-                <div class="lore-card-title">El Reino de Theramore</div>
-                <div class="lore-card-text">Ciudad-estado neutral fundada tras la Segunda Guerra. Sede central de Project JAIna, donde humanos, orcos y aliados estudian la confluencia de magia arcana e inteligencia artificial.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">🤖</div>
-                <div class="lore-card-title">Los LoreBots Autónomos</div>
-                <div class="lore-card-text">500 bots autónomos impulsados por modelos de lenguaje local. Cada uno tiene memoria relacional, especialización narrativa y puede evocar profecías de los libros del Kirin Tor.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">⚗️</div>
-                <div class="lore-card-title">El Laboratorio Jaina</div>
-                <div class="lore-card-text">Núcleo de investigación agentic-AI del servidor. Aquí se diseñan, entrenan y despliegan los subsistemas de memoria vectorial, voz 3D espacial y economía narrativa del reino.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">📡</div>
-                <div class="lore-card-title">Gobernador de Eventos</div>
-                <div class="lore-card-text">El daemon <code>world_lore_events_governor.py</code> evalúa triggers del reino en tiempo real (nivel de jugadores, dungeons completados) y activa eventos mundiales narrativos automáticamente.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">🔮</div>
-                <div class="lore-card-title">Las Profecías del Kirin Tor</div>
-                <div class="lore-card-text">Textos proféticos generados por la IA que se activan cuando se cumplen condiciones reales del reino. Algunas anticipan invasiones, otras la llegada de campeones épicos.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">🏰</div>
-                <div class="lore-card-title">Baluartes de Hermandad (v2.5)</div>
-                <div class="lore-card-text">6 enclaves territoriales estratégicos en Azeroth conquistables con 2,500 de oro por hermandades nivel 3+. Iza los estandartes de tu facción, accede a zona de descanso (Rested XP) y servicio de Intendente con reparaciones.</div>
-            </div>
-            <div class="lore-card">
-                <div class="lore-card-icon">🏴‍☠️</div>
-                <div class="lore-card-title">Galeón de los Desertores (v2.5)</div>
-                <div class="lore-card-text">Evento dinámico en la Bahía de Theramore cada 45 minutos. Campanas de alarma en la costa, escalas de abordaje trepables, artillería interactiva (GO 5051) con salvas reales y cofre naval (GO 2850) con botín de mundo abierto.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTENIDO: HÉROES -->
-    <div id="tab-heroes" class="wiki-section" style="display:none;">
-        <div class="wiki-section-title">⚔️ Héroes Legendarios del Reino</div>
-        <div id="heroesContainer">
-            <div class="wiki-loading">⏳ Cargando héroes desde acore_characters...</div>
-        </div>
-    </div>
-
-    <!-- CONTENIDO: PROFECÍAS -->
-    <div id="tab-prophecies" class="wiki-section" style="display:none;">
-        <div class="wiki-section-title">🔮 Profecías Activas del Kirin Tor</div>
-        <div id="propheciesContainer">
-            <div class="wiki-loading">⏳ Descifrando las profecías...</div>
-        </div>
-    </div>
-
-    <!-- CONTENIDO: GUÍAS & MANUALES -->
-    <div id="tab-manuales" class="wiki-section" style="display:none;">
-        <div class="wiki-section-title">📚 Biblioteca de Guías, Manuales & Conexión</div>
-        <div class="lore-cards-grid">
-            <div class="lore-card" style="border-color: rgba(0, 229, 255, 0.3);">
-                <div class="lore-card-icon">⚡</div>
-                <div class="lore-card-title" style="color: #00e5ff;">Conexión Global Directa — Cero VPN</div>
-                <div class="lore-card-text">
-                    El reino opera mediante un túnel Anycast L4 de alta velocidad y baja latencia:<br><br>
-                    • <strong>Reino:</strong> <code>Project JAIna (WotLK 3.3.5a)</code><br>
-                    • <strong>Acceso:</strong> <code>Público Directo (Cero VPN)</code><br>
-                    • <strong>Lanzador Oficial:</strong> <code>ProjectJaina_Launcher.exe</code><br>
-                    • <strong>Realmlist:</strong> <code>set realmlist 127.0.0.1</code> (Lanzador Oficial) / <code>set realmlist 26.140.157.205</code> (Radmin VPN)<br>
-                    • <strong>Audio 3D WebRTC:</strong> <a href="../voz/index.html" target="_blank" style="color: #00e5ff; text-decoration: underline;">Portal de Voz Integrado</a>
-                </div>
-                <div style="margin-top: 1rem;">
-                    <a href="../index.html#como-jugar" style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(0, 229, 255, 0.15); border: 1px solid rgba(0, 229, 255, 0.4); border-radius: 6px; color: #00e5ff; font-size: 0.78rem; text-decoration: none; font-weight: 700;">⚡ Ver Guía Rápida de Conexión ➔</a>
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(243, 156, 18, 0.3);">
-                <div class="lore-card-icon">📖</div>
-                <div class="lore-card-title" style="color: var(--gold-primary);">Manual de Usuario Oficial</div>
-                <div class="lore-card-text">
-                    Compendio técnico exhaustivo que documenta:<br><br>
-                    • La suite de <strong>18 AddOns oficiales</strong> preinstalados (Dragonflight UI, Chatter Companion, VisualShop, etc.).<br>
-                    • Comandos de jugador (<code>/voz</code>, <code>/bots</code>, <code>/chatter</code>).<br>
-                    • Comandos de Game Master para Baluartes (<code>.outpost</code>) y Galeón (<code>.galleon</code>).
-                </div>
-                <div style="margin-top: 1rem;">
-                    <a href="Manual_Usuario.md" target="_blank" style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(243, 156, 18, 0.15); border: 1px solid rgba(243, 156, 18, 0.4); border-radius: 6px; color: var(--gold-primary); font-size: 0.78rem; text-decoration: none; font-weight: 700;">📄 Leer Manual Completo (MD) ➔</a>
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(46, 204, 113, 0.3);">
-                <div class="lore-card-icon">❓</div>
-                <div class="lore-card-title" style="color: #2ecc71;">Preguntas Frecuentes (FAQ)</div>
-                <div class="lore-card-text">
-                    Respuestas directas a las dudas más habituales:<br><br>
-                    • Requisitos de cliente (WotLK 3.3.5a Build 12340).<br>
-                    • Solución a errores de conexión ("Desconectado del servidor").<br>
-                    • Modos de juego (Normal, Hardcore permadeath, Ironman).<br>
-                    • Activación de micrófono WebRTC para Voz 3D espacial.
-                </div>
-                <div style="margin-top: 1rem;">
-                    <a href="FAQ.md" target="_blank" style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.4); border-radius: 6px; color: #2ecc71; font-size: 0.78rem; text-decoration: none; font-weight: 700;">❓ Consultar FAQ Completo (MD) ➔</a>
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(163, 53, 238, 0.3);">
-                <div class="lore-card-icon">🏛️</div>
-                <div class="lore-card-title" style="color: #d2a8ff;">Arquitectura & API para Devs</div>
-                <div class="lore-card-text">
-                    Especificaciones para programadores e integradores:<br><br>
-                    • Stack del portal (Zero-deps Vanilla ES6+, Glassmorphism arcano).<br>
-                    • Endpoints del micro-backend <code>ProjectJaina_WebAPI.py</code> (puerto 8080).<br>
-                    • Protocolo de señalización WebRTC y sincronización Eluna (puerto 3050).<br>
-                    • Esquemas criptográficos SRP6 en <code>auth.account</code>.
-                </div>
-                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <a href="Arquitectura.md" target="_blank" style="padding: 0.35rem 0.65rem; background: rgba(163, 53, 238, 0.15); border: 1px solid rgba(163, 53, 238, 0.4); border-radius: 6px; color: #d2a8ff; font-size: 0.74rem; text-decoration: none; font-weight: 700;">🏛️ Arquitectura</a>
-                    <a href="Guia_API.md" target="_blank" style="padding: 0.35rem 0.65rem; background: rgba(163, 53, 238, 0.15); border: 1px solid rgba(163, 53, 238, 0.4); border-radius: 6px; color: #d2a8ff; font-size: 0.74rem; text-decoration: none; font-weight: 700;">🔌 Guía de API</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTENIDO: MODOS DE JUEGO -->
-    <div id="tab-modos" class="wiki-section" style="display:none;">
-        <div class="wiki-section-title">💀 Guía Exhaustiva de Modos de Juego & Desafíos</div>
-        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem; max-width: 850px; line-height: 1.6;">
-            Project Jaina implementa en su núcleo Eluna (<code>80_GameModesSystem.lua</code>) un conjunto de modos de juego que modifican las reglas canónicas del servidor. Puedes consultar tu modo activo con <code>/modo</code> o activarlo al hablar con <strong>Kaelia Sombraetérea</strong> en Dalaran o tu zona inicial.
-        </p>
-        <div class="lore-cards-grid">
-            <div class="lore-card" style="border-color: rgba(56, 189, 248, 0.4);">
-                <div class="lore-card-icon">🛡️</div>
-                <div class="lore-card-title" style="color: #38bdf8;">Modo Normal (Aventurero)</div>
-                <div class="lore-card-text">
-                    La experiencia canónica y progresiva de WotLK 3.3.5a HD.<br><br>
-                    • Resurrección ilimitada en cementerios y piedras de resurrección.<br>
-                    • Libre acceso a la Casa de Subastas, comercio entre jugadores, buzón de correo y hermandades.<br>
-                    • HeroBots y Playerbots disponibles para complementar mazmorras y raids.<br>
-                    • Compatible con el Pase de Batalla de 50 niveles.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(239, 68, 68, 0.4);">
-                <div class="lore-card-icon">☠️</div>
-                <div class="lore-card-title" style="color: #f87171;">Modo Hardcore (Muerte Permanente)</div>
-                <div class="lore-card-text">
-                    Una sola vida. Tu salud nunca puede llegar a 0.<br><br>
-                    • <strong>Sin Resurrección:</strong> Todo hechizo de reanimación (Piedra de Alma, Renacer, Intervención Divina) queda bloqueado.<br>
-                    • Al morir, se genera una lápida física (GO 192256) en tu ubicación y tu alma queda ligada al mundo como espíritu.<br>
-                    • <strong>Herencia de Almas:</strong> Si superas nivel 1, tu cuenta recibe un bono de <strong>+100% XP (x2)</strong> para tu próximo personaje hasta tu nivel máximo alcanzado.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(148, 163, 184, 0.4);">
-                <div class="lore-card-icon">⛓️</div>
-                <div class="lore-card-title" style="color: #cbd5e1;">Modo Ironman (Autosuficiencia Total)</div>
-                <div class="lore-card-text">
-                    Muerte permanente combinada con el aislamiento socioeconómico absoluto.<br><br>
-                    • Prohibido comerciar con jugadores (Trade) o recibir correo con objetos.<br>
-                    • Prohibido usar la Casa de Subastas y desvinculación automática de hermandades.<br>
-                    • Solo puedes equipar piezas de calidad Pobre (Gris) y Común (Blanca). Las piezas Verdes/Azules/Épicas quedan bloqueadas.<br>
-                    • Prohibido agruparse para misiones o mazmorras.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(16, 185, 129, 0.4);">
-                <div class="lore-card-icon">🧟</div>
-                <div class="lore-card-title" style="color: #34d399;">Die & Rise (Metamorfosis Necrótica)</div>
-                <div class="lore-card-text">
-                    Inicias tu travesía con 3 vidas otorgadas por el Consejo Arcano.<br><br>
-                    • <strong>1ª Muerte:</strong> Resucitas con debuff profano y apariencia cadavérica.<br>
-                    • <strong>2ª Muerte:</strong> Transformación esquelética permanente (Noggenfogger 14782) y aura fría.<br>
-                    • <strong>Purificación Divina:</strong> Puedes restaurar vidas rezando en Santuarios Sagrados dedicados a la Luz.<br>
-                    • <strong>3ª Muerte:</strong> Muerte definitiva irrevocable.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(245, 158, 11, 0.4);">
-                <div class="lore-card-icon">🏔️</div>
-                <div class="lore-card-title" style="color: #fbbf24;">Reto Andino x1 (Progresión 2008)</div>
-                <div class="lore-card-text">
-                    El ritmo puro y pausado de la era dorada de World of Warcraft.<br><br>
-                    • Multiplicadores de experiencia en x1.00 estricto para muertes, misiones y exploración.<br>
-                    • Sin beneficios de descanso inflados ni atajos de teletransporte.<br>
-                    • Otorga título e insignia honorífica en la Armería web de Campeones al alcanzar el nivel máximo.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(168, 85, 247, 0.4);">
-                <div class="lore-card-icon">🛡️</div>
-                <div class="lore-card-title" style="color: #c084fc;">Santuario Anti-DC (Seguridad de Red L9)</div>
-                <div class="lore-card-text">
-                    Protección activa ante contingencias técnicas de red.<br><br>
-                    • Si el núcleo detecta una desconexión abrupta o pérdida de paquetes mientras tu personaje está en combate en modo Hardcore/Ironman/Die&Rise, el servidor aplica de forma preventiva el <strong>Santuario Divino de Inmunidad</strong> (Spell 45438).<br>
-                    • Tu personaje no perecerá por microcortes de tu proveedor de fibra óptica o WiFi.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTENIDO: ECONOMÍA & DIVISAS -->
-    <div id="tab-economia" class="wiki-section" style="display:none;">
-        <div class="wiki-section-title">🪙 Manual del Ecosistema Económico & Monedas Soberanas</div>
-        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem; max-width: 850px; line-height: 1.6;">
-            La economía de Project Jaina está diseñada bajo el principio de circuito cerrado con cero pay-to-win. Los jugadores pueden disfrutar de todas las características cosméticas jugando o apoyando el sostenimiento del hardware.
-        </p>
-
-        <!-- BANNER DE BIENVENIDA -->
-        <div style="background: rgba(30, 27, 75, 0.6); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-            <h4 style="color: #ffd700; margin: 0 0 0.5rem 0; font-size: 1.15rem;">🎁 Paquete de Bienvenida "Minuto Cero" (Gratuito para Todo Jugador)</h4>
-            <p style="color: #cbd5e1; font-size: 0.88rem; margin: 0 0 1rem 0; line-height: 1.5;">
-                En su primer inicio de sesión (<code>87_PlayerFirstLogin_Onboarding.lua</code>), cada nuevo personaje recibe automáticamente:
-            </p>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <span style="background: rgba(0,0,0,0.4); border: 1px solid #ffd700; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #ffd700; font-weight: bold;">🪽 5x Fichas de Evento (910000)</span>
-                <span style="background: rgba(0,0,0,0.4); border: 1px solid #38bdf8; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #38bdf8; font-weight: bold;">🪙 6x Tokens de Jaina (900100)</span>
-                <span style="background: rgba(0,0,0,0.4); border: 1px solid #34d399; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #34d399; font-weight: bold;">💰 10 Monedas de Oro</span>
-                <span style="background: rgba(0,0,0,0.4); border: 1px solid #a855f7; border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; color: #e9d5ff; font-weight: bold;">🎒 4x Bolsas de 16 Casillas</span>
-            </div>
-        </div>
-
-        <div class="lore-cards-grid">
-            <div class="lore-card" style="border-color: rgba(236, 72, 153, 0.4);">
-                <div class="lore-card-icon">🪽</div>
-                <div class="lore-card-title" style="color: #f472b6;">Ficha de Evento (Item 910000)</div>
-                <div class="lore-card-text">
-                    <strong>Naturaleza:</strong> Divisa cosmética de prestigio.<br><br>
-                    • <strong>¿Cómo se consigue?:</strong><br>
-                    1. <strong>5 Fichas GRATIS</strong> al crear tu personaje en el Onboarding de Minuto Cero.<br>
-                    2. Canje in-game con Tokens de Jaina en la tienda (200 &rarr; 10x, 800 &rarr; 50x, 1500 &rarr; 100x).<br>
-                    3. Recompensas de eventos mundiales y packs de la web.<br><br>
-                    • <strong>¿En qué se gasta?:</strong> En la <strong>Tienda Visual 3D (comando <code>/alas</code>)</strong> para activar alas celestiales, auras y bonus de 3 días (4 fichas sin bonus, 5 con bonus de profesiones, 6 con bonus de oro/exp/rep).
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(56, 189, 248, 0.4);">
-                <div class="lore-card-icon">🪙</div>
-                <div class="lore-card-title" style="color: #38bdf8;">Token de Jaina (Item 900100)</div>
-                <div class="lore-card-text">
-                    <strong>Naturaleza:</strong> Micro-moneda soberana 1:1.<br><br>
-                    • <strong>Canje In-Game:</strong> Clic derecho en el ítem dentro del juego consume la moneda y acredita de forma atómica <strong>+1 Punto de Donación (PD)</strong> a tu cuenta web.<br>
-                    • <strong>Uso In-Game:</strong> Moneda oficial para adquirir monturas, bolsas de 20/22 casillas, compañeros y servicios cosméticos en el AddOn <code>ProjectJaina_Store</code>.<br>
-                    • <strong>Seguridad:</strong> Validación autoritativa en RAM del core. Imposible de hackear mediante alteración de paquetes cliente.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(245, 158, 11, 0.4);">
-                <div class="lore-card-icon">🎫</div>
-                <div class="lore-card-title" style="color: #fbbf24;">Ficha de Jaina — WoW Token (Item 900200)</div>
-                <div class="lore-card-text">
-                    <strong>Naturaleza:</strong> WoW Token Mayor (100 PD).<br><br>
-                    • <strong>Economía Abierta:</strong> Se puede comerciar libremente entre jugadores o listar en la Casa de Subastas a cambio de oro del juego.<br>
-                    • <strong>Canje In-Game:</strong> Clic derecho acredita de inmediato <strong>+100 PD</strong> en tu cuenta web.<br>
-                    • <strong>Democratización:</strong> Permite que un jugador sin recursos económicos acceda a membresías VIP o pases de batalla simplemente farmeando oro in-game.
-                </div>
-            </div>
-
-            <div class="lore-card" style="border-color: rgba(16, 185, 129, 0.4);">
-                <div class="lore-card-icon">🏛️</div>
-                <div class="lore-card-title" style="color: #34d399;">Motor de Subastas Vivas (AH Engine)</div>
-                <div class="lore-card-text">
-                    <strong>Solución a servidores de baja población inicial:</strong><br><br>
-                    • Sembrado con más de 1,200 materiales canónicos (telas, menas, hierbas, elixires, recetas).<br>
-                    • <strong>Agente Comprador Autónomo (<code>95_AuctionHouse_Economy_Engine.lua</code>):</strong> Detecta cuando un jugador humano publica materiales y, tras 45 segundos, simula la compra por aventureros bots con un 80% de probabilidad.<br>
-                    • El oro se envía por correo oficial con la <strong>comisión del 5% ya retenida</strong>.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-crest-container">
-            <img src="../images/jaina_crest_logo.jpg" alt="Project JAIna" class="footer-crest-img">
-        </div>
-        <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
-        <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
-    </footer>
-
-    <script src="../js/particles.js"></script>
-    <script src="../js/card_tilt.js"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/navbar.js"></script>
+    <!-- SCRIPT DEL BUSCADOR EN VIVO Y COPIADO DE MACROS -->
     <script>
-    // ─────────────────────────────────────────────────────────────────────────
-    // Wiki de Lore — Hito #127: Timeline en Vivo desde world_lore_events
-    // ─────────────────────────────────────────────────────────────────────────
-
-    const _API = () => (typeof CONFIG !== "undefined" && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : "http://127.0.0.1:8080";
-
-    // Eventos de lore fallback (canónicos si el backend está offline)
-    const LORE_EVENTS_FALLBACK = [
-        { title:"Fundación de Project JAIna",  date:"Año 25 D.P.", status:"COMPLETE", description:"DarckRovert convoca a los primeros magos del Kirin Tor para establecer un servidor privado impulsado por inteligencia artificial en los Reinos del Este.", trigger_type:"MANUAL" },
-        { title:"Primera Sincronización Neural", date:"Año 25 D.P.", status:"COMPLETE", description:"Los 500 LoreBots despiertan por primera vez. La red de memoria vectorial FAISS procesa los textos del lore de Warcraft y forja la conciencia colectiva de Theramore.", trigger_type:"PLAYERS_ONLINE_1" },
-        { title:"El Despertar del Gobernador",  date:"Año 25 D.P.", status:"ACTIVE",   description:"El daemon world_lore_events_governor comienza a vigilar el reino. Su primera evaluación detecta héroes que alcanzan la cima del nivel de Era Clásica.", trigger_type:"PLAYERS_LEVEL_60" },
-        { title:"La Profecía de los 1337 GS",  date:"Año 25 D.P.", status:"ACTIVE",   description:"Los oráculos del Kirin Tor proclaman: 'Cuando un guerrero del reino alcance GS 1337, las puertas de los Reinos del Tiempo se abrirán'. Berenic es el primer candidato.", trigger_type:"GEARSCORE_1337" },
-        { title:"El Gran Torneo de Dalaran",    date:"Año 26 D.P.", status:"PENDING",  description:"Se convoca el primer torneo PvP oficial del reino. Los campeones lucharán por el título de Soberano de Theramore y acceso a los sagrarios de los Aspectos Dragónicos.", trigger_type:"PLAYERS_ONLINE_50" },
-        { title:"La Gran Apertura — Noviembre", date:"24 Nov 2026", status:"PENDING",  description:"Project JAIna abre sus puertas al mundo. Theramore recibe a sus primeros aventureros externos. La Era de los Héroes comienza oficialmente.", trigger_type:"GRAN_APERTURA" }
-    ];
-
-    const PROPHECIES = [
-        { icon:"🌊", title:"La Marea de Escarcha",    text:"«Cuando el hielo cubra los campos de Theramore y los muertos caminen de nuevo, busca al Paladín que lleva la Luz como escudo. Sólo él podrá sellar el portal.»", status:"PENDING" },
-        { icon:"🔥", title:"La Llama del Dragón Rojo", text:"«Alexstrasza cederá su fuego al campeón de mayor GS del reino en el momento en que cien almas vivan simultáneamente bajo las torres de Dalaran.»", status:"PENDING" },
-        { icon:"👁️", title:"El Ojo del Espía",        text:"«Un espía de la Legión Ardiente se infiltrará entre los héroes. Su identidad será revelada cuando el contador de bajas PvP supere las 10,000 en el reino.»", status:"ACTIVE" },
-        { icon:"⚔️", title:"La Espada del Rey Caído", text:"«El Filo de Arthas aguarda en el corazón de la Corona de Hielo. El personaje que alcance GS 4000 recibirá el favor de los Caballeros de la Muerte como guardia personal.»", status:"ACTIVE" }
-    ];
-
-    // ── Navegación por tabs ──────────────────────────────────────────────────
-    function switchTab(tabId, el) {
-        document.querySelectorAll("[id^='tab-']").forEach(t => t.style.display = "none");
-        document.querySelectorAll(".wiki-tab").forEach(t => t.classList.remove("active"));
-        document.getElementById("tab-" + tabId).style.display = "block";
-        el.classList.add("active");
-
-        if (tabId === "heroes") loadHeroes();
-        if (tabId === "prophecies") renderProphecies();
-    }
-
-    // ── Timeline ─────────────────────────────────────────────────────────────
-    async function loadTimeline() {
-        const badge = document.getElementById("wikiLiveBadge");
-        try {
-            const ctrl = new AbortController();
-            setTimeout(() => ctrl.abort(), 3000);
-            const resp = await fetch(`${_API()}/api/lore/events`, {
-                signal: ctrl.signal,
-                headers: { "ngrok-skip-browser-warning": "true" }
+        // 1. Copiado de Macros con Feedback Visual
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.innerText;
+                btn.innerText = "✓ ¡Copiado!";
+                btn.style.background = "#34d399";
+                btn.style.color = "#000000";
+                setTimeout(() => {
+                    btn.innerText = orig;
+                    btn.style.background = "";
+                    btn.style.color = "";
+                }, 2000);
+            }).catch(err => {
+                console.error("Error al copiar texto:", err);
             });
-            if (resp.ok) {
-                const data = await resp.json();
-                if (Array.isArray(data) && data.length > 0) {
-                    renderTimeline(data);
-                    badge.innerHTML = "● CRÓNICAS EN VIVO · world_lore_events";
-                    badge.style.cssText = "color:#39d353;border-color:rgba(57,211,83,.4);background:rgba(57,211,83,.08);";
-                    return;
+        }
+
+        // 2. Buscador Reactivo Instantáneo (<10ms)
+        document.getElementById("wikiSearch").addEventListener("input", function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            const sections = document.querySelectorAll(".wiki-section");
+
+            sections.forEach(sec => {
+                const text = sec.innerText.toLowerCase();
+                if (query === "" || text.includes(query)) {
+                    sec.style.display = "block";
+                } else {
+                    sec.style.display = "none";
                 }
-            }
-        } catch (_) {}
-
-        // Fallback canónico
-        renderTimeline(LORE_EVENTS_FALLBACK);
-        badge.innerHTML = "○ CRÓNICAS LOCALES (Servidor Offline)";
-        badge.style.cssText = "color:#ffb74d;border-color:rgba(255,183,77,.4);background:rgba(255,183,77,.08);";
-    }
-
-    function renderTimeline(events) {
-        const container = document.getElementById("timelineContainer");
-        if (!container) return;
-        container.innerHTML = events.map((ev, i) => {
-            const isComp = (ev.status === "COMPLETE" || ev.status === "COMPLETED");
-            const isActive = (ev.status === "ACTIVE");
-            const dotClass = isActive ? "active" : (isComp ? "complete" : "pending");
-            const pillClass = isActive ? "pill-active" : (isComp ? "pill-complete" : "pill-pending");
-            const statusText = isActive ? "● ACTIVO" : (isComp ? "✓ COMPLETADO" : "○ PENDIENTE");
-
-            return `
-            <div class="timeline-event">
-                <div class="timeline-dot ${dotClass}"></div>
-                <div class="timeline-card">
-                    <div class="timeline-date">${ev.date || ev.activated_at || "Era Clásica"}</div>
-                    <div class="timeline-event-title">${ev.title}</div>
-                    <div class="timeline-event-desc">${ev.description}</div>
-                    <span class="timeline-status-pill ${pillClass}">
-                        ${statusText}
-                    </span>
-                    ${ev.trigger_type ? `<div style="font-size:.7rem;color:#555;margin-top:.4rem;">Trigger: ${ev.trigger_type}</div>` : ''}
-                </div>
-            </div>`;
-        }).join("");
-    }
-
-    // ── Héroes ───────────────────────────────────────────────────────────────
-    async function loadHeroes() {
-        const container = document.getElementById("heroesContainer");
-        if (!container) return;
-        try {
-            const ctrl = new AbortController();
-            setTimeout(() => ctrl.abort(), 3000);
-            const resp = await fetch(`${_API()}/api/armory/leaderboard`, {
-                signal: ctrl.signal,
-                headers: { "ngrok-skip-browser-warning": "true" }
             });
-            if (resp.ok) {
-                const data = await resp.json();
-                if (Array.isArray(data) && data.length) { renderHeroes(data.slice(0, 12)); return; }
-            }
-        } catch (_) {}
-        try {
-            const fbResp = await fetch("../data/armory.json");
-            if (fbResp.ok) {
-                const fbData = await fbResp.json();
-                if (Array.isArray(fbData) && fbData.length) { renderHeroes(fbData.slice(0, 12)); return; }
-            }
-        } catch (_) {}
-        container.innerHTML = `<div class="wiki-loading">○ Servidor offline — conecta el clúster para ver héroes en vivo.</div>`;
-    }
+        });
 
-    function renderHeroes(chars) {
-        const c = document.getElementById("heroesContainer");
-        const QUALITY_COLOR_GS = gs => gs >= 3000 ? "#ffd700" : gs >= 2000 ? "#a335ee" : gs >= 1200 ? "#0070dd" : "#1eff00";
-        c.innerHTML = `<div class="lore-cards-grid">${chars.map((ch, i) => `
-            <div class="lore-card" style="border-color:rgba(200,168,0,.15);">
-                <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;">
-                    <div style="width:42px;height:42px;border-radius:50%;background:rgba(200,168,0,.1);
-                         border:1px solid rgba(200,168,0,.3);display:flex;align-items:center;
-                         justify-content:center;font-size:1.3rem;font-weight:800;color:#c8a800;">
-                        ${ch.name.charAt(0)}
-                    </div>
-                    <div>
-                        <div style="font-weight:800;color:#fff;">#${i+1} ${ch.name}</div>
-                        <div style="font-size:.75rem;color:var(--text-muted);">${ch.title || "Héroe de Azeroth"}</div>
-                    </div>
-                </div>
-                <div style="font-size:.84rem;color:var(--text-muted);line-height:1.5;">
-                    ${ch.class} · ${ch.race} · Nv${ch.level}<br>
-                    <span style="color:${QUALITY_COLOR_GS(ch.gs)};font-weight:700;">${ch.gs} GS</span>
-                    · ${ch.guild}
-                    ${ch.online ? '<span style="color:#39d353;margin-left:.5rem;">● En Línea</span>' : ''}
-                </div>
-                ${ch.honor ? `<div style="font-size:.76rem;color:#ff6b6b;margin-top:.4rem;">⚔️ ${(ch.honor||0).toLocaleString()} honor · ${(ch.kills||0).toLocaleString()} bajas</div>` : ''}
-            </div>`).join("")}
-        </div>`;
-    }
-
-    // ── Profecías ────────────────────────────────────────────────────────────
-    function renderProphecies() {
-        const c = document.getElementById("propheciesContainer");
-        if (!c) return;
-        c.innerHTML = `<div class="lore-cards-grid">${PROPHECIES.map(p => `
-            <div class="lore-card" style="border-color:${p.status==='ACTIVE'?'rgba(163,53,238,.25)':'rgba(255,255,255,.07)'};">
-                <div class="lore-card-icon">${p.icon}</div>
-                <div class="lore-card-title" style="color:${p.status==='ACTIVE'?'#a335ee':'#e8d88a'};">${p.title}</div>
-                <div class="lore-card-text" style="font-style:italic;color:#9090a8;">${p.text}</div>
-                <span class="timeline-status-pill ${p.status==='ACTIVE'?'pill-active':'pill-pending'}" style="margin-top:.7rem;">
-                    ${p.status==='ACTIVE'?'● PROFECÍA ACTIVA':'○ PENDIENTE'}
-                </span>
-            </div>`).join("")}
-        </div>`;
-    }
-
-    // ── Endpoint /api/lore/events — agregar al WebAPI si no existe ────────────
-    // (El endpoint se añadirá en WebAPI.py junto a /api/armory)
-
-    // INIT
-    document.addEventListener("DOMContentLoaded", () => { loadTimeline(); });
+        // 3. Highlight de navegación según scroll
+        const navLinks = document.querySelectorAll(".wiki-nav-link");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            document.querySelectorAll(".wiki-section").forEach(sec => {
+                const top = sec.offsetTop - 120;
+                if (window.pageYOffset >= top) {
+                    current = sec.getAttribute("id");
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + current) {
+                    link.classList.add("active");
+                }
+            });
+        });
     </script>
-    <script src="../js/audio_ambient.js"></script>
 </body>
 </html>

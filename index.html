@@ -69,8 +69,8 @@
                     <a href="#addons-showcase" class="dropdown-item-link">
                         <span class="dropdown-item-icon">🧩</span>
                         <div class="dropdown-item-text">
-                            <span class="dropdown-item-title">Suite de 18 AddOns HD</span>
-                            <span class="dropdown-item-desc">DragonflightUI, Audio 3D y más</span>
+                            <span class="dropdown-item-title">Suite de 20 AddOns Oficiales</span>
+                            <span class="dropdown-item-desc">MultiBot, DragonflightUI, Wardrobe y más</span>
                         </div>
                     </a>
                     <a href="#trailer-cinematico" class="dropdown-item-link">
@@ -1094,7 +1094,15 @@
                     <div class="feature-icon">📜</div>
                     <div>
                         <h3 class="feature-title">Pase de Batalla & Desafíos Soberanos</h3>
-                        <p class="feature-desc">Desafíos Hardcore, Ironman y sistema de progresión de temporada integrado con 18 AddOns oficiales remasterizados exclusivos para la experiencia Project Jaina.</p>
+                        <p class="feature-desc">Desafíos Hardcore, Ironman y sistema de progresión de temporada integrado con la Suite de 20 AddOns oficiales remasterizados exclusivos para la experiencia Project Jaina.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item-glass" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.05);">
+                    <div class="feature-icon">⚔️</div>
+                    <div>
+                        <h3 class="feature-title" style="color: #fbbf24;">Apex Mythic Raider PvE v4.0 & Turing Social</h3>
+                        <p class="feature-desc">Playerbots con radar espacial O(1) de charcos en suelo, flanqueo perpendicular a 90° de dragones, rotación coordinada de interrupciones, reaparición en entrada de mazmorra sin sickness y Turing Social con retardo de tipeo humano (*Chrono-Typing*) en chat de grupo.</p>
                     </div>
                 </div>
             </div>
@@ -1309,59 +1317,164 @@
         </div>
     </section>
 
-    <!-- SUITE DE LOS 18 ADDONS OFICIALES REMASTERIZADOS -->
+    <!-- SUITE DE LOS 20 ADDONS OFICIALES REMASTERIZADOS -->
     <section id="addons-showcase" class="factions-section">
-        <h2 class="section-title">Suite de 18 AddOns Oficiales Remasterizados</h2>
-        <p class="section-subtitle">Optimizados exclusivamente para el cliente WotLK 3.3.5a HD de Project JAIna, incluidos en el Launcher oficial</p>
+        <h2 class="section-title">Suite de 20 AddOns Oficiales de Project JAIna</h2>
+        <p class="section-subtitle">Calibrados quirúrgicamente para el cliente WotLK 3.3.5a HD (16 AddOns canónicos para jugadores y 4 suites exclusivas de Staff)</p>
 
-        <div class="addons-grid">
+        <div class="addons-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;">
+            <!-- 1. MULTIBOT -->
+            <div class="addon-card" style="border-color: rgba(245, 158, 11, 0.45); background: linear-gradient(145deg, rgba(20,20,25,0.85), rgba(245, 158, 11, 0.08));">
+                <div class="addon-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">⭐ FLAGSHIP BOTS 4.0</div>
+                <div class="addon-icon">🤖</div>
+                <h3 class="addon-title">ProjectJaina_MultiBot</h3>
+                <p class="addon-desc">Panel gráfico maestro para comandar Playerbots. Gestión de roles, estrategias de combate, formaciones, talentos, inspección y equipamiento en tiempo real.</p>
+                <div style="font-size: 0.74rem; color: #fbbf24; font-family: monospace; margin-top: 0.5rem;">Comando: /mbot</div>
+            </div>
+
+            <!-- 2. DRAGONFLIGHT UI -->
             <div class="addon-card">
                 <div class="addon-badge">INTERFAZ 10.0</div>
                 <div class="addon-icon">🐉</div>
                 <h3 class="addon-title">ProjectJaina_DragonflightUI</h3>
-                <p class="addon-desc">Reemplazo total de barras de acción, marcos de unidad micro-botones y minimapa al estándar moderno de Dragonflight en 3.3.5a.</p>
+                <p class="addon-desc">Reemplazo total de barras de acción, marcos de unidad, minimapa, orfebrería de Dalaran y organizador de bolsas inteligente SushiSort al estándar moderno de Dragonflight.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Integrado en HUD</div>
             </div>
 
+            <!-- 3. COMPANION -->
             <div class="addon-card">
-                <div class="addon-badge">AUDIO BINAURAL</div>
-                <div class="addon-icon">🎧</div>
-                <h3 class="addon-title">ProjectJaina_Audio3D</h3>
-                <p class="addon-desc">Motor espacial HRTF por proximidad. Escucha a Jaina y a los aventureros con paneo y atenuación cardinal en tiempo real.</p>
+                <div class="addon-badge">HUB DE ESCUADRÓN</div>
+                <div class="addon-icon">👥</div>
+                <h3 class="addon-title">ProjectJaina_Companion</h3>
+                <p class="addon-desc">Barra de control táctico de bots con botón de foco de calavera (/pjc focus), reanimación de compañeros y telemetría de cacerías de sangre de cofradías.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /pjc o /companion</div>
             </div>
 
+            <!-- 4. WARDROBE -->
             <div class="addon-card">
-                <div class="addon-badge">GRÁFICOS HD</div>
-                <div class="addon-icon">💎</div>
-                <h3 class="addon-title">ProjectJaina_Graphics</h3>
-                <p class="addon-desc">Texturas remasterizadas en alta definición, sombras dinámicas y shaders ambientales adaptados a pantallas 4K y Full HD.</p>
+                <div class="addon-badge">TRANSMOG 3D</div>
+                <div class="addon-icon">👗</div>
+                <h3 class="addon-title">ProjectJaina_Wardrobe</h3>
+                <p class="addon-desc">Guardarropa y vestidor 3D. Colección de apariencias, prueba de conjuntos de armadura y transfiguración cosmética sin alterar estadísticas.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /wardrobe</div>
             </div>
 
+            <!-- 5. BATTLEPASS -->
             <div class="addon-card">
                 <div class="addon-badge">PROGRESIÓN</div>
                 <div class="addon-icon">🏆</div>
                 <h3 class="addon-title">ProjectJaina_BattlePass</h3>
-                <p class="addon-desc">Pase de Batalla con 100 niveles de recompensas cosméticas, misiones diarias y desafíos semanales sincronizados con el servidor.</p>
+                <p class="addon-desc">Pase de Batalla con 50 niveles estacionales, misiones diarias, desafíos semanales y recompensas cosméticas exclusivas con entrega directa.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /bp</div>
             </div>
 
+            <!-- 6. GAMEMODES -->
             <div class="addon-card">
-                <div class="addon-badge">DESAFÍO EXTREMO</div>
+                <div class="addon-badge">MODOS & RETOS</div>
                 <div class="addon-icon">💀</div>
-                <h3 class="addon-title">ProjectJaina_Hardcore</h3>
-                <p class="addon-desc">Modo Muerte Permanente oficial. Certificación de supervivencia, lápida in-game y alertas globales para hazañas heroicas.</p>
+                <h3 class="addon-title">ProjectJaina_GameModes</h3>
+                <p class="addon-desc">Selector cinemático de modalidades: Normal, Hardcore permadeath, Ironman, Die & Rise (3 vidas) y Reto Andino x1 con protección ante desconexiones (DC Protection).</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /modos o /hardcore</div>
             </div>
 
+            <!-- 7. STORE -->
             <div class="addon-card">
-                <div class="addon-badge">LÍNEA DE FASES</div>
-                <div class="addon-icon">⏳</div>
-                <h3 class="addon-title">ProjectJaina_ContentGate</h3>
-                <p class="addon-desc">Sincronización in-game con la era activa gobernada por Gravity AI, bloqueando contenido superior hasta su apertura oficial.</p>
+                <div class="addon-badge">TIENDA IN-GAME</div>
+                <div class="addon-icon">🪙</div>
+                <h3 class="addon-title">ProjectJaina_Store</h3>
+                <p class="addon-desc">Tienda Mística de Dalaran dentro del juego. Canje de monturas, cosméticos y servicios mediante Tokens de Jaina con entrega directa al inventario.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /tienda o /shop</div>
             </div>
 
+            <!-- 8. VISUALSHOP -->
             <div class="addon-card">
-                <div class="addon-badge">CINEMÁTICAS & LORE</div>
+                <div class="addon-badge">AURAS & ALAS</div>
+                <div class="addon-icon">✨</div>
+                <h3 class="addon-title">ProjectJaina_VisualShop</h3>
+                <p class="addon-desc">Probador y catálogo interactivo de auras mágicas, alas visuales y efectos de partículas de hechizos para personalizar a tu avatar.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /visual</div>
+            </div>
+
+            <!-- 9. VOICE -->
+            <div class="addon-card">
+                <div class="addon-badge">AUDIO BINAURAL</div>
+                <div class="addon-icon">🎙️</div>
+                <h3 class="addon-title">ProjectJaina_Voice</h3>
+                <p class="addon-desc">Motor espacial de proximidad 3D (WebRTC HRTF). Escucha a los aventureros con volumen y paneo estéreo cardinal según su posición física en el juego.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /voz o /voice</div>
+            </div>
+
+            <!-- 10. GRAPHICS -->
+            <div class="addon-card">
+                <div class="addon-badge">GRÁFICOS HD</div>
+                <div class="addon-icon">💎</div>
+                <h3 class="addon-title">ProjectJaina_Graphics</h3>
+                <p class="addon-desc">Panel de calibración visual HD, control de densidad de partículas, nitidez y presets de seguridad contra desbordamiento de memoria 32-bit.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /graficos</div>
+            </div>
+
+            <!-- 11. LOREHUD -->
+            <div class="addon-card">
+                <div class="addon-badge">CINEMÁTICAS</div>
                 <div class="addon-icon">🎬</div>
                 <h3 class="addon-title">ProjectJaina_LoreHUD</h3>
-                <p class="addon-desc">Subtítulos flotantes cinematográficos, barras de conjuro inmersivas, avisos de eventos mundiales y diálogos con Jaina sincronizados.</p>
+                <p class="addon-desc">Subtítulos flotantes cinematográficos para eventos de Lore Viviente, avisos mundiales de Theramore y diálogos de Lady Jaina en canal LOREWOW.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /lorehud</div>
+            </div>
+
+            <!-- 12. RAIDSUITE -->
+            <div class="addon-card">
+                <div class="addon-badge">BANDAS & LOGS</div>
+                <div class="addon-icon">⚔️</div>
+                <h3 class="addon-title">ProjectJaina_RaidSuite</h3>
+                <p class="addon-desc">Suite de asalto para hermandades: asignación de marcas RTI, estadísticas de rendimiento en pulls, sincronización de versiones y notas de combate.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /raidsuite</div>
+            </div>
+
+            <!-- 13. TALENTED -->
+            <div class="addon-card">
+                <div class="addon-badge">TALENTOS</div>
+                <div class="addon-icon">📜</div>
+                <h3 class="addon-title">ProjectJaina_Talented</h3>
+                <p class="addon-desc">Calculador de talentos integral dentro de WoW. Permite previsualizar las 3 ramas de clase completas, guardar plantillas y exportar builds.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Tecla rápida: N</div>
+            </div>
+
+            <!-- 14. ABBREVIATED STATUS -->
+            <div class="addon-card">
+                <div class="addon-badge">NUMÉRICOS K/M</div>
+                <div class="addon-icon">📊</div>
+                <h3 class="addon-title">ProjectJaina_AbbreviatedStatus</h3>
+                <p class="addon-desc">Formateo compacto numérico (ej. 45.2k / 1.2M) en barras de vida, maná y energía para mantener limpia la interfaz en combates de alto daño.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Automático en HUD</div>
+            </div>
+
+            <!-- 15. POLYGLOT -->
+            <div class="addon-card">
+                <div class="addon-badge">TRADUCTOR</div>
+                <div class="addon-icon">🌐</div>
+                <h3 class="addon-title">ProjectJaina_Polyglot</h3>
+                <p class="addon-desc">Traductor universal que permite comprender y conversar de forma fluida entre jugadores de la Alianza y la Horda en mundo abierto.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">Comando: /polyglot</div>
+            </div>
+
+            <!-- 16. GEARSCORE -->
+            <div class="addon-card">
+                <div class="addon-badge">TELEMETRÍA</div>
+                <div class="addon-icon">🛡️</div>
+                <h3 class="addon-title">ProjectJaina_GearScore</h3>
+                <p class="addon-desc">Cálculo de poder de armadura calibrado para WotLK 3.3.5a en tooltips de personaje e inspección de equipo de otros jugadores y bots.</p>
+                <div style="font-size: 0.74rem; color: var(--gold-primary); font-family: monospace; margin-top: 0.5rem;">En Tooltips de Objetos</div>
+            </div>
+        </div>
+
+        <!-- CALLOUT HACIA LA WIKI -->
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="wiki/index.html#modulo-9" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 0.8rem 1.8rem;">
+                📖 Explorar Guía Completa de AddOns y Comandos en la Wiki ➔
+            </a>
+            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">
+                🔒 <em>Herramientas de Staff y Soporte GM (AdminTools, GMGenie, IntiObjGPS, TBCBalance) segregadas exclusivamente para Maestros de Juego.</em>
             </div>
         </div>
     </section>

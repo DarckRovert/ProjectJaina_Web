@@ -4,6 +4,27 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v5.48.0] - 2026-10-28 — Motor Apex Mythic Raider PvE v4.0, Resiliencia Web L9, Wiki Interactiva del Jugador y Saneamiento de AddOns (Hito #263)
+
+### ⚔️ Motor PvE de Simulación Táctica y Turing Social
+- **Integración del Motor Espacial O(1) (`92b_ApexPvE_EncounterEngine.lua`):**
+  - Radar de peligros en suelo (`DynamicObject` TypeMask 64) en radio de 45y con resolución de 8 vectores angulares para escape inmediato de zonas dañinas.
+  - Solver posicional de dragones: tanque mantiene el frontal a 180° del grupo; DPS y sanadores se sitúan en flancos perpendiculares (90°/270°) respetando el radio de colisión real (`GetCombatReach()`).
+  - Dispersión automática de auras infecciosas (*Spread Out*) para mantener separación de 8-10y entre miembros del grupo.
+- **Códice Declarativo de Jefes (`92c_ApexPvE_BossCodex.lua`):**
+  - Soporte canónico para 20 mazmorras Vanilla, Zul'Gurub, AQ40, Halls of Reflection (agrupación en esquinas para LoS), ToC e ICC.
+  - Directivas de corte coordinado con cerrojo temporal (`PVE_INTERRUPT_LOCK`), purga, cambio forzado de foco a adds explosivos y cese de acciones ante miradas de muerte.
+- **Turing Social en Mazmorras (`LoreBots/03_Playerbot_SocialBridge.lua`):**
+  - Paquetes de red genuinos `SMSG_MESSAGECHAT` (0x096) con Chrono-Typing (lectura humana y velocidad de mecanografía con jitter gaussiano).
+  - Reacciones humanas contextuales ante victoria sobre jefes y tras wipes de grupo.
+
+### 🌐 Portal Web & Ecosistema
+- **Hardening de `js/config.js`:** Prevención nativa de errores de Mixed Content (bloqueo HTTP dentro de HTTPS en GitHub Pages).
+- **Nueva Wiki Interactiva del Jugador (`wiki/index.html`):** Motor SPA con buscador reactivo Fuse.js (<10ms), 9 módulos canónicos que reflejan la verdad absoluta del código y botones interactivos de copiado de macros.
+- **Saneamiento del Paquete Público de AddOns:** Purga de herramientas de Staff (`AdminTools`, `GMGenie`, `IntiObjGPS`, `TBCBalance`) del zip descargable y adición de `ProjectJaina_Store` y `ProjectJaina_Polyglot`.
+
+---
+
 ## [v2.9.0] - 2026-10-24 — Blindaje de Infraestructura de Producción, Hardening de WebAPI, Ciberdefensa WAN y Normalización de Addons Client-Side (Hitos #225 y #226)
 
 ### 🛡️ Ciberdefensa & Resiliencia de Servidor
