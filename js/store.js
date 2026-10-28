@@ -117,7 +117,7 @@ const DEFAULT_CATALOG = [
         "rarity": "epico",
         "rarity_label": "ÉPICO",
         "name": "Arsenal Arcano de Theramore",
-        "description": "1,500 Tokens de Jaina + Montura Épica Terrestre y Voladora 'Tigre Espectral Raudo' (310% vel).",
+        "description": "1,500 Tokens de Jaina + Montura Épica Terrestre 'Tigre Espectral Raudo' (100% vel).",
         "price_pen": 35.0,
         "price_usd": 9.5,
         "price": "9.50",
@@ -136,7 +136,7 @@ const DEFAULT_CATALOG = [
                 "entry": 49284,
                 "count": 1,
                 "name": "Reins of the Swift Spectral Tiger",
-                "data": "49284"
+                "data": "42777"
             }
         ]
     },
