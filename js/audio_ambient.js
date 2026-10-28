@@ -12,6 +12,7 @@ class ArcaneAmbientAudio {
         this.nodes = [];
         this.chimeTimer = null;
         this.button = null;
+        this.userVolumePct = 100;
     }
 
     init() {
@@ -54,15 +55,26 @@ class ArcaneAmbientAudio {
         }
     }
 
-    play() {
-        if (!this.ctx) return;
+    async play() {
+        if (!this.ctx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            this.ctx = new AudioContext();
+        }
+
+        if (this.ctx.state === "suspended") {
+            await this.ctx.resume();
+        }
+
+        if (this.isPlaying) return;
         this.isPlaying = true;
         this.wasPlayingBeforeHide = true;
 
         // Master Gain con Fade-In suave
+        const targetGain = (this.userVolumePct / 100) * 0.35;
         this.masterGain = this.ctx.createGain();
         this.masterGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-        this.masterGain.gain.exponentialRampToValueAtTime(0.35, this.ctx.currentTime + 3.0);
+        this.masterGain.gain.exponentialRampToValueAtTime(Math.max(0.001, targetGain), this.ctx.currentTime + 3.0);
         this.masterGain.connect(this.ctx.destination);
 
         // Capa 2: Filtro Resonante Biquad con LFO (Respiración Mística)
@@ -196,8 +208,19 @@ class ArcaneAmbientAudio {
         }
     }
 
+    setVolume(volPercent) {
+        this.userVolumePct = Math.max(0, Math.min(100, volPercent));
+        if (this.masterGain && this.ctx) {
+            const targetGain = (this.userVolumePct / 100) * 0.35;
+            this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.ctx.currentTime);
+            this.masterGain.gain.linearRampToValueAtTime(targetGain, this.ctx.currentTime + 0.1);
+        }
+    }
+
     updateUI(active) {
         if (!this.button) return;
+        if (window.jainaJukebox) return;
+
         if (active) {
             this.button.classList.add("playing");
             this.button.setAttribute("title", "Pausar Ecosonido Arcano de Dalaran");

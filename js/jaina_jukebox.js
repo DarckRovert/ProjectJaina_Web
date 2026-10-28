@@ -232,6 +232,13 @@ class JainaJukeboxEngine {
         });
     }
 
+    getAmbientSynth() {
+        if (!this.ambientSynth && window.jainaAmbientAudio) {
+            this.ambientSynth = window.jainaAmbientAudio;
+        }
+        return this.ambientSynth;
+    }
+
     loadTrack(index, autoPlay = true) {
         if (index < 0) index = this.tracks.length - 1;
         if (index >= this.tracks.length) index = 0;
@@ -240,8 +247,9 @@ class JainaJukeboxEngine {
         const track = this.tracks[index];
 
         // Detener sintetizador si estaba activo
-        if (this.ambientSynth && this.ambientSynth.isPlaying) {
-            this.ambientSynth.stop();
+        const prevSynth = this.getAmbientSynth();
+        if (prevSynth && prevSynth.isPlaying) {
+            prevSynth.stop();
         }
 
         if (track.type === "youtube") {
@@ -258,9 +266,13 @@ class JainaJukeboxEngine {
             if (this.ytPlayer && this.isYtReady && this.ytPlayer.pauseVideo) {
                 this.ytPlayer.pauseVideo();
             }
-            if (autoPlay && this.ambientSynth) {
-                this.ambientSynth.play();
-                this.setPlayingState(true);
+            const synth = this.getAmbientSynth();
+            if (synth) {
+                synth.setVolume(this.isMuted ? 0 : this.volume);
+                if (autoPlay) {
+                    synth.play();
+                    this.setPlayingState(true);
+                }
             }
         }
 
@@ -284,12 +296,11 @@ class JainaJukeboxEngine {
                 this.setPlayingState(true);
             }
         } else if (track.type === "procedural") {
-            if (!this.ambientSynth) {
-                this.ambientSynth = window.jainaAmbientAudio;
-            }
-            if (this.ambientSynth) {
-                this.ambientSynth.toggle();
-                this.setPlayingState(this.ambientSynth.isPlaying);
+            const synth = this.getAmbientSynth();
+            if (synth) {
+                synth.setVolume(this.isMuted ? 0 : this.volume);
+                synth.toggle();
+                this.setPlayingState(synth.isPlaying);
             }
         }
     }
@@ -303,9 +314,13 @@ class JainaJukeboxEngine {
             } else {
                 this.pendingPlay = true;
             }
-        } else if (track.type === "procedural" && this.ambientSynth) {
-            this.ambientSynth.play();
-            this.setPlayingState(true);
+        } else if (track.type === "procedural") {
+            const synth = this.getAmbientSynth();
+            if (synth) {
+                synth.setVolume(this.isMuted ? 0 : this.volume);
+                synth.play();
+                this.setPlayingState(true);
+            }
         }
     }
 
@@ -313,8 +328,11 @@ class JainaJukeboxEngine {
         const track = this.tracks[this.currentTrackIndex];
         if (track.type === "youtube" && this.ytPlayer && this.isYtReady && this.ytPlayer.pauseVideo) {
             this.ytPlayer.pauseVideo();
-        } else if (track.type === "procedural" && this.ambientSynth) {
-            this.ambientSynth.stop();
+        } else if (track.type === "procedural") {
+            const synth = this.getAmbientSynth();
+            if (synth) {
+                synth.stop();
+            }
         }
         this.setPlayingState(false);
     }
@@ -332,6 +350,10 @@ class JainaJukeboxEngine {
         if (this.ytPlayer && this.isYtReady && this.ytPlayer.setVolume) {
             this.ytPlayer.setVolume(this.volume);
         }
+        const synth = this.getAmbientSynth();
+        if (synth && typeof synth.setVolume === "function") {
+            synth.setVolume(this.isMuted ? 0 : this.volume);
+        }
         this.isMuted = this.volume === 0;
         this.updateVolumeUI();
     }
@@ -345,6 +367,10 @@ class JainaJukeboxEngine {
                 this.ytPlayer.unMute();
                 this.ytPlayer.setVolume(this.volume);
             }
+        }
+        const synth = this.getAmbientSynth();
+        if (synth && typeof synth.setVolume === "function") {
+            synth.setVolume(this.isMuted ? 0 : this.volume);
         }
         this.updateVolumeUI();
     }
