@@ -126,7 +126,7 @@
                     } else if (lower.includes("arthas") || lower.includes("lich") || lower.includes("rey")) {
                         replyText = "«Arthas eligió su sendero en Stratholme... Un dolor que jamás sanará del todo. Pero por los inocentes de Azeroth, debemos poner fin a su tiranía helada.»";
                     } else if (lower.includes("addon") || lower.includes("interfaz") || lower.includes("dragonflight") || lower.includes("lorehud")) {
-                        replyText = "«Hemos preparado 18 AddOns oficiales para ti: Dragonflight UI en 3.3.5a, audio espacial 3D, LoreHUD con cinemáticas, Pase de Batalla y gráficos remasterizados. Todo disponible en el Launcher oficial.»";
+                        replyText = "«Hemos preparado 21 AddOns oficiales para ti (17 para aventureros y 4 de maestría): Dragonflight UI en 3.3.5a, audio espacial 3D, LoreHUD con cinemáticas, Pase de Batalla y gráficos remasterizados. Todo disponible en el Launcher oficial.»";
                     } else if (lower.includes("baluarte") || lower.includes("outpost") || lower.includes("hermandad") || lower.includes("fortin")) {
                         replyText = "«Los Baluartes de Hermandad son 6 enclaves estratégicos en Azeroth conquistables con 2,500 monedas de oro por hermandades nivel 3+. Al izar el estandarte, otorgan bonificación de descanso (Rested XP) y suministros exclusivos sin pay-to-win.»";
                     } else if (lower.includes("galeon") || lower.includes("desertor") || lower.includes("barco") || lower.includes("naval") || lower.includes("cañon")) {

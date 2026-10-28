@@ -32,7 +32,7 @@ set realmlist 127.0.0.1
 
 
 ### ¿Cómo se instalan los AddOns oficiales?
-El cliente oficial ya viene preconfigurado con la suite de 18 AddOns de Project JAIna en `Interface\AddOns\`. Si deseas actualizarlos manualmente:
+El cliente oficial ya viene preconfigurado con la suite de 17 AddOns canónicos de Project JAIna (y 4 suites de Staff) en `Interface\AddOns\`. Si deseas actualizarlos manualmente:
 1. Descarga el archivo de lanzamiento desde el repositorio GitHub correspondiente.
 2. Descomprímelo asegurándote de que la carpeta quede en `Interface\AddOns\ProjectJaina_<NombreAddon>`.
 3. En la pantalla de selección de personajes, activa la casilla **"Cargar accesorios desactualizados"**.
