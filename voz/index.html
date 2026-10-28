@@ -35,17 +35,14 @@
                 <div class="input-group" style="margin-bottom: 14px;">
                     <label for="server-select">SERVIDOR DE VOZ ESPACIAL</label>
                     <select id="server-select" style="width: 100%; padding: 10px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #f8fafc; font-family: inherit; font-size: 13px; cursor: pointer; outline: none;">
-                        <option value="https://localhost:3050">Servidor Local HTTPS (127.0.0.1:3050)</option>
-                        <option value="https://26.140.157.205:3050">Nodo Maestro Perú HTTPS (26.140.157.205:3050)</option>
-                        <option value="https://26.202.12.241:3050">Nodo Cómputo España HTTPS (26.202.12.241:3050)</option>
-                        <option value="http://localhost:3050">Servidor Local HTTP (127.0.0.1:3050)</option>
-                        <option value="http://26.140.157.205:3050">Nodo Maestro Perú HTTP (26.140.157.205:3050)</option>
-                        <option value="http://26.202.12.241:3050">Nodo Cómputo España HTTP (26.202.12.241:3050)</option>
-                        <option value="custom">Servidor Personalizado / Dominio Externo...</option>
+                        <option value="https://ingrainedly-easeled-edelmira.ngrok-free.dev" selected>⚡ Gateway Global Seguro (Internet / Sin VPN - Oficial)</option>
+                        <option value="https://localhost:3050">💻 Servidor Local HTTPS (127.0.0.1:3050)</option>
+                        <option value="https://26.140.157.205:3050">🛡️ Red de Laboratorio Radmin (26.140.157.205:3050)</option>
+                        <option value="custom">🌐 Servidor Personalizado / Dominio Externo...</option>
                     </select>
                     <input type="text" id="custom-server-input" placeholder="https://tu-ip:3050" style="display: none; margin-top: 8px; width: 100%; padding: 8px 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 8px; color: #fff; font-size: 13px; box-sizing: border-box;">
                     <div id="local-server-hint" style="font-size: 0.78rem; color: #94a3b8; margin-top: 6px; line-height: 1.4;">
-                        💡 <span style="color: #00ccff; font-weight: 600;">¿En esta misma PC?</span> Accede directo a <a href="https://localhost:3050" style="color: #00e5ff; text-decoration: underline; font-weight: 600;">https://localhost:3050</a> para conexión nativa sin restricciones de certificado.
+                        ✨ <span style="color: #00ffcc; font-weight: 600;">Soberanía Zero-VPN:</span> Conexión directa universal vía HTTPS/WSS público para cualquier PC o celular sin necesidad de Radmin ni túneles privados.
                     </div>
                 </div>
 
@@ -86,6 +83,70 @@
                     </div>
                 </div>
                 <button id="btn-disconnect" class="btn btn-secondary btn-sm">Desconectar</button>
+            </div>
+
+
+            <!-- ========================================================= -->
+            <!-- WIDGET: RADIO KIRIN TOR FM / RADIO JAINA 24/7             -->
+            <!-- ========================================================= -->
+            <div class="radio-deck card" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 215, 0, 0.35); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">📻</span>
+                        <div>
+                            <strong style="color: #ffd700; font-size: 0.95rem; display: block; letter-spacing: 0.5px;">KIRIN TOR RADIO • STREAMING 24/7</strong>
+                            <small id="radio-station-genre" style="color: #94a3b8; font-size: 0.75rem;">Folk Medieval & Taberna Celta</small>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <span id="radio-live-badge" style="background: rgba(34, 197, 94, 0.2); border: 1px solid #22c55e; color: #22c55e; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                            <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block;"></span> EN VIVO
+                        </span>
+                        <a href="../radio/" target="_blank" style="color: #00ccff; font-size: 0.75rem; text-decoration: none; padding: 4px 8px; background: rgba(0, 204, 255, 0.1); border-radius: 6px;">Portal Completo ↗</a>
+                    </div>
+                </div>
+
+                <!-- Marquesina de Emisora y Título -->
+                <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 75%;">
+                        <span id="radio-current-name" style="color: #f8fafc; font-size: 0.85rem; font-weight: 600;">1. Taberna de Theramore (Folk Medieval)</span>
+                    </div>
+                    <span id="radio-status-tag" style="color: #fbbf24; font-size: 0.75rem;">Listo para sintonizar</span>
+                </div>
+
+                <!-- Selector de Emisora y Controles -->
+                <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: center; margin-bottom: 12px;">
+                    <select id="radio-station-select" style="padding: 8px 10px; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 6px; color: #fff; font-size: 0.8rem; cursor: pointer; outline: none;">
+                        <option value="0">🍺 1. Taberna de Theramore (Folk & Bard Medieval)</option>
+                        <option value="1">⚔️ 2. Apex Mythic Raider (Soundtracks Épicos de RPG)</option>
+                        <option value="2">☕ 3. Kirin Tor Lofi & Chill (Lo-Fi Study Beats)</option>
+                        <option value="3">🌌 4. Sintetizadores de Gnomeregan (Synthwave 80s)</option>
+                        <option value="4">🎸 5. Forja de Hierro Rock & Metal (Heavy Metal)</option>
+                        <option value="5">🌲 6. Tierras Altas de Arathi (Naturaleza & Lluvia)</option>
+                        <option value="6">📻 7. Dial Libre Personalizado (URL Propia)</option>
+                    </select>
+                    <button id="btn-radio-prev" class="btn btn-secondary btn-sm" title="Emisora Anterior" style="padding: 8px 12px;">⏮</button>
+                    <button id="btn-radio-play" class="btn btn-primary btn-sm" style="padding: 8px 16px; font-weight: 700; background: #eab308; border-color: #ca8a04; color: #000;">▶ Sintonizar</button>
+                    <button id="btn-radio-next" class="btn btn-secondary btn-sm" title="Emisora Siguiente" style="padding: 8px 12px;">⏭</button>
+                </div>
+
+                <!-- Input para Dial Personalizado (Oculto por defecto) -->
+                <div id="radio-custom-url-box" style="display: none; margin-bottom: 12px;">
+                    <input type="text" id="radio-custom-url-input" placeholder="https://tu-radio-stream.mp3" style="width: 100%; padding: 8px 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0,204,255,0.4); border-radius: 6px; color: #fff; font-size: 0.8rem; box-sizing: border-box;">
+                </div>
+
+                <!-- Volumen de Radio y Auto-Ducking 3D -->
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.78rem; color: #cbd5e1;">
+                    <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+                        <span>Volumen Radio:</span>
+                        <input type="range" id="radio-volume-slider" min="0" max="100" value="50" style="flex: 1; accent-color: #ffd700; cursor: pointer;">
+                        <span id="radio-volume-val" style="min-width: 32px; color: #ffd700; font-weight: 600;">50%</span>
+                    </div>
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none;">
+                        <input type="checkbox" id="radio-auto-ducking" checked style="accent-color: #22c55e;">
+                        <span>Auto-Ducking 3D (Atenuar con voces cercanas)</span>
+                    </label>
+                </div>
             </div>
 
             <!-- Controles de Audio y Micrófono -->

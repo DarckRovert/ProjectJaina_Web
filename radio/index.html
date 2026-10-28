@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirin Tor Arcane Radio • Project Jaina</title>
+    <meta name="description" content="Radio Oficial 24/7 de Project Jaina: Folk Medieval de Taberna, Soundtracks Épicos, Lofi Beats, Retrowave y Heavy Metal para acompañar tus aventuras en Azeroth.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #07090e;
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --gold-primary: #d4af37;
+            --gold-hover: #f1c40f;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --cyan-accent: #00ccff;
+            --cyan-glow: rgba(0, 204, 255, 0.25);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 20%, #171f30 0%, var(--bg-dark) 80%);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 28px;
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-icon {
+            font-size: 1.6rem;
+            filter: drop-shadow(0 0 8px var(--gold-glow));
+        }
+
+        .brand-text h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .brand-text span {
+            font-size: 0.75rem;
+            color: var(--cyan-accent);
+            letter-spacing: 0.5px;
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn-gold {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+        .nav-btn-gold:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 16px var(--gold-glow);
+        }
+
+        .nav-btn-cyan {
+            background: rgba(0, 204, 255, 0.12);
+            border: 1px solid var(--cyan-accent);
+            color: var(--cyan-accent);
+        }
+        .nav-btn-cyan:hover {
+            background: var(--cyan-accent);
+            color: #000;
+            box-shadow: 0 0 16px var(--cyan-glow);
+        }
+
+        /* Container */
+        .container {
+            max-width: 980px;
+            margin: 32px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Hero Radio Deck */
+        .radio-deck {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--gold-glow);
+            backdrop-filter: blur(16px);
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .radio-deck::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), var(--cyan-accent), transparent);
+        }
+
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .deck-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .deck-title .icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        .deck-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.45rem;
+            color: var(--gold-primary);
+        }
+
+        .deck-title p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 6px #22c55e); }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        /* Visualizer Canvas */
+        .visualizer-container {
+            width: 100%;
+            height: 120px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas#visualizer {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .visualizer-overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .track-info {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .genre-badge {
+            background: rgba(0, 204, 255, 0.2);
+            border: 1px solid var(--cyan-accent);
+            color: var(--cyan-accent);
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* Controls Deck */
+        .deck-controls {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .playback-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-ctrl {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-ctrl:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-play-master {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f1c40f, #d4af37);
+            color: #000;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 24px var(--gold-glow);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-play-master:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 35px rgba(241, 196, 15, 0.6);
+        }
+
+        .station-selector-box {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .station-selector-box label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .station-dropdown {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(20, 29, 47, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .station-dropdown:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 12px var(--gold-glow);
+        }
+
+        .volume-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 180px;
+        }
+
+        .volume-box span {
+            font-size: 1.1rem;
+        }
+
+        .vol-slider {
+            flex: 1;
+            accent-color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        /* Stations Grid */
+        .stations-section {
+            margin-top: 12px;
+        }
+
+        .section-header {
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .section-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+        }
+
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .station-card {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .station-card:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        .station-card.active {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        .card-title h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .card-title span {
+            font-size: 0.75rem;
+            color: var(--cyan-accent);
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* In-Game AddOn Callout */
+        .callout-card {
+            margin-top: 36px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .callout-text h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--cyan-accent);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .callout-text p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .code-badge {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--gold-primary);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.82rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 24px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .deck-controls {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .volume-box {
+                width: 100%;
+            }
+            .top-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <header class="topbar">
+        <a href="../" class="brand">
+            <span class="brand-icon">📻</span>
+            <div class="brand-text">
+                <h1>PROJECT JAINA</h1>
+                <span>KIRIN TOR ARCANE RADIO</span>
+            </div>
+        </a>
+        <nav class="top-nav">
+            <a href="../" class="nav-btn nav-btn-gold">Portada Web</a>
+            <a href="../voz/" class="nav-btn nav-btn-cyan">🎙️ Voz Espacial 3D</a>
+            <a href="../wiki/" class="nav-btn nav-btn-gold">Wiki del Jugador</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Radio Deck -->
+        <section class="radio-deck">
+            <div class="deck-header">
+                <div class="deck-title">
+                    <div class="icon-circle">✨</div>
+                    <div>
+                        <h2>Sintonizador de Transmisión Arcana</h2>
+                        <p>Audio en Vivo de Alta Fidelidad sin Interrupciones</p>
+                    </div>
+                </div>
+                <div class="status-badge" id="live-badge">
+                    <span class="pulse-dot"></span>
+                    <span id="deck-status-text">LISTO</span>
+                </div>
+            </div>
+
+            <!-- Canvas Visualizer -->
+            <div class="visualizer-container">
+                <canvas id="visualizer"></canvas>
+                <div class="visualizer-overlay">
+                    <div class="track-info" id="deck-track-title">1. Taberna de Theramore (Folk Medieval)</div>
+                    <span class="genre-badge" id="deck-genre-badge">Folk Celta & Bardo</span>
+                </div>
+            </div>
+
+            <!-- Deck Controls -->
+            <div class="deck-controls">
+                <div class="playback-buttons">
+                    <button id="btn-prev" class="btn-ctrl" title="Emisora Anterior">⏮</button>
+                    <button id="btn-play-master" class="btn-play-master" title="Reproducir / Pausa">▶</button>
+                    <button id="btn-next" class="btn-ctrl" title="Emisora Siguiente">⏭</button>
+                </div>
+
+                <div class="station-selector-box">
+                    <label for="station-select">DIAL DE SINTONIZACIÓN</label>
+                    <select id="station-select" class="station-dropdown">
+                        <option value="0">🍺 1. Taberna de Theramore (Radio Rivendell - Folk Medieval)</option>
+                        <option value="1">⚔️ 2. Apex Mythic Raider (RPG Gamers - Epic Orchestral)</option>
+                        <option value="2">☕ 3. Kirin Tor Lofi & Chill (Lofi Focus - Study Beats)</option>
+                        <option value="3">🌌 4. Sintetizadores de Gnomeregan (Nightwave Plaza - Synthwave)</option>
+                        <option value="4">🎸 5. Forja de Hierro Rock & Metal (Rock Antenne - Heavy Metal)</option>
+                        <option value="5">🌲 6. Tierras Altas de Arathi (Ambient Nature & Rain)</option>
+                        <option value="6">📻 7. Dial Libre Personalizado (URL Directa Icecast/MP3)</option>
+                    </select>
+                </div>
+
+                <div class="volume-box">
+                    <span id="vol-icon">🔊</span>
+                    <input type="range" id="volume-slider" class="vol-slider" min="0" max="100" value="70">
+                    <span id="volume-val" style="min-width: 38px; color: var(--gold-primary); font-weight: 600; font-size: 0.85rem;">70%</span>
+                </div>
+            </div>
+
+            <!-- Input personalizado para Dial 7 -->
+            <div id="custom-url-container" style="display: none; margin-top: 18px;">
+                <input type="text" id="custom-url-input" placeholder="Introduce la URL del stream directo (Ej: https://mi-radio.com/stream.mp3)" style="width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.6); border: 1px solid var(--cyan-accent); border-radius: 8px; color: #fff; font-size: 0.85rem;">
+            </div>
+        </section>
+
+        <!-- Grilla de Emisoras -->
+        <section class="stations-section">
+            <div class="section-header">
+                <h3>Parrilla de Emisoras Oficiales</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Haz clic en cualquier emisora para sintonizar</span>
+            </div>
+
+            <div class="stations-grid" id="stations-grid">
+                <!-- Se inyecta dinámicamente desde app.js -->
+            </div>
+        </section>
+
+        <!-- Callout del AddOn In-Game -->
+        <section class="callout-card">
+            <div class="callout-text">
+                <h4>🎙️ Control In-Game desde World of Warcraft</h4>
+                <p>¿Sabías que puedes controlar esta radio sin salir del juego? Instala el AddOn oficial <code class="code-badge">ProjectJaina_Radio</code> y usa el comando <code class="code-badge">/radio</code> para cambiar de emisora, ajustar el volumen y ver el título en directo en tu pantalla.</p>
+            </div>
+            <a href="../downloads/ProjectJaina_AddOns_Pack.zip" class="nav-btn nav-btn-gold" style="white-space: nowrap; padding: 12px 20px;">Descargar Suite AddOns</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Project Jaina Sovereign Mesh • Kirin Tor Arcane Radio v1.0.0 • <a href="https://darckrovert.github.io/ProjectJaina_Web/">darckrovert.github.io/ProjectJaina_Web</a></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

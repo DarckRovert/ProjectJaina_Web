@@ -30,15 +30,16 @@ const nearbyCountEl = document.getElementById('nearby-count');
 const serverSelect = document.getElementById('server-select');
 const customServerInput = document.getElementById('custom-server-input');
 
+const PUBLIC_GATEWAY_URL = 'https://ingrainedly-easeled-edelmira.ngrok-free.dev';
+
 const KNOWN_SERVERS = [
+    PUBLIC_GATEWAY_URL,
     'https://localhost:3050',
     'http://localhost:3050',
     'https://127.0.0.1:3050',
     'http://127.0.0.1:3050',
     'https://26.140.157.205:3050',
-    'http://26.140.157.205:3050',
-    'https://26.202.12.241:3050',
-    'http://26.202.12.241:3050'
+    'http://26.140.157.205:3050'
 ];
 
 function initServerSelector() {
@@ -74,8 +75,12 @@ function initServerSelector() {
             }
         }
     } else {
-        // En entorno local o web por defecto apunta a localhost/127.0.0.1 (Loopback Seguro)
-        serverSelect.value = window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
+        // Por defecto en web pública conectar al Gateway Oficial Global sin requerir VPN
+        if (window.location.hostname.includes('github.io') || !window.location.hostname.includes('localhost')) {
+            serverSelect.value = PUBLIC_GATEWAY_URL;
+        } else {
+            serverSelect.value = window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
+        }
     }
 
     serverSelect.addEventListener('change', () => {
@@ -109,6 +114,9 @@ function getVoiceServerBaseUrl() {
     }
     if (serverSelect && serverSelect.value !== 'custom') {
         return serverSelect.value.replace(/\/+$/, '');
+    }
+    if (window.location.hostname.includes('github.io') || !window.location.hostname.includes('localhost')) {
+        return PUBLIC_GATEWAY_URL;
     }
     return window.location.protocol === 'https:' ? 'https://localhost:3050' : 'http://localhost:3050';
 }
@@ -337,8 +345,9 @@ function connectWebSocket(token) {
     const baseUrl = getVoiceServerBaseUrl();
     const isHttps = baseUrl.startsWith('https:');
     const wsProto = isHttps ? 'wss:' : 'ws:';
-    const host = baseUrl.replace(/^https?:\/\//, '');
-    ws = new WebSocket(`${wsProto}//${host}?token=${token}`);
+    const host = baseUrl.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+    const wsPath = host.includes('ngrok') || host.includes('projectjaina') || host.includes(':8080') ? '/voice-ws' : '';
+    ws = new WebSocket(`${wsProto}//${host}${wsPath}?token=${token}`);
 
     ws.onopen = () => {
         loginCard.classList.add('hidden');
@@ -369,6 +378,38 @@ function connectWebSocket(token) {
             // 3.4 Señalización WebRTC (Offer, Answer, ICE Candidate)
             else if (msg.type === 'signal') {
                 handleRemoteSignal(msg.fromGuid, msg.fromName, msg.signal);
+            }
+
+            // 3.5 Control Remoto de Radio In-Game
+            else if (msg.type === 'radio-command') {
+                if (msg.action === 'play') {
+                    if (!isRadioPlaying) toggleRadioPlayback();
+                } else if (msg.action === 'pause' || msg.action === 'stop') {
+                    if (isRadioPlaying) toggleRadioPlayback();
+                } else if (msg.action === 'next') {
+                    let next = (radioIndex + 1) % RADIO_STATIONS.length;
+                    selectRadioStation(next);
+                    if (!isRadioPlaying) toggleRadioPlayback();
+                } else if (msg.action === 'prev') {
+                    let prev = radioIndex - 1;
+                    if (prev < 0) prev = RADIO_STATIONS.length - 1;
+                    selectRadioStation(prev);
+                    if (!isRadioPlaying) toggleRadioPlayback();
+                } else if (msg.action === 'station') {
+                    let st = (parseInt(msg.station, 10) - 1);
+                    if (st >= 0 && st < RADIO_STATIONS.length) {
+                        selectRadioStation(st);
+                        if (!isRadioPlaying) toggleRadioPlayback();
+                    }
+                } else if (msg.action === 'volume') {
+                    let v = parseInt(msg.volume, 10);
+                    if (!isNaN(v)) {
+                        elRadioVolSlider.value = Math.max(0, Math.min(100, v));
+                        radioMasterVolume = elRadioVolSlider.value / 100;
+                        elRadioVolVal.textContent = elRadioVolSlider.value + '%';
+                        if (!isAudioDucked) radioAudio.volume = radioMasterVolume;
+                    }
+                }
             }
 
         } catch (err) {
@@ -578,6 +619,10 @@ function handleProximityUpdate(peers) {
     }
 
     peersListEl.innerHTML = html;
+    
+    // Auto-Ducking: comprobar si algún aventurero cercano está hablando
+    const isAnyoneSpeaking = (peers || []).some(p => p.speaking);
+    applyAutoDucking(isAnyoneSpeaking);
 }
 
 // --------------------------------------------------------------------------
@@ -655,3 +700,180 @@ function handleDisconnect() {
 
 // Inicializar selector de servidor
 initServerSelector();
+    initRadioEngine();
+
+
+// ==============================================================================
+// 5. MOTOR DE RADIO EN VIVO 24/7 (KIRIN TOR RADIO / RADIO JAINA)
+// ==============================================================================
+const RADIO_STATIONS = [
+    { id: 1, name: "Taberna de Theramore (Folk Medieval)", url: "https://play.radiorivendell.com/radio/8000/radio.mp3", genre: "Folk Celta & Bardo Medieval" },
+    { id: 2, name: "Apex Mythic Raider (Epic Orchestral)", url: "https://stream.rpgamers.net/rpgn", genre: "Soundtracks Épicos de Batallas" },
+    { id: 3, name: "Kirin Tor Lofi & Chill (Study Beats)", url: "https://lofi.stream.laut.fm/lofi", genre: "Lo-Fi Beats & Relax" },
+    { id: 4, name: "Sintetizadores de Gnomeregan (Synthwave)", url: "https://radio.plaza.one/mp3", genre: "Synthwave & Retrowave 80s" },
+    { id: 5, name: "Forja de Hierro Rock & Metal", url: "https://stream.rockantenne.de/heavy-metal/stream/mp3", genre: "Heavy Metal & Hard Rock" },
+    { id: 6, name: "Tierras Altas de Arathi (Ambient)", url: "https://ambient.stream.laut.fm/ambient", genre: "Naturaleza, Lluvia & Hogueras" },
+    { id: 7, name: "Dial Libre Personalizado", url: "", genre: "URL Directa del Jugador" }
+];
+
+let radioIndex = 0;
+let radioAudio = new Audio();
+radioAudio.crossOrigin = "anonymous";
+let radioMasterVolume = 0.50; // 50%
+let isRadioPlaying = false;
+let isAudioDucked = false;
+
+const elRadioSelect = document.getElementById('radio-station-select');
+const elRadioGenre = document.getElementById('radio-station-genre');
+const elRadioName = document.getElementById('radio-current-name');
+const elRadioStatus = document.getElementById('radio-status-tag');
+const elRadioBtnPlay = document.getElementById('btn-radio-play');
+const elRadioBtnPrev = document.getElementById('btn-radio-prev');
+const elRadioBtnNext = document.getElementById('btn-radio-next');
+const elRadioVolSlider = document.getElementById('radio-volume-slider');
+const elRadioVolVal = document.getElementById('radio-volume-val');
+const elRadioAutoDucking = document.getElementById('radio-auto-ducking');
+const elRadioCustomBox = document.getElementById('radio-custom-url-box');
+const elRadioCustomInput = document.getElementById('radio-custom-url-input');
+
+function initRadioEngine() {
+    if (!elRadioBtnPlay) return;
+
+    radioAudio.volume = radioMasterVolume;
+
+    elRadioSelect.addEventListener('change', () => {
+        selectRadioStation(parseInt(elRadioSelect.value, 10));
+    });
+
+    elRadioBtnPlay.addEventListener('click', () => {
+        toggleRadioPlayback();
+    });
+
+    elRadioBtnPrev.addEventListener('click', () => {
+        let prev = radioIndex - 1;
+        if (prev < 0) prev = RADIO_STATIONS.length - 1;
+        selectRadioStation(prev);
+    });
+
+    elRadioBtnNext.addEventListener('click', () => {
+        let next = (radioIndex + 1) % RADIO_STATIONS.length;
+        selectRadioStation(next);
+    });
+
+    elRadioVolSlider.addEventListener('input', () => {
+        radioMasterVolume = parseInt(elRadioVolSlider.value, 10) / 100;
+        elRadioVolVal.textContent = elRadioVolSlider.value + '%';
+        if (!isAudioDucked) {
+            radioAudio.volume = radioMasterVolume;
+        }
+    });
+
+    if (elRadioCustomInput) {
+        elRadioCustomInput.addEventListener('change', () => {
+            const customUrl = elRadioCustomInput.value.trim();
+            if (customUrl) {
+                RADIO_STATIONS[6].url = customUrl;
+                if (radioIndex === 6) {
+                    playRadioStation(6);
+                }
+            }
+        });
+    }
+
+    radioAudio.addEventListener('playing', () => {
+        isRadioPlaying = true;
+        elRadioStatus.textContent = '● Transmitiendo en vivo';
+        elRadioStatus.style.color = '#22c55e';
+        elRadioBtnPlay.textContent = '⏸ Pausar';
+        elRadioBtnPlay.style.background = '#0284c7';
+        elRadioBtnPlay.style.color = '#fff';
+        reportRadioTitle(RADIO_STATIONS[radioIndex].name);
+    });
+
+    radioAudio.addEventListener('pause', () => {
+        isRadioPlaying = false;
+        elRadioStatus.textContent = 'Pausado';
+        elRadioStatus.style.color = '#fbbf24';
+        elRadioBtnPlay.textContent = '▶ Sintonizar';
+        elRadioBtnPlay.style.background = '#eab308';
+        elRadioBtnPlay.style.color = '#000';
+    });
+
+    radioAudio.addEventListener('error', () => {
+        isRadioPlaying = false;
+        elRadioStatus.textContent = '⚠ Error en stream (reintentando...)';
+        elRadioStatus.style.color = '#ef4444';
+        elRadioBtnPlay.textContent = '▶ Reintentar';
+    });
+}
+
+function selectRadioStation(index) {
+    radioIndex = index;
+    elRadioSelect.value = String(index);
+    const station = RADIO_STATIONS[index];
+    elRadioGenre.textContent = station.genre;
+    elRadioName.textContent = `${station.id}. ${station.name}`;
+
+    if (index === 6 && elRadioCustomBox) {
+        elRadioCustomBox.style.display = 'block';
+    } else if (elRadioCustomBox) {
+        elRadioCustomBox.style.display = 'none';
+    }
+
+    if (isRadioPlaying) {
+        playRadioStation(index);
+    }
+}
+
+function playRadioStation(index) {
+    const station = RADIO_STATIONS[index];
+    let streamUrl = station.url;
+    if (index === 6 && elRadioCustomInput && elRadioCustomInput.value.trim()) {
+        streamUrl = elRadioCustomInput.value.trim();
+    }
+    if (!streamUrl) {
+        alert('Por favor introduce una URL válida de stream para el Dial Personalizado.');
+        return;
+    }
+
+    elRadioStatus.textContent = 'Sintonizando...';
+    elRadioStatus.style.color = '#38bdf8';
+    radioAudio.src = streamUrl;
+    radioAudio.load();
+    radioAudio.play().catch(e => {
+        console.warn('Autoplay radio prevenido:', e);
+        elRadioStatus.textContent = 'Haz clic en Sintonizar';
+        elRadioStatus.style.color = '#fbbf24';
+    });
+}
+
+function toggleRadioPlayback() {
+    if (isRadioPlaying) {
+        radioAudio.pause();
+    } else {
+        playRadioStation(radioIndex);
+    }
+}
+
+function applyAutoDucking(isAnyoneSpeaking) {
+    if (!elRadioAutoDucking || !elRadioAutoDucking.checked || !isRadioPlaying) return;
+
+    if (isAnyoneSpeaking && !isAudioDucked) {
+        isAudioDucked = true;
+        // Atenuar música al 30% del volumen nominal para priorizar voz 3D
+        radioAudio.volume = radioMasterVolume * 0.30;
+    } else if (!isAnyoneSpeaking && isAudioDucked) {
+        isAudioDucked = false;
+        // Restaurar volumen nominal
+        radioAudio.volume = radioMasterVolume;
+    }
+}
+
+function reportRadioTitle(title) {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({
+            type: 'radio-now-playing',
+            title: title
+        }));
+    }
+}

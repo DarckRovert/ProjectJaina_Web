@@ -4,6 +4,37 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v5.49.0] - 2026-10-28 — Soberanía de Voz Espacial 3D (Zero-VPN), Portal Kirin Tor Radio 24/7 y AddOn In-Game Oficial (Hitos #265 y #266)
+
+### 🎙️ Soberanía de Voz Espacial 3D (Erradicación de Radmin VPN)
+- **Túnel de Señalización L7 en WebAPI (`ProjectJaina_WebAPI.py`):**
+  - Implementación de proxy inverso transparente para `/api/verify-pin` y secuestro de socket TCP bidireccional no bloqueante para `GET /voice-ws` (`Upgrade: websocket`) hacia el backend loopback `127.0.0.1:3051`.
+  - Conexión universal segura a través del Gateway Ngrok permanente (`https://ingrainedly-easeled-edelmira.ngrok-free.dev`) con certificado SSL bancario de confianza global.
+  - Erradicación de advertencias de certificados auto-firmados y eliminación de cualquier requisito de Radmin VPN o Hamachi para jugadores remotos o móviles.
+- **Dual-Binding en Coordinador de Voz (`server.js`):**
+  - Desacoplamiento de `WebSocketServer` con `{ noServer: true }` y escuchadores duales en puerto seguro 3050 (HTTPS) y puerto interno 3051 (Loopback HTTP plano).
+- **Frontend de Voz Web (`voz/index.html` & `voz/app.js`):**
+  - Auto-detección del Gateway Global como servidor predeterminado en producción.
+  - Integración de widget Kirin Tor Radio con atenuación dinámica (*Auto-Ducking 3D* al 30% del volumen cuando alguien habla en rango auditivo).
+
+### 📻 Sistema de Radio In-Game 24/7 (Kirin Tor Arcane Radio)
+- **Parrilla Oficial de 7 Emisoras HTTPS Reales:**
+  1. *Taberna de Theramore:* Folk Medieval y Bardo Celta (Radio Rivendell).
+  2. *Apex Mythic Raider:* Soundtracks y Orquestal Épico de Batalla (RPG Gamers Radio).
+  3. *Kirin Tor Lofi & Chill:* Lo-Fi Beats relajantes para profesiones y farmeo (Lofi Focus).
+  4. *Sintetizadores de Gnomeregan:* Synthwave & Retrowave 80s (Nightwave Plaza).
+  5. *Forja de Hierro Rock & Metal:* Heavy Metal y Hard Rock para mazmorras y PvP (Rock Antenne).
+  6. *Tierras Altas de Arathi:* Sonidos envolventes de lluvia y naturaleza de Azeroth (Ambient Sleep & Rain).
+  7. *Dial Libre Personalizado:* Entrada abierta para cualquier stream Icecast/Shoutcast o archivo MP3 directo.
+- **Nuevo AddOn Oficial `ProjectJaina_Radio` (v1.0.0):**
+  - Mini-sintonizador flotante Kirin Tor con marquesina en tiempo real, botones de control (`play`, `pause`, `next`, `prev`), slider de volumen y botón en el minimapa.
+  - Sincronización remota bidireccional vía Eluna (`67_KirinTorRadioBridge.lua`): los comandos `/radio play`, `/radio next` o el selector in-game actualizan el streaming web en segundo plano (< 250 ms).
+  - Modo Jukebox Local: reproducción nativa de pistas épicas del cliente WoW 3.3.5a (`PlayMusic()`) en caso de no disponer de navegador web abierto.
+- **Portal Dedicado (`radio/index.html` & `radio/app.js`):**
+  - Sintonizador web independiente con visualizador de espectro de audio en canvas (barras animadas en degradado oro/cian) y atajos de teclado.
+
+---
+
 ## [v5.48.0] - 2026-10-28 — Motor Apex Mythic Raider PvE v4.0, Resiliencia Web L9, Wiki Interactiva del Jugador y Saneamiento de AddOns (Hito #263)
 
 ### ⚔️ Motor PvE de Simulación Táctica y Turing Social

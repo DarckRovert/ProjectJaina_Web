@@ -1,1 +1,1 @@
-feat(web): v5.48.0 - Wiki SPA interactiva, suite de 20 addons y blindaje L9 2026-10-28_13:22
+feat(web): v5.49.0 - Soberania Voz 3D Zero-VPN, Kirin Tor Radio 24/7 y AddOn Oficial 2026-10-28_14:05
