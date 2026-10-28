@@ -10,5 +10,10 @@
     "enabled": true,
     "sponsor_url": "https://github.com/sponsors/DarckRovert",
     "author": "DarckRovert"
+  },
+  "yape_plin": {
+    "enabled": true,
+    "whatsapp_e164": "+51999999999",
+    "currency": "PEN"
   }
 }

@@ -2062,11 +2062,23 @@ async function loadPaymentConfig() {
     try {
         const resp = await fetch("data/payment_config.json");
         if (resp.ok) {
-            paymentConfig = await resp.json();
-            _applyPaymentConfig();
+            const raw = await resp.text();
+            if (raw && raw.trim().length > 0) {
+                paymentConfig = JSON.parse(raw);
+                _applyPaymentConfig();
+            }
         }
     } catch (e) {
         console.warn("[PAYMENT CONFIG] No se pudo cargar payment_config.json:", e);
+    }
+
+    if (!paymentConfig) {
+        paymentConfig = {
+            paypal: { enabled: true, currency: "USD", donate_url: "https://paypal.me/darckrovert", paypal_me: "https://paypal.me/darckrovert" },
+            github_sponsors: { enabled: true, sponsor_url: "https://github.com/sponsors/DarckRovert", author: "DarckRovert" },
+            yape_plin: { enabled: true, whatsapp_e164: "+51999999999", currency: "PEN" }
+        };
+        _applyPaymentConfig();
     }
 }
 
