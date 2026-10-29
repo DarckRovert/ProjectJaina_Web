@@ -1,13 +1,13 @@
 {
-  "version": "2.1.1",
-  "launcher_version": "2.1.1",
+  "version": "2.1.2",
+  "launcher_version": "2.1.2",
   "min_supported_version": "1.0.0",
-  "release_date": "2026-10-27",
+  "release_date": "2026-10-29",
   "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
   "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "size_bytes": 21665046,
-  "sha256": "6ba2390b2cf578acfe3ed437c83b2436e9879f6ac6aa89b4a9b05d10074d2a32",
-  "changelog": "Versión Oficial 2.1.1 — Lanzador Standalone 1 Clic con soporte Radmin VPN (Reino Wanitos Fran 26.202.12.241), Anti-Crash D3D9 y Proxy HA.",
+  "size_bytes": 19274109,
+  "sha256": "3e3df7704fccd19a8d5f023aaf623705594cfabc7783eb7de02dc4d4bb0e8781",
+  "changelog": "Versión 2.1.2 — Blindaje D3D9 sin bordes, desbloqueo I/O de Config.wtf (anti-congelamiento en 240Hz), carpeta Screenshots y filtro de era para creación de personajes.",
   "addons_version": "2026.10.27",
   "addons_pack_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_AddOns_Pack.zip"
 }

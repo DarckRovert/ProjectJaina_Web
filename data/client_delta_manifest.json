@@ -9,47 +9,17 @@
       "name": "ProjectJaina_Launcher.exe",
       "category": "launcher_binary",
       "cdn_available": true,
-      "size": 21567075,
-      "size_bytes": 21567075,
-      "size_mb": 20.57,
-      "sha256": "d2e5cf5740bdd5fbf068bf6b553714cbd3820cfcfb7c5fd2ddbebb0cea55a2c5",
-      "chunk_count": 6,
+      "size": 19274109,
+      "size_bytes": 19274109,
+      "size_mb": 18.38,
+      "sha256": "3e3df7704fccd19a8d5f023aaf623705594cfabc7783eb7de02dc4d4bb0e8781",
+      "chunk_count": 1,
       "chunks": [
         {
           "index": 0,
           "offset": 0,
-          "length": 4194304,
-          "sha256": "f3e06933136ef969c53b0f6905a355f7363eacef6caa069aff092874235247c2"
-        },
-        {
-          "index": 1,
-          "offset": 4194304,
-          "length": 4194304,
-          "sha256": "51dda35bc92efe21c1b53ed3455c7792a19ac622521efd046937ecdae1e3da7d"
-        },
-        {
-          "index": 2,
-          "offset": 8388608,
-          "length": 4194304,
-          "sha256": "463599f381dcb12787a53479d1fa69f1fb92d9c4681acca3e450232c6dbe39fa"
-        },
-        {
-          "index": 3,
-          "offset": 12582912,
-          "length": 4194304,
-          "sha256": "f17855b9cd89bca23329ce7efc050ae14507435f65d8b05010dc83612e6e0f2a"
-        },
-        {
-          "index": 4,
-          "offset": 16777216,
-          "length": 4194304,
-          "sha256": "c1578c747934986325b6d171a9a721de30de38dcf3a4e612ab9773c1bb0d09e2"
-        },
-        {
-          "index": 5,
-          "offset": 20971520,
-          "length": 595555,
-          "sha256": "8a7e0df3e136bbf0928ac6e937541cf30039e1f960cc9cdc962edd2f3cba6acc"
+          "length": 19274109,
+          "sha256": "3e3df7704fccd19a8d5f023aaf623705594cfabc7783eb7de02dc4d4bb0e8781"
         }
       ]
     },
