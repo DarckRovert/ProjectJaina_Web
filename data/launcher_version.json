@@ -1,10 +1,13 @@
 {
-  "version": "1.1.0",
-  "launcher_version": "1.1.0",
+  "version": "2.1.1",
+  "launcher_version": "2.1.1",
   "min_supported_version": "1.0.0",
-  "release_date": "2026-10-10",
-  "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "changelog": "Integración de telemetría de fallos en vivo (Crash Reporter) y comprobación automática de actualizaciones.",
-  "addons_version": "2026.10.10",
+  "release_date": "2026-10-27",
+  "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
+  "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
+  "size_bytes": 21665046,
+  "sha256": "6ba2390b2cf578acfe3ed437c83b2436e9879f6ac6aa89b4a9b05d10074d2a32",
+  "changelog": "Versión Oficial 2.1.1 — Lanzador Standalone 1 Clic con soporte Radmin VPN (Reino Wanitos Fran 26.202.12.241), Anti-Crash D3D9 y Proxy HA.",
+  "addons_version": "2026.10.27",
   "addons_pack_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_AddOns_Pack.zip"
 }
