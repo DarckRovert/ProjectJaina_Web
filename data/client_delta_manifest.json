@@ -30588,17 +30588,17 @@
       "category": "patch_mpq",
       "cdn_available": true,
       "distribution": "cdn_range",
-      "size": 110562,
-      "size_bytes": 110562,
-      "size_mb": 0.11,
-      "sha256": "2f10a0f9e590e0a7284fc08991cc3a03490c4c2183b46c754e680832de41ebea",
+      "size": 129892,
+      "size_bytes": 129892,
+      "size_mb": 0.12,
+      "sha256": "50e2afbb157379e926fab1ea5c077c53e0bc92449c10ae97e988db6eb6b11626",
       "chunk_count": 1,
       "chunks": [
         {
           "index": 0,
           "offset": 0,
-          "length": 110562,
-          "sha256": "2f10a0f9e590e0a7284fc08991cc3a03490c4c2183b46c754e680832de41ebea"
+          "length": 129892,
+          "sha256": "50e2afbb157379e926fab1ea5c077c53e0bc92449c10ae97e988db6eb6b11626"
         }
       ]
     },
