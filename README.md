@@ -41,6 +41,7 @@
   * **Onboarding Gratuito:** 5 Fichas gratuitas al crear la primera cuenta.
   * **AHBot Dynamic Buyer:** Inyección automática de liquidez y compra de materiales de profesiones a los 45s con 80% de probabilidad.
 * **Bifacción Canónica Simétrica:** Sistema autoritativo con soporte para **Alianza** y **Horda**. Una sola cuenta otorga acceso total al reino; la facción se selecciona in-game al crear personaje. Hermandades canónicas oficiales: `<El Kirin Tor>` (Guild 21, Lady Jaina) y `<La Horda de Orgrimmar>` (Guild 22, Jefe de Guerra Thrall) con auto-incorporación y bienvenida inmersiva en el primer inicio de sesión.
+* **Cronograma Interactivo de Progresión de Eras (2026–2028) & Chrono-Master v2.0:** Línea de tiempo visual de las 8 fases del reino (`Classic Vanilla` → `TBC` → `WotLK T7..T10.5` → `Cataclysm`) sincronizada en tiempo real con `/api/progression` y respaldo autónomo en `data/progression.json`.
 * **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
 * **Subpáginas Especializadas:**
   * **Armería v2.5:** Visualizador de perfiles de héroes, GearScore, talentos, badges de 10 clases (incluyendo Caballero de la Muerte) y búsqueda insensible a acentos (`normalizeStr`).

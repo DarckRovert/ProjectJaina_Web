@@ -4,6 +4,25 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v5.52.0] - 2026-10-30 — Motor Autónomo Chrono-Master v2.0, Calendario Oficial de Eras 2026–2028, Ecosistema Soberano de 7 Campeones & Núcleo C++ Zero-Errors (Hito #267)
+
+### ⏳ Progresión Autónoma de Eras (`Chrono-Master v2.0`) y Calendario Oficial 2026–2028
+- **Cronograma Público Interactivo de 8 Fases (`index.html`, `js/progression.js`, `data/progression.json`):**
+  - Integración en la portada oficial y en la Wiki de la hoja de ruta cronológica exacta (`UTC-5`): **Classic Vanilla** (`24 Nov 2026`, 97 días) &rarr; **The Burning Crusade** (`01 Mar 2027`, 92 días) &rarr; **WotLK Naxxramas T7** (`01 Jun 2027`, 61 días) &rarr; **Ulduar T8** (`01 Ago 2027`, 61 días) &rarr; **Prueba del Cruzado T9** (`01 Oct 2027`, 45 días) &rarr; **Ciudadela de la Corona de Hielo T10** (`15 Nov 2027`, 92 días) &rarr; **Sagrario Rubí T10.5** (`15 Feb 2028`, 46 días) &rarr; **Horizonte Cataclysm** (`01 Abr 2028+`).
+  - Sincronización en tiempo real contra `GET /api/progression` con barra de progreso porcentual, insignia de fase activa y cuenta regresiva hacia el siguiente hito.
+- **Gobernador Autónomo y Escudo de Mantenimiento (`progression_governor.py` & `ProjectJaina_Sentinel.py`):**
+  - Hilo `ChronoMasterWorker` (60s) que ejecuta las transiciones de era de forma 100% desatendida y candado `maintenance_lock.json` (`TTL <= 300s`) que suprime falsas alarmas de failover en Discord durante reinicios controlados.
+
+### 🗡️ Ecosistema Soberano de Bots v5.0 & Conversión Canónica de `Rogotten`
+- **7 Campeones Soberanos Persistentes:** *Lady Jaina* (`1002`), *Rey Varian* (`1003`), *Jefe de Guerra Thrall* (`2284`), *Silka* (`2270`), *Rogotten* (`2271`), *Aezrah* (`2272`) y *Melissah* (`2273`) blindados en C++ (`RandomPlayerbotMgr.cpp` y `PlayerbotMgr.cpp`) para permanecer siempre en línea y conservar su equipo canónico.
+- **`Rogotten` (`GUID 2271`) — Pícaro Elfo de Sangre Tier 2 *Bloodfang*:** Conversión completa a Pícaro (`class = 4`, Energía 100) con los 18/18 slots BiS de Era Classic (*Bloodfang Armor*, *Hoja de Perdición*, *Diente de Can del Núcleo*, *Marca del Golpeador*, *Talismán de Colmillo de Draco*) y rotación táctica dedicada en `93_EliteSquad_Companions.lua`.
+
+### ⚙️ Núcleo C++ Progresivo (`JainaCore_Server` & `mod-playerbots`)
+- **Tope Dinámico de Árboles de Talentos por Era (`PlayerbotFactory.cpp`):** Límite estricto de fila según `MaxPlayerLevel` (**31 puntos / fila 7** en Classic 60, **41 puntos / fila 9** en TBC 70 y **51 puntos / fila 11** en WotLK 80) junto con poda DBC de habilidades fuera de era.
+- **Arranque 100% Limpio (`Errors.log = 0 bytes`):** Validadores conscientes de era en `ObjectMgr.cpp`, `LFGMgr.cpp` y `ConditionMgr.cpp` que eliminan los 85 falsos errores de misiones, recompensas RDF y condiciones de profesión en reinos progresivos.
+
+---
+
 ## [v5.49.0] - 2026-10-28 — Soberanía de Voz Espacial 3D (Zero-VPN), Portal Kirin Tor Radio 24/7 y AddOn In-Game Oficial (Hitos #265 y #266)
 
 ### 🎙️ Soberanía de Voz Espacial 3D (Erradicación de Radmin VPN)

@@ -318,7 +318,7 @@
     <header class="wiki-header">
         <span class="wiki-tag">📖 Códice Integral & Base de Conocimiento</span>
         <h1 class="wiki-title">Wiki de Sistemas & Guía del Jugador</h1>
-        <p class="wiki-desc">Documentación técnica autoritativa, comandos de bots, mecánicas de supervivencia, escalado de mazmorras y catálogo de AddOns de Project JAIna (v5.48.0).</p>
+        <p class="wiki-desc">Documentación técnica autoritativa, comandos de bots, mecánicas de supervivencia, escalado de mazmorras y catálogo de AddOns y calendario oficial de eras de Project JAIna (v5.52.0).</p>
 
         <div class="wiki-search-box">
             <span class="wiki-search-icon">🔍</span>
@@ -346,6 +346,7 @@
             <a href="#modulo-8" class="wiki-nav-link"><span>📻</span> 8. Voz Espacial & Radio 24/7 (Zero-VPN)</a>
             <a href="#modulo-9" class="wiki-nav-link"><span>🧩</span> 9. Compendio de AddOns & Comandos</a>
             <a href="#modulo-10" class="wiki-nav-link"><span>📜</span> 10. Crónicas de Theramore</a>
+            <a href="#modulo-11" class="wiki-nav-link"><span>⏳</span> 11. Progresión & Calendario 2026–2028</a>
         </aside>
 
         <!-- CONTENIDO DE LA WIKI -->
@@ -781,6 +782,94 @@
                 </div>
                 <p>«Theramore no es solo una fortaleza de piedra en el Marjal Revolcafango; es el último bastión donde el honor y la magia arcana resisten frente a las sombras que emergen del Trono Helado...»</p>
                 <p>Las decisiones de los aventureros en mazmorras y eventos de mundo quedan registradas en la memoria de Lady Jaina Valiente (GUID 1002). Puedes interactuar con ella en Theramore y Dalaran para consultar el rumbo de la campaña militar y recibir misiones de lore viviente adaptadas a tu nivel.</p>
+            </section>
+
+
+            <!-- MÓDULO 11: PROGRESIÓN AUTÓNOMA & CALENDARIO DE ERAS 2026-2028 -->
+            <section id="modulo-11" class="wiki-section">
+                <div class="wiki-sec-header">
+                    <span class="wiki-sec-icon">⏳</span>
+                    <h2 class="wiki-sec-title">11. Progresión Autónoma de Eras &amp; Calendario Oficial (2026–2028)</h2>
+                    <span class="wiki-sec-badge">Chrono-Master v2.0</span>
+                </div>
+
+                <p><strong>Project JAIna</strong> es un reino progresivo automatizado gobernado por el motor <strong>Chrono-Master v2.0</strong> (<code>85_ContentProgressionGate.lua</code> + <code>progression_governor.py</code> + validadores C++ en <code>PlayerbotFactory</code>). Cada cambio de era ocurre de forma 100% autónoma a las <code>00:00 (UTC-5)</code> sin borrar personajes ni progreso, desbloqueando gradualmente niveles, continentes, mazmorras, bandas, profesiones y filas de talentos (<strong>31 puntos</strong> en Classic 60 &rarr; <strong>41 puntos</strong> en TBC 70 &rarr; <strong>51 puntos</strong> en WotLK 80).</p>
+
+                <div class="wiki-table-wrap">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>Fase</th>
+                                <th>Era / Contenido Desbloqueado</th>
+                                <th>Cap Nivel</th>
+                                <th>Ventana Oficial (UTC-5)</th>
+                                <th>Duración</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fase 1</strong></td>
+                                <td><strong>Classic Vanilla</strong> — Núcleo de Magma, Onyxia, Guarida Alanegra, Zul'Gurub y Ahn'Qiraj (AQ20/AQ40). Árboles de 31 pts.</td>
+                                <td><strong>60</strong></td>
+                                <td>24 Nov 2026 &ndash; 01 Mar 2027</td>
+                                <td>97 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 2</strong></td>
+                                <td><strong>The Burning Crusade</strong> — Portal Oscuro, Terrallende, Vuelo, Joyería, Karazhan, SSC, El Ojo, Templo Oscuro y Meseta de la Fuente del Sol. Árboles de 41 pts.</td>
+                                <td><strong>70</strong></td>
+                                <td>01 Mar 2027 &ndash; 01 Jun 2027</td>
+                                <td>92 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 3</strong></td>
+                                <td><strong>WotLK Fase 1 (Tier 7)</strong> — Rasganorte, Caballero de la Muerte, Inscripción, Naxxramas, Sagrario Obsidiana y Ojo de la Eternidad. Árboles de 51 pts.</td>
+                                <td><strong>80</strong></td>
+                                <td>01 Jun 2027 &ndash; 01 Ago 2027</td>
+                                <td>61 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 4</strong></td>
+                                <td><strong>WotLK Fase 2 (Tier 8)</strong> — Los Secretos de Ulduar y modos difíciles de los Titanes.</td>
+                                <td><strong>80</strong></td>
+                                <td>01 Ago 2027 &ndash; 01 Oct 2027</td>
+                                <td>61 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 5</strong></td>
+                                <td><strong>WotLK Fase 3 (Tier 9)</strong> — Torneo Argenta, Prueba del Cruzado y Guarida de Onyxia (Nivel 80).</td>
+                                <td><strong>80</strong></td>
+                                <td>01 Oct 2027 &ndash; 15 Nov 2027</td>
+                                <td>45 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 6</strong></td>
+                                <td><strong>WotLK Fase 4 (Tier 10)</strong> — Mazmorras Heladas (Forja, Foso, Cámaras de Reflexión) y Ciudadela de la Corona de Hielo (ICC).</td>
+                                <td><strong>80</strong></td>
+                                <td>15 Nov 2027 &ndash; 15 Feb 2028</td>
+                                <td>92 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 7</strong></td>
+                                <td><strong>WotLK Fase 5 (Tier 10.5)</strong> — El Sagrario Rubí (Halion el Destructor del Crepúsculo).</td>
+                                <td><strong>80</strong></td>
+                                <td>15 Feb 2028 &ndash; 01 Abr 2028</td>
+                                <td>46 días</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 8</strong></td>
+                                <td><strong>Horizonte Cataclysm</strong> — Expansión progresiva de nivel 85 y renovación elemental de Azeroth.</td>
+                                <td><strong>85</strong></td>
+                                <td>Desde 01 Abr 2028</td>
+                                <td>Horizonte Abierto</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="wiki-callout tip">
+                    <strong>🗡️ Los 7 Campeones Soberanos Persistentes:</strong> En todo momento habitan el mundo <strong>Lady Jaina</strong> (Theramore), <strong>Rey Varian Wrynn</strong> (Ventormenta), <strong>Jefe de Guerra Thrall</strong> (Orgrimmar) y el Escuadrón Élite invocable con <code>.escuadron convocar</code>: <strong>Silka</strong> (Paladín Tanque), <strong>Rogotten</strong> (Pícaro Elfo de Sangre DPS con set Tier 2 <em>Bloodfang</em> 18/18), <strong>Aezrah</strong> (Sacerdotisa Sanadora) y <strong>Melissah</strong> (Bruja DPS).
+                </div>
             </section>
 
         </main>

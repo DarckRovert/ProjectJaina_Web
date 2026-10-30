@@ -72,7 +72,7 @@ El servidor cuenta con el **Santuario Anti-DC (Protección Activa de Desconexió
 ### ¿Puedo hacer mazmorras o campos de batalla si juego en solitario?
 ¡Absolutamente! Project Jaina cuenta con dos sistemas integrados para jugadores solitarios:
 1. **Despacho Instantáneo RDF y Matchmaking PvP (Hito #205):** Abre el Buscador de Mazmorras (`I`) y encola. El motor interceptará tu solicitud y auto-reclutará de inmediato los roles faltantes (1 Tanque, 1 Sanador y 3 DPS) sincronizados a tu nivel, aceptando la propuesta y teletransportando a todo el grupo con las recompensas oficiales de RDF. Además, puedes escribir `.rdf go` para viajar instantáneamente con tu escuadrón a la entrada de la mazmorra correspondiente a tu nivel. En PvP, los campos de batalla (Garganta Grito de Guerra, Cuenca de Arathi, Valle de Alterac) inician con umbrales optimizados (2v2 / 4v4) acelerados por el motor nativo.
-2. **Escuadrón Élite de Compañeros IA (Hito #204):** Puedes invocar en cualquier momento al escuadrón canónico escribiendo `.escuadron convocar` (o `.party ia convocar`). Se unirán **Silka** (Paladín Tanque), **Rogotten** (Paladín DPS), **Aezrah** (Sacerdotisa Sanadora) y **Melissah** (Bruja DPS), con control táctico in-game (`.escuadron postura defensiva/ofensiva/pasiva`), chat real en la ventana de grupo y auxilio dinámico ante caídas de vida crítica.
+2. **Escuadrón Élite de Compañeros IA (Hito #204):** Puedes invocar en cualquier momento al escuadrón canónico escribiendo `.escuadron convocar` (o `.party ia convocar`). Se unirán **Silka** (Paladín Tanque), **Rogotten** (Pícaro Elfo de Sangre DPS, Set Tier 2 *Bloodfang* 18/18), **Aezrah** (Sacerdotisa Sanadora) y **Melissah** (Bruja DPS), con control táctico in-game (`.escuadron postura defensiva/ofensiva/pasiva`), chat real en la ventana de grupo y auxilio dinámico ante caídas de vida crítica.
 
 ---
 
@@ -153,4 +153,28 @@ En el servidor de Discord cuentas con:
 
 © 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
 
+---
+
+## 6. Progresión Autónoma de Eras & Calendario Oficial (2026–2028)
+
+### ¿Project JAIna es un reino progresivo? ¿Cómo funcionan los cambios de expansión?
+¡Sí! El Reino Oficial (**Project Jaina — Puerto 8085**) opera bajo el motor autónomo **Chrono-Master v2.0**. Todos los jugadores y Playerbots progresan juntos desde **Classic Vanilla (Nivel 60)** hasta **Wrath of the Lich King (Nivel 80)** y el horizonte **Cataclysm**, **sin borrar jamás tus personajes, logros, monturas ni coleccionables**.
+
+Cuando el reloj del servidor alcanza las `00:00 (UTC-5)` de la fecha de transición de una nueva era:
+1. El gobernador actualiza automáticamente el nivel máximo (`MaxPlayerLevel`), desbloquea los continentes/bandas correspondientes (Portal Oscuro hacia Terrallende, barcos y zepelines hacia Rasganorte, bandas por Tier) y habilita las nuevas cotas de profesiones e idiomas/clases correspondientes (como el Caballero de la Muerte e Inscripción al iniciar WotLK).
+2. El núcleo C++ (`PlayerbotFactory`) ajusta automáticamente el tope de los árboles de talentos de todos los bots (**31 puntos** en Classic 60, **41 puntos** en TBC 70 y **51 puntos** en WotLK 80), garantizando un balance PvP y PvE 100% fiel a cada expansión.
+
+### ¿Cuánto dura cada era? ¿Cuál es el Calendario Oficial 2026–2028?
+Puedes consultar el cronograma interactivo en vivo en la portada del [Portal Oficial](https://darckrovert.github.io/ProjectJaina_Web/#progresion) y en esta tabla de referencia (`UTC-5`):
+
+| Fase | Era / Contenido Desbloqueado | Nivel Máx. | Inicio (`00:00 UTC-5`) | Fin | Duración |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Fase 1** | **Classic Vanilla** *(MC, Onyxia, BWL, ZG, AQ20/40)* | **60** | 24 Nov 2026 | 01 Mar 2027 | **97 días** |
+| **Fase 2** | **The Burning Crusade** *(Karazhan, Gruul, SSC, TK, BT, Meseta)* | **70** | 01 Mar 2027 | 01 Jun 2027 | **92 días** |
+| **Fase 3** | **WotLK — Naxxramas, Sagrario Obsidiana & Ojo de la Eternidad (T7)** | **80** | 01 Jun 2027 | 01 Ago 2027 | **61 días** |
+| **Fase 4** | **WotLK — Secretos de Ulduar (T8)** | **80** | 01 Ago 2027 | 01 Oct 2027 | **61 días** |
+| **Fase 5** | **WotLK — Prueba del Cruzado & Guarida de Onyxia 80 (T9)** | **80** | 01 Oct 2027 | 15 Nov 2027 | **45 días** |
+| **Fase 6** | **WotLK — Ciudadela de la Corona de Hielo (ICC — T10)** | **80** | 15 Nov 2027 | 15 Feb 2028 | **92 días** |
+| **Fase 7** | **WotLK — El Sagrario Rubí: Halion (T10.5)** | **80** | 15 Feb 2028 | 01 Abr 2028 | **46 días** |
+| **Fase 8** | **Horizonte Cataclysm** *(Expansión de Mundo 80–85)* | **85** | 01 Abr 2028 | *Abierto* | **Permanente** |
 
