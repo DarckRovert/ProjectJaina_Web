@@ -47,8 +47,17 @@ async function initArmory() {
     // 1. Carga instantánea canónica en disco para render instantáneo
     await loadLocalArmorySnapshot();
 
-    // 2. Probar conexión en vivo contra el micro-backend
+        // 2. Probar conexión en vivo contra el micro-backend
     await fetchLiveArmory();
+
+    // 3. Inspección automática vía Query Param (?inspect=Rogotten o ?name=Jaina)
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const autoInspect = urlParams.get("inspect") || urlParams.get("name") || urlParams.get("character");
+        if (autoInspect) {
+            setTimeout(() => inspectCharacter(autoInspect), 350);
+        }
+    } catch (_) {}
 }
 
 /**
