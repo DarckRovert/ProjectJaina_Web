@@ -1,1 +1,1 @@
-﻿v5.53.0, 2026-10-30
+feat(web): sincronizacion portal Project Jaina 2026-10-30_13:14 

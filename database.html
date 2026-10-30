@@ -7,7 +7,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261027a">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
+    <script>const whTooltips = {colorLinks: true, iconizeLinks: false, renameLinks: false};</script>
+    <script src="https://wow.zamimg.com/js/tooltips.js"></script>
     <style>
+        .db-item-img-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            border: 1px solid var(--border-gold);
+            object-fit: cover;
+            transition: transform 0.2s ease;
+        }
+        .db-item-img-icon:hover {
+            transform: scale(1.08);
+            border-color: #00e5ff;
+        }
         .db-search-bar {
             display: flex;
             gap: 12px;
@@ -332,6 +346,7 @@
         <!-- CATEGORY CHIPS -->
         <div class="db-category-chips">
             <button class="db-chip active" data-cat="all">✨ Todos los Registros</button>
+            <button class="db-chip" data-cat="epic_gear">⚔️ Equipo Épico Cap 60</button>
             <button class="db-chip" data-cat="mounts">🐉 Monturas Épicas</button>
             <button class="db-chip" data-cat="wings">🪽 Auras & Alas Místicas</button>
             <button class="db-chip" data-cat="enclaves">🏰 Enclaves de Hermandad</button>
@@ -366,78 +381,6 @@
     <script src="js/navbar.js"></script>
     <script src="js/audio_ambient.js"></script>
     <script src="js/jaina_jukebox.js?v=20261027a"></script>
-    <script>
-        const DB_ITEMS = [
-            { id: 1, name: "Riendas del Destrero Celestial", cat: "mounts", rarity: "legendario", icon: "🐎", desc: "Montura voladora translúcida nacida del brillo astral de Algalon. Se adapta a la velocidad máxima aprendida (hasta 310%).", entry: 54811, req: "Nivel 20 · Equitación Experta" },
-            { id: 2, name: "Riendas de Invencible", cat: "mounts", rarity: "mitico", icon: "💀", desc: "El legendario corcel no-muerto de Arthas Menethil. Permite vuelo aéreo y desplazamiento terrestre a velocidad de 310%.", entry: 50818, req: "Nivel 80 · Artesano Jinete" },
-            { id: 3, name: "Tigre Espectral Raudo", cat: "mounts", rarity: "epico", icon: "🐅", desc: "Imponente felino espectral de Theramore con armadura ceremonial de platino y gemas de maná purificado.", entry: 49284, req: "Nivel 40 · Equitación Hábil" },
-            { id: 4, name: "Alas del Serafín Sagrado", cat: "wings", rarity: "legendario", icon: "🪽", desc: "Aura visual divina permanente. Proyecta seis alas de luz áurea con partículas de santidad celestial al caminar y combatir.", entry: 900201, req: "Cosmético Universal · Cero Taint" },
-            { id: 5, name: "Alas de Vacío & Sombras", cat: "wings", rarity: "epico", icon: "🦇", desc: "Plumas etéreas imbuidas en la entropía del Vacío abisal. Deja estela de cenizas espectrales en movimiento.", entry: 900202, req: "Cosmético Universal" },
-            { id: 6, name: "Resplandor de Escarcha de Dalaran", cat: "wings", rarity: "epico", icon: "❄️", desc: "Emanación rúnica de cristales de hielo perpetuo idéntica al aura personal de Lady Jaina en el sagrario del Kirin Tor.", entry: 900203, req: "Cosmético Universal" },
-            { id: 7, name: "🏰 Torre de los Desertores", cat: "enclaves", rarity: "mitico", icon: "🏰", desc: "Enclave naval en la Bahía de Theramore (58.2, 54.6). Bonificación de hermandad: +10% Velocidad de montura y Rested XP acelerado.", entry: "Enclave #1", req: "Hermandad Nivel 3+ · 2,500 Oro" },
-            { id: 8, name: "🌾 Granja de Ceñidorada", cat: "enclaves", rarity: "raro", icon: "🌾", desc: "Granja fortificada en Páramos de Poniente (44.6, 52.8). Bonificación: +15% regeneración fuera de combate y doble acumulación de descanso.", entry: "Enclave #2", req: "Hermandad Nivel 3+ · 2,500 Oro" },
-            { id: 9, name: "🛡️ Bastión de la Maza", cat: "enclaves", rarity: "epico", icon: "🛡️", desc: "Atalaya militar en Crestagrana (32.4, 48.0). Bonificación: +5% Armadura global y -50% en costes de reparación de equipo.", entry: "Enclave #3", req: "Hermandad Nivel 3+ · 2,500 Oro" },
-            { id: 10, name: "⚔️ Atalaya de la Cruzada", cat: "enclaves", rarity: "legendario", icon: "⚔️", desc: "Baluarte sagrado en Tierras de la Peste (61.8, 38.2). Bonificación: +10% daño sagrado/mágico contra objetivos No-muertos.", entry: "Enclave #4", req: "Hermandad Nivel 3+ · 2,500 Oro" },
-            { id: 11, name: "👗 Guardarropa Espectral Invisible", cat: "transmog", rarity: "epico", icon: "👗", desc: "Ilusión de ocultación estética para hombreras, pechera, guantes o botas, permitiendo lucir vestimentas sin perder armadura real.", entry: 900301, req: "NPC Estilista de Ilusiones" },
-            { id: 12, name: "🏆 Pase de Batalla Estacional (VIP)", cat: "battlepass", rarity: "legendario", icon: "🏆", desc: "Acceso desbloqueado al carril de recompensas VIP: monturas exclusivas de temporada, tokens de Jaina y transfiguraciones únicas.", entry: "Pase #1", req: "Temporada I Activa" },
-            { id: 13, name: "🪙 Ficha de Evento de Dalaran", cat: "tokens", rarity: "raro", icon: "🪙", desc: "Moneda de cambio oficial canjeable con intendentes arcanos en las Atarazanas de Theramore por gemas y recetas de profesión.", entry: 910000, req: "Moneda de Intercambio" }
-        ];
-
-        function renderDbGrid(items) {
-            const container = document.getElementById("dbResultsGrid");
-            if (!container) return;
-            if (items.length === 0) {
-                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">No se encontraron registros que coincidan con la búsqueda.</div>';
-                return;
-            }
-            container.innerHTML = items.map(it => `
-                <div class="db-card rarity-${it.rarity}">
-                    <div class="db-card-header">
-                        <div class="db-item-icon">${it.icon}</div>
-                        <div>
-                            <h3 class="db-item-title ${it.rarity}">${it.name}</h3>
-                            <span class="db-item-type">${it.cat.toUpperCase()} · ${it.rarity.toUpperCase()}</span>
-                        </div>
-                    </div>
-                    <p class="db-item-desc">${it.desc}</p>
-                    <div class="db-item-meta">
-                        <span class="db-tag">ID: ${it.entry}</span>
-                        <span>${it.req}</span>
-                    </div>
-                </div>
-            `).join("");
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            renderDbGrid(DB_ITEMS);
-
-            const searchInput = document.getElementById("dbSearchInput");
-            const chips = document.querySelectorAll(".db-chip");
-            let activeCat = "all";
-
-            function filterItems() {
-                const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
-                const filtered = DB_ITEMS.filter(it => {
-                    const matchCat = (activeCat === "all" || it.cat === activeCat);
-                    const matchQuery = !query || it.name.toLowerCase().includes(query) || it.desc.toLowerCase().includes(query) || String(it.entry).includes(query);
-                    return matchCat && matchQuery;
-                });
-                renderDbGrid(filtered);
-            }
-
-            if (searchInput) {
-                searchInput.addEventListener("input", filterItems);
-            }
-
-            chips.forEach(chip => {
-                chip.addEventListener("click", () => {
-                    chips.forEach(c => c.classList.remove("active"));
-                    chip.classList.add("active");
-                    activeCat = chip.getAttribute("data-cat");
-                    filterItems();
-                });
-            });
-        });
-    </script>
+    <script src="js/database.js?v=20261030a"></script>
 </body>
 </html>

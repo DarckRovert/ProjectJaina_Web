@@ -15,7 +15,30 @@
     "spec": "Destruccion",
     "role": "DPS",
     "title": "Administrador de Proyecto",
-    "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2357 - 0 pts honor."
+    "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2357 - 0 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 2284,
@@ -33,7 +56,30 @@
     "spec": "Chamán Restauración",
     "role": "Sanador / Líder",
     "title": "Thrall, Warchief de la Horda",
-    "lore": "Jefe de Guerra y Chamán del Clan Lobo Gélido. Campeón Soberano de la Horda."
+    "lore": "Jefe de Guerra y Chamán del Clan Lobo Gélido. Campeón Soberano de la Horda.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 1002,
@@ -51,7 +97,128 @@
     "spec": "Archimaga Escarcha/Arcano",
     "role": "DPS / Líder",
     "title": "Lady Jaina Proudmoore",
-    "lore": "Gran Archimaga del Kirin Tor y Gobernanta de Theramore. Campeona Soberana de la Alianza."
+    "lore": "Gran Archimaga del Kirin Tor y Gobernanta de Theramore. Campeona Soberana de la Alianza.",
+    "items": {
+      "0": {
+        "entry": 16914,
+        "name": "Corona de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_53"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 74,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_19"
+      },
+      "2": {
+        "entry": 16917,
+        "name": "Manto de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_02"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
+      },
+      "4": {
+        "entry": 16916,
+        "name": "Togas de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_cloth_03"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo del Kirin Tor",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16918,
+        "name": "Ataduras de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_09"
+      },
+      "9": {
+        "entry": 16913,
+        "name": "Guantes de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_14"
+      },
+      "5": {
+        "entry": 16915,
+        "name": "Cinturón de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_22"
+      },
+      "6": {
+        "entry": 16912,
+        "name": "Pantalones de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_cloth_14"
+      },
+      "7": {
+        "entry": 16919,
+        "name": "Botas de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_05"
+      },
+      "10": {
+        "entry": 19382,
+        "name": "Banda de Elementium Puro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_36"
+      },
+      "11": {
+        "entry": 19147,
+        "name": "Anillo de Poder de Hechizo",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_26"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_gem_ruby_01"
+      },
+      "13": {
+        "entry": 18820,
+        "name": "Talismán de Poder Efímero",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_misc_gem_pearl_03"
+      },
+      "15": {
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_30"
+      },
+      "17": {
+        "entry": 19367,
+        "name": "Toque de Dragón",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_wand_02"
+      }
+    }
   },
   {
     "guid": 2273,
@@ -69,7 +236,30 @@
     "spec": "Bruja Aflicción",
     "role": "DPS Hechizos",
     "title": "Melissah",
-    "lore": "Bruja Elfa de Sangre, Atuendo de Némesis Tier 2. Escuadrón Élite."
+    "lore": "Bruja Elfa de Sangre, Atuendo de Némesis Tier 2. Escuadrón Élite.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 2270,
@@ -87,7 +277,128 @@
     "spec": "Paladín Protección",
     "role": "Tanque",
     "title": "Silka",
-    "lore": "Paladina Elfa de Sangre, Tier 2 Judgement Plate. Vanguardia del Escuadrón Élite."
+    "lore": "Paladina Elfa de Sangre, Tier 2 Judgement Plate. Vanguardia del Escuadrón Élite.",
+    "items": {
+      "0": {
+        "entry": 16952,
+        "name": "Corona del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_05"
+      },
+      "1": {
+        "entry": 19377,
+        "name": "Medallón del Vasto Imperio",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_12"
+      },
+      "2": {
+        "entry": 16953,
+        "name": "Hombreras del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_01"
+      },
+      "14": {
+        "entry": 19386,
+        "name": "Elementium Threaded Cloak",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_misc_cape_19"
+      },
+      "4": {
+        "entry": 16958,
+        "name": "Pechera del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate06"
+      },
+      "8": {
+        "entry": 16951,
+        "name": "Brazales del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_19"
+      },
+      "9": {
+        "entry": 16956,
+        "name": "Guanteletes del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_31"
+      },
+      "5": {
+        "entry": 16957,
+        "name": "Cinturón del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_33"
+      },
+      "6": {
+        "entry": 16954,
+        "name": "Musleras del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_plate_05"
+      },
+      "7": {
+        "entry": 16955,
+        "name": "Escarpes del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_07"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo del Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_36"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_monsterscales_15"
+      },
+      "13": {
+        "entry": 13965,
+        "name": "Anchura de Puño Negro",
+        "ilvl": 63,
+        "quality": 3,
+        "icon": "inv_misc_gem_pearl_04"
+      },
+      "15": {
+        "entry": 19379,
+        "name": "Cromáticamente Templada",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_sword_43"
+      },
+      "16": {
+        "entry": 19349,
+        "name": "Baluarte Reforzado de Elementium",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_shield_06"
+      },
+      "17": {
+        "entry": 23204,
+        "name": "Tratado sobre la Rectitud",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_relics_libramofhope"
+      }
+    }
   },
   {
     "guid": 2271,
@@ -104,8 +415,143 @@
     "playtime_hours": 3.7,
     "spec": "Pícaro Combate",
     "role": "DPS Melee",
-    "title": "Rogotten",
-    "lore": "Pícaro Elfo de Sangre, Tier 2 Bloodfang 18/18. Escuadrón Élite."
+    "title": "Rogotten <La Horda de Orgrimmar>",
+    "lore": "Pícaro Elfo de Sangre BiS Tier 2 Bloodfang 18/18 con Hoja de Perdición y Diente de Can del Núcleo.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Caperuza Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_41"
+      },
+      "1": {
+        "entry": 18404,
+        "name": "Colgante Diente de Onyxia",
+        "ilvl": 74,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_11"
+      },
+      "2": {
+        "entry": 16908,
+        "name": "Hombreras Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_23"
+      },
+      "14": {
+        "entry": 19398,
+        "name": "Capa de Faucinferno",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_cape_18"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Pechera Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_chain_03"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa de Lino Blanco",
+        "ilvl": 10,
+        "quality": 1,
+        "icon": "inv_shirt_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de los Vencedores",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16904,
+        "name": "Brazales Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_07"
+      },
+      "9": {
+        "entry": 16907,
+        "name": "Guantes Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_26"
+      },
+      "5": {
+        "entry": 16903,
+        "name": "Cinturón Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_12"
+      },
+      "6": {
+        "entry": 16901,
+        "name": "Pantalones Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_06"
+      },
+      "7": {
+        "entry": 16906,
+        "name": "Botas Dientedisperso",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_08"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo del Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_36"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_monsterscales_15"
+      },
+      "13": {
+        "entry": 13965,
+        "name": "Anchura de Puño Negro",
+        "ilvl": 63,
+        "quality": 3,
+        "icon": "inv_misc_gem_pearl_04"
+      },
+      "15": {
+        "entry": 18816,
+        "name": "Hoja de Perdición",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_knife_04"
+      },
+      "16": {
+        "entry": 18805,
+        "name": "Diente de Can del Núcleo",
+        "ilvl": 69,
+        "quality": 4,
+        "icon": "inv_knife_03"
+      },
+      "17": {
+        "entry": 17069,
+        "name": "Marca del Golpeador",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_weapon_bow_08"
+      }
+    }
   },
   {
     "guid": 2272,
@@ -123,7 +569,30 @@
     "spec": "Sacerdotisa Sagrado",
     "role": "Sanadora",
     "title": "Aezrah",
-    "lore": "Sacerdotisa Elfa de Sangre, Vestiduras de Trascendencia Tier 2. Escuadrón Élite."
+    "lore": "Sacerdotisa Elfa de Sangre, Vestiduras de Trascendencia Tier 2. Escuadrón Élite.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 1003,
@@ -141,7 +610,30 @@
     "spec": "Armas",
     "role": "Tanque / Mele",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2081 - 0 pts honor."
+    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2081 - 0 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 4,
@@ -159,7 +651,30 @@
     "spec": "Punteria",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Cazador Nv19 - GS 273 - 26073 pts honor."
+    "lore": "Personaje en acore_characters. Cazador Nv19 - GS 273 - 26073 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 52,
@@ -177,7 +692,30 @@
     "spec": "Armas",
     "role": "Tanque / Mele",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2097 - 34869 pts honor."
+    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2097 - 34869 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 100,
@@ -195,7 +733,30 @@
     "spec": "Destruccion",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2289 - 35791 pts honor."
+    "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2289 - 35791 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 613,
@@ -213,7 +774,30 @@
     "spec": "Represión",
     "role": "Híbrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Paladín Nv60 - GS 2478 - 43090 pts honor."
+    "lore": "Personaje en acore_characters. Paladín Nv60 - GS 2478 - 43090 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 686,
@@ -231,7 +815,30 @@
     "spec": "Disciplina",
     "role": "Sanador",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Sacerdote Nv60 - GS 2278 - 28714 pts honor."
+    "lore": "Personaje en acore_characters. Sacerdote Nv60 - GS 2278 - 28714 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 732,
@@ -249,7 +856,30 @@
     "spec": "Armas",
     "role": "Tanque / Mele",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2414 - 17638 pts honor."
+    "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2414 - 17638 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 51,
@@ -267,7 +897,30 @@
     "spec": "Feral",
     "role": "Híbrido",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Druida Nv60 - GS 1758 - 23235 pts honor."
+    "lore": "Personaje en acore_characters. Druida Nv60 - GS 1758 - 23235 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 974,
@@ -285,7 +938,30 @@
     "spec": "Punteria",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Cazador Nv60 - GS 2397 - 22784 pts honor."
+    "lore": "Personaje en acore_characters. Cazador Nv60 - GS 2397 - 22784 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 705,
@@ -303,7 +979,30 @@
     "spec": "Combate",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 2367 - 43718 pts honor."
+    "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 2367 - 43718 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 749,
@@ -321,7 +1020,30 @@
     "spec": "Escarcha",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2303 - 39142 pts honor."
+    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2303 - 39142 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 689,
@@ -339,7 +1061,30 @@
     "spec": "Escarcha",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2316 - 6051 pts honor."
+    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2316 - 6051 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   },
   {
     "guid": 99,
@@ -357,6 +1102,29 @@
     "spec": "Escarcha",
     "role": "DPS",
     "title": "Heroe de Azeroth",
-    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2268 - 42998 pts honor."
+    "lore": "Personaje en acore_characters. Mago Nv60 - GS 2268 - 42998 pts honor.",
+    "items": {
+      "0": {
+        "entry": 16905,
+        "name": "Yelmo de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_helmet_01"
+      },
+      "4": {
+        "entry": 16900,
+        "name": "Armadura de Campeón",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_chest_plate01"
+      },
+      "15": {
+        "entry": 19029,
+        "name": "Espada de Campeón",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
+      }
+    }
   }
 ]
