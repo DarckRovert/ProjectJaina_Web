@@ -296,10 +296,10 @@ function renderCharacterRoster(characters, account) {
                     <button type="button" class="btn-char-action btn-paperdoll" onclick="openVisualPaperdoll(${c.guid})" title="Inspeccionar Ficha Canónica de Armadura y Equipamiento 3.3.5a" style="border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.12);">
                         👘 Ver Equipo
                     </button>
-                    <button type="button" class="btn-char-action btn-unstuck" onclick="actionUnstuckCharacter(${c.guid}, '${c.name}')" title="Desatascar y enviar a Posada/Capital si quedó atrapado o caído al vacío">
+                    <button type="button" class="btn-char-action btn-unstuck" onclick="actionUnstuckCharacter(${c.guid}, '${String(c.name).replace(/'/g, "\\'")}')" title="Desatascar y enviar a Posada/Capital si quedó atrapado o caído al vacío">
                         ⚡ Desatascar (Unstuck)
                     </button>
-                    <button type="button" class="btn-char-action btn-teleport" onclick="openTeleportModal(${c.guid}, '${c.name}')" title="Trasladar a una ciudad segura del reino">
+                    <button type="button" class="btn-char-action btn-teleport" onclick="openTeleportModal(${c.guid}, '${String(c.name).replace(/'/g, "\\'")}')" title="Trasladar a una ciudad segura del reino">
                         🕊️ Trasladar
                     </button>
                     <a href="armeria.html?name=${encodeURIComponent(c.name)}" class="btn-char-action btn-armory" title="Inspeccionar en la Armería de Campeones">

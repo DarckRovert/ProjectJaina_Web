@@ -14,6 +14,11 @@
  */
 
 // Catálogo fallback (SSOT local) — sincronizado con store_catalog.json en WebAPI
+const CANONICAL_STORE_ICONS = {"2319": "inv_misc_leatherscrap_05", "2592": "inv_fabric_wool_01", "2840": "inv_ingot_02", "3575": "inv_ingot_iron", "3860": "inv_ingot_06", "4234": "inv_misc_leatherscrap_07", "4304": "inv_misc_leatherscrap_08", "4306": "inv_fabric_silk_01", "4338": "inv_fabric_mageweave_01", "6833": "inv_shirt_08", "8170": "inv_misc_leatherscrap_02", "8925": "inv_alchemy_crystalvial", "9998": "inv_chest_leather_03", "10000": "inv_misc_horn_03", "10001": "inv_chest_cloth_13", "10003": "inv_gauntlets_05", "10007": "inv_shirt_09", "10025": "inv_helmet_27", "10034": "inv_shirt_08", "10035": "inv_pants_01", "10036": "inv_shirt_black_01", "10250": "inv_helmet_51", "10252": "inv_pants_09", "12359": "inv_ingot_07", "12422": "inv_chest_plate10", "12424": "inv_belt_01", "12425": "inv_bracer_19", "12426": "inv_boots_plate_01", "12427": "inv_helmet_22", "12428": "inv_shoulder_02", "12429": "inv_pants_04", "12800": "inv_misc_gem_diamond_01", "13346": "inv_chest_cloth_08", "13463": "inv_misc_herb_dreamfoil", "13465": "inv_misc_herb_mountainsilversage", "13466": "inv_misc_herb_plaguebloom", "13468": "inv_misc_herb_blacklotus", "14047": "inv_fabric_purplefire_01", "14344": "inv_enchant_shardbrilliantlarge", "14551": "inv_gauntlets_30", "14552": "inv_shoulder_20", "15062": "inv_pants_wolf", "15063": "inv_gauntlets_26", "15086": "inv_misc_bandage_13", "15417": "inv_misc_pelt_03", "16203": "inv_enchant_essenceeternallarge", "16204": "inv_enchant_dustillusion", "16666": "inv_chest_chain_11", "16667": "inv_helmet_04", "16668": "inv_pants_03", "16669": "inv_shoulder_29", "16670": "inv_boots_wolf", "16671": "inv_bracer_02", "16672": "inv_gauntlets_11", "16673": "inv_belt_16", "16674": "inv_chest_chain_03", "16675": "inv_boots_plate_07", "16676": "inv_gauntlets_10", "16677": "inv_helmet_24", "16678": "inv_pants_03", "16679": "inv_shoulder_10", "16680": "inv_belt_28", "16681": "inv_bracer_17", "16682": "inv_boots_02", "16683": "inv_jewelry_ring_23", "16684": "inv_gauntlets_17", "16685": "inv_belt_08", "16686": "inv_crown_02", "16687": "inv_pants_06", "16688": "inv_chest_cloth_25", "16689": "inv_shoulder_23", "16690": "inv_chest_cloth_11", "16691": "inv_boots_05", "16692": "inv_gauntlets_14", "16693": "inv_crown_01", "16694": "inv_pants_08", "16695": "inv_shoulder_02", "16696": "inv_belt_10", "16697": "inv_belt_31", "16698": "inv_helmet_29", "16699": "inv_pants_08", "16700": "inv_chest_cloth_49", "16701": "inv_misc_bone_taurenskull_01", "16702": "inv_belt_12", "16703": "inv_bracer_13", "16704": "inv_boots_05", "16705": "inv_gauntlets_32", "16706": "inv_chest_plate06", "16707": "inv_helmet_41", "16708": "inv_shoulder_07", "16709": "inv_pants_02", "16710": "inv_bracer_07", "16711": "inv_boots_08", "16712": "inv_gauntlets_24", "16713": "inv_belt_03", "16714": "inv_bracer_09", "16715": "inv_boots_08", "16716": "inv_belt_15", "16717": "inv_gauntlets_17", "16718": "inv_shoulder_01", "16719": "inv_pants_08", "16720": "inv_helmet_27", "16721": "inv_chest_leather_07", "16723": "inv_belt_11", "16724": "inv_gauntlets_19", "16725": "inv_boots_plate_03", "16726": "inv_chest_plate03", "16727": "inv_helmet_08", "16728": "inv_pants_04", "16729": "inv_shoulder_10", "16730": "inv_chest_plate03", "16731": "inv_helmet_02", "16732": "inv_pants_04", "16733": "inv_shoulder_30", "16734": "inv_boots_plate_03", "16735": "inv_bracer_18", "16736": "inv_belt_34", "16737": "inv_gauntlets_26", "18768": "ability_mount_whitetiger", "18773": "ability_mount_mechastrider", "18776": "ability_mount_ridinghorse", "18786": "ability_mount_mountainram", "18788": "ability_mount_raptor", "18792": "inv_shoulder_31", "18794": "ability_mount_kodo_03", "18796": "ability_mount_blackdirewolf", "20725": "inv_enchant_shardnexuslarge", "21841": "inv_misc_bag_23_netherweave", "41599": "inv_misc_bag_enchantedmageweave", "44819": "inv_pet_babyblizzardbear", "49284": "ability_mount_spectraltiger", "50818": "spell_deathknight_summondeathcharger", "54811": "ability_mount_celestialhorse"};
+
+function _escapeStoreHtml(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 const DEFAULT_CATALOG = [
     {
         "id": "pack_jaina_token_single",
@@ -1935,6 +1940,13 @@ async function loadRemoteCatalog() {
 // ─────────────────────────────────────────────────────────────────────────────
 // RENDER TARJETAS
 // ─────────────────────────────────────────────────────────────────────────────
+function selectPackageById(pkgId) {
+    const sourceList = (Array.isArray(currentCatalog) && currentCatalog.length) ? currentCatalog : DEFAULT_CATALOG;
+    const pkg = sourceList.find(p => p.id === pkgId);
+    if (!pkg) return;
+    selectPackage(pkg.id, pkg.name, pkg.price_pen || 0, pkg.price_usd || pkg.price || 0);
+}
+
 function renderCatalogCards(catalog) {
     const container = document.getElementById("shopCardsContainer");
     if (!container) return;
@@ -1951,66 +1963,81 @@ function renderCatalogCards(catalog) {
 
     container.innerHTML = filtered.map(pkg => {
         const r = RARITY_COLORS[pkg.rarity] || RARITY_COLORS.epico;
-        const tokens = pkg.tokens ? `<div style="font-size:.8rem;color:${r.text};margin-top:.3rem;font-weight:600;">🪙 ${Number(pkg.tokens).toLocaleString()} Tokens de Jaina</div>` : "";
-        
+        const tokens = pkg.tokens ? `<div class="store-tokens-line" style="color:${r.text};">🪙 ${Number(pkg.tokens).toLocaleString()} Tokens de Jaina</div>` : "";
+
         let rewardsHtml = "";
         if (pkg.rewards && pkg.rewards.length > 0) {
+            const useTwoCols = pkg.rewards.length >= 4;
             const itemsList = pkg.rewards.map(rw => {
-                let icon = "🎁";
-                if (rw.type === "mount") icon = "🐎";
-                else if (rw.type === "title") icon = "👑";
-                else if (rw.type === "aura") icon = "🪽";
-                else if (rw.type === "vip") icon = "⭐";
-                else if (rw.type === "money") icon = "💰";
-                else if (rw.type === "bp_levels") icon = "⚡";
-                else if (rw.name && rw.name.includes("Token")) icon = "🪙";
+                const entryNum = Number(rw.entry || 0);
+                const isWoWItem = (rw.type === "item" || rw.type === "mount") && entryNum > 0 && entryNum < 900000;
+                const countPrefix = rw.count > 1 ? `<strong class="store-loot-qty">${rw.count}×</strong> ` : "";
+                const safeName = _escapeStoreHtml(rw.name);
 
-                const isWoWItem = rw.entry && rw.entry > 0 && rw.entry < 900000;
                 if (isWoWItem) {
-                    return `<a href="https://www.wowhead.com/wotlk/item=${rw.entry}" data-wowhead="item=${rw.entry}&domain=wotlk" target="_blank" rel="noopener" class="store-wh-badge" style="display:inline-block;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);border-radius:4px;padding:2px 6px;margin:2px 2px 0 0;font-size:0.73rem;color:#00e5ff;text-decoration:none;transition:all 0.2s ease;">${icon} ${rw.count > 1 ? rw.count + 'x ' : ''}${rw.name}</a>`;
+                    const iconSlug = rw.icon || CANONICAL_STORE_ICONS[String(entryNum)] || "inv_misc_questionmark";
+                    const iconUrl = `https://wow.zamimg.com/images/wow/icons/medium/${iconSlug}.jpg`;
+                    return `<a href="https://www.wowhead.com/wotlk/item=${entryNum}" data-wowhead="item=${entryNum}&domain=wotlk" target="_blank" rel="noopener noreferrer" class="store-loot-pill store-loot-wow" title="${safeName}">
+                        <img class="store-loot-icon" loading="lazy" src="${iconUrl}" alt="" onerror="this.onerror=null;this.src='https://wow.zamimg.com/images/wow/icons/medium/inv_misc_questionmark.jpg';">
+                        <span class="store-loot-text">${countPrefix}${safeName}</span>
+                    </a>`;
                 }
-                return `<span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px 6px;margin:2px 2px 0 0;font-size:0.73rem;color:#e2e8f0;">${icon} ${rw.count > 1 ? rw.count + 'x ' : ''}${rw.name}</span>`;
-            }).join("");
-    // Refrescar tooltips de Wowhead en vivo
-    if (window.$WowheadPower) {
-        setTimeout(() => {
-            try { window.$WowheadPower.refreshLinks(); } catch (_) {}
-        }, 80);
-    }
 
-            rewardsHtml = `<div style="margin-top:0.45rem;display:flex;flex-wrap:wrap;gap:2px;">${itemsList}</div>`;
+                let badgeIcon = "🎁";
+                if (rw.type === "title") badgeIcon = "👑";
+                else if (rw.type === "aura") badgeIcon = "🪽";
+                else if (rw.type === "vip") badgeIcon = "⭐";
+                else if (rw.type === "money") badgeIcon = "💰";
+                else if (rw.type === "bp_levels") badgeIcon = "⚡";
+                else if (entryNum === 900200) badgeIcon = "🎫";
+                else if (entryNum === 900100 || (rw.name && rw.name.includes("Token"))) badgeIcon = "🪙";
+                else if (entryNum === 910000) badgeIcon = "🎟️";
+
+                return `<span class="store-loot-pill store-loot-special" title="${safeName}">
+                    <span class="store-loot-emoji">${badgeIcon}</span>
+                    <span class="store-loot-text">${countPrefix}${safeName}</span>
+                </span>`;
+            }).join("");
+
+            rewardsHtml = `<div class="store-loot-grid ${useTwoCols ? 'two-col' : ''}">${itemsList}</div>`;
         }
 
         const pricePen = Number(pkg.price_pen || pkg.price || 0).toFixed(2);
         const priceUsd = Number(pkg.price_usd || pkg.price || 0).toFixed(2);
-        const displayPrice = currentCurrency === "PEN" 
+        const displayPrice = currentCurrency === "PEN"
             ? `S/. ${pricePen} <span style="font-size:0.75rem;color:#94a3b8;">PEN</span>`
             : `$${priceUsd} <span style="font-size:0.75rem;color:#94a3b8;">USD</span>`;
 
+        const safeIdAttr = _escapeStoreHtml(pkg.id);
         return `
         <div class="shop-card rarity-${pkg.rarity}"
-             id="card-${pkg.id}"
-             style="border-color:${r.border};box-shadow:0 0 18px ${r.glow};"
-             onmouseenter="this.style.transform='translateY(-6px) scale(1.02)'"
-             onmouseleave="this.style.transform=''">
-            <div class="shop-card-badge" style="background:${r.border};color:#fff;">${pkg.rarity_label || "ÉPICO"}</div>
+             id="card-${safeIdAttr}"
+             style="border-color:${r.border};box-shadow:0 10px 30px rgba(0,0,0,0.45), 0 0 18px ${r.glow};">
+            <div class="shop-card-badge" style="background:${r.border};color:#fff;">${_escapeStoreHtml(pkg.rarity_label || "ÉPICO")}</div>
             <div class="shop-card-top">
                 <div class="shop-icon">${pkg.icon || "✨"}</div>
-                <div class="shop-title" style="color:${r.text};">${pkg.name}</div>
-                <div class="shop-desc">${pkg.description}</div>
+                <div class="shop-title" style="color:${r.text};">${_escapeStoreHtml(pkg.name)}</div>
+                <div class="shop-desc">${_escapeStoreHtml(pkg.description)}</div>
                 ${tokens}
                 ${rewardsHtml}
             </div>
             <div class="shop-card-bottom">
                 <div class="shop-price">${displayPrice}</div>
-                <button class="btn-primary btn-block"
-                        style="border-color:${r.border};background:linear-gradient(135deg,${r.glow},transparent);"
-                        onclick="selectPackage('${pkg.id}','${pkg.name}',${pkg.price_pen || 0},${pkg.price_usd || 0})">
-                    ✨ Adquirir Recompensa
+                <button type="button"
+                        class="btn-shop-acquire rarity-btn-${pkg.rarity || 'epico'}"
+                        onclick="selectPackageById('${safeIdAttr}')">
+                    <span>✨</span>
+                    <span>Adquirir Recompensa</span>
                 </button>
             </div>
         </div>`;
     }).join("");
+
+    if (window.$WowheadPower && typeof window.$WowheadPower.refreshLinks === "function") {
+        setTimeout(() => {
+            try { window.$WowheadPower.refreshLinks(); } catch (_) {}
+        }, 60);
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

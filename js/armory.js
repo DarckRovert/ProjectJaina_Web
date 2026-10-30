@@ -183,7 +183,7 @@ function renderPodium(chars) {
         const c = chars[0];
         const classBadge = getClassBadgeClass(c.class);
         podiumContainer.innerHTML = `
-            <div class="podium-card podium-gold" onclick="inspectCharacter('${c.name}')" style="max-width: 360px; margin: 0 auto; width: 100%;">
+            <div class="podium-card podium-gold" onclick="inspectCharacter('${String(c.name).replace(/'/g, "\\'")}')" style="max-width: 360px; margin: 0 auto; width: 100%;">
                 <div class="podium-crown">👑</div>
                 <div class="podium-avatar-wrap">
                     <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
@@ -215,7 +215,7 @@ function renderPodium(chars) {
             const c = r.c;
             const classBadge = getClassBadgeClass(c.class);
             return `
-                <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${c.name}')">
+                <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${String(c.name).replace(/'/g, "\\'")}')">
                     <div class="podium-crown">${r.medal}</div>
                     <div class="podium-avatar-wrap">
                         <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
@@ -245,7 +245,7 @@ function renderPodium(chars) {
         const c = r.c;
         const classBadge = getClassBadgeClass(c.class);
         return `
-            <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${c.name}')">
+            <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${String(c.name).replace(/'/g, "\\'")}')">
                 <div class="podium-crown">${r.medal}</div>
                 <div class="podium-avatar-wrap">
                     <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
@@ -296,7 +296,7 @@ function renderArmoryRows(chars) {
             : `<span class="offline-tag">○ Desconectado</span>`;
 
         return `
-            <tr class="armory-row" onclick="inspectCharacter('${c.name}')">
+            <tr class="armory-row" onclick="inspectCharacter('${String(c.name).replace(/'/g, "\\'")}')">
                 <td class="rank-cell">#${idx + 1}</td>
                 <td class="name-cell">
                     <strong>${c.name}</strong>
@@ -308,7 +308,7 @@ function renderArmoryRows(chars) {
                 <td class="guild-cell">${c.guild}</td>
                 <td>${statusBadge}</td>
                 <td>
-                    <button class="btn-inspect" onclick="event.stopPropagation(); inspectCharacter('${c.name}')">
+                    <button class="btn-inspect" onclick="event.stopPropagation(); inspectCharacter('${String(c.name).replace(/'/g, "\\'")}')">
                         🔍 Ver Ficha
                     </button>
                 </td>

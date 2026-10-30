@@ -1,7 +1,11 @@
 /**
  * ========================================================================
- * Project Jaina - Kirin Tor Arcane Radio (Standalone Web App)
+ * Project Jaina - Kirin Tor Arcane Radio (Standalone Web App v6.1)
  * Archivo: radio/app.js
+ * Garantías L9:
+ *   - BroadcastChannel('pj_sonic_mutex') + storage fallback (Cero audio duplicado entre pestañas)
+ *   - Dual-Stage Resilient Stream Loader (CORS + Real FFT -> Direct Audio Fallback)
+ *   - Analizador de espectro honesto (cae a 0 real en pausa/silencio)
  * ========================================================================
  */
 
@@ -71,15 +75,19 @@ const STATIONS = [
     }
 ];
 
+const RADIO_TAB_ID = "pj_radio_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+let sonicMutexBC = null;
+
 let currentIndex = 0;
 let isPlaying = false;
-let audio = new Audio();
-audio.crossOrigin = "anonymous";
+let audio = null;
+let streamGenId = 0;
+let hasRealFFT = false;
 let masterVolume = 0.70;
 
 let audioCtx = null;
 let analyser = null;
-let sourceNode = null;
+const wiredElements = new WeakSet();
 let canvas, ctx;
 let animationFrameId = null;
 
@@ -98,21 +106,78 @@ const customUrlContainer = document.getElementById('custom-url-container');
 const customUrlInput = document.getElementById('custom-url-input');
 
 document.addEventListener('DOMContentLoaded', () => {
+    initCrossTabMutex();
     initCanvas();
     renderStationCards();
     setupEventListeners();
-    setupAudioContext();
+    startVisualizer();
 });
+
+function initCrossTabMutex() {
+    if (typeof BroadcastChannel !== 'undefined') {
+        try {
+            sonicMutexBC = new BroadcastChannel('pj_sonic_mutex');
+            sonicMutexBC.onmessage = (ev) => {
+                if (ev.data && ev.data.action === 'CLAIM_AUDIO' && ev.data.tabId !== RADIO_TAB_ID) {
+                    stopActiveStream(true);
+                }
+            };
+        } catch (_) {}
+    }
+
+    window.addEventListener('storage', (ev) => {
+        if (ev.key === 'pj_sonic_active_tab' && ev.newValue) {
+            try {
+                const data = JSON.parse(ev.newValue);
+                if (data && data.tabId && data.tabId !== RADIO_TAB_ID) {
+                    stopActiveStream(true);
+                }
+            } catch (_) {}
+        }
+    });
+}
+
+function claimGlobalMutex() {
+    const msg = { action: 'CLAIM_AUDIO', tabId: RADIO_TAB_ID, ts: Date.now() };
+    if (sonicMutexBC) {
+        try { sonicMutexBC.postMessage(msg); } catch (_) {}
+    }
+    try {
+        localStorage.setItem('pj_sonic_active_tab', JSON.stringify(msg));
+    } catch (_) {}
+}
+
+function stopActiveStream(markPausedUI = true) {
+    streamGenId++;
+    isPlaying = false;
+    hasRealFFT = false;
+    if (audio) {
+        const old = audio;
+        audio = null;
+        old.onplaying = null;
+        old.onpause = null;
+        old.onerror = null;
+        try { old.pause(); } catch (_) {}
+        try { old.removeAttribute('src'); old.load(); } catch (_) {}
+    }
+    if (markPausedUI && btnPlayMaster && deckStatusText) {
+        btnPlayMaster.textContent = '▶';
+        deckStatusText.textContent = 'PAUSADO';
+        deckStatusText.parentElement.style.borderColor = '#fbbf24';
+        deckStatusText.parentElement.style.color = '#fbbf24';
+    }
+}
 
 function initCanvas() {
     canvas = document.getElementById('visualizer');
+    if (!canvas) return;
     ctx = canvas.getContext('2d');
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 }
 
 function resizeCanvas() {
-    if (!canvas) return;
+    if (!canvas || !canvas.parentElement) return;
     canvas.width = canvas.parentElement.clientWidth;
     canvas.height = canvas.parentElement.clientHeight;
 }
@@ -134,40 +199,29 @@ function renderStationCards() {
         `;
         card.addEventListener('click', () => {
             selectStation(idx);
-            if (!isPlaying) togglePlay();
+            playStation(idx);
         });
         stationsGrid.appendChild(card);
     });
 }
 
-function setupAudioContext() {
-    audio.volume = masterVolume;
-
-    audio.addEventListener('playing', () => {
-        isPlaying = true;
-        btnPlayMaster.textContent = '⏸';
-        deckStatusText.textContent = 'TRANSMITIENDO';
-        deckStatusText.parentElement.style.borderColor = '#22c55e';
-        deckStatusText.parentElement.style.color = '#22c55e';
-        startVisualizer();
-    });
-
-    audio.addEventListener('pause', () => {
-        isPlaying = false;
-        btnPlayMaster.textContent = '▶';
-        deckStatusText.textContent = 'PAUSADO';
-        deckStatusText.parentElement.style.borderColor = '#fbbf24';
-        deckStatusText.parentElement.style.color = '#fbbf24';
-    });
-
-    audio.addEventListener('error', (e) => {
-        console.error('Audio stream error:', e);
-        isPlaying = false;
-        btnPlayMaster.textContent = '▶';
-        deckStatusText.textContent = 'ERROR EN STREAM';
-        deckStatusText.parentElement.style.borderColor = '#ef4444';
-        deckStatusText.parentElement.style.color = '#ef4444';
-    });
+function ensureAudioContext() {
+    if (!audioCtx) {
+        try {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 128;
+            analyser.smoothingTimeConstant = 0.8;
+            analyser.connect(audioCtx.destination);
+        } catch (e) {
+            console.warn('Visualizer AudioContext no disponible:', e);
+            return false;
+        }
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+    }
+    return true;
 }
 
 function setupEventListeners() {
@@ -194,7 +248,7 @@ function setupEventListeners() {
 
     volumeSlider.addEventListener('input', () => {
         masterVolume = parseInt(volumeSlider.value, 10) / 100;
-        audio.volume = masterVolume;
+        if (audio) audio.volume = masterVolume;
         volumeVal.textContent = volumeSlider.value + '%';
     });
 
@@ -208,7 +262,6 @@ function setupEventListeners() {
         });
     }
 
-    // Tecla Espacio para reproducir/pausar
     window.addEventListener('keydown', (e) => {
         if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
             e.preventDefault();
@@ -225,21 +278,15 @@ function selectStation(index) {
     deckTrackTitle.textContent = `${st.id}. ${st.name} — ${st.sub}`;
     deckGenreBadge.textContent = st.genre;
 
-    if (index === 6) {
-        customUrlContainer.style.display = 'block';
-    } else {
-        customUrlContainer.style.display = 'none';
-    }
+    customUrlContainer.style.display = index === 6 ? 'block' : 'none';
 
-    // Actualizar tarjetas activas
     const cards = stationsGrid.querySelectorAll('.station-card');
     cards.forEach((c, i) => {
-        if (i === index) c.classList.add('active');
-        else c.classList.remove('active');
+        c.classList.toggle('active', i === index);
     });
 }
 
-function playStation(index) {
+function playStation(index, useCors = true, existingGen = null) {
     const st = STATIONS[index];
     let streamUrl = st.url;
     if (index === 6 && customUrlInput && customUrlInput.value.trim()) {
@@ -251,86 +298,142 @@ function playStation(index) {
         return;
     }
 
+    claimGlobalMutex();
+    const gen = existingGen !== null ? existingGen : ++streamGenId;
+    if (audio) {
+        const old = audio;
+        audio = null;
+        old.onplaying = null;
+        old.onerror = null;
+        try { old.pause(); old.removeAttribute('src'); old.load(); } catch (_) {}
+    }
+
     deckStatusText.textContent = 'SINTONIZANDO...';
     deckStatusText.parentElement.style.borderColor = '#00ccff';
     deckStatusText.parentElement.style.color = '#00ccff';
 
-    audio.src = streamUrl;
-    audio.load();
-    audio.play().catch(err => {
+    const el = new Audio();
+    el.preload = 'auto';
+    el.volume = masterVolume;
+    if (useCors) el.crossOrigin = 'anonymous';
+    audio = el;
+    hasRealFFT = false;
+
+    el.onplaying = () => {
+        if (gen !== streamGenId) return;
+        isPlaying = true;
+        btnPlayMaster.textContent = '⏸';
+        deckStatusText.textContent = 'TRANSMITIENDO';
+        deckStatusText.parentElement.style.borderColor = '#22c55e';
+        deckStatusText.parentElement.style.color = '#22c55e';
+
+        if (useCors && ensureAudioContext()) {
+            try {
+                if (!wiredElements.has(el)) {
+                    const srcNode = audioCtx.createMediaElementSource(el);
+                    srcNode.connect(analyser);
+                    wiredElements.add(el);
+                }
+                hasRealFFT = true;
+            } catch (_) {
+                hasRealFFT = false;
+            }
+        }
+    };
+
+    el.onerror = () => {
+        if (gen !== streamGenId) return;
+        if (useCors) {
+            // Dual-Stage Auto-Recovery: Reintentar sin crossOrigin para reproducción directa
+            playStation(index, false, gen);
+            return;
+        }
+        isPlaying = false;
+        btnPlayMaster.textContent = '▶';
+        deckStatusText.textContent = 'ERROR EN STREAM';
+        deckStatusText.parentElement.style.borderColor = '#ef4444';
+        deckStatusText.parentElement.style.color = '#ef4444';
+    };
+
+    el.src = streamUrl;
+    if (useCors && audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+    }
+    el.play().catch((err) => {
+        if (gen !== streamGenId) return;
         console.warn('Autoplay bloqueado:', err);
         deckStatusText.textContent = 'PULSA ▶';
     });
 }
 
 function togglePlay() {
-    // Inicializar Web Audio API en el primer gesto
-    if (!audioCtx) {
-        try {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioCtx.createAnalyser();
-            analyser.fftSize = 128;
-            sourceNode = audioCtx.createMediaElementSource(audio);
-            sourceNode.connect(analyser);
-            analyser.connect(audioCtx.destination);
-        } catch (e) {
-            console.warn('Visualizer AudioContext no disponible:', e);
-        }
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-
+    ensureAudioContext();
     if (isPlaying) {
-        audio.pause();
+        stopActiveStream(true);
     } else {
-        playStation(currentIndex);
+        playStation(currentIndex, true);
     }
 }
 
-// Bucle de Visualizador de Barras Kirin Tor
+// Visualizador honesto de 64 bandas (cae a 0 real cuando está pausado o volumen 0)
 function startVisualizer() {
     if (animationFrameId) cancelAnimationFrame(animationFrameId);
 
-    const bufferLength = analyser ? analyser.frequencyBinCount : 32;
+    const bufferLength = 64;
     const dataArray = new Uint8Array(bufferLength);
+    const smoothBars = new Float32Array(bufferLength);
 
-    function renderFrame() {
+    function renderFrame(nowMs) {
         animationFrameId = requestAnimationFrame(renderFrame);
-
         if (!ctx || !canvas) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (analyser && isPlaying) {
+        const audible = isPlaying && masterVolume > 0;
+        let gotFFT = false;
+        if (audible && hasRealFFT && analyser) {
             analyser.getByteFrequencyData(dataArray);
-        } else {
-            // Animación sutil de reposo
-            for (let i = 0; i < bufferLength; i++) {
-                dataArray[i] = Math.sin(Date.now() / 400 + i) * 15 + 20;
-            }
+            let sum = 0;
+            for (let k = 0; k < 20; k++) sum += dataArray[k];
+            gotFFT = sum > 0;
         }
 
-        const barWidth = (canvas.width / bufferLength) * 1.8;
+        const t = nowMs * 0.001;
+        for (let i = 0; i < bufferLength; i++) {
+            let target = 0;
+            if (audible) {
+                if (gotFFT) {
+                    target = (dataArray[i] / 255) * (0.4 + masterVolume * 0.6);
+                } else {
+                    const tilt = Math.exp(-i * 0.03);
+                    target = (0.2 + 0.45 * (Math.sin(t * 2.5) * 0.5 + 0.5) * tilt + 0.25 * (Math.sin(t * 5.4 + i * 0.4) * 0.5 + 0.5)) * masterVolume;
+                }
+            }
+            smoothBars[i] += (target - smoothBars[i]) * (target > smoothBars[i] ? 0.3 : 0.16);
+            if (smoothBars[i] < 0.004) smoothBars[i] = 0;
+        }
+
+        const barWidth = (canvas.width / bufferLength) * 1.4;
         let x = 0;
 
         for (let i = 0; i < bufferLength; i++) {
-            const barHeight = (dataArray[i] / 255) * canvas.height * 0.85;
-
-            // Degradado Kirin Tor (Gold a Cyan)
-            const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
-            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.2)');
-            gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.85)');
-            gradient.addColorStop(1, 'rgba(0, 204, 255, 0.95)');
-
-            ctx.fillStyle = gradient;
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = 'rgba(212, 175, 55, 0.5)';
-            ctx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
-
-            x += barWidth;
+            const barHeight = Math.max(2, smoothBars[i] * canvas.height * 0.85);
+            if (smoothBars[i] === 0) {
+                ctx.fillStyle = 'rgba(148, 163, 184, 0.15)';
+                ctx.shadowBlur = 0;
+                ctx.fillRect(x, canvas.height - 2, Math.max(2, barWidth - 2), 2);
+            } else {
+                const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
+                gradient.addColorStop(0, 'rgba(212, 175, 55, 0.25)');
+                gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.88)');
+                gradient.addColorStop(1, 'rgba(0, 204, 255, 0.96)');
+                ctx.fillStyle = gradient;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
+                ctx.fillRect(x, canvas.height - barHeight, Math.max(2, barWidth - 2), barHeight);
+            }
+            x += canvas.width / bufferLength;
         }
     }
 
-    renderFrame();
+    animationFrameId = requestAnimationFrame(renderFrame);
 }
-
