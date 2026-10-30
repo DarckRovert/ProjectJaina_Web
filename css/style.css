@@ -7554,3 +7554,244 @@ body.pj-modal-open {
     background: linear-gradient(135deg, #059669 0%, #064e3b 100%);
     border-color: #34d399;
 }
+
+/* === KIRIN TOR UNIVERSAL DIALOGS & V7.1 RESPONSIVE SUITE === */
+.portal-toast-container.dock-offset {
+    bottom: 92px;
+}
+.portal-toast.toast-error {
+    border-color: rgba(239, 68, 68, 0.65);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 22px rgba(239, 68, 68, 0.28);
+}
+.portal-toast.toast-arcane {
+    border-color: rgba(168, 85, 247, 0.65);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 22px rgba(168, 85, 247, 0.28);
+}
+.toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #38bdf8, #f59e0b);
+    transform-origin: left center;
+    animation: pjToastCountdown linear forwards;
+}
+@keyframes pjToastCountdown {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+/* Kirin Tor Non-Blocking Confirm & Prompt Dialogs */
+.pj-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+    background: rgba(4, 7, 15, 0.78);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.pj-dialog-overlay.active {
+    opacity: 1;
+}
+.pj-dialog-card {
+    width: 100%;
+    max-width: 460px;
+    background: linear-gradient(145deg, rgba(13, 20, 35, 0.98) 0%, rgba(8, 13, 24, 0.99) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-radius: 16px;
+    padding: 1.5rem 1.6rem;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), 0 0 30px rgba(245, 158, 11, 0.16);
+    color: #e2e8f0;
+    transform: translateY(10px) scale(0.97);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pj-dialog-overlay.active .pj-dialog-card {
+    transform: translateY(0) scale(1);
+}
+.pj-dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.75rem;
+}
+.pj-dialog-icon {
+    font-size: 1.4rem;
+}
+.pj-dialog-title {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: #fbbf24;
+    letter-spacing: 0.03em;
+}
+.pj-dialog-body {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #cbd5e1;
+    margin-bottom: 1.25rem;
+}
+.pj-dialog-input,
+.pj-dialog-select {
+    width: 100%;
+    padding: 0.75rem 0.95rem;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    background: rgba(5, 9, 18, 0.9);
+    color: #f8fafc;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pj-dialog-input:focus,
+.pj-dialog-select:focus {
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+.pj-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.7rem;
+}
+.pj-dialog-btn {
+    padding: 0.62rem 1.15rem;
+    border-radius: 9px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    border: 1px solid transparent;
+}
+.pj-dialog-btn-cancel {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(148, 163, 184, 0.3);
+    color: #cbd5e1;
+}
+.pj-dialog-btn-cancel:hover {
+    background: rgba(51, 65, 85, 0.95);
+    color: #ffffff;
+}
+.pj-dialog-btn-confirm {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #090d16;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+.pj-dialog-btn-confirm:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+.pj-dialog-btn-danger {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+
+/* Responsive Paperdoll 19-Slot Grid (Armory & Account) */
+.pd-slots-responsive {
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) minmax(240px, 280px) minmax(210px, 1fr);
+    gap: 1rem;
+    align-items: start;
+}
+@media (max-width: 920px) {
+    .pd-slots-responsive {
+        grid-template-columns: 1fr 1fr;
+    }
+    .pd-slots-responsive .pd-center-stage {
+        grid-column: 1 / -1;
+        order: -1;
+        min-height: 220px !important;
+    }
+}
+@media (max-width: 580px) {
+    .pd-slots-responsive {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Database Sovereign Inspector Modal & Advanced Filter Toolbar */
+.db-adv-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.85rem 0 1.25rem;
+    padding: 0.8rem 1rem;
+    background: rgba(11, 17, 30, 0.78);
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    border-radius: 12px;
+}
+.db-select-ctrl {
+    background: rgba(6, 10, 20, 0.92);
+    border: 1px solid rgba(245, 158, 11, 0.32);
+    color: #f8fafc;
+    padding: 0.48rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+.db-select-ctrl:focus {
+    border-color: #38bdf8;
+}
+.sov-inspector-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10300;
+    background: rgba(4, 7, 15, 0.84);
+    backdrop-filter: blur(12px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+.sov-inspector-overlay.active {
+    display: flex;
+}
+.sov-inspector-card {
+    width: 100%;
+    max-width: 560px;
+    background: linear-gradient(155deg, rgba(14, 21, 38, 0.98) 0%, rgba(7, 11, 21, 0.99) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    border-radius: 18px;
+    padding: 1.65rem;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.18);
+    position: relative;
+    color: #e2e8f0;
+}
+
+/* Armory Census Telemetry & Sort Controls */
+.armory-census-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+.armory-census-card {
+    background: linear-gradient(145deg, rgba(13, 21, 36, 0.88), rgba(9, 14, 26, 0.94));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
+    padding: 0.95rem 1.1rem;
+}
+.faction-balance-track {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(239, 68, 68, 0.75);
+    overflow: hidden;
+    margin-top: 0.45rem;
+}
+.faction-balance-ally {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    transition: width 0.4s ease;
+}

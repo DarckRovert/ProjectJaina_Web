@@ -18,27 +18,135 @@
     "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2357 - 0 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16929,
+        "name": "Casquete de Némesis",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_08"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16932,
+        "name": "Espaldares de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_19"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16931,
+        "name": "Togas de Némesis",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_leather_01"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16934,
+        "name": "Brazales de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_07"
+      },
+      "9": {
+        "entry": 16928,
+        "name": "Guantes de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_19"
+      },
+      "5": {
+        "entry": 16933,
+        "name": "Cinturón de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_13"
+      },
+      "6": {
+        "entry": 16930,
+        "name": "Leotardos de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_07"
+      },
+      "7": {
+        "entry": 16927,
+        "name": "Botas de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_05"
+      },
+      "10": {
+        "entry": 19147,
+        "name": "Anillo de Poder con Hechizos",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_06"
+      },
+      "17": {
+        "entry": 13938,
+        "name": "Hueso de Escalofrío",
+        "ilvl": 61,
+        "quality": 3,
+        "icon": "inv_misc_bone_taurenskull_01"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4980,
+    "mana": 6350
   },
   {
     "guid": 2284,
@@ -59,27 +167,142 @@
     "lore": "Jefe de Guerra y Chamán del Clan Lobo Gélido. Campeón Soberano de la Horda.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16947,
+        "name": "Yelmo de Diez Tormentas",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_69"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16945,
+        "name": "Charreteras de Diez Tormentas",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_33"
+      },
+      "14": {
+        "entry": 18510,
+        "name": "Pellejo de las Bestias Salvajes",
+        "ilvl": 62,
+        "quality": 4,
+        "icon": "inv_misc_cape_01"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16950,
+        "name": "Coraza de Diez Tormentas",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_chain_11"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19506,
+        "name": "Tabardo de Batalla de los Grito de Guerra",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16943,
+        "name": "Brazales de Diez Tormentas",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_16"
+      },
+      "9": {
+        "entry": 16948,
+        "name": "Guanteletes de Diez Tormentas",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_11"
+      },
+      "5": {
+        "entry": 16944,
+        "name": "Cinturón de Diez Tormentas",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_14"
+      },
+      "6": {
+        "entry": 16946,
+        "name": "Placas de Pierna de Diez Tormentas",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_03"
+      },
+      "7": {
+        "entry": 16949,
+        "name": "Grebas de Diez Tormentas",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_06"
+      },
+      "10": {
+        "entry": 19382,
+        "name": "Banda de Elementium Puro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_42"
+      },
+      "11": {
+        "entry": 19397,
+        "name": "Anillo de Roca Negra",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_43"
+      },
+      "12": {
+        "entry": 19395,
+        "name": "Gema Rejuvenecedora",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_gem_topaz_02"
+      },
+      "13": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19360,
+        "name": "Lok'amir il Romathis",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_mace_06"
+      },
+      "16": {
+        "entry": 19349,
+        "name": "Baluarte Reforzado con Elementium",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_shield_17"
+      },
+      "17": {
+        "entry": 22396,
+        "name": "Tótem de Vida",
+        "ilvl": 65,
+        "quality": 3,
+        "icon": "inv_relics_totemoflife"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4950,
+    "mana": 5890
   },
   {
     "guid": 1002,
@@ -104,26 +327,26 @@
         "name": "Corona de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_53"
+        "icon": "inv_helmet_70"
       },
       "1": {
         "entry": 18814,
         "name": "Gargantilla del Señor del Fuego",
-        "ilvl": 74,
+        "ilvl": 78,
         "quality": 4,
-        "icon": "inv_jewelry_necklace_19"
+        "icon": "inv_jewelry_amulet_05"
       },
       "2": {
         "entry": 16917,
         "name": "Manto de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_shoulder_02"
+        "icon": "inv_shoulder_32"
       },
       "14": {
         "entry": 19378,
         "name": "Capa del Señor de la Prole",
-        "ilvl": 77,
+        "ilvl": 83,
         "quality": 4,
         "icon": "inv_misc_cape_20"
       },
@@ -134,9 +357,16 @@
         "quality": 4,
         "icon": "inv_chest_cloth_03"
       },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
       "18": {
         "entry": 19032,
-        "name": "Tabardo del Kirin Tor",
+        "name": "Tabardo de Batalla Pico Tormenta",
         "ilvl": 60,
         "quality": 3,
         "icon": "inv_shirt_guildtabard_01"
@@ -156,69 +386,72 @@
         "icon": "inv_gauntlets_14"
       },
       "5": {
-        "entry": 16915,
+        "entry": 16818,
         "name": "Cinturón de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
         "icon": "inv_belt_22"
       },
       "6": {
-        "entry": 16912,
+        "entry": 16915,
         "name": "Pantalones de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_pants_cloth_14"
+        "icon": "inv_pants_08"
       },
       "7": {
-        "entry": 16919,
+        "entry": 16912,
         "name": "Botas de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_boots_05"
+        "icon": "inv_boots_07"
       },
       "10": {
-        "entry": 19382,
-        "name": "Banda de Elementium Puro",
-        "ilvl": 83,
-        "quality": 4,
-        "icon": "inv_jewelry_ring_36"
-      },
-      "11": {
         "entry": 19147,
-        "name": "Anillo de Poder de Hechizo",
+        "name": "Anillo de Poder con Hechizos",
         "ilvl": 66,
         "quality": 4,
-        "icon": "inv_jewelry_ring_26"
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
       },
       "12": {
         "entry": 19379,
         "name": "Lágrima de Neltharion",
         "ilvl": 83,
         "quality": 4,
-        "icon": "inv_misc_gem_ruby_01"
+        "icon": "inv_stone_15"
       },
       "13": {
-        "entry": 18820,
-        "name": "Talismán de Poder Efímero",
-        "ilvl": 66,
-        "quality": 4,
-        "icon": "inv_misc_gem_pearl_03"
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19356,
-        "name": "Bastón de la Llama de las Sombras",
-        "ilvl": 81,
-        "quality": 4,
-        "icon": "inv_staff_30"
+        "entry": 22589,
+        "name": "Atiesh, Gran Báculo del Guardián",
+        "ilvl": 90,
+        "quality": 5,
+        "icon": "inv_staff_medivh"
       },
       "17": {
-        "entry": 19367,
-        "name": "Toque de Dragón",
-        "ilvl": 75,
-        "quality": 4,
-        "icon": "inv_wand_02"
+        "entry": 19103,
+        "name": "Aguja de Escarcha",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_axe_22"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4120,
+    "mana": 6940
   },
   {
     "guid": 2273,
@@ -239,27 +472,135 @@
     "lore": "Bruja Elfa de Sangre, Atuendo de Némesis Tier 2. Escuadrón Élite.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16929,
+        "name": "Casquete de Némesis",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_08"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16932,
+        "name": "Espaldares de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_19"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16931,
+        "name": "Togas de Némesis",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_leather_01"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16934,
+        "name": "Brazales de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_07"
+      },
+      "9": {
+        "entry": 16928,
+        "name": "Guantes de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_19"
+      },
+      "5": {
+        "entry": 16933,
+        "name": "Cinturón de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_13"
+      },
+      "6": {
+        "entry": 16930,
+        "name": "Leotardos de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_07"
+      },
+      "7": {
+        "entry": 16927,
+        "name": "Botas de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_05"
+      },
+      "10": {
+        "entry": 19147,
+        "name": "Anillo de Poder con Hechizos",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_06"
+      },
+      "17": {
+        "entry": 13938,
+        "name": "Hueso de Escalofrío",
+        "ilvl": 61,
+        "quality": 3,
+        "icon": "inv_misc_bone_taurenskull_01"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4980,
+    "mana": 6350
   },
   {
     "guid": 2270,
@@ -280,81 +621,95 @@
     "lore": "Paladina Elfa de Sangre, Tier 2 Judgement Plate. Vanguardia del Escuadrón Élite.",
     "items": {
       "0": {
-        "entry": 16952,
+        "entry": 16955,
         "name": "Corona del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_05"
+        "icon": "inv_helmet_74"
       },
       "1": {
-        "entry": 19377,
-        "name": "Medallón del Vasto Imperio",
-        "ilvl": 75,
+        "entry": 19383,
+        "name": "Medallón Matadragones Maestro",
+        "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_necklace_12"
+        "icon": "inv_jewelry_necklace_18"
       },
       "2": {
         "entry": 16953,
-        "name": "Hombreras del Juicio",
+        "name": "Espaldares del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_shoulder_01"
+        "icon": "inv_shoulder_37"
       },
       "14": {
-        "entry": 19386,
-        "name": "Elementium Threaded Cloak",
-        "ilvl": 77,
+        "entry": 19398,
+        "name": "Capa de Faucefogo",
+        "ilvl": 75,
         "quality": 4,
-        "icon": "inv_misc_cape_19"
+        "icon": "inv_misc_cape_18"
       },
       "4": {
         "entry": 16958,
-        "name": "Pechera del Juicio",
+        "name": "Coraza del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate06"
+        "icon": "inv_chest_plate03"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
       },
       "8": {
         "entry": 16951,
-        "name": "Brazales del Juicio",
+        "name": "Ataduras del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_bracer_19"
+        "icon": "inv_bracer_18"
       },
       "9": {
         "entry": 16956,
         "name": "Guanteletes del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_gauntlets_31"
+        "icon": "inv_gauntlets_29"
       },
       "5": {
-        "entry": 16957,
+        "entry": 16952,
         "name": "Cinturón del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_belt_33"
+        "icon": "inv_belt_27"
       },
       "6": {
         "entry": 16954,
-        "name": "Musleras del Juicio",
+        "name": "Quijotes del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_pants_plate_05"
+        "icon": "inv_pants_04"
       },
       "7": {
-        "entry": 16955,
+        "entry": 16957,
         "name": "Escarpes del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_boots_plate_07"
+        "icon": "inv_boots_plate_09"
       },
       "10": {
         "entry": 19384,
-        "name": "Anillo del Matadragones Maestro",
+        "name": "Anillo Matadragones Maestro",
         "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_ring_36"
+        "icon": "inv_jewelry_ring_41"
       },
       "11": {
         "entry": 19325,
@@ -364,41 +719,44 @@
         "icon": "inv_jewelry_ring_35"
       },
       "12": {
-        "entry": 19406,
-        "name": "Talismán de Colmillo de Draco",
+        "entry": 19431,
+        "name": "Escama Cristalina de Estilo",
         "ilvl": 75,
         "quality": 4,
-        "icon": "inv_misc_monsterscales_15"
+        "icon": "inv_misc_armorkit_10"
       },
       "13": {
-        "entry": 13965,
-        "name": "Anchura de Puño Negro",
-        "ilvl": 63,
+        "entry": 19395,
+        "name": "Gema Rejuvenecedora",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_gem_topaz_02"
+      },
+      "17": {
+        "entry": 22401,
+        "name": "Libram de Esperanza",
+        "ilvl": 65,
         "quality": 3,
-        "icon": "inv_misc_gem_pearl_04"
+        "icon": "inv_relics_libramofhope"
       },
       "15": {
-        "entry": 19379,
-        "name": "Cromáticamente Templada",
-        "ilvl": 77,
-        "quality": 4,
-        "icon": "inv_sword_43"
+        "entry": 19019,
+        "name": "Trueno Furioso, Espada Bendita del Hijo del Viento",
+        "ilvl": 80,
+        "quality": 5,
+        "icon": "inv_sword_39"
       },
       "16": {
         "entry": 19349,
-        "name": "Baluarte Reforzado de Elementium",
+        "name": "Baluarte Reforzado con Elementium",
         "ilvl": 77,
         "quality": 4,
-        "icon": "inv_shield_06"
-      },
-      "17": {
-        "entry": 23204,
-        "name": "Tratado sobre la Rectitud",
-        "ilvl": 60,
-        "quality": 3,
-        "icon": "inv_relics_libramofhope"
+        "icon": "inv_shield_17"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 5640,
+    "mana": 4420
   },
   {
     "guid": 2271,
@@ -419,95 +777,95 @@
     "lore": "Pícaro Elfo de Sangre BiS Tier 2 Bloodfang 18/18 con Hoja de Perdición y Diente de Can del Núcleo.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Caperuza Dientedisperso",
+        "entry": 16908,
+        "name": "Caperuza Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
         "icon": "inv_helmet_41"
       },
       "1": {
-        "entry": 18404,
-        "name": "Colgante Diente de Onyxia",
-        "ilvl": 74,
+        "entry": 19377,
+        "name": "Talismán de Prestor",
+        "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_necklace_11"
+        "icon": "inv_jewelry_necklace_17"
       },
       "2": {
-        "entry": 16908,
-        "name": "Hombreras Dientedisperso",
+        "entry": 16832,
+        "name": "Espaldares Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
         "icon": "inv_shoulder_23"
       },
       "14": {
         "entry": 19398,
-        "name": "Capa de Faucinferno",
+        "name": "Capa de Faucefogo",
         "ilvl": 75,
         "quality": 4,
         "icon": "inv_misc_cape_18"
       },
       "4": {
-        "entry": 16900,
-        "name": "Pechera Dientedisperso",
+        "entry": 16905,
+        "name": "Pechera Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_chain_03"
+        "icon": "inv_chest_cloth_07"
       },
       "3": {
-        "entry": 4330,
-        "name": "Camisa de Lino Blanco",
-        "ilvl": 10,
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
         "quality": 1,
-        "icon": "inv_shirt_01"
+        "icon": "inv_shirt_black_01"
       },
       "18": {
         "entry": 19031,
-        "name": "Tabardo de los Vencedores",
+        "name": "Tabardo de Batalla Lobo Gélido",
         "ilvl": 60,
         "quality": 3,
         "icon": "inv_shirt_guildtabard_01"
       },
       "8": {
-        "entry": 16904,
-        "name": "Brazales Dientedisperso",
+        "entry": 16911,
+        "name": "Brazales Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_bracer_07"
+        "icon": "inv_bracer_02"
       },
       "9": {
         "entry": 16907,
-        "name": "Guantes Dientedisperso",
+        "name": "Guantes Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_gauntlets_26"
+        "icon": "inv_gauntlets_21"
       },
       "5": {
-        "entry": 16903,
-        "name": "Cinturón Dientedisperso",
+        "entry": 16910,
+        "name": "Cinturón Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_belt_12"
+        "icon": "inv_belt_23"
       },
       "6": {
-        "entry": 16901,
-        "name": "Pantalones Dientedisperso",
+        "entry": 16909,
+        "name": "Pantalones Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
         "icon": "inv_pants_06"
       },
       "7": {
         "entry": 16906,
-        "name": "Botas Dientedisperso",
+        "name": "Botas Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
         "icon": "inv_boots_08"
       },
       "10": {
         "entry": 19384,
-        "name": "Anillo del Matadragones Maestro",
+        "name": "Anillo Matadragones Maestro",
         "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_ring_36"
+        "icon": "inv_jewelry_ring_41"
       },
       "11": {
         "entry": 19325,
@@ -521,37 +879,40 @@
         "name": "Talismán de Colmillo de Draco",
         "ilvl": 75,
         "quality": 4,
-        "icon": "inv_misc_monsterscales_15"
+        "icon": "inv_misc_bone_06"
       },
       "13": {
         "entry": 13965,
         "name": "Anchura de Puño Negro",
         "ilvl": 63,
         "quality": 3,
-        "icon": "inv_misc_gem_pearl_04"
+        "icon": "inv_misc_armorkit_09"
       },
       "15": {
-        "entry": 18816,
-        "name": "Hoja de Perdición",
-        "ilvl": 66,
+        "entry": 19352,
+        "name": "Espada Cromáticamente Templada",
+        "ilvl": 77,
         "quality": 4,
-        "icon": "inv_knife_04"
+        "icon": "inv_sword_51"
       },
       "16": {
-        "entry": 18805,
-        "name": "Diente de Can del Núcleo",
-        "ilvl": 69,
+        "entry": 19351,
+        "name": "Maladath, Hoja Rúnica del Vuelo Negro",
+        "ilvl": 75,
         "quality": 4,
-        "icon": "inv_knife_03"
+        "icon": "inv_sword_49"
       },
       "17": {
-        "entry": 17069,
-        "name": "Marca del Golpeador",
-        "ilvl": 66,
+        "entry": 19361,
+        "name": "Ashjre'thul, Ballesta de Castigo",
+        "ilvl": 77,
         "quality": 4,
-        "icon": "inv_weapon_bow_08"
+        "icon": "inv_weapon_crossbow_09"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4890,
+    "mana": 100
   },
   {
     "guid": 2272,
@@ -572,27 +933,135 @@
     "lore": "Sacerdotisa Elfa de Sangre, Vestiduras de Trascendencia Tier 2. Escuadrón Élite.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16921,
+        "name": "Aureola de Trascendencia",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_24"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16924,
+        "name": "Espaldares de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_02"
+      },
+      "14": {
+        "entry": 18510,
+        "name": "Pellejo de las Bestias Salvajes",
+        "ilvl": 62,
+        "quality": 4,
+        "icon": "inv_misc_cape_01"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16923,
+        "name": "Togas de Trascendencia",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_cloth_03"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16926,
+        "name": "Ataduras de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_09"
+      },
+      "9": {
+        "entry": 16920,
+        "name": "Manoplas de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_14"
+      },
+      "5": {
+        "entry": 16925,
+        "name": "Cinturón de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_22"
+      },
+      "6": {
+        "entry": 16922,
+        "name": "Leotardos de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_08"
+      },
+      "7": {
+        "entry": 16919,
+        "name": "Botas de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_07"
+      },
+      "10": {
+        "entry": 19382,
+        "name": "Banda de Elementium Puro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_42"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19395,
+        "name": "Gema Rejuvenecedora",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_gem_topaz_02"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 18608,
+        "name": "Bendición",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_staff_30"
+      },
+      "17": {
+        "entry": 19103,
+        "name": "Aguja de Escarcha",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_axe_22"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4210,
+    "mana": 6680
   },
   {
     "guid": 1003,
@@ -613,27 +1082,142 @@
     "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2081 - 0 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16963,
+        "name": "Yelmo de Cólera",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_71"
+      },
+      "1": {
+        "entry": 19383,
+        "name": "Medallón Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_18"
+      },
+      "2": {
+        "entry": 16961,
+        "name": "Espaldares de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_34"
+      },
+      "14": {
+        "entry": 19398,
+        "name": "Capa de Faucefogo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_cape_18"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16966,
+        "name": "Coraza de Cólera",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_plate16"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16959,
+        "name": "Brazales de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_19"
+      },
+      "9": {
+        "entry": 16964,
+        "name": "Guanteletes de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_10"
+      },
+      "5": {
+        "entry": 16960,
+        "name": "Cinturón de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_09"
+      },
+      "6": {
+        "entry": 16962,
+        "name": "Musleras de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_04"
+      },
+      "7": {
+        "entry": 16965,
+        "name": "Escarpes de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_04"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 18821,
+        "name": "Anillo de Golpe Presto",
+        "ilvl": 63,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_07"
+      },
+      "12": {
+        "entry": 19431,
+        "name": "Escama Cristalina de Estilo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_armorkit_10"
+      },
+      "13": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "17": {
+        "entry": 19368,
+        "name": "Cañón Aliento de Dragón",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_weapon_rifle_02"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
+        "entry": 19019,
+        "name": "Trueno Furioso, Espada Bendita del Hijo del Viento",
         "ilvl": 80,
         "quality": 5,
         "icon": "inv_sword_39"
+      },
+      "16": {
+        "entry": 19349,
+        "name": "Baluarte Reforzado con Elementium",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_shield_17"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 6850,
+    "mana": 100
   },
   {
     "guid": 4,
@@ -654,27 +1238,135 @@
     "lore": "Personaje en acore_characters. Cazador Nv19 - GS 273 - 26073 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16939,
+        "name": "Casco de Acechadragones",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_05"
+      },
+      "1": {
+        "entry": 19377,
+        "name": "Talismán de Prestor",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_17"
+      },
+      "2": {
+        "entry": 16937,
+        "name": "Espaldares de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_10"
+      },
+      "14": {
+        "entry": 17102,
+        "name": "Capa de la Sombra Oculta",
+        "ilvl": 73,
+        "quality": 4,
+        "icon": "inv_misc_cape_17"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16942,
+        "name": "Coraza de Acechadragones",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_chain_03"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16935,
+        "name": "Brazales de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_17"
+      },
+      "9": {
+        "entry": 16940,
+        "name": "Guanteletes de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_10"
+      },
+      "5": {
+        "entry": 16936,
+        "name": "Cinturón de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_28"
+      },
+      "6": {
+        "entry": 16938,
+        "name": "Grebas de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_03"
+      },
+      "7": {
+        "entry": 16941,
+        "name": "Grebas Escamadas de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_07"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "13": {
+        "entry": 13965,
+        "name": "Anchura de Puño Negro",
+        "ilvl": 63,
+        "quality": 3,
+        "icon": "inv_misc_armorkit_09"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 18715,
+        "name": "Lok'delar, Bastón de los Guardianes Ancestrales",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_staff_21"
+      },
+      "17": {
+        "entry": 18713,
+        "name": "Rhok'delar, Arco Largo de los Guardianes Ancestrales",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_weapon_bow_01"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4720,
+    "mana": 3980
   },
   {
     "guid": 52,
@@ -695,27 +1387,142 @@
     "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2097 - 34869 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16963,
+        "name": "Yelmo de Cólera",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_71"
+      },
+      "1": {
+        "entry": 19383,
+        "name": "Medallón Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_18"
+      },
+      "2": {
+        "entry": 16961,
+        "name": "Espaldares de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_34"
+      },
+      "14": {
+        "entry": 19398,
+        "name": "Capa de Faucefogo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_cape_18"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16966,
+        "name": "Coraza de Cólera",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_plate16"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16959,
+        "name": "Brazales de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_19"
+      },
+      "9": {
+        "entry": 16964,
+        "name": "Guanteletes de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_10"
+      },
+      "5": {
+        "entry": 16960,
+        "name": "Cinturón de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_09"
+      },
+      "6": {
+        "entry": 16962,
+        "name": "Musleras de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_04"
+      },
+      "7": {
+        "entry": 16965,
+        "name": "Escarpes de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_04"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 18821,
+        "name": "Anillo de Golpe Presto",
+        "ilvl": 63,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_07"
+      },
+      "12": {
+        "entry": 19431,
+        "name": "Escama Cristalina de Estilo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_armorkit_10"
+      },
+      "13": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "17": {
+        "entry": 19368,
+        "name": "Cañón Aliento de Dragón",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_weapon_rifle_02"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
+        "entry": 19019,
+        "name": "Trueno Furioso, Espada Bendita del Hijo del Viento",
         "ilvl": 80,
         "quality": 5,
         "icon": "inv_sword_39"
+      },
+      "16": {
+        "entry": 19349,
+        "name": "Baluarte Reforzado con Elementium",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_shield_17"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 6850,
+    "mana": 100
   },
   {
     "guid": 100,
@@ -736,27 +1543,135 @@
     "lore": "Personaje en acore_characters. Brujo Nv60 - GS 2289 - 35791 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16929,
+        "name": "Casquete de Némesis",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_08"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16932,
+        "name": "Espaldares de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_19"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16931,
+        "name": "Togas de Némesis",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_leather_01"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16934,
+        "name": "Brazales de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_07"
+      },
+      "9": {
+        "entry": 16928,
+        "name": "Guantes de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_19"
+      },
+      "5": {
+        "entry": 16933,
+        "name": "Cinturón de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_13"
+      },
+      "6": {
+        "entry": 16930,
+        "name": "Leotardos de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_07"
+      },
+      "7": {
+        "entry": 16927,
+        "name": "Botas de Némesis",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_05"
+      },
+      "10": {
+        "entry": 19147,
+        "name": "Anillo de Poder con Hechizos",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_06"
+      },
+      "17": {
+        "entry": 13938,
+        "name": "Hueso de Escalofrío",
+        "ilvl": 61,
+        "quality": 3,
+        "icon": "inv_misc_bone_taurenskull_01"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4980,
+    "mana": 6350
   },
   {
     "guid": 613,
@@ -777,27 +1692,135 @@
     "lore": "Personaje en acore_characters. Paladín Nv60 - GS 2478 - 43090 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16955,
+        "name": "Corona del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_74"
+      },
+      "1": {
+        "entry": 18404,
+        "name": "Colgante de Diente de Onyxia",
+        "ilvl": 74,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_09"
+      },
+      "2": {
+        "entry": 16953,
+        "name": "Espaldares del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_37"
+      },
+      "14": {
+        "entry": 19398,
+        "name": "Capa de Faucefogo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_cape_18"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16958,
+        "name": "Coraza del Juicio",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_plate03"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16951,
+        "name": "Ataduras del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_18"
+      },
+      "9": {
+        "entry": 16956,
+        "name": "Guanteletes del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_29"
+      },
+      "5": {
+        "entry": 16952,
+        "name": "Cinturón del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_27"
+      },
+      "6": {
+        "entry": 16954,
+        "name": "Quijotes del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_04"
+      },
+      "7": {
+        "entry": 16957,
+        "name": "Escarpes del Juicio",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_09"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "13": {
+        "entry": 19395,
+        "name": "Gema Rejuvenecedora",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_gem_topaz_02"
+      },
+      "17": {
+        "entry": 22401,
+        "name": "Libram de Esperanza",
+        "ilvl": 65,
+        "quality": 3,
+        "icon": "inv_relics_libramofhope"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
+        "entry": 17182,
+        "name": "Sulfuras, Mano de Ragnaros",
         "ilvl": 80,
         "quality": 5,
-        "icon": "inv_sword_39"
+        "icon": "inv_hammer_unique_sulfuras"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 5640,
+    "mana": 4420
   },
   {
     "guid": 686,
@@ -818,27 +1841,135 @@
     "lore": "Personaje en acore_characters. Sacerdote Nv60 - GS 2278 - 28714 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16921,
+        "name": "Aureola de Trascendencia",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_24"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16924,
+        "name": "Espaldares de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_02"
+      },
+      "14": {
+        "entry": 18510,
+        "name": "Pellejo de las Bestias Salvajes",
+        "ilvl": 62,
+        "quality": 4,
+        "icon": "inv_misc_cape_01"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16923,
+        "name": "Togas de Trascendencia",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_cloth_03"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16926,
+        "name": "Ataduras de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_09"
+      },
+      "9": {
+        "entry": 16920,
+        "name": "Manoplas de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_14"
+      },
+      "5": {
+        "entry": 16925,
+        "name": "Cinturón de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_22"
+      },
+      "6": {
+        "entry": 16922,
+        "name": "Leotardos de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_08"
+      },
+      "7": {
+        "entry": 16919,
+        "name": "Botas de Trascendencia",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_07"
+      },
+      "10": {
+        "entry": 19382,
+        "name": "Banda de Elementium Puro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_42"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19395,
+        "name": "Gema Rejuvenecedora",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_gem_topaz_02"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 18608,
+        "name": "Bendición",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_staff_30"
+      },
+      "17": {
+        "entry": 19103,
+        "name": "Aguja de Escarcha",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_axe_22"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4210,
+    "mana": 6680
   },
   {
     "guid": 732,
@@ -859,27 +1990,142 @@
     "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2414 - 17638 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16963,
+        "name": "Yelmo de Cólera",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_71"
+      },
+      "1": {
+        "entry": 19383,
+        "name": "Medallón Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_18"
+      },
+      "2": {
+        "entry": 16961,
+        "name": "Espaldares de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_34"
+      },
+      "14": {
+        "entry": 19398,
+        "name": "Capa de Faucefogo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_cape_18"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16966,
+        "name": "Coraza de Cólera",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_plate16"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16959,
+        "name": "Brazales de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_19"
+      },
+      "9": {
+        "entry": 16964,
+        "name": "Guanteletes de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_10"
+      },
+      "5": {
+        "entry": 16960,
+        "name": "Cinturón de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_09"
+      },
+      "6": {
+        "entry": 16962,
+        "name": "Musleras de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_04"
+      },
+      "7": {
+        "entry": 16965,
+        "name": "Escarpes de Cólera",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_04"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 18821,
+        "name": "Anillo de Golpe Presto",
+        "ilvl": 63,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_07"
+      },
+      "12": {
+        "entry": 19431,
+        "name": "Escama Cristalina de Estilo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_armorkit_10"
+      },
+      "13": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "17": {
+        "entry": 19368,
+        "name": "Cañón Aliento de Dragón",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_weapon_rifle_02"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
+        "entry": 19019,
+        "name": "Trueno Furioso, Espada Bendita del Hijo del Viento",
         "ilvl": 80,
         "quality": 5,
         "icon": "inv_sword_39"
+      },
+      "16": {
+        "entry": 19349,
+        "name": "Baluarte Reforzado con Elementium",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_shield_17"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 6850,
+    "mana": 100
   },
   {
     "guid": 51,
@@ -900,27 +2146,135 @@
     "lore": "Personaje en acore_characters. Druida Nv60 - GS 1758 - 23235 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16900,
+        "name": "Cubierta de Tempestira",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_09"
+      },
+      "1": {
+        "entry": 19377,
+        "name": "Talismán de Prestor",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_17"
+      },
+      "2": {
+        "entry": 16902,
+        "name": "Espaldares de Tempestira",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_07"
+      },
+      "14": {
+        "entry": 17102,
+        "name": "Capa de la Sombra Oculta",
+        "ilvl": 73,
+        "quality": 4,
+        "icon": "inv_misc_cape_17"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16897,
+        "name": "Pechera de Tempestira",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_chain_16"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16904,
+        "name": "Brazales de Tempestira",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_03"
+      },
+      "9": {
+        "entry": 16899,
+        "name": "Manoplas de Tempestira",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_25"
+      },
+      "5": {
+        "entry": 16903,
+        "name": "Cinturón de Tempestira",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_06"
+      },
+      "6": {
+        "entry": 16901,
+        "name": "Musleras de Tempestira",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_06"
+      },
+      "7": {
+        "entry": 16898,
+        "name": "Botas de Tempestira",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_08"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "13": {
+        "entry": 19395,
+        "name": "Gema Rejuvenecedora",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_gem_topaz_02"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19358,
+        "name": "Maza de Maestría Dracónica",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_mace_05"
+      },
+      "17": {
+        "entry": 22398,
+        "name": "Ídolo de Rejuvenecimiento",
+        "ilvl": 65,
+        "quality": 3,
+        "icon": "inv_relics_idolofrejuvenation"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 5420,
+    "mana": 5120
   },
   {
     "guid": 974,
@@ -941,27 +2295,135 @@
     "lore": "Personaje en acore_characters. Cazador Nv60 - GS 2397 - 22784 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16939,
+        "name": "Casco de Acechadragones",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_05"
+      },
+      "1": {
+        "entry": 19377,
+        "name": "Talismán de Prestor",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_17"
+      },
+      "2": {
+        "entry": 16937,
+        "name": "Espaldares de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_10"
+      },
+      "14": {
+        "entry": 17102,
+        "name": "Capa de la Sombra Oculta",
+        "ilvl": 73,
+        "quality": 4,
+        "icon": "inv_misc_cape_17"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16942,
+        "name": "Coraza de Acechadragones",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_chain_03"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16935,
+        "name": "Brazales de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_17"
+      },
+      "9": {
+        "entry": 16940,
+        "name": "Guanteletes de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_10"
+      },
+      "5": {
+        "entry": 16936,
+        "name": "Cinturón de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_28"
+      },
+      "6": {
+        "entry": 16938,
+        "name": "Grebas de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_03"
+      },
+      "7": {
+        "entry": 16941,
+        "name": "Grebas Escamadas de Acechadragones",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_plate_07"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "13": {
+        "entry": 13965,
+        "name": "Anchura de Puño Negro",
+        "ilvl": 63,
+        "quality": 3,
+        "icon": "inv_misc_armorkit_09"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 18715,
+        "name": "Lok'delar, Bastón de los Guardianes Ancestrales",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_staff_21"
+      },
+      "17": {
+        "entry": 18713,
+        "name": "Rhok'delar, Arco Largo de los Guardianes Ancestrales",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_weapon_bow_01"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4720,
+    "mana": 3980
   },
   {
     "guid": 705,
@@ -982,27 +2444,142 @@
     "lore": "Personaje en acore_characters. Pícaro Nv60 - GS 2367 - 43718 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16908,
+        "name": "Caperuza Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_41"
+      },
+      "1": {
+        "entry": 19377,
+        "name": "Talismán de Prestor",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_necklace_17"
+      },
+      "2": {
+        "entry": 16832,
+        "name": "Espaldares Colmillo de Sangre",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_23"
+      },
+      "14": {
+        "entry": 19398,
+        "name": "Capa de Faucefogo",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_cape_18"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16905,
+        "name": "Pechera Colmillo de Sangre",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_cloth_07"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16911,
+        "name": "Brazales Colmillo de Sangre",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_02"
+      },
+      "9": {
+        "entry": 16907,
+        "name": "Guantes Colmillo de Sangre",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_21"
+      },
+      "5": {
+        "entry": 16910,
+        "name": "Cinturón Colmillo de Sangre",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_23"
+      },
+      "6": {
+        "entry": 16909,
+        "name": "Pantalones Colmillo de Sangre",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_06"
+      },
+      "7": {
+        "entry": 16906,
+        "name": "Botas Colmillo de Sangre",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_08"
+      },
+      "10": {
+        "entry": 19384,
+        "name": "Anillo Matadragones Maestro",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_41"
+      },
+      "11": {
+        "entry": 19325,
+        "name": "Banda de Don Julio",
+        "ilvl": 65,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_35"
+      },
+      "12": {
+        "entry": 19406,
+        "name": "Talismán de Colmillo de Draco",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_misc_bone_06"
+      },
+      "13": {
+        "entry": 13965,
+        "name": "Anchura de Puño Negro",
+        "ilvl": 63,
+        "quality": 3,
+        "icon": "inv_misc_armorkit_09"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19352,
+        "name": "Espada Cromáticamente Templada",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_sword_51"
+      },
+      "16": {
+        "entry": 19351,
+        "name": "Maladath, Hoja Rúnica del Vuelo Negro",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_sword_49"
+      },
+      "17": {
+        "entry": 19361,
+        "name": "Ashjre'thul, Ballesta de Castigo",
+        "ilvl": 77,
+        "quality": 4,
+        "icon": "inv_weapon_crossbow_09"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4890,
+    "mana": 100
   },
   {
     "guid": 749,
@@ -1023,27 +2600,135 @@
     "lore": "Personaje en acore_characters. Mago Nv60 - GS 2303 - 39142 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16914,
+        "name": "Corona de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_70"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16917,
+        "name": "Manto de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_32"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16916,
+        "name": "Togas de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_cloth_03"
+      },
+      "3": {
+        "entry": 4330,
+        "name": "Camisa Roja con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_red_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16918,
+        "name": "Ataduras de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_09"
+      },
+      "9": {
+        "entry": 16913,
+        "name": "Guantes de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_14"
+      },
+      "5": {
+        "entry": 16818,
+        "name": "Cinturón de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_22"
+      },
+      "6": {
+        "entry": 16915,
+        "name": "Pantalones de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_08"
+      },
+      "7": {
+        "entry": 16912,
+        "name": "Botas de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_07"
+      },
+      "10": {
+        "entry": 19147,
+        "name": "Anillo de Poder con Hechizos",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_06"
+      },
+      "17": {
+        "entry": 19103,
+        "name": "Aguja de Escarcha",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_axe_22"
       }
-    }
+    },
+    "faction": "Alianza",
+    "health": 4120,
+    "mana": 6940
   },
   {
     "guid": 689,
@@ -1064,27 +2749,135 @@
     "lore": "Personaje en acore_characters. Mago Nv60 - GS 2316 - 6051 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16914,
+        "name": "Corona de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_70"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16917,
+        "name": "Manto de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_32"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16916,
+        "name": "Togas de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_cloth_03"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16918,
+        "name": "Ataduras de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_09"
+      },
+      "9": {
+        "entry": 16913,
+        "name": "Guantes de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_14"
+      },
+      "5": {
+        "entry": 16818,
+        "name": "Cinturón de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_22"
+      },
+      "6": {
+        "entry": 16915,
+        "name": "Pantalones de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_08"
+      },
+      "7": {
+        "entry": 16912,
+        "name": "Botas de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_07"
+      },
+      "10": {
+        "entry": 19147,
+        "name": "Anillo de Poder con Hechizos",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_06"
+      },
+      "17": {
+        "entry": 19103,
+        "name": "Aguja de Escarcha",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_axe_22"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4120,
+    "mana": 6940
   },
   {
     "guid": 99,
@@ -1105,26 +2898,134 @@
     "lore": "Personaje en acore_characters. Mago Nv60 - GS 2268 - 42998 pts honor.",
     "items": {
       "0": {
-        "entry": 16905,
-        "name": "Yelmo de Campeón",
+        "entry": 16914,
+        "name": "Corona de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_helmet_01"
+        "icon": "inv_helmet_70"
+      },
+      "1": {
+        "entry": 18814,
+        "name": "Gargantilla del Señor del Fuego",
+        "ilvl": 78,
+        "quality": 4,
+        "icon": "inv_jewelry_amulet_05"
+      },
+      "2": {
+        "entry": 16917,
+        "name": "Manto de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_shoulder_32"
+      },
+      "14": {
+        "entry": 19378,
+        "name": "Capa del Señor de la Prole",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_misc_cape_20"
       },
       "4": {
-        "entry": 16900,
-        "name": "Armadura de Campeón",
+        "entry": 16916,
+        "name": "Togas de Viento Abisal",
         "ilvl": 76,
         "quality": 4,
-        "icon": "inv_chest_plate01"
+        "icon": "inv_chest_cloth_03"
+      },
+      "3": {
+        "entry": 3427,
+        "name": "Camisa Negra con Estilo",
+        "ilvl": 20,
+        "quality": 1,
+        "icon": "inv_shirt_black_01"
+      },
+      "18": {
+        "entry": 19031,
+        "name": "Tabardo de Batalla Lobo Gélido",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
+      },
+      "8": {
+        "entry": 16918,
+        "name": "Ataduras de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_bracer_09"
+      },
+      "9": {
+        "entry": 16913,
+        "name": "Guantes de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_gauntlets_14"
+      },
+      "5": {
+        "entry": 16818,
+        "name": "Cinturón de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_belt_22"
+      },
+      "6": {
+        "entry": 16915,
+        "name": "Pantalones de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_pants_08"
+      },
+      "7": {
+        "entry": 16912,
+        "name": "Botas de Viento Abisal",
+        "ilvl": 76,
+        "quality": 4,
+        "icon": "inv_boots_07"
+      },
+      "10": {
+        "entry": 19147,
+        "name": "Anillo de Poder con Hechizos",
+        "ilvl": 66,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_38"
+      },
+      "11": {
+        "entry": 19403,
+        "name": "Banda de Concentración Forzada",
+        "ilvl": 75,
+        "quality": 4,
+        "icon": "inv_jewelry_ring_34"
+      },
+      "12": {
+        "entry": 19379,
+        "name": "Lágrima de Neltharion",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_stone_15"
+      },
+      "13": {
+        "entry": 18473,
+        "name": "Sello Real de Eldre'Thalas",
+        "ilvl": 62,
+        "quality": 3,
+        "icon": "inv_jewelry_talisman_10"
       },
       "15": {
-        "entry": 19029,
-        "name": "Espada de Campeón",
-        "ilvl": 80,
-        "quality": 5,
-        "icon": "inv_sword_39"
+        "entry": 19356,
+        "name": "Bastón de la Llama de las Sombras",
+        "ilvl": 81,
+        "quality": 4,
+        "icon": "inv_staff_06"
+      },
+      "17": {
+        "entry": 19103,
+        "name": "Aguja de Escarcha",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_axe_22"
       }
-    }
+    },
+    "faction": "Horda",
+    "health": 4120,
+    "mana": 6940
   }
 ]

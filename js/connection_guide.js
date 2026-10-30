@@ -425,4 +425,4 @@ window.switchConnectionTab = switchConnectionTab;
 window.switchLocalePath = switchLocalePath;
 window.copyActiveLocalePath = copyActiveLocalePath;
 window.testServerPing = testServerPing;
-window.showPortalToast = showPortalToast;
+window.showPortalToast = window.showPortalToast || showPortalToast;

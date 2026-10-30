@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki & Códice de Sistemas — Project JAIna | WotLK 3.3.5a HD</title>
     <meta name="description" content="Guía oficial completa, comandos de bots, modos de desafío Hardcore/Ironman, mazmorras con escalado dinámico, motor Apex PvE y compendio de AddOns de Project JAIna.">
-    <link rel="stylesheet" href="../css/style.css?v=20261030_v610">
+    <link rel="stylesheet" href="../css/style.css?v=20261030_v710">
+    <link rel="stylesheet" href="../css/jaina_jukebox.css?v=20261030_v710">
     <link rel="icon" href="../images/jaina_crest_logo.jpg">
     <style>
         :root {
@@ -312,6 +313,7 @@
         </ul>
 
         <div class="nav-actions-tray">
+            <button id="ambientAudioBtn" class="btn-ambient-toggle" onclick="toggleAmbientSound()" title="Abrir Estudio Sónico &amp; Fonoteca del Kirin Tor"><span class="eq-bars"><span></span><span></span><span></span><span></span></span> <span class="ambient-label">Fonoteca &amp; Lo-Fi</span></button>
             <a href="../registro.html" class="btn-cta-nav">Jugar Gratis</a>
             <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú">☰</button>
         </div>
@@ -326,6 +328,7 @@
         <div class="wiki-search-box">
             <span class="wiki-search-icon">🔍</span>
             <input type="text" id="wikiSearch" class="wiki-search-input" placeholder="Buscar comando, modo de juego, addon, mecánico de bot (ej. 'follow', 'hardcore', 'mbot')...">
+            <div id="wikiSearchCount" style="margin-top:0.65rem;font-size:0.84rem;color:#94a3b8;">Mostrando todas las secciones del Códice</div>
         </div>
     </header>
 
@@ -878,57 +881,87 @@
         </main>
     </div>
 
-    <!-- SCRIPT DEL BUSCADOR EN VIVO Y COPIADO DE MACROS -->
+    
+    <footer style="border-top: 1px solid rgba(200,168,0,0.2); background: rgba(6,8,14,0.96); text-align: center; padding: 2.2rem 1.5rem 5.5rem; margin-top: 3rem;">
+        <div style="font-weight: 800; color: #f3e5ab; letter-spacing: 0.08em; font-size: 0.9rem;">PROJECT J<span class="brand-ai-spark">AI</span>NA — CÓDICE &amp; WIKI OFICIAL</div>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin: 0.5rem 0;">Dirección General: <strong>DarckRovert</strong> · Arquitectura: <strong>JainaCore WotLK 3.3.5a</strong></p>
+        <p style="margin-top: 0.6rem; font-size: 0.78rem; color: #94a3b8;">
+            <a href="../terms.html" style="color: #fbbf24; text-decoration: underline;">Condiciones del Servicio</a> ·
+            <a href="../privacy.html" style="color: #fbbf24; text-decoration: underline;">Política de Privacidad</a> ·
+            <a href="../radio/index.html" style="color: #38bdf8; text-decoration: underline;">Kirin Tor Radio 24/7</a> ·
+            <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" style="color: #fbbf24; text-decoration: underline;">Discord Oficial</a>
+        </p>
+    </footer>
+
+    <script src="../js/config.js?v=20261030_v710"></script>
+    <script src="../js/auth.js?v=20261030_v710"></script>
+    <script src="../js/navbar.js?v=20261030_v710"></script>
+    <script src="../js/audio_ambient.js?v=20261030_v710"></script>
+    <script src="../js/jaina_jukebox.js?v=20261030_v710"></script>
     <script>
-        // 1. Copiado de Macros con Feedback Visual
         function copyText(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
                 const orig = btn.innerText;
                 btn.innerText = "✓ ¡Copiado!";
                 btn.style.background = "#34d399";
                 btn.style.color = "#000000";
+                if (window.showPortalToast) {
+                    window.showPortalToast("📋 Comando copiado: <code>" + text.replace(/</g, "&lt;") + "</code>", "success", 2600);
+                }
                 setTimeout(() => {
                     btn.innerText = orig;
                     btn.style.background = "";
                     btn.style.color = "";
                 }, 2000);
-            }).catch(err => {
-                console.error("Error al copiar texto:", err);
+            }).catch(err => console.error("Error al copiar texto:", err));
+        }
+
+        // Inyectar botón rápido de copiado en bloques <pre> o .macro-box sin botón
+        document.querySelectorAll(".wiki-section pre").forEach((pre) => {
+            if (pre.parentElement && pre.parentElement.querySelector(".btn-copy-macro")) return;
+            pre.style.position = "relative";
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "btn-copy-macro";
+            btn.style.cssText = "position:absolute;top:8px;right:8px;font-size:0.74rem;padding:4px 9px;";
+            btn.innerText = "📋 Copiar";
+            btn.addEventListener("click", () => copyText(pre.innerText.replace("📋 Copiar", "").replace("✓ ¡Copiado!", "").trim(), btn));
+            pre.appendChild(btn);
+        });
+
+        const wikiSearchInput = document.getElementById("wikiSearch");
+        const wikiCountEl = document.getElementById("wikiSearchCount");
+        if (wikiSearchInput) {
+            wikiSearchInput.addEventListener("input", function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                const sections = document.querySelectorAll(".wiki-section");
+                let shown = 0;
+                sections.forEach(sec => {
+                    const match = query === "" || sec.innerText.toLowerCase().includes(query);
+                    sec.style.display = match ? "block" : "none";
+                    if (match) shown++;
+                });
+                if (wikiCountEl) {
+                    wikiCountEl.innerHTML = query === ""
+                        ? `Mostrando las <strong>${sections.length}</strong> secciones del Códice`
+                        : `Encontradas <strong>${shown}</strong> de ${sections.length} secciones para "<em>${query.replace(/</g, "&lt;")}</em>"`;
+                }
             });
         }
 
-        // 2. Buscador Reactivo Instantáneo (<10ms)
-        document.getElementById("wikiSearch").addEventListener("input", function(e) {
-            const query = e.target.value.toLowerCase().trim();
-            const sections = document.querySelectorAll(".wiki-section");
-
-            sections.forEach(sec => {
-                const text = sec.innerText.toLowerCase();
-                if (query === "" || text.includes(query)) {
-                    sec.style.display = "block";
-                } else {
-                    sec.style.display = "none";
-                }
-            });
-        });
-
-        // 3. Highlight de navegación según scroll
         const navLinks = document.querySelectorAll(".wiki-nav-link");
         window.addEventListener("scroll", () => {
             let current = "";
             document.querySelectorAll(".wiki-section").forEach(sec => {
-                const top = sec.offsetTop - 120;
-                if (window.pageYOffset >= top) {
-                    current = sec.getAttribute("id");
-                }
+                if (sec.style.display === "none") return;
+                const top = sec.offsetTop - 130;
+                if (window.pageYOffset >= top) current = sec.getAttribute("id");
             });
             navLinks.forEach(link => {
                 link.classList.remove("active");
-                if (link.getAttribute("href") === "#" + current) {
-                    link.classList.add("active");
-                }
+                if (link.getAttribute("href") === "#" + current) link.classList.add("active");
             });
-        });
+        }, { passive: true });
     </script>
 </body>
 </html>

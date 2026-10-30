@@ -18,7 +18,7 @@
 
     function getBasePath() {
         const path = window.location.pathname.toLowerCase();
-        if (path.includes('/wiki/') || path.includes('/voz/')) {
+        if (path.includes('/wiki/') || path.includes('/voz/') || path.includes('/radio/')) {
             return '../';
         }
         return '';

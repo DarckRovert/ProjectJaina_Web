@@ -1,3 +1,24 @@
+// Notificador flotante no bloqueante para la Consola de Voz 3D
+function showVoiceNotice(message, type = 'warning', duration = 5200) {
+    if (window.showPortalToast) {
+        window.showPortalToast(message, type, duration);
+        return;
+    }
+    let box = document.getElementById('voice-floating-toast-box');
+    if (!box) {
+        box = document.createElement('div');
+        box.id = 'voice-floating-toast-box';
+        box.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;gap:10px;max-width:420px;width:calc(100% - 40px);';
+        document.body.appendChild(box);
+    }
+    const borderCol = type === 'error' ? '#ef4444' : (type === 'success' ? '#22c55e' : '#f59e0b');
+    const item = document.createElement('div');
+    item.style.cssText = `background:rgba(13,20,34,0.96);border:1px solid ${borderCol};border-left:4px solid ${borderCol};border-radius:10px;padding:12px 15px;color:#e2e8f0;font-size:0.86rem;line-height:1.45;box-shadow:0 12px 32px rgba(0,0,0,0.75);backdrop-filter:blur(12px);`;
+    item.textContent = String(message).replace(/\n+/g, ' ');
+    box.appendChild(item);
+    setTimeout(() => { if (item.parentNode) item.parentNode.removeChild(item); }, duration);
+}
+
 /**
  * ========================================================================
  * Project Jaina - Cliente Web de Voz Espacial 3D (app.js)
@@ -172,7 +193,7 @@ pinForm.addEventListener('submit', async (e) => {
             });
         } catch (micErr) {
             console.error('Error al capturar micrófono:', micErr);
-            alert('No se pudo acceder al micrófono: ' + micErr.message + '\n\nVerifica los permisos de audio en tu navegador o conecta tus audífonos con micrófono.');
+            showVoiceNotice('No se pudo acceder al micrófono: ' + micErr.message + '\n\nVerifica los permisos de audio en tu navegador o conecta tus audífonos con micrófono.');
             btnConnect.disabled = false;
             btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
             return;
@@ -201,7 +222,7 @@ pinForm.addEventListener('submit', async (e) => {
         }
 
         if (!data || !data.success) {
-            alert((data && data.error) || 'Error verificando PIN. Asegúrate de escribir /voz dentro del juego para obtener un código fresco.');
+            showVoiceNotice((data && data.error) || 'Error verificando PIN. Asegúrate de escribir /voz dentro del juego para obtener un código fresco.');
             btnConnect.disabled = false;
             btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
             return;
@@ -215,7 +236,7 @@ pinForm.addEventListener('submit', async (e) => {
 
     } catch (err) {
         console.error('Error general de sesión:', err);
-        alert('Error inesperado: ' + err.message);
+        showVoiceNotice('Error inesperado: ' + err.message);
         btnConnect.disabled = false;
         btnConnect.querySelector('.btn-text').textContent = 'Conectar a la Voz';
     }
@@ -247,7 +268,7 @@ function handleVoiceConnectionError(baseUrl, netErr) {
                 </div>
             </div>
         `;
-        alert(`⚠️ AVISO DE CONTENIDO MIXTO:\nTu navegador bloqueó la conexión a ${baseUrl} porque esta página se cargó por HTTPS pero el servidor seleccionado usa HTTP.\n\nSOLUCIÓN: Abre la interfaz directamente desde tu servidor local en: ${baseUrl}/`);
+        showVoiceNotice(`⚠️ AVISO DE CONTENIDO MIXTO:\nTu navegador bloqueó la conexión a ${baseUrl} porque esta página se cargó por HTTPS pero el servidor seleccionado usa HTTP.\n\nSOLUCIÓN: Abre la interfaz directamente desde tu servidor local en: ${baseUrl}/`);
     } else if (isCrossOrigin && isHttpsTarget && isLocalOrPrivateTarget) {
         alertBox.style.cssText = 'border-left: 3px solid #00ccff; background: rgba(0, 204, 255, 0.1); margin-top: 16px; display: flex; gap: 12px; padding: 14px 16px; border-radius: 8px; text-align: left;';
         alertBox.innerHTML = `
@@ -261,7 +282,7 @@ function handleVoiceConnectionError(baseUrl, netErr) {
                 </div>
             </div>
         `;
-        alert(`🔒 AUTORIZACIÓN DE CERTIFICADO REQUERIDA:\n\nEl servidor de voz local en ${baseUrl} utiliza un certificado SSL auto-firmado para WebRTC.\nTu navegador bloqueó la conexión en segundo plano desde GitHub Pages.\n\nSOLUCIONES:\n1. Recomendada: Abre la aplicación directamente en tu navegador en:\n   ${baseUrl}/\n   (En Edge/Chrome pulsa "Configuración avanzada" -> "Continuar").\n\n2. O autoriza el certificado abriendo en una pestaña:\n   ${baseUrl}/api/status\n   y luego regresa aquí y pulsa "Conectar a la Voz".`);
+        showVoiceNotice(`🔒 AUTORIZACIÓN DE CERTIFICADO REQUERIDA:\n\nEl servidor de voz local en ${baseUrl} utiliza un certificado SSL auto-firmado para WebRTC.\nTu navegador bloqueó la conexión en segundo plano desde GitHub Pages.\n\nSOLUCIONES:\n1. Recomendada: Abre la aplicación directamente en tu navegador en:\n   ${baseUrl}/\n   (En Edge/Chrome pulsa "Configuración avanzada" -> "Continuar").\n\n2. O autoriza el certificado abriendo en una pestaña:\n   ${baseUrl}/api/status\n   y luego regresa aquí y pulsa "Conectar a la Voz".`);
     } else {
         alertBox.style.cssText = 'border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.1); margin-top: 16px; display: flex; gap: 12px; padding: 14px 16px; border-radius: 8px; text-align: left;';
         alertBox.innerHTML = `
@@ -271,7 +292,7 @@ function handleVoiceConnectionError(baseUrl, netErr) {
                 <p style="color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">No hay respuesta en <code>${baseUrl}</code>. Comprueba que el microservicio esté iniciado ejecutando <code>Iniciar_Voz_Espacial.bat</code> en la carpeta del servidor.</p>
             </div>
         `;
-        alert(`No se pudo conectar al servidor de voz en: ${baseUrl}\n\nVerifica que el servicio esté iniciado (puerto 3050) ejecutando Iniciar_Voz_Espacial.bat.`);
+        showVoiceNotice(`No se pudo conectar al servidor de voz en: ${baseUrl}\n\nVerifica que el servicio esté iniciado (puerto 3050) ejecutando Iniciar_Voz_Espacial.bat.`);
     }
 }
 
@@ -702,9 +723,8 @@ function handleDisconnect() {
 initServerSelector();
     initRadioEngine();
 
-
 // ==============================================================================
-// 5. MOTOR DE RADIO EN VIVO 24/7 (KIRIN TOR RADIO / RADIO JAINA)
+// 5. MOTOR DE RADIO EN VIVO 24/7 (DUAL-STAGE CORS + MUTEX SÓNICO UNIVERSAL v7.1)
 // ==============================================================================
 const RADIO_STATIONS = [
     { id: 1, name: "Taberna de Theramore (Folk Medieval)", url: "https://play.radiorivendell.com/radio/8000/radio.mp3", genre: "Folk Celta & Bardo Medieval" },
@@ -716,10 +736,12 @@ const RADIO_STATIONS = [
     { id: 7, name: "Dial Libre Personalizado", url: "", genre: "URL Directa del Jugador" }
 ];
 
+const VOZ_SONIC_TAB_ID = 'pj_voz_radio_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+let vozSonicBC = null;
 let radioIndex = 0;
 let radioAudio = new Audio();
-radioAudio.crossOrigin = "anonymous";
-let radioMasterVolume = 0.50; // 50%
+let radioGenId = 0;
+let radioMasterVolume = 0.50;
 let isRadioPlaying = false;
 let isAudioDucked = false;
 
@@ -736,35 +758,152 @@ const elRadioAutoDucking = document.getElementById('radio-auto-ducking');
 const elRadioCustomBox = document.getElementById('radio-custom-url-box');
 const elRadioCustomInput = document.getElementById('radio-custom-url-input');
 
+function claimVozSonicMutex() {
+    const payload = { type: 'CLAIM_AUDIO', tabId: VOZ_SONIC_TAB_ID, source: 'voz_radio', ts: Date.now() };
+    try { if (vozSonicBC) vozSonicBC.postMessage(payload); } catch (_) {}
+    try { localStorage.setItem('pj_sonic_active_tab', JSON.stringify(payload)); } catch (_) {}
+}
+
+function pauseVozRadioFromExternalMutex() {
+    if (!isRadioPlaying && (!radioAudio || radioAudio.paused)) return;
+    radioGenId++;
+    try { radioAudio.pause(); } catch (_) {}
+    isRadioPlaying = false;
+    if (elRadioStatus) {
+        elRadioStatus.textContent = 'Pausado (Audio activo en otra pestaña)';
+        elRadioStatus.style.color = '#fbbf24';
+    }
+    if (elRadioBtnPlay) {
+        elRadioBtnPlay.textContent = '▶ Sintonizar';
+        elRadioBtnPlay.style.background = '#eab308';
+        elRadioBtnPlay.style.color = '#000';
+    }
+}
+
+function initVozSonicMutex() {
+    if (typeof BroadcastChannel !== 'undefined') {
+        try {
+            vozSonicBC = new BroadcastChannel('pj_sonic_mutex');
+            vozSonicBC.onmessage = (ev) => {
+                if (ev.data && ev.data.type === 'CLAIM_AUDIO' && ev.data.tabId !== VOZ_SONIC_TAB_ID) {
+                    pauseVozRadioFromExternalMutex();
+                }
+            };
+        } catch (_) {}
+    }
+    window.addEventListener('storage', (ev) => {
+        if (ev.key === 'pj_sonic_active_tab' && ev.newValue) {
+            try {
+                const data = JSON.parse(ev.newValue);
+                if (data && data.tabId !== VOZ_SONIC_TAB_ID) pauseVozRadioFromExternalMutex();
+            } catch (_) {}
+        }
+    });
+}
+
+function attachRadioEvents(audioEl, gen, streamUrl, allowFallback) {
+    audioEl.volume = isAudioDucked ? radioMasterVolume * 0.30 : radioMasterVolume;
+
+    audioEl.addEventListener('playing', () => {
+        if (gen !== radioGenId) return;
+        isRadioPlaying = true;
+        if (elRadioStatus) {
+            elRadioStatus.textContent = allowFallback ? '● Transmitiendo en vivo (HQ)' : '● Transmitiendo en vivo (Directo)';
+            elRadioStatus.style.color = '#22c55e';
+        }
+        if (elRadioBtnPlay) {
+            elRadioBtnPlay.textContent = '⏸ Pausar';
+            elRadioBtnPlay.style.background = '#0284c7';
+            elRadioBtnPlay.style.color = '#fff';
+        }
+        reportRadioTitle(RADIO_STATIONS[radioIndex].name);
+    });
+
+    audioEl.addEventListener('pause', () => {
+        if (gen !== radioGenId) return;
+        isRadioPlaying = false;
+        if (elRadioStatus) {
+            elRadioStatus.textContent = 'Pausado';
+            elRadioStatus.style.color = '#fbbf24';
+        }
+        if (elRadioBtnPlay) {
+            elRadioBtnPlay.textContent = '▶ Sintonizar';
+            elRadioBtnPlay.style.background = '#eab308';
+            elRadioBtnPlay.style.color = '#000';
+        }
+    });
+
+    audioEl.addEventListener('error', () => {
+        if (gen !== radioGenId) return;
+        if (allowFallback) {
+            // Stage 2 Direct Hardware Fallback (<200ms) para emisoras sin cabecera CORS ACAO
+            startRadioStreamStage(streamUrl, false, gen);
+            return;
+        }
+        isRadioPlaying = false;
+        if (elRadioStatus) {
+            elRadioStatus.textContent = '⚠ Emisora temporalmente ocupada';
+            elRadioStatus.style.color = '#ef4444';
+        }
+        if (elRadioBtnPlay) elRadioBtnPlay.textContent = '▶ Reintentar';
+    });
+}
+
+function startRadioStreamStage(streamUrl, useCors, existingGen = null) {
+    const gen = existingGen !== null ? existingGen : ++radioGenId;
+    if (radioAudio) {
+        try {
+            radioAudio.pause();
+            radioAudio.removeAttribute('src');
+            radioAudio.load();
+        } catch (_) {}
+    }
+    radioAudio = new Audio();
+    radioAudio.preload = 'auto';
+    if (useCors) {
+        radioAudio.crossOrigin = 'anonymous';
+    }
+    attachRadioEvents(radioAudio, gen, streamUrl, useCors);
+    radioAudio.src = streamUrl;
+    radioAudio.load();
+    radioAudio.play().catch((err) => {
+        if (gen !== radioGenId) return;
+        if (useCors) {
+            startRadioStreamStage(streamUrl, false, gen);
+            return;
+        }
+        console.warn('Autoplay radio prevenido:', err);
+        if (elRadioStatus) {
+            elRadioStatus.textContent = 'Haz clic en Sintonizar';
+            elRadioStatus.style.color = '#fbbf24';
+        }
+    });
+}
+
 function initRadioEngine() {
     if (!elRadioBtnPlay) return;
-
-    radioAudio.volume = radioMasterVolume;
+    initVozSonicMutex();
 
     elRadioSelect.addEventListener('change', () => {
         selectRadioStation(parseInt(elRadioSelect.value, 10));
     });
-
     elRadioBtnPlay.addEventListener('click', () => {
         toggleRadioPlayback();
     });
-
     elRadioBtnPrev.addEventListener('click', () => {
         let prev = radioIndex - 1;
         if (prev < 0) prev = RADIO_STATIONS.length - 1;
         selectRadioStation(prev);
     });
-
     elRadioBtnNext.addEventListener('click', () => {
         let next = (radioIndex + 1) % RADIO_STATIONS.length;
         selectRadioStation(next);
     });
-
     elRadioVolSlider.addEventListener('input', () => {
         radioMasterVolume = parseInt(elRadioVolSlider.value, 10) / 100;
         elRadioVolVal.textContent = elRadioVolSlider.value + '%';
-        if (!isAudioDucked) {
-            radioAudio.volume = radioMasterVolume;
+        if (radioAudio) {
+            radioAudio.volume = isAudioDucked ? radioMasterVolume * 0.30 : radioMasterVolume;
         }
     });
 
@@ -773,38 +912,10 @@ function initRadioEngine() {
             const customUrl = elRadioCustomInput.value.trim();
             if (customUrl) {
                 RADIO_STATIONS[6].url = customUrl;
-                if (radioIndex === 6) {
-                    playRadioStation(6);
-                }
+                if (radioIndex === 6) playRadioStation(6);
             }
         });
     }
-
-    radioAudio.addEventListener('playing', () => {
-        isRadioPlaying = true;
-        elRadioStatus.textContent = '● Transmitiendo en vivo';
-        elRadioStatus.style.color = '#22c55e';
-        elRadioBtnPlay.textContent = '⏸ Pausar';
-        elRadioBtnPlay.style.background = '#0284c7';
-        elRadioBtnPlay.style.color = '#fff';
-        reportRadioTitle(RADIO_STATIONS[radioIndex].name);
-    });
-
-    radioAudio.addEventListener('pause', () => {
-        isRadioPlaying = false;
-        elRadioStatus.textContent = 'Pausado';
-        elRadioStatus.style.color = '#fbbf24';
-        elRadioBtnPlay.textContent = '▶ Sintonizar';
-        elRadioBtnPlay.style.background = '#eab308';
-        elRadioBtnPlay.style.color = '#000';
-    });
-
-    radioAudio.addEventListener('error', () => {
-        isRadioPlaying = false;
-        elRadioStatus.textContent = '⚠ Error en stream (reintentando...)';
-        elRadioStatus.style.color = '#ef4444';
-        elRadioBtnPlay.textContent = '▶ Reintentar';
-    });
 }
 
 function selectRadioStation(index) {
@@ -832,39 +943,40 @@ function playRadioStation(index) {
         streamUrl = elRadioCustomInput.value.trim();
     }
     if (!streamUrl) {
-        alert('Por favor introduce una URL válida de stream para el Dial Personalizado.');
+        showVoiceNotice('⚠️ Introduce una URL HTTPS válida de stream para el Dial Personalizado.', 'warning');
+        if (elRadioCustomInput) elRadioCustomInput.focus();
         return;
     }
 
+    claimVozSonicMutex();
     elRadioStatus.textContent = 'Sintonizando...';
     elRadioStatus.style.color = '#38bdf8';
-    radioAudio.src = streamUrl;
-    radioAudio.load();
-    radioAudio.play().catch(e => {
-        console.warn('Autoplay radio prevenido:', e);
-        elRadioStatus.textContent = 'Haz clic en Sintonizar';
-        elRadioStatus.style.color = '#fbbf24';
-    });
+    startRadioStreamStage(streamUrl, true, null);
 }
 
 function toggleRadioPlayback() {
     if (isRadioPlaying) {
-        radioAudio.pause();
+        radioGenId++;
+        try { radioAudio.pause(); } catch (_) {}
+        isRadioPlaying = false;
+        elRadioStatus.textContent = 'Pausado';
+        elRadioStatus.style.color = '#fbbf24';
+        elRadioBtnPlay.textContent = '▶ Sintonizar';
+        elRadioBtnPlay.style.background = '#eab308';
+        elRadioBtnPlay.style.color = '#000';
     } else {
         playRadioStation(radioIndex);
     }
 }
 
 function applyAutoDucking(isAnyoneSpeaking) {
-    if (!elRadioAutoDucking || !elRadioAutoDucking.checked || !isRadioPlaying) return;
+    if (!elRadioAutoDucking || !elRadioAutoDucking.checked || !isRadioPlaying || !radioAudio) return;
 
     if (isAnyoneSpeaking && !isAudioDucked) {
         isAudioDucked = true;
-        // Atenuar música al 30% del volumen nominal para priorizar voz 3D
         radioAudio.volume = radioMasterVolume * 0.30;
     } else if (!isAnyoneSpeaking && isAudioDucked) {
         isAudioDucked = false;
-        // Restaurar volumen nominal
         radioAudio.volume = radioMasterVolume;
     }
 }

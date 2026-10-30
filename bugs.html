@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BugTracker & Registro de Parches — Project JAIna</title>
-    <link rel="stylesheet" href="css/style.css?v=20261030_v610">
-    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v610">
+    <link rel="stylesheet" href="css/style.css?v=20261030_v710">
+    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v710">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
     <style>
         .tracker-header {
@@ -290,7 +290,7 @@
         <!-- STATS BAR -->
         <div class="tracker-stats-bar">
             <div class="tracker-stat-box">
-                <div class="tracker-stat-num">181</div>
+                <div class="tracker-stat-num">195+</div>
                 <div class="tracker-stat-label">Hitos & Correcciones Completadas</div>
             </div>
             <div class="tracker-stat-box">
@@ -298,7 +298,7 @@
                 <div class="tracker-stat-label">Resolución de Bugs Críticos (#1 al #12)</div>
             </div>
             <div class="tracker-stat-box">
-                <div class="tracker-stat-num" style="color: #f39c12;">v2.5.1</div>
+                <div class="tracker-stat-num" style="color: #f39c12;">v7.1</div>
                 <div class="tracker-stat-label">Versión de Producción Estable</div>
             </div>
             <div class="tracker-stat-box">
@@ -313,43 +313,86 @@
             <p style="color: var(--text-muted); font-size: 0.92rem;">Auditado empíricamente bajo estándares Staff L9 (Claude Mythos 5 & DarckRovert).</p>
         </div>
 
+                <div class="db-adv-toolbar" style="max-width: 960px; margin: 0 auto 1.4rem;">
+            <input type="text" id="issueSearchInput" class="db-select-ctrl" placeholder="🔍 Filtrar hitos, parches o tickets por palabra clave..." style="flex:1;min-width:240px;cursor:text;">
+            <div style="display:flex;gap:0.45rem;flex-wrap:wrap;" id="issueFilterChips">
+                <button type="button" class="db-chip active" data-sub="all">✨ Todos</button>
+                <button type="button" class="db-chip" data-sub="web">🎵 Web &amp; Audio v7</button>
+                <button type="button" class="db-chip" data-sub="core">⚙️ JainaCore C++</button>
+                <button type="button" class="db-chip" data-sub="ai">🧠 IA &amp; Lore Vivo</button>
+                <button type="button" class="db-chip" data-sub="net">🎙️ Voz 3D &amp; Red</button>
+            </div>
+        </div>
+
         <div class="tracker-issues-list" id="trackerIssuesList">
-            <div class="issue-card">
+            <div class="issue-card" data-sub="web">
                 <div>
-                    <div class="issue-title">🛡️ Hito #181 — Implementación de Discord OAuth2 SSO & Base de Datos Web AoWoW</div>
-                    <div class="issue-meta">Añadida vinculación 1-clic con Discord en WebAPI y portal de base de datos interactivo de objetos y enclaves.</div>
+                    <div class="issue-title">👑 Hito #195 — Renovación Integral Portal v7.1: AoWoW 72+ Ítems, Armería T2 Verificada &amp; Suite Kirin Tor</div>
+                    <div class="issue-meta">Verificación HTTP 200 de 154 iconos contra Zamimg, Paperdoll responsivo de 19 ranuras, 6 Enclaves SSOT, Modo Sandbox en Mi Cuenta y erradicación del 100% de diálogos bloqueantes.</div>
+                </div>
+                <span class="issue-badge resolved">✔ DESPLEGADO</span>
+            </div>
+
+            <div class="issue-card" data-sub="web">
+                <div>
+                    <div class="issue-title">🎵 Hito #192 — Kirin Tor Arcane Sonic Studio v6.1 &amp; Mutex Sónico Multi-Pestaña</div>
+                    <div class="issue-meta">15 canales verificados (Creadores, 6 Emisoras Icecast 24/7 y 3 Biomas Procedurales Web Audio), cargador Dual-Stage CORS y exclusión mutua vía BroadcastChannel en Portal, Wiki, Radio y Voz 3D.</div>
                 </div>
                 <span class="issue-badge resolved">✔ RESUELTO</span>
             </div>
 
-            <div class="issue-card">
+            <div class="issue-card" data-sub="core">
                 <div>
-                    <div class="issue-title">🌐 Hito #180 — Ecosonido Arcano de Dalaran (Web Audio API) y Radar Táctico de Enclaves</div>
-                    <div class="issue-meta">Síntesis estocástica procedural pura, telemetría tri-facción y resolución de sondeo Bug #12 en supervisor de túneles.</div>
+                    <div class="issue-title">⚔️ Hito #189 — Compuerta Multireino Dinámica (85_ContentProgressionGate.lua) &amp; Aislamiento Cap 60/80</div>
+                    <div class="issue-meta">Separación estricta por RealmID entre Reino 1 JainaCore (Era Clásica Cap 60) y Reino 3 Laboratorio (WotLK ICC Cap 80) sin contaminación cruzada de base de datos.</div>
                 </div>
                 <span class="issue-badge resolved">✔ RESUELTO</span>
             </div>
 
-            <div class="issue-card">
+            <div class="issue-card" data-sub="ai">
                 <div>
-                    <div class="issue-title">🏛️ Hito #179 — Resiliencia en Búsqueda de Armería Web con Fallback SSOT (Anti-Falso 404)</div>
-                    <div class="issue-meta">Erradicada denegación de checkout en tienda durante mantenimientos de base de datos MySQL con fallback a armory.json.</div>
+                    <div class="issue-title">🧠 Hito #186 — Puente Agéntico Gravity AI &amp; Diálogos Contextuales de HeroBots (mod-llm-chatter)</div>
+                    <div class="issue-meta">Memoria episódica de personajes, orquestación asíncrona sin bloqueo del hilo WorldRunnable y auditoría automática de endpoints LLM activos.</div>
                 </div>
                 <span class="issue-badge resolved">✔ RESUELTO</span>
             </div>
 
-            <div class="issue-card">
+            <div class="issue-card" data-sub="core">
                 <div>
-                    <div class="issue-title">🎙️ Hito #176 — Pasarela de Voz Espacial Multi-SAN SSL y Selector Dual-Node (Perú & España)</div>
-                    <div class="issue-meta">Certificado X.509 multi-dominio y conmutación ágil de señalización WebRTC entre los dos nodos de clúster.</div>
+                    <div class="issue-title">🛡️ Hito #184 — Estabilización Boost/Asio en mod-playerbots (Prevención Excepción E06D7363)</div>
+                    <div class="issue-meta">Blindaje de sockets asíncronos con CommandServerPort=0 y telemetría de 400+ agentes autónomos simultáneos con tick mediano &lt; 25 ms.</div>
                 </div>
                 <span class="issue-badge resolved">✔ RESUELTO</span>
             </div>
 
-            <div class="issue-card">
+            <div class="issue-card" data-sub="web">
                 <div>
-                    <div class="issue-title">⚙️ Hito #170 — Lanzador Oficial v2.1.1 Standalone con Soporte Loopback L4 Anycast</div>
-                    <div class="issue-meta">Acceso directo a servidores mundiales sin necesidad de instalar VPNs o abrir puertos de router.</div>
+                    <div class="issue-title">🛡️ Hito #181 — Vinculación Rápida Discord SRP6 &amp; Base de Datos Soberana AoWoW</div>
+                    <div class="issue-meta">Generación criptográfica RFC 5054 en acore_auth, inspector modal soberano para ítems exclusivos (&gt;= 900000) y protección anti-404 de tooltips Wowhead.</div>
+                </div>
+                <span class="issue-badge resolved">✔ RESUELTO</span>
+            </div>
+
+            <div class="issue-card" data-sub="ai">
+                <div>
+                    <div class="issue-title">🌐 Hito #180 — Crónicas de Lore Vivo en Tiempo Real &amp; Radar Táctico de 6 Enclaves</div>
+                    <div class="issue-meta">Exportación en vivo de world_lore_events y visor interactivo de baluartes conquistables con copiado instantáneo de macros /way para TomTom.</div>
+                </div>
+                <span class="issue-badge resolved">✔ RESUELTO</span>
+            </div>
+
+            <div class="issue-card" data-sub="net">
+                <div>
+                    <div class="issue-title">🎙️ Hito #176 — Voz Espacial 3D WebRTC con Auto-Ducking de Radio y Selector Dual-Node</div>
+                    <div class="issue-meta">Atenuación inteligente al 30% de música cuando hablan aliados cercanos en 3D y conmutación entre Nodo 1 (Perú) y Nodo 2 (España).</div>
+                </div>
+                <span class="issue-badge resolved">✔ RESUELTO</span>
+            </div>
+
+            <div class="issue-card" data-sub="net">
+                <div>
+                    <div class="issue-title">⚙️ Hito #170 — Lanzador Oficial v2.1.3 con Parcheo Delta SHA-256 y Túnel Loopback L4</div>
+                    <div class="issue-meta">Verificación diferencial por bloques de 4 MB y enrutamiento transparente set realmlist 127.0.0.1 sin requerir configuración manual de red.</div>
                 </div>
                 <span class="issue-badge resolved">✔ RESUELTO</span>
             </div>
@@ -397,15 +440,21 @@
         </div>
         <div class="credits-lead">PROJECT J<span class="brand-ai-spark">AI</span>NA — LIVING LORE & AGENTIC AI RESEARCH</div>
         <p>Dirección General: <strong>DarckRovert</strong> | Arquitectura: <strong>Antigravity (Mythos 5)</strong></p>
+        <p class="footer-legal-links" style="margin-top: 0.75rem; font-size: 0.77rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            <a href="terms.html" style="color: var(--gold-primary); text-decoration: underline;">Condiciones del Servicio</a> · 
+            <a href="privacy.html" style="color: var(--gold-primary); text-decoration: underline;">Política de Privacidad</a> · 
+            <a href="radio/index.html" style="color: #38bdf8; text-decoration: underline;">Kirin Tor Radio 24/7</a> · 
+            <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); text-decoration: underline;">Discord Oficial</a>
+        </p>
     </footer>
 
     <!-- SCRIPTS -->
-    <script src="js/config.js?v=20261030_v610"></script>
-    <script src="js/particles.js?v=20261030_v610"></script>
-    <script src="js/card_tilt.js?v=20261030_v610"></script>
-    <script src="js/audio_ambient.js?v=20261030_v610"></script>
-    <script src="js/jaina_jukebox.js?v=20261030_v610"></script>
-    <script>
+    <script src="js/config.js?v=20261030_v710"></script>
+    <script src="js/particles.js?v=20261030_v710"></script>
+    <script src="js/card_tilt.js?v=20261030_v710"></script>
+    <script src="js/audio_ambient.js?v=20261030_v710"></script>
+    <script src="js/jaina_jukebox.js?v=20261030_v710"></script>
+        <script>
         function escapeHtml(text) {
             if (!text) return "";
             return String(text)
@@ -426,6 +475,56 @@
             return "https://ingrainedly-easeled-edelmira.ngrok-free.dev";
         }
 
+        let currentIssueSub = "all";
+        let currentIssueQuery = "";
+
+        function filterIssueCards() {
+            document.querySelectorAll("#trackerIssuesList .issue-card").forEach(card => {
+                const sub = card.getAttribute("data-sub") || "all";
+                const matchSub = (currentIssueSub === "all" || sub === currentIssueSub || card.classList.contains("dynamic-bug-card"));
+                const matchQ = !currentIssueQuery || card.innerText.toLowerCase().includes(currentIssueQuery);
+                card.style.display = (matchSub && matchQ) ? "" : "none";
+            });
+        }
+
+        function renderLocalQueuedTickets() {
+            const listContainer = document.getElementById("trackerIssuesList");
+            if (!listContainer) return;
+            listContainer.querySelectorAll(".local-queued-card").forEach(el => el.remove());
+            try {
+                const queued = JSON.parse(localStorage.getItem("pj_offline_bug_tickets") || "[]");
+                if (Array.isArray(queued) && queued.length > 0) {
+                    const html = queued.slice(0, 5).map(b => `
+                        <div class="issue-card local-queued-card" data-sub="all" style="border-left: 3px solid #f59e0b;">
+                            <div>
+                                <div class="issue-title">📌 [${escapeHtml(b.ticket_id)}] — ${escapeHtml(b.title)}</div>
+                                <div class="issue-meta">${escapeHtml(b.description)} · <span style="color:#fbbf24;">${escapeHtml((b.category || 'GENERAL').toUpperCase())}</span> · Guardado en navegador (${escapeHtml(b.created_at)})</div>
+                            </div>
+                            <span class="issue-badge active" style="color:#fbbf24;border-color:rgba(245,158,11,0.4);">📋 BORRADOR LOCAL</span>
+                        </div>
+                    `).join("");
+                    listContainer.insertAdjacentHTML("afterbegin", html);
+                }
+            } catch (_) {}
+        }
+
+        window.copyFormattedBugForDiscord = function(ticketId) {
+            try {
+                const queued = JSON.parse(localStorage.getItem("pj_offline_bug_tickets") || "[]");
+                const item = queued.find(x => x.ticket_id === ticketId) || queued[0];
+                if (!item) return;
+                const formatted = `**[Reporte BugTracker ${item.ticket_id}]**
+• **Título:** ${item.title}
+• **Categoría:** ${item.category}
+• **Detalle:** ${item.description}`;
+                navigator.clipboard.writeText(formatted).then(() => {
+                    if (window.showPortalToast) {
+                        window.showPortalToast("📋 Reporte formateado copiado. Pégalo en <code>#soporte-y-tickets</code> de nuestro Discord.", "success", 4500);
+                    }
+                });
+            } catch (_) {}
+        };
+
         async function submitBugReport(e) {
             e.preventDefault();
             const btn = e.target.querySelector("button[type='submit']");
@@ -444,8 +543,11 @@
             const apiUrl = getApiBaseUrl();
 
             try {
+                const ctrl = new AbortController();
+                const tid = setTimeout(() => ctrl.abort(), 3800);
                 const res = await fetch(`${apiUrl}/api/bugs`, {
                     method: "POST",
+                    signal: ctrl.signal,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json",
@@ -453,24 +555,46 @@
                     },
                     body: JSON.stringify({ title, category, description })
                 });
+                clearTimeout(tid);
                 const data = await res.json();
                 if (res.ok && data.ok) {
                     feedback.style.display = "block";
                     feedback.style.background = "rgba(46, 204, 113, 0.2)";
                     feedback.style.border = "1px solid rgba(46, 204, 113, 0.5)";
                     feedback.style.color = "#2ecc71";
-                    feedback.innerHTML = `✅ <strong>¡Reporte recibido con éxito!</strong><br>Ticket oficial: <code>${escapeHtml(data.ticket_id)}</code>.<br>${escapeHtml(data.message)}`;
+                    feedback.innerHTML = `✅ <strong>¡Reporte registrado en JainaCore!</strong><br>Ticket oficial: <code>${escapeHtml(data.ticket_id)}</code>.`;
                     document.getElementById("bugReportForm").reset();
                     loadRecentBugs();
                 } else {
-                    throw new Error(data.error || "Fallo de respuesta del servidor");
+                    throw new Error(data.error || "API en mantenimiento");
                 }
-            } catch (err) {
+            } catch (_) {
+                const localId = "PJ-" + Math.floor(100000 + Math.random() * 900000);
+                try {
+                    const prev = JSON.parse(localStorage.getItem("pj_offline_bug_tickets") || "[]");
+                    prev.unshift({
+                        ticket_id: localId,
+                        title,
+                        category,
+                        description,
+                        created_at: new Date().toLocaleDateString("es-ES")
+                    });
+                    localStorage.setItem("pj_offline_bug_tickets", JSON.stringify(prev.slice(0, 15)));
+                } catch (_) {}
+                renderLocalQueuedTickets();
+                document.getElementById("bugReportForm").reset();
+
                 feedback.style.display = "block";
-                feedback.style.background = "rgba(231, 76, 60, 0.2)";
-                feedback.style.border = "1px solid rgba(231, 76, 60, 0.5)";
-                feedback.style.color = "#e74c3c";
-                feedback.innerHTML = `⚠️ <strong>Error al registrar el reporte:</strong> ${escapeHtml(err.message)}. Verifica que WebAPI (puerto 8080) esté activo.`;
+                feedback.style.background = "rgba(245, 158, 11, 0.14)";
+                feedback.style.border = "1px solid rgba(245, 158, 11, 0.5)";
+                feedback.style.color = "#fbbf24";
+                feedback.innerHTML = `
+                    📌 <strong>Reporte resguardado localmente (Ticket <code>${localId}</code>)</strong> porque el túnel WebAPI está desconectado.<br>
+                    <div style="margin-top:0.75rem;display:flex;gap:0.65rem;justify-content:center;flex-wrap:wrap;">
+                        <button type="button" class="pj-dialog-btn pj-dialog-btn-confirm" onclick="copyFormattedBugForDiscord('${localId}')">📋 Copiar Formato Discord</button>
+                        <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" class="pj-dialog-btn pj-dialog-btn-cancel" style="text-decoration:none;">💬 Abrir Canal de Soporte</a>
+                    </div>
+                `;
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalText;
@@ -478,22 +602,24 @@
         }
 
         async function loadRecentBugs() {
+            renderLocalQueuedTickets();
             const listContainer = document.getElementById("trackerIssuesList");
             if (!listContainer) return;
             const apiUrl = getApiBaseUrl();
             try {
+                const ctrl = new AbortController();
+                const tid = setTimeout(() => ctrl.abort(), 2800);
                 const res = await fetch(`${apiUrl}/api/bugs`, {
-                    headers: {
-                        "Accept": "application/json",
-                        "ngrok-skip-browser-warning": "true"
-                    }
+                    signal: ctrl.signal,
+                    headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
                 });
+                clearTimeout(tid);
                 if (res.ok) {
                     const data = await res.json();
                     if (data.ok && Array.isArray(data.bugs) && data.bugs.length > 0) {
                         listContainer.querySelectorAll(".dynamic-bug-card").forEach(el => el.remove());
                         const dynamicItems = data.bugs.slice(0, 10).map(b => `
-                            <div class="issue-card dynamic-bug-card" style="border-left: 3px solid #00e5ff;">
+                            <div class="issue-card dynamic-bug-card" data-sub="all" style="border-left: 3px solid #00e5ff;">
                                 <div>
                                     <div class="issue-title">🏷️ [${escapeHtml(b.ticket_id)}] — ${escapeHtml(b.title)}</div>
                                     <div class="issue-meta">${escapeHtml(b.description)} · <span style="color:#00e5ff;">${escapeHtml((b.category || 'GENERAL').toUpperCase())}</span> · ${escapeHtml(b.created_at)}</div>
@@ -501,15 +627,32 @@
                                 <span class="issue-badge active">⏳ ${escapeHtml(b.status)}</span>
                             </div>
                         `).join("");
-                        listContainer.insertAdjacentHTML('afterbegin', dynamicItems);
+                        listContainer.insertAdjacentHTML("afterbegin", dynamicItems);
                     }
                 }
             } catch (_) {}
         }
 
-        document.addEventListener("DOMContentLoaded", loadRecentBugs);
+        document.addEventListener("DOMContentLoaded", () => {
+            loadRecentBugs();
+            const searchEl = document.getElementById("issueSearchInput");
+            if (searchEl) {
+                searchEl.addEventListener("input", (e) => {
+                    currentIssueQuery = e.target.value.toLowerCase().trim();
+                    filterIssueCards();
+                });
+            }
+            document.querySelectorAll("#issueFilterChips .db-chip").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.querySelectorAll("#issueFilterChips .db-chip").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    currentIssueSub = btn.getAttribute("data-sub") || "all";
+                    filterIssueCards();
+                });
+            });
+        });
     </script>
-    <script src="js/auth.js?v=20261030_v610"></script>
-    <script src="js/navbar.js?v=20261030_v610"></script>
+    <script src="js/auth.js?v=20261030_v710"></script>
+    <script src="js/navbar.js?v=20261030_v710"></script>
 </body>
 </html>

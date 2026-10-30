@@ -2172,12 +2172,12 @@ async function confirmYapePayment() {
     const refCode  = document.getElementById("yapeRefCode")?.innerText.trim() || generateRefCode();
 
     if (!charName) {
-        alert("Escribe el nombre exacto de tu personaje antes de continuar.");
+        if (window.showPortalToast) { window.showPortalToast("⚠️ " + ("Escribe el nombre exacto de tu personaje antes de continuar."), "warning", 4000); }
         document.getElementById("targetCharacterName")?.focus();
         return;
     }
     if (!selectedPackage) {
-        alert("Selecciona un paquete de la tienda primero.");
+        if (window.showPortalToast) { window.showPortalToast("⚠️ " + ("Selecciona un paquete de la tienda primero."), "warning", 4000); }
         return;
     }
 
@@ -2363,11 +2363,11 @@ function _renderPayPalButtons(container, packageId, price) {
         createOrder: (data, actions) => {
             const charName = document.getElementById("targetCharacterName")?.value.trim();
             if (!charName) { 
-                alert("Ingresa el nombre de tu personaje para recibir la recompensa."); 
+                if (window.showPortalToast) { window.showPortalToast("⚠️ " + ("Ingresa el nombre de tu personaje para recibir la recompensa."), "warning", 4000); } 
                 throw new Error("Nombre requerido"); 
             }
             if (!selectedPackage || !selectedPackage.price) {
-                alert("Selecciona un paquete válido.");
+                if (window.showPortalToast) { window.showPortalToast("⚠️ " + ("Selecciona un paquete válido."), "warning", 4000); }
                 throw new Error("Paquete no seleccionado");
             }
             return actions.order.create({

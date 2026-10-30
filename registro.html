@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cuenta SRP6 — Project JAIna | Living Lore & AI</title>
-    <link rel="stylesheet" href="css/style.css?v=20261030_v610">
-    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v610">
+    <link rel="stylesheet" href="css/style.css?v=20261030_v710">
+    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v710">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
 <body class="theme-alliance">
@@ -215,6 +215,7 @@
                 </p>
             </div>
 
+            <div id="regAuthGatewayPill" style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.78rem;font-weight:700;padding:0.45rem 0.9rem;border-radius:999px;margin-bottom:1rem;background:rgba(15,23,42,0.85);border:1px solid rgba(56,189,248,0.3);color:#38bdf8;">⏳ Verificando nodo AuthServer SRP6...</div>
             <div id="registerMessage" class="register-feedback-box" style="display: none;"></div>
 
             <!-- BOTÓN DISCORD SSO (1 CLIC) -->
@@ -251,7 +252,8 @@
                     </label>
                     <div class="input-with-icon">
                         <span class="input-icon">🔒</span>
-                        <input type="password" id="regPassword" class="form-control" placeholder="Escribe tu contraseña" required minlength="4" autocomplete="new-password">
+                        <input type="password" id="regPassword" class="form-control" placeholder="Escribe tu contraseña" required minlength="4" autocomplete="new-password" style="padding-right:2.6rem;">
+                        <button type="button" id="btnToggleRegPass" aria-label="Mostrar u ocultar contraseña" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1rem;">👁️</button>
                     </div>
                     <!-- Medidor de Fuerza de Contraseña -->
                     <div class="password-meter-container">
@@ -267,7 +269,8 @@
                     </label>
                     <div class="input-with-icon">
                         <span class="input-icon">🔑</span>
-                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required minlength="4" autocomplete="new-password">
+                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required minlength="4" autocomplete="new-password" style="padding-right:2.6rem;">
+                        <button type="button" id="btnToggleRegConfirm" aria-label="Mostrar u ocultar confirmación" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1rem;">👁️</button>
                     </div>
                 </div>
 
@@ -331,18 +334,24 @@
         <p style="margin-top: 0.8rem; font-size: 0.76rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
             World of Warcraft® y Blizzard Entertainment son marcas comerciales o marcas registradas de Blizzard Entertainment, Inc. Servidor impulsado por JainaCore Engine v3.3.5a con fines no comerciales.
         </p>
+        <p class="footer-legal-links" style="margin-top: 0.75rem; font-size: 0.77rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            <a href="terms.html" style="color: var(--gold-primary); text-decoration: underline;">Condiciones del Servicio</a> · 
+            <a href="privacy.html" style="color: var(--gold-primary); text-decoration: underline;">Política de Privacidad</a> · 
+            <a href="radio/index.html" style="color: #38bdf8; text-decoration: underline;">Kirin Tor Radio 24/7</a> · 
+            <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); text-decoration: underline;">Discord Oficial</a>
+        </p>
     </footer>
 
     <!-- SCRIPTS -->
-    <script src="js/particles.js?v=20261030_v610"></script>
-    <script src="js/card_tilt.js?v=20261030_v610"></script>
-    <script src="js/config.js?v=20261030_v610"></script>
-    <script src="js/connection_guide.js?v=20261030_v610"></script>
-    <script src="js/register.js?v=20261030_v610"></script>
-    <script src="js/audio_ambient.js?v=20261030_v610"></script>
-    <script src="js/jaina_jukebox.js?v=20261030_v610"></script>
+    <script src="js/particles.js?v=20261030_v710"></script>
+    <script src="js/card_tilt.js?v=20261030_v710"></script>
+    <script src="js/config.js?v=20261030_v710"></script>
+    <script src="js/connection_guide.js?v=20261030_v710"></script>
+    <script src="js/register.js?v=20261030_v710"></script>
+    <script src="js/audio_ambient.js?v=20261030_v710"></script>
+    <script src="js/jaina_jukebox.js?v=20261030_v710"></script>
 
-    <script src="js/auth.js?v=20261030_v610"></script>
-    <script src="js/navbar.js?v=20261030_v610"></script>
+    <script src="js/auth.js?v=20261030_v710"></script>
+    <script src="js/navbar.js?v=20261030_v710"></script>
 </body>
 </html>

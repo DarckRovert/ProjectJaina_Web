@@ -191,7 +191,7 @@ function initEnclavesRadar() {
                         copyBtn.style.color = "";
                     }, 2000);
                 } else {
-                    prompt("Copia este comando /way para tu addon TomTom:", macro);
+                    if (window.showPortalToast) { window.showPortalToast("📋 Macro TomTom: <code>" + macro + "</code>", "info", 5000); }
                 }
             });
         }

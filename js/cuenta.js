@@ -1,3 +1,78 @@
+
+function notifyAccountToast(msg) {
+    const str = String(msg || '');
+    let t = 'info';
+    if (/^[✓✅]|éxito|completad|acreditad/i.test(str)) t = 'success';
+    else if (/^[✕❌]|error|fallo|inválid|denegad/i.test(str)) t = 'error';
+    else if (/^⚠|insuficiente|conectado|debes|selecciona|ingresa/i.test(str)) t = 'warning';
+    if (window.showPortalToast) {
+        window.showPortalToast(str, t, 4800);
+    }
+}
+
+window.launchAccountSandboxDemo = async function() {
+    const guestView = document.getElementById("dashGuestView");
+    const loadingView = document.getElementById("dashLoadingView");
+    const loggedView = document.getElementById("dashLoggedView");
+    if (guestView) guestView.style.display = "none";
+    if (loadingView) loadingView.style.display = "none";
+    if (loggedView) loggedView.style.display = "block";
+
+    let sampleChars = [];
+    try {
+        const r = await fetch("data/armory.json?v=20261030_v710");
+        if (r.ok) {
+            const arm = await r.json();
+            sampleChars = arm.slice(0, 3).map((h, i) => ({
+                guid: h.guid || (i + 1),
+                name: h.name,
+                race: h.race,
+                class: h.class,
+                gender: h.gender || "Héroe",
+                level: h.level || 60,
+                zone: i === 0 ? "Ciudadela de Theramore" : (i === 1 ? "Orgrimmar" : "Ventormenta"),
+                online: false,
+                money_gold: 1850 + (i * 640),
+                totaltime_hours: h.playtime_hours || 120,
+                gear_score: h.gs || 2310,
+                total_kills: h.kills || 340,
+                honor_points: h.honor || 4200,
+                items: h.items || {}
+            }));
+        }
+    } catch (_) {}
+
+    const demoData = {
+        ok: true,
+        sandbox: true,
+        character_count: sampleChars.length,
+        account: {
+            id: 777,
+            username: "INVITADO_KIRINTOR",
+            email: "sandbox@projectjaina.net",
+            joindate: "Era Clásica · Vista Previa Interactiva",
+            last_login: "Modo Sandbox Activo (Sin conexión a servidor local)",
+            web_ip: "Red Protegida · Sandbox",
+            last_ip: "Sesión Cifrada · SRP6",
+            expansion: "WotLK 3.3.5a (Fase I: Era Vanilla Cap 60)",
+            gmlevel: 0,
+            locked: false,
+            banned: false,
+            dp: 450,
+            vp: 35,
+            jaina_tokens: 450,
+            event_tokens: 35
+        },
+        characters: sampleChars
+    };
+    CURRENT_ACCOUNT_DATA = demoData;
+    renderAccountMasterCard(demoData.account, demoData.character_count);
+    renderCharacterRoster(demoData.characters, demoData.account);
+    if (window.showPortalToast) {
+        window.showPortalToast("🧪 <strong>Vista Previa Sandbox Activada:</strong> Explora libremente las fichas Paperdoll 19-Slot y paneles del Kirin Tor.", "arcane", 5200);
+    }
+};
+
 /**
  * Project JAIna — Controlador del Panel de Control de Cuenta del Jugador
  * Versión: 3.0 (Gestión Total de Personajes, Unstuck, Teletransporte y Criptografía SRP6)
@@ -59,14 +134,18 @@ async function fetchAccountDetails(username) {
     const guestView = document.getElementById("dashGuestView");
 
     try {
+        const acctCtrl = new AbortController();
+        const acctTid = setTimeout(() => acctCtrl.abort(), 4500);
         const res = await fetch(`${apiUrl}/api/account/details?username=${encodeURIComponent(username)}`, {
             method: "GET",
+            signal: acctCtrl.signal,
             headers: {
                 "Accept": "application/json",
                 "ngrok-skip-browser-warning": "true"
             }
         });
 
+        clearTimeout(acctTid);
         const data = await res.json();
 
         if (res.ok && data.ok) {
@@ -147,8 +226,8 @@ function renderAccountMasterCard(account, charCount) {
     if (regEmailEl) regEmailEl.textContent = maskEmail(account.email);
     if (emailEl) emailEl.textContent = maskEmail(account.email);
     if (joinEl) joinEl.textContent = account.joindate || "2025-12-27 16:48:00";
-    if (webIpEl) webIpEl.textContent = account.web_ip || "181.176.72.189";
-    if (lastIpEl) lastIpEl.textContent = account.last_ip || "181.176.72.99";
+    if (webIpEl) webIpEl.textContent = account.web_ip || "Red Protegida · Túnel SRP6";
+    if (lastIpEl) lastIpEl.textContent = account.last_ip || "Sesión Cifrada · Anycast";
 
     if (pdEl) pdEl.textContent = account.dp ?? 0;
     if (pvEl) pvEl.textContent = account.vp ?? 0;
@@ -319,7 +398,7 @@ window.actionUnstuckCharacter = async function(guid, name) {
     if (!rawUser) return;
     const user = JSON.parse(rawUser);
 
-    if (!confirm(`¿Deseas desatascar a ${name}? Será trasladado de inmediato a su Posada vinculada (o Capital).`)) {
+    if (!(await window.showPortalConfirm({ title: '✨ Desatasco de Emergencia (Unstuck)', messageHtml: `¿Deseas desatascar a <strong>${name}</strong>? Será trasladado de inmediato a su Posada vinculada o Capital.`, confirmText: 'Trasladar Ahora' }))) {
         return;
     }
 
@@ -340,7 +419,7 @@ window.actionUnstuckCharacter = async function(guid, name) {
             if (window.showPortalToast) {
                 showPortalToast(`✓ <strong>${name}:</strong> ${data.message}`, "success", 5000);
             } else {
-                alert(data.message);
+                notifyAccountToast(data.message);
             }
             // Refrescar perfil para ver la nueva zona
             fetchAccountDetails(user.username);
@@ -348,7 +427,7 @@ window.actionUnstuckCharacter = async function(guid, name) {
             if (window.showPortalToast) {
                 showPortalToast(`⚠️ ${data.message || 'Error al desatascar el personaje.'}`, "warning");
             } else {
-                alert(data.message);
+                notifyAccountToast(data.message);
             }
         }
     } catch (e) {
@@ -450,7 +529,7 @@ async function actionTeleportCharacter(guid, name, dest) {
             if (window.showPortalToast) {
                 showPortalToast(`✓ <strong>${name}:</strong> ${data.message}`, "success", 5000);
             } else {
-                alert(data.message);
+                notifyAccountToast(data.message);
             }
             fetchAccountDetails(user.username);
         } else {
@@ -458,7 +537,7 @@ async function actionTeleportCharacter(guid, name, dest) {
             if (window.showPortalToast) {
                 showPortalToast(`⚠️ ${warnMsg}`, "warning", 6000);
             } else {
-                alert(warnMsg);
+                notifyAccountToast(warnMsg);
             }
         }
     } catch (e) {
@@ -642,24 +721,27 @@ function renderSlotItemHtml(slotId, item) {
         ? `https://wow.zamimg.com/images/wow/icons/large/${cachedIcon}.jpg`
         : `https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg`;
 
-    return `
-        <a href="https://www.wowhead.com/wotlk/item=${item.entry}" data-wowhead="item=${item.entry}&domain=wotlk" class="pd-slot-item q-${q}" target="_blank" rel="noopener noreferrer">
+    const entryNum = Number(item.entry) || 0;
+    const isCanonical = entryNum > 0 && entryNum < 900000;
+    const directIcon = item.icon ? (item.icon.startsWith("http") ? item.icon : `https://wow.zamimg.com/images/wow/icons/large/${item.icon}.jpg`) : initialImgSrc;
+    const innerSlot = `
             <div class="pd-slot-icon-box q-${q}">
-                <img class="pd-slot-icon-img" id="pdIcon-${item.entry}-${slotId}" src="${initialImgSrc}" alt="${item.name}" onerror="this.onerror=null; this.src='https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'">
+                <img class="pd-slot-icon-img" id="pdIcon-${entryNum}-${slotId}" src="${directIcon}" alt="${item.name}" onerror="this.onerror=null; this.src='https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'">
             </div>
             <div class="pd-slot-info">
                 <span class="pd-slot-name-label">${sDef.name}</span>
                 <span class="pd-slot-item-title q-${q}">${item.name}</span>
                 <span class="pd-slot-ilvl-tag">iLvl ${item.ilvl || 0} · ${qName}</span>
-            </div>
-        </a>
-    `;
+            </div>`;
+    return isCanonical
+        ? `<a href="https://www.wowhead.com/wotlk/item=${entryNum}" data-wowhead="item=${entryNum}&domain=wotlk" class="pd-slot-item q-${q}" target="_blank" rel="noopener noreferrer">${innerSlot}</a>`
+        : `<div class="pd-slot-item q-${q}" title="Objeto Soberano Exclusivo (#${entryNum})">${innerSlot}</div>`;
 }
 
 async function resolvePaperdollIcons(items) {
     if (!items || !items.length) return;
     for (const it of items) {
-        if (!it.entry) continue;
+        if (!it.entry || Number(it.entry) >= 900000 || it.icon) continue;
         if (ITEM_ICON_CACHE[it.entry]) {
             updateItemIconElements(it.entry, ITEM_ICON_CACHE[it.entry]);
             continue;
@@ -711,7 +793,7 @@ window.openVisualPaperdoll = function(guid) {
         if (window.showPortalToast) {
             showPortalToast("⚠️ No se encontró la ficha del personaje seleccionado.", "warning");
         } else {
-            alert("No se encontró la información del personaje seleccionado.");
+            notifyAccountToast("No se encontró la información del personaje seleccionado.");
         }
         return;
     }
@@ -913,7 +995,7 @@ window.openAccountActionModal = function(action) {
                 <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5;">
                     Al activar el 2FA, cada inicio de sesión en el juego y en el panel web requerirá un código dinámico de 6 dígitos emitido por tu aplicación móvil.
                 </p>
-                <button type="button" class="btn-primary" onclick="alert('Módulo TOTP activado. Tu código de respaldo ha sido enlazado a ${acct.email}.')" style="width:100%; padding:0.75rem;">
+                <button type="button" class="btn-primary" onclick="notifyAccountToast('Módulo TOTP activado. Tu código de respaldo ha sido enlazado a ${acct.email}.')" style="width:100%; padding:0.75rem;">
                     ${is2fa ? 'Desactivar 2FA' : '🔐 Habilitar 2FA en esta Cuenta'}
                 </button>
             `;
@@ -1020,7 +1102,7 @@ window.openAccountActionModal = function(action) {
                         <span style="color:var(--gold-primary); font-family:monospace;">SHA256-${acct.id.toString(16).toUpperCase()}-TOKEN</span>
                     </div>
                 </div>
-                <button type="button" class="btn-secondary" onclick="alert('Tu solicitud de Token de Seguridad ha sido registrada y validada.')" style="width:100%; padding:0.75rem;">
+                <button type="button" class="btn-secondary" onclick="notifyAccountToast('Tu solicitud de Token de Seguridad ha sido registrada y validada.')" style="width:100%; padding:0.75rem;">
                     🔄 Renovar Token Criptográfico
                 </button>
             `;
@@ -1040,7 +1122,7 @@ window.openAccountActionModal = function(action) {
                     <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Tu enlace único de reclutamiento:</label>
                     <div style="display:flex; gap:8px;">
                         <input type="text" readonly value="${refLink}" class="form-control" style="flex:1; font-family:monospace; font-size:0.82rem;">
-                        <button type="button" class="btn-primary" onclick="navigator.clipboard.writeText('${refLink}'); alert('¡Enlace de reclutamiento copiado al portapapeles!');" style="white-space:nowrap; padding:0.5rem 0.9rem;">
+                        <button type="button" class="btn-primary" onclick="navigator.clipboard.writeText('${refLink}'); notifyAccountToast('¡Enlace de reclutamiento copiado al portapapeles!');" style="white-space:nowrap; padding:0.5rem 0.9rem;">
                             📋 Copiar
                         </button>
                     </div>
@@ -1062,7 +1144,7 @@ window.openAccountActionModal = function(action) {
                         <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Cambia el estandarte de tu hermandad por 20 PD.</p>
                     </div>
                 </div>
-                <form onsubmit="event.preventDefault(); alert('Servicio enviado. Si eres Maestro de Hermandad, el nombre se actualizará en el próximo reinicio.'); closeUwModal();">
+                <form onsubmit="event.preventDefault(); notifyAccountToast('Servicio enviado. Si eres Maestro de Hermandad, el nombre se actualizará en el próximo reinicio.'); closeUwModal();">
                     <div style="margin-bottom:12px;">
                         <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Nuevo Nombre de Hermandad:</label>
                         <input type="text" required minlength="3" maxlength="24" class="form-control" placeholder="Ej: Vanguardia de Theramore" style="width:100%;">
@@ -1210,7 +1292,7 @@ window.openCharServicePrompt = function(service) {
     const acct = CURRENT_ACCOUNT_DATA.account;
 
     if (chars.length === 0) {
-        alert("Aún no tienes personajes creados en esta cuenta. Ingresa al juego primero para crearte uno.");
+        notifyAccountToast("Aún no tienes personajes creados en esta cuenta. Ingresa al juego primero para crearte uno.");
         return;
     }
 
@@ -1406,14 +1488,14 @@ window.submitPromoCode = async function(e) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             closeUwModal();
             fetchAccountDetails(username);
         } else {
-            alert(`✕ ${data.message || 'Código inválido o ya canjeado.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Código inválido o ya canjeado.'}`);
         }
     } catch (err) {
-        alert(`Error al canjear cupón: ${err.message}`);
+        notifyAccountToast(`Error al canjear cupón: ${err.message}`);
     }
 };
 
@@ -1432,14 +1514,14 @@ window.submitTransferPoints = async function(e) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             closeUwModal();
             fetchAccountDetails(username);
         } else {
-            alert(`✕ ${data.message || 'Error en la transferencia.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Error en la transferencia.'}`);
         }
     } catch (err) {
-        alert(`Error al transferir: ${err.message}`);
+        notifyAccountToast(`Error al transferir: ${err.message}`);
     }
 };
 
@@ -1465,14 +1547,14 @@ window.submitCharService = async function(service, cost) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             closeUwModal();
             fetchAccountDetails(username);
         } else {
-            alert(`✕ ${data.message || 'Error al aplicar el servicio.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Error al aplicar el servicio.'}`);
         }
     } catch (err) {
-        alert(`Error al ejecutar servicio: ${err.message}`);
+        notifyAccountToast(`Error al ejecutar servicio: ${err.message}`);
     }
 };
 
@@ -1489,16 +1571,16 @@ window.actionExecuteVote = async function() {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ¡Voto contabilizado con éxito! Se han sumado +5 Puntos de Votación (PV) a tu cuenta.`);
+            notifyAccountToast(`✓ ¡Voto contabilizado con éxito! Se han sumado +5 Puntos de Votación (PV) a tu cuenta.`);
             closeUwModal();
             fetchAccountDetails(username);
             // Abrir página de votación oficial de GTop100 (Site ID: 106798)
             window.open("https://gtop100.com/World-of-Warcraft/server-106798?vote=1", "_blank");
         } else {
-            alert(`✕ ${data.message || 'No se pudo emitir el voto.'}`);
+            notifyAccountToast(`✕ ${data.message || 'No se pudo emitir el voto.'}`);
         }
     } catch (err) {
-        alert(`Error al votar: ${err.message}`);
+        notifyAccountToast(`Error al votar: ${err.message}`);
     }
 };
 
@@ -1527,7 +1609,7 @@ window.submitRedeemPv = async function(e) {
     let guid = null;
     if (requiresChar) {
         if (!charSelect || !charSelect.value) {
-            alert("Debes seleccionar un personaje para recibir la recompensa.");
+            notifyAccountToast("Debes seleccionar un personaje para recibir la recompensa.");
             return;
         }
         guid = parseInt(charSelect.value, 10);
@@ -1542,14 +1624,14 @@ window.submitRedeemPv = async function(e) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             closeUwModal();
             fetchAccountDetails(username);
         } else {
-            alert(`✕ ${data.message || 'Error al procesar el canje de PV.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Error al procesar el canje de PV.'}`);
         }
     } catch (err) {
-        alert(`Error de conexión al canjear PV: ${err.message}`);
+        notifyAccountToast(`Error de conexión al canjear PV: ${err.message}`);
     }
 };
 
@@ -1582,7 +1664,7 @@ window.submitChangePasswordModal = async function(e) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             closeUwModal();
         } else {
             if (msgEl) {
@@ -1877,17 +1959,17 @@ window.promptBuyMarketGold = async function(listingId, gold, pricePd, sellerChar
     const chars = CURRENT_ACCOUNT_DATA.characters || [];
 
     if ((acct.dp || 0) < pricePd) {
-        alert(`Saldo insuficiente. Tienes ${acct.dp || 0} PD y esta orden cuesta ${pricePd} PD.\nPuedes adquirir PD en la Tienda Oficial.`);
+        notifyAccountToast(`Saldo insuficiente. Tienes ${acct.dp || 0} PD y esta orden cuesta ${pricePd} PD.\nPuedes adquirir PD en la Tienda Oficial.`);
         return;
     }
 
     if (chars.length === 0) {
-        alert("No tienes personajes en este reino para recibir el oro.");
+        notifyAccountToast("No tienes personajes en este reino para recibir el oro.");
         return;
     }
 
     let charNames = chars.map(c => c.name);
-    let chosenChar = prompt(`Vas a comprar ${gold.toLocaleString()}g por ${pricePd} PD (Vendedor: ${sellerChar}).\n\nIngresa el nombre del personaje que recibirá el oro en su buzón de correo:`, charNames[0]);
+    let chosenChar = await window.showPortalPrompt({ icon: "🪙", title: "Compra en Mercado P2P de Oro", messageHtml: `Vas a adquirir <strong>${gold.toLocaleString()}g</strong> por <strong>${pricePd} PD</strong> (Vendedor: <em>${sellerChar}</em>).<br>Selecciona el campeón que recibirá el oro en su buzón:`, options: charNames, defaultValue: charNames[0], confirmText: "Confirmar Compra" });
     if (!chosenChar) return;
 
     chosenChar = chosenChar.trim();
@@ -1905,14 +1987,14 @@ window.promptBuyMarketGold = async function(listingId, gold, pricePd, sellerChar
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             fetchAccountDetails(acct.username);
             switchMarketTab("buy");
         } else {
-            alert(`✕ ${data.message || 'Error al comprar orden.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Error al comprar orden.'}`);
         }
     } catch (err) {
-        alert(`Error de conexión: ${err.message}`);
+        notifyAccountToast(`Error de conexión: ${err.message}`);
     }
 };
 
@@ -1931,12 +2013,12 @@ window.submitListGoldMarket = async function(e) {
     const pricePd = parseInt(priceInput.value, 10) || 0;
 
     if (isOnline) {
-        alert("⚠️ Tu personaje está CONECTADO al juego.\n\nPara garantizar la custodia sin errores de guardado en el servidor, debes desconectar a tu personaje del juego antes de publicar.");
+        notifyAccountToast("⚠️ Tu personaje está CONECTADO al juego.\n\nPara garantizar la custodia sin errores de guardado en el servidor, debes desconectar a tu personaje del juego antes de publicar.");
         return;
     }
 
     if (charGold < goldAmt) {
-        alert(`Tu personaje solo tiene ${charGold.toLocaleString()}g. No puedes vender ${goldAmt.toLocaleString()}g.`);
+        notifyAccountToast(`Tu personaje solo tiene ${charGold.toLocaleString()}g. No puedes vender ${goldAmt.toLocaleString()}g.`);
         return;
     }
 
@@ -1956,19 +2038,19 @@ window.submitListGoldMarket = async function(e) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             fetchAccountDetails(acct.username);
             switchMarketTab("orders");
         } else {
-            alert(`✕ ${data.message || 'Error al publicar oferta.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Error al publicar oferta.'}`);
         }
     } catch (err) {
-        alert(`Error al publicar: ${err.message}`);
+        notifyAccountToast(`Error al publicar: ${err.message}`);
     }
 };
 
 window.cancelMarketListing = async function(listingId) {
-    if (!confirm(`¿Estás seguro de cancelar la orden #${listingId}? El oro será devuelto inmediatamente al buzón de correo de tu personaje.`)) {
+    if (!(await window.showPortalConfirm({ title: '⚖️ Cancelar Orden del Mercado P2P', messageHtml: `¿Deseas cancelar la orden <strong>#${listingId}</strong>? El oro en custodia regresará al buzón de tu personaje.`, confirmText: 'Sí, Cancelar Orden', danger: true }))) {
         return;
     }
 
@@ -1986,12 +2068,12 @@ window.cancelMarketListing = async function(listingId) {
         });
         const data = await res.json();
         if (res.ok && data.ok) {
-            alert(`✓ ${data.message}`);
+            notifyAccountToast(`✓ ${data.message}`);
             switchMarketTab("orders");
         } else {
-            alert(`✕ ${data.message || 'Error al cancelar orden.'}`);
+            notifyAccountToast(`✕ ${data.message || 'Error al cancelar orden.'}`);
         }
     } catch (err) {
-        alert(`Error al cancelar: ${err.message}`);
+        notifyAccountToast(`Error al cancelar: ${err.message}`);
     }
 };

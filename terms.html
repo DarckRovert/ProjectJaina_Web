@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Condiciones del Servicio — Project JAIna | Living Lore & AI</title>
-    <link rel="stylesheet" href="css/style.css?v=20261030_v610">
+    <link rel="stylesheet" href="css/style.css?v=20261030_v710">
+    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v710">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
 
     <!-- NAVBAR AAA DE ALTA FIDELIDAD -->
     <nav class="navbar" id="mainNavbar">
         <a href="index.html" class="brand-container">
-            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="brand-logo-img">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Crest" class="brand-logo-img">
             <div>
                 <div class="brand-title">PROJECT J<span class="brand-ai-spark">AI</span>NA</div>
                 <div class="brand-subtitle">CONDICIONES DEL SERVICIO</div>
@@ -20,14 +22,186 @@
         </a>
 
         <ul class="nav-links" id="navbarLinks">
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html" >Inicio</a></li>
             <li><a href="jainacore.html">JainaCore</a></li>
-            <li><a href="database.html">Base de Datos</a></li>
-            <li><a href="bugs.html">Tracker</a></li>
-            <li><a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer">Discord Oficial</a></li>
+            
+            <!-- DROPDOWN: EXPLORAR -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Explorar</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="#linea-de-fases" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⏳</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Línea de Fases & Eras</span>
+                            <span class="dropdown-item-desc">Vanilla 60 a WotLK 80 Progresivo</span>
+                        </div>
+                    </a>
+                    <a href="#modos-de-juego" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💀</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Modos de Juego & Retos</span>
+                            <span class="dropdown-item-desc">Normal, Hardcore, Ironman, Die & Rise y Reto Andino</span>
+                        </div>
+                    </a>
+                    <a href="#economia-del-reino" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🪙</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Economía & Monedas</span>
+                            <span class="dropdown-item-desc">Tokens de Jaina, Fichas de Evento y Subastas Vivas</span>
+                        </div>
+                    </a>
+                    <a href="#living-lore" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧠</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Lore Viviente & Simulador IA</span>
+                            <span class="dropdown-item-desc">HeroBots y LLM neuronal local</span>
+                        </div>
+                    </a>
+                    <a href="#mundo-viviente" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🏰</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Baluartes & Galeón Naval</span>
+                            <span class="dropdown-item-desc">Enclaves de hermandad y eventos vivos</span>
+                        </div>
+                    </a>
+                    <a href="#addons-showcase" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🧩</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Suite de 21 AddOns Oficiales</span>
+                            <span class="dropdown-item-desc">MultiBot, DragonflightUI, Wardrobe y más</span>
+                        </div>
+                    </a>
+                    <a href="#trailer-cinematico" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🎬</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Cinemática de Rasganorte</span>
+                            <span class="dropdown-item-desc">Wrath of the Lich King en 4K</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: SERVICIOS -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Servicios</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="cuenta.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">👑</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Panel de Mi Cuenta</span>
+                            <span class="dropdown-item-desc">Gestión integral, personajes y unstuck</span>
+                        </div>
+                    </a>
+                    <a href="database.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📚</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Base de Datos del Reino</span>
+                            <span class="dropdown-item-desc">Items, hechizos y tablas de botín</span>
+                        </div>
+                    </a>
+                    <a href="armeria.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">⚔️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Armería de Campeones</span>
+                            <span class="dropdown-item-desc">Inspección de personajes y talentos</span>
+                        </div>
+                    </a>
+                    <a href="tienda.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💎</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Tienda & Donaciones</span>
+                            <span class="dropdown-item-desc">Cosméticos exclusivos y apoyo</span>
+                        </div>
+                    </a>
+                    <a href="registro.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🛡️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Crear Cuenta SRP6</span>
+                            <span class="dropdown-item-desc">Registro criptográfico instantáneo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <!-- DROPDOWN: COMUNIDAD -->
+            <li class="nav-item-dropdown">
+                <button class="dropdown-trigger" type="button" aria-expanded="false">
+                    <span>Comunidad</span>
+                    <span class="dropdown-chevron">▼</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="wiki/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📖</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Wiki Oficial de Project JAIna</span>
+                            <span class="dropdown-item-desc">Guías completas, comandos y mecánicas</span>
+                        </div>
+                    </a>
+                    <a href="voz/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🎙️</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Voz Espacial 3D (WebRTC)</span>
+                            <span class="dropdown-item-desc">Audio posicional 3D (Zero-VPN)</span>
+                        </div>
+                    </a>
+                    <a href="radio/index.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">📻</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Kirin Tor Radio 24/7</span>
+                            <span class="dropdown-item-desc">Streaming en vivo: Folk, Lofi, Épico y Metal</span>
+                        </div>
+                    </a>
+                    <a href="bugs.html" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🐛</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">BugTracker Oficial</span>
+                            <span class="dropdown-item-desc">Reportes de incidencias y parches</span>
+                        </div>
+                    </a>
+                    <a href="#comunidad-creadores" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🔥</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Refugio de Creadores</span>
+                            <span class="dropdown-item-desc">Esta es tu casa · Apoyo a streamers, músicos y artistas</span>
+                        </div>
+                    </a>
+                    <a href="#fonoteca-taberna" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">🎶</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Fonoteca & Jukebox Lo-Fi</span>
+                            <span class="dropdown-item-desc">Peacebloom Burn Slow & Beats de Azeroth</span>
+                        </div>
+                    </a>
+                    <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" class="dropdown-item-link">
+                        <span class="dropdown-item-icon">💬</span>
+                        <div class="dropdown-item-text">
+                            <span class="dropdown-item-title">Discord Oficial</span>
+                            <span class="dropdown-item-desc">Comunidad activa y soporte directo</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li><a href="index.html#como-jugar">¿Cómo Jugar?</a></li>
         </ul>
 
-        <div class="nav-actions">
+        <div class="nav-actions-tray">
+            <button id="ambientAudioBtn" class="ambient-audio-btn" title="Fonoteca de la Taberna: Peacebloom Lo-Fi & Ecos de Azeroth">
+                <div class="equalizer-wave">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+                <span class="audio-label">Fonoteca & Radio</span>
+            </button>
+            <a href="#fase-beta" class="btn-beta-live-pill" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 0.4rem 0.95rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; text-decoration: none; box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>BETA ABIERTA (NO-WIPE)</a>
             <a href="registro.html" class="btn-cta-nav">Jugar Gratis</a>
             <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
         </div>
@@ -133,7 +307,11 @@
         </p>
     </footer>
 
-    <script src="js/auth.js?v=20261030_v610"></script>
-    <script src="js/navbar.js?v=20261030_v610"></script>
+    <script src="js/config.js?v=20261030_v710"></script>
+    <script src="js/particles.js?v=20261030_v710"></script>
+    <script src="js/auth.js?v=20261030_v710"></script>
+    <script src="js/navbar.js?v=20261030_v710"></script>
+    <script src="js/audio_ambient.js?v=20261030_v710"></script>
+    <script src="js/jaina_jukebox.js?v=20261030_v710"></script>
 </body>
 </html>

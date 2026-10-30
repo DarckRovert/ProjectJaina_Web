@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armería Oficial & Salón de Campeones — Project JAIna</title>
-    <link rel="stylesheet" href="css/style.css?v=20261030_v610">
-    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v610">
+    <link rel="stylesheet" href="css/style.css?v=20261030_v710">
+    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v710">
         <link rel="icon" href="images/jaina_crest_logo.jpg">
     <script>const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false};</script>
     <script src="https://wow.zamimg.com/js/tooltips.js"></script>
@@ -214,13 +214,32 @@
     <!-- CONTENT TABLE & FILTERS -->
     <main style="padding: 1rem 1.5rem 2rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
         
+        <!-- CENSO EN VIVO DEL REINO & CONTROLES DE FACCIÓN / ORDEN -->
+        <div id="armoryCensusBar" class="armory-census-grid"></div>
+
         <!-- SEARCH & FILTER TOOLBAR -->
         <div class="armory-toolbar">
-            <div class="search-box-wrapper">
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;width:100%;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+            <div class="search-box-wrapper" style="flex:1;min-width:250px;">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="armorySearchInput" class="armory-search-input" placeholder="Buscar por nombre, hermandad o clase...">
             </div>
             
+                        <div style="display:flex;gap:0.55rem;flex-wrap:wrap;align-items:center;">
+                <select id="armoryFactionSelect" class="db-select-ctrl" aria-label="Filtrar por Facción">
+                    <option value="all">⚔️ Ambas Facciones</option>
+                    <option value="Alianza">🦁 Alianza</option>
+                    <option value="Horda">🐺 Horda</option>
+                </select>
+                <select id="armorySortSelect" class="db-select-ctrl" aria-label="Ordenar Campeones">
+                    <option value="gs_desc">👑 Ordenar: GearScore ↓</option>
+                    <option value="kills_desc">⚔️ Muertes con Honor ↓</option>
+                    <option value="hours_desc">⏱️ Tiempo Jugado ↓</option>
+                    <option value="level_desc">📈 Nivel ↓</option>
+                    <option value="name_asc">🔤 Nombre (A → Z)</option>
+                </select>
+            </div>
+            </div>
             <div class="filter-chips-group">
                 <button class="filter-chip active" data-filter="all">Todos</button>
                 <button class="filter-chip" data-filter="Brujo">Brujos</button>
@@ -247,6 +266,7 @@
                             <th>Clase</th>
                             <th>Raza</th>
                             <th>Nivel</th>
+                            <th>GearScore</th>
                             <th>Hermandad</th>
                             <th>Estado</th>
                             <th>Inspección</th>
@@ -254,7 +274,7 @@
                     </thead>
                     <tbody id="armoryTableBody">
                         <tr id="armoryLoading">
-                            <td colspan="8" style="text-align: center; color: var(--gold-primary); padding: 3rem;">
+                            <td colspan="9" style="text-align: center; color: var(--gold-primary); padding: 3rem;">
                                 ⏳ Conectando con acore_characters y sincronizando ranking de temporada...
                             </td>
                         </tr>
@@ -298,17 +318,23 @@
         <p style="margin-top: 0.8rem; font-size: 0.76rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
             World of Warcraft® y Blizzard Entertainment son marcas comerciales o marcas registradas de Blizzard Entertainment, Inc. en los Estados Unidos y/u otros países. Este portal opera únicamente como interfaz de telemetría y divulgación técnica para el proyecto experimental Project JAIna.
         </p>
+        <p class="footer-legal-links" style="margin-top: 0.75rem; font-size: 0.77rem; color: var(--text-muted); max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+            <a href="terms.html" style="color: var(--gold-primary); text-decoration: underline;">Condiciones del Servicio</a> · 
+            <a href="privacy.html" style="color: var(--gold-primary); text-decoration: underline;">Política de Privacidad</a> · 
+            <a href="radio/index.html" style="color: #38bdf8; text-decoration: underline;">Kirin Tor Radio 24/7</a> · 
+            <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); text-decoration: underline;">Discord Oficial</a>
+        </p>
     </footer>
 
     <!-- SCRIPTS -->
-    <script src="js/particles.js?v=20261030_v610"></script>
-    <script src="js/card_tilt.js?v=20261030_v610"></script>
-    <script src="js/config.js?v=20261030_v610"></script>
-    <script src="js/armory.js?v=20261030_v610"></script>
-    <script src="js/audio_ambient.js?v=20261030_v610"></script>
-    <script src="js/jaina_jukebox.js?v=20261030_v610"></script>
+    <script src="js/particles.js?v=20261030_v710"></script>
+    <script src="js/card_tilt.js?v=20261030_v710"></script>
+    <script src="js/config.js?v=20261030_v710"></script>
+    <script src="js/armory.js?v=20261030_v710"></script>
+    <script src="js/audio_ambient.js?v=20261030_v710"></script>
+    <script src="js/jaina_jukebox.js?v=20261030_v710"></script>
 
-    <script src="js/auth.js?v=20261030_v610"></script>
-    <script src="js/navbar.js?v=20261030_v610"></script>
+    <script src="js/auth.js?v=20261030_v710"></script>
+    <script src="js/navbar.js?v=20261030_v710"></script>
 </body>
 </html>

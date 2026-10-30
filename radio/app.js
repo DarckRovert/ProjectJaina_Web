@@ -1,3 +1,16 @@
+
+function showRadioNotice(msg) {
+    if (window.showPortalToast) {
+        window.showPortalToast(msg, 'warning', 4000);
+        return;
+    }
+    const statusText = document.getElementById('status-text');
+    if (statusText) {
+        statusText.textContent = msg;
+        statusText.style.color = '#fbbf24';
+    }
+}
+
 /**
  * ========================================================================
  * Project Jaina - Kirin Tor Arcane Radio (Standalone Web App v6.1)
@@ -294,7 +307,7 @@ function playStation(index, useCors = true, existingGen = null) {
     }
 
     if (!streamUrl) {
-        alert('Por favor introduce una URL válida para el Dial Libre.');
+        showRadioNotice('⚠️ Introduce una URL HTTPS de stream válida para el Dial Libre.'); if (customUrlInput) customUrlInput.focus();
         return;
     }
 

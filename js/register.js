@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button type="button" class="btn-primary" onclick="if(window.downloadRealmlistFile){window.downloadRealmlistFile();}else{window.location.href='index.html#como-jugar';}" style="flex:1; min-width:180px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
                     📥 Descargar realmlist.wtf
                 </button>
-                <button type="button" class="btn-secondary" onclick="if(window.copyRealmlistOfficial){window.copyRealmlistOfficial(this);}else{navigator.clipboard.writeText('set realmlist 127.0.0.1');alert('¡Copiado!');}" style="flex:1; min-width:160px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
+                <button type="button" class="btn-secondary" onclick="if(window.copyRealmlistOfficial){window.copyRealmlistOfficial(this);}else{navigator.clipboard.writeText('set realmlist 127.0.0.1');if(window.showPortalToast){window.showPortalToast('📋 Realmlist copiado al portapapeles','success',2800);}}" style="flex:1; min-width:160px; padding:0.65rem 0.9rem; font-size:0.84rem; text-align:center;">
                     📋 Copiar Realmlist
                 </button>
             </div>
@@ -241,43 +241,102 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 5. Integración Discord SSO (1 Clic)
+    // 5. Mostrar/Ocultar Contraseñas & Sondeo de Estado del Nodo AuthServer SRP6
+    function bindPasswordToggle(btnId, inputId) {
+        const btn = document.getElementById(btnId);
+        const inp = document.getElementById(inputId);
+        if (!btn || !inp) return;
+        btn.addEventListener("click", () => {
+            const isPass = inp.type === "password";
+            inp.type = isPass ? "text" : "password";
+            btn.textContent = isPass ? "🙈" : "👁️";
+        });
+    }
+    bindPasswordToggle("btnToggleRegPass", "regPassword");
+    bindPasswordToggle("btnToggleRegConfirm", "regConfirmPassword");
+
+    (async function probeAuthGateway() {
+        const pill = document.getElementById("regAuthGatewayPill");
+        if (!pill) return;
+        const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : "http://127.0.0.1:8080";
+        try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 3000);
+            const r = await fetch(`${apiUrl}/api/status?_t=${Date.now()}`, {
+                signal: ctrl.signal,
+                headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
+            });
+            clearTimeout(tid);
+            if (r.ok) {
+                pill.style.borderColor = "rgba(34, 197, 94, 0.45)";
+                pill.style.color = "#4ade80";
+                pill.innerHTML = "● NODO AUTHSERVER SRP6 EN LÍNEA · REGISTRO INSTANTÁNEO ACTIVO";
+                return;
+            }
+        } catch (_) {}
+        pill.style.borderColor = "rgba(245, 158, 11, 0.45)";
+        pill.style.color = "#fbbf24";
+        pill.innerHTML = "⚡ MODO CONTINGENCIA · SI EL TÚNEL ESTÁ EN MANTENIMIENTO, REGÍSTRATE EN DISCORD (/register)";
+    })();
+
+    // 6. Integración Discord Quick-Bind Modal AAA (Cero window.prompt · Email RFC 5322)
     window.registerWithDiscord = async function() {
-        const discordUser = prompt("🎮 Ingresa tu nombre de usuario o Tag de Discord para registrarte en 1 clic:\n(Ej: FranFranco o DarckRovert)", "");
+        let discordUser = null;
+        if (window.showPortalPrompt) {
+            discordUser = await window.showPortalPrompt({
+                icon: "🎮",
+                title: "Registro Rápido con Discord (1 Clic · SRP6)",
+                messageHtml: "Ingresa tu alias o usuario de Discord para generar automáticamente tus credenciales criptográficas <strong>SRP6</strong> para World of Warcraft 3.3.5a:",
+                placeholder: "Ej: ArchimagoValiente",
+                confirmText: "⚡ Generar Cuenta SRP6",
+                cancelText: "Cancelar"
+            });
+        }
         if (!discordUser || !discordUser.trim()) return;
 
-        const cleanUser = discordUser.trim();
-        const fakeId = "D" + Math.abs(cleanUser.split("").reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a }, 0));
+        const cleanUser = discordUser.trim().replace(/[^a-zA-Z0-9_]/g, "").slice(0, 16);
+        if (cleanUser.length < 3) {
+            showMessage("⚠️ El alias debe contener al menos 3 caracteres alfanuméricos (A-Z, 0-9).", "error");
+            return;
+        }
 
-        showMessage("🔄 Conectando con Discord y generando credenciales criptográficas SRP6...", "info");
+        const safeEmailSlug = cleanUser.toLowerCase();
+        const rfcValidEmail = `${safeEmailSlug}@discord.projectjaina.net`;
+        const fakeId = "D" + Math.abs(cleanUser.split("").reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0));
+
+        showMessage("🔄 Generando verificador criptográfico SRP6 (RFC 5054) en acore_auth...", "info");
 
         const apiUrl = (typeof CONFIG !== "undefined" && CONFIG.getApiUrl)
             ? CONFIG.getApiUrl()
             : "http://127.0.0.1:8080";
 
         try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 5000);
             const res = await fetch(`${apiUrl}/api/auth/discord/register`, {
                 method: "POST",
+                signal: ctrl.signal,
                 headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
                 body: JSON.stringify({
                     discord_id: fakeId,
                     username: cleanUser,
-                    email: `${cleanUser.toLowerCase()}@discord.darckrovert.github.io/ProjectJaina_Web`
+                    email: rfcValidEmail
                 })
             });
+            clearTimeout(tid);
 
             const data = await res.json();
             if (data.ok) {
-                if (data.existing) {
-                    renderSuccessOnboardingCard(data.username, null);
-                } else {
-                    renderSuccessOnboardingCard(data.username, data.temp_password);
-                }
+                renderSuccessOnboardingCard(data.username, data.existing ? null : data.temp_password);
             } else {
-                showMessage(`⚠️ ${data.message || "Error al procesar el registro con Discord."}`, "error");
+                showMessage(`⚠️ ${data.message || "Error al procesar el registro rápido con Discord."}`, "error");
             }
-        } catch (err) {
-            showMessage("🛡️ Error de conexión con la WebAPI al registrar con Discord. Verifica que el servidor se encuentre online.", "error");
+        } catch (_) {
+            showMessage(
+                `🛡️ El túnel WebAPI de registro directo se encuentra en mantenimiento en este instante.<br>` +
+                `Puedes crear tu cuenta SRP6 inmediatamente desde nuestro <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;font-weight:800;text-decoration:underline;">Discord Oficial (Bot Project Jaina Sentinel)</a>.`,
+                "error"
+            );
         }
     };
 });
