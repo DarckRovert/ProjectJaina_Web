@@ -1,10 +1,10 @@
 {
-  "version": "2.1.1",
+  "version": "2.1.3",
   "min_version": "1.0.0",
   "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
   "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "size_bytes": 21665046,
-  "sha256": "6ba2390b2cf578acfe3ed437c83b2436e9879f6ac6aa89b4a9b05d10074d2a32",
-  "changelog": "Versión Oficial 2.1.1 — Lanzador Standalone 1 Clic con soporte Radmin VPN (Reino Wanitos Fran 26.202.12.241), Anti-Crash D3D9 y Proxy HA.",
-  "updated_at": 1793217506
+  "size_bytes": 21667704,
+  "sha256": "ae1af9f38d61c8154b92fa99b3706d83292b187b9a189218fda9713f4802b9c0",
+  "changelog": "Versión Oficial 2.1.3 — Sincronizador de 25 AddOns blindado contra bloqueo de permisos Windows/Google Drive (desktop.ini), D3D9 Borderless y Auto-Updater.",
+  "updated_at": 1793374211
 }
