@@ -44,7 +44,9 @@
 * **Cronograma Interactivo de Progresión de Eras (2026–2028) & Chrono-Master v2.0:** Línea de tiempo visual de las 8 fases del reino (`Classic Vanilla` → `TBC` → `WotLK T7..T10.5` → `Cataclysm`) sincronizada en tiempo real con `/api/progression` y respaldo autónomo en `data/progression.json`.
 * **Telemetría y Estado de Servidor en Vivo:** Conexión asíncrona a `ProjectJaina_WebAPI` para mostrar estado del reino, latencia, versión y población.
 * **Subpáginas Especializadas:**
-  * **Armería v2.5:** Visualizador de perfiles de héroes, GearScore, talentos, badges de 10 clases (incluyendo Caballero de la Muerte) y búsqueda insensible a acentos (`normalizeStr`).
+  * **Armería v7.1:** 20 campeones con equipo Tier 2 verificado (19 ranuras), censo Alianza/Horda, ordenamiento, Paperdoll responsivo y enlace directo `?inspect=`.
+  * **Base de Datos AoWoW v7.1:** 72 registros verificados en 8 pestañas (6 Enclaves, Pase de Batalla), filtros de rareza/orden e Inspector Soberano.
+  * **Suite Kirin Tor de Diálogos:** Notificaciones y confirmaciones no bloqueantes (0 `alert`/`prompt`/`confirm`) y Modo Sandbox en Mi Cuenta.
   * **Base de Datos Soberana AoWoW (`database.html`):** Motor de búsqueda indexado de objetos, criaturas y hechizos con visualizador de tooltips idénticos a WotLK 3.3.5a y conectividad en vivo con `acore_world`.
   * **BugTracker Comunitario (`bugs.html`):** Portal interactivo de reporte y seguimiento de incidencias comunitarias con trazabilidad de estado.
   * **Tienda:** Catálogo visual de cosméticos, monturas y pases de batalla con despacho transaccional idempotente.

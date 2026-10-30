@@ -4,6 +4,35 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.1.0] - 2026-10-30 — Renovación Integral AAA de Todas las Áreas del Portal (Hito #270)
+
+### 📚 Base de Datos Soberana AoWoW v7.1 (`database.html`, `js/database.js`, `data/database_catalog.json`)
+- Catálogo reconstruido de 25 a **72 registros** con IDs e iconos verificados en vivo contra `nether.wowhead.com` / `wow.zamimg.com` (corregidos 15 ítems con ID/icono erróneo, p.ej. Trueno Furioso `19029`→`19019`).
+- Las 8 pestañas pobladas (incluye **6 Enclaves de Hermandad** y **Pase de Batalla**, antes vacías).
+- Filtros por Rareza y Ordenamiento, conteo por pestaña, aislamiento `data-wowhead` solo para `entry < 900000` y Modal Inspector Soberano con copiado 1-clic.
+- `ProjectJaina_WebAPI.py`: 6 `CANONICAL_ENCLAVES` + filtro `battlepass` (`900400–900499`), espejo de clúster sincronizado (SHA-256 idéntico).
+
+### ⚔️ Armería v7.1 (`armeria.html`, `js/armory.js`, `data/armory.json`)
+- 20 campeones con equipo Tier 2 / BiS Nivel 60 coherente por clase en contrato `dict "0".."18"` (eliminada la montura `19029` en ranura de arma).
+- Barra censal (Alianza vs Horda, GearScore medio/máx, horas, HKs), filtro por facción, ordenamiento, Paperdoll responsivo (`.pd-slots-responsive`) y botón Compartir Perfil (`?inspect=`).
+- Cero peticiones XHR a Wowhead cuando el ítem trae icono pre-verificado.
+
+### 👑 Mi Cuenta & UX Global
+- Eliminadas IPs públicas hardcodeadas en `js/cuenta.js`; timeout `AbortController` 4.5 s; Modo **Vista Previa Sandbox** offline.
+- Suite `showPortalToast` / `showPortalConfirm` / `showPortalPrompt` en `js/navbar.js`: **0 `alert`/`confirm`/`prompt` nativos** en todo el portal.
+
+### 🎙️ Voz 3D, Radio y Wiki
+- `voz/app.js`: Dual-Stage CORS + `BroadcastChannel('pj_sonic_mutex')` (conserva Auto-Ducking 3D).
+- `wiki/index.html`: Fonoteca integrada, botones 📋 Copiar, contador de búsqueda y footer legal. `js/auth.js` resuelve `../` también en `/radio/`.
+
+### 🛡️ Registro, BugTracker, JainaCore y Legales
+- `js/register.js`: modal Discord (sin `prompt`), email RFC-5322 `@discord.projectjaina.net`, toggles 👁️ y sondeo del AuthServer.
+- `bugs.html`: buscador, filtros por subsistema y cola local de reportes con formato Discord cuando la API está offline.
+- `jainacore.html`: 2 enlaces externos HTTP 404 corregidos. `privacy.html`/`terms.html`: navbar AAA + `config.js` + Fonoteca; enlaces legales en todos los footers.
+- Cache-buster `?v=20261030_v710`. 10/10 compuertas automáticas aprobadas (`verify_v7_gates.py`).
+
+---
+
 ## [v5.52.0] - 2026-10-30 — Motor Autónomo Chrono-Master v2.0, Calendario Oficial de Eras 2026–2028, Ecosistema Soberano de 7 Campeones & Núcleo C++ Zero-Errors (Hito #267)
 
 ### ⏳ Progresión Autónoma de Eras (`Chrono-Master v2.0`) y Calendario Oficial 2026–2028
