@@ -1,7 +1,7 @@
 {
   "realm_name": "Project JAIna",
   "active_phase_id": "vanilla",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "last_updated": "2026-10-12T20:38:00.000000+00:00",
   "governed_by": "Gravity AI Bridge (Autonomous Chrono-Master)",
   "server_launch_date": "2026-11-24T00:00:00-05:00",
@@ -37,8 +37,7 @@
         "Guarida de Alanegra (Blackwing Lair)",
         "Zul'Gurub (ZG)",
         "Ruinas de Ahn'Qiraj (AQ20)",
-        "Templo de Ahn'Qiraj (AQ40)",
-        "Naxxramas Clásico (Lvl 60)"
+        "Templo de Ahn'Qiraj (AQ40)"
       ],
       "dungeons": [
         "Cumbre de Roca Negra",
@@ -50,11 +49,15 @@
       "world_events": [
         "Baluartes y Fortines Territoriales de Hermandad (6 Enclaves)",
         "Galeón Dinámico de los Desertores (Bahía de Theramore)",
-        "Apertura de las Puertas de Ahn'Qiraj",
-        "Invasión de la Plaga Pre-Naxxramas"
+        "Apertura de las Puertas de Ahn'Qiraj"
       ],
-      "unlock_requirements": "Fase Activa Inicial de Project JAIna. Nivel máximo fijado en 60. Contenido canónico de Azeroth Clásico.",
-      "jaina_lore": "«Recordamos los sacrificios de las Tres Guerras y los cimientos de Theramore. El pasado forjó nuestro temple ante la tormenta venidera.»"
+      "unlock_requirements": "Fase Activa Inicial de Project JAIna (24 Nov 2026 – 01 Mar 2027 · 97 días). Nivel máximo fijado en 60 y árboles de talentos Clásicos (31 pts).",
+      "jaina_lore": "«Recordamos los sacrificios de las Tres Guerras y los cimientos de Theramore. El pasado forjó nuestro temple ante la tormenta venidera.»",
+      "start_date": "2026-11-24T00:00:00-05:00",
+      "end_date": "2027-03-01T00:00:00-05:00",
+      "duration_days": 97,
+      "duration_label": "97 días (~3.2 meses)",
+      "date_range_label": "24 Nov 2026 – 01 Mar 2027"
     },
     {
       "id": "tbc",
@@ -90,8 +93,13 @@
         "Campaña de la Isla de Quel'Danas",
         "Defensa de Theramore contra incursiones abisales"
       ],
-      "unlock_requirements": "Próxima era programada. Requiere la culminación de la Campaña de Naxxramas 60 y evento de apertura del Portal Oscuro.",
-      "jaina_lore": "«El destino de Terrallende pende de un hilo. Debemos purificar la Fuente del Sol y asegurar la caída de Kil'jaeden antes de volver nuestros ojos hacia el gélido norte.»"
+      "unlock_requirements": "Apertura automática programada el 01 de Marzo de 2027 (00:00 UTC-5) tras culminar la campaña de Ahn'Qiraj (AQ40). Desbloquea Nivel 70, Portal Oscuro, Vuelo en Terrallende y Ojo de la Tormenta.",
+      "jaina_lore": "«El destino de Terrallende pende de un hilo. Debemos purificar la Fuente del Sol y asegurar la caída de Kil'jaeden antes de volver nuestros ojos hacia el gélido norte.»",
+      "start_date": "2027-03-01T00:00:00-05:00",
+      "end_date": "2027-06-01T00:00:00-05:00",
+      "duration_days": 92,
+      "duration_label": "92 días (3 meses)",
+      "date_range_label": "01 Mar 2027 – 01 Jun 2027"
     },
     {
       "id": "naxx",
@@ -125,7 +133,12 @@
         "Establecimiento del Santuario Arcano de Dalaran"
       ],
       "unlock_requirements": "Caída de Kil'jaeden en Meseta de la Fuente del Sol y Desembarco de la Flota en Rasganorte.",
-      "jaina_lore": "«Arthas... el Rey Exánime despierta desde su Trono Helado. Naxxramas se cierne sobre Rasganorte. No descansaré hasta que el azote de la Plaga sea erradicado.»"
+      "jaina_lore": "«Arthas... el Rey Exánime despierta desde su Trono Helado. Naxxramas se cierne sobre Rasganorte. No descansaré hasta que el azote de la Plaga sea erradicado.»",
+      "start_date": "2027-06-01T00:00:00-05:00",
+      "end_date": "2027-08-01T00:00:00-05:00",
+      "duration_days": 61,
+      "duration_label": "61 días (2 meses)",
+      "date_range_label": "01 Jun 2027 – 01 Ago 2027"
     },
     {
       "id": "ulduar",
@@ -152,7 +165,12 @@
         "Consejo de Dalaran ante el despertar del Dios Antiguo Yogg-Saron"
       ],
       "unlock_requirements": "Conquista de Naxxramas (Kel'Thuzad derrotado en modo 25 jugadores) y autorización del Kirin Tor.",
-      "jaina_lore": "«Las maquinaciones de Yogg-Saron amenazan la misma cordura de Azeroth. Ni siquiera los Titanes previeron el veneno del Dios Antiguo en los guardianes de Ulduar.»"
+      "jaina_lore": "«Las maquinaciones de Yogg-Saron amenazan la misma cordura de Azeroth. Ni siquiera los Titanes previeron el veneno del Dios Antiguo en los guardianes de Ulduar.»",
+      "start_date": "2027-08-01T00:00:00-05:00",
+      "end_date": "2027-10-01T00:00:00-05:00",
+      "duration_days": 61,
+      "duration_label": "61 días (2 meses)",
+      "date_range_label": "01 Ago 2027 – 01 Oct 2027"
     },
     {
       "id": "toc",
@@ -180,7 +198,12 @@
         "Régimen de Justas y Campeones de Facción"
       ],
       "unlock_requirements": "Derrota de Yogg-Saron (Cero Guardianes) y aprobación de Tirion Vadín.",
-      "jaina_lore": "«La Cruzada Argenta pone a prueba la templanza de nuestros héroes en las puertas mismas de la Corona de Hielo. Sólo los dignos desafiarán la Ciudadela.»"
+      "jaina_lore": "«La Cruzada Argenta pone a prueba la templanza de nuestros héroes en las puertas mismas de la Corona de Hielo. Sólo los dignos desafiarán la Ciudadela.»",
+      "start_date": "2027-10-01T00:00:00-05:00",
+      "end_date": "2027-11-15T00:00:00-05:00",
+      "duration_days": 45,
+      "duration_label": "45 días (1.5 meses)",
+      "date_range_label": "01 Oct 2027 – 15 Nov 2027"
     },
     {
       "id": "icc",
@@ -209,7 +232,12 @@
         "Forja de la Agonía de Sombras (Shadowmourne Legendaria)"
       ],
       "unlock_requirements": "Conquista del Torneo Argenta y apertura de los portales de asedio en Corona de Hielo.",
-      "jaina_lore": "«He caminado por las Cámaras de Reflexión... Sentí el filo helado de Frostmourne y la sombra de lo que alguna vez fue el príncipe que amé. Esta batalla decidirá la eternidad.»"
+      "jaina_lore": "«He caminado por las Cámaras de Reflexión... Sentí el filo helado de Frostmourne y la sombra de lo que alguna vez fue el príncipe que amé. Esta batalla decidirá la eternidad.»",
+      "start_date": "2027-11-15T00:00:00-05:00",
+      "end_date": "2028-02-15T00:00:00-05:00",
+      "duration_days": 92,
+      "duration_label": "92 días (3 meses)",
+      "date_range_label": "15 Nov 2027 – 15 Feb 2028"
     },
     {
       "id": "ruby",
@@ -234,7 +262,12 @@
         "Terremotos Arcanos en Theramore y Dalaran"
       ],
       "unlock_requirements": "Caída del Rey Exánime en Modo Heroico (25 jugadores) y alerta del Vuelo Rojo.",
-      "jaina_lore": "«El cielo de Rasganorte se tiñe de fuego crepuscular. Halion busca destruir el Sagrario de Alexstrasza mientras la tierra misma tiembla con presagios del Devastador.»"
+      "jaina_lore": "«El cielo de Rasganorte se tiñe de fuego crepuscular. Halion busca destruir el Sagrario de Alexstrasza mientras la tierra misma tiembla con presagios del Devastador.»",
+      "start_date": "2028-02-15T00:00:00-05:00",
+      "end_date": "2028-04-01T00:00:00-05:00",
+      "duration_days": 46,
+      "duration_label": "46 días (1.5 meses)",
+      "date_range_label": "15 Feb 2028 – 01 Abr 2028"
     },
     {
       "id": "cataclysm",
@@ -266,7 +299,16 @@
         "Evolución Neuronal Autónoma de NPCs de IA en Nuevos Reinos"
       ],
       "unlock_requirements": "Cierre de la Era de WotLK y activación del Motor de Expansiones Autónomo en Gravity AI.",
-      "jaina_lore": "«Azeroth ha cambiado para siempre. Las cicatrices de Alamuerte desgarraron el mundo, pero nuestro Lore Viviente continuará guiando a los campeones hacia horizontes jamás vistos.»"
+      "jaina_lore": "«Azeroth ha cambiado para siempre. Las cicatrices de Alamuerte desgarraron el mundo, pero nuestro Lore Viviente continuará guiando a los campeones hacia horizontes jamás vistos.»",
+      "start_date": "2028-04-01T00:00:00-05:00",
+      "end_date": null,
+      "duration_days": null,
+      "duration_label": "Horizonte Abierto",
+      "date_range_label": "Desde 01 Abr 2028"
     }
-  ]
+  ],
+  "active_level_cap": 60,
+  "next_phase_id": "tbc",
+  "next_phase_name": "World of Warcraft The Burning Crusade",
+  "timezone_label": "UTC-5 (Lima / Bogotá / Quito)"
 }

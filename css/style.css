@@ -7243,3 +7243,159 @@ body.pj-modal-open {
     margin: 0;
 }
 
+/* ==========================================================================
+   CALENDARIO OFICIAL DE ERAS (2026-2028) & SUBETIQUETAS DE DURACIÓN
+   ========================================================================== */
+.era-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 0.75rem;
+}
+
+.calendar-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(241, 168, 10, 0.65);
+    background: linear-gradient(135deg, rgba(241, 168, 10, 0.18), rgba(0, 229, 255, 0.1));
+    color: #ffd666;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    box-shadow: 0 0 18px rgba(241, 168, 10, 0.18);
+}
+
+.calendar-cta-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(241, 168, 10, 0.32), rgba(0, 229, 255, 0.2));
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(241, 168, 10, 0.35);
+}
+
+.phase-date-subtag {
+    margin-top: 6px;
+    font-size: 0.68rem;
+    color: #c9d1d9;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.phase-duration-subtag {
+    margin-top: 2px;
+    font-size: 0.65rem;
+    color: #ffd666;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.era-schedule-banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    margin-bottom: 1.1rem;
+    border-radius: 10px;
+    background: rgba(241, 168, 10, 0.08);
+    border: 1px solid rgba(241, 168, 10, 0.28);
+    font-size: 0.83rem;
+    color: #e6edf3;
+}
+
+.era-schedule-banner span {
+    color: #8b949e;
+}
+
+.phase-modal-card.phase-modal-wide {
+    max-width: 960px;
+}
+
+.cal-modal-header {
+    margin-bottom: 1.2rem;
+}
+
+.cal-table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: rgba(8, 12, 20, 0.75);
+}
+
+.era-calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+    text-align: left;
+}
+
+.era-calendar-table th {
+    padding: 12px 14px;
+    background: rgba(212, 175, 55, 0.12);
+    color: #ffd666;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.era-calendar-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: #d0d7de;
+    vertical-align: middle;
+}
+
+.cal-row {
+    cursor: pointer;
+    transition: background 0.18s ease;
+}
+
+.cal-row:hover {
+    background: rgba(0, 229, 255, 0.08);
+}
+
+.cal-row-active {
+    background: rgba(57, 211, 83, 0.09);
+}
+
+.cal-phase-name {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.cal-phase-sub {
+    font-size: 0.72rem;
+    color: #8b949e;
+}
+
+.cal-cap {
+    font-weight: 800;
+    color: #ffd666;
+    white-space: nowrap;
+}
+
+.cal-dates {
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.cal-dur {
+    white-space: nowrap;
+    color: #39d353;
+    font-weight: 600;
+}
+
+.cal-raids {
+    font-size: 0.77rem;
+    color: #9ca3af;
+}
