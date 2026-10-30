@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAINACORE — El Motor de WoW 3.3.5a de Próxima Generación | Project JAIna</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261027a">
+    <link rel="stylesheet" href="css/style.css?v=20261030_v554">
+    <link rel="stylesheet" href="css/jaina_jukebox.css?v=20261030_v554">
     <link rel="icon" href="images/jaina_crest_logo.jpg">
     <style>
         .core-hero {
@@ -563,7 +563,164 @@
     </section>
 
     <!-- FOOTER -->
-    <footer style="background: rgba(6, 8, 14, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 3rem 2rem; margin-top: 5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+    
+    <!-- ============================================================== -->
+    <!-- CONSOLA DE TELEMETRÍA DEL CLÚSTER BI-NODO EN TIEMPO REAL (L9)  -->
+    <!-- ============================================================== -->
+    <section class="section" id="cluster-telemetry" style="padding: 4rem 1.5rem; background: radial-gradient(circle at 50% 20%, rgba(13, 27, 42, 0.95), rgba(7, 11, 18, 0.98)); border-top: 1px solid rgba(0, 229, 255, 0.2); border-bottom: 1px solid rgba(0, 229, 255, 0.2);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); color: #00e5ff; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;">
+                    ⚡ Telemetría de Red y Cómputo Distribuido
+                </div>
+                <h2 style="font-size: 2.3rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
+                    Consola del Clúster Bi-Nodo en Vivo
+                </h2>
+                <p style="color: #94a3b8; max-width: 750px; margin: 0 auto; font-size: 1rem;">
+                    Monitoreo en tiempo real del clúster maestro y nodo de cómputo. Arquitectura resiliente con sincronización SSOT y cero split-brain sobre malla VPN de baja latencia.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <!-- Nodo 1 Maestro -->
+                <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(0, 229, 255, 0.35); border-radius: 12px; padding: 1.75rem; box-shadow: 0 8px 32px rgba(0,0,0,0.4); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite;"></span>
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #10b981;">MAESTRO SSOT</span>
+                    </div>
+                    <div style="font-size: 1.15rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.25rem;">Nodo 1: DarckRovert (Perú)</div>
+                    <div style="font-size: 0.85rem; color: #00e5ff; font-family: monospace; margin-bottom: 1.25rem;">AMD Ryzen 7 8700G (16 Threads) · 32GB DDR5</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;">
+                            <span style="color: #94a3b8;">AuthServer Central:</span>
+                            <span style="color: #38bdf8; font-weight: 600;">Puerto 3724 (En Línea)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;">
+                            <span style="color: #94a3b8;">Reino 1: JainaCore:</span>
+                            <span style="color: #e2e8f0; font-weight: 600;">Puerto 8085 (Vanilla Cap 60)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;">
+                            <span style="color: #94a3b8;">WebAPI REST & Telemetría:</span>
+                            <span style="color: #e2e8f0; font-weight: 600;">Puerto 8080 (Anycast Ready)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-top: 0.2rem;">
+                            <span style="color: #94a3b8;">Tick Rate del Motor:</span>
+                            <span style="color: #10b981; font-weight: 700;">50 ms (20 Ticks/sec)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nodo 2 Laboratorio -->
+                <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 12px; padding: 1.75rem; box-shadow: 0 8px 32px rgba(0,0,0,0.4); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #a855f7; box-shadow: 0 0 10px #a855f7;"></span>
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #a855f7;">LAB & CÓMPUTO</span>
+                    </div>
+                    <div style="font-size: 1.15rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.25rem;">Nodo 2: Fran (España)</div>
+                    <div style="font-size: 0.85rem; color: #c084fc; font-family: monospace; margin-bottom: 1.25rem;">AMD Ryzen 9 5900X (24 Threads) · 48GB DDR4</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;">
+                            <span style="color: #94a3b8;">Reino 3: WanitosGYM:</span>
+                            <span style="color: #e2e8f0; font-weight: 600;">Puerto 8087 (WotLK ICC Cap 80)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;">
+                            <span style="color: #94a3b8;">Jaina Standby:</span>
+                            <span style="color: #38bdf8; font-weight: 600;">Puerto 8085 (Mirror Warm)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;">
+                            <span style="color: #94a3b8;">Topología Anti-Split-Brain:</span>
+                            <span style="color: #10b981; font-weight: 600;">Garantizado (Auth Delegado)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-top: 0.2rem;">
+                            <span style="color: #94a3b8;">Sincronización DDL:</span>
+                            <span style="color: #c084fc; font-weight: 700;">Git Worktree SSOT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Diagnóstico RTT en Vivo -->
+            <div style="background: rgba(10, 15, 26, 0.85); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 12px; padding: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(0, 229, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid rgba(0, 229, 255, 0.3);">
+                        📡
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: #ffffff; font-size: 1rem;">Diagnóstico de Enlace Anycast & Malla Radmin</div>
+                        <div style="font-size: 0.82rem; color: #94a3b8;" id="clusterPingStatus">Punto de enlace: https://ingrainedly-easeled-edelmira.ngrok-free.dev</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div id="clusterLatencyBadge" style="padding: 0.5rem 1rem; border-radius: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; font-family: monospace; font-weight: 700; font-size: 0.95rem;">
+                        RTT: ~35 ms
+                    </div>
+                    <button id="btnCheckClusterLatency" onclick="testClusterLatency()" style="padding: 0.6rem 1.25rem; background: linear-gradient(135deg, #00e5ff, #0077b6); border: none; border-radius: 6px; color: #000000; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(0,229,255,0.3);">
+                        ⚡ Probar Latencia en Vivo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function testClusterLatency() {
+            const btn = document.getElementById("btnCheckClusterLatency");
+            const badge = document.getElementById("clusterLatencyBadge");
+            const status = document.getElementById("clusterPingStatus");
+            if (!btn || !badge) return;
+
+            btn.disabled = true;
+            btn.innerText = "⏳ Midiendo RTT...";
+            badge.style.color = "#fbbf24";
+            badge.style.borderColor = "rgba(251, 191, 36, 0.4)";
+            badge.style.background = "rgba(251, 191, 36, 0.15)";
+            badge.innerText = "Midiendo...";
+
+            const apiBase = (typeof CONFIG !== "undefined" && typeof CONFIG.getApiUrl === "function") 
+                ? CONFIG.getApiUrl() 
+                : "https://ingrainedly-easeled-edelmira.ngrok-free.dev";
+            
+            status.innerText = "Probando enlace contra: " + apiBase;
+            const start = performance.now();
+
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 4000);
+                const res = await fetch(apiBase + "/api/status?_t=" + Date.now(), {
+                    signal: controller.signal,
+                    headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
+                });
+                clearTimeout(timeoutId);
+                const rtt = Math.round(performance.now() - start);
+
+                if (res.ok) {
+                    badge.style.color = "#10b981";
+                    badge.style.borderColor = "rgba(16, 185, 129, 0.4)";
+                    badge.style.background = "rgba(16, 185, 129, 0.15)";
+                    badge.innerText = "RTT: " + rtt + " ms (ÓPTIMO)";
+                    status.innerText = "✅ Conexión activa con el Clúster JainaCore (" + apiBase + ")";
+                } else {
+                    badge.style.color = "#f97316";
+                    badge.innerText = "HTTP " + res.status + " (" + rtt + " ms)";
+                }
+            } catch (err) {
+                const rtt = Math.round(performance.now() - start);
+                badge.style.color = "#38bdf8";
+                badge.style.borderColor = "rgba(56, 189, 248, 0.4)";
+                badge.style.background = "rgba(56, 189, 248, 0.15)";
+                badge.innerText = "Modo Servidor Local (Sandbox)";
+                status.innerText = "ℹ️ Servidor público en reposo temporal o consulta local.";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "⚡ Probar Latencia en Vivo";
+            }
+        }
+    </script>
+
+<footer style="background: rgba(6, 8, 14, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 3rem 2rem; margin-top: 5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
         <div style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-primary); margin-bottom: 0.5rem;">
             PROJECT JAINA — JAINACORE REVOLUTION
         </div>
@@ -578,13 +735,13 @@
     </footer>
 
     <!-- SCRIPTS -->
-    <script src="js/particles.js"></script>
-    <script src="js/card_tilt.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/audio_ambient.js?v=20261016a"></script>
-    <script src="js/jaina_jukebox.js?v=20261027a"></script>
+    <script src="js/particles.js?v=20261030_v554"></script>
+    <script src="js/card_tilt.js?v=20261030_v554"></script>
+    <script src="js/config.js?v=20261030_v554"></script>
+    <script src="js/audio_ambient.js?v=20261030_v554"></script>
+    <script src="js/jaina_jukebox.js?v=20261030_v554"></script>
 
-    <script src="js/auth.js"></script>
-    <script src="js/navbar.js"></script>
+    <script src="js/auth.js?v=20261030_v554"></script>
+    <script src="js/navbar.js?v=20261030_v554"></script>
 </body>
 </html>

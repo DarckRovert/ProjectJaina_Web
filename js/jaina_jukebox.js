@@ -45,9 +45,19 @@ class JainaJukeboxEngine {
             }
         ];
 
-        this.currentTrackIndex = 0;
+        // Cargar estado persistente en localStorage L9
+        let savedTrack = 0;
+        let savedVol = 80;
+        try {
+            const st = localStorage.getItem("jaina_jukebox_track");
+            const sv = localStorage.getItem("jaina_jukebox_vol");
+            if (st !== null) savedTrack = parseInt(st, 10) || 0;
+            if (sv !== null) savedVol = parseInt(sv, 10) || 80;
+        } catch (_) {}
+
+        this.currentTrackIndex = (savedTrack >= 0 && savedTrack < this.tracks.length) ? savedTrack : 0;
         this.isPlaying = false;
-        this.volume = 80;
+        this.volume = Math.max(0, Math.min(100, savedVol));
         this.isMuted = false;
         this.ytPlayer = null;
         this.isYtReady = false;
@@ -244,6 +254,7 @@ class JainaJukeboxEngine {
         if (index >= this.tracks.length) index = 0;
 
         this.currentTrackIndex = index;
+        try { localStorage.setItem('jaina_jukebox_track', index); } catch (_) {}
         const track = this.tracks[index];
 
         // Detener sintetizador si estaba activo
@@ -347,6 +358,7 @@ class JainaJukeboxEngine {
 
     setVolume(val) {
         this.volume = Math.max(0, Math.min(100, val));
+        try { localStorage.setItem("jaina_jukebox_vol", this.volume); } catch (_) {}
         if (this.ytPlayer && this.isYtReady && this.ytPlayer.setVolume) {
             this.ytPlayer.setVolume(this.volume);
         }

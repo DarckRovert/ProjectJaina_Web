@@ -1964,8 +1964,20 @@ function renderCatalogCards(catalog) {
                 else if (rw.type === "money") icon = "💰";
                 else if (rw.type === "bp_levels") icon = "⚡";
                 else if (rw.name && rw.name.includes("Token")) icon = "🪙";
+
+                const isWoWItem = rw.entry && rw.entry > 0 && rw.entry < 900000;
+                if (isWoWItem) {
+                    return `<a href="https://www.wowhead.com/wotlk/item=${rw.entry}" data-wowhead="item=${rw.entry}&domain=wotlk" target="_blank" rel="noopener" class="store-wh-badge" style="display:inline-block;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);border-radius:4px;padding:2px 6px;margin:2px 2px 0 0;font-size:0.73rem;color:#00e5ff;text-decoration:none;transition:all 0.2s ease;">${icon} ${rw.count > 1 ? rw.count + 'x ' : ''}${rw.name}</a>`;
+                }
                 return `<span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px 6px;margin:2px 2px 0 0;font-size:0.73rem;color:#e2e8f0;">${icon} ${rw.count > 1 ? rw.count + 'x ' : ''}${rw.name}</span>`;
             }).join("");
+    // Refrescar tooltips de Wowhead en vivo
+    if (window.$WowheadPower) {
+        setTimeout(() => {
+            try { window.$WowheadPower.refreshLinks(); } catch (_) {}
+        }, 80);
+    }
+
             rewardsHtml = `<div style="margin-top:0.45rem;display:flex;flex-wrap:wrap;gap:2px;">${itemsList}</div>`;
         }
 

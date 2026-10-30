@@ -7399,3 +7399,28 @@ body.pj-modal-open {
     font-size: 0.77rem;
     color: #9ca3af;
 }
+
+/* ============================================================== */
+/* WOWHEAD STORE BADGES & ARSENAL STYLING (L9)                    */
+/* ============================================================== */
+.store-wh-badge {
+    display: inline-block;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin: 2px 3px 2px 0;
+    font-size: 0.74rem;
+    color: #00e5ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 4px rgba(0, 229, 255, 0.1);
+}
+.store-wh-badge:hover {
+    background: rgba(0, 229, 255, 0.22);
+    border-color: #00e5ff;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+    transform: translateY(-1px);
+}
