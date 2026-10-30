@@ -1,7 +1,7 @@
 # 📖 Manual de Usuario — Portal & Ecosistema Project Jaina
 
 Guía oficial para administradores, maestros de juego y jugadores de **Project Jaina (WotLK 3.3.5a — Living Lore & AI Revolution)**.  
-**Fecha de Actualización:** 16 de Octubre de 2026  
+**Fecha de Actualización:** 30 de Octubre de 2026 (v5.52.1 — Hito #269)  
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
@@ -17,7 +17,7 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
   * *Galeón de los Desertores:* Evento naval periódico cada 45 minutos en la bahía de Theramore, campanas de alarma, escalas de abordaje, artillería interactiva (`GO 5051`) y cofre de suministros navales (`GO 2850`) con botín abierto.
 - Guía rápida paso a paso de "¿Cómo Jugar?":
   1. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 en [`registro.html`](../registro.html). Selección tripartita: Alianza de Jaina, Kirin Tor Dalaran o Horda de Orgrimmar.
-  2. **Descarga en 1 Clic (Sin VPN):** Descarga el cliente completo o el Lanzador Oficial (`ProjectJaina_Launcher.exe` v2.1.1) desde el portal o vía BitTorrent.
+  2. **Descarga en 1 Clic (Sin VPN):** Descarga el cliente completo o el Lanzador Oficial (`ProjectJaina_Launcher.exe` v2.1.3) desde el portal o vía BitTorrent.
   3. **Conexión Global Directa:** Ejecuta el Lanzador Oficial y pulsa **⚔️ ENTRAR A AZEROTH**. El motor Anycast L4 conecta de inmediato con `127.0.0.1` sin que tengas que instalar ningún adaptador de red ni introducir contraseñas.
   4. **Audio Espacial 3D WebRTC:** Entra al portal de voz con tu navegador (PC o celular) para autorizar el micrófono y habla por proximidad en el juego con el comando `/voz`.
 

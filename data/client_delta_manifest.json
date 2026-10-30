@@ -1,7 +1,7 @@
 {
   "format_version": "1.0-delta",
-  "generated_timestamp": 1792203429,
-  "generated_date": "2026-10-16 21:17:09",
+  "generated_timestamp": 1793375300,
+  "generated_date": "2026-10-30 10:48:20",
   "chunk_size_bytes": 4194304,
   "base_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/",
   "files": {
@@ -9,17 +9,47 @@
       "name": "ProjectJaina_Launcher.exe",
       "category": "launcher_binary",
       "cdn_available": true,
-      "size": 19274109,
-      "size_bytes": 19274109,
-      "size_mb": 18.38,
-      "sha256": "3e3df7704fccd19a8d5f023aaf623705594cfabc7783eb7de02dc4d4bb0e8781",
-      "chunk_count": 1,
+      "size": 21667704,
+      "size_bytes": 21667704,
+      "size_mb": 20.66,
+      "sha256": "ae1af9f38d61c8154b92fa99b3706d83292b187b9a189218fda9713f4802b9c0",
+      "chunk_count": 6,
       "chunks": [
         {
           "index": 0,
           "offset": 0,
-          "length": 19274109,
-          "sha256": "3e3df7704fccd19a8d5f023aaf623705594cfabc7783eb7de02dc4d4bb0e8781"
+          "length": 4194304,
+          "sha256": "aca95dc24a1c43e9d4fe1952970dead5357a5329853e3ca8f58a9fd4945f2be7"
+        },
+        {
+          "index": 1,
+          "offset": 4194304,
+          "length": 4194304,
+          "sha256": "9676b78e9324c695a3c3e9441ff23ba10edb7bb36f3251a61d131733433e6931"
+        },
+        {
+          "index": 2,
+          "offset": 8388608,
+          "length": 4194304,
+          "sha256": "07c4d7c670f51990480884a6b384a437d698f35084a1e720b32761177435adb9"
+        },
+        {
+          "index": 3,
+          "offset": 12582912,
+          "length": 4194304,
+          "sha256": "53223777b1e12bb6d99b167aaa57605cc5d75e924e0552b5d165c5562e92fbde"
+        },
+        {
+          "index": 4,
+          "offset": 16777216,
+          "length": 4194304,
+          "sha256": "3c71c2c628bb7de833b60ad3980fde54e716befabfc44bd27cced831d5cdf1ec"
+        },
+        {
+          "index": 5,
+          "offset": 20971520,
+          "length": 696184,
+          "sha256": "5c0ccbba90cc4e306a57a5eac7b84000d1de0506dc7fd8ca3870cf4cd61224f1"
         }
       ]
     },
