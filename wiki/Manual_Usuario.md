@@ -1,7 +1,7 @@
 # 📖 Manual de Usuario — Portal & Ecosistema Project Jaina
 
 Guía oficial para administradores, maestros de juego y jugadores de **Project Jaina (WotLK 3.3.5a — Living Lore & AI Revolution)**.  
-**Fecha de Actualización:** 30 de Octubre de 2026 (v5.52.1 — Hito #269)  
+**Fecha de Actualización:** 30 de Octubre de 2026 (Portal Web v7.1.0 / Ecosistema v5.53.0 — Hito #270)  
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
@@ -16,24 +16,34 @@ Guía oficial para administradores, maestros de juego y jugadores de **Project J
   * *Baluartes de Hermandad:* 6 enclaves estratégicos conquistables con oro in-game (Anti-P2W), estandartes dinámicos de facción, zona de descanso (Rested XP) y Heraldo Intendente (`NPC 5061`) con reparaciones y censo.
   * *Galeón de los Desertores:* Evento naval periódico cada 45 minutos en la bahía de Theramore, campanas de alarma, escalas de abordaje, artillería interactiva (`GO 5051`) y cofre de suministros navales (`GO 2850`) con botín abierto.
 - Guía rápida paso a paso de "¿Cómo Jugar?":
-  1. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 en [`registro.html`](../registro.html). Selección tripartita: Alianza de Jaina, Kirin Tor Dalaran o Horda de Orgrimmar.
+  1. **Crear tu Cuenta de Juego:** Registro instantáneo con cifrado militar SRP6 o vinculación rápida Discord en [`registro.html`](../registro.html). Una sola cuenta universal otorga acceso completo para crear héroes de la Alianza o de la Horda in-game.
   2. **Descarga en 1 Clic (Sin VPN):** Descarga el cliente completo o el Lanzador Oficial (`ProjectJaina_Launcher.exe` v2.1.3) desde el portal o vía BitTorrent.
   3. **Conexión Global Directa:** Ejecuta el Lanzador Oficial y pulsa **⚔️ ENTRAR A AZEROTH**. El motor Anycast L4 conecta de inmediato con `127.0.0.1` sin que tengas que instalar ningún adaptador de red ni introducir contraseñas.
   4. **Audio Espacial 3D WebRTC:** Entra al portal de voz con tu navegador (PC o celular) para autorizar el micrófono y habla por proximidad en el juego con el comando `/voz`.
 
 
-### 🛡️ Registro Seguro de Cuentas (`registro.html`)
-- Formulario de alta instantánea sin almacenamiento de contraseñas en texto plano.
-- Criptografía **SRP6 (Secure Remote Password)** compatible con `acore_auth.account`.
-- Selección de facción canónica tripartita: Alianza de Jaina (`ALLIANCE`), Kirin Tor Dalaran (`KIRIN_TOR`) o La Horda (`HORDE`).
+### 🛡️ Registro Seguro SRP6 & Discord Quick-Bind (`registro.html`)
+- Formulario de alta instantánea sin almacenamiento de contraseñas en texto plano, con conmutadores de visibilidad y sonda de estado de AuthServer en tiempo real.
+- Criptografía **SRP6 (Secure Remote Password RFC 5054)** compatible con `acore_auth.account`.
+- Modal no bloqueante **Discord Quick-Bind** con generación automática de correo sintético RFC-5322 (`@discord.projectjaina.net`) y acceso universal bifacción (**Alianza** y **Horda** seleccionables libremente in-game).
 
-### ⚔️ Armería en Vivo (`armeria.html`)
-- Consulta en tiempo real de estadísticas de personajes, cálculo de GearScore, talentos y logros sincronizados con `acore_characters`.
-- Motor de búsqueda y filtrado de clases normalizado insensible a tildes (Paladines, Pícaros, Chamanes con colores e insignias oficiales de WoW).
+### 👤 Panel de Gestión de Cuenta & Modo Sandbox (`cuenta.html`)
+- Consulta de saldo de Puntos de Donación (PD) y Votación (PV), estado 2FA, inventario de personajes, cambio de contraseña SRP6 y servicios de personaje (desatascar, revivir, canje promocional).
+- **Modo Sandbox Interactivo**: Permite explorar una demostración funcional completa del panel e inventario cuando el jugador aún no ha iniciado sesión o navega en modo offline.
 
-### 📜 Wiki y Cronología de Lore (`wiki/index.html`)
-- Registro histórico de eventos mundiales (`world_lore_events`) en tiempo real.
-- Estado de los líderes legendarios (Thrall, Varian, Sylvanas, Jaina).
+### ⚔️ Armería Soberana v7.1 (`armeria.html`)
+- Barra de **Censo del Reino** (balance Alianza/Horda, GearScore medio, horas de juego y muertes con honor), filtros combinados por facción y clase insensibles a tildes (`NFD`) y ordenamiento dinámico.
+- **Paperdoll Responsivo de 19 Ranuras**: Inspección detallada de equipamiento Tier 2 verificado por clase y botón para copiar enlace directo a cualquier héroe (`?inspect=Nombre`).
+
+### 🗄️ Base de Datos Soberana AoWoW v7.1 (`database.html`)
+- Explorador indexado de **8 pestañas** (*Armas*, *Armaduras*, *Monturas*, *Criaturas*, *Misiones*, *Zonas*, *Pase de Batalla* y *6 Baluartes Soberanos*) con 72 registros verificados, filtro de rareza, ordenamiento e **Inspector Modal Soberano**.
+
+### 🎵 Fonoteca Arcana & Radio Kirin Tor FM (`radio/index.html`)
+- Estudio sonoro persistente con **15 canales** organizados en 3 suites (*Lo-Fi & Estudio*, *Sinfonías de Azeroth* y *Kirin Tor FM En Vivo*) con exclusión mutua entre pestañas (`BroadcastChannel('pj_sonic_mutex')`).
+
+### 🐛 BugTracker Comunitario (`bugs.html`) & 📜 Wiki Interactiva (`wiki/index.html`)
+- Seguimiento transparente de hitos de ingeniería (actualizado al **Hito #270**), filtrado instantáneo por subsistema, cola local de reportes offline y asistente de copiado para Discord.
+- Compendio interactivo con buscador en tiempo real, contador de coincidencias, botones de copiado en comandos y dock de Fonoteca integrado.
 
 ### 💀 Modos de Juego & Desafíos In-Game
 - **Normal (Aventurero):** Reglas canónicas WotLK 3.3.5a HD con resurrecciones ilimitadas y libre comercio.
@@ -136,14 +146,15 @@ Los Game Masters disponen de comandos de consola y Eluna nativos para inspecció
 
 ---
 
-## 4. Marco Legal y Propiedad Intelectual
-Para consultar el marco legal completo, el inventario de licencias MIT/GPL de cada módulo y los descargos de propiedad intelectual de Blizzard Entertainment, Inc., consulte el documento autoritativo [`LEGAL_NOTICES.md`](file:///E:/LEGAL_NOTICES.md).
-
-
-### 11. Convivencia con Playerbots y Asistencia en Grupo (Hito #228)
+## 4. Convivencia con Playerbots y Asistencia en Grupo (Hito #228)
 * **Invitación a Grupo:** Cualquier jugador humano puede invitar a cualquier Playerbot del mundo (`/invite [Nombre]`). El bot aceptará de forma inmediata e incondicional (`AiPlayerbot.GroupInvitationPermission = 2`).
 * **Comportamiento en Grupo:** Al unirse, el bot se vincula al líder humano como su Maestro. Lo seguirá fielmente, asistirá en combate según su rol (Tanque, Sanador o DPS), completará y aceptará misiones del grupo, despojará botín y recolectará hierbas o minerales (`+follow,+quest,+accept all quests,+loot,+gather,+grind`).
 * **Consultas y Asistencia de Juego:** Puedes susurrar o hablarle por chat local a cualquier Playerbot para pedirle consejos sobre monturas y equitación, formas de farmear oro, qué mazmorras hacer a tu nivel, cómo anotarte a PvP o cómo optimizar tus profesiones y talentos.
 * **Matchmaking Instantáneo en Mazmorras y PvP:**
   - Al anotarte en el Buscador de Mazmorras (RDF), el sistema convoca o alinea automáticamente a los compañeros faltantes.
   - Al anotarte a un Campo de Batalla (WSG, Arathi, Alterac, Ojo de la Tormenta, Isla de la Conquista) mediante la tecla `H`, los Playerbots elegibles de tu nivel se anotan de inmediato para iniciar la partida.
+
+---
+
+## 5. Marco Legal, Privacidad y Propiedad Intelectual
+Para consultar las condiciones comunitarias, política de privacidad Cero-Telemetría, inventario de licencias open-source (GPLv2, MIT, AGPLv3) y descargos de propiedad intelectual de Blizzard Entertainment, Inc., revise [`Condiciones del Servicio`](../terms.html) y [`Política de Privacidad`](../privacy.html).

@@ -1,21 +1,27 @@
-# 🏛️ Arquitectura del Portal: Project Jaina Web
+# 🏛️ Arquitectura del Portal: Project Jaina Web (v7.1.0)
 
-Este documento describe la arquitectura técnica, el sistema de diseño y la integración con el ecosistema de **Project Jaina (WotLK 3.3.5a - Living Lore & AI Revolution)**.
+Este documento describe la arquitectura técnica, el sistema de diseño y la integración con el ecosistema de **Project Jaina (WotLK 3.3.5a - Living Lore & AI Revolution — Hito #270)**.
 
 ---
 
 ## 1. Stack Tecnológico
-- **Frontend**: HTML5 Semántico, Accesible y Optimizado para SEO.
-- **Estilos**: CSS3 Moderno modular (`css/style.css`), Glassmorphism arcano, Grid Layout, Flexbox y animaciones GPU-accelerated.
+- **Frontend**: HTML5 Semántico, Accesible y Optimizado para SEO en las 13 páginas del ecosistema (`?v=20261030_v710`).
+- **Estilos**: CSS3 Moderno modular (`css/style.css`), Glassmorphism arcano, Grid Layout, Paperdoll responsivo (`.pd-slots-responsive`), badges desacoplados anti-colisión Zamimg y animaciones GPU-accelerated.
 - **Lógica**: JavaScript Vanilla Modular (ES6+), Zero-Dependencies:
-  - `js/config.js`: Detección automática y resolución en cascada multi-tier (Localhost, Túnel Anycast dinámico).
-  - `js/register.js`: Manejo de registro seguro con criptografía SRP6 compatible con JainaCore.
-  - `js/store.js`: Tienda visual y pasarela de cosméticos/pases de batalla.
-  - `js/armory.js`: Visualizador interactivo de perfiles de personajes y estadísticas.
-  - `voz/app.js`: Cliente de Audio Espacial 3D WebRTC con renderizado binaural HRTF (Web Audio API), Voice Activity Detection (VAD) y señalización de proximidad.
-- **Alojamiento & CDN**: GitHub Pages con despliegue nativo desde rama `main`.
+  - `js/config.js`: Resolución dinámica multi-tier de endpoints (Localhost `:8080`, Túnel HTTPS Anycast y modo estático autónomo).
+  - `js/navbar.js`: Barra de navegación global AAA, menú móvil responsivo y **Suite Universal Kirin Tor de Diálogos No Bloqueantes** (`showPortalToast`, `showPortalConfirm`, `showPortalPrompt`) con saneamiento anti-XSS (0 `alert`/`confirm`/`prompt` en todo el portal).
+  - `js/auth.js`: Gestión de sesión de usuario y resolución de rutas relativas (`getBasePath()` compatible con raíz, `/wiki/`, `/voz/` y `/radio/`).
+  - `js/register.js`: Registro criptográfico SRP6 RFC 5054, modal **Discord Quick-Bind** con correo sintético RFC-5322 (`@discord.projectjaina.net`), conmutadores de visibilidad de contraseña y sonda de estado de AuthServer.
+  - `js/cuenta.js`: Panel integral de cuenta y personajes con `AbortController` de 4.5s, guarda `< 900000` para ítems custom y **Modo Sandbox Interactivo** (`launchAccountSandboxDemo()`) cuando el backend no está alcanzable.
+  - `js/database.js`: Motor **AoWoW Soberano v7.1** con 72 registros verificados en 8 pestañas (incluyendo *Pase de Batalla* y los *6 Baluartes Soberanos*), filtros por rareza/ordenamiento e Inspector Modal Soberano.
+  - `js/armory.js`: **Armería Soberana v7.1** con 20 campeones equipados con sets canónicos Tier 2 (19 ranuras `"0".."18"`), barra de censo Alianza/Horda/GS/HKs, Paperdoll responsivo, 0 tormentas XHR con iconos precacheados y deep-link `?inspect=`.
+  - `js/store.js`: Tienda cosmética Zero-P2W con contenedores de ítems `.store-item-badge` aislados de `.icontinyl` y despacho transaccional idempotente.
+  - `js/lore_audio.js` & `radio/app.js`: **Kirin Tor Arcane Sonic Studio** (15 canales en 3 suites: *Lo-Fi & Estudio*, *Sinfonías de Azeroth* y *Kirin Tor FM En Vivo*) sincronizado entre pestañas mediante `BroadcastChannel('pj_sonic_mutex')`.
+  - `voz/app.js`: Cliente de Audio Espacial 3D WebRTC con renderizado binaural HRTF, fallback de audio en 2 etapas (WebAudio CORS → Direct HTMLAudio), Voice Activity Detection (VAD) y *Auto-Ducking* al 18% de la música local.
+- **Alojamiento & CDN**: GitHub Pages con despliegue sincronizado en ramas `main` y `gh-pages` (`Deploy_ProjectJainaWeb.bat`).
 - **URL Oficial**: [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
 - **Portal de Voz 3D**: [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)
+- **Radio Kirin Tor FM**: [https://darckrovert.github.io/ProjectJaina_Web/radio/](https://darckrovert.github.io/ProjectJaina_Web/radio/)
 
 ---
 
@@ -33,28 +39,22 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 
 ### Tipografía
 - **Títulos y Rótulos Épicos**: `Cinzel`, serif (Google Fonts) — solemnidad y fantasía heroica.
-- **Cuerpo y Datos Técnicos**: `Inter`, sans-serif (Google Fonts) — legibilidad de alta densidad para armerías y formularios.
+- **Cuerpo y Datos Técnicos**: `Inter`, sans-serif (Google Fonts) — legibilidad de alta densidad para armerías, inspectores AoWoW y formularios.
 
 ---
 
 ## 3. Integración con el Núcleo del Servidor y Clúster Bi-Regional
 - **Malla Bi-Regional Soberana**:
-  - **Nodo Maestro Perú (`node_1_master` - 26.140.157.205)**: Aloja MySQL 8.4 autoritativo, AuthServer y WorldServer de producción.
-  - **Nodo Cómputo España (`node_2_compute` - 26.202.12.241)**: Computa audio 3D espacial WebRTC, inferencia neuronal de HeroBots y contingencia activa.
-  - **Conmutación Automática (Sentinel Failover)**: Si el nodo maestro de Perú o el nodo de España sufren una desconexión, el demonio Centinela delega dinámicamente la carga de ambos reinos al nodo superviviente sin requerir intervención del usuario.
-- **Topología de Reinos y Consolidación de Producción (Hito #223):**
-  - **Reino 1: Project Jaina [Reino Oficial de Producción]**: ID 1, Puerto `8085` (Perú / Anycast L4 `ambulance-ergonomic.tun.ply.gg:11356`, DB: `acore_characters`). Progresión canónica de Era Clásica (Nivel 60), Lore Viviente y HeroBots autónomos. **Unifica todas las modalidades de juego** (Normal, Hardcore Permadeath, Ironman Solitario, Die & Rise, Reto Andino) mediante el sistema in-game (`/modos`), eliminando la fragmentación poblacional y optimizando la RAM del servidor.
-  - **Entorno Sandbox Aislado de Pruebas**: Puerto `8086` (Localhost 127.0.0.1, DB: `acore_characters_forjadehierro`). Reservado exclusivamente para ensayos técnicos de laboratorio; desacoplado del flujo WAN.
-  - **Reino 3: WanitosGym [Reino Laboratorio - España]**: ID 3, Puerto `8087` (España / FranFranco `26.202.12.241`, DB: Réplica de Standby / Nodo España). Entorno sandbox y laboratorio experimental administrado de forma soberana en el nodo satélite de España.
+  - **Nodo Maestro Perú (`node_1_master` - `26.140.157.205`)**: Aloja MySQL 8.4 autoritativo, AuthServer (`:3724`), WorldServer de producción (`:8085`) y `ProjectJaina_WebAPI.py` (`:8080`).
+  - **Nodo Cómputo España (`node_2_compute` - `26.202.12.241`)**: Aloja Reino 3 `WanitosGym` (`:8087`), inferencia neuronal y contingencia activa en espejo.
+  - **Conmutación Automática (Sentinel Failover & Maintenance Lock)**: `ProjectJaina_Sentinel.py` supervisa la malla respetando `maintenance_lock.json` (`TTL <= 300s`) durante transiciones controladas de era.
+- **Topología de Reinos Consolidada**:
+  - **Reino 1: Project Jaina [Reino Oficial de Producción]**: ID 1, Puerto `8085` (Anycast L4 `ambulance-ergonomic.tun.ply.gg:11356`, DB: `acore_characters`). Progresión autónoma **Chrono-Master v2.0** (Calendario 2026–2028 de 8 fases, actualmente Classic Vanilla Nivel 60), Lore Viviente, 7 Campeones Soberanos Persistentes y todas las modalidades de juego unificadas (`/modos`).
+  - **Reino 3: WanitosGym [Reino Laboratorio - España]**: ID 3, Puerto `8087` (Nodo España `26.202.12.241`, Era WotLK ICC Cap 80).
 - **Bifacción Canónica Simétrica y Hermandades Oficiales**:
-  - 🦁 **La Alianza & El Kirin Tor**: Liderada por Lady Jaina Valiente con la hermandad canónica `<El Kirin Tor>` (Guild ID 21).
-  - 🐺 **La Horda de Orgrimmar**: Liderada por el Jefe de Guerra Thrall con la hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22).
-  - Cuenta universal con libre selección de raza y facción *in-game*, con auto-incorporación y bienvenida en el primer inicio de sesión.
-- **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`).
-- **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` HTTPS/WSS con certificado multi-SAN).
-- **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (puerto `1234`) conectado a través de `mod-llm-chatter` y `03_Playerbot_SocialBridge.lua`.
-- **Autenticación**: Hashing criptográfico SRP6 (`srp6_auth.py`) compatible con la base de datos `acore_auth.account` de JainaCore y Discord OAuth2 SSO 1-clic.
-- **Centinela de Discord y Comunidad**: Bot oficial *Proyecto Jaina Sentinel* (App ID `1563652716859887807`) con telemetría en tiempo real y comunidad permanente en `https://discord.gg/cXxMuRJrfy`.
-- **Gobernanza Legal**: Cumplimiento de directivas de privacidad y términos comunitarios vía `terms.html` y `privacy.html`.
-- **Blindaje Perimetral**: `ProjectJaina_Shield.py` con integración de Playit Anycast Edge Firewall (`tools/audit_playit_api.py`).
-- **Telemetría**: Estado del reino en tiempo real (población, latencia, versión WotLK 3.3.5a Build 12340).
+  - 🦁 **La Alianza & El Kirin Tor**: Hermandad canónica `<El Kirin Tor>` (Guild ID 21, Lady Jaina Valiente).
+  - 🐺 **La Horda de Orgrimmar**: Hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22, Jefe de Guerra Thrall).
+- **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`) con soporte SSOT para los 6 Baluartes Soberanos (`CANONICAL_ENCLAVES`), filtro `battlepass`, Armería, Tienda y Progresión.
+- **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` / gateway `3051` HTTPS/WSS Multi-SAN).
+- **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (`:1234` / `:5005`) conectado vía `mod-llm-chatter` bajo la regla *Smallest-Model-First*.
+- **Gobernanza Legal & Blindaje**: Cumplimiento vía `terms.html` y `privacy.html` integrados en todas las páginas del portal, y defensa perimetral `ProjectJaina_Shield.py` + `jaina_threat_radar.py`.

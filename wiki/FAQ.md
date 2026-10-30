@@ -32,7 +32,7 @@ set realmlist 127.0.0.1
 
 
 ### ¿Cómo se instalan los AddOns oficiales?
-El cliente oficial ya viene preconfigurado con la suite de 17 AddOns canónicos de Project JAIna (y 4 suites de Staff) en `Interface\AddOns\`. Si deseas actualizarlos manualmente:
+El cliente oficial ya viene preconfigurado con las 21 suites activas en `Interface\AddOns\` (17 AddOns canónicos para jugadores y 4 suites de Staff, pertenecientes al ecosistema certificado de 25 repositorios oficiales de Project JAIna). Si deseas actualizarlos manualmente:
 1. Descarga el archivo de lanzamiento desde el repositorio GitHub correspondiente.
 2. Descomprímelo asegurándote de que la carpeta quede en `Interface\AddOns\ProjectJaina_<NombreAddon>`.
 3. En la pantalla de selección de personajes, activa la casilla **"Cargar accesorios desactualizados"**.
@@ -110,7 +110,19 @@ Project Jaina cuenta con un motor de audio binaural posicional en tiempo real:
 4. Introduce tu PIN y pulsa **Conectar**.
 5. Escucharás a los jugadores cercanos con posicionamiento binaural 3D (HRTF) según su distancia y orientación en el mundo de juego.
 
+### ¿Qué es la Fonoteca Arcana & Radio Kirin Tor FM del Portal Web?
+El portal oficial integra el estudio acústico **Kirin Tor Arcane Sonic Studio (v7.1)** accesible desde el botón superior **Fonoteca & Lo-Fi** en cualquier página (incluyendo esta Wiki) o en la cabina dedicada [Kirin Tor FM](https://darckrovert.github.io/ProjectJaina_Web/radio/):
+- **15 canales verificados en 3 suites:** *Lo-Fi & Estudio* (5 streams relajantes), *Sinfonías de Azeroth* (5 temas orquestales de Theramore, Ventormenta, Orgrimmar, Dalaran e ICC) y *Kirin Tor FM En Vivo* (5 emisoras continuas).
+- **Exclusión Mutua Inteligente (Sonic Mutex):** Si abres varias pestañas del portal, la música nunca se duplica ni se mezcla; al reproducir en una pestaña las demás se silencian automáticamente, mientras que el cliente de **Voz 3D** aplica *Auto-Ducking* suave al 18% cuando alguien habla cerca de ti.
+
+### ¿Qué son la Base de Datos AoWoW, la Armería Tier 2 y el Modo Sandbox de Cuenta?
+- **Base de Datos Soberana AoWoW ([database.html](https://darckrovert.github.io/ProjectJaina_Web/database.html)):** Explorador indexado con 8 pestañas (Armas, Armaduras, Monturas, Criaturas, Misiones, Zonas, Pase de Batalla y los 6 Baluartes Soberanos), filtros de rareza e Inspector Soberano con fichas completas y comandos.
+- **Armería Soberana ([armeria.html](https://darckrovert.github.io/ProjectJaina_Web/armeria.html)):** Censo en tiempo real Alianza/Horda e inspección Paperdoll de 19 ranuras con enlaces directos compartibles (`?inspect=Nombre`).
+- **Modo Sandbox en Mi Cuenta ([cuenta.html](https://darckrovert.github.io/ProjectJaina_Web/cuenta.html)):** Te permite probar y recorrer una vista interactiva de demostración del panel de cuenta e inventario incluso sin iniciar sesión o durante mantenimientos.
+
 ### ¿Qué es el Gestor de Bots con IA (/bots o /chatter)?
+Es la interfaz conversacional integrada (`Chatter_Companion` + `ProjectJaina_MultiBot`) conectada al motor neuronal `mod-llm-chatter`. Permite dialogar en lenguaje natural con tus compañeros IA por grupo o susurro, configurar su personalidad narrativa y emitir órdenes tácticas rápidas (`/mbot`, `/pjc`, `/chatter`).
+
 ### ¿Cómo organiza automáticamente las bolsas e inventario el AddOn Dragonflight UI?
 En la esquina superior derecha de tu mochila principal (o de la ventana del banco / banco de hermandad), verás un botón elegante con icono de escoba mágica (`INV_Pet_Broom`) y orfebrería de Dalaran. Al hacer clic, el ordenador inteligente clasifica tus objetos por categoría (armas, armaduras, consumibles, materiales de profesión, gemas y misceláneos), consolidando acumulaciones incompletas al instante.
 
@@ -138,7 +150,7 @@ En **Project JAIna**, los bots operan bajo el **Motor Apex Gladiator 1v1 (`91_Su
 
 ---
 
-## 5. Comunidad y Soporte Oficial
+## 6. Comunidad y Soporte Oficial
 
 ### ¿Dónde puedo recibir ayuda directa o unirme a la comunidad?
 Únete al **Discord Oficial de Project Jaina** a través de la invitación permanente universal:  
@@ -151,11 +163,7 @@ En el servidor de Discord cuentas con:
 
 ---
 
-© 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna
-
----
-
-## 6. Progresión Autónoma de Eras & Calendario Oficial (2026–2028)
+## 7. Progresión Autónoma de Eras & Calendario Oficial (2026–2028)
 
 ### ¿Project JAIna es un reino progresivo? ¿Cómo funcionan los cambios de expansión?
 ¡Sí! El Reino Oficial (**Project Jaina — Puerto 8085**) opera bajo el motor autónomo **Chrono-Master v2.0**. Todos los jugadores y Playerbots progresan juntos desde **Classic Vanilla (Nivel 60)** hasta **Wrath of the Lich King (Nivel 80)** y el horizonte **Cataclysm**, **sin borrar jamás tus personajes, logros, monturas ni coleccionables**.
@@ -178,3 +186,6 @@ Puedes consultar el cronograma interactivo en vivo en la portada del [Portal Ofi
 | **Fase 7** | **WotLK — El Sagrario Rubí: Halion (T10.5)** | **80** | 15 Feb 2028 | 01 Abr 2028 | **46 días** |
 | **Fase 8** | **Horizonte Cataclysm** *(Expansión de Mundo 80–85)* | **85** | 01 Abr 2028 | *Abierto* | **Permanente** |
 
+---
+
+© 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna (Portal v7.1.0 — Hito #270)

@@ -2,7 +2,7 @@
 
 **Proyecto:** Project Jaina (Project Jaina WotLK 3.3.5a — Ecosistema Vivo & Multijugador Global)  
 **Estándar de Ingeniería:** Staff Software Engineer L9 (Mythos 5)  
-**Fecha de Actualización:** 25 de Octubre de 2026 (v5.38.1)
+**Fecha de Actualización:** 30 de Octubre de 2026 (Ecosistema v5.53.0 / Portal Web v7.1.0 — Hito #270)
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
@@ -15,12 +15,12 @@ El disco `E:\` aloja la totalidad de la infraestructura de desarrollo, simulaci�
 | Directorio | Rol Técnico | Tecnologías Clave |
 | :--- | :--- | :--- |
 | [`E:\JainaCore_Server`](file:///E:/JainaCore_Server) | **Backend de Producción & Motor JainaCore (SSOT)** | JainaCore C++20 x64, `mod-ale` (Eluna Lua Engine v3.0 con suite de blindaje omnicanal de punteros `IsPlayerValid`/`IsPlayerInWorld`), `mod-playerbots` (humanización 10/10, retardos cognitivos 150-380ms, caminata RPG y emotes activos), motor de población dinámica circadiana (`96_DynamicPopulation_Pacer.lua` de 40 a 300 bots), `mod-llm-chatter`, `mod-anticheat`, MySQL 8.4 (Puerto 3306 con `innodb_flush_log_at_trx_commit=2`), SOAP API (Puerto 7878), Scripts Lua (`server/lua_scripts/`), WorldServer (Puerto 8085 con buffer 64KB) y AuthServer (Puerto 3724). |
-| [`E:\JainaCore`](file:///E:/JainaCore) | **Repositorio Oficial & Portal Engine de JainaCore** | Portal web oficial ([darckrovert.github.io/JainaCore](https://darckrovert.github.io/JainaCore/)), documentación técnica, arquitectura y licencias GPLv2. |
+| [`E:\JainaCore`](file:///E:/JainaCore) | **Repositorio Oficial & Portal Engine de JainaCore** | Arquitectura del motor ([Portal JainaCore](https://darckrovert.github.io/ProjectJaina_Web/jainacore.html)), documentación técnica C++20, pilares de IA y licencias GPLv2. |
 | [`E:\ProjectJaina_FHD`](file:///E:/ProjectJaina_FHD) | **Cliente Maestro Canónico (GM & Desarrollador)** | World of Warcraft 3.3.5a (Build 12340), Texturas FHD/HD (23.8 GB), UI Dragonflight, Suite completa de AddOns oficiales, herramientas exclusivas de GM (`ProjectJaina_AdminTools`, `GMGenie`), perfiles personales WTF, mitigación de ratones 1000 Hz (`rawMouseEnable 1`) y lanzadores de laboratorio. |
 | [`E:\ProjectJaina_Lab`](file:///E:/ProjectJaina_Lab) | **Centro de Operaciones, Consola GM y Túneles** | `ProjectJaina_Console.py` (Dashboard Web Puerto 8088 con Catálogo & Spawner Universal, Inspector 360° Paperdoll, Editor Web de Configs con respaldos `.bak`, Tacómetro Tick Diff, Tickets GM y Radar Leaflet/Three.js), `ProjectJaina_Shield.py` (Sovereign Shield & Anti-DDoS con mitigación Playit Anycast), `tools/audit_playit_api.py`, `ProjectJaina_WebAPI.py` (Puerto 8080), lanzadores unificados `.bat`, configuración de red SSOT (`network_target.json`). |
 | [`E:\ProjectJaina_Distribucion_Publica`](file:///E:/ProjectJaina_Distribucion_Publica) | **Arquitectura de Distribución Canónica (3 Paquetes)** | `01_Cliente_ProjectJaina_Publico` (36.99 GB, 45 Hardlinks NTFS hacia MPQs), `02_Servidor_Cluster_Colegas` (1.01 GB, RAR con -rr3%), `03_Launcher_Solo_Actualizador` (70.47 MB). Manifiesto canónico [DISTRIBUCION_MANIFEST.json](file:///e:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) con hashes SHA-256 certificados. |
 | [`E:\Logo_ProjectJaina`](file:///E:/Logo_ProjectJaina) | **Identidad Visual y Activos Gráficos** | Vectores e ilustraciones oficiales de ultra alta resolución (escudo arcano, banner hero cinemático, living lore) y catálogo de marca. |
-| [`E:\ProjectJaina_Web`](file:///E:/ProjectJaina_Web) | **Portal Web Público en la Nube (GitHub Pages)** | Aplicación web alojada en [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/) con registro seguro de cuentas (SRP6), Discord OAuth2 SSO 1-clic, armería en vivo, base de datos AoWoW, BugTracker comunitario, tienda, páginas legales `terms.html`/`privacy.html` y descarga CDN del juego. |
+| [`E:\ProjectJaina_Web`](file:///E:/ProjectJaina_Web) | **Portal Web Público AAA v7.1.0 (GitHub Pages)** | Aplicación web alojada en [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/) con Suite Kirin Tor de diálogos no bloqueantes (0 `alert`), Fonoteca Arcana & Kirin Tor FM (15 canales + Cross-Tab Sonic Mutex), Armería v7.1 (20 campeones Tier 2, Paperdoll 19 slots, `?inspect=`), Base de Datos AoWoW v7.1 (72 registros, 8 pestañas, 6 Baluartes), Modo Sandbox en Mi Cuenta, registro SRP6 + Discord Quick-Bind, Voz 3D WebRTC, `terms.html`/`privacy.html` y descarga CDN v2.1.3. |
 
 ---
 
@@ -131,7 +131,7 @@ Todo agente de IA, desarrollador o administrador que ingrese al repositorio debe
 | [E:\JainaCore_Server\server\lua_scripts\GOVERNANCE.md](file:///E:/JainaCore_Server/server/lua_scripts/GOVERNANCE.md) | `E:\JainaCore_Server\server\lua_scripts` | Gobernanza autoritativa de Eluna Lua Engine, blindaje de punteros de mundo (`IsPlayerValid`), discriminación estricta de bots, Evento 42 y población circadiana. |
 | [INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md](file:///E:/ProjectJaina_Lab/INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md) | `E:\ProjectJaina_Lab` | Diagnóstico de CGNAT Bitel (`10.53.0.1`), túneles Playit Anycast L4, Ngrok L7, reglas de firewall y puertos. |
 | [DISTRIBUCION_MANIFEST.json](file:///E:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) | `E:\ProjectJaina_Distribucion_Publica` | Manifiesto criptográfico autoritativo SHA-256 de los paquetes de distribución (Cliente, Clúster Colegas, Launcher). |
-| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #252, cacería de bugs y arquitectura profunda. |
+| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #270, cacería de bugs y arquitectura profunda. |
 
 ---
 
