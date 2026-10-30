@@ -119,7 +119,7 @@ Los Game Masters disponen de comandos de consola y Eluna nativos para inspecció
 ### ⚔️ Escuadrón Élite de Compañeros IA (`.escuadron` / `.party ia`)
 | Comando | Descripción |
 | :--- | :--- |
-| `.escuadron convocar` | Invoca a Silka (Tanque), Rogotten (DPS Ret), Aezrah (Healer) y Melissah (DPS Brujo) a la party, calibrados a nivel 60. |
+| `.escuadron convocar` | Invoca a Silka (Tanque), Rogotten (Pícaro Elfo de Sangre DPS Tier 2 Bloodfang), Aezrah (Healer) y Melissah (DPS Brujo) a la party, calibrados a nivel 60. |
 | `.escuadron disolver` | Remueve a los 4 compañeros del grupo con diálogos canónicos de despedida. |
 | `.escuadron postura defensiva` | Conmuta la estrategia del escuadrón a control de masas, absorción de daño y curas prioritarias. |
 | `.escuadron postura ofensiva` | Activa ráfagas de DPS máximo, ataques concentrados y ejecución rápida de objetivos. |
