@@ -1,7 +1,7 @@
 {
   "format_version": "1.0-delta",
-  "generated_timestamp": 1793412841,
-  "generated_date": "2026-10-30 21:14:01",
+  "generated_timestamp": 1793413369,
+  "generated_date": "2026-10-30 21:22:49",
   "chunk_size_bytes": 4194304,
   "base_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/",
   "files": {
@@ -9,47 +9,47 @@
       "name": "ProjectJaina_Launcher.exe",
       "category": "launcher_binary",
       "cdn_available": true,
-      "size": 21688310,
-      "size_bytes": 21688310,
-      "size_mb": 20.68,
-      "sha256": "c4fe81e0c9a5e53660c8e3e6ecb2f029fa39fa285375f8dad8a05cb994e993bd",
+      "size": 21671426,
+      "size_bytes": 21671426,
+      "size_mb": 20.67,
+      "sha256": "4cea4ed2178d2dbde0ba98d7593c18c5d9ff6fb19daf9723f6a22ebfd5667381",
       "chunk_count": 6,
       "chunks": [
         {
           "index": 0,
           "offset": 0,
           "length": 4194304,
-          "sha256": "b5b3367d2d97d1e0313d98d0dc11980fdf43aa1a084d5a8e071996afb8609504"
+          "sha256": "ae3ee907d00040ef0699cbf26ad890c914532991b2670dcc6f990bef25bc5733"
         },
         {
           "index": 1,
           "offset": 4194304,
           "length": 4194304,
-          "sha256": "710fdd1eaeabf277a64e8dbe59b81d0959ac931bcddee98dd9341783e325b4de"
+          "sha256": "3f4360f7addf080a47b05591c1e072d7938ff3c37090aa2dbeef53ee5090a9ee"
         },
         {
           "index": 2,
           "offset": 8388608,
           "length": 4194304,
-          "sha256": "be3c68b07f18b838844635345c9378484d3d2f02826addb9dc863f30ab00b10b"
+          "sha256": "d44818ea49a93dd4fde183e87406d1c8397fbf8a1e2e6dfffc124231307a66dc"
         },
         {
           "index": 3,
           "offset": 12582912,
           "length": 4194304,
-          "sha256": "5441f4a99c4dcedb640e014892524bcd6c9b214686b6d4e1ba4b2aca1bc31aca"
+          "sha256": "27481d277e27027394757026c81a46c1d2c746152445b381aade496466d1f269"
         },
         {
           "index": 4,
           "offset": 16777216,
           "length": 4194304,
-          "sha256": "30a921f1e84291ff72ab975dbdd81e64408024f7eb4d6ddc4a1784c581036702"
+          "sha256": "c311a2da98e215471bf0d4ce63b9339750b57839dd788f62a1ee0b8bca67266e"
         },
         {
           "index": 5,
           "offset": 20971520,
-          "length": 716790,
-          "sha256": "dd9794845ba728a83e07c71effa70df3bad78791a68313b3c4ffd1f48fa0a537"
+          "length": 699906,
+          "sha256": "375fd88588860a0581f317e5084c58bfd81c8838400ca52212e4e22209bc026f"
         }
       ]
     },

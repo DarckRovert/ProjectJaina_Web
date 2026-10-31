@@ -1,17 +1,17 @@
 {
   "version": "2.1.4",
-  "generated_at": 1793412841,
+  "generated_at": 1793413369,
   "client_root": "ProjectJaina_CDN",
   "file_count": 2,
-  "total_size_bytes": 43339508,
+  "total_size_bytes": 43305722,
   "files": {
     "ProjectJaina_Launcher.exe": {
-      "size": 21688310,
-      "sha256": "c4fe81e0c9a5e53660c8e3e6ecb2f029fa39fa285375f8dad8a05cb994e993bd"
+      "size": 21671426,
+      "sha256": "4cea4ed2178d2dbde0ba98d7593c18c5d9ff6fb19daf9723f6a22ebfd5667381"
     },
     "ProjectJaina_Setup.exe": {
-      "size": 21651198,
-      "sha256": "ff54f19c9047228297e366fc62727340ec93314266585e9f68ea9f950ea57f7d"
+      "size": 21634296,
+      "sha256": "f3f3b21dc16f573e1fb94a2cb8d5faf3957ad238deb13969ce7292d616b68807"
     }
   }
 }

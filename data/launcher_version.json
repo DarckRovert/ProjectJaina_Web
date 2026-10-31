@@ -3,8 +3,8 @@
   "min_version": "1.0.0",
   "download_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher.exe",
   "zip_url": "https://darckrovert.github.io/ProjectJaina_Web/downloads/ProjectJaina_Launcher_Oficial.zip",
-  "size_bytes": 21688310,
-  "sha256": "c4fe81e0c9a5e53660c8e3e6ecb2f029fa39fa285375f8dad8a05cb994e993bd",
+  "size_bytes": 21671426,
+  "sha256": "4cea4ed2178d2dbde0ba98d7593c18c5d9ff6fb19daf9723f6a22ebfd5667381",
   "changelog": "Versión Oficial 2.1.4 — Telemetría infalible L7 WoW Auth (Cero falsos positivos), estado de mantenimiento en vivo, selector nativo de 3 reinos, suite de 25 AddOns y Vector 10 en Doctor Jaina.",
-  "updated_at": 1793412841
+  "updated_at": 1793413369
 }
