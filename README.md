@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Project JAIna Official Crest" width="220">
+</p>
+
 # 🌐 Project JAIna — Portal Web Oficial AAA (v7.1.0)
 
 <div align="center">
