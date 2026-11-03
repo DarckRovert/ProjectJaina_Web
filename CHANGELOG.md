@@ -4,6 +4,18 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.2.0] - 2026-11-03 — Lanzamiento e Integración Oficial de WebClient 3D (Cero Descarga) & Conectividad WebGL (Hito #276)
+
+### 🌐 Cliente WebGL 3D Oficial (ProjectJaina_WebClient / Hito #276)
+- **Cero Descarga en Navegador:** Integración de acceso directo en el portal web (index.html) hacia el nuevo cliente tridimensional WebGL Three.js con streaming de MPQs desde el servidor.
+- **Soporte Móvil Universal:** Implementación de controles táctiles de 360° (TouchControls.ts), joystick analógico virtual y control de cámara táctil orbital con gestos para teléfonos y tablets.
+- **Audio Inmersivo:** Desbloqueo universal de audio WebAudio en primer gesto de usuario para ambientación de mapas, pasos y combate.
+- **Localización 100% en Español:** Interfaz completamente saneada y traducida al español (esES) para hermandad, chat, hechizos, talentos, inventario y consola GM.
+- **Pasarela Gateway WebSocket (:8096):** Puente bidireccional que desacopla sockets TCP nativos de WoW a WebSockets seguros para navegadores.
+- **Publicación Soberana:** Repositorio oficial publicado en [DarckRovert/ProjectJaina_WebClient](https://github.com/DarckRovert/ProjectJaina_WebClient) con Git Tag y Release 1.0.0.
+
+---
+
 ## [v7.1.0] - 2026-10-30 — Renovación Integral AAA de Todas las Áreas del Portal (Hito #270)
 
 ### 📚 Base de Datos Soberana AoWoW v7.1 (`database.html`, `js/database.js`, `data/database_catalog.json`)

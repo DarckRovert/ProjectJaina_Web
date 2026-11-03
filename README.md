@@ -14,7 +14,8 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.1.0%20(Hito%20%23270)-00ccff.svg)](./CHANGELOG.md)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.2.0%20(Hito%20%23276)-00ccff.svg)](./CHANGELOG.md)
+[![WebClient 3D](https://img.shields.io/badge/Client-WebGL%203D%20Web%20(Cero%20Descarga)-E34F26.svg)](https://github.com/DarckRovert/ProjectJaina_WebClient)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/ProjectJaina_Web/)
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
@@ -58,6 +59,7 @@
   * **Voz Espacial 3D (`voz/`):** Cliente web de audio binaural posicional HRTF con emparejamiento por PIN (`/voz`), selector dual-node (Perú y España), fallback de audio en 2 etapas y cifrado Multi-SAN SSL.
   * **BugTracker Comunitario (`bugs.html`):** Buscador en tiempo real, filtros por subsistema, cola local offline de reportes y asistente de copia rápida para Discord.
   * **Wiki & Compendio Oficial (`wiki/`):** Manual interactivo con buscador en vivo, contador de coincidencias, botones de copiado en bloques de código y dock de Fonoteca integrado.
+  * **Cliente WebGL 3D Oficial — Cero Descarga (ProjectJaina_WebClient):** Acceso directo para jugar desde el navegador en PC, telefonos moviles o tablets sin necesidad de instalar clientes pesados. Soporte completo de controles tactiles 360 grados, audio espacial y localizacion 100% en espanol.
   * **Descargas CDN & Espejos Oficiales:** Descarga en 1 clic del Lanzador Oficial Standalone **v2.1.3** (`ProjectJaina_Launcher_Oficial.zip`), espejos directos Google Drive y enlaces BitTorrent.
 
 ---
@@ -66,6 +68,7 @@
 
 El portal se sirve directamente a través de **GitHub Pages** (`main` & `gh-pages`):
 * **URL Pública Oficial:** [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/)
+* **Cliente WebGL 3D Oficial (Cero Descarga):** [https://github.com/DarckRovert/ProjectJaina_WebClient](https://github.com/DarckRovert/ProjectJaina_WebClient) (Acceso web: http://127.0.0.1:8097/)
 * **Comunidad Oficial Discord (Invitación Permanente):** [https://discord.gg/cXxMuRJrfy](https://discord.gg/cXxMuRJrfy)
 * **Cliente de Voz Espacial 3D:** [https://darckrovert.github.io/ProjectJaina_Web/voz/](https://darckrovert.github.io/ProjectJaina_Web/voz/)
 * **Radio Dedicada Kirin Tor FM:** [https://darckrovert.github.io/ProjectJaina_Web/radio/](https://darckrovert.github.io/ProjectJaina_Web/radio/)
