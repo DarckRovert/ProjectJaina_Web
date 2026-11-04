@@ -22,6 +22,11 @@
 
         <ul class="nav-links" id="navbarLinks">
             <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="jugar.html" style="color: #fbbf24; font-weight: 800;"><span style="margin-right: 4px;">🎮</span>Jugar en Web</a></li>
+            <li><a href="#escaparate-web">¿Cómo Funciona?</a></li>
+            <li><a href="#tres-formas-de-jugar">Formas de Jugar</a></li>
+            <li><a href="#por-que-jaina">¿Por Qué Jaina?</a></li>
+            <li><a href="#empezar-en-3-pasos">Empezar</a></li>
             <li><a href="jainacore.html">JainaCore</a></li>
             
             <!-- DROPDOWN: EXPLORAR -->
@@ -202,90 +207,334 @@
                 <span class="audio-label">Fonoteca & Radio</span>
             </button>
             <a href="#fase-beta" class="btn-beta-live-pill" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 0.4rem 0.95rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; text-decoration: none; box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>BETA ABIERTA (NO-WIPE)</a>
-            <a href="registro.html" class="btn-cta-nav">Jugar Gratis</a>
+            <a href="jugar.html" class="btn-play-web-nav" style="display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #000; font-weight: 800; padding: 0.45rem 1.15rem; border-radius: 9999px; text-decoration: none; box-shadow: 0 0 15px rgba(245, 158, 11, 0.45); border: 1px solid #fde68a; font-size: 0.88rem;">
+                <span style="font-size: 1rem;">🌐</span> JUGAR EN WEB
+            </a>
+            <a href="registro.html" class="btn-cta-nav">Crear Cuenta</a>
             <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menú de Navegación">☰</button>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <div class="hero-badge" style="background: rgba(34, 197, 94, 0.16); border-color: rgba(74, 222, 128, 0.6); color: #86efac; box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);">🟢 FASE BETA PÚBLICA EN VIVO · GARANTÍA TOTAL 100% NO-WIPE · ¡ Azeroth te Espera!</div>
-        <h1>Donde las Leyendas de Azeroth Cobran Conciencia</h1>
-        <p>El primer servidor de World of Warcraft del mundo con <strong>HeroBots Vivientes impulsados por Inteligencia Artificial Neuronal</strong>. Camina junto a <strong>Lady Jaina Valiente</strong> en Theramore y Dalaran, conquista <strong>Baluartes de Hermandad</strong> en el mundo abierto, asalta el <strong>Galeón Dinámico de los Desertores</strong> y vive una experiencia binaural 3D sin precedentes.</p>
-        
-        <div class="hero-banner-container">
-            <img src="images/jaina_arcane_sanctum.jpg" alt="Lady Jaina Proudmoore - Project Jaina Living Lore en Dalaran" class="hero-banner-img">
-            <div class="hero-banner-overlay">
-                <span class="hero-banner-tag">EXPEDICIÓN DALARAN · SANTUARIO ARCANO</span>
-                <span class="hero-banner-status">● MOTOR DE LORE VIVIENTE V4.0 ACTIVO</span>
+    <!-- HERO CINEMÁTICO V2 (ALTO IMPACTO & ACCESO EN 1 CLIC) -->
+    <header class="hero-cinematic-v2">
+        <div class="hero-v2-container">
+            <div class="hero-crest-badge">
+                <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="hero-crest-mini">
+                <span class="hero-crest-text">ECOSISTEMA OFICIAL · LORE VIVIENTE CON IA NEURONAL</span>
+            </div>
+
+            <h1 class="hero-v2-title">
+                World of Warcraft 3D en tu Navegador.<br>
+                <span class="text-arcane-gold">Sin Descargas. Sin Esperas.</span>
+            </h1>
+
+            <p class="hero-v2-subtitle">
+                El primer servidor de WoW donde los personajes legendarios tienen <strong>conciencia e inteligencia artificial propia</strong>.
+                Juega de forma instantánea desde cualquier pantalla con nuestro cliente web 3D, o descarga el Cliente HD completo para PC.
+            </p>
+
+            <div class="cta-trinity-container">
+                <a href="jugar.html" class="btn-play-web-pulse" id="btnHeroPlayWeb">
+                    <span>🌐</span> JUGAR EN EL NAVEGADOR (1 CLIC)
+                </a>
+                <a href="#tres-formas-de-jugar" class="btn-secondary-pc">
+                    <span>💻</span> Descargar Cliente HD (PC)
+                </a>
+                <a href="registro.html" class="btn-tertiary-register">
+                    <span>🛡️</span> Crear Cuenta Gratis (15s)
+                </a>
+            </div>
+
+            <div class="live-status-pill">
+                <span class="status-dot-pulse"></span>
+                <span>Reino 1: <strong>JainaCore (Vanilla Cap 60)</strong> · Servidor En Línea · 0 VPN Requerida</span>
             </div>
         </div>
+    </header>
 
-        <div class="hero-actions" style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem;">
-            <a href="registro.html" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem; background: linear-gradient(135deg, #16a34a 0%, #15803d 50%, #14532d 100%); border-color: #4ade80; box-shadow: 0 0 25px rgba(34, 197, 94, 0.5); letter-spacing: 0.5px; color: #ffffff !important; text-shadow: 0 1px 3px rgba(0,0,0,0.75);">⚔️ Entrar a la Beta (No-Wipe)</a>
-            <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0c4a6e 100%); border-color: #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); letter-spacing: 0.5px; color: #ffffff !important; text-shadow: 0 1px 3px rgba(0,0,0,0.75);" title="Descarga directa del Lanzador Oficial v2.1 (~20 MB) ejecutable en 1 Clic">⚡ Descargar Lanzador Oficial v2.1 (~20 MB)</a>
-            <a href="#juego-movil" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.8rem; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #4c1d95 100%); border-color: #a78bfa; box-shadow: 0 0 25px rgba(167, 139, 250, 0.45); letter-spacing: 0.5px; color: #ffffff !important; text-shadow: 0 1px 3px rgba(0,0,0,0.75);" title="Juega a World of Warcraft 3.3.5a en smartphones y tablets Android ARM64">📱 ¡Juega en Android! (ARM64)</a>
-            <a href="#como-jugar" class="btn-secondary" style="font-size: 0.95rem; padding: 0.85rem 1.4rem; border-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px);">📦 Guía de Descargas & Cliente Completo ➔</a>
-        </div>
-
-        <!-- BANNER MAESTRO: ACCESO A LA BETA PÚBLICA · GARANTÍA 100% NO-WIPE · BUG BOUNTY -->
-        <section class="beta-announcement-card" id="fase-beta">
-            <div style="text-align: center;">
-                <div class="beta-header-badge">
-                    <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80;"></span>
-                    FASE BETA PÚBLICA ABIERTA · DISPONIBLE AHORA
-                </div>
-                <h2 style="color: #ffd700; font-size: 1.85rem; font-family: 'Cinzel', serif; margin: 0 0 0.6rem 0; font-weight: 900; letter-spacing: 0.8px; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">
-                    🛡️ ¡ÚNETE A LA BETA DE PROJECT JAINA!
-                </h2>
-                <p style="color: #e2e8f0; font-size: 1.02rem; line-height: 1.6; max-width: 860px; margin: 0 auto;">
-                    El reino de Azeroth impulsado por <strong>Inteligencia Artificial y Lore Viviente</strong> ya está accesible para toda la comunidad. Regístrate, descarga el lanzador en 1 clic y forja tu destino.
+    <!-- EL GRAN ESCAPARATE SOBERANO: WEBCLIENT 3D (CERO DESCARGAS) -->
+    <section class="webclient-showcase-section" id="escaparate-web">
+        <div class="webclient-showcase-container">
+            <div class="showcase-header">
+                <span class="showcase-tag">⚡ REVOLUCIÓN EN ACCESIBILIDAD · CERO DESCARGAS</span>
+                <h2 class="showcase-title">Azeroth en tu Navegador — 100% 3D, Directo desde la Web</h2>
+                <p class="showcase-desc">
+                    Olvídate de descargar 20 GB de archivos o lidiar con carpetas comprimidas y configuraciones complejas.
+                    Con nuestro <strong>WebClient 3D Oficial</strong>, tu navegador descarga los modelos y texturas al vuelo mientras juegas.
                 </p>
             </div>
 
-            <!-- 3 PILARES FUNDAMENTALES DE LA BETA -->
-            <div class="beta-pillars-grid">
-                <div class="beta-pillar-item">
-                    <div class="beta-pillar-icon">🔒</div>
-                    <div class="beta-pillar-title" style="color: #38bdf8;">1. Cero Wipe Garantizado (NO-WIPE)</div>
-                    <p class="beta-pillar-desc">
-                        <strong>Todo tu avance se conserva al 100%.</strong> Los niveles, profesiones, monedas de oro, equipamiento, monturas y hermandades que consigas durante la Beta se mantendrán de forma definitiva y permanente para el lanzamiento oficial. ¡Tu esfuerzo nunca se perderá!
-                    </p>
+            <!-- Marco de Monitor / Pantalla WebGL -->
+            <div class="webclient-monitor-frame">
+                <div class="monitor-top-bar">
+                    <div class="monitor-dots">
+                        <span class="monitor-dot dot-red"></span>
+                        <span class="monitor-dot dot-yellow"></span>
+                        <span class="monitor-dot dot-green"></span>
+                    </div>
+                    <div class="monitor-address-bar">
+                        🔒 https://darckrovert.github.io/ProjectJaina_Web/jugar.html
+                    </div>
+                    <div class="monitor-badge-fps">
+                        ⚡ WebGL 2.0 · Three.js 60 FPS
+                    </div>
                 </div>
 
-                <div class="beta-pillar-item">
-                    <div class="beta-pillar-icon">🎁</div>
-                    <div class="beta-pillar-title" style="color: #ffd700;">2. Recompensas & Caza de Bugs (Bug Bounty)</div>
-                    <p class="beta-pillar-desc">
-                        ¿Encontraste una misión rota o un bug de mecánicas? Repórtalo con <code>/ticket</code> en el juego o en nuestro portal. Recibirás el título exclusivo <strong>"Vanguardia de Jaina"</strong>, monedas de tienda cosmética y transfiguraciones únicas por ayudarnos a pulir el servidor.
-                    </p>
-                </div>
-
-                <div class="beta-pillar-item">
-                    <div class="beta-pillar-icon">⚡</div>
-                    <div class="beta-pillar-title" style="color: #a855f7;">3. Conexión Directa en 1 Clic (Sin VPN)</div>
-                    <p class="beta-pillar-desc">
-                        Nuestra red Anycast L4 transparente te permite jugar directamente con latencias ultrabajas sin necesidad de instalar VPNs ni configurar archivos de texto. Además, cuentas con audio posicional 3D WebRTC y diálogo neuronal en tiempo real.
-                    </p>
+                <div class="monitor-screen-viewport">
+                    <img src="images/theramore_citadel_art.jpg" alt="Project Jaina WebClient 3D Viewport" class="monitor-screen-img">
+                    <div class="monitor-screen-overlay">
+                        <div class="monitor-hero-caption">
+                            <h3>Ciudadela de Theramore en Vivo</h3>
+                            <p>Renderizado tridimensional completo, ciclo día/noche, iluminación dinámica, sonido inmersivo y compatibilidad táctil o con teclado.</p>
+                            <a href="jugar.html" class="monitor-play-cta">
+                                🚀 ABRIR CLIENTE WEB AHORA (JUGAR)
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- ACCIONES RÁPIDAS DE LA BETA -->
-            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-                <a href="registro.html" class="btn-primary" style="font-size: 1rem; padding: 0.8rem 2.2rem; box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);">
-                    ⚔️ Crear Cuenta & Entrar a la Beta Gratis
-                </a>
-                <a href="bugs.html" class="btn-secondary" style="font-size: 0.95rem; padding: 0.8rem 1.6rem; border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
-                    🐛 Reportar un Bug & Reclamar Recompensa ➔
-                </a>
-                <a href="cuenta.html" class="btn-secondary" style="font-size: 0.95rem; padding: 0.8rem 1.6rem;">
-                    👑 Panel de Mi Perfil & Armería
+            <!-- Grilla de las 4 Verdades del WebClient -->
+            <div class="webclient-features-grid">
+                <div class="webclient-feat-card">
+                    <span class="webclient-feat-icon">⚡</span>
+                    <h4>1 Clic y a Jugar</h4>
+                    <p>Cero gigabytes de descarga en tu disco. Abre la pestaña en tu navegador, introduce tus datos y entra a jugar en segundos.</p>
+                </div>
+
+                <div class="webclient-feat-card">
+                    <span class="webclient-feat-icon">💻📱</span>
+                    <h4>Juega en Cualquier Pantalla</h4>
+                    <p>Compatible con PC, Mac, Laptops de oficina, Chromebooks, iPads y Celulares Android (con palanca analógica 360° integrada).</p>
+                </div>
+
+                <div class="webclient-feat-card">
+                    <span class="webclient-feat-icon">🎮</span>
+                    <h4>Gráficos 3D Reales WebGL</h4>
+                    <p>No es un vídeo por streaming: es el motor Three.js acelerado por tu propia tarjeta gráfica con shaders de agua y texturas de WoW.</p>
+                </div>
+
+                <div class="webclient-feat-card">
+                    <span class="webclient-feat-icon">🔄</span>
+                    <h4>Una Cuenta, Mismo Progreso</h4>
+                    <p>Tu personaje en la web es exactamente el mismo del servidor. Si luego quieres jugar en el cliente de PC, continúas donde lo dejaste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAS 3 MANERAS DE JUGAR (COMPARATIVA DIRECTA) -->
+    <section class="ways-to-play-section" id="tres-formas-de-jugar">
+        <div style="text-align: center; max-width: 820px; margin: 0 auto 3.5rem;">
+            <div class="showcase-tag" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
+                🎮 ELIGE TU FORMA DE ENTRAR
+            </div>
+            <h2 class="showcase-title">Tres Formas de Vivir la Aventura</h2>
+            <p class="showcase-desc">
+                Adapta tu experiencia según el dispositivo que tengas a mano. Puedes cambiar de una a otra en cualquier momento con la misma cuenta.
+            </p>
+        </div>
+
+        <div class="ways-to-play-grid">
+            <!-- Opción 1: Web -->
+            <div class="way-card highlight-gold">
+                <div class="way-badge-top badge-gold">MÁS RÁPIDO · 1 CLIC</div>
+                <div class="way-card-header">
+                    <div class="way-card-icon">🌐</div>
+                    <h3>1. Cliente Web</h3>
+                    <div class="way-card-subtitle">Juega directo en el Navegador</div>
+                </div>
+                <ul class="way-spec-list">
+                    <li><span>Instalación:</span> <strong>0 Segundos (Sin descarga)</strong></li>
+                    <li><span>Dispositivos:</span> <strong>PC, Mac, Linux, Móviles</strong></li>
+                    <li><span>Gráficos:</span> <strong>WebGL 3D Acelerado</strong></li>
+                    <li><span>Controles:</span> <strong>Teclado / Ratón y Táctil</strong></li>
+                    <li><span>Ideal para:</span> <strong>Jugar ya mismo en cualquier lugar</strong></li>
+                </ul>
+                <a href="jugar.html" class="way-btn-action btn-gold-fill">
+                    🚀 JUGAR EN LA WEB AHORA
                 </a>
             </div>
-        </section>
+
+            <!-- Opción 2: PC HD -->
+            <div class="way-card">
+                <div class="way-badge-top badge-cyan">MÁXIMA INMERSIÓN</div>
+                <div class="way-card-header">
+                    <div class="way-card-icon">💻</div>
+                    <h3>2. Cliente Full HD (PC)</h3>
+                    <div class="way-card-subtitle">Cliente nativo con Parches HD</div>
+                </div>
+                <ul class="way-spec-list">
+                    <li><span>Instalación:</span> <strong>Lanzador de 1 Clic (~20 MB)</strong></li>
+                    <li><span>Dispositivos:</span> <strong>Windows PC (Laptop / Sobremesa)</strong></li>
+                    <li><span>Gráficos:</span> <strong>Texturas HD Remasterizadas</strong></li>
+                    <li><span>AddOns:</span> <strong>Suite Oficial de 21 AddOns</strong></li>
+                    <li><span>Ideal para:</span> <strong>Sesiones largas y máxima calidad</strong></li>
+                </ul>
+                <a href="downloads/ProjectJaina_Launcher.exe" download="ProjectJaina_Launcher.exe" class="way-btn-action btn-cyan-fill">
+                    📥 DESCARGAR LANZADOR PC
+                </a>
+            </div>
+
+            <!-- Opción 3: Móvil -->
+            <div class="way-card">
+                <div class="way-badge-top badge-purple">PORTABILIDAD TOTAL</div>
+                <div class="way-card-header">
+                    <div class="way-card-icon">📱</div>
+                    <h3>3. Móvil Android (Imito)</h3>
+                    <div class="way-card-subtitle">Cliente nativo emulado en tu móvil</div>
+                </div>
+                <ul class="way-spec-list">
+                    <li><span>Instalación:</span> <strong>APK Optimizado ARM64</strong></li>
+                    <li><span>Dispositivos:</span> <strong>Celulares y Tablets Android</strong></li>
+                    <li><span>Gráficos:</span> <strong>WoW 3.3.5a Fluido en tu bolsillo</strong></li>
+                    <li><span>Controles:</span> <strong>Botones táctiles configurables</strong></li>
+                    <li><span>Ideal para:</span> <strong>Jugar en la cama o de viaje</strong></li>
+                </ul>
+                <a href="#juego-movil" class="way-btn-action btn-purple-fill">
+                    📲 VER GUÍA ANDROID
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ¿POR QUÉ PROJECT JAINA ES ÚNICO? (LOS 3 PILARES) -->
+    <section class="factions-section" id="por-que-jaina" style="padding: 6rem 1.5rem; background: radial-gradient(circle at 50% 50%, rgba(14, 21, 38, 0.75) 0%, rgba(5, 8, 15, 0.99) 85%);">
+        <div style="text-align: center; max-width: 860px; margin: 0 auto 3.5rem;">
+            <div class="showcase-tag">✨ INNOVACIÓN PURA EN WOW</div>
+            <h2 class="showcase-title">¿Por Qué Project JAIna es Único en el Mundo?</h2>
+            <p class="showcase-desc">
+                No somos un servidor genérico más. Hemos reinventado la experiencia de Azeroth con tres pilares exclusivos.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1250px; margin: 0 auto;">
+            <!-- Pilar 1 -->
+            <div class="webclient-feat-card" style="display: flex; flex-direction: column;">
+                <div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9;">
+                    <img src="images/jaina_living_lore.jpg" alt="Living Lore con IA Neuronal" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 style="font-family: 'Cinzel', serif; color: #f59e0b; font-size: 1.35rem; margin-bottom: 0.6rem;">1. Lore Viviente con IA Neuronal</h3>
+                <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
+                    Los personajes legendarios como <strong>Lady Jaina Valiente</strong>, Thrall y Arthas no repiten frases fijas:
+                    escuchan lo que les dices por chat, recuerdan tus misiones anteriores y te responden en lenguaje natural con su propia personalidad.
+                </p>
+            </div>
+
+            <!-- Pilar 2 -->
+            <div class="webclient-feat-card" style="display: flex; flex-direction: column;">
+                <div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9; background: #060b14; display: flex; align-items: center; justify-content: center;">
+                    <img src="images/space_nebula_bg.jpg" alt="Línea de Eras y Fases" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 style="font-family: 'Cinzel', serif; color: #38bdf8; font-size: 1.35rem; margin-bottom: 0.6rem;">2. Progresión Viva de Eras (60 ➔ 80)</h3>
+                <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
+                    Revive la magia de World of Warcraft paso a paso: comienzas en la era clásica (Vanilla Cap 60) y evolucionas con el reino.
+                    Además, las mazmorras cuentan con <strong>escalado dinámico</strong>: los jefes adaptan su poder para que puedas jugar en solitario o con amigos sin esperar horas en buscador.
+                </p>
+            </div>
+
+            <!-- Pilar 3 -->
+            <div class="webclient-feat-card" style="display: flex; flex-direction: column;">
+                <div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9;">
+                    <img src="images/icecrown_citadel_epic.jpg" alt="Modos Hardcore y Muerte Permanente" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 style="font-family: 'Cinzel', serif; color: #ef4444; font-size: 1.35rem; margin-bottom: 0.6rem;">3. Modos Hardcore & Aventura</h3>
+                <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
+                    Elige tu estilo: desde una experiencia relajada y disfrutable hasta el desafío definitivo de <strong>Muerte Permanente Real</strong>
+                    con cerrojos económicos estrictos, recompensas épicas exclusivas y títulos de honor para los aventureros más hábiles.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUÍA "EMPIEZA EN 3 PASOS" (A PRUEBA DE FALLOS) -->
+    <section class="three-steps-section" id="empezar-en-3-pasos">
+        <div class="steps-container">
+            <div style="text-align: center; max-width: 780px; margin: 0 auto 3.5rem;">
+                <div class="showcase-tag" style="background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); color: #4ade80;">
+                    🚀 SENCILLO Y RÁPIDO
+                </div>
+                <h2 class="showcase-title">Empieza a Jugar en 3 Pasos</h2>
+                <p class="showcase-desc">
+                    Diseñado para que cualquier aventurero esté dentro de Azeroth en menos de dos minutos.
+                </p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Paso 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Crea tu Cuenta Gratis</h4>
+                    <p>Solo necesitas un nombre de usuario y una contraseña. Cero datos bancarios, sin esperas, protegida por criptografía SRP-6 instantánea.</p>
+                    <a href="registro.html" class="step-cta-link">
+                        Crear Cuenta en 15 Segundos ➔
+                    </a>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>Elige Cómo Entrar</h4>
+                    <p>Haz clic en <strong>Jugar en Web</strong> para saltar directo sin descargas, o descarga el lanzador de PC de 1 clic para ver texturas en Ultra HD.</p>
+                    <a href="jugar.html" class="step-cta-link" style="color: #fbbf24;">
+                        Abrir Cliente Web ➔
+                    </a>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>¡Forja tu Leyenda!</h4>
+                    <p>Inicia sesión con tus credenciales y camina junto a Lady Jaina Valiente en Theramore. ¡Azeroth te está esperando!</p>
+                    <a href="#fase-beta" class="step-cta-link">
+                        Conocer Detalles de la Beta ➔
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER CONSOLIDADO: INFORMACIÓN DE BETA ABIERTA, REALMLIST & CUENTA REGRESIVA -->
+    <section class="beta-announcement-card" id="fase-beta" style="margin: 3.5rem auto 2rem; max-width: 1250px;">
+        <div style="text-align: center;">
+            <div class="beta-header-badge">
+                <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80;"></span>
+                FASE BETA PÚBLICA ABIERTA · GARANTÍA 100% NO-WIPE
+            </div>
+            <h2 style="color: #ffd700; font-size: 1.85rem; font-family: 'Cinzel', serif; margin: 0 0 0.6rem 0; font-weight: 900; letter-spacing: 0.8px;">
+                🛡️ ¡Azeroth Está Abierto para Ti!
+            </h2>
+            <p style="color: #e2e8f0; font-size: 1.02rem; line-height: 1.6; max-width: 860px; margin: 0 auto;">
+                El avance de tu personaje, profesiones, monedas y hermandades se conserva permanentemente al 100% para la apertura oficial.
+            </p>
+        </div>
+
+        <div class="beta-pillars-grid">
+            <div class="beta-pillar-item">
+                <div class="beta-pillar-icon">🔒</div>
+                <div class="beta-pillar-title" style="color: #38bdf8;">1. Cero Wipe Garantizado</div>
+                <p class="beta-pillar-desc">
+                    Todo lo que consigas durante la Beta se mantiene de forma definitiva. ¡Tu esfuerzo nunca se perderá!
+                </p>
+            </div>
+            <div class="beta-pillar-item">
+                <div class="beta-pillar-icon">🎁</div>
+                <div class="beta-pillar-title" style="color: #ffd700;">2. Recompensas por Bugs</div>
+                <p class="beta-pillar-desc">
+                    ¿Encontraste un bug? Repórtalo con <code>/ticket</code> en el juego y reclama títulos y cosméticos de apoyo.
+                </p>
+            </div>
+            <div class="beta-pillar-item">
+                <div class="beta-pillar-icon">⚡</div>
+                <div class="beta-pillar-title" style="color: #a855f7;">3. Conexión Directa Anycast</div>
+                <p class="beta-pillar-desc">
+                    Red global Anycast transparente sin VPNs, con soporte para navegador web y cliente tradicional de PC.
+                </p>
+            </div>
+        </div>
 
         <!-- HERO QUICK-CONNECT & REALMLIST WIDGET (ANYCAST 1-CLIC) -->
-        <div class="hero-quick-connect" id="heroQuickConnect">
+        <div class="hero-quick-connect" id="heroQuickConnect" style="margin-top: 2rem;">
             <div class="quick-connect-header">
                 <div class="quick-connect-badge">
                     <span class="live-dot-pulse"></span>
@@ -298,7 +547,6 @@
                 </div>
             </div>
 
-            <!-- SELECTOR DE MÉTODO DE ACCESO -->
             <div class="hero-mode-tabs">
                 <button type="button" class="hero-mode-btn active" data-mode="anycast" onclick="switchRealmlistHeroMode('anycast')" title="Conexión directa Anycast global L4 sin necesidad de VPN">
                     🌐 Anycast Global WAN (Cero VPN · Directo)
@@ -339,7 +587,7 @@
         </div>
 
         <!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
-        <div class="grand-opening-card" id="grandOpeningCard">
+        <div class="grand-opening-card" id="grandOpeningCard" style="margin-top: 2rem;">
             <div class="opening-badge-header">
                 <span class="opening-sparkle">✨</span>
                 <span class="opening-badge-text">GRAN APERTURA MUNDIAL · 24 DE NOVIEMBRE DE 2026</span>
@@ -348,10 +596,10 @@
             <h2 class="opening-title">Cuenta Regresiva para la Apertura Oficial</h2>
             <div style="background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(74, 222, 128, 0.4); border-radius: 8px; padding: 0.75rem 1.2rem; margin: 0.8rem auto 1.2rem; max-width: 760px; text-align: center;">
                 <p style="color: #86efac; font-weight: 700; margin: 0; font-size: 0.96rem; line-height: 1.5;">
-                    🎮 <strong>¡La Fase Beta Abierta ya está activa y jugable hoy!</strong> Cero reinicios: todo el avance de nivel, profesiones, monedas y hermandades se conserva permanentemente al 100% para la apertura oficial.
+                    🎮 <strong>¡La Fase Beta Abierta ya está activa y jugable hoy!</strong> Cero reinicios: todo tu avance se conserva al 100%.
                 </p>
             </div>
-            <p class="opening-subtitle">El portal de Project JAIna abrirá sus puertas a aventureros de todo el mundo. Prepara tu hermandad y únete a la revolución de Lore Viviente con IA Neuronal y Audio Espacial 3D.</p>
+            <p class="opening-subtitle">El portal de Project JAIna abrirá sus puertas a aventureros de todo el mundo. Prepara tu hermandad y únete a la revolución de Lore Viviente con IA Neuronal.</p>
             
             <div class="countdown-clock-grid">
                 <div class="countdown-tile">
@@ -379,14 +627,13 @@
                 <div class="opening-progress-fill" id="openingProgressFill"></div>
             </div>
             <div class="opening-meta-info">
-                <span>🕒 Hora Oficial de Apertura: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
-                <span>🌐 Servidor Global Anycast: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong> (Enrutado por Lanzador Oficial)</span>
+                <span>🕒 Hora Oficial: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
+                <span>🌐 Servidor Global: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong></span>
             </div>
         </div>
+    </section>
 
-        <!-- STATUS REALM METRIC BAR -->
-        
-        <!-- SHOWCASE HEROICO: LOS 7 CAMPEONES SOBERANOS DE PROJECT JAINA (v5.54) -->
+    <!-- SHOWCASE HEROICO: LOS 7 CAMPEONES SOBERANOS DE PROJECT JAINA (v5.54) -->
         <section class="sovereign-champions-section" id="campeones-soberanos" style="margin: 3.5rem auto 2.5rem; max-width: 1300px; padding: 0 1rem; position: relative; z-index: 2;">
             <div style="text-align: center; margin-bottom: 2rem;">
                 <div class="beta-header-badge" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: var(--gold-primary); display: inline-flex; align-items: center; gap: 6px; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 700;">

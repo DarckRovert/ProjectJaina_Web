@@ -4,6 +4,27 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.3.0] - 2026-11-03 — Rediseño Integral de ProjectJaina_Web (Embudo en 6 Etapas), Escaparate Soberano del WebClient 3D y Sala de Juego Dedicada (Hito #282)
+
+### 🏛️ Reestructuración Narrativa & Embudo en 6 Etapas (`index.html`)
+- **Embudo de Conversión Intuitivo:** Transformación radical de la arquitectura de información para erradicar la dispersión y jerga técnica prematura ("diseñado para que cualquier usuario lo entienda").
+- **Hero Cinemático V2:** Nueva cabecera inmersiva con `jaina_hero_banner.jpg`, escudo arcano `jaina_crest_logo.jpg` y trinidad de botones de acción inmediata liderada por el botón de pulso dorado **`[ 🌐 JUGAR EN EL NAVEGADOR (1 CLIC) ]`**.
+- **El Gran Escaparate WebClient (`#escaparate-web`):** Marco visual interactivo simulando un monitor de navegador en Theramore con badge `WebGL 2.0 · Three.js 60 FPS`, detallando las 4 verdades (0 GB de descarga, universal en PC/Mac/Móvil, WebGL 3D acelerado por hardware y misma cuenta/progreso).
+- **Las 3 Maneras de Jugar (`#tres-formas-de-jugar`):** Comparativa clara y simétrica entre Cliente Web (Rápido), Cliente Full HD PC (Inmersivo) y Móvil Android Imito (Portátil).
+- **Los 3 Pilares Fundamentales (`#por-que-jaina`):** Lore Viviente con IA Neuronal (`jaina_living_lore.jpg`), Progresión Viva de Eras (Vanilla 60 a WotLK 80) y Modos Hardcore Muerte Permanente.
+- **Guía "Empieza en 3 Pasos" (`#empezar-en-3-pasos`):** Flujo guiado en 3 pasos simples para que cualquier jugador entre en menos de 2 minutos.
+
+### 🎮 Nueva Sala de Juego Web Dedicada (`jugar.html`)
+- **Experiencia de Juego Web a Pantalla Completa:** Contenedor WebGL con barra superior HUD (estado en vivo de Gateway WebSocket, selector de reinos, latencia y botón de pantalla completa).
+- **Modal de Guía de Controles:** Interfaz modal detallando atajos de teclado y ratón (WASD, clic derecho para cámara, Tab, etc.) y gestos táctiles (joystick 360° analógico, gestos de pellizco para zoom).
+- **Blindaje Táctil & Viewport Móvil:** Configurado con `touch-action: none` y `viewport-fit=cover` para erradicar desplazamientos o zooms parásitos en pantallas táctiles.
+- **Watchdog de Conexión & Fallback Amigable:** Detección automática de conectividad con reintento y asistencia en pantalla si el gateway estuviera en mantenimiento.
+
+### 🌐 Paridad en 100% de las Subpáginas
+- Botón dorado resplandeciente **`[ 🌐 Jugar en Web ]`** sincronizado en la barra de navegación y action tray de `armeria.html`, `cuenta.html`, `database.html`, `tienda.html`, `registro.html`, `jainacore.html`, `bugs.html`, `privacy.html` y `terms.html`.
+
+---
+
 ## [v7.2.0] - 2026-11-03 — Lanzamiento e Integración Oficial de WebClient 3D (Cero Descarga) & Conectividad WebGL (Hito #276)
 
 ### 🌐 Cliente WebGL 3D Oficial (ProjectJaina_WebClient / Hito #276)

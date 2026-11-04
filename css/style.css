@@ -7795,3 +7795,710 @@ body.pj-modal-open {
     background: linear-gradient(90deg, #2563eb, #38bdf8);
     transition: width 0.4s ease;
 }
+
+
+/* ============================================================================== */
+/* PROJECT JAINA 2026 - SUITE DE ESTILOS HERO V2 & ESCAPARATE SOBERANO WEBCLIENT */
+/* Arquitectura L9: Glassmorphism Arcana, Micro-interacciones y Mobile-First      */
+/* ============================================================================== */
+
+/* --- HERO CINEMÁTICO V2 --- */
+.hero-cinematic-v2 {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 1.5rem 5rem;
+    background: radial-gradient(circle at 50% 30%, rgba(14, 21, 38, 0.4) 0%, rgba(6, 9, 16, 0.96) 80%),
+                url("../images/jaina_hero_banner.jpg") center center / cover no-repeat;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.22);
+}
+
+.hero-cinematic-v2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 9, 16, 0.75) 0%, rgba(6, 9, 16, 0.4) 40%, rgba(6, 9, 16, 0.98) 100%);
+    pointer-events: none;
+}
+
+.hero-v2-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-crest-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-radius: 999px;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.hero-crest-mini {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #f59e0b;
+}
+
+.hero-crest-text {
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+    text-transform: uppercase;
+}
+
+.hero-v2-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: #f8fafc;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.35);
+}
+
+.hero-v2-title .text-arcane-gold {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.4));
+}
+
+.hero-v2-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #cbd5e1;
+    max-width: 820px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.65;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* --- TRINIDAD DE BOTONES CTA --- */
+.cta-trinity-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.btn-play-web-pulse {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.15rem 2.5rem;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+    color: #050811;
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 14px;
+    border: 2px solid #fde68a;
+    box-shadow: 0 0 35px rgba(245, 158, 11, 0.55), 0 10px 25px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.btn-play-web-pulse::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: rotate(25deg) translateX(-100%);
+    animation: shimmer-btn 4s infinite linear;
+}
+
+.btn-play-web-pulse:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.85), 0 15px 35px rgba(0, 0, 0, 0.7);
+    color: #000;
+}
+
+.btn-secondary-pc {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.05rem 2rem;
+    background: rgba(15, 23, 42, 0.75);
+    color: #38bdf8;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 14px;
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-pc:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: #38bdf8;
+    color: #7dd3fc;
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+}
+
+.btn-tertiary-register {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.05rem 1.8rem;
+    background: rgba(139, 92, 246, 0.15);
+    color: #c4b5fd;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 14px;
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.btn-tertiary-register:hover {
+    background: rgba(139, 92, 246, 0.28);
+    border-color: #a78bfa;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+}
+
+/* Píldora de Estado en Vivo */
+.live-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(6, 11, 22, 0.85);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    border-radius: 999px;
+    color: #86efac;
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.status-dot-pulse {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 12px #22c55e;
+    animation: dot-pulse 2s infinite ease-in-out;
+}
+
+/* --- ESCAPARATE SOBERANO WEBCLIENT (SECCIÓN PRINCIPAL) --- */
+.webclient-showcase-section {
+    position: relative;
+    padding: 6rem 1.5rem;
+    background: radial-gradient(circle at 50% 20%, rgba(20, 28, 50, 0.85) 0%, rgba(5, 8, 15, 0.99) 70%),
+                url("../images/space_arcane_bg.jpg") center center / cover no-repeat;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    overflow: hidden;
+}
+
+.webclient-showcase-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.webclient-showcase-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.showcase-header {
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto 3.5rem;
+}
+
+.showcase-tag {
+    display: inline-block;
+    padding: 0.4rem 1.1rem;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 999px;
+    color: #38bdf8;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.showcase-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: #f8fafc;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.showcase-desc {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+/* Marco del Monitor de Navegador WebGL */
+.webclient-monitor-frame {
+    background: rgba(11, 16, 29, 0.92);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 18px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(56, 189, 248, 0.2);
+    overflow: hidden;
+    margin-bottom: 3.5rem;
+    backdrop-filter: blur(14px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.webclient-monitor-frame:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 85px rgba(0, 0, 0, 0.9), 0 0 65px rgba(56, 189, 248, 0.32);
+}
+
+.monitor-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.4rem;
+    background: rgba(6, 10, 19, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.monitor-dots {
+    display: flex;
+    gap: 0.45rem;
+}
+
+.monitor-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.monitor-address-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.35rem 1.25rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-family: monospace;
+    width: min(420px, 60%);
+}
+
+.monitor-badge-fps {
+    padding: 0.25rem 0.65rem;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: 6px;
+    color: #34d399;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.monitor-screen-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 560px;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.monitor-screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.webclient-monitor-frame:hover .monitor-screen-img {
+    transform: scale(1.02);
+}
+
+.monitor-screen-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 8, 15, 0.2) 0%, rgba(5, 8, 15, 0.8) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    text-align: left;
+}
+
+.monitor-hero-caption h3 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.monitor-hero-caption p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    max-width: 600px;
+    margin-bottom: 1.25rem;
+}
+
+.monitor-play-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid #38bdf8;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.monitor-play-cta:hover {
+    background: #0ea5e9;
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.75);
+}
+
+/* Grilla de las 4 Verdades del WebClient */
+.webclient-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.webclient-feat-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 15, 28, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.8rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.webclient-feat-card:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.webclient-feat-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.webclient-feat-card h4 {
+    font-size: 1.2rem;
+    color: #f1f5f9;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.webclient-feat-card p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+/* --- LAS 3 MANERAS DE JUGAR (COMPARATIVA) --- */
+.ways-to-play-section {
+    padding: 6rem 1.5rem;
+    background: rgba(6, 9, 16, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ways-to-play-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.way-card {
+    position: relative;
+    background: linear-gradient(155deg, rgba(15, 23, 42, 0.92) 0%, rgba(8, 12, 22, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s ease;
+}
+
+.way-card.highlight-gold {
+    border: 2px solid rgba(245, 158, 11, 0.6);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(245, 158, 11, 0.2);
+}
+
+.way-card:hover {
+    transform: translateY(-6px);
+}
+
+.way-badge-top {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.35rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.badge-gold {
+    background: #f59e0b;
+    color: #000;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+}
+
+.badge-cyan {
+    background: #0284c7;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(2, 132, 199, 0.5);
+}
+
+.badge-purple {
+    background: #7c3aed;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+}
+
+.way-card-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.way-card-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+.way-card-header h3 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.6rem;
+    color: #f8fafc;
+    margin-bottom: 0.4rem;
+}
+
+.way-card-subtitle {
+    font-size: 0.95rem;
+    color: #94a3b8;
+}
+
+.way-spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    flex-grow: 1;
+}
+
+.way-spec-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.92rem;
+    color: #cbd5e1;
+}
+
+.way-spec-list li strong {
+    color: #f1f5f9;
+}
+
+.way-btn-action {
+    display: block;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.btn-gold-fill {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #000;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+.btn-gold-fill:hover {
+    background: #fbbf24;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.7);
+}
+
+.btn-cyan-fill {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
+}
+.btn-cyan-fill:hover {
+    background: #0ea5e9;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(2, 132, 199, 0.7);
+}
+
+.btn-purple-fill {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+.btn-purple-fill:hover {
+    background: #8b5cf6;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.7);
+}
+
+/* --- GUÍA "EMPIEZA EN 3 PASOS" (A PRUEBA DE FALLOS) --- */
+.three-steps-section {
+    padding: 6rem 1.5rem;
+    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.6) 0%, rgba(4, 7, 14, 0.98) 85%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.steps-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    position: relative;
+}
+
+.step-card {
+    background: rgba(14, 21, 38, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 18px;
+    padding: 2.2rem 1.8rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.step-number {
+    position: absolute;
+    top: -18px;
+    left: 24px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #000;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.6);
+}
+
+.step-card h4 {
+    font-size: 1.3rem;
+    color: #f8fafc;
+    margin: 0.5rem 0 0.75rem;
+    font-weight: 700;
+}
+
+.step-card p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.step-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #38bdf8;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: gap 0.2s ease;
+}
+
+.step-cta-link:hover {
+    gap: 0.8rem;
+    color: #7dd3fc;
+}
+
+/* --- ANIMACIONES & RESPONSIVE --- */
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+    50% { box-shadow: 0 0 35px rgba(245, 158, 11, 0.45); }
+}
+
+@keyframes shimmer-btn {
+    0% { transform: rotate(25deg) translateX(-150%); }
+    100% { transform: rotate(25deg) translateX(250%); }
+}
+
+@keyframes dot-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+@media (max-width: 768px) {
+    .hero-cinematic-v2 {
+        padding: 5.5rem 1rem 3.5rem;
+    }
+    .cta-trinity-container {
+        flex-direction: column;
+        width: 100%;
+    }
+    .btn-play-web-pulse, .btn-secondary-pc, .btn-tertiary-register {
+        width: 100%;
+        justify-content: center;
+    }
+    .monitor-screen-overlay {
+        padding: 1.5rem;
+    }
+}

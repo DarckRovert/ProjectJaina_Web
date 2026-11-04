@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Project JAIna Official Crest" width="220">
 </p>
 
-# 🌐 Project JAIna — Portal Web Oficial AAA (v7.1.0)
+# 🌐 Project JAIna — Portal Web Oficial AAA (v7.3.0)
 
 <div align="center">
   <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Emblema" width="180" style="border-radius: 50%;">
@@ -14,8 +14,8 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.2.0%20(Hito%20%23276)-00ccff.svg)](./CHANGELOG.md)
-[![WebClient 3D](https://img.shields.io/badge/Client-WebGL%203D%20Web%20(Cero%20Descarga)-E34F26.svg)](https://github.com/DarckRovert/ProjectJaina_WebClient)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.3.0%20(Hito%20%23282)-00ccff.svg)](./CHANGELOG.md)
+[![WebClient 3D](https://img.shields.io/badge/Client-WebGL%203D%20Web%20(Cero%20Descarga)-E34F26.svg)](./jugar.html)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/ProjectJaina_Web/)
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)

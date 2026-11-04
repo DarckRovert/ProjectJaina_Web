@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Jugar en el Navegador — Project JAIna | WoW 3.3.5a WebClient 3D</title>
+    <link rel="icon" href="images/jaina_crest_logo.jpg">
+    <link rel="stylesheet" href="css/style.css?v=20261103_v2">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #030712;
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            touch-action: none;
+        }
+
+        /* HUD Superior */
+        .jugar-hud-topbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 52px;
+            background: rgba(6, 11, 22, 0.92);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            z-index: 1000;
+        }
+
+        .hud-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #f8fafc;
+        }
+        .hud-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #f59e0b;
+        }
+        .hud-title {
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+        .hud-title span {
+            color: #38bdf8;
+        }
+        .hud-back-btn {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+        .hud-back-btn:hover {
+            color: #fff;
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
+        }
+
+        .hud-telemetry {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+        .telemetry-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.65rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+        }
+        .dot-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
+        }
+        .dot-status.offline {
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+        }
+
+        .hud-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hud-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #e2e8f0;
+            padding: 0.4rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+        }
+        .hud-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            border-color: #38bdf8;
+        }
+
+        /* Viewport de Juego */
+        .game-viewport-container {
+            position: absolute;
+            top: 52px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #gameFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Pantalla de Espera / Fallback */
+        .game-loading-fallback {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(15, 23, 42, 0.95) 0%, rgba(3, 7, 18, 0.99) 80%),
+                        url("images/space_arcane_bg.jpg") center center / cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .fallback-box {
+            max-width: 580px;
+            background: rgba(11, 17, 33, 0.92);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.2);
+            backdrop-filter: blur(14px);
+        }
+
+        .spinner-arcane {
+            width: 56px;
+            height: 56px;
+            border: 4px solid rgba(56, 189, 248, 0.2);
+            border-top-color: #38bdf8;
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .fallback-box h2 {
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 1.8rem;
+            color: #f8fafc;
+            margin-bottom: 0.8rem;
+        }
+        .fallback-box p {
+            color: #94a3b8;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+
+        .fallback-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .btn-launch-direct {
+            padding: 0.9rem 1.8rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+            transition: all 0.2s;
+        }
+        .btn-launch-direct:hover {
+            background: #fbbf24;
+            transform: translateY(-2px);
+        }
+
+        .btn-alt-download {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-alt-download:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: #38bdf8;
+            color: #fff;
+        }
+
+        /* Modal de Controles */
+        .controls-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 15, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 2000;
+        }
+        .controls-modal-overlay.active {
+            display: flex;
+        }
+        .controls-modal-card {
+            background: #0b1121;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 18px;
+            padding: 2rem;
+            max-width: 650px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.25);
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.75rem;
+        }
+        .modal-header h3 {
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 1.4rem;
+            color: #38bdf8;
+        }
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .controls-grid { grid-template-columns: 1fr; }
+            .hud-title { display: none; }
+        }
+        .control-block {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+        .control-block h4 {
+            color: #f59e0b;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .control-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+        }
+        .key-badge {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 4px;
+            padding: 0.15rem 0.45rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HUD SUPERIOR DE CONTROL -->
+    <header class="jugar-hud-topbar">
+        <a href="index.html" class="hud-brand">
+            <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="hud-logo">
+            <div class="hud-title">PROJECT J<span>AI</span>NA · WEBCLIENT 3D</div>
+            <span class="hud-back-btn">← Volver al Portal</span>
+        </a>
+
+        <div class="hud-telemetry">
+            <div class="telemetry-badge" id="gatewayStatusBadge">
+                <span class="dot-status" id="gatewayDot"></span>
+                <span id="gatewayText">Conectando...</span>
+            </div>
+            <div class="telemetry-badge" id="realmStatusBadge">
+                <span>Reino: <strong>JainaCore (Vanilla)</strong></span>
+            </div>
+        </div>
+
+        <div class="hud-actions">
+            <button class="hud-btn" id="btnControls" type="button">
+                <span>🎮</span> Controles
+            </button>
+            <button class="hud-btn" id="btnFullscreen" type="button">
+                <span>⛶</span> Pantalla Completa
+            </button>
+        </div>
+    </header>
+
+    <!-- VIEWPORT DE JUEGO PRINCIPAL -->
+    <main class="game-viewport-container">
+        <!-- Iframe o runtime del WebClient -->
+        <iframe id="gameFrame" src="about:blank" title="Project Jaina WebClient Viewport"></iframe>
+
+        <!-- Pantalla de Bienvenida y Selección de Conexión -->
+        <div class="game-loading-fallback" id="loadingFallback">
+            <div class="fallback-box">
+                <div class="spinner-arcane" id="spinner"></div>
+                <h2>World of Warcraft 3D en tu Navegador</h2>
+                <p id="fallbackMsg">
+                    El cliente web te permite jugar de forma inmediata sin descargar 20 GB de archivos.
+                    Para comenzar, inicia sesión con tu cuenta de Project Jaina creada en el portal.
+                </p>
+
+                <div class="fallback-actions">
+                    <button class="btn-launch-direct" id="btnStartGame" type="button">
+                        🚀 INICIAR CLIENTE WEB EN VIVO
+                    </button>
+                    <a href="registro.html" class="btn-alt-download" target="_blank">
+                        🛡️ Crear Cuenta Gratis (Si no tienes una)
+                    </a>
+                    <a href="index.html#modos-de-juego" class="btn-alt-download">
+                        💻 Descargar Cliente Full HD para PC (Alternativa tradicional)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL DE CONTROLES RÁPIDOS -->
+    <div class="controls-modal-overlay" id="controlsModal">
+        <div class="controls-modal-card">
+            <div class="modal-header">
+                <h3>🎮 Guía de Controles — WebClient 3D</h3>
+                <button class="modal-close-btn" id="btnCloseModal" type="button">&times;</button>
+            </div>
+
+            <div class="controls-grid">
+                <!-- Teclado & Ratón -->
+                <div class="control-block">
+                    <h4>Teclado & Ratón</h4>
+                    <div class="control-item"><span>Mover personaje</span> <span class="key-badge">W A S D</span></div>
+                    <div class="control-item"><span>Girar personaje & cámara</span> <span class="key-badge">Clic Der + Arrastrar</span></div>
+                    <div class="control-item"><span>Orbitar cámara libre</span> <span class="key-badge">Clic Izq + Arrastrar</span></div>
+                    <div class="control-item"><span>Saltar</span> <span class="key-badge">Espacio</span></div>
+                    <div class="control-item"><span>Seleccionar objetivo</span> <span class="key-badge">Tab</span></div>
+                    <div class="control-item"><span>Atacar / Interactuar</span> <span class="key-badge">T / Clic Der</span></div>
+                    <div class="control-item"><span>Barra de habilidades</span> <span class="key-badge">1 - 9, 0</span></div>
+                    <div class="control-item"><span>Mochila & Inventario</span> <span class="key-badge">B</span></div>
+                    <div class="control-item"><span>Hoja de Personaje</span> <span class="key-badge">C</span></div>
+                    <div class="control-item"><span>Mapa del Mundo</span> <span class="key-badge">M</span></div>
+                </div>
+
+                <!-- Móvil / Táctil -->
+                <div class="control-block">
+                    <h4>Pantalla Táctil (Móvil / Tablet)</h4>
+                    <div class="control-item"><span>Joystick Analógico 360°</span> <span class="key-badge">Lado Izquierdo</span></div>
+                    <div class="control-item"><span>Girar Cámara</span> <span class="key-badge">Deslizar Lado Der.</span></div>
+                    <div class="control-item"><span>Acercar / Alejar (Zoom)</span> <span class="key-badge">Pellizcar (Pinch)</span></div>
+                    <div class="control-item"><span>Botón de Salto</span> <span class="key-badge">Icono ⏫</span></div>
+                    <div class="control-item"><span>Cambio de Objetivo</span> <span class="key-badge">Icono 🎯</span></div>
+                    <div class="control-item"><span>Acción de Combate</span> <span class="key-badge">Icono ⚔️</span></div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn-alt-download" id="btnModalOk" type="button" style="width: 100%;">
+                    ¡Entendido, volver a jugar!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE INICIALIZACIÓN Y RESILENCIA -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnFullscreen = document.getElementById("btnFullscreen");
+            const btnControls = document.getElementById("btnControls");
+            const controlsModal = document.getElementById("controlsModal");
+            const btnCloseModal = document.getElementById("btnCloseModal");
+            const btnModalOk = document.getElementById("btnModalOk");
+            const btnStartGame = document.getElementById("btnStartGame");
+            const gameFrame = document.getElementById("gameFrame");
+            const loadingFallback = document.getElementById("loadingFallback");
+            const gatewayDot = document.getElementById("gatewayDot");
+            const gatewayText = document.getElementById("gatewayText");
+
+            // 1. Detección de Endpoint Local vs Remoto
+            const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
+            const targetWebClientUrl = isLocal ? "http://127.0.0.1:8097/" : "http://127.0.0.1:8097/";
+
+            // 2. Control de Pantalla Completa
+            btnFullscreen.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                } else {
+                    document.exitFullscreen().catch(() => {});
+                }
+            });
+
+            // 3. Modal de Controles
+            const toggleModal = (show) => {
+                controlsModal.classList.toggle("active", show);
+            };
+            btnControls.addEventListener("click", () => toggleModal(true));
+            btnCloseModal.addEventListener("click", () => toggleModal(false));
+            btnModalOk.addEventListener("click", () => toggleModal(false));
+
+            // 4. Iniciar Runtime WebClient con Detección Resiliente
+            btnStartGame.addEventListener("click", () => {
+                gatewayText.textContent = "Cargando Motor 3D...";
+                loadingFallback.style.display = "none";
+                gameFrame.src = targetWebClientUrl;
+
+                // Watchdog: si el frame no responde en 6 segundos o falla la conexión
+                let frameLoaded = false;
+                gameFrame.onload = () => {
+                    frameLoaded = true;
+                    gatewayText.textContent = "WebClient Activo";
+                };
+
+                setTimeout(() => {
+                    if (!frameLoaded && isLocal) {
+                        // Comprobar si realmente respondió o fue connection refused
+                        try {
+                            if (!gameFrame.contentDocument || !gameFrame.contentDocument.body || gameFrame.contentDocument.body.innerHTML === "") {
+                                showOfflineHelp();
+                            }
+                        } catch (_) {
+                            // Cross-origin ok: significa que cargó de otro host
+                        }
+                    }
+                }, 6000);
+            });
+
+            function showOfflineHelp() {
+                loadingFallback.style.display = "flex";
+                const spinner = document.getElementById("spinner");
+                if (spinner) spinner.style.display = "none";
+                const msg = document.getElementById("fallbackMsg");
+                if (msg) {
+                    msg.innerHTML = `
+                        <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; color: #fca5a5;">
+                            ⚠️ <strong>Pasarela Web en Espera de Conexión:</strong><br>
+                            El cliente web necesita el Gateway y el servidor Vite activos.<br>
+                            En tu equipo local, ejecuta <code>bat\\01_iniciar_cliente_web.bat</code> y <code>bat\\02_iniciar_gateway.bat</code>.<br>
+                            ¡O también puedes jugar ahora mismo descargando el cliente de PC!
+                        </div>
+                    `;
+                }
+                btnStartGame.textContent = "🔄 REINTENTAR CONEXIÓN";
+            }
+
+            // 5. Verificación de Gateway WebSocket
+            const testGateway = () => {
+                try {
+                    const wsProto = window.location.protocol === "https:" ? "wss:" : "ws:";
+                    const wsHost = isLocal ? "127.0.0.1:8096" : "127.0.0.1:8096";
+                    const socket = new WebSocket(`${wsProto}//${wsHost}/ws-test`);
+                    
+                    socket.onopen = () => {
+                        gatewayDot.className = "dot-status";
+                        gatewayText.textContent = "Gateway: En Línea";
+                        socket.close();
+                    };
+                    socket.onerror = () => {
+                        gatewayDot.className = "dot-status";
+                        gatewayText.textContent = "Listo para Iniciar";
+                    };
+                } catch (_) {
+                    gatewayText.textContent = "Modo Híbrido";
+                }
+            };
+            testGateway();
+        });
+    </script>
+</body>
+</html>
