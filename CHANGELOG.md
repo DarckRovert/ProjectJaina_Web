@@ -4,6 +4,19 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.3.5] - 2026-11-04 — Consenso de Arquitectura Simétrica Inter-Agente Perú-España, Reconciliación DDL de Modos de Juego y Blindaje Sentinel (Hito #289)
+
+### 🤝 Malla Inter-Agente y Protocolo Dual Markdown (Perú ⇄ España)
+- **Aprobación de la Propuesta de Replicación Simétrica:** Consolidada la arquitectura Stepper SSE de 4 fases no bloqueante con ingesta en caliente para MySQL 8.4 y tolerancia a fallos cruzada (Reino 1 JainaCore ⇄ Reino 3 WanitosGYM).
+- **Despacho Técnico Transatlántico:** Emitido y transmitido el documento formal [`docs/RESPUESTA_TECNICA_CONSENSO_STEPPER_Y_ESTABILIDAD_L9.md`](file:///E:/ProjectJaina_Lab/docs/RESPUESTA_TECNICA_CONSENSO_STEPPER_Y_ESTABILIDAD_L9.md) hacia `Fran_Antigravity` vía túnel P2P (`100.98.162.75:8090`).
+- **Resiliencia de Sockets en Demonio Sentinel:** Implementación de `SafeThreadingHTTPServer` con supresión proactiva de `ConnectionAbortedError: [WinError 10053]` y `WinError 10054` ante desconexiones abruptas de clientes web y sondas L4. Blindaje de desacople `pythonw.exe` con redirección a `os.devnull`.
+
+### 🛡️ Reconciliación DDL y Esquemas de Base de Datos
+- **Saneamiento de `character_gamemodes`:** Incorporada la columna `is_x1` requerida por `80_GameModesSystem.lua` en todos los archivos de bootstrap (`preflight_db_bootstrap.py`), en las migraciones maestras (`00_MIGRACION_TABLAS_FALTANTES.sql`) y en el esquema de referencia `gamemodes_v531_schema.sql`.
+- **Registro de Herencia:** Incorporada la tabla `account_gamemode_heritage` en las secuencias DDL de auto-reparación del servidor.
+
+---
+
 ## [v7.3.4] - 2026-11-04 — Erradicación de Trampa Loopback en WebClient, Resiliencia HTTP Multi-Hilo en Centinela y Calibración de Onboarding (Hitos #287 y #288)
 
 ### 🚀 Optimización del Embudo de Onboarding (`index.html`)
