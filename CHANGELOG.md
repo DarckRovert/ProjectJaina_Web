@@ -4,6 +4,22 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.3.6] - 2026-11-04 — Erradicación Definitiva de Colisiones de Socket en WorldServer, Doble Cerrojo con Supervisor Centinela y Supresión Total de Excepciones WinError 10053 (Hito #290)
+
+### ⚡ Estabilidad Crítica de Sockets y Arranque Doble Cerrojo (Hito #290)
+- **Eliminación de Carrera Auto-Heal en WorldServer (`Iniciar_JainaCore.bat` & `ProjectJaina_Sentinel.py`):**
+  - Identificada y eliminada la causa raíz del fallo `StartNetwork failed to bind socket acceptor` (colisión de puerto 8085).
+  - Postergado el borrado de `server_stopped.flag` hasta la confirmación efectiva del socket del mundo en `:world_ready` o `:world_already_active`.
+  - Incorporada verificación nativa de proceso mediante `tasklist /FI "IMAGENAME eq worldserver.exe"` previa a cualquier invocación para evitar instancias duplicadas durante la ventana de carga de mapas, DBCs y playerbots (~29 segundos).
+  - Condicionado el auto-heal del supervisor Centinela a la salud comprobada de MySQL 8.4 (`127.0.0.1:3306`), evitando bucles de reinicio ciegos cuando el clúster está en reposo.
+  - Implementada verificación previa atómica (`find_process_by_name`) inmediatamente antes de `subprocess.Popen` en `restart_local_service`.
+- **Detención Limpia y Desalojo de Memoria (`Detener_Servidor_Local.bat`):**
+  - Añadido bucle de espera activa (hasta 10s) que garantiza la liberación de sockets y desalojo de los ~4 GB de RAM de `worldserver.exe` y `authserver.exe` antes de proceder al snapshot transaccional y apagado de MySQL.
+- **Supresión Quirúrgica de `WinError 10053` en Centinela:**
+  - Filtrado y silenciamiento de desconexiones prematuras de clientes HTTP mediante `issubclass(exc_type, (ConnectionAbortedError, ConnectionResetError, BrokenPipeError, TimeoutError, socket.error))` en `SentinelHTTPServer.handle_error`.
+
+---
+
 ## [v7.3.5] - 2026-11-04 — Consenso de Arquitectura Simétrica Inter-Agente Perú-España, Reconciliación DDL de Modos de Juego y Blindaje Sentinel (Hito #289)
 
 ### 🤝 Malla Inter-Agente y Protocolo Dual Markdown (Perú ⇄ España)
