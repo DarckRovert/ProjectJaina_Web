@@ -6801,10 +6801,11 @@ body.pj-modal-open {
     .modes-grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 1.2rem;
+        gap: 1.1rem;
     }
     .mode-card {
         max-width: none;
+        padding: 1.6rem 1.1rem;
     }
 }
 
