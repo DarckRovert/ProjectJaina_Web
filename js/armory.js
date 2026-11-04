@@ -249,6 +249,43 @@ function renderPodium(chars) {
     }).join("");
 }
 
+
+function getGameModeBadge(mode) {
+    if (!mode || mode === 'NORMAL' || mode === 'NONE') return '';
+    const m = String(mode).toUpperCase();
+    if (m === 'HARDCORE') {
+        return `<span class="gamemode-badge badge-hc" style="font-size:0.65rem;background:rgba(239,68,68,0.2);color:#ef4444;border:1px solid rgba(239,68,68,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">☠️ HC</span>`;
+    }
+    if (m === 'IRONMAN') {
+        return `<span class="gamemode-badge badge-ironman" style="font-size:0.65rem;background:rgba(148,163,184,0.2);color:#cbd5e1;border:1px solid rgba(148,163,184,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">⛓️ Ironman</span>`;
+    }
+    if (m === 'DIE_AND_RISE' || m === 'DIERISE') {
+        return `<span class="gamemode-badge badge-dierise" style="font-size:0.65rem;background:rgba(16,185,129,0.2);color:#34d399;border:1px solid rgba(16,185,129,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">🧟 Die & Rise</span>`;
+    }
+    if (m === 'SLOW_X1' || m === 'X1') {
+        return `<span class="gamemode-badge badge-x1" style="font-size:0.65rem;background:rgba(245,158,11,0.2);color:#fbbf24;border:1px solid rgba(245,158,11,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">🏔️ Reto X1</span>`;
+    }
+    return '';
+}
+
+function getGameModeInspectBadge(mode) {
+    if (!mode || mode === 'NORMAL' || mode === 'NONE') return '';
+    const m = String(mode).toUpperCase();
+    if (m === 'HARDCORE') {
+        return `<span class="inspect-pill" style="color:#f87171;border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.12);">☠️ MODO HARDCORE (1 VIDA)</span>`;
+    }
+    if (m === 'IRONMAN') {
+        return `<span class="inspect-pill" style="color:#e2e8f0;border-color:rgba(148,163,184,0.5);background:rgba(148,163,184,0.12);">⛓️ MODO IRONMAN (AUTOSUFICIENCIA)</span>`;
+    }
+    if (m === 'DIE_AND_RISE' || m === 'DIERISE') {
+        return `<span class="inspect-pill" style="color:#34d399;border-color:rgba(16,185,129,0.5);background:rgba(16,185,129,0.12);">🧟 DIE & RISE (3 VIDAS)</span>`;
+    }
+    if (m === 'SLOW_X1' || m === 'X1') {
+        return `<span class="inspect-pill" style="color:#fbbf24;border-color:rgba(245,158,11,0.5);background:rgba(245,158,11,0.12);">🏔️ RETO ANDINO X1 (PURISTA)</span>`;
+    }
+    return '';
+}
+
 function renderArmoryRows(chars) {
     const tableBody = document.getElementById("armoryTableBody");
     const loadingRow = document.getElementById("armoryLoading");
@@ -293,7 +330,7 @@ function renderArmoryRows(chars) {
             <tr class="armory-row" onclick="inspectCharacter('${escapeJsStr(c.name)}')">
                 <td class="rank-cell">#${idx + 1}</td>
                 <td class="name-cell">
-                    <strong>${facIcon} ${c.name}</strong>
+                    <strong>${facIcon} ${c.name}${getGameModeBadge(c.mode || c.gamemode)}</strong>
                     <div class="char-title-small">${c.title || 'Héroe del Reino'} · ${c.spec || c.role || ''}</div>
                 </td>
                 <td><span class="badge-class ${classClass}">${c.class}</span></td>
@@ -538,6 +575,7 @@ async function inspectCharacter(charName) {
                         <span class="inspect-pill">${facBadge} · ${char.race || 'Humano'}</span>
                         <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level || 60} (Cap 60)</span>
                         <span class="inspect-pill">${char.guild || 'Sin Hermandad'}</span>
+                        ${getGameModeInspectBadge(char.mode || char.gamemode)}
                     </div>
                 </div>
             </div>
