@@ -367,7 +367,7 @@
             <!-- SECCIÓN 2: MIS PERSONAJES (ESTÁNDAR ULTIMOWOW) -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 8px;">
                 <h2 class="dash-section-title" style="margin: 0;">⚔️ MIS PERSONAJES</h2>
-                <button type="button" class="btn-secondary" onclick="fetchAccountDetails(CURRENT_ACCOUNT_DATA.account.username)" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+                <button type="button" class="btn-secondary" onclick="refreshCurrentAccountDetails()" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
                     🔄 Actualizar Personajes
                 </button>
             </div>
@@ -416,7 +416,14 @@
                                     <div class="uw-tool-desc">Compra o vende PD por oro</div>
                                 </div>
                             </div>
-                            <div class="uw-tool-card" onclick="openAccountActionModal('promo')">
+                                                        <div class="uw-tool-card" onclick="actionPurgeLocalCharactersCache()">
+                                <div class="uw-tool-icon-box" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;">🔄</div>
+                                <div class="uw-tool-info">
+                                    <div class="uw-tool-title">Sincronizar Personajes</div>
+                                    <div class="uw-tool-desc">Limpia la caché del navegador y recarga desde el servidor en vivo</div>
+                                </div>
+                            </div>
+<div class="uw-tool-card" onclick="openAccountActionModal('promo')">
                                 <div class="uw-tool-icon-box cyan">🎟️</div>
                                 <div class="uw-tool-info">
                                     <div class="uw-tool-title">Código de promoción</div>

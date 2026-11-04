@@ -152,8 +152,20 @@ async function fetchAccountDetails(username) {
             CURRENT_ACCOUNT_DATA = data;
             if (loadingView) loadingView.style.display = "none";
             if (loggedView) loggedView.style.display = "block";
+
+            // Sincronizar autoritativamente la sesión local con los personajes reales del servidor
+            try {
+                const cachedRaw = localStorage.getItem("pj_auth_user");
+                if (cachedRaw) {
+                    const cachedUser = JSON.parse(cachedRaw);
+                    cachedUser.characters = data.characters;
+                    cachedUser.last_sync = new Date().toISOString();
+                    localStorage.setItem("pj_auth_user", JSON.stringify(cachedUser));
+                }
+            } catch (_) {}
+
             renderAccountMasterCard(data.account, data.character_count);
-            renderCharacterRoster(data.characters, data.account);
+            renderCharacterRoster(data.characters, data.account, false);
             // Cambio de contraseña gestionado por uwActionModal (submitChangePasswordModal)
         } else {
             throw new Error(data.message || "No se pudo obtener el perfil de la cuenta.");
@@ -181,7 +193,21 @@ async function fetchAccountDetails(username) {
                 locked: false,
                 realmlist: "ambulance-absurd.tun.ply.gg:58735"
             }, (cachedUser.characters ? cachedUser.characters.length : 0));
-            renderCharacterRoster(cachedUser.characters || [], cachedUser);
+            renderCharacterRoster(cachedUser.characters || [], cachedUser, true);
+        } else {
+            const container = document.getElementById("dashCharactersGrid");
+            if (container) {
+                container.innerHTML = `
+                    <div class="dash-empty-roster" style="grid-column: 1 / -1; border-color: rgba(239, 68, 68, 0.4);">
+                        <div class="empty-icon">📡</div>
+                        <h3 style="color: #fca5a5;">Servidor Temporalmente Desconectado</h3>
+                        <p>No se pudo conectar con la WebAPI en vivo. Tus personajes se mostrarán automáticamente en cuanto el reino esté en línea.</p>
+                        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:1rem;">
+                            <button type="button" class="btn-primary" onclick="refreshCurrentAccountDetails()">🔄 Reintentar Conexión</button>
+                        </div>
+                    </div>
+                `;
+            }
         }
     }
 }
@@ -258,7 +284,7 @@ function renderAccountMasterCard(account, charCount) {
 /**
  * Renderiza la lista de personajes con datos reales
  */
-function renderCharacterRoster(characters, account) {
+function renderCharacterRoster(characters, account, isOfflineCopy = false) {
     const container = document.getElementById("dashCharactersGrid");
     if (!container) return;
 
@@ -290,7 +316,23 @@ function renderCharacterRoster(characters, account) {
         11: "#FF7D0A" // Druida
     };
 
-    container.innerHTML = characters.map(c => {
+    const offlineBanner = isOfflineCopy ? `
+        <div id="dashOfflineWarning" style="grid-column: 1 / -1; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 8px; padding: 0.85rem 1.25rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                <span style="font-size: 1.4rem;">⚠️</span>
+                <div>
+                    <div style="font-weight: 700; color: #fca5a5; font-size: 0.88rem;">Modo Desconectado — Sin Conexión con el Servidor en Vivo</div>
+                    <div style="color: #cbd5e1; font-size: 0.8rem;">Los personajes mostrados provienen de la última sesión guardada en este navegador. Si eliminaste o creaste personajes en el juego, se sincronizarán en cuanto el servidor esté en línea.</div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="btn-primary" onclick="refreshCurrentAccountDetails()" style="padding: 0.35rem 0.85rem; font-size: 0.78rem;">🔄 Reintentar</button>
+                <button type="button" class="btn-secondary" onclick="actionPurgeLocalCharactersCache()" style="padding: 0.35rem 0.85rem; font-size: 0.78rem;">🧹 Limpiar Caché Local</button>
+            </div>
+        </div>
+    ` : "";
+
+    container.innerHTML = offlineBanner + characters.map(c => {
         const cColor = classColors[c.class] || "#f59e0b";
         const isOnline = c.online;
         const factionIcon = c.faction === "alliance" ? "🦁" : "🐺";
@@ -332,7 +374,7 @@ function renderCharacterRoster(characters, account) {
                     </div>
                     <div class="char-meta-main">
                         <div style="display:flex; align-items:center; justify-content:space-between; gap:6px;">
-                            <h3 class="char-name" style="color:${cColor}; margin:0; font-size:1.15rem;">${c.name}</h3>
+                            <h3 class="char-name" style="color:${cColor}; margin:0; font-size:1.15rem;">${c.name}${isOfflineCopy ? ` <span style="font-size:0.65rem; background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4); padding:1px 5px; border-radius:4px; margin-left:6px; font-weight:600; vertical-align:middle;">Copia Local</span>` : ""}</h3>
                             <span class="char-status-badge ${isOnline ? 'online' : 'offline'}">
                                 ${isOnline ? '● En Línea' : '○ Desconectado'}
                             </span>
@@ -2076,4 +2118,44 @@ window.cancelMarketListing = async function(listingId) {
     } catch (err) {
         notifyAccountToast(`Error al cancelar: ${err.message}`);
     }
+};
+
+
+/**
+ * Actualiza los detalles de la cuenta de forma segura
+ */
+window.refreshCurrentAccountDetails = function() {
+    let username = null;
+    if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.account && CURRENT_ACCOUNT_DATA.account.username) {
+        username = CURRENT_ACCOUNT_DATA.account.username;
+    } else {
+        try {
+            const u = JSON.parse(localStorage.getItem("pj_auth_user"));
+            if (u && u.username) username = u.username;
+        } catch(_) {}
+    }
+    if (username) {
+        const loadingView = document.getElementById("dashLoadingView");
+        const loggedView = document.getElementById("dashLoggedView");
+        if (loadingView) loadingView.style.display = "block";
+        if (loggedView) loggedView.style.display = "none";
+        fetchAccountDetails(username);
+    } else {
+        console.warn("[CUENTA] No se encontró usuario para sincronizar.");
+    }
+};
+
+/**
+ * Purga la caché local de personajes y reintenta sincronizar con el servidor vivo
+ */
+window.actionPurgeLocalCharactersCache = function() {
+    try {
+        const raw = localStorage.getItem("pj_auth_user");
+        if (raw) {
+            const u = JSON.parse(raw);
+            delete u.characters;
+            localStorage.setItem("pj_auth_user", JSON.stringify(u));
+        }
+    } catch (_) {}
+    window.refreshCurrentAccountDetails();
 };
