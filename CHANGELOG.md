@@ -4,6 +4,38 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.3.1] - 2026-11-03 — Auditoría Visual Exhaustiva, Integración de los 7 Campeones Soberanos con Retratos Oficiales, Desduplicación de Navbar y Responsive Anti-Overflow (Hito #283)
+
+### 🎨 Los 7 Campeones Soberanos de Azeroth (`index.html`)
+- **Completitud Troncal del Lore:** Integración de los 7 campeones soberanos completos en `#campeones-soberanos` (Lady Jaina, Rogotten, Thrall, Silka, Elnazzareno, Varian Wrynn y Aezrah), erradicando la omisión previa de 3 personajes.
+- **Retratos Cinematográficos Dedicados (1024x1024):** Eliminación total de emojis crudos en tarjetas y sustitución por retratos oficiales de alta fidelidad:
+  - `jaina_arcane_sanctum.jpg`: Lady Jaina Valiente (Archimaga de Theramore).
+  - `rogotten_portrait.jpg`: Rogotten (Pícaro Bloodfang en las sombras con dagas de veneno).
+  - `thrall_portrait.jpg`: Jefe de Guerra Thrall (Chamán con Doomhammer y relámpagos).
+  - `silka_portrait.jpg`: Silka (Paladina Judgement con aura sagrada y escudo elementium).
+  - `elnazzareno_portrait.png`: Elnazzareno (Señor Brujo del Séquito del Terror).
+  - `varian_portrait.jpg`: Rey Varian Wrynn (Lobo Fantasma con espadas Shalamayne).
+  - `aezrah_portrait.jpg`: Aezrah (Alta Sacerdotisa con vestiduras de Trascendencia).
+- **CSS Modular:** Extracción de estilos inline caóticos a clases formales `.sovereign-champions-section`, `.champions-grid`, `.champion-card`, etc., en `style.css`.
+
+### 🧭 Reestructuración & Saneamiento del Navbar Maestro
+- **Desduplicación de "Jugar en Web":** Retirado el enlace duplicado dentro de `.nav-links`, dejando como único y glorioso botón de acceso el botón dorado con pulso de `.nav-actions-tray`.
+- **Estructura Esbelta en 6 Enlaces:** Reorganización del menú superior en 6 categorías esenciales (`Inicio`, `Explorar ▾`, `Servicios ▾`, `Comunidad ▾`, `JainaCore`, `Guía de Conexión`), reduciendo la saturación de 1810px a 1210px en escritorios.
+- **Breakpoint Elevado a 1180px:** Transición fluida al menú móvil drawer en pantallas `< 1180px`, evitando que botones choquen o se monten en 2 líneas.
+- **Sincronización en Subpáginas:** Desduplicación y estandarización del botón `.btn-play-web-nav` en las 9 subpáginas del dominio.
+
+### ⚡ Cimentación Tipográfica & Anti-FOUT
+- **Preconnect Inmediato a Google Fonts:** Inyección de `<link rel="preconnect">` y hoja de fuentes Cinzel/Outfit/Inter/JetBrains Mono en `<head>` de 12 archivos HTML.
+- **Eliminación de `@import` Bloqueante:** Suprimido el `@import url(...)` al inicio de `style.css` para parsing CSS no bloqueante (~600ms más rápido).
+
+### 📱 Responsive Design Anti-Overflow & WebClient 3D (`jugar.html`)
+- **Blindaje Anti-Overflow Móvil:** Sustituido `minmax(320px, 1fr)` por `minmax(min(100%, 280px), 1fr)` y aplicado `overflow-x: hidden` en `html, body`.
+- **HUD Superior Compacto en WebClient:** Media queries dinámicas para pantallas `< 768px`, `< 580px` y `< 380px` en `jugar.html` (ocultamiento inteligente de títulos largos, contracción de badges de telemetría a punto de estado y botones táctiles optimizados).
+- **Desambiguación de Secciones:** Renombrada sección 17 a *"Guía Técnica de Conexión & Descargas para PC y Móvil"*, erradicando la colisión con la sección 4 (*"Empieza a Jugar en 3 Pasos"*).
+- **Correcciones Tipográficas:** Saneados espacios en títulos de `#comunidad-creadores` y `#fonoteca-taberna`.
+
+---
+
 ## [v7.3.0] - 2026-11-03 — Rediseño Integral de ProjectJaina_Web (Embudo en 6 Etapas), Escaparate Soberano del WebClient 3D y Sala de Juego Dedicada (Hito #282)
 
 ### 🏛️ Reestructuración Narrativa & Embudo en 6 Etapas (`index.html`)

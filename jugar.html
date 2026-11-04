@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Jugar en el Navegador — Project JAIna | WoW 3.3.5a WebClient 3D</title>
     <link rel="icon" href="images/jaina_crest_logo.jpg">
+        <!-- GOOGLE FONTS PRECONNECT & OPTIMIZACIÓN DE RENDERIZADO AAA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=20261103_v2">
     <style>
         * {
@@ -295,9 +299,22 @@
             gap: 1.25rem;
             margin-bottom: 1.5rem;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            #realmStatusBadge { display: none; }
+            .hud-title { font-size: 0.85rem; }
+        }
+        @media (max-width: 580px) {
             .controls-grid { grid-template-columns: 1fr; }
             .hud-title { display: none; }
+            .hud-back-btn span.back-text { display: none; }
+            .hud-btn span.btn-text { display: none; }
+            .hud-btn { padding: 0.4rem 0.6rem; }
+            .controls-modal-card { padding: 1.25rem 1rem; }
+        }
+        @media (max-width: 380px) {
+            #gatewayText { display: none; }
+            .telemetry-badge { padding: 0.25rem 0.4rem; }
+            .hud-brand { gap: 0.4rem; }
         }
         .control-block {
             background: rgba(15, 23, 42, 0.7);
@@ -339,7 +356,7 @@
         <a href="index.html" class="hud-brand">
             <img src="images/jaina_crest_logo.jpg" alt="Project JAIna" class="hud-logo">
             <div class="hud-title">PROJECT J<span>AI</span>NA · WEBCLIENT 3D</div>
-            <span class="hud-back-btn">← Volver al Portal</span>
+            <span class="hud-back-btn">← <span class="back-text">Volver al Portal</span></span>
         </a>
 
         <div class="hud-telemetry">
@@ -353,11 +370,11 @@
         </div>
 
         <div class="hud-actions">
-            <button class="hud-btn" id="btnControls" type="button">
-                <span>🎮</span> Controles
+            <button class="hud-btn" id="btnControls" type="button" title="Guía de Controles">
+                <span>🎮</span> <span class="btn-text">Controles</span>
             </button>
-            <button class="hud-btn" id="btnFullscreen" type="button">
-                <span>⛶</span> Pantalla Completa
+            <button class="hud-btn" id="btnFullscreen" type="button" title="Pantalla Completa">
+                <span>⛶</span> <span class="btn-text">Pantalla Completa</span>
             </button>
         </div>
     </header>
