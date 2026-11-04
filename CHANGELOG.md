@@ -4,6 +4,27 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.3.4] - 2026-11-04 — Erradicación de Trampa Loopback en WebClient, Resiliencia HTTP Multi-Hilo en Centinela y Calibración de Onboarding (Hitos #287 y #288)
+
+### 🚀 Optimización del Embudo de Onboarding (`index.html`)
+- **Restauración del Hero Canónico:** Ajustada la narrativa a *"Donde las Leyendas de Azeroth Cobran Conciencia — Wrath of the Lich King 3.3.5a HD"*, reflejando con exactitud la propuesta de valor sin falsas promesas.
+- **Trinidad CTA de Conversión:**
+  - Botón primario de pulso dorado enlazado a la **Descarga Directa del Lanzador Oficial (~20 MB)** (`downloads/ProjectJaina_Launcher.exe`).
+  - Acceso directo a Registro Gratuito (15s) y descarga del Cliente Completo HD (36 GB).
+- **Protección contra Trampa Loopback (`jugar.html`):** Eliminado el iframe ciego a `127.0.0.1:8097` que causaba `ERR_CONNECTION_REFUSED` a usuarios externos. Transformado en panel de **Laboratorio Tecnológico**, manteniendo la transparencia del desarrollo del cliente WebGL Three.js con alternativas de juego inmediato.
+- **Unificación de Navegación:** Sincronizado el botón `[ ⚡ CÓMO JUGAR ]` en las 9 subpáginas del dominio web con cache-busting `?v=20261104_v734`.
+
+---
+
+## [v7.3.3] - 2026-11-03 — Rediseño Simétrico de Grilla de Modos de Juego y Desafíos, Badges de Armería e Integración In-Game (Hito #285)
+
+### ⚔️ Desafíos y Modos de Juego (`index.html` & `css/style.css`)
+- **Grilla Simétrica 5x1 / 3+2:** Reestructurada la distribución visual de `.modes-grid` para los 5 modos oficiales (Normal, Hardcore, Ironman, Die & Rise y Reto Andino x1).
+- **Insignias Dinámicas en Armería (`js/armory.js`):** Integración de badges de desafío visuales asociados al estado del jugador en `character_gamemodes`.
+- **Compatibilidad con Protocolo In-Game:** Soporte para `/modo` y apertura contextual desde NPCs en el juego.
+
+---
+
 ## [v7.3.2] - 2026-11-03 — Renovación de Alta Fidelidad de los 8 Emblemas de Eras y Bandas (`images/phases/`) con Transparencia Alpha (Hito #284)
 
 ### 🛡️ Emblemas de Línea de Fases y Reinos Progresivos (`images/phases/`)

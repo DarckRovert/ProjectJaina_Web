@@ -14,8 +14,8 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.3.0%20(Hito%20%23282)-00ccff.svg)](./CHANGELOG.md)
-[![WebClient 3D](https://img.shields.io/badge/Client-WebGL%203D%20Web%20(Cero%20Descarga)-E34F26.svg)](./jugar.html)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.3.4%20(Hito%20%23288)-00ccff.svg)](./CHANGELOG.md)
+[![WebClient 3D](https://img.shields.io/badge/Client-Lanzador%20Oficial%20%26%20HD%20PC-E34F26.svg)](./downloads/ProjectJaina_Launcher.exe)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/ProjectJaina_Web/)
 [![WoW Client](https://img.shields.io/badge/WoW%20Client-3.3.5a%20(Build%2012340)-blue.svg)](https://darckrovert.github.io/ProjectJaina_Web/)
