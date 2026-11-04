@@ -4,6 +4,23 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.3.2] - 2026-11-03 — Renovación de Alta Fidelidad de los 8 Emblemas de Eras y Bandas (`images/phases/`) con Transparencia Alpha (Hito #284)
+
+### 🛡️ Emblemas de Línea de Fases y Reinos Progresivos (`images/phases/`)
+- **Resolución Cuadruplicada (480×320 px):** Sustitución de los antiguos iconos diminutos (160×110 px de 4-30 KB) por emblemas de alta fidelidad heráldica:
+  - `vanilla.png` (177 KB): Escudo ornamental dorado con filigrana imperial y runas clásicas de World of Warcraft Classic.
+  - `tbc.png` (176 KB): Emblema ardiente de fuego vil esmeralda con el marco del Portal Oscuro y cornamenta demoníaca.
+  - `naxx.png` (201 KB): Emblema rúnico cian y verde plaga con la ciudadela flotante de Naxxramas y guadañas de Kel'Thuzad.
+  - `ulduar.png` (250 KB): Disco astronómico de los Titanes en latón cósmico y azul celestial con engranajes estelares.
+  - `toc.png` (170 KB): Escudo heráldico del Torneo Argenta en plata y oro radiante con lanzas de justa.
+  - `icc.png` (218 KB): Emblema glacial del Trono Helado y Corona de Hielo con púas de saronita y runas de escarcha.
+  - `ruby.png` (233 KB): Alas de dragón crepuscular en rojo rubí y piedra volcánica del Sagrario Rubí.
+  - `cataclysm.png` (218 KB): Placas de elementium y lava volcánica ardiente de Alamuerte.
+- **Transparencia Alpha 100% Homogénea:** Erradicado el defecto visual donde 5 de las 8 fases tenían fondos negros rectangulares opacos. Todas cuentan ahora con bordes suaves anti-aliasing sobre fondo transparente (`Alpha: 0-255`).
+- **Compatibilidad Total con Drop-Shadow:** Los filtros CSS dinámicos de `.phase-logo-img` (`drop-shadow(...)`) ahora perfilan con nitidez el contorno heráldico de cada fase en lugar de sombrear cajas rectangulares.
+
+---
+
 ## [v7.3.1] - 2026-11-03 — Auditoría Visual Exhaustiva, Integración de los 7 Campeones Soberanos con Retratos Oficiales, Desduplicación de Navbar y Responsive Anti-Overflow (Hito #283)
 
 ### 🎨 Los 7 Campeones Soberanos de Azeroth (`index.html`)
