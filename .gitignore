@@ -11,3 +11,5 @@ deploy_log.txt
 # Deployment
 dist/
 node_modules/
+
+*.bak*

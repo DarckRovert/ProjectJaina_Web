@@ -11,6 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&amp;family=Cinzel:wght@500;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="css/style.css?v=20261104_v734" rel="stylesheet"/>
 <link href="css/jaina_jukebox.css?v=20261030_v710" rel="stylesheet"/>
+    <link href="css/discovery_tabs.css?v=20261104_v739" rel="stylesheet"/>
+
 <link href="images/jaina_crest_logo.jpg" rel="icon"/>
 </head>
 <body>
@@ -261,184 +263,102 @@
 </div>
 </div>
 </header>
-<!-- EL GRAN ESCAPARATE SOBERANO: WEBCLIENT 3D (CERO DESCARGAS) -->
-<section class="webclient-showcase-section" id="escaparate-web">
-<div class="webclient-showcase-container">
-<div class="showcase-header">
-<span class="showcase-tag" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">🧪 TECNOLOGÍA EN DESARROLLO · FASE LABORATORIO</span>
-<h2 class="showcase-title">El Futuro: WebClient 3D en tu Navegador (Three.js WebGL)</h2>
-<p class="showcase-desc">
-    Estamos construyendo el cliente web tridimensional de Project Jaina para permitir el acceso nativo mediante WebGL. Actualmente disponible en <strong>Fase Experimental para Desarrolladores y Testers Locales</strong>.
-</p>
+<div class="status-bar-card">
+<div class="status-metric">
+<div class="metric-label">Estado del Servidor</div>
+<div class="metric-value">
+<span class="pulse-dot offline" id="statusDot"></span>
+<span id="statusText" style="color: var(--text-muted);">COMPROBANDO...</span>
 </div>
-<!-- Marco de Monitor / Pantalla WebGL -->
-<div class="webclient-monitor-frame">
-<div class="monitor-top-bar">
-<div class="monitor-dots">
-<span class="monitor-dot dot-red"></span>
-<span class="monitor-dot dot-yellow"></span>
-<span class="monitor-dot dot-green"></span>
 </div>
-<div class="monitor-address-bar">
-                        🔒 https://darckrovert.github.io/ProjectJaina_Web/jugar.html
-                    </div>
-<div class="monitor-badge-fps">
-                        ⚡ WebGL 2.0 · Three.js 60 FPS
-                    </div>
+<div class="status-metric">
+<div class="metric-label">Tiempo Activo (Uptime)</div>
+<div class="metric-value monospace-num" id="serverUptime">00d 00h 00m 00s</div>
 </div>
-<div class="monitor-screen-viewport">
-<img alt="Project Jaina WebClient 3D Viewport" class="monitor-screen-img" src="images/theramore_citadel_art.jpg"/>
-<div class="monitor-screen-overlay">
-<div class="monitor-hero-caption">
-<h3>Ciudadela de Theramore en Vivo</h3>
-<p>Renderizado tridimensional completo, ciclo día/noche, iluminación dinámica, sonido inmersivo y compatibilidad táctil o con teclado.</p>
-<a class="monitor-play-cta" href="jugar.html">🔬 CONOCER LABORATORIO WEBCLIENT</a>
+<div class="status-metric">
+<div class="metric-label">Era Activa</div>
+<div class="metric-value" id="activeEraCap" style="color: #f1a80a;">Vanilla (Lv 60)</div>
+</div>
+<div class="status-metric">
+<div class="metric-label">Héroes en el Mundo</div>
+<div class="metric-value" id="onlinePlayers">--</div>
+</div>
+<div class="status-metric">
+<div class="metric-label">Cuentas Registradas</div>
+<div class="metric-value" id="totalAccounts">--</div>
+</div>
+<div class="status-metric">
+<div class="metric-label">Conexión Global</div>
+<div class="metric-value" style="font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
+<a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Oficial Anycast sin VPN">🌐 Conectar en 1 Clic ➔</a>
 </div>
 </div>
 </div>
-</div>
-<!-- Grilla de las 4 Verdades del WebClient -->
-<div class="webclient-features-grid">
-<div class="webclient-feat-card">
-<span class="webclient-feat-icon">⚡</span>
-<h4>1 Clic y a Jugar</h4>
-<p>Cero gigabytes de descarga en tu disco. Abre la pestaña en tu navegador, introduce tus datos y entra a jugar en segundos.</p>
-</div>
-<div class="webclient-feat-card">
-<span class="webclient-feat-icon">💻📱</span>
-<h4>Juega en Cualquier Pantalla</h4>
-<p>Compatible con PC, Mac, Laptops de oficina, Chromebooks, iPads y Celulares Android (con palanca analógica 360° integrada).</p>
-</div>
-<div class="webclient-feat-card">
-<span class="webclient-feat-icon">🎮</span>
-<h4>Gráficos 3D Reales WebGL</h4>
-<p>No es un vídeo por streaming: es el motor Three.js acelerado por tu propia tarjeta gráfica con shaders de agua y texturas de WoW.</p>
-</div>
-<div class="webclient-feat-card">
-<span class="webclient-feat-icon">🔄</span>
-<h4>Una Cuenta, Mismo Progreso</h4>
-<p>Tu personaje en la web es exactamente el mismo del servidor. Si luego quieres jugar en el cliente de PC, continúas donde lo dejaste.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- LAS 3 MANERAS DE JUGAR (COMPARATIVA DIRECTA) -->
-<section class="ways-to-play-section" id="tres-formas-de-jugar">
-<div style="text-align: center; max-width: 820px; margin: 0 auto 3.5rem;">
-<div class="showcase-tag" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
-                🎮 ELIGE TU FORMA DE ENTRAR
+<!-- COMUNIDAD TRANSPARENTE: META MENSUAL DE INFRAESTRUCTURA (ZERO-P2W) -->
+
+
+    <!-- =======================================================================
+         LOS 4 PILARES CLAVE DE PROJECT JAINA (ABOVE THE FOLD / MINUTO CERO)
+         Resuelve la sobrecarga cognitiva: expone los 4 valores cardinales en 5s.
+         ======================================================================= -->
+    <section class="key-pillars-section" id="los-4-pilares">
+        <div class="key-pillars-header">
+            <div class="key-pillars-badge">
+                <span>⚔️</span>
+                <span>ECOSISTEMA SOBERANO DE ALTA DISPONIBILIDAD</span>
             </div>
-<h2 class="showcase-title">Tres Formas de Vivir la Aventura</h2>
-<p class="showcase-desc">
-                Adapta tu experiencia según el dispositivo que tengas a mano. Puedes cambiar de una a otra en cualquier momento con la misma cuenta.
+            <h2 class="key-pillars-title">Los 4 Pilares de la Revolución</h2>
+            <p class="key-pillars-subtitle">
+                Project Jaina no es un servidor más. Es una plataforma viva construida sobre cuatro pilares tecnológicos y de diseño que transforman World of Warcraft 3.3.5a para siempre.
             </p>
-</div>
-<div class="ways-to-play-grid">
-<!-- Opción 1: Web -->
-<div class="way-card highlight-gold">
-<div class="way-badge-top badge-gold">MÁS RÁPIDO · 1 CLIC</div>
-<div class="way-card-header">
-<div class="way-card-icon">⚡</div>
-<h3>1. Lanzador Oficial PC</h3>
-<div class="way-card-subtitle">Ejecuta y Juega en 1 Clic</div>
-</div>
-<ul class="way-spec-list">
-<li><span>Instalación:</span> <strong>Lanzador Ligero (~20 MB)</strong></li>
-<li><span>Compatibilidad:</span> <strong>Cualquier WoW 3.3.5a instalado</strong></li>
-<li><span>Conexión:</span> <strong>Anycast Directa (0 VPN)</strong></li>
-<li><span>AddOns:</span> <strong>Sincronización Automática</strong></li>
-<li><span>Ideal para:</span> <strong>Entrar a jugar de inmediato</strong></li>
-</ul>
-<a class="way-btn-action btn-gold-fill" download="ProjectJaina_Launcher.exe" href="downloads/ProjectJaina_Launcher.exe">
-                    ⚡ DESCARGAR LANZADOR PC
-                </a>
-</div>
-<!-- Opción 2: PC HD -->
-<div class="way-card">
-<div class="way-badge-top badge-cyan">MÁXIMA INMERSIÓN</div>
-<div class="way-card-header">
-<div class="way-card-icon">💻</div>
-<h3>2. Cliente Full HD (PC)</h3>
-<div class="way-card-subtitle">Cliente nativo con Parches HD</div>
-</div>
-<ul class="way-spec-list">
-<li><span>Instalación:</span> <strong>Lanzador de 1 Clic (~20 MB)</strong></li>
-<li><span>Dispositivos:</span> <strong>Windows PC (Laptop / Sobremesa)</strong></li>
-<li><span>Gráficos:</span> <strong>Texturas HD Remasterizadas</strong></li>
-<li><span>AddOns:</span> <strong>Suite Oficial de 21 AddOns</strong></li>
-<li><span>Ideal para:</span> <strong>Sesiones largas y máxima calidad</strong></li>
-</ul>
-<a class="way-btn-action btn-cyan-fill" download="ProjectJaina_Launcher.exe" href="downloads/ProjectJaina_Launcher.exe">
-                    📥 DESCARGAR LANZADOR PC
-                </a>
-</div>
-<!-- Opción 3: Móvil -->
-<div class="way-card">
-<div class="way-badge-top badge-purple">PORTABILIDAD TOTAL</div>
-<div class="way-card-header">
-<div class="way-card-icon">📱</div>
-<h3>3. Móvil Android (Imito)</h3>
-<div class="way-card-subtitle">Cliente nativo emulado en tu móvil</div>
-</div>
-<ul class="way-spec-list">
-<li><span>Instalación:</span> <strong>APK Optimizado ARM64</strong></li>
-<li><span>Dispositivos:</span> <strong>Celulares y Tablets Android</strong></li>
-<li><span>Gráficos:</span> <strong>WoW 3.3.5a Fluido en tu bolsillo</strong></li>
-<li><span>Controles:</span> <strong>Botones táctiles configurables</strong></li>
-<li><span>Ideal para:</span> <strong>Jugar en la cama o de viaje</strong></li>
-</ul>
-<a class="way-btn-action btn-purple-fill" href="#juego-movil">
-                    📲 VER GUÍA ANDROID
-                </a>
-</div>
-</div>
-</section>
-<!-- ¿POR QUÉ PROJECT JAINA ES ÚNICO? (LOS 3 PILARES) -->
-<section class="factions-section" id="por-que-jaina" style="padding: 6rem 1.5rem; background: radial-gradient(circle at 50% 50%, rgba(14, 21, 38, 0.75) 0%, rgba(5, 8, 15, 0.99) 85%);">
-<div style="text-align: center; max-width: 860px; margin: 0 auto 3.5rem;">
-<div class="showcase-tag">✨ INNOVACIÓN PURA EN WOW</div>
-<h2 class="showcase-title">¿Por Qué Project JAIna es Único en el Mundo?</h2>
-<p class="showcase-desc">
-                No somos un servidor genérico más. Hemos reinventado la experiencia de Azeroth con tres pilares exclusivos.
-            </p>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1250px; margin: 0 auto;">
-<!-- Pilar 1 -->
-<div class="webclient-feat-card" style="display: flex; flex-direction: column;">
-<div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9;">
-<img alt="Living Lore con IA Neuronal" src="images/jaina_living_lore.jpg" style="width: 100%; height: 100%; object-fit: cover;"/>
-</div>
-<h3 style="font-family: 'Cinzel', serif; color: #f59e0b; font-size: 1.35rem; margin-bottom: 0.6rem;">1. Lore Viviente con IA Neuronal</h3>
-<p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
-                    Los personajes legendarios como <strong>Lady Jaina Valiente</strong>, Thrall y Arthas no repiten frases fijas:
-                    escuchan lo que les dices por chat, recuerdan tus misiones anteriores y te responden en lenguaje natural con su propia personalidad.
+        </div>
+        <div class="key-pillars-grid">
+            <!-- Pilar 1: HeroBots IA -->
+            <article class="pillar-card" style="--pillar-accent: #38bdf8;">
+                <div class="pillar-card-icon">🧠</div>
+                <div class="pillar-card-tag">Inteligencia Artificial</div>
+                <h3 class="pillar-card-title">Lore Viviente &amp; HeroBots</h3>
+                <p class="pillar-card-desc">
+                    Lady Jaina, Thrall y Varian recuerdan tus hazañas, responden a tu voz y luchan a tu lado con IA multihilo táctica avanzada.
                 </p>
-</div>
-<!-- Pilar 2 -->
-<div class="webclient-feat-card" style="display: flex; flex-direction: column;">
-<div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9; background: #060b14; display: flex; align-items: center; justify-content: center;">
-<img alt="Línea de Eras y Fases" src="images/space_nebula_bg.jpg" style="width: 100%; height: 100%; object-fit: cover;"/>
-</div>
-<h3 style="font-family: 'Cinzel', serif; color: #38bdf8; font-size: 1.35rem; margin-bottom: 0.6rem;">2. Progresión Viva de Eras (60 ➔ 80)</h3>
-<p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
-                    Revive la magia de World of Warcraft paso a paso: comienzas en la era clásica (Vanilla Cap 60) y evolucionas con el reino.
-                    Además, las mazmorras cuentan con <strong>escalado dinámico</strong>: los jefes adaptan su poder para que puedas jugar en solitario o con amigos sin esperar horas en buscador.
+                <a href="#tab-lore" class="pillar-card-action">Explorar Héroes &amp; Lore ➔</a>
+            </article>
+
+            <!-- Pilar 2: Gráficos UHD -->
+            <article class="pillar-card" style="--pillar-accent: #ffd700;">
+                <div class="pillar-card-icon">🎨</div>
+                <div class="pillar-card-tag">Fidelidad Gráfica AAA</div>
+                <h3 class="pillar-card-title">Remasterización UHD &amp; cDF</h3>
+                <p class="pillar-card-desc">
+                    24 GB de texturas remasterizadas, interfaz moderna Dragonflight y motor DirectX 9 calibrado a cero crashes de memoria virtual.
                 </p>
-</div>
-<!-- Pilar 3 -->
-<div class="webclient-feat-card" style="display: flex; flex-direction: column;">
-<div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9;">
-<img alt="Modos Hardcore y Muerte Permanente" src="images/icecrown_citadel_epic.jpg" style="width: 100%; height: 100%; object-fit: cover;"/>
-</div>
-<h3 style="font-family: 'Cinzel', serif; color: #ef4444; font-size: 1.35rem; margin-bottom: 0.6rem;">3. Modos Hardcore &amp; Aventura</h3>
-<p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
-                    Elige tu estilo: desde una experiencia relajada y disfrutable hasta el desafío definitivo de <strong>Muerte Permanente Real</strong>
-                    con cerrojos económicos estrictos, recompensas épicas exclusivas y títulos de honor para los aventureros más hábiles.
+                <a href="#tab-tech" class="pillar-card-action">Ver Tecnología &amp; AddOns ➔</a>
+            </article>
+
+            <!-- Pilar 3: Reinos Progresivos -->
+            <article class="pillar-card" style="--pillar-accent: #f59e0b;">
+                <div class="pillar-card-icon">⚖️</div>
+                <div class="pillar-card-tag">Filosofía Zero-P2W</div>
+                <h3 class="pillar-card-title">Reinos Progresivos Equilibrados</h3>
+                <p class="pillar-card-desc">
+                    Reino 1 JainaCore (Vanilla Cap 60) y Reino 3 WanitosGYM (WotLK Cap 80). Subastas vivas, cross-faction y balance económico absoluto.
                 </p>
-</div>
-</div>
-</section>
-<!-- GUÍA "EMPIEZA EN 3 PASOS" (A PRUEBA DE FALLOS) -->
+                <a href="#tab-fases" class="pillar-card-action">Ver Fases &amp; Eras ➔</a>
+            </article>
+
+            <!-- Pilar 4: Multiplataforma -->
+            <article class="pillar-card" style="--pillar-accent: #a855f7;">
+                <div class="pillar-card-icon">📱</div>
+                <div class="pillar-card-tag">Acceso Soberano Anycast</div>
+                <h3 class="pillar-card-title">PC Ultraligero &amp; Móvil Android</h3>
+                <p class="pillar-card-desc">
+                    Descarga directa de lanzador oficial (~20 MB), cliente full HD y edición optimizada para celulares con palanca táctil 360°.
+                </p>
+                <a href="#como-jugar" class="pillar-card-action">Descargar &amp; Conectar ➔</a>
+            </article>
+        </div>
+    </section>
+
 <section class="three-steps-section" id="empezar-en-3-pasos">
 <div class="steps-container">
 <div style="text-align: center; max-width: 780px; margin: 0 auto 3.5rem;">
@@ -482,134 +402,59 @@
 </div>
 </section>
 <!-- BANNER CONSOLIDADO: INFORMACIÓN DE BETA ABIERTA, REALMLIST & CUENTA REGRESIVA -->
-<section class="beta-announcement-card" id="fase-beta" style="margin: 3.5rem auto 2rem; max-width: 1250px;">
-<div style="text-align: center;">
-<div class="beta-header-badge">
-<span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80;"></span>
-                FASE BETA PÚBLICA ABIERTA · GARANTÍA 100% NO-WIPE
+
+
+    <!-- =======================================================================
+         HUB DE EXPLORACIÓN MODULAR (REVELACIÓN PROGRESIVA DE 40 SISTEMAS)
+         Estructura progresiva: agrupa el contenido profundo en 4 vistas temáticas.
+         ======================================================================= -->
+    <section class="discovery-hub-section" id="hub-exploracion">
+        <div class="discovery-hub-header">
+            <div class="discovery-hub-badge">
+                <span>🌟</span>
+                <span>EXPLORACIÓN MODULAR DEL MUNDO</span>
             </div>
-<h2 style="color: #ffd700; font-size: 1.85rem; font-family: 'Cinzel', serif; margin: 0 0 0.6rem 0; font-weight: 900; letter-spacing: 0.8px;">
-                🛡️ ¡Azeroth Está Abierto para Ti!
-            </h2>
-<p style="color: #e2e8f0; font-size: 1.02rem; line-height: 1.6; max-width: 860px; margin: 0 auto;">
-                El avance de tu personaje, profesiones, monedas y hermandades se conserva permanentemente al 100% para la apertura oficial.
+            <h2 class="discovery-hub-title">Descubre Azeroth a tu Ritmo</h2>
+            <p class="discovery-hub-desc">
+                Explora cada subsistema de Project Jaina navegando por los apartados interactivos sin saturación. Selecciona una pestaña para descubrir sus características.
             </p>
-</div>
-<div class="beta-pillars-grid">
-<div class="beta-pillar-item">
-<div class="beta-pillar-icon">🔒</div>
-<div class="beta-pillar-title" style="color: #38bdf8;">1. Cero Wipe Garantizado</div>
-<p class="beta-pillar-desc">
-                    Todo lo que consigas durante la Beta se mantiene de forma definitiva. ¡Tu esfuerzo nunca se perderá!
-                </p>
-</div>
-<div class="beta-pillar-item">
-<div class="beta-pillar-icon">🎁</div>
-<div class="beta-pillar-title" style="color: #ffd700;">2. Recompensas por Bugs</div>
-<p class="beta-pillar-desc">
-                    ¿Encontraste un bug? Repórtalo con <code>/ticket</code> en el juego y reclama títulos y cosméticos de apoyo.
-                </p>
-</div>
-<div class="beta-pillar-item">
-<div class="beta-pillar-icon">⚡</div>
-<div class="beta-pillar-title" style="color: #a855f7;">3. Conexión Directa Anycast</div>
-<p class="beta-pillar-desc">
-                    Red global Anycast transparente sin VPNs, con soporte para navegador web y cliente tradicional de PC.
-                </p>
-</div>
-</div>
-<!-- HERO QUICK-CONNECT & REALMLIST WIDGET (ANYCAST 1-CLIC) -->
-<div class="hero-quick-connect" id="heroQuickConnect" style="margin-top: 2rem;">
-<div class="quick-connect-header">
-<div class="quick-connect-badge">
-<span class="live-dot-pulse"></span>
-<span>Conexión Directa al Reino · Servidor Online</span>
-</div>
-<div class="quick-connect-ping-wrap">
-<button class="btn-ping-test" data-action="ping-test" title="Probar latencia en tiempo real hacia el servidor Anycast" type="button">
-                        📶 Probar Latencia
+        </div>
+
+        <!-- Barra de Pestañas Flotante / Sticky -->
+        <div class="discovery-tabs-nav-wrapper">
+            <ul class="discovery-tabs-nav" role="tablist">
+                <li class="discovery-tab-item">
+                    <button class="discovery-tab-btn active" data-target-tab="tab-lore" role="tab" aria-selected="true">
+                        <span class="tab-btn-icon">🧠</span>
+                        <span>Lore Viviente &amp; Héroes</span>
                     </button>
-</div>
-</div>
-<div class="hero-mode-tabs">
-<button class="hero-mode-btn active" data-mode="anycast" onclick="switchRealmlistHeroMode('anycast')" title="Conexión directa Anycast global L4 sin necesidad de VPN" type="button">
-                    🌐 Anycast Global WAN (Cero VPN · Directo)
-                </button>
-<button class="hero-mode-btn radmin-tab" data-mode="radmin" onclick="switchRealmlistHeroMode('radmin')" title="Conexión directa vía red Radmin VPN" type="button">
-                    🟣 Red Radmin VPN (Privada)
-                </button>
-</div>
-<div class="quick-connect-body">
-<div class="quick-connect-code-box">
-<span class="quick-connect-label" id="heroRealmlistLabel">TU REALMLIST OFICIAL (ANYCAST GLOBAL):</span>
-<code class="quick-connect-code" id="heroRealmlistCode">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
-<div class="quick-connect-subdesc" id="heroRealmlistDesc">
-                        ⚡ <strong>Anycast Global L4 (Cero VPN):</strong> Conexión pública directa al reino sin necesidad de programas externos ni VPN.
-                    </div>
-</div>
-<div class="quick-connect-actions">
-<button class="btn-quick-action btn-copy-hero" data-action="copy-realmlist" title="Copiar línea de realmlist al portapapeles" type="button">
-                        📋 Copiar Realmlist
+                </li>
+                <li class="discovery-tab-item">
+                    <button class="discovery-tab-btn" data-target-tab="tab-fases" role="tab" aria-selected="false">
+                        <span class="tab-btn-icon">⏳</span>
+                        <span>Fases, Reinos &amp; Retos</span>
                     </button>
-<button class="btn-quick-action btn-dl-hero" data-action="download-realmlist" title="Descargar archivo realmlist.wtf autoconfigurado" type="button">
-                        📥 Descargar realmlist.wtf
+                </li>
+                <li class="discovery-tab-item">
+                    <button class="discovery-tab-btn" data-target-tab="tab-tech" role="tab" aria-selected="false">
+                        <span class="tab-btn-icon">🧩</span>
+                        <span>Tecnología, AddOns &amp; Móvil</span>
                     </button>
-</div>
-</div>
-<div class="quick-connect-port-alert">
-                🚀 <strong>Conexión 100% Nativa:</strong> World of Warcraft 3.3.5a procesa el puerto <code>:58735</code> directamente. Puedes arrastrar el archivo descargado a tu carpeta de WoW o abrir nuestro <strong>Lanzador Oficial</strong> para sincronizarlo automáticamente.
-            </div>
-<div class="quick-connect-footer">
-<div class="quick-connect-pill">🌐 Anycast Global Playit L4</div>
-<div class="quick-connect-pill">⚡ WotLK 3.3.5a (12340)</div>
-<div class="quick-connect-pill">📁 Arrástralo a: <code>Data\esES\</code> (o tu idioma)</div>
-</div>
-</div>
-<!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
-<div class="grand-opening-card" id="grandOpeningCard" style="margin-top: 2rem;">
-<div class="opening-badge-header">
-<span class="opening-sparkle">✨</span>
-<span class="opening-badge-text">GRAN APERTURA MUNDIAL · 24 DE NOVIEMBRE DE 2026</span>
-<span class="opening-sparkle">✨</span>
-</div>
-<h2 class="opening-title">Cuenta Regresiva para la Apertura Oficial</h2>
-<div style="background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(74, 222, 128, 0.4); border-radius: 8px; padding: 0.75rem 1.2rem; margin: 0.8rem auto 1.2rem; max-width: 760px; text-align: center;">
-<p style="color: #86efac; font-weight: 700; margin: 0; font-size: 0.96rem; line-height: 1.5;">
-                    🎮 <strong>¡La Fase Beta Abierta ya está activa y jugable hoy!</strong> Cero reinicios: todo tu avance se conserva al 100%.
-                </p>
-</div>
-<p class="opening-subtitle">El portal de Project JAIna abrirá sus puertas a aventureros de todo el mundo. Prepara tu hermandad y únete a la revolución de Lore Viviente con IA Neuronal.</p>
-<div class="countdown-clock-grid">
-<div class="countdown-tile">
-<div class="countdown-number" id="openingDays">00</div>
-<div class="countdown-label">DÍAS</div>
-</div>
-<div class="countdown-separator">:</div>
-<div class="countdown-tile">
-<div class="countdown-number" id="openingHours">00</div>
-<div class="countdown-label">HORAS</div>
-</div>
-<div class="countdown-separator">:</div>
-<div class="countdown-tile">
-<div class="countdown-number" id="openingMinutes">00</div>
-<div class="countdown-label">MINUTOS</div>
-</div>
-<div class="countdown-separator">:</div>
-<div class="countdown-tile">
-<div class="countdown-number highlight-pulse" id="openingSeconds">00</div>
-<div class="countdown-label">SEGUNDOS</div>
-</div>
-</div>
-<div class="opening-progress-track">
-<div class="opening-progress-fill" id="openingProgressFill"></div>
-</div>
-<div class="opening-meta-info">
-<span>🕒 Hora Oficial: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
-<span>🌐 Servidor Global: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong></span>
-</div>
-</div>
-</section>
-<!-- SHOWCASE HEROICO: LOS 7 CAMPEONES SOBERANOS DE PROJECT JAINA (v5.54) -->
+                </li>
+                <li class="discovery-tab-item">
+                    <button class="discovery-tab-btn" data-target-tab="tab-comunidad" role="tab" aria-selected="false">
+                        <span class="tab-btn-icon">🎙️</span>
+                        <span>Taberna, Música &amp; Metas</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- PANELES DE CONTENIDO (DISCOVERY TAB PANES) -->
+        <div class="discovery-tab-panes-container">
+            <!-- TAB 1: LORE VIVIENTE & HÉROES -->
+            <div class="discovery-tab-pane active" id="tab-lore" role="tabpanel">
+
 <section class="sovereign-champions-section" id="campeones-soberanos">
 <div style="text-align: center; margin-bottom: 2rem;">
 <div class="beta-header-badge" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: var(--gold-primary); display: inline-flex; align-items: center; gap: 6px; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 700;">
@@ -802,663 +647,7 @@
 </div>
 </div>
 </section>
-<div class="status-bar-card">
-<div class="status-metric">
-<div class="metric-label">Estado del Servidor</div>
-<div class="metric-value">
-<span class="pulse-dot offline" id="statusDot"></span>
-<span id="statusText" style="color: var(--text-muted);">COMPROBANDO...</span>
-</div>
-</div>
-<div class="status-metric">
-<div class="metric-label">Tiempo Activo (Uptime)</div>
-<div class="metric-value monospace-num" id="serverUptime">00d 00h 00m 00s</div>
-</div>
-<div class="status-metric">
-<div class="metric-label">Era Activa</div>
-<div class="metric-value" id="activeEraCap" style="color: #f1a80a;">Vanilla (Lv 60)</div>
-</div>
-<div class="status-metric">
-<div class="metric-label">Héroes en el Mundo</div>
-<div class="metric-value" id="onlinePlayers">--</div>
-</div>
-<div class="status-metric">
-<div class="metric-label">Cuentas Registradas</div>
-<div class="metric-value" id="totalAccounts">--</div>
-</div>
-<div class="status-metric">
-<div class="metric-label">Conexión Global</div>
-<div class="metric-value" style="font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
-<a href="#como-jugar" style="color: var(--gold-primary); text-decoration: none; font-weight: 700;" title="Reino Oficial Anycast sin VPN">🌐 Conectar en 1 Clic ➔</a>
-</div>
-</div>
-</div>
-<!-- COMUNIDAD TRANSPARENTE: META MENSUAL DE INFRAESTRUCTURA (ZERO-P2W) -->
-<div class="server-funding-card" id="serverFundingSection">
-<div class="funding-header">
-<div class="funding-badge">
-<span>🛡️</span>
-<span>SOSTENIMIENTO COMUNITARIO · ZERO PAY-TO-WIN</span>
-</div>
-<div class="funding-status-badge">
-<span>📅</span>
-<span id="fundingMonthLabel">Noviembre 2026</span>
-</div>
-</div>
-<h3 class="funding-title">
-<span>⚡</span> Meta de Infraestructura &amp; Baja Latencia
-            </h3>
-<p class="funding-desc">
-                Project JAIna opera con una filosofía estricta <strong>100% No-Pay-to-Win</strong>. Cada contribución voluntaria financia de forma transparente los servidores físicos dedicados (Ryzen 7 8700G en Perú + Ryzen 9 5900X en España), el túnel Anycast L4 de baja latencia global y la seguridad criptográfica del reino.
-            </p>
-<div class="funding-track">
-<div class="funding-fill" id="fundingProgressFill" style="width: 25%;"></div>
-</div>
-<div class="funding-meta-row">
-<div>
-                    Recaudado: <strong id="fundingRaisedText" style="color: #38bdf8;">S/. 45.00 PEN ($12.30 USD)</strong> de <span id="fundingTargetText" style="color: #ffd700;">S/. 180.00 PEN ($49.20 USD)</span>
-</div>
-<div>
-                    Progreso: <strong id="fundingPctText" style="color: #34d399;">25.0%</strong> · <span style="color: #94a3b8;"><strong id="fundingSupportersCount" style="color: #ffffff;">4</strong> Patrocinadores</span>
-</div>
-</div>
-<div class="funding-expenses-grid">
-<div class="funding-expense-chip">
-<strong>🌐 Playit Anycast L4 Premium</strong>
-<span>Enrutamiento sin VPN y ping optimizado (S/. 45/mes)</span>
-</div>
-<div class="funding-expense-chip">
-<strong>⚡ Nodos Ryzen 7 8700G &amp; Ryzen 9 5900X</strong>
-<span>Hardware dedicado, energía y fibra óptica (S/. 110/mes)</span>
-</div>
-<div class="funding-expense-chip">
-<strong>🔒 DNS &amp; SSL Cloudflare Pro</strong>
-<span>Protección DDoS L7 y dominios seguros (S/. 25/mes)</span>
-</div>
-</div>
-<div class="funding-actions">
-<a class="btn-funding-donate" href="tienda.html">
-<span>💎</span> Apoyar al Servidor en la Tienda (PayPal / GitHub Sponsors)
-                </a>
-<a class="btn-funding-secondary" href="tienda.html">
-                    📜 Ver Catálogo Cosmético (Sin Ventajas de Poder)
-                </a>
-</div>
-</div>
-<!-- MULTI-REALM TELEMETRY & FACTION BALANCE HUD -->
-<div class="dual-realm-grid">
-<div class="realm-card-live">
-<div class="realm-info-block">
-<h4>⚡ Project Jaina <span style="font-size: 0.70rem; color: var(--gold-primary); font-family: sans-serif; font-weight: 700;">[REINO PRINCIPAL]</span></h4>
-<p>Reino 1 (Perú) · WotLK 3.3.5a HD · Lore Viviente · Modos In-Game: Normal, Hardcore &amp; Iron Man</p>
-</div>
-<div class="realm-ping-badge" id="realmJainaStatus">
-                    🟢 <span style="color: #34d399;">ONLINE</span> (~18ms)
-                </div>
-</div>
-<div class="realm-card-live">
-<div class="realm-info-block">
-<h4>🧪 WanitosGym <span style="font-size: 0.70rem; color: #a78bfa; font-family: sans-serif; font-weight: 700;">[LABORATORIO REMOTO - ESPAÑA]</span></h4>
-<p>Reino 3 (España) · Cluster Multi-Nodo 32 Cores · FranFranco Sandbox</p>
-</div>
-<div class="realm-ping-badge" id="realmWanitosStatus" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); color: #c084fc;">
-                    🟣 <span>STANDBY</span> (Radmin VPN)
-                </div>
-</div>
-</div>
-<!-- BALANCE DE FACCIONES EN VIVO -->
-<div class="faction-balance-container">
-<div class="faction-balance-header">
-<span style="color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-                    ⚖️ Balance Demográfico y de Fuerzas en Azeroth
-                </span>
-<span style="font-size: 0.74rem; color: var(--text-muted);">Actualizado en tiempo real</span>
-</div>
-<div class="faction-bar-track">
-<div class="faction-slice alliance" id="factionSliceAlliance" style="width: 52%;" title="Alianza (52%)"></div>
-<div class="faction-slice horde" id="factionSliceHorde" style="width: 48%;" title="Horda (48%)"></div>
-</div>
-<div class="faction-legend-row" style="justify-content: center; gap: 40px;">
-<div class="faction-legend-item">
-<span class="legend-dot alliance"></span>
-<span>🦁 Alianza: <strong id="factionPctAlliance" style="color: #38bdf8;">52%</strong></span>
-</div>
-<div class="faction-legend-item">
-<span class="legend-dot horde"></span>
-<span>🐺 Horda: <strong id="factionPctHorde" style="color: #f87171;">48%</strong></span>
-</div>
-</div>
-</div>
 
-<!-- =====================================================================
-         REFUGIO DE LA COMUNIDAD & CREADORES: ESTA ES TU CASA
-         ===================================================================== -->
-<section class="creators-haven-section" id="comunidad-creadores">
-<div class="creators-haven-backdrop"></div>
-<div class="creators-haven-container">
-<div class="creators-hero-banner">
-<div>
-<div class="creators-lead-badge">
-<span>🔥</span>
-<span>COMUNIDAD SOSTENIBLE · REFUGIO DE ARTISTAS &amp; CREADORES</span>
-</div>
-<h2 class="creators-hero-title">
-                        Esta es tu casa: <span>El Hogar de Azeroth</span>
-</h2>
-<p class="creators-hero-desc">
-                        Toma asiento junto al fuego de la taberna. En <strong>Project JAIna</strong> creemos que World of Warcraft no son solo números de daño o piezas de botín: es la nostalgia de escuchar música bajo las estrellas de Los Baldíos, los videos y parodias que nos unieron durante años, las guías forjadas con pasión y las historias que cada creador comparte.
-                    </p>
-<p class="creators-hero-desc" style="color: #cbd5e1; font-weight: 500;">
-                        Aquí <strong>no hay elitismo, no hay soledad y no hay censura</strong>: apoyamos activamente a streamers, editores de machinima, músicos independientes, desarrolladores de addons y narradores de rol. ¡Tu talento, tu arte y tu tiempo aquí se respetan y celebran!
-                    </p>
-<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.5rem;">
-<a class="btn-primary" href="https://discord.gg/cXxMuRJrfy" rel="noopener noreferrer" style="font-size: 0.95rem; padding: 0.75rem 1.8rem;" target="_blank">
-                            ⚔️ Unirme a la Alianza de Creadores
-                        </a>
-<a class="btn-secondary" href="#fonoteca-taberna" style="font-size: 0.95rem; padding: 0.75rem 1.6rem; border-color: rgba(245, 158, 11, 0.4); color: #fcd34d;">
-                            🎶 Escuchar en la Fonoteca ➔
-                        </a>
-</div>
-</div>
-<div class="creators-hero-img-wrap">
-<img alt="Aventureros y Creadores de la Alianza y la Horda reunidos en la Taberna de Project Jaina" class="creators-hero-img" src="images/creators_tavern_welcome.jpg"/>
-<div class="creators-hero-overlay">
-                        🕯️ "Horda y Alianza unidas por la música, el arte y la comunidad."
-                    </div>
-</div>
-</div>
-<!-- LOS 4 PILARES DEL PROGRAMA DE APOYO A CREADORES -->
-<div class="creators-pillars-grid">
-<div class="creators-pillar-card">
-<div class="pillar-icon-box">🎵</div>
-<h3 class="pillar-title">Músicos &amp; Beatmakers</h3>
-<p class="pillar-desc">
-                        Difusión oficial en nuestra Fonoteca Web y Launcher. Rendimos tributo e impulsamos a creadores independientes como <strong>Barrens Boys</strong>, canalizando a nuestra comunidad hacia sus canales y plataformas oficiales.
-                    </p>
-</div>
-<div class="creators-pillar-card">
-<div class="pillar-icon-box">🎥</div>
-<h3 class="pillar-title">Streamers &amp; Youtubers</h3>
-<p class="pillar-desc">
-                        Rango verificado in-game <code>&lt;Creador de Contenido&gt;</code>, alertas de transmisión en vivo en Discord, herramientas de cámara cinemática sin interfaz para machinimas y soporte directo de Game Masters para eventos.
-                    </p>
-</div>
-<div class="creators-pillar-card">
-<div class="pillar-icon-box">🛠️</div>
-<h3 class="pillar-title">Autores de AddOns &amp; Modders</h3>
-<p class="pillar-desc">
-                        Soporte técnico directo con APIs nativas C++ y Eluna (Bridge MultiBot de baja latencia), acceso a entornos de prueba en nuestro clúster y compatibilidad garantizada con el cliente HD Dragonflight.
-                    </p>
-</div>
-<div class="creators-pillar-card">
-<div class="pillar-icon-box">📜</div>
-<h3 class="pillar-title">Narradores de Rol &amp; Lore</h3>
-<p class="pillar-desc">
-                        Organización de eventos cinemáticos con Lady Jaina y líderes vivientes, baluartes territoriales para hermandades y publicación de crónicas históricas de los campeones del reino en nuestra web.
-                    </p>
-</div>
-</div>
-</div>
-</section>
-<!-- =====================================================================
-         LA FONOTECA DE LA TABERNA: JUKEBOX LO-FI & PEACEBLOOM LOUNGE
-         ===================================================================== -->
-<section class="jukebox-section" id="fonoteca-taberna">
-<div class="jukebox-container">
-<div class="jukebox-header">
-<div class="jukebox-badge">
-<span>🎛️</span>
-<span>KIRIN TOR ARCANE SONIC STUDIO v6.1 · 15 CANALES EN VIVO &amp; LO-FI</span>
-</div>
-<h2 class="jukebox-title">
-                    Jaina's Hearthstone Lounge <span>&amp; Arcane Sonic Studio</span>
-</h2>
-<p class="jukebox-subtitle">
-                    Sintoniza creaciones musicales de la comunidad de World of Warcraft, emisoras Kirin Tor 24/7 en directo y paisajes binaurales 3D generados en tiempo real. Tu música te acompaña mientras exploras el portal.
-                </p>
-</div>
-<!-- TARJETA PRINCIPAL DEL ESTUDIO -->
-<div class="jukebox-main-card">
-<!-- PANEL IZQUIERDO: TOCADISCOS CON AGUJA PIVOTANTE, FFT 64 BANDAS & TRANSPORTE -->
-<div class="jb-turntable-panel">
-<div class="jb-vinyl-assembly">
-<div class="jb-vinyl-disc" id="jbVinylDisc">
-<div class="jb-vinyl-label">
-<div class="jb-vinyl-spindle"></div>
-</div>
-</div>
-<div aria-hidden="true" class="jb-tonearm" id="jbTonearm">
-<div class="jb-tonearm-pivot"></div>
-<div class="jb-tonearm-rod"></div>
-<div class="jb-tonearm-head"></div>
-</div>
-</div>
-<div class="jb-track-info-box">
-<div class="jb-track-badge-row">
-<span class="jb-track-badge" id="jbTrackBadge">🔥 HIMNO COMUNIDAD</span>
-<span class="jb-source-mode-pill" id="jbSourceModePill">📺 YOUTUBE ON-DEMAND</span>
-</div>
-<h3 class="jb-track-title" id="jbTrackTitle">Peacebloom Burn Slow</h3>
-<div class="jb-track-artist" id="jbTrackArtist">Barrens Boys (feat. Toro Loco)</div>
-<div class="jb-track-genre" id="jbTrackGenre">Chill / Lo-Fi Hip-Hop · Baldíos &amp; Mulgore</div>
-<p class="jb-track-desc" id="jbTrackDesc">
-                            Vibras relajadas de Los Baldíos y Mulgore con líricas nostálgicas de World of Warcraft, Druidas y Peacebloom.
-                        </p>
-<!-- Analizador de Espectro Real de 64 Bandas (<canvas>) -->
-<div class="jb-spectrum-box">
-<canvas class="jb-spectrum-canvas" height="52" id="jbMainSpectrumCanvas" width="460"></canvas>
-</div>
-<!-- Barra de Tiempo / Seek Bar Interactiva + Modo EN VIVO -->
-<div class="jb-seek-wrapper">
-<div class="jb-seek-row" id="jbSeekRow">
-<span class="jb-time-label" id="jbTimeCurrent">00:00</span>
-<input aria-label="Progreso de la pista" class="jb-seek-slider" id="jbSeekSlider" max="1000" min="0" type="range" value="0"/>
-<span class="jb-time-label" id="jbTimeTotal">00:00</span>
-</div>
-<div class="jb-live-stream-bar" id="jbLiveBar">
-<span class="jb-live-dot"></span>
-<span id="jbLiveText">EN VIVO 24/7 · ICECAST DIRECTO</span>
-</div>
-</div>
-<!-- Controles Principales -->
-<div class="jb-controls-strip">
-<button aria-label="Canal Anterior" class="jb-ctrl-btn" id="jbBtnPrev" title="Canal Anterior" type="button">⏮</button>
-<button aria-label="Reproducir" class="jb-ctrl-btn jb-play-main-btn" id="jbBtnPlay" title="Reproducir" type="button">▶</button>
-<button aria-label="Siguiente Canal" class="jb-ctrl-btn" id="jbBtnNext" title="Siguiente Canal" type="button">⏭</button>
-</div>
-<!-- Control de Volumen + Capa Opcional de Hoguera -->
-<div class="jb-utility-row">
-<div class="jb-volume-control">
-<button class="jb-vol-mute-btn" id="jbBtnMute" title="Silenciar / Activar Sonido" type="button">🔊</button>
-<input class="jb-vol-slider" id="jbVolSlider" max="100" min="0" title="Volumen" type="range" value="80"/>
-<span class="jb-vol-pct" id="jbVolPct">80%</span>
-</div>
-<button class="jb-hearth-toggle" id="jbBtnHearth" title="Superponer sonido cálido de hoguera de posada" type="button">
-                                🔥 Hoguera: OFF
-                            </button>
-</div>
-<!-- Apoyo al Creador & Acceso a Cabina Dedicada -->
-<div class="jb-creator-support-action">
-<a class="btn-support-channel" href="https://www.youtube.com/@barrensboys" id="jbChannelLink" rel="noopener noreferrer" target="_blank">
-<span>📺</span>
-<span>Apoyar a @barrensboys en YouTube</span>
-</a>
-<a class="drawer-ext-link" href="radio/index.html" style="display:inline-flex;align-items:center;gap:6px;padding:0.5rem 1.1rem;font-size:0.84rem;">
-<span>📻</span>
-<span>Cabina Dedicada Radio 24/7</span>
-</a>
-</div>
-</div>
-</div>
-<!-- PANEL DERECHO: PESTAÑAS DE CATEGORÍA, 15 CANALES & MARCO VISUAL -->
-<div class="jb-playlist-panel">
-<div class="jb-playlist-header">
-<span>📜 Selector Multicanal Kirin Tor</span>
-<span style="font-size: 0.8rem; color: var(--gold-primary); font-weight: 800;">15 Canales Verificados</span>
-</div>
-<div class="jb-cat-tabs" data-cat-group="home">
-<button class="jb-cat-tab active" data-cat="creators" type="button">🔥 Creadores (6)</button>
-<button class="jb-cat-tab" data-cat="radio" type="button">📻 Radio 24/7 (6)</button>
-<button class="jb-cat-tab" data-cat="biomes" type="button">🔮 Biomas 3D (3)</button>
-<button class="jb-cat-tab" data-cat="all" type="button">✨ Todos (15)</button>
-</div>
-<div class="jb-playlist-list" id="jbPlaylistItems">
-<!-- Generado dinámicamente por ArcaneSonicEngine v6.1 -->
-</div>
-<!-- Marco de Video Responsivo + Cubierta Atmosférica para Radio / Biomas 3D -->
-<div class="jb-video-embed-frame">
-<div id="ytIframeMount"></div>
-<div class="jb-nonvideo-deck-overlay" id="jbNonVideoOverlay">
-<div class="jb-nonvideo-content">
-<div class="jb-nonvideo-tag" id="jbNonVideoTag">📻 ICECAST HTTPS 24/7</div>
-<div class="jb-nonvideo-title" id="jbNonVideoTitle">Taberna de Theramore 24/7</div>
-<div class="jb-nonvideo-sub" id="jbNonVideoSub">Flujo acústico directo activo</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- LÍNEA DE FASES (PROGRESSION TIMELINE) -->
-<section class="timeline-section" id="linea-de-fases">
-<div class="timeline-header">
-<h2 class="timeline-title">LÍNEA DE FASES &amp; REINOS PROGRESIVOS</h2>
-<p class="timeline-subtitle">Evolución canónica de contenido, bandas y temporadas gobernadas por el Motor de Lore Viviente de Gravity AI</p>
-<div class="era-header-actions">
-<div class="active-era-pill" id="activeEraBadge">🌟 Era Activa: <strong>World of Warcraft Classic</strong> (Cap Nivel 60)</div>
-<button class="calendar-cta-btn" id="openCalendarModalBtn" type="button">📅 Consultar Calendario Oficial de Eras (2026–2028)</button>
-</div>
-</div>
-<!-- HUD DE TELEMETRÍA EN VIVO & TRANSICIÓN DE ERAS -->
-<div class="live-transition-hud" id="liveTransitionHUD">
-<div class="hud-top-bar">
-<div class="hud-indicator">
-<span class="hud-dot"></span>
-<span class="hud-title">CRONÓMETRO DE REINO &amp; TELEMETRÍA DE ERAS EN VIVO</span>
-</div>
-<div class="hud-uptime-badge">
-<span class="hud-label">UPTIME ACTIVO:</span>
-<span class="hud-val monospace" id="hudServerUptime">00d 00h 00m 00s</span>
-</div>
-</div>
-<!-- Flujo Visual de Transición: Sincronizado Dinámicamente por countdown.js -->
-<div class="transition-flow-container">
-<div class="flow-step step-current pulse-glow" id="flowStepCurrent">
-<div class="flow-step-icon" id="flowStepCurrentIcon">⚡</div>
-<div class="flow-step-content">
-<div class="flow-step-tag current-tag" id="flowStepCurrentTag">ERA INICIAL (APERTURA 24 NOV)</div>
-<div class="flow-step-name" id="flowStepCurrentName">Vanilla Classic (Cap 60)</div>
-<div class="flow-step-time" id="currentPhaseElapsedTime">Tiempo en Era: 00d 00h 00m (Standby)</div>
-</div>
-</div>
-<div class="flow-step-arrow">➔</div>
-<div class="flow-step step-next" id="flowStepNext">
-<div class="flow-step-icon" id="flowStepNextIcon">🔒</div>
-<div class="flow-step-content">
-<div class="flow-step-tag" id="flowStepNextTag">SIGUIENTE ERA (BLOQUEADA)</div>
-<div class="flow-step-name" id="flowStepNextName">The Burning Crusade (Cap 70)</div>
-<div class="flow-step-time" id="nextPhaseCountdown">Apertura: Programada post-Vanilla</div>
-</div>
-</div>
-<div class="flow-step-arrow">➔</div>
-<div class="flow-step step-upcoming" id="flowStepHorizon">
-<div class="flow-step-icon">⏳</div>
-<div class="flow-step-content">
-<div class="flow-step-tag">HORIZONTE FUTURO</div>
-<div class="flow-step-name">WotLK Naxxramas (Cap 80)</div>
-<div class="flow-step-time">Tier 7 (Nivel 80)</div>
-</div>
-</div>
-</div>
-<!-- Barra de Transición Sincronizada -->
-<div class="transition-gauge-container">
-<div class="gauge-labels">
-<span>Progreso de Transición de Era: <strong id="transitionPercentText">0.0%</strong></span>
-<span>Gobernado por: <strong>Gravity AI Autonomous Chrono-Master</strong></span>
-</div>
-<div class="gauge-bar-track">
-<div class="gauge-bar-fill" id="transitionGaugeFill" style="width: 0%;"></div>
-</div>
-</div>
-<!-- Parámetros en Tiempo Real del Servidor -->
-<div class="hud-params-grid">
-<div class="param-box">
-<span class="param-icon">🛡️</span>
-<div>
-<div class="param-name">Gating de Contenido</div>
-<div class="param-val" id="paramGating">Eluna Gate v2.0 (Activo)</div>
-</div>
-</div>
-<div class="param-box">
-<span class="param-icon">🧠</span>
-<div>
-<div class="param-name">Motor Neuronal IA</div>
-<div class="param-val" id="paramAI">Jaina LLM (Qwen 2.5 Coder 32B / LFM 2.5)</div>
-</div>
-</div>
-<div class="param-box">
-<span class="param-icon">🎧</span>
-<div>
-<div class="param-name">Audio Espacial 3D</div>
-<div class="param-val" id="paramVoice">HRTF 3050 Online</div>
-</div>
-</div>
-<div class="param-box">
-<span class="param-icon">⏱️</span>
-<div>
-<div class="param-name">Tickrate / Latencia Core</div>
-<div class="param-val" id="paramTickrate">~12 ms (Estable)</div>
-</div>
-</div>
-</div>
-</div>
-<div class="timeline-scroll-wrapper">
-<div class="timeline-rail" id="timelineRail">
-<!-- Nodos renderizados dinámicamente por js/progression.js?v=20261030_v710 -->
-</div>
-</div>
-</section>
-<!-- ==============================================================================
-         MODOS DE JUEGO & DESAFÍOS DE SUPERVIVENCIA (HITO #217)
-         ============================================================================== -->
-<section class="game-modes-section" id="modos-de-juego">
-<div style="text-align: center;">
-<div class="modes-badge-top">💀 SISTEMA OFICIAL DE DESAFÍOS IN-GAME</div>
-<h2 class="section-title">Modos de Juego &amp; Desafíos de Supervivencia</h2>
-<p class="section-subtitle">Elige tu senda en Azeroth: desde la experiencia clásica Blizzlike hasta la muerte definitiva con herencia de almas y protección divina anti-desconexión.</p>
-</div>
-<div class="modes-grid">
-<!-- MODO NORMAL -->
-<div class="mode-card normal">
-<div>
-<div class="mode-header">
-<span class="mode-icon">🛡️</span>
-<span class="mode-pill" style="color: #38bdf8;">Aventurero</span>
-</div>
-<h3 class="mode-title">Modo Normal</h3>
-<p class="mode-desc">La experiencia canónica y progresiva de Wrath of the Lich King 3.3.5a HD. Ideal para disfrutar la historia, hermandades y raids sin riesgo de pérdida de personaje.</p>
-<ul class="mode-rules-list">
-<li><span class="bullet">✔</span> Resurrecciones ilimitadas en cementerios y piedras de alma.</li>
-<li><span class="bullet">✔</span> Comercio, correo, casa de subastas y hermandades al 100%.</li>
-<li><span class="bullet">✔</span> Curva de progresión estándar con HeroBots de apoyo.</li>
-</ul>
-</div>
-<div class="mode-footer-badge" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
-                    🎮 Activo por Defecto al Crear Personaje
-                </div>
-</div>
-<!-- MODO HARDCORE -->
-<div class="mode-card hardcore">
-<div>
-<div class="mode-header">
-<span class="mode-icon">☠️</span>
-<span class="mode-pill" style="color: #ef4444;">1 Sola Vida</span>
-</div>
-<h3 class="mode-title">Modo Hardcore</h3>
-<p class="mode-desc">Muerte Permanente estricta. Si tu salud llega a cero por cualquier motivo, tu alma queda sellada para siempre en el mundo terrenal como espíritu errante.</p>
-<ul class="mode-rules-list">
-<li><span class="bullet">✖</span> Bloqueo total de resurrección por ángel o curandero.</li>
-<li><span class="bullet">✔</span> Se erige una lápida ornamental física en tu lugar de caída.</li>
-<li><span class="bullet">✔</span> Activa el aura de <strong>Herencia de Almas (+100% XP x2)</strong>.</li>
-</ul>
-</div>
-<div class="mode-footer-badge" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
-                    ⚡ Activación: Habla con Kaelia o usa <code>/modo</code>
-</div>
-</div>
-<!-- MODO IRONMAN -->
-<div class="mode-card ironman">
-<div>
-<div class="mode-header">
-<span class="mode-icon">⛓️</span>
-<span class="mode-pill" style="color: #cbd5e1;">Aislamiento</span>
-</div>
-<h3 class="mode-title">Modo Ironman</h3>
-<p class="mode-desc">La prueba máxima de autosuficiencia y templanza. Una sola vida combinada con el aislamiento económico y social absoluto en las tierras de Azeroth.</p>
-<ul class="mode-rules-list">
-<li><span class="bullet">✖</span> Prohibido comerciar, usar buzón o comprar en subastas.</li>
-<li><span class="bullet">✖</span> Prohibido unirse a grupos o recibir buffs externos.</li>
-<li><span class="bullet">✔</span> Únicamente equipamiento de calidad gris y blanca.</li>
-</ul>
-</div>
-<div class="mode-footer-badge" style="border-color: rgba(148, 163, 184, 0.4); color: #e2e8f0;">
-                    🏆 Título Exclusivo &amp; Reconocimiento en Armería
-                </div>
-</div>
-<!-- MODO DIE & RISE -->
-<div class="mode-card dierise">
-<div>
-<div class="mode-header">
-<span class="mode-icon">🧟</span>
-<span class="mode-pill" style="color: #10b981;">3 Vidas</span>
-</div>
-<h3 class="mode-title">Die &amp; Rise</h3>
-<p class="mode-desc">Metamorfosis necrótica progresiva. Inicias con 3 vidas. Cada muerte altera tu carne convirtiéndote en no-muerto con debuffs profanos acumulativos.</p>
-<ul class="mode-rules-list">
-<li><span class="bullet">✔</span> Transformación visual en esqueleto y aura fría profana.</li>
-<li><span class="bullet">✔</span> Puedes purificar tu cuerpo en Santuarios Sagrados.</li>
-<li><span class="bullet">✖</span> La tercera muerte sella tu destino de forma irrevocable.</li>
-</ul>
-</div>
-<div class="mode-footer-badge" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-                    🔮 Mecánica Exclusiva de JainaCore
-                </div>
-</div>
-<!-- RETO ANDINO X1 -->
-<div class="mode-card retoandino">
-<div>
-<div class="mode-header">
-<span class="mode-icon">🏔️</span>
-<span class="mode-pill" style="color: #f59e0b;">Purista 2008</span>
-</div>
-<h3 class="mode-title">Reto Andino x1</h3>
-<p class="mode-desc">Para los nostálgicos del esfuerzo genuino. Experiencia x1 estricta en misiones, monstruos y profesiones exactamente como en los servidores de 2008.</p>
-<ul class="mode-rules-list">
-<li><span class="bullet">✔</span> Multiplicadores x1 sin ningún acelerador de experiencia.</li>
-<li><span class="bullet">✔</span> Aprendizaje paulatino de habilidades por instructor.</li>
-<li><span class="bullet">✔</span> Compatible con modo Normal o desafíos de vidas.</li>
-</ul>
-</div>
-<div class="mode-footer-badge" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
-                    📜 Emblema de Resistencia en tu Perfil
-                </div>
-</div>
-</div>
-<!-- MECÁNICAS DE SALVAGUARDA & HERENCIA -->
-<div class="modes-special-grid">
-<div class="special-mechanic-card">
-<div class="special-mechanic-icon">✨</div>
-<div class="special-mechanic-content">
-<h4>Mecánica de Herencia de Almas (+100% XP x2)</h4>
-<p>En Project Jaina, tu esfuerzo jamás se pierde. Si un héroe en modo Hardcore, Ironman o Die &amp; Rise cae en batalla tras superar el nivel 1, su esencia bendice tu cuenta: <strong>tu siguiente personaje recibirá automáticamente el bono Herencia x2 XP</strong> hasta alcanzar el nivel máximo que logró el héroe caído.</p>
-</div>
-</div>
-<div class="special-mechanic-card">
-<div class="special-mechanic-icon">🛡️</div>
-<div class="special-mechanic-content">
-<h4>Santuario Anti-DC (Protección Activa contra Cortes de Red)</h4>
-<p>Desarrollado bajo estándar L9: Si el servidor detecta una pérdida súbita de paquetes o desconexión abrupta de tu conexión a internet mientras estás en combate peligroso, el núcleo activa de inmediato el <strong>Santuario Divino de Inmunidad Temporal</strong>, impidiendo que mueras injustamente por problemas de ISP.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- ==============================================================================
-         ARQUITECTURA ECONÓMICA & DIVISAS SOBERANAS (HITO #217)
-         ============================================================================== -->
-<section class="economy-section" id="economia-del-reino">
-<div style="text-align: center;">
-<div class="economy-badge-top">🪙 ECOSISTEMA ECONÓMICO BLINDADO · ZERO PAY-TO-WIN</div>
-<h2 class="section-title">Arquitectura Económica &amp; Sistema de Divisas</h2>
-<p class="section-subtitle">Economía viva y sostenible de circuito cerrado: botín justo, casas de subastas dinámicas con liquidez garantizada y cosméticos de prestigio.</p>
-</div>
-<!-- BANNER DE ONBOARDING MINUTO CERO -->
-<div class="economy-onboarding-banner">
-<div class="onboarding-info">
-<h3>🎁 Regalo de Bienvenida "Minuto Cero" para Nuevos Jugadores</h3>
-<p>Al iniciar sesión por primera vez con cualquier personaje nuevo, el núcleo <code>87_PlayerFirstLogin_Onboarding.lua</code> deposita de forma 100% gratuita en tu inventario y buzón oficial:</p>
-</div>
-<div class="onboarding-rewards-pills">
-<div class="onboarding-pill">🪽 5x Fichas de Evento (910000)</div>
-<div class="onboarding-pill">🪙 6x Tokens de Jaina (900100)</div>
-<div class="onboarding-pill">💰 10 Monedas de Oro</div>
-<div class="onboarding-pill">🎒 4x Mochilas de 16 Casillas</div>
-</div>
-</div>
-<!-- GRID DE LAS 3 DIVISAS SOBERANAS -->
-<div class="currency-cards-grid">
-<!-- FICHA DE EVENTO -->
-<div class="currency-card event-token">
-<div>
-<div class="currency-card-header">
-<span class="currency-icon-badge">🪽</span>
-<span class="currency-id-tag">ENTRY: 910000</span>
-</div>
-<div class="currency-card-subtitle">Divisa Cosmética de Prestigio</div>
-<h3 class="currency-card-title">Ficha de Evento</h3>
-<p class="currency-card-desc">Moneda especial canjeable en la Tienda Visual 3D interactiva (comando <code>/alas</code> o NPC Kaelia) para lucir 17 tipos de alas celestiales, auras místicas y bonus de 3 días.</p>
-<div class="currency-qa-block">
-<strong>¿Cómo se Consigue?</strong>
-<span>• <strong>5 Fichas GRATIS</strong> al crear tu personaje en el Onboarding inicial.<br/>
-                        • Canje in-game con Tokens de Jaina en la tienda (200 → 10x, 800 → 50x, 1500 → 100x).<br/>
-                        • Recompensas en eventos mundiales del Gobernador de Lore y packs del portal.</span>
-</div>
-<div class="currency-qa-block">
-<strong>¿En Qué se Gasta?</strong>
-<span>• Alas sin bonus: <strong>4 Fichas</strong>.<br/>
-                        • Alas con bonus de profesión/recolección: <strong>5 Fichas</strong>.<br/>
-                        • Alas con bonus de oro, exp o reputación: <strong>6 Fichas</strong>.</span>
-</div>
-</div>
-</div>
-<!-- TOKEN DE JAINA -->
-<div class="currency-card jaina-token">
-<div>
-<div class="currency-card-header">
-<span class="currency-icon-badge">🪙</span>
-<span class="currency-id-tag">ENTRY: 900100</span>
-</div>
-<div class="currency-card-subtitle">Micro-Moneda Soberana 1:1</div>
-<h3 class="currency-card-title">Token de Jaina</h3>
-<p class="currency-card-desc">Divisa oficial de conveniencia y soporte comunitario. Acumulable en bolsas hasta 10,000 unidades y utilizable dentro y fuera del juego.</p>
-<div class="currency-qa-block">
-<strong>¿Cómo Funciona?</strong>
-<span>• <strong>Clic Derecho in-game:</strong> Se consume la moneda y acredita de forma atómica <strong>+1 Punto de Donación (PD)</strong> a tu cuenta web.<br/>
-                        • <strong>Tienda In-Game:</strong> Se utiliza directamente en el AddOn <code>ProjectJaina_Store</code> para comprar monturas, compañeros y bolsas.</span>
-</div>
-<div class="currency-qa-block">
-<strong>¿Cómo se Consigue?</strong>
-<span>• 5 Tokens de bienvenida al crear personaje (+1 por carta oficial).<br/>
-                        • Desafíos de temporada y logros del Pase de Batalla.<br/>
-                        • Contribuciones voluntarias de infraestructura en la Tesorería web.</span>
-</div>
-</div>
-</div>
-<!-- FICHA DE JAINA (WOW TOKEN) -->
-<div class="currency-card wow-token">
-<div>
-<div class="currency-card-header">
-<span class="currency-icon-badge">🎫</span>
-<span class="currency-id-tag">ENTRY: 900200</span>
-</div>
-<div class="currency-card-subtitle">WoW Token Mayor (100 PD)</div>
-<h3 class="currency-card-title">Ficha de Jaina</h3>
-<p class="currency-card-desc">El equivalente canónico al WoW Token oficial de Blizzard. Diseñado para conectar la economía de oro del juego con los puntos de donación de la web.</p>
-<div class="currency-qa-block">
-<strong>¿Cómo Funciona?</strong>
-<span>• <strong>100% Comerciable:</strong> Puedes venderla en la Casa de Subastas por oro a otros jugadores o intercambiarla en mano.<br/>
-                        • <strong>Clic Derecho in-game:</strong> Al consumirse otorga <strong>+100 Puntos de Donación (PD)</strong> a tu cuenta web.</span>
-</div>
-<div class="currency-qa-block">
-<strong>Impacto en el Jugador Free-to-Play</strong>
-<span>Permite a cualquier jugador dedicado conseguir pases de batalla VIP o servicios cosméticos simplemente jugando y acumulando oro en el reino.</span>
-</div>
-</div>
-</div>
-</div>
-<!-- PILARES DE SALUD ECONÓMICA -->
-<div class="economy-pillars-grid">
-<div class="economy-pillar-card">
-<div class="economy-pillar-header">
-<span class="economy-pillar-icon">🏛️</span>
-<h4 class="economy-pillar-title">Motor de Subastas Vivas (Liquidez Garantizada)</h4>
-</div>
-<p class="economy-pillar-desc">
-                    Respaldado por <code>95_AuctionHouse_Economy_Engine.lua</code>: Más de 1,200 ítems sembrados en un mercado unificado cross-faction. Cuando publicas tus materiales de profesión recolectados (menas, hierbas, telas), un agente comprador inteligente los evalúa tras 45 segundos y los adquiere con un 80% de probabilidad al precio de mercado, enviando el oro a tu buzón y reteniendo la comisión oficial del 5%.
-                </p>
-</div>
-<div class="economy-pillar-card">
-<div class="economy-pillar-header">
-<span class="economy-pillar-icon">👗</span>
-<h4 class="economy-pillar-title">Sumideros de Oro &amp; Transfiguración Invisible</h4>
-</div>
-<p class="economy-pillar-desc">
-                    El oro conserva su valor a través de sumideros activos: El vestidor de piezas invisibles y guardarropa (<code>60_WardrobeSystem.lua</code> / <code>/armario</code>) cobra 15 monedas de oro por ranura ocultada, la Doble Especialización 1,000 monedas de oro, y las comisiones de subasta retiran liquidez de forma continua para impedir la hiperinflación.
-                </p>
-</div>
-</div>
-</section>
-<!-- LIVING LORE FEATURE SHOWCASE -->
 <section class="factions-section" id="living-lore">
 <h2 class="section-title">El Pilar Revolucionario: Lore Viviente</h2>
 <p class="section-subtitle">Inteligencia artificial generativa integrada en el núcleo del juego, sin latencia y con memoria persistente</p>
@@ -1550,6 +739,7 @@
 </div>
 </section>
 <!-- MUNDO VIVIENTE: BALUARTES DE HERMANDAD & COMBATE NAVAL (SISTEMAS EXCLUSIVOS 2.5) -->
+
 <section class="world-events-section" id="mundo-viviente">
 <div style="text-align: center;">
 <div class="world-events-badge-top">⚓ MUNDO VIVIENTE &amp; SISTEMAS EXCLUSIVOS JAINCORE 2.5</div>
@@ -1675,6 +865,7 @@
 </div>
 </section>
 <!-- CINEMÁTICA OFICIAL DE LA ERA & RASGANORTE -->
+
 <section class="cinematic-section" id="trailer-cinematico">
 <div class="cinematic-header">
 <div class="hero-badge" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.4); color: #00e5ff;">🎬 CINEMÁTICA OFICIAL DE LA ERA</div>
@@ -1694,6 +885,487 @@
 </div>
 </section>
 <!-- SUITE DE LOS 20 ADDONS OFICIALES REMASTERIZADOS -->
+
+            </div>
+
+            <!-- TAB 2: FASES, REINOS & DESAFÍOS -->
+            <div class="discovery-tab-pane" id="tab-fases" role="tabpanel">
+
+<section class="beta-announcement-card" id="fase-beta" style="margin: 3.5rem auto 2rem; max-width: 1250px;">
+<div style="text-align: center;">
+<div class="beta-header-badge">
+<span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80;"></span>
+                FASE BETA PÚBLICA ABIERTA · GARANTÍA 100% NO-WIPE
+            </div>
+<h2 style="color: #ffd700; font-size: 1.85rem; font-family: 'Cinzel', serif; margin: 0 0 0.6rem 0; font-weight: 900; letter-spacing: 0.8px;">
+                🛡️ ¡Azeroth Está Abierto para Ti!
+            </h2>
+<p style="color: #e2e8f0; font-size: 1.02rem; line-height: 1.6; max-width: 860px; margin: 0 auto;">
+                El avance de tu personaje, profesiones, monedas y hermandades se conserva permanentemente al 100% para la apertura oficial.
+            </p>
+</div>
+<div class="beta-pillars-grid">
+<div class="beta-pillar-item">
+<div class="beta-pillar-icon">🔒</div>
+<div class="beta-pillar-title" style="color: #38bdf8;">1. Cero Wipe Garantizado</div>
+<p class="beta-pillar-desc">
+                    Todo lo que consigas durante la Beta se mantiene de forma definitiva. ¡Tu esfuerzo nunca se perderá!
+                </p>
+</div>
+<div class="beta-pillar-item">
+<div class="beta-pillar-icon">🎁</div>
+<div class="beta-pillar-title" style="color: #ffd700;">2. Recompensas por Bugs</div>
+<p class="beta-pillar-desc">
+                    ¿Encontraste un bug? Repórtalo con <code>/ticket</code> en el juego y reclama títulos y cosméticos de apoyo.
+                </p>
+</div>
+<div class="beta-pillar-item">
+<div class="beta-pillar-icon">⚡</div>
+<div class="beta-pillar-title" style="color: #a855f7;">3. Conexión Directa Anycast</div>
+<p class="beta-pillar-desc">
+                    Red global Anycast transparente sin VPNs, con soporte para navegador web y cliente tradicional de PC.
+                </p>
+</div>
+</div>
+<!-- HERO QUICK-CONNECT & REALMLIST WIDGET (ANYCAST 1-CLIC) -->
+<div class="hero-quick-connect" id="heroQuickConnect" style="margin-top: 2rem;">
+<div class="quick-connect-header">
+<div class="quick-connect-badge">
+<span class="live-dot-pulse"></span>
+<span>Conexión Directa al Reino · Servidor Online</span>
+</div>
+<div class="quick-connect-ping-wrap">
+<button class="btn-ping-test" data-action="ping-test" title="Probar latencia en tiempo real hacia el servidor Anycast" type="button">
+                        📶 Probar Latencia
+                    </button>
+</div>
+</div>
+<div class="hero-mode-tabs">
+<button class="hero-mode-btn active" data-mode="anycast" onclick="switchRealmlistHeroMode('anycast')" title="Conexión directa Anycast global L4 sin necesidad de VPN" type="button">
+                    🌐 Anycast Global WAN (Cero VPN · Directo)
+                </button>
+<button class="hero-mode-btn radmin-tab" data-mode="radmin" onclick="switchRealmlistHeroMode('radmin')" title="Conexión directa vía red Radmin VPN" type="button">
+                    🟣 Red Radmin VPN (Privada)
+                </button>
+</div>
+<div class="quick-connect-body">
+<div class="quick-connect-code-box">
+<span class="quick-connect-label" id="heroRealmlistLabel">TU REALMLIST OFICIAL (ANYCAST GLOBAL):</span>
+<code class="quick-connect-code" id="heroRealmlistCode">set realmlist ambulance-absurd.tun.ply.gg:58735</code>
+<div class="quick-connect-subdesc" id="heroRealmlistDesc">
+                        ⚡ <strong>Anycast Global L4 (Cero VPN):</strong> Conexión pública directa al reino sin necesidad de programas externos ni VPN.
+                    </div>
+</div>
+<div class="quick-connect-actions">
+<button class="btn-quick-action btn-copy-hero" data-action="copy-realmlist" title="Copiar línea de realmlist al portapapeles" type="button">
+                        📋 Copiar Realmlist
+                    </button>
+<button class="btn-quick-action btn-dl-hero" data-action="download-realmlist" title="Descargar archivo realmlist.wtf autoconfigurado" type="button">
+                        📥 Descargar realmlist.wtf
+                    </button>
+</div>
+</div>
+<div class="quick-connect-port-alert">
+                🚀 <strong>Conexión 100% Nativa:</strong> World of Warcraft 3.3.5a procesa el puerto <code>:58735</code> directamente. Puedes arrastrar el archivo descargado a tu carpeta de WoW o abrir nuestro <strong>Lanzador Oficial</strong> para sincronizarlo automáticamente.
+            </div>
+<div class="quick-connect-footer">
+<div class="quick-connect-pill">🌐 Anycast Global Playit L4</div>
+<div class="quick-connect-pill">⚡ WotLK 3.3.5a (12340)</div>
+<div class="quick-connect-pill">📁 Arrástralo a: <code>Data\esES\</code> (o tu idioma)</div>
+</div>
+</div>
+<!-- GRAND OPENING OFFICIAL COUNTDOWN (24/11/2026) -->
+<div class="grand-opening-card" id="grandOpeningCard" style="margin-top: 2rem;">
+<div class="opening-badge-header">
+<span class="opening-sparkle">✨</span>
+<span class="opening-badge-text">GRAN APERTURA MUNDIAL · 24 DE NOVIEMBRE DE 2026</span>
+<span class="opening-sparkle">✨</span>
+</div>
+<h2 class="opening-title">Cuenta Regresiva para la Apertura Oficial</h2>
+<div style="background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(74, 222, 128, 0.4); border-radius: 8px; padding: 0.75rem 1.2rem; margin: 0.8rem auto 1.2rem; max-width: 760px; text-align: center;">
+<p style="color: #86efac; font-weight: 700; margin: 0; font-size: 0.96rem; line-height: 1.5;">
+                    🎮 <strong>¡La Fase Beta Abierta ya está activa y jugable hoy!</strong> Cero reinicios: todo tu avance se conserva al 100%.
+                </p>
+</div>
+<p class="opening-subtitle">El portal de Project JAIna abrirá sus puertas a aventureros de todo el mundo. Prepara tu hermandad y únete a la revolución de Lore Viviente con IA Neuronal.</p>
+<div class="countdown-clock-grid">
+<div class="countdown-tile">
+<div class="countdown-number" id="openingDays">00</div>
+<div class="countdown-label">DÍAS</div>
+</div>
+<div class="countdown-separator">:</div>
+<div class="countdown-tile">
+<div class="countdown-number" id="openingHours">00</div>
+<div class="countdown-label">HORAS</div>
+</div>
+<div class="countdown-separator">:</div>
+<div class="countdown-tile">
+<div class="countdown-number" id="openingMinutes">00</div>
+<div class="countdown-label">MINUTOS</div>
+</div>
+<div class="countdown-separator">:</div>
+<div class="countdown-tile">
+<div class="countdown-number highlight-pulse" id="openingSeconds">00</div>
+<div class="countdown-label">SEGUNDOS</div>
+</div>
+</div>
+<div class="opening-progress-track">
+<div class="opening-progress-fill" id="openingProgressFill"></div>
+</div>
+<div class="opening-meta-info">
+<span>🕒 Hora Oficial: <strong>00:00:00 UTC-5 (Hora Servidor)</strong></span>
+<span>🌐 Servidor Global: <strong style="color: var(--gold-primary);">ambulance-absurd.tun.ply.gg:58735</strong></span>
+</div>
+</div>
+</section>
+<!-- SHOWCASE HEROICO: LOS 7 CAMPEONES SOBERANOS DE PROJECT JAINA (v5.54) -->
+
+<section class="timeline-section" id="linea-de-fases">
+<div class="timeline-header">
+<h2 class="timeline-title">LÍNEA DE FASES &amp; REINOS PROGRESIVOS</h2>
+<p class="timeline-subtitle">Evolución canónica de contenido, bandas y temporadas gobernadas por el Motor de Lore Viviente de Gravity AI</p>
+<div class="era-header-actions">
+<div class="active-era-pill" id="activeEraBadge">🌟 Era Activa: <strong>World of Warcraft Classic</strong> (Cap Nivel 60)</div>
+<button class="calendar-cta-btn" id="openCalendarModalBtn" type="button">📅 Consultar Calendario Oficial de Eras (2026–2028)</button>
+</div>
+</div>
+<!-- HUD DE TELEMETRÍA EN VIVO & TRANSICIÓN DE ERAS -->
+<div class="live-transition-hud" id="liveTransitionHUD">
+<div class="hud-top-bar">
+<div class="hud-indicator">
+<span class="hud-dot"></span>
+<span class="hud-title">CRONÓMETRO DE REINO &amp; TELEMETRÍA DE ERAS EN VIVO</span>
+</div>
+<div class="hud-uptime-badge">
+<span class="hud-label">UPTIME ACTIVO:</span>
+<span class="hud-val monospace" id="hudServerUptime">00d 00h 00m 00s</span>
+</div>
+</div>
+<!-- Flujo Visual de Transición: Sincronizado Dinámicamente por countdown.js -->
+<div class="transition-flow-container">
+<div class="flow-step step-current pulse-glow" id="flowStepCurrent">
+<div class="flow-step-icon" id="flowStepCurrentIcon">⚡</div>
+<div class="flow-step-content">
+<div class="flow-step-tag current-tag" id="flowStepCurrentTag">ERA INICIAL (APERTURA 24 NOV)</div>
+<div class="flow-step-name" id="flowStepCurrentName">Vanilla Classic (Cap 60)</div>
+<div class="flow-step-time" id="currentPhaseElapsedTime">Tiempo en Era: 00d 00h 00m (Standby)</div>
+</div>
+</div>
+<div class="flow-step-arrow">➔</div>
+<div class="flow-step step-next" id="flowStepNext">
+<div class="flow-step-icon" id="flowStepNextIcon">🔒</div>
+<div class="flow-step-content">
+<div class="flow-step-tag" id="flowStepNextTag">SIGUIENTE ERA (BLOQUEADA)</div>
+<div class="flow-step-name" id="flowStepNextName">The Burning Crusade (Cap 70)</div>
+<div class="flow-step-time" id="nextPhaseCountdown">Apertura: Programada post-Vanilla</div>
+</div>
+</div>
+<div class="flow-step-arrow">➔</div>
+<div class="flow-step step-upcoming" id="flowStepHorizon">
+<div class="flow-step-icon">⏳</div>
+<div class="flow-step-content">
+<div class="flow-step-tag">HORIZONTE FUTURO</div>
+<div class="flow-step-name">WotLK Naxxramas (Cap 80)</div>
+<div class="flow-step-time">Tier 7 (Nivel 80)</div>
+</div>
+</div>
+</div>
+<!-- Barra de Transición Sincronizada -->
+<div class="transition-gauge-container">
+<div class="gauge-labels">
+<span>Progreso de Transición de Era: <strong id="transitionPercentText">0.0%</strong></span>
+<span>Gobernado por: <strong>Gravity AI Autonomous Chrono-Master</strong></span>
+</div>
+<div class="gauge-bar-track">
+<div class="gauge-bar-fill" id="transitionGaugeFill" style="width: 0%;"></div>
+</div>
+</div>
+<!-- Parámetros en Tiempo Real del Servidor -->
+<div class="hud-params-grid">
+<div class="param-box">
+<span class="param-icon">🛡️</span>
+<div>
+<div class="param-name">Gating de Contenido</div>
+<div class="param-val" id="paramGating">Eluna Gate v2.0 (Activo)</div>
+</div>
+</div>
+<div class="param-box">
+<span class="param-icon">🧠</span>
+<div>
+<div class="param-name">Motor Neuronal IA</div>
+<div class="param-val" id="paramAI">Jaina LLM (Qwen 2.5 Coder 32B / LFM 2.5)</div>
+</div>
+</div>
+<div class="param-box">
+<span class="param-icon">🎧</span>
+<div>
+<div class="param-name">Audio Espacial 3D</div>
+<div class="param-val" id="paramVoice">HRTF 3050 Online</div>
+</div>
+</div>
+<div class="param-box">
+<span class="param-icon">⏱️</span>
+<div>
+<div class="param-name">Tickrate / Latencia Core</div>
+<div class="param-val" id="paramTickrate">~12 ms (Estable)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="timeline-scroll-wrapper">
+<div class="timeline-rail" id="timelineRail">
+<!-- Nodos renderizados dinámicamente por js/progression.js?v=20261030_v710 -->
+</div>
+</div>
+</section>
+<!-- ==============================================================================
+         MODOS DE JUEGO & DESAFÍOS DE SUPERVIVENCIA (HITO #217)
+         ============================================================================== -->
+
+<section class="game-modes-section" id="modos-de-juego">
+<div style="text-align: center;">
+<div class="modes-badge-top">💀 SISTEMA OFICIAL DE DESAFÍOS IN-GAME</div>
+<h2 class="section-title">Modos de Juego &amp; Desafíos de Supervivencia</h2>
+<p class="section-subtitle">Elige tu senda en Azeroth: desde la experiencia clásica Blizzlike hasta la muerte definitiva con herencia de almas y protección divina anti-desconexión.</p>
+</div>
+<div class="modes-grid">
+<!-- MODO NORMAL -->
+<div class="mode-card normal">
+<div>
+<div class="mode-header">
+<span class="mode-icon">🛡️</span>
+<span class="mode-pill" style="color: #38bdf8;">Aventurero</span>
+</div>
+<h3 class="mode-title">Modo Normal</h3>
+<p class="mode-desc">La experiencia canónica y progresiva de Wrath of the Lich King 3.3.5a HD. Ideal para disfrutar la historia, hermandades y raids sin riesgo de pérdida de personaje.</p>
+<ul class="mode-rules-list">
+<li><span class="bullet">✔</span> Resurrecciones ilimitadas en cementerios y piedras de alma.</li>
+<li><span class="bullet">✔</span> Comercio, correo, casa de subastas y hermandades al 100%.</li>
+<li><span class="bullet">✔</span> Curva de progresión estándar con HeroBots de apoyo.</li>
+</ul>
+</div>
+<div class="mode-footer-badge" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                    🎮 Activo por Defecto al Crear Personaje
+                </div>
+</div>
+<!-- MODO HARDCORE -->
+<div class="mode-card hardcore">
+<div>
+<div class="mode-header">
+<span class="mode-icon">☠️</span>
+<span class="mode-pill" style="color: #ef4444;">1 Sola Vida</span>
+</div>
+<h3 class="mode-title">Modo Hardcore</h3>
+<p class="mode-desc">Muerte Permanente estricta. Si tu salud llega a cero por cualquier motivo, tu alma queda sellada para siempre en el mundo terrenal como espíritu errante.</p>
+<ul class="mode-rules-list">
+<li><span class="bullet">✖</span> Bloqueo total de resurrección por ángel o curandero.</li>
+<li><span class="bullet">✔</span> Se erige una lápida ornamental física en tu lugar de caída.</li>
+<li><span class="bullet">✔</span> Activa el aura de <strong>Herencia de Almas (+100% XP x2)</strong>.</li>
+</ul>
+</div>
+<div class="mode-footer-badge" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                    ⚡ Activación: Habla con Kaelia o usa <code>/modo</code>
+</div>
+</div>
+<!-- MODO IRONMAN -->
+<div class="mode-card ironman">
+<div>
+<div class="mode-header">
+<span class="mode-icon">⛓️</span>
+<span class="mode-pill" style="color: #cbd5e1;">Aislamiento</span>
+</div>
+<h3 class="mode-title">Modo Ironman</h3>
+<p class="mode-desc">La prueba máxima de autosuficiencia y templanza. Una sola vida combinada con el aislamiento económico y social absoluto en las tierras de Azeroth.</p>
+<ul class="mode-rules-list">
+<li><span class="bullet">✖</span> Prohibido comerciar, usar buzón o comprar en subastas.</li>
+<li><span class="bullet">✖</span> Prohibido unirse a grupos o recibir buffs externos.</li>
+<li><span class="bullet">✔</span> Únicamente equipamiento de calidad gris y blanca.</li>
+</ul>
+</div>
+<div class="mode-footer-badge" style="border-color: rgba(148, 163, 184, 0.4); color: #e2e8f0;">
+                    🏆 Título Exclusivo &amp; Reconocimiento en Armería
+                </div>
+</div>
+<!-- MODO DIE & RISE -->
+<div class="mode-card dierise">
+<div>
+<div class="mode-header">
+<span class="mode-icon">🧟</span>
+<span class="mode-pill" style="color: #10b981;">3 Vidas</span>
+</div>
+<h3 class="mode-title">Die &amp; Rise</h3>
+<p class="mode-desc">Metamorfosis necrótica progresiva. Inicias con 3 vidas. Cada muerte altera tu carne convirtiéndote en no-muerto con debuffs profanos acumulativos.</p>
+<ul class="mode-rules-list">
+<li><span class="bullet">✔</span> Transformación visual en esqueleto y aura fría profana.</li>
+<li><span class="bullet">✔</span> Puedes purificar tu cuerpo en Santuarios Sagrados.</li>
+<li><span class="bullet">✖</span> La tercera muerte sella tu destino de forma irrevocable.</li>
+</ul>
+</div>
+<div class="mode-footer-badge" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+                    🔮 Mecánica Exclusiva de JainaCore
+                </div>
+</div>
+<!-- RETO ANDINO X1 -->
+<div class="mode-card retoandino">
+<div>
+<div class="mode-header">
+<span class="mode-icon">🏔️</span>
+<span class="mode-pill" style="color: #f59e0b;">Purista 2008</span>
+</div>
+<h3 class="mode-title">Reto Andino x1</h3>
+<p class="mode-desc">Para los nostálgicos del esfuerzo genuino. Experiencia x1 estricta en misiones, monstruos y profesiones exactamente como en los servidores de 2008.</p>
+<ul class="mode-rules-list">
+<li><span class="bullet">✔</span> Multiplicadores x1 sin ningún acelerador de experiencia.</li>
+<li><span class="bullet">✔</span> Aprendizaje paulatino de habilidades por instructor.</li>
+<li><span class="bullet">✔</span> Compatible con modo Normal o desafíos de vidas.</li>
+</ul>
+</div>
+<div class="mode-footer-badge" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
+                    📜 Emblema de Resistencia en tu Perfil
+                </div>
+</div>
+</div>
+<!-- MECÁNICAS DE SALVAGUARDA & HERENCIA -->
+<div class="modes-special-grid">
+<div class="special-mechanic-card">
+<div class="special-mechanic-icon">✨</div>
+<div class="special-mechanic-content">
+<h4>Mecánica de Herencia de Almas (+100% XP x2)</h4>
+<p>En Project Jaina, tu esfuerzo jamás se pierde. Si un héroe en modo Hardcore, Ironman o Die &amp; Rise cae en batalla tras superar el nivel 1, su esencia bendice tu cuenta: <strong>tu siguiente personaje recibirá automáticamente el bono Herencia x2 XP</strong> hasta alcanzar el nivel máximo que logró el héroe caído.</p>
+</div>
+</div>
+<div class="special-mechanic-card">
+<div class="special-mechanic-icon">🛡️</div>
+<div class="special-mechanic-content">
+<h4>Santuario Anti-DC (Protección Activa contra Cortes de Red)</h4>
+<p>Desarrollado bajo estándar L9: Si el servidor detecta una pérdida súbita de paquetes o desconexión abrupta de tu conexión a internet mientras estás en combate peligroso, el núcleo activa de inmediato el <strong>Santuario Divino de Inmunidad Temporal</strong>, impidiendo que mueras injustamente por problemas de ISP.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ==============================================================================
+         ARQUITECTURA ECONÓMICA & DIVISAS SOBERANAS (HITO #217)
+         ============================================================================== -->
+
+<section class="economy-section" id="economia-del-reino">
+<div style="text-align: center;">
+<div class="economy-badge-top">🪙 ECOSISTEMA ECONÓMICO BLINDADO · ZERO PAY-TO-WIN</div>
+<h2 class="section-title">Arquitectura Económica &amp; Sistema de Divisas</h2>
+<p class="section-subtitle">Economía viva y sostenible de circuito cerrado: botín justo, casas de subastas dinámicas con liquidez garantizada y cosméticos de prestigio.</p>
+</div>
+<!-- BANNER DE ONBOARDING MINUTO CERO -->
+<div class="economy-onboarding-banner">
+<div class="onboarding-info">
+<h3>🎁 Regalo de Bienvenida "Minuto Cero" para Nuevos Jugadores</h3>
+<p>Al iniciar sesión por primera vez con cualquier personaje nuevo, el núcleo <code>87_PlayerFirstLogin_Onboarding.lua</code> deposita de forma 100% gratuita en tu inventario y buzón oficial:</p>
+</div>
+<div class="onboarding-rewards-pills">
+<div class="onboarding-pill">🪽 5x Fichas de Evento (910000)</div>
+<div class="onboarding-pill">🪙 6x Tokens de Jaina (900100)</div>
+<div class="onboarding-pill">💰 10 Monedas de Oro</div>
+<div class="onboarding-pill">🎒 4x Mochilas de 16 Casillas</div>
+</div>
+</div>
+<!-- GRID DE LAS 3 DIVISAS SOBERANAS -->
+<div class="currency-cards-grid">
+<!-- FICHA DE EVENTO -->
+<div class="currency-card event-token">
+<div>
+<div class="currency-card-header">
+<span class="currency-icon-badge">🪽</span>
+<span class="currency-id-tag">ENTRY: 910000</span>
+</div>
+<div class="currency-card-subtitle">Divisa Cosmética de Prestigio</div>
+<h3 class="currency-card-title">Ficha de Evento</h3>
+<p class="currency-card-desc">Moneda especial canjeable en la Tienda Visual 3D interactiva (comando <code>/alas</code> o NPC Kaelia) para lucir 17 tipos de alas celestiales, auras místicas y bonus de 3 días.</p>
+<div class="currency-qa-block">
+<strong>¿Cómo se Consigue?</strong>
+<span>• <strong>5 Fichas GRATIS</strong> al crear tu personaje en el Onboarding inicial.<br/>
+                        • Canje in-game con Tokens de Jaina en la tienda (200 → 10x, 800 → 50x, 1500 → 100x).<br/>
+                        • Recompensas en eventos mundiales del Gobernador de Lore y packs del portal.</span>
+</div>
+<div class="currency-qa-block">
+<strong>¿En Qué se Gasta?</strong>
+<span>• Alas sin bonus: <strong>4 Fichas</strong>.<br/>
+                        • Alas con bonus de profesión/recolección: <strong>5 Fichas</strong>.<br/>
+                        • Alas con bonus de oro, exp o reputación: <strong>6 Fichas</strong>.</span>
+</div>
+</div>
+</div>
+<!-- TOKEN DE JAINA -->
+<div class="currency-card jaina-token">
+<div>
+<div class="currency-card-header">
+<span class="currency-icon-badge">🪙</span>
+<span class="currency-id-tag">ENTRY: 900100</span>
+</div>
+<div class="currency-card-subtitle">Micro-Moneda Soberana 1:1</div>
+<h3 class="currency-card-title">Token de Jaina</h3>
+<p class="currency-card-desc">Divisa oficial de conveniencia y soporte comunitario. Acumulable en bolsas hasta 10,000 unidades y utilizable dentro y fuera del juego.</p>
+<div class="currency-qa-block">
+<strong>¿Cómo Funciona?</strong>
+<span>• <strong>Clic Derecho in-game:</strong> Se consume la moneda y acredita de forma atómica <strong>+1 Punto de Donación (PD)</strong> a tu cuenta web.<br/>
+                        • <strong>Tienda In-Game:</strong> Se utiliza directamente en el AddOn <code>ProjectJaina_Store</code> para comprar monturas, compañeros y bolsas.</span>
+</div>
+<div class="currency-qa-block">
+<strong>¿Cómo se Consigue?</strong>
+<span>• 5 Tokens de bienvenida al crear personaje (+1 por carta oficial).<br/>
+                        • Desafíos de temporada y logros del Pase de Batalla.<br/>
+                        • Contribuciones voluntarias de infraestructura en la Tesorería web.</span>
+</div>
+</div>
+</div>
+<!-- FICHA DE JAINA (WOW TOKEN) -->
+<div class="currency-card wow-token">
+<div>
+<div class="currency-card-header">
+<span class="currency-icon-badge">🎫</span>
+<span class="currency-id-tag">ENTRY: 900200</span>
+</div>
+<div class="currency-card-subtitle">WoW Token Mayor (100 PD)</div>
+<h3 class="currency-card-title">Ficha de Jaina</h3>
+<p class="currency-card-desc">El equivalente canónico al WoW Token oficial de Blizzard. Diseñado para conectar la economía de oro del juego con los puntos de donación de la web.</p>
+<div class="currency-qa-block">
+<strong>¿Cómo Funciona?</strong>
+<span>• <strong>100% Comerciable:</strong> Puedes venderla en la Casa de Subastas por oro a otros jugadores o intercambiarla en mano.<br/>
+                        • <strong>Clic Derecho in-game:</strong> Al consumirse otorga <strong>+100 Puntos de Donación (PD)</strong> a tu cuenta web.</span>
+</div>
+<div class="currency-qa-block">
+<strong>Impacto en el Jugador Free-to-Play</strong>
+<span>Permite a cualquier jugador dedicado conseguir pases de batalla VIP o servicios cosméticos simplemente jugando y acumulando oro en el reino.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PILARES DE SALUD ECONÓMICA -->
+<div class="economy-pillars-grid">
+<div class="economy-pillar-card">
+<div class="economy-pillar-header">
+<span class="economy-pillar-icon">🏛️</span>
+<h4 class="economy-pillar-title">Motor de Subastas Vivas (Liquidez Garantizada)</h4>
+</div>
+<p class="economy-pillar-desc">
+                    Respaldado por <code>95_AuctionHouse_Economy_Engine.lua</code>: Más de 1,200 ítems sembrados en un mercado unificado cross-faction. Cuando publicas tus materiales de profesión recolectados (menas, hierbas, telas), un agente comprador inteligente los evalúa tras 45 segundos y los adquiere con un 80% de probabilidad al precio de mercado, enviando el oro a tu buzón y reteniendo la comisión oficial del 5%.
+                </p>
+</div>
+<div class="economy-pillar-card">
+<div class="economy-pillar-header">
+<span class="economy-pillar-icon">👗</span>
+<h4 class="economy-pillar-title">Sumideros de Oro &amp; Transfiguración Invisible</h4>
+</div>
+<p class="economy-pillar-desc">
+                    El oro conserva su valor a través de sumideros activos: El vestidor de piezas invisibles y guardarropa (<code>60_WardrobeSystem.lua</code> / <code>/armario</code>) cobra 15 monedas de oro por ranura ocultada, la Doble Especialización 1,000 monedas de oro, y las comisiones de subasta retiran liquidez de forma continua para impedir la hiperinflación.
+                </p>
+</div>
+</div>
+</section>
+<!-- LIVING LORE FEATURE SHOWCASE -->
+
+            </div>
+
+            <!-- TAB 3: TECNOLOGÍA, ADDONS & MÓVIL -->
+            <div class="discovery-tab-pane" id="tab-tech" role="tabpanel">
+
 <section class="factions-section" id="addons-showcase">
 <h2 class="section-title">Suite de 21 AddOns Oficiales de Project JAIna</h2>
 <p class="section-subtitle">Calibrados quirúrgicamente para el cliente WotLK 3.3.5a HD (17 AddOns canónicos para jugadores y 4 suites exclusivas de Staff)</p>
@@ -1846,6 +1518,141 @@
 </div>
 </section>
 <!-- SECCIÓN INTERACTIVA: EDICIÓN MÓVIL PROJECTJAINA-IMITO (ANDROID ARM64) -->
+
+<section class="webclient-showcase-section" id="escaparate-web">
+<div class="webclient-showcase-container">
+<div class="showcase-header">
+<span class="showcase-tag" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">🧪 TECNOLOGÍA EN DESARROLLO · FASE LABORATORIO</span>
+<h2 class="showcase-title">El Futuro: WebClient 3D en tu Navegador (Three.js WebGL)</h2>
+<p class="showcase-desc">
+    Estamos construyendo el cliente web tridimensional de Project Jaina para permitir el acceso nativo mediante WebGL. Actualmente disponible en <strong>Fase Experimental para Desarrolladores y Testers Locales</strong>.
+</p>
+</div>
+<!-- Marco de Monitor / Pantalla WebGL -->
+<div class="webclient-monitor-frame">
+<div class="monitor-top-bar">
+<div class="monitor-dots">
+<span class="monitor-dot dot-red"></span>
+<span class="monitor-dot dot-yellow"></span>
+<span class="monitor-dot dot-green"></span>
+</div>
+<div class="monitor-address-bar">
+                        🔒 https://darckrovert.github.io/ProjectJaina_Web/jugar.html
+                    </div>
+<div class="monitor-badge-fps">
+                        ⚡ WebGL 2.0 · Three.js 60 FPS
+                    </div>
+</div>
+<div class="monitor-screen-viewport">
+<img alt="Project Jaina WebClient 3D Viewport" class="monitor-screen-img" src="images/theramore_citadel_art.jpg"/>
+<div class="monitor-screen-overlay">
+<div class="monitor-hero-caption">
+<h3>Ciudadela de Theramore en Vivo</h3>
+<p>Renderizado tridimensional completo, ciclo día/noche, iluminación dinámica, sonido inmersivo y compatibilidad táctil o con teclado.</p>
+<a class="monitor-play-cta" href="jugar.html">🔬 CONOCER LABORATORIO WEBCLIENT</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Grilla de las 4 Verdades del WebClient -->
+<div class="webclient-features-grid">
+<div class="webclient-feat-card">
+<span class="webclient-feat-icon">⚡</span>
+<h4>1 Clic y a Jugar</h4>
+<p>Cero gigabytes de descarga en tu disco. Abre la pestaña en tu navegador, introduce tus datos y entra a jugar en segundos.</p>
+</div>
+<div class="webclient-feat-card">
+<span class="webclient-feat-icon">💻📱</span>
+<h4>Juega en Cualquier Pantalla</h4>
+<p>Compatible con PC, Mac, Laptops de oficina, Chromebooks, iPads y Celulares Android (con palanca analógica 360° integrada).</p>
+</div>
+<div class="webclient-feat-card">
+<span class="webclient-feat-icon">🎮</span>
+<h4>Gráficos 3D Reales WebGL</h4>
+<p>No es un vídeo por streaming: es el motor Three.js acelerado por tu propia tarjeta gráfica con shaders de agua y texturas de WoW.</p>
+</div>
+<div class="webclient-feat-card">
+<span class="webclient-feat-icon">🔄</span>
+<h4>Una Cuenta, Mismo Progreso</h4>
+<p>Tu personaje en la web es exactamente el mismo del servidor. Si luego quieres jugar en el cliente de PC, continúas donde lo dejaste.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- LAS 3 MANERAS DE JUGAR (COMPARATIVA DIRECTA) -->
+
+<section class="ways-to-play-section" id="tres-formas-de-jugar">
+<div style="text-align: center; max-width: 820px; margin: 0 auto 3.5rem;">
+<div class="showcase-tag" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
+                🎮 ELIGE TU FORMA DE ENTRAR
+            </div>
+<h2 class="showcase-title">Tres Formas de Vivir la Aventura</h2>
+<p class="showcase-desc">
+                Adapta tu experiencia según el dispositivo que tengas a mano. Puedes cambiar de una a otra en cualquier momento con la misma cuenta.
+            </p>
+</div>
+<div class="ways-to-play-grid">
+<!-- Opción 1: Web -->
+<div class="way-card highlight-gold">
+<div class="way-badge-top badge-gold">MÁS RÁPIDO · 1 CLIC</div>
+<div class="way-card-header">
+<div class="way-card-icon">⚡</div>
+<h3>1. Lanzador Oficial PC</h3>
+<div class="way-card-subtitle">Ejecuta y Juega en 1 Clic</div>
+</div>
+<ul class="way-spec-list">
+<li><span>Instalación:</span> <strong>Lanzador Ligero (~20 MB)</strong></li>
+<li><span>Compatibilidad:</span> <strong>Cualquier WoW 3.3.5a instalado</strong></li>
+<li><span>Conexión:</span> <strong>Anycast Directa (0 VPN)</strong></li>
+<li><span>AddOns:</span> <strong>Sincronización Automática</strong></li>
+<li><span>Ideal para:</span> <strong>Entrar a jugar de inmediato</strong></li>
+</ul>
+<a class="way-btn-action btn-gold-fill" download="ProjectJaina_Launcher.exe" href="downloads/ProjectJaina_Launcher.exe">
+                    ⚡ DESCARGAR LANZADOR PC
+                </a>
+</div>
+<!-- Opción 2: PC HD -->
+<div class="way-card">
+<div class="way-badge-top badge-cyan">MÁXIMA INMERSIÓN</div>
+<div class="way-card-header">
+<div class="way-card-icon">💻</div>
+<h3>2. Cliente Full HD (PC)</h3>
+<div class="way-card-subtitle">Cliente nativo con Parches HD</div>
+</div>
+<ul class="way-spec-list">
+<li><span>Instalación:</span> <strong>Lanzador de 1 Clic (~20 MB)</strong></li>
+<li><span>Dispositivos:</span> <strong>Windows PC (Laptop / Sobremesa)</strong></li>
+<li><span>Gráficos:</span> <strong>Texturas HD Remasterizadas</strong></li>
+<li><span>AddOns:</span> <strong>Suite Oficial de 21 AddOns</strong></li>
+<li><span>Ideal para:</span> <strong>Sesiones largas y máxima calidad</strong></li>
+</ul>
+<a class="way-btn-action btn-cyan-fill" download="ProjectJaina_Launcher.exe" href="downloads/ProjectJaina_Launcher.exe">
+                    📥 DESCARGAR LANZADOR PC
+                </a>
+</div>
+<!-- Opción 3: Móvil -->
+<div class="way-card">
+<div class="way-badge-top badge-purple">PORTABILIDAD TOTAL</div>
+<div class="way-card-header">
+<div class="way-card-icon">📱</div>
+<h3>3. Móvil Android (Imito)</h3>
+<div class="way-card-subtitle">Cliente nativo emulado en tu móvil</div>
+</div>
+<ul class="way-spec-list">
+<li><span>Instalación:</span> <strong>APK Optimizado ARM64</strong></li>
+<li><span>Dispositivos:</span> <strong>Celulares y Tablets Android</strong></li>
+<li><span>Gráficos:</span> <strong>WoW 3.3.5a Fluido en tu bolsillo</strong></li>
+<li><span>Controles:</span> <strong>Botones táctiles configurables</strong></li>
+<li><span>Ideal para:</span> <strong>Jugar en la cama o de viaje</strong></li>
+</ul>
+<a class="way-btn-action btn-purple-fill" href="#juego-movil">
+                    📲 VER GUÍA ANDROID
+                </a>
+</div>
+</div>
+</section>
+<!-- ¿POR QUÉ PROJECT JAINA ES ÚNICO? (LOS 3 PILARES) -->
+
 <section class="mobile-edition-section" id="juego-movil">
 <div style="text-align: center; max-width: 900px; margin: 0 auto;">
 <div class="hero-badge" style="background: rgba(124, 58, 237, 0.2); border-color: rgba(167, 139, 250, 0.5); color: #c084fc; box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);">
@@ -1940,6 +1747,353 @@
 </div>
 </section>
 <!-- GUÍA DE CONEXIÓN RÁPIDA (ZERO-VPN ANYCAST 1-CLIC) -->
+
+<section class="factions-section" id="por-que-jaina" style="padding: 6rem 1.5rem; background: radial-gradient(circle at 50% 50%, rgba(14, 21, 38, 0.75) 0%, rgba(5, 8, 15, 0.99) 85%);">
+<div style="text-align: center; max-width: 860px; margin: 0 auto 3.5rem;">
+<div class="showcase-tag">✨ INNOVACIÓN PURA EN WOW</div>
+<h2 class="showcase-title">¿Por Qué Project JAIna es Único en el Mundo?</h2>
+<p class="showcase-desc">
+                No somos un servidor genérico más. Hemos reinventado la experiencia de Azeroth con tres pilares exclusivos.
+            </p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1250px; margin: 0 auto;">
+<!-- Pilar 1 -->
+<div class="webclient-feat-card" style="display: flex; flex-direction: column;">
+<div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9;">
+<img alt="Living Lore con IA Neuronal" src="images/jaina_living_lore.jpg" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<h3 style="font-family: 'Cinzel', serif; color: #f59e0b; font-size: 1.35rem; margin-bottom: 0.6rem;">1. Lore Viviente con IA Neuronal</h3>
+<p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
+                    Los personajes legendarios como <strong>Lady Jaina Valiente</strong>, Thrall y Arthas no repiten frases fijas:
+                    escuchan lo que les dices por chat, recuerdan tus misiones anteriores y te responden en lenguaje natural con su propia personalidad.
+                </p>
+</div>
+<!-- Pilar 2 -->
+<div class="webclient-feat-card" style="display: flex; flex-direction: column;">
+<div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9; background: #060b14; display: flex; align-items: center; justify-content: center;">
+<img alt="Línea de Eras y Fases" src="images/space_nebula_bg.jpg" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<h3 style="font-family: 'Cinzel', serif; color: #38bdf8; font-size: 1.35rem; margin-bottom: 0.6rem;">2. Progresión Viva de Eras (60 ➔ 80)</h3>
+<p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
+                    Revive la magia de World of Warcraft paso a paso: comienzas en la era clásica (Vanilla Cap 60) y evolucionas con el reino.
+                    Además, las mazmorras cuentan con <strong>escalado dinámico</strong>: los jefes adaptan su poder para que puedas jugar en solitario o con amigos sin esperar horas en buscador.
+                </p>
+</div>
+<!-- Pilar 3 -->
+<div class="webclient-feat-card" style="display: flex; flex-direction: column;">
+<div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; aspect-ratio: 16/9;">
+<img alt="Modos Hardcore y Muerte Permanente" src="images/icecrown_citadel_epic.jpg" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<h3 style="font-family: 'Cinzel', serif; color: #ef4444; font-size: 1.35rem; margin-bottom: 0.6rem;">3. Modos Hardcore &amp; Aventura</h3>
+<p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">
+                    Elige tu estilo: desde una experiencia relajada y disfrutable hasta el desafío definitivo de <strong>Muerte Permanente Real</strong>
+                    con cerrojos económicos estrictos, recompensas épicas exclusivas y títulos de honor para los aventureros más hábiles.
+                </p>
+</div>
+</div>
+</section>
+<!-- GUÍA "EMPIEZA EN 3 PASOS" (A PRUEBA DE FALLOS) -->
+
+            </div>
+
+            <!-- TAB 4: COMUNIDAD, MÚSICA & TABERNA -->
+            <div class="discovery-tab-pane" id="tab-comunidad" role="tabpanel">
+
+<section class="jukebox-section" id="fonoteca-taberna">
+<div class="jukebox-container">
+<div class="jukebox-header">
+<div class="jukebox-badge">
+<span>🎛️</span>
+<span>KIRIN TOR ARCANE SONIC STUDIO v6.1 · 15 CANALES EN VIVO &amp; LO-FI</span>
+</div>
+<h2 class="jukebox-title">
+                    Jaina's Hearthstone Lounge <span>&amp; Arcane Sonic Studio</span>
+</h2>
+<p class="jukebox-subtitle">
+                    Sintoniza creaciones musicales de la comunidad de World of Warcraft, emisoras Kirin Tor 24/7 en directo y paisajes binaurales 3D generados en tiempo real. Tu música te acompaña mientras exploras el portal.
+                </p>
+</div>
+<!-- TARJETA PRINCIPAL DEL ESTUDIO -->
+<div class="jukebox-main-card">
+<!-- PANEL IZQUIERDO: TOCADISCOS CON AGUJA PIVOTANTE, FFT 64 BANDAS & TRANSPORTE -->
+<div class="jb-turntable-panel">
+<div class="jb-vinyl-assembly">
+<div class="jb-vinyl-disc" id="jbVinylDisc">
+<div class="jb-vinyl-label">
+<div class="jb-vinyl-spindle"></div>
+</div>
+</div>
+<div aria-hidden="true" class="jb-tonearm" id="jbTonearm">
+<div class="jb-tonearm-pivot"></div>
+<div class="jb-tonearm-rod"></div>
+<div class="jb-tonearm-head"></div>
+</div>
+</div>
+<div class="jb-track-info-box">
+<div class="jb-track-badge-row">
+<span class="jb-track-badge" id="jbTrackBadge">🔥 HIMNO COMUNIDAD</span>
+<span class="jb-source-mode-pill" id="jbSourceModePill">📺 YOUTUBE ON-DEMAND</span>
+</div>
+<h3 class="jb-track-title" id="jbTrackTitle">Peacebloom Burn Slow</h3>
+<div class="jb-track-artist" id="jbTrackArtist">Barrens Boys (feat. Toro Loco)</div>
+<div class="jb-track-genre" id="jbTrackGenre">Chill / Lo-Fi Hip-Hop · Baldíos &amp; Mulgore</div>
+<p class="jb-track-desc" id="jbTrackDesc">
+                            Vibras relajadas de Los Baldíos y Mulgore con líricas nostálgicas de World of Warcraft, Druidas y Peacebloom.
+                        </p>
+<!-- Analizador de Espectro Real de 64 Bandas (<canvas>) -->
+<div class="jb-spectrum-box">
+<canvas class="jb-spectrum-canvas" height="52" id="jbMainSpectrumCanvas" width="460"></canvas>
+</div>
+<!-- Barra de Tiempo / Seek Bar Interactiva + Modo EN VIVO -->
+<div class="jb-seek-wrapper">
+<div class="jb-seek-row" id="jbSeekRow">
+<span class="jb-time-label" id="jbTimeCurrent">00:00</span>
+<input aria-label="Progreso de la pista" class="jb-seek-slider" id="jbSeekSlider" max="1000" min="0" type="range" value="0"/>
+<span class="jb-time-label" id="jbTimeTotal">00:00</span>
+</div>
+<div class="jb-live-stream-bar" id="jbLiveBar">
+<span class="jb-live-dot"></span>
+<span id="jbLiveText">EN VIVO 24/7 · ICECAST DIRECTO</span>
+</div>
+</div>
+<!-- Controles Principales -->
+<div class="jb-controls-strip">
+<button aria-label="Canal Anterior" class="jb-ctrl-btn" id="jbBtnPrev" title="Canal Anterior" type="button">⏮</button>
+<button aria-label="Reproducir" class="jb-ctrl-btn jb-play-main-btn" id="jbBtnPlay" title="Reproducir" type="button">▶</button>
+<button aria-label="Siguiente Canal" class="jb-ctrl-btn" id="jbBtnNext" title="Siguiente Canal" type="button">⏭</button>
+</div>
+<!-- Control de Volumen + Capa Opcional de Hoguera -->
+<div class="jb-utility-row">
+<div class="jb-volume-control">
+<button class="jb-vol-mute-btn" id="jbBtnMute" title="Silenciar / Activar Sonido" type="button">🔊</button>
+<input class="jb-vol-slider" id="jbVolSlider" max="100" min="0" title="Volumen" type="range" value="80"/>
+<span class="jb-vol-pct" id="jbVolPct">80%</span>
+</div>
+<button class="jb-hearth-toggle" id="jbBtnHearth" title="Superponer sonido cálido de hoguera de posada" type="button">
+                                🔥 Hoguera: OFF
+                            </button>
+</div>
+<!-- Apoyo al Creador & Acceso a Cabina Dedicada -->
+<div class="jb-creator-support-action">
+<a class="btn-support-channel" href="https://www.youtube.com/@barrensboys" id="jbChannelLink" rel="noopener noreferrer" target="_blank">
+<span>📺</span>
+<span>Apoyar a @barrensboys en YouTube</span>
+</a>
+<a class="drawer-ext-link" href="radio/index.html" style="display:inline-flex;align-items:center;gap:6px;padding:0.5rem 1.1rem;font-size:0.84rem;">
+<span>📻</span>
+<span>Cabina Dedicada Radio 24/7</span>
+</a>
+</div>
+</div>
+</div>
+<!-- PANEL DERECHO: PESTAÑAS DE CATEGORÍA, 15 CANALES & MARCO VISUAL -->
+<div class="jb-playlist-panel">
+<div class="jb-playlist-header">
+<span>📜 Selector Multicanal Kirin Tor</span>
+<span style="font-size: 0.8rem; color: var(--gold-primary); font-weight: 800;">15 Canales Verificados</span>
+</div>
+<div class="jb-cat-tabs" data-cat-group="home">
+<button class="jb-cat-tab active" data-cat="creators" type="button">🔥 Creadores (6)</button>
+<button class="jb-cat-tab" data-cat="radio" type="button">📻 Radio 24/7 (6)</button>
+<button class="jb-cat-tab" data-cat="biomes" type="button">🔮 Biomas 3D (3)</button>
+<button class="jb-cat-tab" data-cat="all" type="button">✨ Todos (15)</button>
+</div>
+<div class="jb-playlist-list" id="jbPlaylistItems">
+<!-- Generado dinámicamente por ArcaneSonicEngine v6.1 -->
+</div>
+<!-- Marco de Video Responsivo + Cubierta Atmosférica para Radio / Biomas 3D -->
+<div class="jb-video-embed-frame">
+<div id="ytIframeMount"></div>
+<div class="jb-nonvideo-deck-overlay" id="jbNonVideoOverlay">
+<div class="jb-nonvideo-content">
+<div class="jb-nonvideo-tag" id="jbNonVideoTag">📻 ICECAST HTTPS 24/7</div>
+<div class="jb-nonvideo-title" id="jbNonVideoTitle">Taberna de Theramore 24/7</div>
+<div class="jb-nonvideo-sub" id="jbNonVideoSub">Flujo acústico directo activo</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- LÍNEA DE FASES (PROGRESSION TIMELINE) -->
+
+<section class="creators-haven-section" id="comunidad-creadores">
+<div class="creators-haven-backdrop"></div>
+<div class="creators-haven-container">
+<div class="creators-hero-banner">
+<div>
+<div class="creators-lead-badge">
+<span>🔥</span>
+<span>COMUNIDAD SOSTENIBLE · REFUGIO DE ARTISTAS &amp; CREADORES</span>
+</div>
+<h2 class="creators-hero-title">
+                        Esta es tu casa: <span>El Hogar de Azeroth</span>
+</h2>
+<p class="creators-hero-desc">
+                        Toma asiento junto al fuego de la taberna. En <strong>Project JAIna</strong> creemos que World of Warcraft no son solo números de daño o piezas de botín: es la nostalgia de escuchar música bajo las estrellas de Los Baldíos, los videos y parodias que nos unieron durante años, las guías forjadas con pasión y las historias que cada creador comparte.
+                    </p>
+<p class="creators-hero-desc" style="color: #cbd5e1; font-weight: 500;">
+                        Aquí <strong>no hay elitismo, no hay soledad y no hay censura</strong>: apoyamos activamente a streamers, editores de machinima, músicos independientes, desarrolladores de addons y narradores de rol. ¡Tu talento, tu arte y tu tiempo aquí se respetan y celebran!
+                    </p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.5rem;">
+<a class="btn-primary" href="https://discord.gg/cXxMuRJrfy" rel="noopener noreferrer" style="font-size: 0.95rem; padding: 0.75rem 1.8rem;" target="_blank">
+                            ⚔️ Unirme a la Alianza de Creadores
+                        </a>
+<a class="btn-secondary" href="#fonoteca-taberna" style="font-size: 0.95rem; padding: 0.75rem 1.6rem; border-color: rgba(245, 158, 11, 0.4); color: #fcd34d;">
+                            🎶 Escuchar en la Fonoteca ➔
+                        </a>
+</div>
+</div>
+<div class="creators-hero-img-wrap">
+<img alt="Aventureros y Creadores de la Alianza y la Horda reunidos en la Taberna de Project Jaina" class="creators-hero-img" src="images/creators_tavern_welcome.jpg"/>
+<div class="creators-hero-overlay">
+                        🕯️ "Horda y Alianza unidas por la música, el arte y la comunidad."
+                    </div>
+</div>
+</div>
+<!-- LOS 4 PILARES DEL PROGRAMA DE APOYO A CREADORES -->
+<div class="creators-pillars-grid">
+<div class="creators-pillar-card">
+<div class="pillar-icon-box">🎵</div>
+<h3 class="pillar-title">Músicos &amp; Beatmakers</h3>
+<p class="pillar-desc">
+                        Difusión oficial en nuestra Fonoteca Web y Launcher. Rendimos tributo e impulsamos a creadores independientes como <strong>Barrens Boys</strong>, canalizando a nuestra comunidad hacia sus canales y plataformas oficiales.
+                    </p>
+</div>
+<div class="creators-pillar-card">
+<div class="pillar-icon-box">🎥</div>
+<h3 class="pillar-title">Streamers &amp; Youtubers</h3>
+<p class="pillar-desc">
+                        Rango verificado in-game <code>&lt;Creador de Contenido&gt;</code>, alertas de transmisión en vivo en Discord, herramientas de cámara cinemática sin interfaz para machinimas y soporte directo de Game Masters para eventos.
+                    </p>
+</div>
+<div class="creators-pillar-card">
+<div class="pillar-icon-box">🛠️</div>
+<h3 class="pillar-title">Autores de AddOns &amp; Modders</h3>
+<p class="pillar-desc">
+                        Soporte técnico directo con APIs nativas C++ y Eluna (Bridge MultiBot de baja latencia), acceso a entornos de prueba en nuestro clúster y compatibilidad garantizada con el cliente HD Dragonflight.
+                    </p>
+</div>
+<div class="creators-pillar-card">
+<div class="pillar-icon-box">📜</div>
+<h3 class="pillar-title">Narradores de Rol &amp; Lore</h3>
+<p class="pillar-desc">
+                        Organización de eventos cinemáticos con Lady Jaina y líderes vivientes, baluartes territoriales para hermandades y publicación de crónicas históricas de los campeones del reino en nuestra web.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================================
+         LA FONOTECA DE LA TABERNA: JUKEBOX LO-FI & PEACEBLOOM LOUNGE
+         ===================================================================== -->
+
+<div class="server-funding-card" id="serverFundingSection">
+<div class="funding-header">
+<div class="funding-badge">
+<span>🛡️</span>
+<span>SOSTENIMIENTO COMUNITARIO · ZERO PAY-TO-WIN</span>
+</div>
+<div class="funding-status-badge">
+<span>📅</span>
+<span id="fundingMonthLabel">Noviembre 2026</span>
+</div>
+</div>
+<h3 class="funding-title">
+<span>⚡</span> Meta de Infraestructura &amp; Baja Latencia
+            </h3>
+<p class="funding-desc">
+                Project JAIna opera con una filosofía estricta <strong>100% No-Pay-to-Win</strong>. Cada contribución voluntaria financia de forma transparente los servidores físicos dedicados (Ryzen 7 8700G en Perú + Ryzen 9 5900X en España), el túnel Anycast L4 de baja latencia global y la seguridad criptográfica del reino.
+            </p>
+<div class="funding-track">
+<div class="funding-fill" id="fundingProgressFill" style="width: 25%;"></div>
+</div>
+<div class="funding-meta-row">
+<div>
+                    Recaudado: <strong id="fundingRaisedText" style="color: #38bdf8;">S/. 45.00 PEN ($12.30 USD)</strong> de <span id="fundingTargetText" style="color: #ffd700;">S/. 180.00 PEN ($49.20 USD)</span>
+</div>
+<div>
+                    Progreso: <strong id="fundingPctText" style="color: #34d399;">25.0%</strong> · <span style="color: #94a3b8;"><strong id="fundingSupportersCount" style="color: #ffffff;">4</strong> Patrocinadores</span>
+</div>
+</div>
+<div class="funding-expenses-grid">
+<div class="funding-expense-chip">
+<strong>🌐 Playit Anycast L4 Premium</strong>
+<span>Enrutamiento sin VPN y ping optimizado (S/. 45/mes)</span>
+</div>
+<div class="funding-expense-chip">
+<strong>⚡ Nodos Ryzen 7 8700G &amp; Ryzen 9 5900X</strong>
+<span>Hardware dedicado, energía y fibra óptica (S/. 110/mes)</span>
+</div>
+<div class="funding-expense-chip">
+<strong>🔒 DNS &amp; SSL Cloudflare Pro</strong>
+<span>Protección DDoS L7 y dominios seguros (S/. 25/mes)</span>
+</div>
+</div>
+<div class="funding-actions">
+<a class="btn-funding-donate" href="tienda.html">
+<span>💎</span> Apoyar al Servidor en la Tienda (PayPal / GitHub Sponsors)
+                </a>
+<a class="btn-funding-secondary" href="tienda.html">
+                    📜 Ver Catálogo Cosmético (Sin Ventajas de Poder)
+                </a>
+</div>
+</div>
+<!-- MULTI-REALM TELEMETRY & FACTION BALANCE HUD -->
+<div class="dual-realm-grid">
+<div class="realm-card-live">
+<div class="realm-info-block">
+<h4>⚡ Project Jaina <span style="font-size: 0.70rem; color: var(--gold-primary); font-family: sans-serif; font-weight: 700;">[REINO PRINCIPAL]</span></h4>
+<p>Reino 1 (Perú) · WotLK 3.3.5a HD · Lore Viviente · Modos In-Game: Normal, Hardcore &amp; Iron Man</p>
+</div>
+<div class="realm-ping-badge" id="realmJainaStatus">
+                    🟢 <span style="color: #34d399;">ONLINE</span> (~18ms)
+                </div>
+</div>
+<div class="realm-card-live">
+<div class="realm-info-block">
+<h4>🧪 WanitosGym <span style="font-size: 0.70rem; color: #a78bfa; font-family: sans-serif; font-weight: 700;">[LABORATORIO REMOTO - ESPAÑA]</span></h4>
+<p>Reino 3 (España) · Cluster Multi-Nodo 32 Cores · FranFranco Sandbox</p>
+</div>
+<div class="realm-ping-badge" id="realmWanitosStatus" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); color: #c084fc;">
+                    🟣 <span>STANDBY</span> (Radmin VPN)
+                </div>
+</div>
+</div>
+<!-- BALANCE DE FACCIONES EN VIVO -->
+<div class="faction-balance-container">
+<div class="faction-balance-header">
+<span style="color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                    ⚖️ Balance Demográfico y de Fuerzas en Azeroth
+                </span>
+<span style="font-size: 0.74rem; color: var(--text-muted);">Actualizado en tiempo real</span>
+</div>
+<div class="faction-bar-track">
+<div class="faction-slice alliance" id="factionSliceAlliance" style="width: 52%;" title="Alianza (52%)"></div>
+<div class="faction-slice horde" id="factionSliceHorde" style="width: 48%;" title="Horda (48%)"></div>
+</div>
+<div class="faction-legend-row" style="justify-content: center; gap: 40px;">
+<div class="faction-legend-item">
+<span class="legend-dot alliance"></span>
+<span>🦁 Alianza: <strong id="factionPctAlliance" style="color: #38bdf8;">52%</strong></span>
+</div>
+<div class="faction-legend-item">
+<span class="legend-dot horde"></span>
+<span>🐺 Horda: <strong id="factionPctHorde" style="color: #f87171;">48%</strong></span>
+</div>
+</div>
+</div>
+
+<!-- =====================================================================
+         REFUGIO DE LA COMUNIDAD & CREADORES: ESTA ES TU CASA
+         ===================================================================== -->
+
+            </div>
+
+        </div>
+    </section>
+
 <section class="conn-guide-section" id="como-jugar">
 <div style="text-align: center; max-width: 850px; margin: 0 auto;">
 <div class="hero-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399;">🌐 CERO PROGRAMAS EXTERNOS · SIN VPN</div>
@@ -2175,6 +2329,7 @@
 </div>
 </section>
 <!-- AVISO LEGAL & ATRIBUCIÓN INTELECTUAL -->
+
 <section class="legal-disclaimer-section" id="aviso-legal">
 <div class="legal-disclaimer-box">
 <div class="legal-disclaimer-title">⚖️ AVISO LEGAL, PROPIEDAD INTELECTUAL &amp; FILOSOFÍA DEL LABORATORIO</div>
@@ -2221,6 +2376,8 @@
 <script src="js/auth.js?v=20261030_v710"></script>
 <script src="js/navbar.js?v=20261030_v710"></script>
 <script src="js/jaina_jukebox.js?v=20261030_v710"></script>
+    <script src="js/discovery_tabs.js?v=20261104_v739"></script>
+
 <!-- DOCK FLOTANTE MINI-PLAYER (JUKEBOX FLOTANTE PERSISTENTE) -->
 <div class="floating-jukebox-dock hidden-dock" id="floatingJukeboxDock">
 <div class="mini-jb-vinyl" id="miniJbVinyl"></div>

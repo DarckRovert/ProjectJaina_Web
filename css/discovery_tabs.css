@@ -1,0 +1,412 @@
+/**
+ * ===============================================================================
+ * Project JAIna — Sistema de Descubrimiento Progresivo & 4 Pilares Clave (v7.3.9)
+ * Archivo: css/discovery_tabs.css
+ * Arquitectura: Revelación Progresiva AAA, Micro-Interacciones & 0 CLS
+ * ===============================================================================
+ */
+
+/* ===============================================================================
+   1. SECCIÓN DE LOS 4 PILARES CLAVE (Above the Fold / Primeros 5 Segundos)
+   =============================================================================== */
+.key-pillars-section {
+    position: relative;
+    max-width: 1320px;
+    margin: -1.5rem auto 3.5rem;
+    padding: 0 1.5rem;
+    z-index: 20;
+}
+
+.key-pillars-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.key-pillars-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #ffd700;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.key-pillars-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, #fef08a 50%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+}
+
+.key-pillars-subtitle {
+    font-family: 'Inter', sans-serif;
+    color: #94a3b8;
+    font-size: 1.05rem;
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.key-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.pillar-card {
+    position: relative;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 215, 0, 0.22);
+    border-radius: 16px;
+    padding: 1.75rem 1.4rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--pillar-accent, #ffd700), transparent);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 215, 0, 0.55);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), 0 0 24px rgba(255, 215, 0, 0.15);
+}
+
+.pillar-card:hover::before {
+    opacity: 1;
+}
+
+.pillar-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(255, 215, 0, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.pillar-card:hover .pillar-card-icon {
+    transform: scale(1.1) rotate(4deg);
+}
+
+.pillar-card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--pillar-accent, #ffd700);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.pillar-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.65rem;
+    line-height: 1.35;
+}
+
+.pillar-card-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    color: #94a3b8;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.pillar-card-action {
+    margin-top: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--pillar-accent, #ffd700);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+
+.pillar-card-action:hover {
+    gap: 0.65rem;
+}
+
+/* ===============================================================================
+   2. CONTENEDOR MAESTRO DE DESCUBRIMIENTO MODULAR (DISCOVERY TABS)
+   =============================================================================== */
+.discovery-hub-section {
+    position: relative;
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    z-index: 10;
+}
+
+.discovery-hub-header {
+    text-align: center;
+    margin-bottom: 2.25rem;
+}
+
+.discovery-hub-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.discovery-hub-title {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-size: 2.3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 40%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.03em;
+}
+
+.discovery-hub-desc {
+    font-family: 'Inter', sans-serif;
+    color: #94a3b8;
+    font-size: 1.05rem;
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ===============================================================================
+   3. BARRA DE NAVEGACIÓN DE PESTAÑAS (TABS NAV)
+   =============================================================================== */
+.discovery-tabs-nav-wrapper {
+    position: sticky;
+    top: 75px;
+    z-index: 100;
+    margin-bottom: 2.5rem;
+    background: rgba(10, 15, 30, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 20px;
+    padding: 0.6rem;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.1);
+}
+
+.discovery-tabs-nav {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.discovery-tabs-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.discovery-tab-item {
+    flex: 1 1 0;
+    min-width: 200px;
+}
+
+.discovery-tab-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.25rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    color: #94a3b8;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.discovery-tab-btn .tab-btn-icon {
+    font-size: 1.25rem;
+    transition: transform 0.25s ease;
+}
+
+.discovery-tab-btn:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 215, 0, 0.2);
+}
+
+.discovery-tab-btn:hover .tab-btn-icon {
+    transform: scale(1.15);
+}
+
+.discovery-tab-btn.active {
+    color: #ffd700;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(56, 189, 248, 0.12) 100%);
+    border-color: rgba(255, 215, 0, 0.45);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(255, 215, 0, 0.15);
+}
+
+.discovery-tab-btn.active .tab-btn-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+/* ===============================================================================
+   4. PANELES DE CONTENIDO (TAB PANES & TRANSICIONES)
+   =============================================================================== */
+.discovery-tab-pane {
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.discovery-tab-pane.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación de entrada suave */
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.discovery-tab-pane.active {
+    animation: tabFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Resaltado temporal al navegar por ancla profunda */
+@keyframes sectionTargetGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+    30% {
+        box-shadow: 0 0 35px 8px rgba(255, 215, 0, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+.section-deep-highlight {
+    animation: sectionTargetGlow 1.8s ease-out;
+}
+
+/* Holgura nativa para anclas y sticky headers combinados (Navbar + Tabs) */
+.discovery-tab-pane section[id],
+.discovery-tab-pane div[id],
+.discovery-hub-section {
+    scroll-margin-top: 165px;
+}
+
+@media (max-width: 1024px) {
+    .discovery-tab-pane section[id],
+    .discovery-tab-pane div[id],
+    .discovery-hub-section {
+        scroll-margin-top: 140px;
+    }
+}
+
+@media (max-width: 640px) {
+    .discovery-tab-pane section[id],
+    .discovery-tab-pane div[id],
+    .discovery-hub-section {
+        scroll-margin-top: 120px;
+    }
+}
+
+/* ===============================================================================
+   5. RESPONSIVE DESIGN (TABLETS & SMARTPHONES)
+   =============================================================================== */
+@media (max-width: 1024px) {
+    .key-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .discovery-tabs-nav-wrapper {
+        top: 65px;
+    }
+    .discovery-tab-item {
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 640px) {
+    .key-pillars-grid {
+        grid-template-columns: 1fr;
+    }
+    .key-pillars-title {
+        font-size: 1.7rem;
+    }
+    .discovery-hub-title {
+        font-size: 1.75rem;
+    }
+    .discovery-tabs-nav-wrapper {
+        border-radius: 14px;
+        padding: 0.4rem;
+        top: 60px;
+    }
+    .discovery-tab-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+    .discovery-tab-item {
+        min-width: 160px;
+    }
+}
