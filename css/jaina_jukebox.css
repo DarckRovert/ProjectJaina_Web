@@ -1238,8 +1238,9 @@
 .mini-jb-actions {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     flex-shrink: 0;
+    margin-right: 2px;
 }
 
 .mini-jb-btn {
@@ -1328,22 +1329,27 @@
 }
 
 .mini-jb-util-btn {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
     color: #94a3b8;
-    font-size: 0.92rem;
+    font-size: 0.82rem;
     cursor: pointer;
-    padding: 2px 4px;
+    padding: 3px 6px;
     line-height: 1;
-    transition: color 0.18s;
+    transition: all 0.18s ease;
 }
 
 .mini-jb-util-btn:hover {
     color: #ffffff;
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
 .mini-jb-util-btn.close-stop:hover {
-    color: #ef4444;
+    color: #ffffff;
+    background: rgba(239, 68, 68, 0.45);
+    border-color: #ef4444;
 }
 
 /* -----------------------------------------------------------------------------

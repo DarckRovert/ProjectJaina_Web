@@ -34,8 +34,7 @@
         '.tier-card',
         '.store-card',
         '.bug-card',
-        '.enclave-card',
-        '.enclave-detail-view'
+        '.enclave-card'
     ].join(',');
 
     function initCardTilt() {

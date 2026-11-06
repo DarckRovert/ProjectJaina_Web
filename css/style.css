@@ -238,6 +238,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    pointer-events: none;
 }
 
 .nav-dropdown-menu::before {
@@ -259,6 +260,7 @@ body {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
 .dropdown-item-link {
@@ -1044,7 +1046,7 @@ footer .credits-lead {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 2.5rem auto 0;
 }
 
@@ -1497,6 +1499,23 @@ footer .credits-lead {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px rgba(57, 211, 83, 0.15);
     transform: translateY(20px);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 175, 55, 0.45) rgba(10, 14, 24, 0.7);
+}
+
+.phase-modal-card::-webkit-scrollbar {
+    width: 6px;
+}
+.phase-modal-card::-webkit-scrollbar-track {
+    background: rgba(10, 14, 24, 0.7);
+    border-radius: 4px;
+}
+.phase-modal-card::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.45);
+    border-radius: 4px;
+}
+.phase-modal-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(245, 158, 11, 0.7);
 }
 
 .phase-modal-backdrop.modal-visible .phase-modal-card {
@@ -1504,20 +1523,33 @@ footer .credits-lead {
 }
 
 .modal-close-btn {
-    position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    color: #8b949e;
+    position: sticky;
+    top: 0;
+    float: right;
+    margin-top: -1rem;
+    margin-right: -1rem;
+    background: rgba(13, 18, 29, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #ffd700;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: all 0.2s ease;
     line-height: 1;
+    z-index: 25;
 }
 
 .modal-close-btn:hover {
     color: #ffffff;
+    background: rgba(245, 158, 11, 0.3);
+    border-color: #ffd700;
+    transform: scale(1.08);
 }
 
 .modal-phase-header {
@@ -3085,6 +3117,12 @@ body.theme-horde .faction-pill.active {
     align-items: center;
     gap: 0.6rem;
     overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.chat-quick-prompts::-webkit-scrollbar {
+    display: none;
 }
 
 .prompt-hint {
@@ -7914,7 +7952,8 @@ body.pj-modal-open {
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.4));
+    text-shadow: none;
+    filter: drop-shadow(0 2px 14px rgba(251, 191, 36, 0.65));
 }
 
 .hero-v2-subtitle {
