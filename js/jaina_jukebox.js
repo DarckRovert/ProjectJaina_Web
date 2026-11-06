@@ -839,14 +839,20 @@ class ArcaneSonicEngine {
         dock.id = "floatingJukeboxDock";
         dock.className = "floating-jukebox-dock hidden-dock";
         dock.innerHTML = `
-            <div class="dock-top-progress">
-                <div class="jb-seek-row" id="dockSeekRow" style="gap:6px;">
-                    <input type="range" class="dock-seek-slider" id="dockSeekSlider" min="0" max="1000" value="0" aria-label="Progreso de pista">
-                    <span class="dock-time-readout" id="dockTimeReadout">00:00 / 00:00</span>
+            <div class="dock-top-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <div class="dock-top-progress" style="margin-bottom: 0; flex: 1;">
+                    <div class="jb-seek-row" id="dockSeekRow" style="gap:6px;">
+                        <input type="range" class="dock-seek-slider" id="dockSeekSlider" min="0" max="1000" value="0" aria-label="Progreso de pista">
+                        <span class="dock-time-readout" id="dockTimeReadout">00:00 / 00:00</span>
+                    </div>
+                    <div class="dock-live-pill" id="dockLivePill">
+                        <span class="jb-live-dot"></span>
+                        <span id="dockLiveLabel">EN VIVO 24/7 · STREAM DIRECTO</span>
+                    </div>
                 </div>
-                <div class="dock-live-pill" id="dockLivePill">
-                    <span class="jb-live-dot"></span>
-                    <span id="dockLiveLabel">EN VIVO 24/7 · STREAM DIRECTO</span>
+                <div class="dock-window-controls" style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
+                    <button type="button" class="mini-jb-util-btn" id="miniJbMinBtn" title="Minimizar / Expandir">—</button>
+                    <button type="button" class="mini-jb-util-btn close-stop" id="miniJbClose" title="Detener y cerrar reproductor">✕</button>
                 </div>
             </div>
             <div class="dock-main-row">
@@ -869,8 +875,6 @@ class ArcaneSonicEngine {
                     <button type="button" class="mini-jb-drawer-btn" id="miniJbDrawerBtn" title="Abrir Fonoteca sin salir de esta página">
                         <span>🎛️</span><span>Fonoteca</span>
                     </button>
-                    <button type="button" class="mini-jb-util-btn" id="miniJbMinBtn" title="Minimizar / Expandir">—</button>
-                    <button type="button" class="mini-jb-util-btn close-stop" id="miniJbClose" title="Detener y cerrar reproductor">✕</button>
                 </div>
             </div>
         `;

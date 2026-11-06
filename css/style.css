@@ -3024,6 +3024,8 @@ body.theme-horde .faction-pill.active {
     flex-direction: column;
     gap: 1.2rem;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #f59e0b rgba(7, 9, 15, 0.6);
 }
 
 .chat-msg {
@@ -3109,16 +3111,51 @@ body.theme-horde .faction-pill.active {
     100% { opacity: 0.2; }
 }
 
-.chat-quick-prompts {
+.chat-prompts-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
     background: rgba(10, 12, 22, 0.6);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 0.8rem 1.2rem;
+    padding: 0.4rem 0.6rem;
+    gap: 0.4rem;
+}
+
+.prompt-nav-arrow {
+    background: rgba(13, 18, 29, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #ffd700;
+    font-size: 1.3rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    user-select: none;
+    line-height: 1;
+}
+
+.prompt-nav-arrow:hover {
+    background: rgba(245, 158, 11, 0.35);
+    border-color: #ffd700;
+    transform: scale(1.1);
+}
+
+.chat-quick-prompts {
+    background: transparent;
+    border-top: none;
+    padding: 0.4rem 0.2rem;
     display: flex;
     align-items: center;
     gap: 0.6rem;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    flex: 1;
 }
 
 .chat-quick-prompts::-webkit-scrollbar {
@@ -3859,9 +3896,22 @@ body.theme-horde .faction-pill.active {
 /* Steps Grid */
 .conn-steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.8rem;
     margin-bottom: 2.5rem;
+}
+
+.conn-options-subgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    .conn-options-subgrid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .conn-step-card {

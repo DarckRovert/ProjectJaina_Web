@@ -7,10 +7,10 @@
 
     const CANONICAL_RESPONSES = {
         "mision": "«Mi misión en Theramore y Dalaran siempre ha sido preservar la paz entre los pueblos libres y salvaguardar los secretos del Kirin Tor. Con Rasganorte en el horizonte, no permitiré que la oscuridad consuma nuestro mundo.»",
-        "herobot": "«Cuando me invoques con '.playerbots add Jaina', lucharé a tu lado con la furia de la escarcha y el poder arcano de Archus. Adaptaré mis hechizos a cada encuentro y protegeré a tus aliados con barreras de hielo.»",
+        "herobot": "«Cuando me reclutes desde la interfaz oficial o el panel de compañeros, lucharé a tu lado con la furia de la escarcha y el poder arcano de Dalaran. Adaptaré mis hechizos a cada encuentro, esquivaré el fuego de los dragones y protegeré a tus aliados con barreras de hielo.»",
         "baluartes": "«Los Baluartes de Hermandad no se compran con dinero real; se conquistan con honor. Cualquier hermandad de nivel 3 o superior con 2,500 monedas de oro puede presentarse ante el Heraldo Intendente en uno de los 6 enclaves estratégicos. Al reclamarlo, izarán los estandartes de su facción, recibirán descanso de hermandad (Rested XP) y accederán a suministros y reparaciones exclusivas.»",
         "galeon": "«Cada 45 minutos, los vigías de Theramore tocan las campanas de alarma naval. Un galeón renegado fondea frente a nuestros arrecifes. Si trepas por sus escalas de red, podrás tripular la artillería de cubierta disparando cañonazos reales con pólvora o saquear el cofre de suministros navales en la popa. ¡Una verdadera prueba de valor en mar abierto!»",
-        "audio": "«Gracias al cálculo binaural 3D en puerto 3050, puedes escuchar mi voz resonando según mi posición en el mundo. Si camino a tu izquierda o conjuro a tus espaldas, tu percepción espacial será absoluta.»",
+        "audio": "«Gracias al audio posicional 3D nativo, puedes escuchar mi voz resonando según mi ubicación real en el mundo. Si camino a tu izquierda o conjuro a tus espaldas, tu percepción espacial y la de tus compañeros será absoluta y envolvente.»",
         "fuente": "«Terrallende es el preludio de una amenaza mayor. La purificación de la Fuente del Sol y la caída de Kil'jaeden son imperativos antes de enfrentar los ejércitos de la Plaga en Rasganorte.»",
         "reino": "«Project JAIna no es un simple servidor; es un lienzo donde nuestras memorias perduran. Cada conversación que tengamos, cada batalla compartida, quedará grabada en mi memoria persistente.»"
     };
@@ -20,6 +20,16 @@
         const sendBtn = document.getElementById('jainaSendBtn');
         const chatLog = document.getElementById('jainaChatLog');
         const promptPills = document.querySelectorAll('.prompt-pill');
+        const scrollLeftBtn = document.getElementById('promptScrollLeft');
+        const scrollRightBtn = document.getElementById('promptScrollRight');
+        const quickPrompts = document.getElementById('chatQuickPrompts') || document.querySelector('.chat-quick-prompts');
+
+        if (scrollLeftBtn && quickPrompts) {
+            scrollLeftBtn.addEventListener('click', () => quickPrompts.scrollBy({ left: -240, behavior: 'smooth' }));
+        }
+        if (scrollRightBtn && quickPrompts) {
+            scrollRightBtn.addEventListener('click', () => quickPrompts.scrollBy({ left: 240, behavior: 'smooth' }));
+        }
 
         if (!chatLog) return;
 

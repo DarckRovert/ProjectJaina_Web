@@ -313,7 +313,7 @@
                 <div class="pillar-card-tag">Filosofía Zero-P2W</div>
                 <h3 class="pillar-card-title">Reinos Progresivos Equilibrados</h3>
                 <p class="pillar-card-desc">
-                    Reino 1 JainaCore (Vanilla Cap 60) y Reino 3 WanitosGYM (WotLK Cap 80). Subastas vivas, cross-faction y balance económico absoluto.
+                    Reino 1 JainaCore (Vanilla Cap 60) con progresión canónica y alta disponibilidad multi-nodo. Subastas vivas, cross-faction y balance económico absoluto.
                 </p>
                 <a href="#tab-fases" class="pillar-card-action">Ver Fases &amp; Eras ➔</a>
             </article>
@@ -675,7 +675,7 @@
 <span class="chat-pulse-dot"></span>
 <div>
 <div class="chat-jaina-title">Lady Jaina Valiente — Simulador Neuronal en Vivo</div>
-<div class="chat-jaina-status">Conciencia Arcana Activa · Red Neuronal Soberana</div>
+<div class="chat-jaina-status">Canal Arcano Directo · Dalaran &amp; Theramore</div>
 </div>
 </div>
 <div class="chat-header-badge">❄️ LORE VIVIENTE V4.0</div>
@@ -691,7 +691,9 @@
 </div>
 </div>
 <!-- PROMPTS RÁPIDOS -->
-<div class="chat-quick-prompts">
+<div class="chat-prompts-wrapper">
+<button class="prompt-nav-arrow" id="promptScrollLeft" type="button" aria-label="Desplazar a la izquierda">‹</button>
+<div class="chat-quick-prompts" id="chatQuickPrompts">
 <span class="prompt-hint">Preguntas Frecuentes:</span>
 <button class="prompt-pill" data-prompt="mision">🌟 ¿Cuál es tu misión?</button>
 <button class="prompt-pill" data-prompt="herobot">⚔️ ¿Cómo me asistes en combate?</button>
@@ -700,6 +702,8 @@
 <button class="prompt-pill" data-prompt="audio">🎧 ¿Cómo funciona el Audio 3D?</button>
 <button class="prompt-pill" data-prompt="fuente">🔥 ¿Qué pasará con la Fuente del Sol?</button>
 <button class="prompt-pill" data-prompt="reino">❄️ ¿Qué hace único a Project JAIna?</button>
+</div>
+<button class="prompt-nav-arrow" id="promptScrollRight" type="button" aria-label="Desplazar a la derecha">›</button>
 </div>
 <!-- INPUT BAR -->
 <div class="chat-input-bar">
@@ -1988,7 +1992,7 @@
 </div>
 </div>
 <!-- CUADRÍCULA DE 3 PASOS SIMPLES -->
-<div class="conn-steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
+<div class="conn-steps-grid">
 <!-- PASO 1: REGISTRO -->
 <div class="conn-step-card">
 <div class="conn-step-header">
@@ -2017,8 +2021,9 @@
 <h3 class="conn-step-title">Elige tu Opción</h3>
 </div>
 </div>
+<div class="conn-options-subgrid">
 <!-- Opción A: Recomendado (Ya tengo WoW 3.3.5a) -->
-<div style="background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.8rem;">
+<div style="background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 0.9rem;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
 <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Opción 1 (Recomendada)</span>
 <span style="font-size: 0.68rem; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; padding: 1px 6px; border-radius: 4px; font-weight: 700;">20 MB</span>
@@ -2035,7 +2040,7 @@
 </div>
 </div>
 <!-- Opción B: Cliente Completo HD (P2P BitTorrent) -->
-<div style="background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.8rem;">
+<div style="background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 0.9rem;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
 <span style="font-size: 0.75rem; font-weight: 800; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 0.5px;">🧲 Opción 2 (Cliente Completo)</span>
 <span style="font-size: 0.68rem; background: rgba(245, 158, 11, 0.2); color: #fde68a; padding: 1px 6px; border-radius: 4px; font-weight: 700;">36 GB HD</span>
@@ -2054,7 +2059,7 @@
 </div>
 </div>
 <!-- Opción 3: Edición Móvil Android (ARM64) -->
-<div style="background: rgba(147, 51, 234, 0.08); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.8rem;">
+<div style="background: rgba(147, 51, 234, 0.08); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 0.9rem;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
 <span style="font-size: 0.75rem; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">📱 Opción 3 (Móviles &amp; Tablets)</span>
 <span style="font-size: 0.68rem; background: rgba(168, 85, 247, 0.25); color: #e9d5ff; padding: 1px 6px; border-radius: 4px; font-weight: 700;">Android 12+</span>
@@ -2072,8 +2077,9 @@
                         </a>
 </div>
 </div>
+</div>
 <!-- Opción C: Espejo de Respaldo Nube (Discreto / Contingencia) -->
-<div style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 0.6rem 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+<div style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 0.6rem 0.8rem; display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem;">
 <div style="font-size: 0.72rem; color: var(--text-muted);">
                         ☁️ ¿Tu red bloquea P2P? <span style="color: #cbd5e1;">Espejo en Google Drive</span>
 </div>
