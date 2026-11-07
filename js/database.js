@@ -182,7 +182,7 @@ const DB_ENGINE = {
                     const processed = this.applyClientRarityAndSort(data.items);
                     this.totalItems = (this.rarity === "all") ? (data.total || processed.length) : processed.length;
                     this.totalPages = (this.rarity === "all") ? (data.total_pages || 1) : Math.max(1, Math.ceil(processed.length / this.limit));
-                    this.updateStatusBadge(true, "● SERVIDOR EN VIVO (CONECTADO A ACORE_WORLD)");
+                    this.updateStatusBadge(true, "● SERVIDOR EN VIVO (BASE DE DATOS OFICIAL)");
                     this.updateSummaryCounter(processed.length, this.totalItems);
                     this.renderGrid(processed);
                     this.renderPagination();
@@ -342,7 +342,7 @@ const DB_ENGINE = {
                         <span class="db-item-type">${this.escapeHtml(catLabel)} · ${rarity.toUpperCase()}${!isCanonicalWowItem ? ' · EXCLUSIVO JAINA' : ''}</span>
                     </div>
                 </div>
-                <p class="db-item-desc">${this.escapeHtml(it.description || 'Registro verificado en acore_world (JainaCore 3.3.5a).')}</p>
+                <p class="db-item-desc">${this.escapeHtml(it.description || 'Registro verificado en nuestra Base de Datos (JainaCore 3.3.5a).')}</p>
                 <div class="db-item-meta">
                     <span class="db-tag">ID: ${entryNum} ${ilvlText ? '· ' + ilvlText : ''}</span>
                     <div style="display:flex;align-items:center;gap:8px;">

@@ -103,8 +103,8 @@ function updateDualRealmUI(data, isOnline) {
         wanitosStatusBadge.style.borderColor = isWanitosOnline ? "rgba(16, 185, 129, 0.35)" : "rgba(168, 85, 247, 0.35)";
         wanitosStatusBadge.style.color = isWanitosOnline ? "#34d399" : "#c084fc";
         wanitosStatusBadge.innerHTML = isWanitosOnline
-            ? `🟢 <span style="color: #34d399;">ONLINE</span> (Radmin VPN)`
-            : `🟣 <span style="color: #c084fc;">STANDBY</span> (Radmin VPN)`;
+            ? `🟢 <span style="color: #34d399;">ONLINE</span> (Nodo 2 España)`
+            : `🟣 <span style="color: #c084fc;">STANDBY</span> (Nodo 2 España)`;
     }
 
     // Balance Bi-Facción Canónico (Alianza vs Horda)

@@ -54,7 +54,7 @@ function initHardwareChecker() {
                 <div style="font-size: 1.3rem;">🔮</div>
                 <div>
                     <strong style="color: #ffffff; display: block; font-size: 0.86rem;">RENDIMIENTO ULTRA ÉPICO (100 ~ 144+ FPS)</strong>
-                    <span>Tu equipo ejecutará Project Jaina en calidad cinematográfica máxima con Texturas HD WotLK, Interfaz Dragonflight, Audio 3D HRTF y campo de visión ultra-amplio sin caídas.</span>
+                    <span>Tu equipo ejecutará Project Jaina en calidad cinematográfica máxima con Texturas HD WotLK, Interfaz Dragonflight, Audio Espacial 3D y campo de visión ultra-amplio sin caídas.</span>
                 </div>
             `;
         } else if (score >= 3) {
