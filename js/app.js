@@ -95,7 +95,7 @@ function updateDualRealmUI(data, isOnline) {
     }
 
 
-    // Reino 3: WanitosGym - Laboratorio (España)
+    // Nodo 2: España - Alta Disponibilidad
     const wanitosStatusBadge = document.getElementById("realmWanitosStatus");
     if (wanitosStatusBadge) {
         const isWanitosOnline = Boolean(data && data.realm3_online);
