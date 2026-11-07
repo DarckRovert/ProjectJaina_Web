@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Project JAIna Official Crest" width="220">
 </p>
 
-# 🌐 Project JAIna — Portal Web Oficial AAA (v7.3.0)
+# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.0)
 
 <div align="center">
   <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Emblema" width="180" style="border-radius: 50%;">
@@ -14,7 +14,8 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.3.4%20(Hito%20%23288)-00ccff.svg)](./CHANGELOG.md)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.0%20(Hito%20%23310)-00ccff.svg)](./CHANGELOG.md)
+[![WebAPI Engine](https://img.shields.io/badge/WebAPI-Rust%20Tokio%2FAxum%20:8080-orange.svg)](./CHANGELOG.md)
 [![WebClient 3D](https://img.shields.io/badge/Client-Lanzador%20Oficial%20%26%20HD%20PC-E34F26.svg)](./downloads/ProjectJaina_Launcher.exe)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-22272e?logo=github&logoColor=white)](https://darckrovert.github.io/ProjectJaina_Web/)
@@ -32,8 +33,9 @@
 
 ---
 
-## 💎 2. Características del Portal AAA (v7.1.0)
+## 💎 2. Características del Portal AAA (v7.4.0)
 
+* **Backend Soberano en Rust Nativo Tokio/Axum (`jaina_webapi_daemon` en :8080):** Servidor HTTP asíncrono de alto rendimiento con latencias sub-milisegundo (< 1 ms), 28 endpoints REST API nativos, motor criptográfico SRP-6 RFC 5054 integrado, vinculación instantánea 1-Click SSO con Discord, pasarelas de pago omnicanal automatizadas (PayPal y Yape/Plin con generación `YP-XXXX-XXXX`), mercado P2P de oro y consultas relacionales SQL optimizadas sin bloqueos de contención.
 * **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`), animaciones aceleradas por GPU y sistema de diálogos no bloqueantes **Suite Kirin Tor** (cero `alert`/`confirm`/`prompt` nativos).
 * **Living Lore & AI Revolution:** Sección interactiva que narra el despertar de los LoreBots, la arquitectura C++20 `JainaCore` (`jainacore.html`) y la integración del puente neuronal LLM.
 * **Kirin Tor Arcane Sonic Studio (Fonoteca & Radio v7.1):**

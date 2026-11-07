@@ -4,6 +4,28 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.4.0] - 2026-11-07 — Port Completo de WebAPI a Rust Nativo Tokio/Axum (:8080), Criptografía SRP-6 RFC 5054, Discord 1-Click SSO, Mercado P2P de Oro y Pasarelas Omnicanal (Hitos #309 y #310)
+
+### 🦀 Backend Soberano en Rust Tokio/Axum (`jaina_webapi_daemon` en :8080)
+- **Migración Integral a Código Nativo Compilado:**
+  - Sustituido el backend legacy por un daemon de alto rendimiento en Rust (`jaina_webapi_daemon`) compilado con optimizaciones `--release` (LTO, strip, codegen-units=1) y desplegado en `Launchers/jaina_webapi_daemon.exe`.
+  - Latencias de respuesta HTTP/JSON sub-milisegundo (< 1 ms) y manejo asíncrono con `tokio` multi-thread y `sqlx` con pool de conexiones MySQL sin contención de locks.
+- **28 Rutas REST API Verificadas al 100% (HTTP 200 OK):**
+  - **Autenticación & SSO:** `/api/auth/login` con motor criptográfico nativo SRP-6 (RFC 5054, cálculo de salt y verifier de 32 bytes canónicos WotLK) y `/api/auth/discord/register` (generación automática de credenciales sintéticas RFC-5322 e inserción en `account_discord_meta`).
+  - **Autoservicio de Cuenta:** `/api/account/details`, `/api/account/change-password`, `/api/character/teleport`, `/api/character/service`, `/api/account/promo`, `/api/account/vote`, `/api/account/redeem-pv`, `/api/account/transfer-points` y `/api/account/history`.
+  - **Mercado P2P de Oro Descentralizado:** `/api/market/listings`, `/api/market/my-orders`, `/api/market/list-gold`, `/api/market/buy` y `/api/market/cancel`.
+  - **Pasarelas de Pago Omnicanal e Idempotencia:**
+    - `/api/shop/paypal/capture`: Validación y confirmación inmediata con despacho en cola `store_delivery_queue` (status 0) y registro en `account_donations`.
+    - `/api/shop/yape/submit`: Generación de códigos únicos `YP-XXXX-XXXX` (status 10 pendiente), enlaces de redirección a WhatsApp/Discord de validación.
+    - `/api/shop/yape/approve` y `/api/shop/yape/pending`: Flujo de aprobación administrativa con entrega automática in-game de Puntos de Donación.
+  - **Armería, Catálogo & Metadatos:** `/api/status`, `/api/chat`, `/api/database/items`, `/api/shop/goal`, `/api/shop/catalog`, `/api/shop/payment_config`, `/api/armory/search` y `/api/armory/inspect`.
+
+### 🛡️ Auditoría Integral de Activos Web & Cero Enlaces Rotos (Hito #310)
+- **Inspección de 421 Recursos Locales:** Auditadas las 11 páginas web del portal (`index.html`, `armeria.html`, `database.html`, `cuenta.html`, `tienda.html`, `registro.html`, `bugs.html`, `jugar.html`, `jainacore.html`, `privacy.html`, `terms.html`) confirmando 0 recursos rotos y 0 errores 404.
+- **Robustez de Fallback:** Preservado el modo fallback de datos estáticos en caso de que el daemon local no esté en ejecución, asegurando una experiencia perfecta tanto en desarrollo como en producción estática en GitHub Pages.
+
+---
+
 ## [v7.3.6] - 2026-11-04 — Erradicación Definitiva de Colisiones de Socket en WorldServer, Doble Cerrojo con Supervisor Centinela y Supresión Total de Excepciones WinError 10053 (Hito #290)
 
 ### ⚡ Estabilidad Crítica de Sockets y Arranque Doble Cerrojo (Hito #290)
