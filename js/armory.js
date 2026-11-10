@@ -92,7 +92,23 @@ async function fetchLiveArmory() {
         if (response.ok) {
             const liveData = await response.json();
             if (Array.isArray(liveData) && liveData.length > 0) {
-                allCharacters = liveData.map(c => ({ ...c, faction: getHeroFaction(c) }));
+                const prevByName = new Map(
+                    allCharacters.map(c => [String(c.name || "").toLowerCase(), c])
+                );
+                allCharacters = liveData.map(c => {
+                    const prev = prevByName.get(String(c.name || "").toLowerCase());
+                    const hasItems = c.items && (
+                        Array.isArray(c.items)
+                            ? c.items.length > 0
+                            : Object.keys(c.items).length > 0
+                    );
+                    return {
+                        ...c,
+                        items: hasItems ? c.items : (prev && prev.items ? prev.items : {}),
+                        mode: c.mode || c.gamemode || (prev && (prev.mode || prev.gamemode)) || undefined,
+                        faction: getHeroFaction(c)
+                    };
+                });
                 isServerOnline = true;
                 updateArmoryStatusBadge(true, "● SERVIDOR EN VIVO (SINCRONIZADO CON ACORE_CHARACTERS)");
                 renderCensusTelemetry(allCharacters);
@@ -429,6 +445,34 @@ const QUALITY_NAMES = {
     0: "Pobre", 1: "Común", 2: "Poco Común", 3: "Raro", 4: "Épico", 5: "Legendario", 7: "Reliquia"
 };
 
+/** Normaliza `char.items` (array disperso de /api/armory/search u objeto clave-slot de armory.json) en mapa por slotId ("0".."18"). */
+function buildArmoryItemsBySlot(rawItems) {
+    const bySlot = {};
+    if (!rawItems) return bySlot;
+
+    if (Array.isArray(rawItems)) {
+        rawItems.forEach((it, idx) => {
+            if (!it || typeof it !== "object") return;
+            const slotId = (it.slot !== undefined && it.slot !== null) ? Number(it.slot) : idx;
+            if (Number.isFinite(slotId) && slotId >= 0) {
+                bySlot[String(slotId)] = it;
+            }
+        });
+        return bySlot;
+    }
+
+    if (typeof rawItems === "object") {
+        Object.entries(rawItems).forEach(([key, it]) => {
+            if (!it || typeof it !== "object") return;
+            const rawSlot = (it.slot !== undefined && it.slot !== null) ? it.slot : key;
+            const slotId = Number(rawSlot);
+            const slotKey = (Number.isFinite(slotId) && slotId >= 0) ? String(slotId) : String(key);
+            bySlot[slotKey] = it;
+        });
+    }
+    return bySlot;
+}
+
 function renderSlotItemHtml(slotId, item) {
     const sDef = WOW_SLOT_DEFS[slotId] || { name: `Ranura ${slotId}`, emoji: "📦" };
     if (!item || !item.entry) {
@@ -552,14 +596,14 @@ async function inspectCharacter(charName) {
     } catch (_) {}
 
     const classBadge = getClassBadgeClass(char.class || "Guerrero");
-    const itemsMap = char.items || {};
+    const itemsMap = buildArmoryItemsBySlot(char.items);
     const itemsList = Object.values(itemsMap);
     const fac = getHeroFaction(char);
     const facBadge = fac === "Alianza" ? "🦁 Alianza" : "🐺 Horda";
 
-    const leftSlotsHtml = LEFT_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)] || itemsMap[id])).join("");
-    const rightSlotsHtml = RIGHT_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)] || itemsMap[id])).join("");
-    const bottomSlotsHtml = BOTTOM_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)] || itemsMap[id])).join("");
+    const leftSlotsHtml = LEFT_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)])).join("");
+    const rightSlotsHtml = RIGHT_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)])).join("");
+    const bottomSlotsHtml = BOTTOM_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)])).join("");
 
     modalBody.innerHTML = `
         <div class="inspect-header" style="justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -573,7 +617,7 @@ async function inspectCharacter(charName) {
                     <div class="inspect-badges-row">
                         <span class="badge-class ${classBadge}">${char.class || 'Guerrero'}</span>
                         <span class="inspect-pill">${facBadge} · ${char.race || 'Humano'}</span>
-                        <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level || 60} (Cap 60)</span>
+                        <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level || 60} (Cap ${char.level_cap || 60})</span>
                         <span class="inspect-pill">${char.guild || 'Sin Hermandad'}</span>
                         ${getGameModeInspectBadge(char.mode || char.gamemode)}
                     </div>
@@ -592,7 +636,7 @@ async function inspectCharacter(charName) {
 
             <div class="pd-center-podium pd-center-stage">
                 <div class="pd-gs-badge">
-                    <span class="pd-gs-num">${char.gear_score || char.gs || 1985}</span>
+                    <span class="pd-gs-num">${char.gear_score ?? char.gs ?? 0}</span>
                     <span class="pd-gs-label">GEARSCORE</span>
                 </div>
                 <div style="color: #fff; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem;">${char.spec || 'Talentos Clásicos'}</div>
@@ -601,19 +645,19 @@ async function inspectCharacter(charName) {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; text-align: left; font-size: 0.8rem;">
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Salud Máxima</span>
-                        <strong style="color: #39d353;">${(char.health || 4850).toLocaleString()} HP</strong>
+                        <strong style="color: #39d353;">${(char.health ?? 4850).toLocaleString()} HP</strong>
                     </div>
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Maná / Recurso</span>
-                        <strong style="color: #38bdf8;">${(char.mana || 5200).toLocaleString()}</strong>
+                        <strong style="color: #38bdf8;">${(char.mana ?? 5200).toLocaleString()}</strong>
                     </div>
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Muertes Honor</span>
-                        <strong style="color: #f87171;">${(char.kills || char.total_kills || 140).toLocaleString()} HKs</strong>
+                        <strong style="color: #f87171;">${(char.kills ?? char.total_kills ?? 0).toLocaleString()} HKs</strong>
                     </div>
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Tiempo Jugado</span>
-                        <strong style="color: #fff;">${char.playtime_hours || 64}h</strong>
+                        <strong style="color: #fff;">${char.playtime_hours ?? 0}h</strong>
                     </div>
                 </div>
 

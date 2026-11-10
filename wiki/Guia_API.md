@@ -1,6 +1,6 @@
-# 🔌 Guía de API y Módulos JavaScript — Project Jaina Web (v7.1.0)
+# 🔌 Guía de API y Módulos JavaScript — Project Jaina Web (v7.4.1)
 
-Documentación técnica de los módulos JavaScript del cliente y los endpoints REST/WebSocket que alimentan el portal oficial de **Project Jaina (Hito #270)**.
+Documentación técnica de los módulos JavaScript del cliente y los endpoints REST/WebSocket que alimentan el portal oficial de **Project Jaina (Hito #341)**.
 
 ---
 
@@ -21,17 +21,20 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 - Sonda asíncrona de estado del AuthServer para informar disponibilidad en tiempo real.
 
 ### `js/cuenta.js` — Panel de Gestión de Cuenta & Modo Sandbox Interactivo
-- Consulta reactiva con `AbortController` acotado (4.5s) de balance PD/PV, estado 2FA, historial y personajes con GearScore, oro e inventario.
-- Guarda `< 900000` para ítems propietarios del servidor (evita consultas externas fallidas a Wowhead).
-- **Modo Sandbox Interactivo (`launchAccountSandboxDemo()`)**: Permite explorar toda la interfaz de gestión de cuenta y personajes con datos demostrativos cuando el jugador navega offline o antes de iniciar sesión.
+- Consulta reactiva con `AbortController` acotado (4.5s) de balance PD/PV, estado 2FA, historial y personajes con normalización bidireccional de razas/clases (`PJ_RACE_MAP`, `PJ_CLASS_MAP`, `PJ_RACE_NAME_TO_ID`, `PJ_CLASS_NAME_TO_ID`), `normalizePaperdollItems` y `normalizeAccountCharacter`.
+- Guarda `< 900000` para ítems propietarios del servidor (evita consultas externas fallidas a Wowhead) y respaldo de instantánea offline `accountSnapshot`.
+- **Modo Sandbox Interactivo (`launchAccountSandboxDemo()`)**: Permite explorar toda la interfaz de gestión de cuenta, acciones de personaje y Paperdoll con datos demostrativos cuando el jugador navega offline o antes de iniciar sesión.
 
 ### `js/database.js` — Motor Base de Datos Soberana AoWoW (v7.1)
 - Gestiona 8 categorías (`weapons`, `armor`, `mounts`, `npcs`, `quests`, `zones`, `battlepass`, `enclaves`) con contadores en vivo por pestaña, búsqueda instantánea, filtro por rareza y ordenamiento multicriterio.
 - Respaldo estático verificado en `data/database_catalog.json` (72 registros canónicos y custom con iconos verificados HTTP 200) e **Inspector Modal Soberano** con ficha técnica completa y comando `.additem` / coordenadas.
 
-### `js/armory.js` — Armería Soberana & Paperdoll Responsivo (v7.1)
-- Búsqueda normalizada insensible a diacríticos (`NFD`), barra de **Censo del Reino** (proporción Alianza/Horda, GearScore medio, horas jugadas y muertes con honor), filtros de facción/clase y ordenamiento dinámico.
-- **Paperdoll Responsivo de 19 Ranuras (`"0".."18"`)**: Renderiza los 20 campeones de `data/armory.json` con sets canónicos Tier 2 verificados por clase, cero tormentas XHR cuando el icono ya está precacheado y botón de enlace directo compartible (`?inspect=Nombre`).
+### `js/armory.js` — Armería Soberana & Paperdoll Responsivo (v7.4.1)
+- Búsqueda normalizada insensible a diacríticos (`NFD`), barra de **Censo del Reino** (proporción Alianza/Horda, GearScore medio, horas jugadas y muertes con honor), filtros de facción/clase, badges de modo de juego (`HARDCORE`, `IRONMAN`, `DIE_AND_RISE`, `SLOW_X1`) y ordenamiento dinámico.
+- **Paperdoll Responsivo de 19 Ranuras (`"0".."18"`)**: `buildArmoryItemsBySlot()` unifica arrays dispersos de `/api/armory/search` y diccionarios por slot de `data/armory.json`; `fetchLiveArmory()` preserva `items` y `mode` cacheados cuando faltan en la respuesta en vivo y enlaza por `?inspect=Nombre`.
+
+### `js/jaina_dialogue.js` — Oráculo Neuronal de Lady Jaina
+- Envío asíncrono hacia `/api/chat` con `AbortController` de `14000ms`, detección multiproveedor `isNeuralSource` (`neural`, `neural_gpu`, `gravity_cloud*`) y sanitización estricta HTML de `replyText` vía `escapeHtml()` contra XSS reflejado.
 
 ### `js/store.js` — Catálogo Visual de Tienda & Donaciones
 - Renderizado de paquetes y cosméticos con insignias `.store-item-badge` desacopladas de `.icontinyl` (cero mosaicos repetidos de Zamimg) e integración transaccional idempotente con entrega vía SOAP.
@@ -61,7 +64,9 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 | `POST` | `/api/account/transfer-points` | Transferencia validada de Puntos de Donación (PD) entre cuentas. |
 | `POST` | `/api/character/service` | Servicios de personaje in-game: desatascar (`unstuck`), revivir, renombrar, etc. |
 | `GET` | `/api/account/history` | Historial auditado de transacciones de puntos y servicios ejecutados. |
-| `GET` | `/api/armory` | Perfiles completos de personajes (nivel, clase, raza, GearScore, 19 slots de equipo y estadísticas). |
+| `GET` | `/api/armory` | Top-20 de personajes con GearScore real, modo de juego activo (`character_gamemodes`) y 19 slots de equipo por índice de ranura. |
+| `GET` | `/api/armory/leaderboard` | Top-50 ordenado por GearScore con equipo y modo activo sincronizados. |
+| `GET` | `/api/armory/search` | Búsqueda por parámetro `?name=<personaje>` retornando estadísticas completas, logros, `mode` y equipo equipado. |
 | `GET` | `/api/database/items` | Consulta indexada AoWoW en `acore_world` para las 8 categorías (`weapons`, `armor`, `mounts`, `npcs`, `quests`, `zones`, `battlepass`, `enclaves`). |
 | `GET` | `/api/database/enclaves` | Estado soberano, guarnición, coordenadas e intendente de los 6 Baluartes de Hermandad (`CANONICAL_ENCLAVES`). |
 | `GET` | `/api/shop/catalog` | Catálogo visual de monturas, auras, cosméticos y pases de batalla. |
@@ -74,6 +79,8 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 ---
 
 ## 3. Endpoints del Coordinador de Voz Espacial (`server.js` — Puerto 3050 / SSL 3051)
+
+*Endurecimiento (Hito #341): Coerción numérica estricta de `PORT`/`INTERNAL_PORT`, mitigación de traversal sobre `STATIC_DIR` mediante `path.relative()` y manejador defensivo `tlsClientError` con suite automatizada SSL/HTTP.*
 
 | Protocolo | Ruta | Descripción |
 | :--- | :--- | :--- |

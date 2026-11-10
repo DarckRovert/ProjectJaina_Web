@@ -404,31 +404,36 @@ function connectWebSocket(token) {
             // 3.5 Control Remoto de Radio In-Game
             else if (msg.type === 'radio-command') {
                 if (msg.action === 'play') {
-                    if (!isRadioPlaying) toggleRadioPlayback();
+                    const st = parseInt(msg.station, 10) - 1;
+                    if (!isNaN(st) && st >= 0 && st < RADIO_STATIONS.length) {
+                        selectRadioStation(st); // si ya está reproduciendo, conmuta de inmediato
+                    }
+                    if (!isRadioPlaying) {
+                        toggleRadioPlayback();
+                    }
                 } else if (msg.action === 'pause' || msg.action === 'stop') {
                     if (isRadioPlaying) toggleRadioPlayback();
                 } else if (msg.action === 'next') {
-                    let next = (radioIndex + 1) % RADIO_STATIONS.length;
+                    const next = (radioIndex + 1) % RADIO_STATIONS.length;
                     selectRadioStation(next);
-                    if (!isRadioPlaying) toggleRadioPlayback();
                 } else if (msg.action === 'prev') {
                     let prev = radioIndex - 1;
                     if (prev < 0) prev = RADIO_STATIONS.length - 1;
                     selectRadioStation(prev);
-                    if (!isRadioPlaying) toggleRadioPlayback();
                 } else if (msg.action === 'station') {
-                    let st = (parseInt(msg.station, 10) - 1);
-                    if (st >= 0 && st < RADIO_STATIONS.length) {
-                        selectRadioStation(st);
-                        if (!isRadioPlaying) toggleRadioPlayback();
+                    const st = parseInt(msg.station, 10) - 1;
+                    if (!isNaN(st) && st >= 0 && st < RADIO_STATIONS.length) {
+                        selectRadioStation(st); // respeta estado actual de reproducción/pausa
                     }
                 } else if (msg.action === 'volume') {
-                    let v = parseInt(msg.volume, 10);
+                    const v = parseInt(msg.volume, 10);
                     if (!isNaN(v)) {
                         elRadioVolSlider.value = Math.max(0, Math.min(100, v));
                         radioMasterVolume = elRadioVolSlider.value / 100;
                         elRadioVolVal.textContent = elRadioVolSlider.value + '%';
-                        if (!isAudioDucked) radioAudio.volume = radioMasterVolume;
+                        if (radioAudio) {
+                            radioAudio.volume = isAudioDucked ? radioMasterVolume * 0.30 : radioMasterVolume;
+                        }
                     }
                 }
             }
@@ -642,7 +647,7 @@ function handleProximityUpdate(peers) {
     peersListEl.innerHTML = html;
     
     // Auto-Ducking: comprobar si algún aventurero cercano está hablando
-    const isAnyoneSpeaking = (peers || []).some(p => p.speaking);
+    const isAnyoneSpeaking = (peers || []).some(p => Boolean(p.isSpeaking));
     applyAutoDucking(isAnyoneSpeaking);
 }
 

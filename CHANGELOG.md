@@ -4,6 +4,20 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.4.1] - 2026-11-10 — Endurecimiento Integral del Portal Web: Armería 19-Slot Dual, Diálogo Neural Anti-XSS, Cuenta Resiliente y Radio WS (Hito #341)
+
+### 🛡️ Armería Soberana & Micro-Backend (`js/armory.js` & `ProjectJaina_WebAPI.py`)
+- **Normalización Universal de Paperdoll (`buildArmoryItemsBySlot`):** Añadido adaptador de ranuras que indexa de forma homogénea tanto arrays dispersos procedentes de `/api/armory/search` como diccionarios clave-slot (`"0".."18"`) de `data/armory.json`, erradicando el desplazamiento de piezas equipadas al inspeccionar campeones en vivo.
+- **Preservación de Caché e Insignias de Modos:** `fetchLiveArmory()` conserva `items` y `mode`/`gamemode` de la instantánea local cuando la respuesta remota los omite, y normaliza valores nulos en estadísticas (`health`, `mana`, `kills`, `playtime_hours`, `gear_score`) mediante coalescencia nula (`??`).
+- **Exposición de Modo Activo & Equipo en `WebAPI`:** Incorporado `_get_char_gamemode(cur, char_guid)` leyendo `character_gamemodes` (`mode` + `is_x1` → `SLOW_X1`), retención de `items` mapeados por slot y campo `mode` en `/api/armory`, `/api/armory/leaderboard` y `/api/armory/search`.
+
+### 🛡️ Gestión de Cuenta, Diálogo Neural & Radio WebRTC
+- **Panel de Cuenta (`js/cuenta.js`):** Normalización bidireccional de razas y clases (`PJ_RACE_MAP`, `PJ_CLASS_MAP`, `PJ_RACE_NAME_TO_ID`, `PJ_CLASS_NAME_TO_ID`), `normalizePaperdollItems`, `normalizeAccountCharacter`, caché offline `accountSnapshot` y acciones resilientes en Modo Sandbox.
+- **Diálogo Neural de Jaina (`js/jaina_dialogue.js`):** Saneamiento estricto HTML mediante `escapeHtml(replyText)` contra XSS reflejado en DOM, extensión del timeout `AbortController` a `14000ms` para inferencia SLM local/cloud y reconocimiento unificado de fuentes `neural`, `neural_gpu` y `gravity_cloud*`.
+- **Radio & Voz Espacial (`voz/app.js`):** Conmutación inmediata de emisora al recibir `action === 'play'` con índice `station` por WebSocket, manteniendo sincronía activa con el deck del juego.
+
+---
+
 ## [v7.4.0] - 2026-11-07 — Port Completo de WebAPI a Rust Nativo Tokio/Axum (:8080), Criptografía SRP-6 RFC 5054, Discord 1-Click SSO, Mercado P2P de Oro y Pasarelas Omnicanal (Hitos #309 y #310)
 
 ### 🦀 Backend Soberano en Rust Tokio/Axum (`jaina_webapi_daemon` en :8080)

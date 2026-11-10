@@ -10,6 +10,156 @@ function notifyAccountToast(msg) {
     }
 }
 
+const PJ_RACE_MAP = {
+    1: "Humano", 2: "Orco", 3: "Enano", 4: "Elfo de la Noche",
+    5: "No-Muerto", 6: "Tauren", 7: "Gnomo", 8: "Trol",
+    10: "Elfo de Sangre", 11: "Draenei"
+};
+const PJ_CLASS_MAP = {
+    1: "Guerrero", 2: "Paladín", 3: "Cazador", 4: "Pícaro",
+    5: "Sacerdote", 6: "Caballero de la Muerte", 7: "Chamán",
+    8: "Mago", 9: "Brujo", 11: "Druida"
+};
+const PJ_RACE_NAME_TO_ID = {
+    "humano": 1, "human": 1, "orco": 2, "orc": 2, "enano": 3, "dwarf": 3,
+    "elfo de la noche": 4, "nightelf": 4, "no-muerto": 5, "no muerto": 5, "scourge": 5, "undead": 5,
+    "tauren": 6, "gnomo": 7, "gnome": 7, "trol": 8, "troll": 8,
+    "elfo de sangre": 10, "bloodelf": 10, "draenei": 11
+};
+const PJ_CLASS_NAME_TO_ID = {
+    "guerrero": 1, "warrior": 1, "paladin": 2, "paladín": 2, "cazador": 3, "hunter": 3,
+    "picaro": 4, "pícaro": 4, "rogue": 4, "sacerdote": 5, "priest": 5,
+    "caballero de la muerte": 6, "dk": 6, "deathknight": 6,
+    "chaman": 7, "chamán": 7, "shaman": 7, "mago": 8, "mage": 8,
+    "brujo": 9, "warlock": 9, "druida": 11, "druid": 11
+};
+const PJ_ALLIANCE_RACES = new Set([1, 3, 4, 7, 11]);
+const PJ_SANDBOX_FALLBACK_HEROES = [
+    {
+        guid: 1, name: "Elnazzareno", race: "Gnomo", class: "Brujo", gender: "Masculino",
+        level: 60, zone_name: "Ciudadela de Theramore", guild: "El Kirin Tor", gs: 2357, playtime_hours: 247.1,
+        faction: "Alianza",
+        items: {
+            "0": { entry: 16929, name: "Casquete de Némesis", ilvl: 76, quality: 4, icon: "inv_helmet_08" },
+            "15": { entry: 19356, name: "Bastón de la Llama de las Sombras", ilvl: 81, quality: 4, icon: "inv_staff_06" }
+        }
+    },
+    {
+        guid: 2284, name: "Thrall", race: "Orco", class: "Chamán", gender: "Masculino",
+        level: 60, zone_name: "Orgrimmar", guild: "Los Hijos de Durotar", gs: 1954, playtime_hours: 185.0,
+        faction: "Horda",
+        items: {
+            "0": { entry: 16947, name: "Casco de Diez Tormentas", ilvl: 76, quality: 4, icon: "inv_helmet_69" },
+            "15": { entry: 19360, name: "Lok'amir il Romathis", ilvl: 83, quality: 4, icon: "inv_mace_06" }
+        }
+    },
+    {
+        guid: 1002, name: "Jaina", race: "Humano", class: "Mago", gender: "Femenino",
+        level: 60, zone_name: "Ventormenta", guild: "El Kirin Tor", gs: 2140, playtime_hours: 312.5,
+        faction: "Alianza",
+        items: {
+            "0": { entry: 16914, name: "Corona del Viento Abisal", ilvl: 76, quality: 4, icon: "inv_crown_01" },
+            "15": { entry: 22589, name: "Atiesh, Gran Báculo del Guardián", ilvl: 90, quality: 5, icon: "inv_staff_medivh" }
+        }
+    }
+];
+
+function normalizePaperdollItems(rawItems) {
+    if (!rawItems) return [];
+    const list = [];
+    if (Array.isArray(rawItems)) {
+        for (const it of rawItems) {
+            if (!it || typeof it !== "object") continue;
+            const slotNum = Number(it.slot);
+            if (!Number.isNaN(slotNum) && slotNum >= 0 && slotNum < 19) {
+                list.push({ ...it, slot: slotNum });
+            }
+        }
+    } else if (typeof rawItems === "object") {
+        for (const [slotKey, it] of Object.entries(rawItems)) {
+            if (!it || typeof it !== "object") continue;
+            const slotNum = Number(it.slot !== undefined ? it.slot : slotKey);
+            if (!Number.isNaN(slotNum) && slotNum >= 0 && slotNum < 19) {
+                list.push({ ...it, slot: slotNum });
+            }
+        }
+    }
+    list.sort((a, b) => a.slot - b.slot);
+    return list;
+}
+
+function normalizeAccountCharacter(rawChar, fallback = {}) {
+    const c = rawChar || {};
+    let raceId = Number(c.race);
+    if (Number.isNaN(raceId) || !PJ_RACE_MAP[raceId]) {
+        const key = String(c.race_name || c.race || "").trim().toLowerCase();
+        raceId = PJ_RACE_NAME_TO_ID[key] || 1;
+    }
+    const raceName = c.race_name || (typeof c.race === "string" && isNaN(Number(c.race)) ? c.race : PJ_RACE_MAP[raceId]) || "Humano";
+
+    let classId = Number(c.class);
+    if (Number.isNaN(classId) || !PJ_CLASS_MAP[classId]) {
+        const key = String(c.class_name || c.class || "").trim().toLowerCase();
+        classId = PJ_CLASS_NAME_TO_ID[key] || 1;
+    }
+    const className = c.class_name || (typeof c.class === "string" && isNaN(Number(c.class)) ? c.class : PJ_CLASS_MAP[classId]) || "Guerrero";
+
+    let genderNum = Number(c.gender);
+    if (Number.isNaN(genderNum)) {
+        const gStr = String(c.gender || "").trim().toLowerCase();
+        genderNum = (gStr === "femenino" || gStr === "female" || gStr === "mujer") ? 1 : 0;
+    }
+
+    let factionSlug = String(c.faction || "").trim().toLowerCase();
+    if (factionSlug === "alianza" || factionSlug === "alliance") {
+        factionSlug = "alliance";
+    } else if (factionSlug === "horda" || factionSlug === "horde") {
+        factionSlug = "horde";
+    } else {
+        factionSlug = PJ_ALLIANCE_RACES.has(raceId) ? "alliance" : "horde";
+    }
+
+    const fallbackGold = Number(c.money_gold ?? fallback.money_gold ?? 0);
+    const totalCopper = (c.money !== undefined && c.money !== null)
+        ? (Number(c.money) || 0)
+        : (c.gold !== undefined
+            ? ((Number(c.gold) || 0) * 10000 + (Number(c.silver) || 0) * 100 + (Number(c.copper) || 0))
+            : Math.round(fallbackGold * 10000));
+    const gold = c.gold !== undefined ? (Number(c.gold) || 0) : Math.floor(totalCopper / 10000);
+    const silver = c.silver !== undefined ? (Number(c.silver) || 0) : Math.floor((totalCopper % 10000) / 100);
+    const copper = c.copper !== undefined ? (Number(c.copper) || 0) : (totalCopper % 100);
+
+    const hours = Number(c.totaltime_hours ?? c.playtime_hours ?? fallback.playtime_hours ?? 0);
+    const totaltime = (c.totaltime !== undefined && c.totaltime !== null)
+        ? (Number(c.totaltime) || 0)
+        : Math.round(hours * 3600);
+
+    return {
+        ...c,
+        guid: c.guid,
+        name: c.name || "Aventurero",
+        race: raceId,
+        race_name: raceName,
+        class: classId,
+        class_name: className,
+        gender: genderNum,
+        faction: factionSlug,
+        level: Number(c.level) || 60,
+        zone_name: c.zone_name || c.zone || fallback.zone_name || "Ciudadela de Theramore",
+        guild_name: c.guild_name || c.guild || fallback.guild_name || "Sin Hermandad",
+        gear_score: Number(c.gear_score ?? c.gs) || 0,
+        money: totalCopper,
+        gold,
+        silver,
+        copper,
+        totaltime,
+        online: Boolean(c.online),
+        total_kills: Number(c.total_kills ?? c.kills) || 0,
+        honor_points: Number(c.honor_points ?? c.honor) || 0,
+        items: normalizePaperdollItems(c.items)
+    };
+}
+
 window.launchAccountSandboxDemo = async function() {
     const guestView = document.getElementById("dashGuestView");
     const loadingView = document.getElementById("dashLoadingView");
@@ -18,29 +168,31 @@ window.launchAccountSandboxDemo = async function() {
     if (loadingView) loadingView.style.display = "none";
     if (loggedView) loggedView.style.display = "block";
 
-    let sampleChars = [];
+    let rawHeroes = [];
     try {
         const r = await fetch("data/armory.json?v=20261030_v710");
         if (r.ok) {
             const arm = await r.json();
-            sampleChars = arm.slice(0, 3).map((h, i) => ({
-                guid: h.guid || (i + 1),
-                name: h.name,
-                race: h.race,
-                class: h.class,
-                gender: h.gender || "Héroe",
-                level: h.level || 60,
-                zone: i === 0 ? "Ciudadela de Theramore" : (i === 1 ? "Orgrimmar" : "Ventormenta"),
-                online: false,
-                money_gold: 1850 + (i * 640),
-                totaltime_hours: h.playtime_hours || 120,
-                gear_score: h.gs || 2310,
-                total_kills: h.kills || 340,
-                honor_points: h.honor || 4200,
-                items: h.items || {}
-            }));
+            if (Array.isArray(arm) && arm.length > 0) {
+                rawHeroes = arm.slice(0, 3);
+            }
         }
     } catch (_) {}
+
+    if (rawHeroes.length === 0) {
+        rawHeroes = PJ_SANDBOX_FALLBACK_HEROES;
+    }
+
+    const sandboxZones = ["Ciudadela de Theramore", "Orgrimmar", "Ventormenta"];
+    const sampleChars = rawHeroes.map((h, i) => normalizeAccountCharacter({
+        ...h,
+        guid: h.guid || (i + 1),
+        online: false
+    }, {
+        zone_name: sandboxZones[i] || "Ciudadela de Theramore",
+        money_gold: 1850 + (i * 640),
+        playtime_hours: h.playtime_hours || 120
+    }));
 
     const demoData = {
         ok: true,
@@ -57,7 +209,11 @@ window.launchAccountSandboxDemo = async function() {
             expansion: "WotLK 3.3.5a (Fase I: Era Vanilla Cap 60)",
             gmlevel: 0,
             locked: false,
-            banned: false,
+            is_banned: false,
+            ban_reason: "",
+            security_token: "Activo",
+            two_factor: false,
+            recruited_friends: 2,
             dp: 450,
             vp: 35,
             jaina_tokens: 450,
@@ -67,7 +223,7 @@ window.launchAccountSandboxDemo = async function() {
     };
     CURRENT_ACCOUNT_DATA = demoData;
     renderAccountMasterCard(demoData.account, demoData.character_count);
-    renderCharacterRoster(demoData.characters, demoData.account);
+    renderCharacterRoster(demoData.characters, demoData.account, false);
     if (window.showPortalToast) {
         window.showPortalToast("🧪 <strong>Vista Previa Sandbox Activada:</strong> Explora libremente las fichas Paperdoll 19-Slot y paneles del Kirin Tor.", "arcane", 5200);
     }
@@ -149,23 +305,26 @@ async function fetchAccountDetails(username) {
         const data = await res.json();
 
         if (res.ok && data.ok) {
+            const normalizedChars = (data.characters || []).map(ch => normalizeAccountCharacter(ch));
+            data.characters = normalizedChars;
             CURRENT_ACCOUNT_DATA = data;
             if (loadingView) loadingView.style.display = "none";
             if (loggedView) loggedView.style.display = "block";
 
-            // Sincronizar autoritativamente la sesión local con los personajes reales del servidor
+            // Sincronizar autoritativamente la sesión local y snapshot de cuenta con el servidor
             try {
                 const cachedRaw = localStorage.getItem("pj_auth_user");
                 if (cachedRaw) {
                     const cachedUser = JSON.parse(cachedRaw);
-                    cachedUser.characters = data.characters;
+                    cachedUser.characters = normalizedChars;
+                    cachedUser.accountSnapshot = data.account;
                     cachedUser.last_sync = new Date().toISOString();
                     localStorage.setItem("pj_auth_user", JSON.stringify(cachedUser));
                 }
             } catch (_) {}
 
             renderAccountMasterCard(data.account, data.character_count);
-            renderCharacterRoster(data.characters, data.account, false);
+            renderCharacterRoster(normalizedChars, data.account, false);
             // Cambio de contraseña gestionado por uwActionModal (submitChangePasswordModal)
         } else {
             throw new Error(data.message || "No se pudo obtener el perfil de la cuenta.");
@@ -175,25 +334,43 @@ async function fetchAccountDetails(username) {
         if (loadingView) loadingView.style.display = "none";
         if (loggedView) loggedView.style.display = "block";
         
-        // Renderizar con datos cacheados de sesión si el backend está temporalmente no disponible
+        // Renderizar con snapshot y personajes cacheados si el backend está temporalmente no disponible
         const cachedRaw = localStorage.getItem("pj_auth_user");
         if (cachedRaw) {
             const cachedUser = JSON.parse(cachedRaw);
-            renderAccountMasterCard({
-                id: cachedUser.id || 1,
-                username: cachedUser.username,
-                email: cachedUser.email || `${cachedUser.username.toLowerCase()}@projectjaina.local`,
-                joindate: "Registrada en acore_auth",
-                last_ip: "127.0.0.1",
-                last_login: "Sesión activa",
-                gmlevel: cachedUser.gmlevel || 0,
-                gmtitle: cachedUser.gmtitle || "Aventurero de Azeroth",
-                clan: cachedUser.clan || "PROJECT_JAINA",
-                expansion: 2,
-                locked: false,
-                realmlist: "ambulance-absurd.tun.ply.gg:58735"
-            }, (cachedUser.characters ? cachedUser.characters.length : 0));
-            renderCharacterRoster(cachedUser.characters || [], cachedUser, true);
+            const snap = cachedUser.accountSnapshot || {};
+            const offlineAcct = {
+                id: snap.id || cachedUser.id || 1,
+                username: snap.username || cachedUser.username,
+                email: snap.email || cachedUser.email || `${cachedUser.username.toLowerCase()}@projectjaina.local`,
+                joindate: snap.joindate || "Registrada en acore_auth",
+                web_ip: snap.web_ip || "Red Protegida · Caché Local",
+                last_ip: snap.last_ip || "127.0.0.1",
+                last_login: snap.last_login || "Sesión activa",
+                gmlevel: snap.gmlevel ?? cachedUser.gmlevel ?? 0,
+                gmtitle: snap.gmtitle || cachedUser.gmtitle || "Aventurero de Azeroth",
+                clan: snap.clan || cachedUser.clan || "PROJECT_JAINA",
+                expansion: snap.expansion ?? 2,
+                locked: Boolean(snap.locked),
+                dp: snap.dp ?? 0,
+                vp: snap.vp ?? 0,
+                security_token: snap.security_token || "Solicitado",
+                two_factor: Boolean(snap.two_factor),
+                is_banned: Boolean(snap.is_banned),
+                ban_reason: snap.ban_reason || "",
+                recruited_friends: snap.recruited_friends ?? 0,
+                realmlist: snap.realmlist || "ambulance-absurd.tun.ply.gg:58735"
+            };
+            const offlineChars = (cachedUser.characters || []).map(ch => normalizeAccountCharacter(ch));
+            CURRENT_ACCOUNT_DATA = {
+                ok: true,
+                offline: true,
+                account: offlineAcct,
+                characters: offlineChars,
+                character_count: offlineChars.length
+            };
+            renderAccountMasterCard(offlineAcct, offlineChars.length);
+            renderCharacterRoster(offlineChars, offlineAcct, true);
         } else {
             const container = document.getElementById("dashCharactersGrid");
             if (container) {
@@ -436,6 +613,19 @@ function renderCharacterRoster(characters, account, isOfflineCopy = false) {
  * Acción: Desatascar Personaje (Unstuck)
  */
 window.actionUnstuckCharacter = async function(guid, name) {
+    if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.sandbox) {
+        if (!(await window.showPortalConfirm({ title: '✨ Desatasco (Vista Previa Sandbox)', messageHtml: `¿Simular desatasco de <strong>${name}</strong> hacia su santuario en la vista previa?`, confirmText: 'Simular Traslado' }))) {
+            return;
+        }
+        const target = (CURRENT_ACCOUNT_DATA.characters || []).find(c => c.guid == guid);
+        if (target) {
+            target.zone_name = target.faction === "alliance" ? "Ciudad de Ventormenta" : "Orgrimmar";
+            renderCharacterRoster(CURRENT_ACCOUNT_DATA.characters, CURRENT_ACCOUNT_DATA.account, false);
+        }
+        notifyAccountToast(`✓ [Sandbox] ${name} simulado como trasladado a ${target ? target.zone_name : 'su Capital'}. Inicia sesión real para aplicar en acore_characters.`);
+        return;
+    }
+
     const rawUser = localStorage.getItem("pj_auth_user");
     if (!rawUser) return;
     const user = JSON.parse(rawUser);
@@ -550,6 +740,29 @@ window.openTeleportModal = function(guid, name) {
 };
 
 async function actionTeleportCharacter(guid, name, dest) {
+    if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.sandbox) {
+        const sandboxDestNames = {
+            theramore: "Isla de Theramore",
+            dalaran: "Dalaran",
+            stormwind: "Ciudad de Ventormenta",
+            ironforge: "Ciudad de Forjaz",
+            darnassus: "Darnassus",
+            orgrimmar: "Orgrimmar",
+            undercity: "Entrañas",
+            thunderbluff: "Cima del Trueno",
+            moonglade: "Claro de la Luna",
+            gadgetzan: "Gadgetzan"
+        };
+        const target = (CURRENT_ACCOUNT_DATA.characters || []).find(c => c.guid == guid);
+        const destLabel = sandboxDestNames[dest] || dest;
+        if (target) {
+            target.zone_name = destLabel;
+            renderCharacterRoster(CURRENT_ACCOUNT_DATA.characters, CURRENT_ACCOUNT_DATA.account, false);
+        }
+        notifyAccountToast(`✓ [Sandbox] ${name} simulado como trasladado a ${destLabel}. Inicia sesión real para guardar en servidor.`);
+        return;
+    }
+
     const rawUser = localStorage.getItem("pj_auth_user");
     if (!rawUser) return;
     const user = JSON.parse(rawUser);
@@ -840,7 +1053,7 @@ window.openVisualPaperdoll = function(guid) {
         return;
     }
 
-    const items = char.items || [];
+    const items = normalizePaperdollItems(char.items);
     const itemsBySlot = {};
     items.forEach(it => { itemsBySlot[it.slot] = it; });
 
@@ -1581,6 +1794,12 @@ window.submitCharService = async function(service, cost) {
         return;
     }
 
+    if (CURRENT_ACCOUNT_DATA.sandbox) {
+        closeUwModal();
+        notifyAccountToast("⚠ [Modo Sandbox] Los servicios con coste o escritura en base de datos requieren iniciar sesión con una cuenta real.");
+        return;
+    }
+
     try {
         const res = await fetch(`${apiUrl}/api/character/service`, {
             method: "POST",
@@ -2125,6 +2344,10 @@ window.cancelMarketListing = async function(listingId) {
  * Actualiza los detalles de la cuenta de forma segura
  */
 window.refreshCurrentAccountDetails = function() {
+    if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.sandbox) {
+        window.launchAccountSandboxDemo();
+        return;
+    }
     let username = null;
     if (CURRENT_ACCOUNT_DATA && CURRENT_ACCOUNT_DATA.account && CURRENT_ACCOUNT_DATA.account.username) {
         username = CURRENT_ACCOUNT_DATA.account.username;

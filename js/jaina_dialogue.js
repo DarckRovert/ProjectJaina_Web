@@ -83,6 +83,22 @@
             chatLog.scrollTop = chatLog.scrollHeight;
         }
 
+        function isNeuralSource(src) {
+            if (!src || typeof src !== 'string') return false;
+            const s = src.trim().toLowerCase();
+            return s === 'neural' || s === 'neural_gpu' || s.startsWith('gravity_cloud');
+        }
+
+        function formatSourceBadge(sourceName) {
+            if (!isNeuralSource(sourceName)) {
+                return '<span class="badge-ai-spark badge-canonical" style="background: rgba(148, 163, 184, 0.2); border-color: rgba(148, 163, 184, 0.4); color: #cbd5e1;">📜 Registro Canónico</span>';
+            }
+            const label = String(sourceName).trim().toLowerCase().startsWith('gravity_cloud')
+                ? '⚡ IA Neuronal (Cloud)'
+                : '⚡ IA Neuronal';
+            return `<span class="badge-ai-spark">${label}</span>`;
+        }
+
         async function generateJainaReply(promptKey, rawText) {
             setGeneratingState(true);
 
@@ -96,13 +112,13 @@
             chatLog.scrollTop = chatLog.scrollHeight;
 
             let replyText = "";
-            let isNeural = false;
+            let replySource = "canonical";
 
             // Intento de conexión con el motor de IA si está hosteado
             try {
                 const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.getApiUrl) ? CONFIG.getApiUrl() : 'http://127.0.0.1:8080';
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 8000);
+                const timeoutId = setTimeout(() => controller.abort(), 14000);
 
                 const res = await fetch(`${apiUrl}/api/chat`, {
                     method: 'POST',
@@ -118,8 +134,8 @@
                 if (res.ok) {
                     const data = await res.json();
                     if (data.reply) {
-                        replyText = data.reply;
-                        if (data.source === 'neural') isNeural = true;
+                        replyText = String(data.reply);
+                        replySource = data.source || "canonical";
                     }
                 }
             } catch (e) {
@@ -127,6 +143,7 @@
             }
 
             if (!replyText) {
+                replySource = "canonical";
                 if (promptKey && CANONICAL_RESPONSES[promptKey]) {
                     replyText = CANONICAL_RESPONSES[promptKey];
                 } else {
@@ -138,11 +155,11 @@
                     } else if (lower.includes("addon") || lower.includes("interfaz") || lower.includes("dragonflight") || lower.includes("lorehud")) {
                         replyText = "«Hemos preparado 21 AddOns oficiales para ti (17 para aventureros y 4 de maestría): Dragonflight UI en 3.3.5a, audio espacial 3D, LoreHUD con cinemáticas, Pase de Batalla y gráficos remasterizados. Todo disponible en el Launcher oficial.»";
                     } else if (lower.includes("baluarte") || lower.includes("outpost") || lower.includes("hermandad") || lower.includes("fortin")) {
-                        replyText = "«Los Baluartes de Hermandad son 6 enclaves estratégicos en Azeroth conquistables con 2,500 monedas de oro por hermandades nivel 3+. Al izar el estandarte, otorgan bonificación de descanso (Rested XP) y suministros exclusivos sin pay-to-win.»";
+                        replyText = "«Los Baluartes de Hermandad no se compran con dinero real; se conquistan con honor. Cualquier hermandad de nivel 3 o superior con 2,500 monedas de oro puede presentarse ante el Heraldo Intendente en uno de los 6 enclaves estratégicos. Al reclamarlo, izarán los estandartes de su facción, recibirán descanso de hermandad (Rested XP) y accederán a suministros y reparaciones exclusivas.»";
                     } else if (lower.includes("galeon") || lower.includes("desertor") || lower.includes("barco") || lower.includes("naval") || lower.includes("cañon")) {
                         replyText = "«El Galeón de los Desertores es un evento dinámico cada 45 minutos en la bahía de Theramore. Las campanas de costa dan la alarma, permitiendo abordar por escalas de cuerda, operar cañones de artillería interactivos y reclamar el botín del cofre de popa.»";
                     } else {
-                        replyText = `«He reflexionado sobre tus palabras: "${escapeHtml(rawText)}". El destino de Azeroth se forjará con el coraje de héroes como tú. Te espero en Dalaran y en las cámaras de Theramore.»`;
+                        replyText = `«He reflexionado sobre tus palabras: "${rawText}". El destino de Azeroth se forjará con el coraje de héroes como tú. Te espero en Dalaran y en las cámaras de Theramore.»`;
                     }
                 }
             }
@@ -151,15 +168,13 @@
                 typingEl.remove();
                 const msgEl = document.createElement('div');
                 msgEl.className = 'chat-msg msg-jaina';
-                const badgeHtml = isNeural 
-                    ? '<span class="badge-ai-spark">⚡ IA Neuronal</span>'
-                    : '<span class="badge-ai-spark badge-canonical" style="background: rgba(148, 163, 184, 0.2); border-color: rgba(148, 163, 184, 0.4); color: #cbd5e1;">📜 Registro Canónico</span>';
+                const badgeHtml = formatSourceBadge(replySource);
 
                 msgEl.innerHTML = `
                     <img src="images/jaina_crest_logo.jpg" alt="Lady Jaina" class="msg-avatar-img">
                     <div class="msg-bubble">
                         <div class="msg-sender">Lady Jaina Valiente ${badgeHtml}</div>
-                        <div class="msg-text">${replyText}</div>
+                        <div class="msg-text">${escapeHtml(replyText)}</div>
                     </div>
                 `;
                 chatLog.appendChild(msgEl);
