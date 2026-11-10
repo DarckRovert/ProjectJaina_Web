@@ -58,8 +58,17 @@
 
         if (sendBtn && chatInput) {
             sendBtn.addEventListener('click', handleUserSubmit);
+            let isComposingInput = false;
+            chatInput.addEventListener('compositionstart', () => { isComposingInput = true; });
+            chatInput.addEventListener('compositionend', () => { isComposingInput = false; });
             chatInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') handleUserSubmit();
+                if (e.key === 'Enter') {
+                    if (e.isComposing || e.keyCode === 229 || isComposingInput) {
+                        return;
+                    }
+                    e.preventDefault();
+                    handleUserSubmit();
+                }
             });
         }
 

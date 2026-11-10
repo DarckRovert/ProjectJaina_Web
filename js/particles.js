@@ -86,16 +86,49 @@
         }
 
         let time = 0;
-        let isTabActive = true;
+        let rafId = null;
+        let isRunning = false;
+
+        const reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+
+        function startLoop() {
+            if (isRunning) return;
+            if (document.hidden) return;
+            if (reducedMotionQuery.matches) return;
+            isRunning = true;
+            rafId = requestAnimationFrame(render);
+        }
+
+        function stopLoop() {
+            if (!isRunning) return;
+            isRunning = false;
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+        }
+
         document.addEventListener('visibilitychange', () => {
-            isTabActive = !document.hidden;
+            if (document.hidden) {
+                stopLoop();
+            } else {
+                startLoop();
+            }
         });
 
+        if (reducedMotionQuery.addEventListener) {
+            reducedMotionQuery.addEventListener('change', (e) => {
+                if (e.matches) {
+                    stopLoop();
+                    ctx.clearRect(0, 0, width, height);
+                } else {
+                    startLoop();
+                }
+            });
+        }
+
         function render() {
-            if (!isTabActive) {
-                requestAnimationFrame(render);
-                return;
-            }
+            if (!isRunning) return;
 
             ctx.clearRect(0, 0, width, height);
             time += 0.018;
@@ -180,9 +213,9 @@
                 ctx.restore();
             }
 
-            requestAnimationFrame(render);
+            rafId = requestAnimationFrame(render);
         }
 
-        requestAnimationFrame(render);
+        startLoop();
     });
 })();

@@ -8848,3 +8848,46 @@ body.pj-modal-open {
     transform: translateY(-3px);
     border-color: rgba(167, 139, 250, 0.6);
 }
+
+/* ==============================================================================
+   MODERN WEB GUIDANCE (BASELINE 2026): RENDERING EFFICIENCY & ACCESSIBILITY
+   ============================================================================== */
+
+/* 1. Off-screen DOM Rendering Optimization (content-visibility safe inner blocks) */
+@supports (content-visibility: auto) {
+    .champions-grid {
+        content-visibility: auto;
+        contain-intrinsic-size: auto none auto 650px;
+    }
+    .world-dual-showcase {
+        content-visibility: auto;
+        contain-intrinsic-size: auto none auto 550px;
+    }
+    .creators-pillars-grid {
+        content-visibility: auto;
+        contain-intrinsic-size: auto none auto 320px;
+    }
+    .webclient-feat-card {
+        content-visibility: auto;
+        contain-intrinsic-size: auto none auto 360px;
+    }
+}
+
+/* 2. WCAG 2.2 / Baseline Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .status-dot-pulse,
+    .chat-pulse-dot,
+    .btn-play-web-pulse,
+    .beta-dot-pulse,
+    .ambient-audio-btn.playing .eq-bar {
+        animation: none !important;
+    }
+    .brand-container:hover .brand-logo-img,
+    .mobile-pillar-card:hover,
+    .pillar-card:hover,
+    .champion-card:hover,
+    .btn-play-web-nav:hover {
+        transform: none !important;
+    }
+}
+

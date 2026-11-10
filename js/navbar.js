@@ -131,6 +131,7 @@
                     e.preventDefault();
                     cleanup(false);
                 } else if (e.key === 'Enter' && document.activeElement !== btnCancel) {
+                    if (e.isComposing || e.keyCode === 229) return;
                     e.preventDefault();
                     cleanup(true);
                 }
@@ -207,11 +208,18 @@
                 resolve(val);
             }
 
+            let isComposingField = false;
+            if (field) {
+                field.addEventListener('compositionstart', () => { isComposingField = true; });
+                field.addEventListener('compositionend', () => { isComposingField = false; });
+            }
+
             function onKey(e) {
                 if (e.key === 'Escape') {
                     e.preventDefault();
                     cleanup(null);
                 } else if (e.key === 'Enter') {
+                    if (e.isComposing || e.keyCode === 229 || isComposingField) return;
                     e.preventDefault();
                     cleanup(field ? field.value.trim() : '');
                 }

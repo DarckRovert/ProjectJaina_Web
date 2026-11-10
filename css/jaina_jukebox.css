@@ -868,15 +868,23 @@
     padding-right: 6px;
 }
 
-.jb-playlist-list::-webkit-scrollbar,
-.sonic-drawer-list::-webkit-scrollbar {
-    width: 6px;
+.jb-playlist-list,
+.sonic-drawer-list {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245, 158, 11, 0.35) transparent;
 }
 
-.jb-playlist-list::-webkit-scrollbar-thumb,
-.sonic-drawer-list::-webkit-scrollbar-thumb {
-    background: rgba(245, 158, 11, 0.35);
-    border-radius: 999px;
+@supports not (scrollbar-color: auto) {
+    .jb-playlist-list::-webkit-scrollbar,
+    .sonic-drawer-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .jb-playlist-list::-webkit-scrollbar-thumb,
+    .sonic-drawer-list::-webkit-scrollbar-thumb {
+        background: rgba(245, 158, 11, 0.35);
+        border-radius: 999px;
+    }
 }
 
 .jb-playlist-row {
