@@ -167,39 +167,25 @@
     "lore": "Jefe de Guerra y Chamán del Clan Lobo Gélido. Campeón Soberano de la Horda.",
     "items": {
       "0": {
-        "entry": 16947,
-        "name": "Yelmo de Diez Tormentas",
-        "ilvl": 76,
+        "entry": 22466,
+        "name": "Casco Rompetierra",
+        "ilvl": 88,
         "quality": 4,
-        "icon": "inv_helmet_69"
+        "icon": "inv_helmet_09"
       },
       "1": {
-        "entry": 18814,
-        "name": "Gargantilla del Señor del Fuego",
-        "ilvl": 78,
+        "entry": 23036,
+        "name": "Collar de Necropsia",
+        "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_amulet_05"
+        "icon": "inv_jewelry_necklace_30naxxramas"
       },
       "2": {
-        "entry": 16945,
-        "name": "Charreteras de Diez Tormentas",
-        "ilvl": 76,
+        "entry": 22467,
+        "name": "Bufas Rompetierra",
+        "ilvl": 86,
         "quality": 4,
-        "icon": "inv_shoulder_33"
-      },
-      "14": {
-        "entry": 18510,
-        "name": "Pellejo de las Bestias Salvajes",
-        "ilvl": 62,
-        "quality": 4,
-        "icon": "inv_misc_cape_01"
-      },
-      "4": {
-        "entry": 16950,
-        "name": "Coraza de Diez Tormentas",
-        "ilvl": 76,
-        "quality": 4,
-        "icon": "inv_chest_chain_11"
+        "icon": "inv_shoulder_14"
       },
       "3": {
         "entry": 3427,
@@ -208,89 +194,96 @@
         "quality": 1,
         "icon": "inv_shirt_black_01"
       },
-      "18": {
-        "entry": 19506,
-        "name": "Tabardo de Batalla de los Grito de Guerra",
-        "ilvl": 60,
-        "quality": 3,
-        "icon": "inv_shirt_guildtabard_01"
-      },
-      "8": {
-        "entry": 16943,
-        "name": "Brazales de Diez Tormentas",
-        "ilvl": 76,
+      "4": {
+        "entry": 22464,
+        "name": "Túnica Rompetierra",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_bracer_16"
-      },
-      "9": {
-        "entry": 16948,
-        "name": "Guanteletes de Diez Tormentas",
-        "ilvl": 76,
-        "quality": 4,
-        "icon": "inv_gauntlets_11"
+        "icon": "inv_chest_chain_15"
       },
       "5": {
-        "entry": 16944,
-        "name": "Cinturón de Diez Tormentas",
-        "ilvl": 76,
+        "entry": 22470,
+        "name": "Faja Rompetierra",
+        "ilvl": 88,
         "quality": 4,
         "icon": "inv_belt_14"
       },
       "6": {
-        "entry": 16946,
-        "name": "Placas de Pierna de Diez Tormentas",
-        "ilvl": 76,
+        "entry": 22465,
+        "name": "Musleras Rompetierra",
+        "ilvl": 90,
         "quality": 4,
-        "icon": "inv_pants_03"
+        "icon": "inv_pants_mail_15"
       },
       "7": {
-        "entry": 16949,
-        "name": "Grebas de Diez Tormentas",
-        "ilvl": 76,
+        "entry": 22468,
+        "name": "Botas Rompetierra",
+        "ilvl": 86,
         "quality": 4,
-        "icon": "inv_boots_plate_06"
+        "icon": "inv_boots_chain_05"
+      },
+      "8": {
+        "entry": 22471,
+        "name": "Muñequeras Rompetierra",
+        "ilvl": 88,
+        "quality": 4,
+        "icon": "inv_bracer_02"
+      },
+      "9": {
+        "entry": 22469,
+        "name": "Manoplas Rompetierra",
+        "ilvl": 88,
+        "quality": 4,
+        "icon": "inv_gauntlets_25"
       },
       "10": {
-        "entry": 19382,
-        "name": "Banda de Elementium Puro",
-        "ilvl": 83,
+        "entry": 23065,
+        "name": "Anillo Rompetierra",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_jewelry_ring_42"
+        "icon": "inv_jewelry_ring_51naxxramas"
       },
       "11": {
-        "entry": 19397,
-        "name": "Anillo de Roca Negra",
-        "ilvl": 75,
+        "entry": 22939,
+        "name": "Banda de Plegarias No Escuchadas",
+        "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_ring_43"
+        "icon": "inv_jewelry_ring_49naxxramas"
       },
       "12": {
+        "entry": 23047,
+        "name": "Ojo de los Muertos",
+        "ilvl": 90,
+        "quality": 4,
+        "icon": "inv_trinket_naxxramas01"
+      },
+      "13": {
         "entry": 19395,
         "name": "Gema Rejuvenecedora",
         "ilvl": 75,
         "quality": 4,
         "icon": "inv_misc_gem_topaz_02"
       },
-      "13": {
-        "entry": 19379,
-        "name": "Lágrima de Neltharion",
+      "14": {
+        "entry": 22960,
+        "name": "Capa de Sutura",
         "ilvl": 83,
         "quality": 4,
-        "icon": "inv_stone_15"
+        "icon": "inv_misc_cape_naxxramas_01"
       },
       "15": {
-        "entry": 19360,
-        "name": "Lok'amir il Romathis",
-        "ilvl": 81,
+        "entry": 23056,
+        "name": "Martillo del Vacío Abisal",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_mace_06"
+        "icon": "inv_mace_1h_stratholme_d_02"
       },
       "16": {
-        "entry": 19349,
-        "name": "Baluarte Reforzado con Elementium",
-        "ilvl": 77,
+        "entry": 22819,
+        "name": "Escudo de Condenación",
+        "ilvl": 89,
         "quality": 4,
-        "icon": "inv_shield_17"
+        "icon": "inv_shield_28"
       },
       "17": {
         "entry": 22396,
@@ -298,6 +291,13 @@
         "ilvl": 65,
         "quality": 3,
         "icon": "inv_relics_totemoflife"
+      },
+      "18": {
+        "entry": 19506,
+        "name": "Tabardo de Batalla de los Grito de Guerra",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
       }
     },
     "faction": "Horda",
@@ -323,39 +323,25 @@
     "lore": "Gran Archimaga del Kirin Tor y Gobernanta de Theramore. Campeona Soberana de la Alianza.",
     "items": {
       "0": {
-        "entry": 16914,
-        "name": "Corona de Viento Abisal",
-        "ilvl": 76,
+        "entry": 22498,
+        "name": "Aro de Fuego de Escarcha",
+        "ilvl": 88,
         "quality": 4,
-        "icon": "inv_helmet_70"
+        "icon": "inv_crown_01"
       },
       "1": {
-        "entry": 18814,
-        "name": "Gargantilla del Señor del Fuego",
-        "ilvl": 78,
+        "entry": 23057,
+        "name": "Gema de Inocentes Atrapados",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_jewelry_amulet_05"
+        "icon": "inv_jewelry_necklace_29naxxramas"
       },
       "2": {
-        "entry": 16917,
-        "name": "Manto de Viento Abisal",
-        "ilvl": 76,
+        "entry": 22499,
+        "name": "Hombreras de Fuego de Escarcha",
+        "ilvl": 86,
         "quality": 4,
-        "icon": "inv_shoulder_32"
-      },
-      "14": {
-        "entry": 19378,
-        "name": "Capa del Señor de la Prole",
-        "ilvl": 83,
-        "quality": 4,
-        "icon": "inv_misc_cape_20"
-      },
-      "4": {
-        "entry": 16916,
-        "name": "Togas de Viento Abisal",
-        "ilvl": 76,
-        "quality": 4,
-        "icon": "inv_chest_cloth_03"
+        "icon": "inv_shoulder_25"
       },
       "3": {
         "entry": 4330,
@@ -364,75 +350,82 @@
         "quality": 1,
         "icon": "inv_shirt_red_01"
       },
-      "18": {
-        "entry": 19032,
-        "name": "Tabardo de Batalla Pico Tormenta",
-        "ilvl": 60,
-        "quality": 3,
-        "icon": "inv_shirt_guildtabard_01"
-      },
-      "8": {
-        "entry": 16918,
-        "name": "Ataduras de Viento Abisal",
-        "ilvl": 76,
+      "4": {
+        "entry": 22496,
+        "name": "Toga de Fuego de Escarcha",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_bracer_09"
-      },
-      "9": {
-        "entry": 16913,
-        "name": "Guantes de Viento Abisal",
-        "ilvl": 76,
-        "quality": 4,
-        "icon": "inv_gauntlets_14"
+        "icon": "inv_chest_cloth_43"
       },
       "5": {
-        "entry": 16818,
-        "name": "Cinturón de Viento Abisal",
-        "ilvl": 76,
+        "entry": 22502,
+        "name": "Cinturón de Fuego de Escarcha",
+        "ilvl": 88,
         "quality": 4,
-        "icon": "inv_belt_22"
+        "icon": "inv_belt_03"
       },
       "6": {
-        "entry": 16915,
-        "name": "Pantalones de Viento Abisal",
-        "ilvl": 76,
+        "entry": 22497,
+        "name": "Leotardos de Fuego de Escarcha",
+        "ilvl": 90,
         "quality": 4,
-        "icon": "inv_pants_08"
+        "icon": "inv_pants_cloth_05"
       },
       "7": {
-        "entry": 16912,
-        "name": "Botas de Viento Abisal",
-        "ilvl": 76,
+        "entry": 22500,
+        "name": "Sandalias de Fuego de Escarcha",
+        "ilvl": 86,
         "quality": 4,
-        "icon": "inv_boots_07"
+        "icon": "inv_boots_fabric_01"
+      },
+      "8": {
+        "entry": 22503,
+        "name": "Ataduras de Fuego de Escarcha",
+        "ilvl": 88,
+        "quality": 4,
+        "icon": "inv_bracer_13"
+      },
+      "9": {
+        "entry": 22501,
+        "name": "Guantes de Fuego de Escarcha",
+        "ilvl": 88,
+        "quality": 4,
+        "icon": "inv_gauntlets_17"
       },
       "10": {
-        "entry": 19147,
-        "name": "Anillo de Poder con Hechizos",
-        "ilvl": 66,
+        "entry": 23031,
+        "name": "Banda del Inevitable",
+        "ilvl": 85,
         "quality": 4,
-        "icon": "inv_jewelry_ring_38"
+        "icon": "inv_jewelry_ring_53naxxramas"
       },
       "11": {
-        "entry": 19403,
-        "name": "Banda de Concentración Forzada",
-        "ilvl": 75,
+        "entry": 23062,
+        "name": "Anillo de Fuego de Escarcha",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_jewelry_ring_34"
+        "icon": "inv_jewelry_ring_51naxxramas"
       },
       "12": {
+        "entry": 23046,
+        "name": "Filacteria Resplandeciente de Kel'Thuzad",
+        "ilvl": 90,
+        "quality": 4,
+        "icon": "inv_trinket_naxxramas06"
+      },
+      "13": {
         "entry": 19379,
         "name": "Lágrima de Neltharion",
         "ilvl": 83,
         "quality": 4,
         "icon": "inv_stone_15"
       },
-      "13": {
-        "entry": 18473,
-        "name": "Sello Real de Eldre'Thalas",
-        "ilvl": 62,
-        "quality": 3,
-        "icon": "inv_jewelry_talisman_10"
+      "14": {
+        "entry": 23050,
+        "name": "Capa de la Necrópolis",
+        "ilvl": 90,
+        "quality": 4,
+        "icon": "inv_misc_cape_naxxramas_03"
       },
       "15": {
         "entry": 22589,
@@ -441,12 +434,26 @@
         "quality": 5,
         "icon": "inv_staff_medivh"
       },
+      "16": {
+        "entry": 23049,
+        "name": "El Ojo Izquierdo de Sapphiron",
+        "ilvl": 90,
+        "quality": 4,
+        "icon": "inv_offhand_naxxramas_02"
+      },
       "17": {
-        "entry": 19103,
-        "name": "Aguja de Escarcha",
+        "entry": 22821,
+        "name": "Varita de Destinos",
+        "ilvl": 83,
+        "quality": 4,
+        "icon": "inv_wand_1h_stratholme_d_01"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
         "ilvl": 60,
         "quality": 3,
-        "icon": "inv_axe_22"
+        "icon": "inv_shirt_guildtabard_01"
       }
     },
     "faction": "Alianza",
@@ -1082,39 +1089,25 @@
     "lore": "Personaje en acore_characters. Guerrero Nv60 - GS 2081 - 0 pts honor.",
     "items": {
       "0": {
-        "entry": 16963,
-        "name": "Yelmo de Cólera",
-        "ilvl": 76,
+        "entry": 22418,
+        "name": "Yelmo de Acorazado",
+        "ilvl": 88,
         "quality": 4,
-        "icon": "inv_helmet_71"
+        "icon": "inv_helmet_58"
       },
       "1": {
-        "entry": 19383,
-        "name": "Medallón Matadragones Maestro",
+        "entry": 22938,
+        "name": "Talismán de Ventisca Cripta",
         "ilvl": 83,
         "quality": 4,
-        "icon": "inv_jewelry_necklace_18"
+        "icon": "inv_jewelry_necklace_28naxxramas"
       },
       "2": {
-        "entry": 16961,
-        "name": "Espaldares de Cólera",
-        "ilvl": 76,
+        "entry": 22419,
+        "name": "Espaldares de Acorazado",
+        "ilvl": 86,
         "quality": 4,
-        "icon": "inv_shoulder_34"
-      },
-      "14": {
-        "entry": 19398,
-        "name": "Capa de Faucefogo",
-        "ilvl": 75,
-        "quality": 4,
-        "icon": "inv_misc_cape_18"
-      },
-      "4": {
-        "entry": 16966,
-        "name": "Coraza de Cólera",
-        "ilvl": 76,
-        "quality": 4,
-        "icon": "inv_chest_plate16"
+        "icon": "inv_shoulder_29"
       },
       "3": {
         "entry": 4330,
@@ -1123,61 +1116,61 @@
         "quality": 1,
         "icon": "inv_shirt_red_01"
       },
-      "18": {
-        "entry": 19032,
-        "name": "Tabardo de Batalla Pico Tormenta",
-        "ilvl": 60,
-        "quality": 3,
-        "icon": "inv_shirt_guildtabard_01"
-      },
-      "8": {
-        "entry": 16959,
-        "name": "Brazales de Cólera",
-        "ilvl": 76,
+      "4": {
+        "entry": 22416,
+        "name": "Coraza de Acorazado",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_bracer_19"
-      },
-      "9": {
-        "entry": 16964,
-        "name": "Guanteletes de Cólera",
-        "ilvl": 76,
-        "quality": 4,
-        "icon": "inv_gauntlets_10"
+        "icon": "inv_chest_plate02"
       },
       "5": {
-        "entry": 16960,
-        "name": "Cinturón de Cólera",
-        "ilvl": 76,
+        "entry": 22422,
+        "name": "Pretina de Acorazado",
+        "ilvl": 88,
         "quality": 4,
-        "icon": "inv_belt_09"
+        "icon": "inv_belt_27"
       },
       "6": {
-        "entry": 16962,
-        "name": "Musleras de Cólera",
-        "ilvl": 76,
+        "entry": 22417,
+        "name": "Musleras de Acorazado",
+        "ilvl": 90,
         "quality": 4,
-        "icon": "inv_pants_04"
+        "icon": "inv_pants_plate_05"
       },
       "7": {
-        "entry": 16965,
-        "name": "Escarpes de Cólera",
-        "ilvl": 76,
+        "entry": 22420,
+        "name": "Escarpes de Acorazado",
+        "ilvl": 86,
         "quality": 4,
-        "icon": "inv_boots_plate_04"
+        "icon": "inv_boots_plate_06"
+      },
+      "8": {
+        "entry": 22423,
+        "name": "Brazales de Acorazado",
+        "ilvl": 88,
+        "quality": 4,
+        "icon": "inv_bracer_15"
+      },
+      "9": {
+        "entry": 22421,
+        "name": "Guanteletes de Acorazado",
+        "ilvl": 88,
+        "quality": 4,
+        "icon": "inv_gauntlets_28"
       },
       "10": {
-        "entry": 19384,
-        "name": "Anillo Matadragones Maestro",
-        "ilvl": 83,
+        "entry": 23059,
+        "name": "Anillo de Acorazado",
+        "ilvl": 92,
         "quality": 4,
-        "icon": "inv_jewelry_ring_41"
+        "icon": "inv_jewelry_ring_51naxxramas"
       },
       "11": {
-        "entry": 18821,
-        "name": "Anillo de Golpe Presto",
-        "ilvl": 63,
+        "entry": 21601,
+        "name": "Anillo del Emperador Vek'lor",
+        "ilvl": 81,
         "quality": 4,
-        "icon": "inv_jewelry_ring_07"
+        "icon": "inv_jewelry_ring_ahnqiraj_01"
       },
       "12": {
         "entry": 19431,
@@ -1187,18 +1180,18 @@
         "icon": "inv_misc_armorkit_10"
       },
       "13": {
-        "entry": 19406,
-        "name": "Talismán de Colmillo de Draco",
-        "ilvl": 75,
+        "entry": 23041,
+        "name": "Blasón de Exterminador",
+        "ilvl": 90,
         "quality": 4,
-        "icon": "inv_misc_bone_06"
+        "icon": "inv_trinket_naxxramas03"
       },
-      "17": {
-        "entry": 19368,
-        "name": "Cañón Aliento de Dragón",
-        "ilvl": 75,
+      "14": {
+        "entry": 22938,
+        "name": "Capa de Ventisca Cripta",
+        "ilvl": 83,
         "quality": 4,
-        "icon": "inv_weapon_rifle_02"
+        "icon": "inv_misc_cape_naxxramas_02"
       },
       "15": {
         "entry": 19019,
@@ -1208,11 +1201,25 @@
         "icon": "inv_sword_39"
       },
       "16": {
-        "entry": 19349,
-        "name": "Baluarte Reforzado con Elementium",
-        "ilvl": 77,
+        "entry": 23043,
+        "name": "El Rostro de la Muerte",
+        "ilvl": 90,
         "quality": 4,
-        "icon": "inv_shield_17"
+        "icon": "inv_shield_26"
+      },
+      "17": {
+        "entry": 22811,
+        "name": "Cuerdas de Alma",
+        "ilvl": 89,
+        "quality": 4,
+        "icon": "inv_weapon_bow_13"
+      },
+      "18": {
+        "entry": 19032,
+        "name": "Tabardo de Batalla Pico Tormenta",
+        "ilvl": 60,
+        "quality": 3,
+        "icon": "inv_shirt_guildtabard_01"
       }
     },
     "faction": "Alianza",

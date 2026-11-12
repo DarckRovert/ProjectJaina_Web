@@ -834,153 +834,153 @@
     "description": "Manual táctico para sincronizar formaciones, roles de tanqueo/sanación y estrategias PvE de tus compañeros PlayerBots."
   },
   {
-    "id": "deserters_tower",
+    "id": "theramore_lighthouse",
     "entry": 950001,
-    "name": "Torre de los Desertores",
+    "name": "Faro de la Costa de Theramore",
     "zone": "Marjal Revolcafango (Bahía de Theramore)",
-    "coords": "58.2, 54.6",
-    "macro": "/way 58.2 54.6 Torre de los Desertores",
+    "coords": "71.8, 51.4",
+    "macro": "/way 71.8 51.4 Faro de la Costa de Theramore",
     "category": "enclaves",
     "rarity": "legendario",
     "icon": "🏰",
-    "description": "Fortín marítimo estratégico en la entrada de la Bahía de Theramore. Clave para el control naval y rutas hacia Kalimdor.",
+    "description": "Baluarte marítimo estratégico frente a la Bahía de Theramore y el fondeadero del Galeón de los Desertores. Cuenta con Heraldo Intendente, Cámara de Hermandad, Buzón y Fogata de Reposo.",
     "benefits": [
-      "+10% Velocidad de montura en Kalimdor",
-      "Rested XP acelerado x2 en el recinto",
-      "Heraldo Naval & Puerto de Embarque"
+      "Rested XP acelerado (+6% por minuto junto a la fogata)",
+      "Cámara Acorazada de Hermandad (GO 187295) y Buzón (GO 140908)",
+      "Heraldo Intendente con suministros, reparación y teletransporte directo"
     ],
     "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
     "teleport_coords": {
       "map": 1,
-      "x": -3560.4,
-      "y": -4385.2,
-      "z": 16.4,
-      "o": 1.5
+      "x": -3871.42,
+      "y": -4571.25,
+      "z": 9.85,
+      "o": 2.15
     }
   },
   {
-    "id": "goldenbraid_farm",
+    "id": "azshara_coastal_refuge",
     "entry": 950002,
-    "name": "Granja de Ceñidorada",
-    "zone": "Páramos de Poniente (Westfall)",
-    "coords": "44.6, 52.8",
-    "macro": "/way 44.6 52.8 Granja de Ceñidorada",
+    "name": "Refugio Costero de Azshara",
+    "zone": "Azshara (Meseta Costera)",
+    "coords": "53.2, 19.8",
+    "macro": "/way 53.2 19.8 Refugio Costero de Azshara",
     "category": "enclaves",
     "rarity": "epico",
-    "icon": "🌾",
-    "description": "Punto neurálgico agropecuario y despensa logística en Reinos del Este, rodeado de molinos y empalizadas.",
+    "icon": "🍂",
+    "description": "Enclave elevado sobre los acantilados otoñales de Azshara, dominando las ruinas élficas y las rutas hacia el norte de Kalimdor.",
     "benefits": [
-      "+15% Regeneración de salud/maná fuera de combate",
-      "Doble experiencia por descanso",
-      "Forja de Campaña y Establos"
+      "Rested XP acelerado (+6% por minuto en el perímetro)",
+      "Estandartes y Centinelas vivos de Alianza u Horda",
+      "Cámara de Hermandad, Buzón, Fogata Santuario y Reparación"
     ],
     "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
     "teleport_coords": {
-      "map": 0,
-      "x": -10420.2,
-      "y": 1030.8,
-      "z": 36.2,
-      "o": 0.6
+      "map": 1,
+      "x": 3777.06,
+      "y": -4619.17,
+      "z": 227.41,
+      "o": 5.2
     }
   },
   {
-    "id": "mace_bastion",
+    "id": "westfall_lighthouse",
     "entry": 950003,
-    "name": "Bastión de la Maza",
-    "zone": "Montañas de Crestagrana (Redridge)",
-    "coords": "32.4, 48.0",
-    "macro": "/way 32.4 48.0 Bastión de la Maza",
-    "category": "enclaves",
-    "rarity": "epico",
-    "icon": "🛡️",
-    "description": "Atalaya defensiva de montaña con vista sobre el lago Siempregrana y los pasos hacia la Montaña Roca Negra.",
-    "benefits": [
-      "+5% Armadura en exteriores",
-      "-50% Coste de reparación de equipo",
-      "Yunque Maestro de Herrería"
-    ],
-    "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
-    "teleport_coords": {
-      "map": 0,
-      "x": -9443.1,
-      "y": -2240.5,
-      "z": 70.1,
-      "o": 3.4
-    }
-  },
-  {
-    "id": "crusade_watch",
-    "entry": 950004,
-    "name": "Atalaya de la Cruzada",
-    "zone": "Tierras de la Peste del Este",
-    "coords": "61.8, 38.2",
-    "macro": "/way 61.8 38.2 Atalaya de la Cruzada",
-    "category": "enclaves",
-    "rarity": "legendario",
-    "icon": "⚔️",
-    "description": "Baluarte sagrado levantado por veteranos de la Cruzada Argenta vigilando las fronteras hacia Stratholme y Naxxramas.",
-    "benefits": [
-      "+10% Daño Sagrado y Mágico contra No-muertos",
-      "Sagrario libre de emboscadas PvP",
-      "Alquimista de Campaña"
-    ],
-    "requirements": "Hermandad Nivel 4+ · 5,000 Oro",
-    "teleport_coords": {
-      "map": 0,
-      "x": 2280.6,
-      "y": -5320.1,
-      "z": 88.4,
-      "o": 0.8
-    }
-  },
-  {
-    "id": "southcoast_lighthouse",
-    "entry": 950005,
-    "name": "Faro de la Costa Sur",
-    "zone": "Tanaris · Mares del Sur",
-    "coords": "72.4, 46.8",
-    "macro": "/way 72.4 46.8 Faro de la Costa Sur",
+    "name": "Faro de Páramos de Poniente",
+    "zone": "Páramos de Poniente (Westfall)",
+    "coords": "30.5, 85.8",
+    "macro": "/way 30.5 85.8 Faro de Páramos de Poniente",
     "category": "enclaves",
     "rarity": "epico",
     "icon": "⚓",
-    "description": "Torre faro que domina las aguas profundas del sur de Kalimdor con avistamiento sobre flotas corsarias y Cavernas del Tiempo.",
+    "description": "Histórico faro austral en la punta de Páramos de Poniente, bastión clave para las hermandades que operan en los Reinos del Este y Minas de la Muerte.",
     "benefits": [
-      "Respiración acuática y +30% velocidad de nado",
-      "Mercader Bonvapor con descuento",
-      "Batería Costera Defensiva"
+      "Rested XP acelerado (+6% por minuto en el recinto)",
+      "Santuario Nocturno inmune a emboscadas de Acechadores",
+      "Heraldo Intendente, Cámara de Hermandad y Buzón de Campaña"
     ],
     "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
     "teleport_coords": {
-      "map": 1,
-      "x": -8495.0,
-      "y": -4675.0,
-      "z": 12.8,
-      "o": 2.1
+      "map": 0,
+      "x": -9781.22,
+      "y": -881.56,
+      "z": 39.57,
+      "o": 3.76
     }
   },
   {
-    "id": "ashenvale_redoubt",
+    "id": "hillsbrad_cabin",
+    "entry": 950004,
+    "name": "Cabaña Solitaria de Trabalomas",
+    "zone": "Laderas de Trabalomas (Hillsbrad Foothills)",
+    "coords": "79.4, 67.2",
+    "macro": "/way 79.4 67.2 Cabaña Solitaria de Trabalomas",
+    "category": "enclaves",
+    "rarity": "legendario",
+    "icon": "⚔️",
+    "description": "Fortín estratégico en la costa oriental de Laderas de Trabalomas, punto neurálgico de la disputa territorial entre Costasur y Molino Tarren.",
+    "benefits": [
+      "Rested XP acelerado (+6% por minuto en el recinto)",
+      "Guardias de facción reactivos y saludo militar al clan dominante",
+      "Cámara Acorazada, Buzón, Intendente y Teletransporte de Sede"
+    ],
+    "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
+    "teleport_coords": {
+      "map": 0,
+      "x": -875.2,
+      "y": -840.5,
+      "z": 22.2,
+      "o": 3.14
+    }
+  },
+  {
+    "id": "faldirs_cove_keep",
+    "entry": 950005,
+    "name": "Torreón de la Caleta de Faldir",
+    "zone": "Tierras Altas de Arathi · Caleta de Faldir",
+    "coords": "31.8, 82.6",
+    "macro": "/way 31.8 82.6 Torreón de la Caleta de Faldir",
+    "category": "enclaves",
+    "rarity": "epico",
+    "icon": "🛡️",
+    "description": "Bastión oculto entre los acantilados de la Caleta de Faldir al sur de Arathi, resguardando las rutas marítimas entre Stromgarde y los Humedales.",
+    "benefits": [
+      "Rested XP acelerado (+6% por minuto junto a la fogata)",
+      "Estandartes faccionales dinámicos y guarnición defensiva",
+      "Acceso directo a Banco de Hermandad, Correo y Suministros"
+    ],
+    "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
+    "teleport_coords": {
+      "map": 0,
+      "x": -2075.0,
+      "y": -2050.0,
+      "z": 5.5,
+      "o": 1.57
+    }
+  },
+  {
+    "id": "feralas_coastal_refuge",
     "entry": 950006,
-    "name": "Reducto de Vallefresno",
-    "zone": "Bosque de Vallefresno (Ashenvale)",
-    "coords": "48.2, 63.4",
-    "macro": "/way 48.2 63.4 Reducto de Vallefresno",
+    "name": "Refugio Costero de Feralas",
+    "zone": "Feralas · Costa Olvidada",
+    "coords": "43.6, 42.8",
+    "macro": "/way 43.6 42.8 Refugio Costero de Feralas",
     "category": "enclaves",
     "rarity": "legendario",
     "icon": "🌲",
-    "description": "Enclave ancestral oculto bajo el dosel milenario de Vallefresno, punto clave entre Astranaar y Los Baldíos.",
+    "description": "Enclave selvático frente a las aguas occidentales de Feralas y el Bastión Plumaluna, ideal para expediciones hacia La Masacre (Dire Maul).",
     "benefits": [
-      "+10% Velocidad de sigilo y monturas en bosques",
-      "Santuario de Elune (Curación periódica)",
-      "Proveedora de Munición Élite"
+      "Rested XP acelerado (+6% por minuto en el perímetro)",
+      "Santuario de Fogata contra la Furia Nocturna del mundo abierto",
+      "Heraldo Intendente, Cámara de Hermandad y Buzón activos"
     ],
     "requirements": "Hermandad Nivel 3+ · 2,500 Oro",
     "teleport_coords": {
       "map": 1,
-      "x": 2412.5,
-      "y": -1645.8,
-      "z": 104.2,
-      "o": 1.2
+      "x": -4378.62,
+      "y": 2327.33,
+      "z": 2.0,
+      "o": 0.78
     }
   }
 ]

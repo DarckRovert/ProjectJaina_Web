@@ -4,6 +4,27 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.4.2] - 2026-11-12 — Sincronización Canónica de los 6 Baluartes Territoriales In-Game y Armería Tier 3 BiS para HeroBots (Hito #350)
+
+### 🏰 Visor Táctico de Enclaves & Base de Datos AoWoW (`js/interactive_enclaves.js` & `data/database_catalog.json`)
+- **Paridad 1:1 con Coordenadas Reales del Servidor (`custom_guild_outposts` & `living_world_2_5_spawns.sql`):**
+  - Sincronizados los 6 enclaves conquistables en el radar interactivo del portal y en el catálogo AoWoW (`950001`–`950006`) con las ubicaciones y macros `/way` exactas donde operan los Heraldos Intendentes (`NPC 5061`), Cámaras de Hermandad (`GO 187295`), Buzones (`GO 140908`) y Fogatas (`GO 1798`):
+    1. **Faro de la Costa de Theramore** (`Marjal Revolcafango`, `/way 71.8 51.4`)
+    2. **Refugio Costero de Azshara** (`Azshara`, `/way 53.2 19.8`)
+    3. **Faro de Páramos de Poniente** (`Westfall`, `/way 30.5 85.8`)
+    4. **Cabaña Solitaria de Trabalomas** (`Hillsbrad Foothills`, `/way 79.4 67.2`)
+    5. **Torreón de la Caleta de Faldir** (`Arathi Highlands`, `/way 31.8 82.6`)
+    6. **Refugio Costero de Feralas** (`Feralas`, `/way 43.6 42.8`)
+  - Estandarizado el requisito canónico Anti-P2W en los 6 baluartes (`Hermandad Nivel 3+ · 2,500 Oro`).
+
+### 🛡️ Armería Soberana (`data/armory.json`)
+- **Actualización de HeroBots a Equipamiento BiS Tier 3 Auténtico:**
+  - **Lady Jaina (`1002`):** Set completo de Mago Tier 3 (*Armadura de Fuego de Escarcha* `22496`–`22503`, *Atiesh* `22589`, *El Ojo Izquierdo de Sapphiron* `23049`, *Varita de Destinos* `22821`).
+  - **Rey Varian (`1003`):** Set completo de Guerrero Protección Tanque Tier 3 (*Equipo de Batalla de Acorazado* `22416`–`22423`, *Trueno Furioso* `19019` y escudo *El Rostro de la Muerte* `23043` en Slot 16).
+  - **Thrall (`2284`):** Set completo de Chamán Restauración Tier 3 (*El Rompetierra* `22464`–`22471`, *Martillo del Vacío Abisal* `23056`, *Escudo de Condenación* `22819` y *Tótem de Vida* `22396`).
+
+---
+
 ## [v7.4.1] - 2026-11-10 — Endurecimiento Integral del Portal Web: Armería 19-Slot Dual, Diálogo Neural Anti-XSS, Cuenta Resiliente y Radio WS (Hito #341)
 
 ### 🛡️ Armería Soberana & Micro-Backend (`js/armory.js` & `ProjectJaina_WebAPI.py`)

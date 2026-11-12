@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Project JAIna Official Crest" width="220">
 </p>
 
-# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.1)
+# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.2)
 
 <div align="center">
   <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Emblema" width="180" style="border-radius: 50%;">
@@ -14,7 +14,7 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.1%20(Hito%20%23341)-00ccff.svg)](./CHANGELOG.md)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.2%20(Hito%20%23350)-00ccff.svg)](./CHANGELOG.md)
 [![WebAPI Engine](https://img.shields.io/badge/WebAPI-Rust%20Tokio%2FAxum%20:8080-orange.svg)](./CHANGELOG.md)
 [![WebClient 3D](https://img.shields.io/badge/Client-Lanzador%20Oficial%20%26%20HD%20PC-E34F26.svg)](./downloads/ProjectJaina_Launcher.exe)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
