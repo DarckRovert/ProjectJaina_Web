@@ -178,6 +178,9 @@ const DB_ENGINE = {
             if (res.ok) {
                 const data = await res.json();
                 if (data && Array.isArray(data.items) && data.items.length > 0) {
+                    if (this.category === "enclaves" && data.items[0].category !== "enclaves") {
+                        throw new Error("Usar enclaves canónicos verificados");
+                    }
                     this.isLive = true;
                     const processed = this.applyClientRarityAndSort(data.items);
                     this.totalItems = (this.rarity === "all") ? (data.total || processed.length) : processed.length;
