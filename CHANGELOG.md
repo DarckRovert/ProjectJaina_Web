@@ -4,6 +4,20 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.4.3] - 2026-11-14 — Certificación Topográfica 3D de Baluartes 3.0 en Catálogo AoWoW y WebAPI Rust (Hito #366)
+
+### 🏰 Base de Datos AoWoW (`data/database_catalog.json` & `jaina_webapi_daemon`)
+- **Coordenadas `teleport_coords` Certificadas por Raycaster Binario 3D (`.map`/`.vmo`):** Actualizados los 6 enclaves (`950001`–`950006`) con las cotas exactas verificadas en vivo sobre el terreno sólido y alejadas de estructuras WMO ciegas y mareas (`Desfase DB=0.00m`):
+  1. `950001` **Faro de la Costa de Theramore**: `map: 1, x: -3948.0, y: -4491.0, z: 7.0, o: 2.1`
+  2. `950002` **Refugio Costero de Azshara**: `map: 1, x: 3810.5, y: -4622.8, z: 224.25, o: 5.2`
+  3. `950003` **Faro de Páramos de Poniente**: `map: 0, x: -11414.0, y: 1972.0, z: 11.14, o: 4.71`
+  4. `950004` **Cabaña Solitaria de Trabalomas**: `map: 0, x: -875.0, y: -873.0, z: 22.11, o: 3.14`
+  5. `950005` **Torreón de la Caleta de Faldir**: `map: 0, x: -2075.0, y: -2099.0, z: 11.26, o: 1.55`
+  6. `950006` **Refugio Costero de Feralas**: `map: 1, x: -4356.0, y: 2292.0, z: 5.75, o: 1.57`
+- **Paridad 1:1 con Backend WebAPI (`jaina_webapi_daemon`):** Sincronizado `/api/database/items?cat=enclaves` y validado con JSON íntegro sin errores.
+
+---
+
 ## [v7.4.2] - 2026-11-12 — Sincronización Canónica de los 6 Baluartes Territoriales In-Game y Armería Tier 3 BiS para HeroBots (Hito #350)
 
 ### 🏰 Visor Táctico de Enclaves & Base de Datos AoWoW (`js/interactive_enclaves.js` & `data/database_catalog.json`)
