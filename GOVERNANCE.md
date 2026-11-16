@@ -2,7 +2,7 @@
 
 **Proyecto:** Project Jaina (Project Jaina WotLK 3.3.5a — Ecosistema Vivo & Multijugador Global)  
 **Estándar de Ingeniería:** Staff Software Engineer L9 (Mythos 5)  
-**Fecha de Actualización:** 15 de Noviembre de 2026 (Ecosistema v6.3.4 / Portal Web v7.4.4 — Hito #377)
+**Fecha de Actualización:** 16 de Noviembre de 2026 (Ecosistema v6.3.7 / Portal Web v7.4.4 — Hito #381)
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
