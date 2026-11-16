@@ -2206,10 +2206,21 @@ async function confirmYapePayment() {
         if (feedback) {
             feedback.style.display = "block";
             if (res.ok && data.ok) {
+                const serverRef = data.reference_code || data.order_id || refCode;
+                const refElem = document.getElementById("yapeRefCode");
+                if (refElem) {
+                    refElem.innerText = serverRef;
+                }
+                const canonChar = data.character_name || charName;
+                const pkgLabel = data.package_name || selectedPackage.name;
+
                 feedback.className = "payment-feedback-box success-box";
                 const waUrl = data.whatsapp_url || (paymentConfig?.yape_plin?.whatsapp_e164 ? 
-                    `https://wa.me/${paymentConfig.yape_plin.whatsapp_e164.replace('+','').replace(/\s+/g,'')}?text=${encodeURIComponent(`Hola, acabo de aportar por Yape para ${charName} por ${selectedPackage.name}. Referencia: ${refCode}`)}` : "");
+                    `https://wa.me/${paymentConfig.yape_plin.whatsapp_e164.replace('+','').replace(/\s+/g,'')}?text=${encodeURIComponent(`Hola, acabo de aportar por Yape para ${canonChar} por ${pkgLabel}. Referencia: ${serverRef}`)}` : "");
                 const discordUrl = data.discord_url || "https://discord.gg/cXxMuRJrfy";
+                const safeChar = _escapeStoreHtml(canonChar);
+                const safePkg = _escapeStoreHtml(pkgLabel);
+                const safeRef = _escapeStoreHtml(serverRef);
 
                 const waBtn = waUrl ? 
                     `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; padding:10px 18px; background:#22c55e; color:#052e16; font-weight:800; text-decoration:none; border-radius:8px; font-size:0.95rem; box-shadow: 0 4px 14px rgba(34,197,94,0.4);">📲 Enviar Comprobante por WhatsApp</a>` : '';
@@ -2218,10 +2229,10 @@ async function confirmYapePayment() {
                 feedback.innerHTML = `
                     <div style="font-size:1.15rem;font-weight:800;color:#38bdf8;">🎉 ¡Orden Registrada en Cola Oficial!</div>
                     <p style="margin:8px 0;font-size:0.92rem;line-height:1.5;">
-                        Se ha registrado formalmente tu solicitud para <strong>${charName}</strong> por el paquete <strong>${data.package_name || selectedPackage.name}</strong> (<strong>S/. ${Number(data.price_pen || selectedPackage.price_pen || 0).toFixed(2)}</strong>).
+                        Se ha registrado formalmente tu solicitud para <strong>${safeChar}</strong> por el paquete <strong>${safePkg}</strong> (<strong>S/. ${Number(data.price_pen || selectedPackage.price_pen || 0).toFixed(2)}</strong>).
                     </p>
                     <div style="background:rgba(0,0,0,0.4);border:1px dashed #38bdf8;padding:10px 14px;border-radius:6px;margin:10px 0;">
-                        Código de Referencia: <strong style="color:#ffd700;letter-spacing:1px;font-size:1.15rem;">${refCode}</strong>
+                        Código de Referencia: <strong style="color:#ffd700;letter-spacing:1px;font-size:1.15rem;">${safeRef}</strong>
                     </div>
                     <p style="margin:6px 0;font-size:0.85rem;color:#cbd5e1;">
                         Tu orden ha quedado encolada en estado <strong>PENDIENTE DE VERIFICACIÓN</strong>. Pulsa abajo para enviar tu captura de comprobante y recibir tus recompensas in-game en menos de 60 segundos:
@@ -2235,7 +2246,7 @@ async function confirmYapePayment() {
                 feedback.className = "payment-feedback-box error-box";
                 feedback.innerHTML = `
                     <div style="font-size:1rem;font-weight:800;color:#f87171;">⚠️ Error de Registro</div>
-                    <p style="margin:6px 0;font-size:0.88rem;">${data.message || "No se pudo registrar la solicitud."}</p>
+                    <p style="margin:6px 0;font-size:0.88rem;">${_escapeStoreHtml(data.message || "No se pudo registrar la solicitud.")}</p>
                 `;
             }
         }

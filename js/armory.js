@@ -106,6 +106,7 @@ async function fetchLiveArmory() {
                         ...c,
                         items: hasItems ? c.items : (prev && prev.items ? prev.items : {}),
                         mode: c.mode || c.gamemode || (prev && (prev.mode || prev.gamemode)) || undefined,
+                        is_dead: c.is_dead ?? (prev && prev.is_dead) ?? false,
                         faction: getHeroFaction(c)
                     };
                 });
@@ -220,17 +221,20 @@ function renderPodium(chars) {
         podiumContainer.className = "podium-grid podium-single";
         const c = top3[0];
         const classBadge = getClassBadgeClass(c.class);
+        const safeName = escapeArmoryHtml(c.name);
+        const safeTitle = escapeArmoryHtml(c.title || 'Campeón Supremo del Reino');
+        const safeGuild = escapeArmoryHtml(c.guild || 'Sin hermandad');
         podiumContainer.innerHTML = `
             <div class="podium-card podium-gold" onclick="inspectCharacter('${escapeJsStr(c.name)}')" style="max-width: 360px; margin: 0 auto; width: 100%;">
                 <div class="podium-crown">👑</div>
                 <div class="podium-avatar-wrap">
-                    <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
+                    <div class="podium-avatar-initial">${safeName.charAt(0)}</div>
                     <span class="podium-rank-badge">1º</span>
                 </div>
-                <div class="podium-char-name">${c.name}</div>
-                <div class="podium-char-title">${c.title || 'Campeón Supremo del Reino'}</div>
-                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class}</span></div>
-                <div class="podium-stats"><span>Lv ${c.level}</span> · <span>${c.gs || 1950} GS</span> · <span>${c.guild}</span></div>
+                <div class="podium-char-name">${safeName}</div>
+                <div class="podium-char-title">${safeTitle}</div>
+                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${escapeArmoryHtml(c.class)}</span></div>
+                <div class="podium-stats"><span>Lv ${c.level}</span> · <span>${c.gs ?? c.gear_score ?? 0} GS</span> · <span>${safeGuild}</span></div>
             </div>
         `;
         return;
@@ -247,18 +251,21 @@ function renderPodium(chars) {
         const c = r.c;
         const classBadge = getClassBadgeClass(c.class);
         const facIcon = getHeroFaction(c) === "Alianza" ? "🦁" : "🐺";
+        const safeName = escapeArmoryHtml(c.name);
+        const safeTitle = escapeArmoryHtml(c.title || 'Héroe de Azeroth');
+        const safeGuild = escapeArmoryHtml(c.guild || 'Sin hermandad');
         return `
             <div class="podium-card ${r.classMod}" onclick="inspectCharacter('${escapeJsStr(c.name)}')">
                 <div class="podium-crown">${r.medal}</div>
                 <div class="podium-avatar-wrap">
-                    <div class="podium-avatar-initial">${c.name.charAt(0)}</div>
+                    <div class="podium-avatar-initial">${safeName.charAt(0)}</div>
                     <span class="podium-rank-badge">${r.place}</span>
                 </div>
-                <div class="podium-char-name">${facIcon} ${c.name}</div>
-                <div class="podium-char-title">${c.title || 'Héroe de Azeroth'}</div>
-                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${c.class} · ${c.spec || ''}</span></div>
+                <div class="podium-char-name">${facIcon} ${safeName}</div>
+                <div class="podium-char-title">${safeTitle}</div>
+                <div class="podium-class-pill"><span class="badge-class ${classBadge}">${escapeArmoryHtml(c.class)} · ${escapeArmoryHtml(c.spec || '')}</span></div>
                 <div class="podium-stats">
-                    <span>Lv ${c.level}</span> · <strong style="color:#fbbf24;">${c.gs || 1950} GS</strong> · <span>${c.guild}</span>
+                    <span>Lv ${c.level}</span> · <strong style="color:#fbbf24;">${c.gs ?? c.gear_score ?? 0} GS</strong> · <span>${safeGuild}</span>
                 </div>
             </div>
         `;
@@ -266,11 +273,12 @@ function renderPodium(chars) {
 }
 
 
-function getGameModeBadge(mode) {
+function getGameModeBadge(mode, isDead = false) {
     if (!mode || mode === 'NORMAL' || mode === 'NONE') return '';
     const m = String(mode).toUpperCase();
     if (m === 'HARDCORE') {
-        return `<span class="gamemode-badge badge-hc" style="font-size:0.65rem;background:rgba(239,68,68,0.2);color:#ef4444;border:1px solid rgba(239,68,68,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">☠️ HC</span>`;
+        const label = isDead ? '☠️ HC CAÍDO' : '☠️ HC';
+        return `<span class="gamemode-badge badge-hc" style="font-size:0.65rem;background:rgba(239,68,68,0.2);color:#ef4444;border:1px solid rgba(239,68,68,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">${label}</span>`;
     }
     if (m === 'IRONMAN') {
         return `<span class="gamemode-badge badge-ironman" style="font-size:0.65rem;background:rgba(148,163,184,0.2);color:#cbd5e1;border:1px solid rgba(148,163,184,0.4);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:700;">⛓️ Ironman</span>`;
@@ -284,11 +292,12 @@ function getGameModeBadge(mode) {
     return '';
 }
 
-function getGameModeInspectBadge(mode) {
+function getGameModeInspectBadge(mode, isDead = false) {
     if (!mode || mode === 'NORMAL' || mode === 'NONE') return '';
     const m = String(mode).toUpperCase();
     if (m === 'HARDCORE') {
-        return `<span class="inspect-pill" style="color:#f87171;border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.12);">☠️ MODO HARDCORE (1 VIDA)</span>`;
+        const label = isDead ? '☠️ HARDCORE (CAÍDO)' : '☠️ MODO HARDCORE (1 VIDA)';
+        return `<span class="inspect-pill" style="color:#f87171;border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.12);">${label}</span>`;
     }
     if (m === 'IRONMAN') {
         return `<span class="inspect-pill" style="color:#e2e8f0;border-color:rgba(148,163,184,0.5);background:rgba(148,163,184,0.12);">⛓️ MODO IRONMAN (AUTOSUFICIENCIA)</span>`;
@@ -346,14 +355,14 @@ function renderArmoryRows(chars) {
             <tr class="armory-row" onclick="inspectCharacter('${escapeJsStr(c.name)}')">
                 <td class="rank-cell">#${idx + 1}</td>
                 <td class="name-cell">
-                    <strong>${facIcon} ${c.name}${getGameModeBadge(c.mode || c.gamemode)}</strong>
-                    <div class="char-title-small">${c.title || 'Héroe del Reino'} · ${c.spec || c.role || ''}</div>
+                    <strong>${facIcon} ${escapeArmoryHtml(c.name)}${getGameModeBadge(c.mode || c.gamemode, c.is_dead)}</strong>
+                    <div class="char-title-small">${escapeArmoryHtml(c.title || 'Héroe del Reino')} · ${escapeArmoryHtml(c.spec || c.role || '')}</div>
                 </td>
-                <td><span class="badge-class ${classClass}">${c.class}</span></td>
-                <td>${c.race}</td>
+                <td><span class="badge-class ${classClass}">${escapeArmoryHtml(c.class)}</span></td>
+                <td>${escapeArmoryHtml(c.race)}</td>
                 <td class="level-cell">${c.level}</td>
-                <td><strong style="color:#fbbf24;">${(c.gs || c.gear_score || 1950).toLocaleString()}</strong></td>
-                <td class="guild-cell">${c.guild || '—'}</td>
+                <td><strong style="color:#fbbf24;">${(c.gs ?? c.gear_score ?? 0).toLocaleString()}</strong></td>
+                <td class="guild-cell">${escapeArmoryHtml(c.guild || '—')}</td>
                 <td>${statusBadge}</td>
                 <td>
                     <button class="btn-inspect" onclick="event.stopPropagation(); inspectCharacter('${escapeJsStr(c.name)}')">
@@ -569,7 +578,7 @@ async function inspectCharacter(charName) {
     modalBody.innerHTML = `
         <div style="text-align: center; padding: 3.5rem 1rem; color: var(--text-muted);">
             <h3 style="color: #fff; margin-bottom: 0.5rem;">⏳ Consultando Ficha de Campeón...</h3>
-            <p>Sincronizando armamento de <strong>${charName}</strong></p>
+            <p>Sincronizando armamento de <strong>${escapeArmoryHtml(charName)}</strong></p>
         </div>
     `;
 
@@ -605,21 +614,28 @@ async function inspectCharacter(charName) {
     const rightSlotsHtml = RIGHT_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)])).join("");
     const bottomSlotsHtml = BOTTOM_SLOT_IDS.map(id => renderSlotItemHtml(id, itemsMap[String(id)])).join("");
 
+    const safeCharName = escapeArmoryHtml(char.name);
+    const safeCharTitle = escapeArmoryHtml(char.title || 'Campeón de Azeroth');
+    const safeCharGuild = escapeArmoryHtml(char.guild || 'Sin Hermandad');
+    const safeLore = char.lore
+        ? escapeArmoryHtml(char.lore)
+        : `Veterano consagrado en Project JAIna con ${(char.kills ?? char.total_kills ?? 0)} victorias de honor y ${(char.honor ?? char.honor_points ?? 0)} puntos de prestigio.`;
+
     modalBody.innerHTML = `
         <div class="inspect-header" style="justify-content:space-between;flex-wrap:wrap;gap:1rem;">
             <div style="display:flex;align-items:center;gap:1rem;">
                 <div class="inspect-avatar-box">
-                    <span class="inspect-avatar-initial">${(char.name || "C").charAt(0)}</span>
+                    <span class="inspect-avatar-initial">${(safeCharName || "C").charAt(0)}</span>
                 </div>
                 <div>
-                    <h2 class="inspect-name">${char.name}</h2>
-                    <div class="inspect-title-tag">${char.title || 'Campeón de Azeroth'}</div>
+                    <h2 class="inspect-name">${safeCharName}</h2>
+                    <div class="inspect-title-tag">${safeCharTitle}</div>
                     <div class="inspect-badges-row">
-                        <span class="badge-class ${classBadge}">${char.class || 'Guerrero'}</span>
-                        <span class="inspect-pill">${facBadge} · ${char.race || 'Humano'}</span>
-                        <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level || 60} (Cap ${char.level_cap || 60})</span>
-                        <span class="inspect-pill">${char.guild || 'Sin Hermandad'}</span>
-                        ${getGameModeInspectBadge(char.mode || char.gamemode)}
+                        <span class="badge-class ${classBadge}">${escapeArmoryHtml(char.class || 'Guerrero')}</span>
+                        <span class="inspect-pill">${facBadge} · ${escapeArmoryHtml(char.race || 'Humano')}</span>
+                        <span class="inspect-pill" style="color: var(--gold-primary);">Nivel ${char.level ?? 60} (Cap ${char.level_cap ?? 60})</span>
+                        <span class="inspect-pill">${safeCharGuild}</span>
+                        ${getGameModeInspectBadge(char.mode || char.gamemode, char.is_dead)}
                     </div>
                 </div>
             </div>
@@ -639,17 +655,17 @@ async function inspectCharacter(charName) {
                     <span class="pd-gs-num">${char.gear_score ?? char.gs ?? 0}</span>
                     <span class="pd-gs-label">GEARSCORE</span>
                 </div>
-                <div style="color: #fff; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem;">${char.spec || 'Talentos Clásicos'}</div>
-                <div style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 1.1rem;">${char.role || 'DPS'} · ${char.gender || 'Héroe'}</div>
+                <div style="color: #fff; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem;">${escapeArmoryHtml(char.spec || 'Talentos Clásicos')}</div>
+                <div style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 1.1rem;">${escapeArmoryHtml(char.role || 'DPS')} · ${escapeArmoryHtml(char.gender || 'Héroe')}</div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; text-align: left; font-size: 0.8rem;">
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Salud Máxima</span>
-                        <strong style="color: #39d353;">${(char.health ?? 4850).toLocaleString()} HP</strong>
+                        <strong style="color: #39d353;">${(char.health ?? 0).toLocaleString()} HP</strong>
                     </div>
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Maná / Recurso</span>
-                        <strong style="color: #38bdf8;">${(char.mana ?? 5200).toLocaleString()}</strong>
+                        <strong style="color: #38bdf8;">${(char.mana ?? 0).toLocaleString()}</strong>
                     </div>
                     <div style="background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.07);">
                         <span style="color: var(--text-muted); display: block; font-size: 0.7rem;">Muertes Honor</span>
@@ -677,7 +693,7 @@ async function inspectCharacter(charName) {
 
         <div class="inspect-lore-box">
             <div class="lore-box-title">📜 Crónica del Campeón &amp; Hazañas:</div>
-            <p>${char.lore || `Veterano consagrado de la Era Clásica en Project JAIna con ${(char.kills || 120)} victorias de honor y ${(char.honor || 1500)} puntos de prestigio.`}</p>
+            <p>${safeLore}</p>
         </div>
     `;
 
@@ -698,6 +714,14 @@ function setupModalEvents() {
 
 function normalizeStr(s) {
     return s ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
+}
+
+function escapeArmoryHtml(s) {
+    return String(s ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 }
 
 function escapeJsStr(s) {

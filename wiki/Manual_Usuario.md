@@ -1,7 +1,7 @@
 # 📖 Manual de Usuario — Portal & Ecosistema Project Jaina
 
 Guía oficial para administradores, maestros de juego y jugadores de **Project Jaina (WotLK 3.3.5a — Living Lore & AI Revolution)**.  
-**Fecha de Actualización:** 15 de Noviembre de 2026 (Portal Web v7.4.4 / Ecosistema v6.3.4 — Hito #377)  
+**Fecha de Actualización:** 16 de Noviembre de 2026 (Portal Web v7.4.5 / Ecosistema v6.3.8 — Hito #382)  
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 

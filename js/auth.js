@@ -33,6 +33,27 @@
         }
     }
 
+    function getToken() {
+        try {
+            return localStorage.getItem(STORAGE_KEY_TOKEN) || '';
+        } catch (_) {
+            return '';
+        }
+    }
+
+    function getAuthHeaders(extraHeaders = {}) {
+        const headers = {
+            'Accept': 'application/json',
+            'ngrok-skip-browser-warning': 'true',
+            ...extraHeaders
+        };
+        const token = getToken();
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        return headers;
+    }
+
     function saveSession(user, token) {
         try {
             localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user));
@@ -383,6 +404,8 @@
         openLogin: openModal,
         closeLogin: closeModal,
         getUser: getCurrentUser,
+        getToken: getToken,
+        getAuthHeaders: getAuthHeaders,
         logout: clearSession,
         refreshUI: updateNavbarAuthUI
     };

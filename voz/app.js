@@ -209,7 +209,7 @@ pinForm.addEventListener('submit', async (e) => {
         try {
             response = await fetch(`${baseUrl}/api/verify-pin`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
                 body: JSON.stringify({ pin })
             });
             data = await response.json();
@@ -367,7 +367,8 @@ function connectWebSocket(token) {
     const isHttps = baseUrl.startsWith('https:');
     const wsProto = isHttps ? 'wss:' : 'ws:';
     const host = baseUrl.replace(/^https?:\/\//, '').replace(/\/+$/, '');
-    const wsPath = host.includes('ngrok') || host.includes('projectjaina') || host.includes(':8080') ? '/voice-ws' : '';
+    const isGateway = host.includes('ngrok') || host.includes('projectjaina') || host.includes(':8080') || window.location.port === '8080';
+    const wsPath = isGateway ? '/voice-ws' : '';
     ws = new WebSocket(`${wsProto}//${host}${wsPath}?token=${token}`);
 
     ws.onopen = () => {

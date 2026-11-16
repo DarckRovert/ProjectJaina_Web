@@ -254,6 +254,36 @@ function getApiUrl() {
     return "http://127.0.0.1:8080";
 }
 
+function getAuthHeaders(extraHeaders = {}) {
+    if (window.ProjectJainaAuth && typeof window.ProjectJainaAuth.getAuthHeaders === "function") {
+        return window.ProjectJainaAuth.getAuthHeaders(extraHeaders);
+    }
+    const headers = {
+        "Accept": "application/json",
+        "ngrok-skip-browser-warning": "true",
+        ...extraHeaders
+    };
+    try {
+        const token = localStorage.getItem("pj_auth_token");
+        if (token) headers["Authorization"] = `Bearer ${token}`;
+    } catch (_) {}
+    return headers;
+}
+
+function clearExpiredSession(message) {
+    try {
+        if (window.ProjectJainaAuth && typeof window.ProjectJainaAuth.logout === "function") {
+            window.ProjectJainaAuth.logout();
+        } else {
+            localStorage.removeItem("pj_auth_user");
+            localStorage.removeItem("pj_auth_token");
+        }
+    } catch (_) {}
+    CURRENT_ACCOUNT_DATA = null;
+    if (message) notifyAccountToast(`⚠️ ${message}`);
+    initDashboard();
+}
+
 function initDashboard() {
     const rawUser = localStorage.getItem("pj_auth_user");
     let user = null;
@@ -295,14 +325,16 @@ async function fetchAccountDetails(username) {
         const res = await fetch(`${apiUrl}/api/account/details?username=${encodeURIComponent(username)}`, {
             method: "GET",
             signal: acctCtrl.signal,
-            headers: {
-                "Accept": "application/json",
-                "ngrok-skip-browser-warning": "true"
-            }
+            headers: getAuthHeaders()
         });
 
         clearTimeout(acctTid);
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
+
+        if (res.status === 401 || res.status === 403 || data.auth_error) {
+            clearExpiredSession(data.message || "Tu sesión expiró. Vuelve a iniciar sesión.");
+            return;
+        }
 
         if (res.ok && data.ok) {
             const normalizedChars = (data.characters || []).map(ch => normalizeAccountCharacter(ch));
@@ -642,7 +674,7 @@ window.actionUnstuckCharacter = async function(guid, name) {
         const apiUrl = getApiUrl();
         const res = await fetch(`${apiUrl}/api/character/unstuck`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: user.username, guid: guid, name: name })
         });
 
@@ -775,7 +807,7 @@ async function actionTeleportCharacter(guid, name, dest) {
         const apiUrl = getApiUrl();
         const res = await fetch(`${apiUrl}/api/character/teleport`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: user.username, guid: guid, destination: dest })
         });
 
@@ -1232,25 +1264,25 @@ window.openAccountActionModal = function(action) {
             break;
 
         case "2fa":
-            const is2fa = Boolean(acct.two_factor);
+            const is2fa = Boolean(acct.two_factor_enabled);
             html = `
                 <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
                     <span style="font-size:1.8rem;">🗝️</span>
                     <div>
                         <h3 style="margin:0; color:#fff;">2FA (Verificación en 2 Pasos)</h3>
-                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Protección TOTP RFC 6238 compatible con Google Authenticator y Authy.</p>
+                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Protección de seguridad vinculada a tu cuenta en acore_auth.</p>
                     </div>
                 </div>
                 <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.3); border-radius:8px; padding:1rem; margin-bottom:1rem; text-align:center;">
                     <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:6px;">Estado actual de tu cuenta:</div>
-                    <div style="font-size:1.1rem; font-weight:800; color:${is2fa ? '#10b981' : '#f87171'};">
+                    <div id="twoFaStatusText" style="font-size:1.1rem; font-weight:800; color:${is2fa ? '#10b981' : '#f87171'};">
                         ${is2fa ? '● Doble Autenticación ACTIVADA' : '○ Doble Autenticación DESACTIVADA'}
                     </div>
                 </div>
                 <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5;">
-                    Al activar el 2FA, cada inicio de sesión en el juego y en el panel web requerirá un código dinámico de 6 dígitos emitido por tu aplicación móvil.
+                    Activa o desactiva el indicador persistente de doble autenticación sobre tu cuenta y queda registrado en tu historial de seguridad.
                 </p>
-                <button type="button" class="btn-primary" onclick="notifyAccountToast('Módulo TOTP activado. Tu código de respaldo ha sido enlazado a ${acct.email}.')" style="width:100%; padding:0.75rem;">
+                <button type="button" id="btnToggle2fa" class="btn-primary" onclick="toggleTwoFactorAuth(${!is2fa})" style="width:100%; padding:0.75rem;">
                     ${is2fa ? 'Desactivar 2FA' : '🔐 Habilitar 2FA en esta Cuenta'}
                 </button>
             `;
@@ -1326,7 +1358,7 @@ window.openAccountActionModal = function(action) {
                     </div>
                 </div>
                 <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(56,189,248,0.25); border-radius:8px; padding:0.8rem 1rem; margin-bottom:1rem; font-size:0.8rem; color:#cbd5e1;">
-                    💡 <em>Códigos activos de la comunidad:</em> <strong style="color:#38bdf8;">ULTIMOWOW</strong> (+50 PD), <strong style="color:#a78bfa;">PROJECTJAINA</strong> (+25 PV), <strong style="color:#34d399;">BETA60</strong> (+100 PD).
+                    💡 <em>Códigos activos de la comunidad:</em> <strong style="color:#38bdf8;">ULTIMOWOW</strong> (+100 PD / +50 PV), <strong style="color:#a78bfa;">PROJECTJAINA</strong> (+150 PD / +50 PV), <strong style="color:#34d399;">BETA60</strong> (+50 PD / +25 PV).
                 </div>
                 <form onsubmit="submitPromoCode(event)">
                     <div style="margin-bottom:14px;">
@@ -1339,26 +1371,28 @@ window.openAccountActionModal = function(action) {
             break;
 
         case "security_token":
+            const curSecToken = acct.security_token || "Solicitado";
+            const isActiveSec = curSecToken !== "Solicitado";
             html = `
                 <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
                     <span style="font-size:1.8rem;">📟</span>
                     <div>
                         <h3 style="margin:0; color:#fff;">Token de Seguridad Extra</h3>
-                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Capa criptográfica adicional de hardware o software.</p>
+                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Clave criptográfica autoritativa persistida en tu cuenta.</p>
                     </div>
                 </div>
                 <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:1rem; margin-bottom:1.2rem;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
                         <span style="color:#94a3b8; font-size:0.85rem;">Estado:</span>
-                        <strong style="color:#38bdf8;">${acct.security_token || 'Solicitado'}</strong>
+                        <strong id="secTokenStateText" style="color:${isActiveSec ? '#10b981' : '#38bdf8'};">${isActiveSec ? 'Activo (Vinculado)' : 'Sin generar'}</strong>
                     </div>
-                    <div style="display:flex; justify-content:space-between;">
+                    <div style="display:flex; justify-content:space-between; gap:8px; align-items:center;">
                         <span style="color:#94a3b8; font-size:0.85rem;">Clave Criptográfica:</span>
-                        <span style="color:var(--gold-primary); font-family:monospace;">SHA256-${acct.id.toString(16).toUpperCase()}-TOKEN</span>
+                        <span id="secTokenValueText" style="color:var(--gold-primary); font-family:monospace;">${_escapeAccHtml(curSecToken)}</span>
                     </div>
                 </div>
-                <button type="button" class="btn-secondary" onclick="notifyAccountToast('Tu solicitud de Token de Seguridad ha sido registrada y validada.')" style="width:100%; padding:0.75rem;">
-                    🔄 Renovar Token Criptográfico
+                <button type="button" id="btnRotateSecToken" class="btn-secondary" onclick="rotateSecurityToken()" style="width:100%; padding:0.75rem;">
+                    🔄 ${isActiveSec ? 'Rotar' : 'Generar'} Token Criptográfico
                 </button>
             `;
             break;
@@ -1391,20 +1425,31 @@ window.openAccountActionModal = function(action) {
             break;
 
         case "rename_guild":
+            const guildChars = (CURRENT_ACCOUNT_DATA.characters || []).filter(c => c.guild_name && c.guild_name.trim() !== "");
+            const guildCharOpts = guildChars.length > 0
+                ? guildChars.map(c => `<option value="${c.guid}">${_escapeAccHtml(c.name)} — &lt;${_escapeAccHtml(c.guild_name)}&gt;</option>`).join("")
+                : `<option value="">Ninguno de tus personajes pertenece a una hermandad</option>`;
             html = `
                 <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
                     <span style="font-size:1.8rem;">✒️</span>
                     <div>
                         <h3 style="margin:0; color:#fff;">Renombrar Hermandad (Guild Rename)</h3>
-                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Cambia el estandarte de tu hermandad por 20 PD.</p>
+                        <p style="margin:0; font-size:0.8rem; color:#94a3b8;">Cambia el estandarte de tu hermandad en vivo por 20 PD (solo Maestro de Hermandad).</p>
                     </div>
                 </div>
-                <form onsubmit="event.preventDefault(); notifyAccountToast('Servicio enviado. Si eres Maestro de Hermandad, el nombre se actualizará en el próximo reinicio.'); closeUwModal();">
+                <div id="renameGuildMsg" style="display:none; padding:8px 12px; border-radius:6px; margin-bottom:12px; font-size:0.85rem;"></div>
+                <form onsubmit="submitRenameGuild(event)">
+                    <div style="margin-bottom:12px;">
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Personaje Maestro de Hermandad:</label>
+                        <select id="renameGuildCharSelect" class="form-control" style="width:100%;" ${guildChars.length === 0 ? 'disabled' : ''}>
+                            ${guildCharOpts}
+                        </select>
+                    </div>
                     <div style="margin-bottom:12px;">
                         <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Nuevo Nombre de Hermandad:</label>
-                        <input type="text" required minlength="3" maxlength="24" class="form-control" placeholder="Ej: Vanguardia de Theramore" style="width:100%;">
+                        <input type="text" id="renameGuildNewName" required minlength="2" maxlength="24" class="form-control" placeholder="Ej: Vanguardia de Theramore" style="width:100%;" ${guildChars.length === 0 ? 'disabled' : ''}>
                     </div>
-                    <button type="submit" class="btn-primary" style="width:100%; padding:0.75rem;">🛡️ Renombrar Hermandad (20 PD)</button>
+                    <button type="submit" id="btnRenameGuildSubmit" class="btn-primary" style="width:100%; padding:0.75rem;" ${guildChars.length === 0 ? 'disabled' : ''}>🛡️ Renombrar Hermandad (20 PD)</button>
                 </form>
             `;
             break;
@@ -1539,6 +1584,13 @@ window.openAccountActionModal = function(action) {
  * Modales de Opciones de Personaje (Servicios)
  */
 window.openCharServicePrompt = function(service) {
+    if (service === "gift") {
+        if (typeof window.openAccountActionModal === "function") {
+            window.openAccountActionModal("transfer_pd");
+        }
+        return;
+    }
+
     const modal = document.getElementById("uwActionModal");
     const content = document.getElementById("uwModalContent");
     if (!modal || !content || !CURRENT_ACCOUNT_DATA) return;
@@ -1552,22 +1604,41 @@ window.openCharServicePrompt = function(service) {
     }
 
     const serviceMeta = {
-        "unstuck": { title: "Desbloquear Personaje (Unstuck)", desc: "Mueve el personaje a su Posada o Capital vinculada (Gratis - Cooldown 15 min).", cost: 0, icon: "🐹" },
-        "revive": { title: "Revivir Personaje", desc: "Restaura la vida de tu personaje caído (Requiere estar muerto - Cooldown 30 min).", cost: 10, icon: "🕊️" },
-        "rename": { title: "Renombrar Personaje", desc: "Permite cambiar el nombre en la pantalla de selección de personajes.", cost: 15, icon: "📜" },
-        "customize": { title: "Personalizar Personaje", desc: "Modifica apariencia física, rostro, peinado y género.", cost: 10, icon: "🧝" },
-        "changerace": { title: "Cambiar de Raza", desc: "Elige una nueva raza compatible con la clase de tu campeón.", cost: 25, icon: "🎭" },
-        "changefaction": { title: "Cambiar de Facción", desc: "Transfiere tu campeón de la Alianza a la Horda o viceversa.", cost: 35, icon: "🛡️" },
-        "levelboost": { title: "Subir a Nivel 60 (Cap Actual)", desc: "Sube instantáneamente tu personaje al nivel máximo de la fase actual (Vanilla).", cost: 50, icon: "⭐" },
-        "gold": { title: "Adquisición de Oro (500G)", desc: "Deposita 500 monedas de oro en las alforjas del personaje para monturas y habilidades.", cost: 20, icon: "💰" },
-        "questtracker": { title: "Rastreador de Misiones Épicas", desc: "Consulta el avance de Agonía de Sombras, Quel'Delar y Reputaciones.", cost: 0, icon: "🐾" },
-        "transferchar": { title: "Transferir Personaje de Cuenta", desc: "Mueve tu personaje a otra cuenta de tu propiedad.", cost: 30, icon: "🚶" },
-        "restorechar": { title: "Recuperar Personaje Borrado", desc: "Restaura personajes eliminados en los últimos 90 días.", cost: 15, icon: "⚰️" },
-        "restoreitem": { title: "Recuperar Ítems Borrados", desc: "Recupera objetos destruidos o vendidos por accidente.", cost: 10, icon: "📦" },
-        "gift": { title: "Enviar Regalo a un Amigo", desc: "Obsequia puntos o servicios a otro aventurero del reino.", cost: 0, icon: "🎁" }
+        "unstuck": { title: "Desbloquear Personaje (Unstuck)", desc: "Mueve el personaje a su Posada o Capital vinculada (Gratis - Cooldown 15 min).", cost: 0, icon: "🐹", auto: true },
+        "revive": { title: "Revivir Personaje", desc: "Restaura la vida de tu personaje caído (Requiere estar muerto - Cooldown 30 min).", cost: 10, icon: "🕊️", auto: true },
+        "rename": { title: "Renombrar Personaje", desc: "Permite cambiar el nombre en la pantalla de selección de personajes.", cost: 15, icon: "📜", auto: true },
+        "customize": { title: "Personalizar Personaje", desc: "Modifica apariencia física, rostro, peinado y género.", cost: 10, icon: "🧝", auto: true },
+        "changerace": { title: "Cambiar de Raza", desc: "Elige una nueva raza compatible con la clase de tu campeón.", cost: 25, icon: "🎭", auto: true },
+        "changefaction": { title: "Cambiar de Facción", desc: "Transfiere tu campeón de la Alianza a la Horda o viceversa.", cost: 35, icon: "🛡️", auto: true },
+        "levelboost": { title: "Subir a Nivel Cap Actual", desc: "Sube instantáneamente tu personaje al nivel máximo de la fase actual del reino.", cost: 50, icon: "⭐", auto: true },
+        "gold": { title: "Adquisición de Oro (500G)", desc: "Deposita 500 monedas de oro directamente in-game (o por correo si estás desconectado).", cost: 20, icon: "💰", auto: true },
+        "questtracker": { title: "Rastreador de Misiones Épicas", desc: "Usa /armario y /pase in-game o consulta misiones bloqueadas con un GM.", cost: 0, icon: "🐾", auto: false },
+        "transferchar": { title: "Transferir Personaje de Cuenta", desc: "Mueve tu personaje a otra cuenta verificada de tu propiedad vía ticket GM.", cost: 30, icon: "🚶", auto: false },
+        "restorechar": { title: "Recuperar Personaje Borrado", desc: "Restaura personajes eliminados en los últimos 90 días vía soporte Staff.", cost: 15, icon: "⚰️", auto: false },
+        "restoreitem": { title: "Recuperar Ítems Borrados", desc: "Recupera objetos destruidos o vendidos por accidente previa auditoría GM.", cost: 10, icon: "📦", auto: false }
     };
 
-    const s = serviceMeta[service] || { title: "Servicio de Personaje", desc: "Servicio in-game.", cost: 0, icon: "✨" };
+    const s = serviceMeta[service] || { title: "Servicio de Personaje", desc: "Servicio in-game.", cost: 0, icon: "✨", auto: false };
+
+    if (!s.auto) {
+        content.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.2rem;">
+                <span style="font-size:1.8rem;">${s.icon}</span>
+                <div>
+                    <h3 style="margin:0; color:#fff;">${s.title}</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#94a3b8;">${s.desc}</p>
+                </div>
+            </div>
+            <div style="background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:0.9rem 1rem; margin-bottom:1.2rem; color:#cbd5e1; font-size:0.85rem; line-height:1.45;">
+                Este trámite requiere validación manual de registros por un Maestro de Juego para garantizar integridad de base de datos.${s.cost > 0 ? `<br><br>Tarifa referencial: <strong style="color:var(--gold-primary);">🪙 ${s.cost} PD</strong>.` : ""}
+            </div>
+            <a href="https://discord.gg/cXxMuRJrfy" target="_blank" rel="noopener" class="btn-primary" style="display:block; text-align:center; text-decoration:none; width:100%; padding:0.8rem;">
+                🛡️ Solicitar Asistencia GM en Discord
+            </a>
+        `;
+        modal.style.display = "flex";
+        return;
+    }
 
     const charOptions = chars.map(c => `<option value="${c.guid}">${c.name} (Nivel ${c.level} - ${c.class_name || 'Héroe'})</option>`).join("");
 
@@ -1623,7 +1694,7 @@ window.openHistoryModal = async function(type) {
 
     try {
         const res = await fetch(`${apiUrl}/api/account/history?username=${encodeURIComponent(username)}`, {
-            headers: { "Accept": "application/json", "ngrok-skip-browser-warning": "true" }
+            headers: getAuthHeaders()
         });
         const data = await res.json();
 
@@ -1738,7 +1809,7 @@ window.submitPromoCode = async function(e) {
     try {
         const res = await fetch(`${apiUrl}/api/account/promo`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: username, code: code })
         });
         const data = await res.json();
@@ -1764,7 +1835,7 @@ window.submitTransferPoints = async function(e) {
     try {
         const res = await fetch(`${apiUrl}/api/account/transfer-points`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: username, target_username: targetUser, target_user: targetUser, amount: amount })
         });
         const data = await res.json();
@@ -1803,7 +1874,7 @@ window.submitCharService = async function(service, cost) {
     try {
         const res = await fetch(`${apiUrl}/api/character/service`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: username, guid: guid, service: service, cost: cost })
         });
         const data = await res.json();
@@ -1827,7 +1898,7 @@ window.actionExecuteVote = async function() {
     try {
         const res = await fetch(`${apiUrl}/api/account/vote`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: username })
         });
         const data = await res.json();
@@ -1874,14 +1945,18 @@ window.submitRedeemPv = async function(e) {
             return;
         }
         guid = parseInt(charSelect.value, 10);
+        if (!Number.isInteger(guid) || guid <= 0) {
+            notifyAccountToast("El personaje seleccionado no es válido.");
+            return;
+        }
     }
 
     const apiUrl = getApiUrl();
     try {
         const res = await fetch(`${apiUrl}/api/account/redeem-pv`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
-            body: JSON.stringify({ username: username, reward_id: reward_id, guid: guid })
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
+            body: JSON.stringify({ username: username, reward_id: reward_id, char_guid: guid, guid: guid })
         });
         const data = await res.json();
         if (res.ok && data.ok) {
@@ -1920,7 +1995,7 @@ window.submitChangePasswordModal = async function(e) {
     try {
         const res = await fetch(`${apiUrl}/api/account/change-password`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ username: username, current_password: curPass, new_password: newPass })
         });
         const data = await res.json();
@@ -1943,6 +2018,111 @@ window.submitChangePasswordModal = async function(e) {
             msgEl.style.color = "#f87171";
             msgEl.textContent = `Error de red: ${err.message}`;
         }
+    }
+};
+
+function _escapeAccHtml(s) {
+    return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+window.toggleTwoFactorAuth = async function(targetEnabled) {
+    if (!CURRENT_ACCOUNT_DATA) return;
+    const btn = document.getElementById("btnToggle2fa");
+    if (btn) btn.disabled = true;
+
+    const apiUrl = getApiUrl();
+    const username = CURRENT_ACCOUNT_DATA.account.username;
+    try {
+        const res = await fetch(`${apiUrl}/api/account/2fa`, {
+            method: "POST",
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
+            body: JSON.stringify({ username: username, enabled: Boolean(targetEnabled) })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            CURRENT_ACCOUNT_DATA.account.two_factor_enabled = Boolean(data.two_factor_enabled);
+            notifyAccountToast(`✓ ${data.message}`);
+            if (typeof fetchAccountDetails === "function") await fetchAccountDetails(username);
+            window.openAccountActionModal("2fa");
+        } else {
+            notifyAccountToast(`⚠️ ${data.message || "No se pudo actualizar 2FA."}`, true);
+        }
+    } catch (err) {
+        notifyAccountToast(`Error de conexión: ${err.message}`, true);
+    } finally {
+        if (btn) btn.disabled = false;
+    }
+};
+
+window.rotateSecurityToken = async function() {
+    if (!CURRENT_ACCOUNT_DATA) return;
+    const btn = document.getElementById("btnRotateSecToken");
+    if (btn) btn.disabled = true;
+
+    const apiUrl = getApiUrl();
+    const username = CURRENT_ACCOUNT_DATA.account.username;
+    try {
+        const res = await fetch(`${apiUrl}/api/account/security-token`, {
+            method: "POST",
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
+            body: JSON.stringify({ username: username })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            CURRENT_ACCOUNT_DATA.account.security_token = data.security_token;
+            notifyAccountToast(`✓ ${data.message}`);
+            if (typeof fetchAccountDetails === "function") await fetchAccountDetails(username);
+            window.openAccountActionModal("security_token");
+        } else {
+            notifyAccountToast(`⚠️ ${data.message || "No se pudo rotar el token."}`, true);
+        }
+    } catch (err) {
+        notifyAccountToast(`Error de conexión: ${err.message}`, true);
+    } finally {
+        if (btn) btn.disabled = false;
+    }
+};
+
+window.submitRenameGuild = async function(e) {
+    e.preventDefault();
+    if (!CURRENT_ACCOUNT_DATA) return;
+    const charSel = document.getElementById("renameGuildCharSelect");
+    const nameInp = document.getElementById("renameGuildNewName");
+    const msgEl = document.getElementById("renameGuildMsg");
+    const btn = document.getElementById("btnRenameGuildSubmit");
+    const charGuid = parseInt(charSel ? charSel.value : "0", 10);
+    const newName = (nameInp ? nameInp.value : "").trim();
+    if (!charGuid || !newName) return;
+
+    if (btn) btn.disabled = true;
+    const apiUrl = getApiUrl();
+    const username = CURRENT_ACCOUNT_DATA.account.username;
+    try {
+        const res = await fetch(`${apiUrl}/api/guild/rename`, {
+            method: "POST",
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
+            body: JSON.stringify({ username: username, char_guid: charGuid, new_name: newName })
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+            notifyAccountToast(`✓ ${data.message}`);
+            if (typeof fetchAccountDetails === "function") await fetchAccountDetails(username);
+            closeUwModal();
+        } else {
+            if (msgEl) {
+                msgEl.style.display = "block";
+                msgEl.style.background = "rgba(239,68,68,0.2)";
+                msgEl.style.color = "#f87171";
+                msgEl.style.border = "1px solid rgba(239,68,68,0.4)";
+                msgEl.textContent = data.message || "No se pudo renombrar la hermandad.";
+            } else {
+                notifyAccountToast(`⚠️ ${data.message || "Error renombrando hermandad."}`, true);
+            }
+        }
+    } catch (err) {
+        notifyAccountToast(`Error de red: ${err.message}`, true);
+    } finally {
+        if (btn) btn.disabled = false;
     }
 };
 
@@ -2079,7 +2259,7 @@ window.switchMarketTab = async function(tab) {
                     </div>
                     <div>
                         <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px;">Precio total solicitado (PD):</label>
-                        <input type="number" id="marketSellPricePd" class="form-control" style="width:100%;" required min="1" step="1" value="2" oninput="updateMarketSellPreview()">
+                        <input type="number" id="marketSellPricePd" class="form-control" style="width:100%;" required min="2" step="1" value="2" oninput="updateMarketSellPreview()">
                     </div>
                 </div>
 
@@ -2110,7 +2290,7 @@ window.switchMarketTab = async function(tab) {
         `;
         try {
             const res = await fetch(`${apiUrl}/api/market/my-orders?username=${encodeURIComponent(acct.username)}`, {
-                headers: { "ngrok-skip-browser-warning": "true" }
+                headers: getAuthHeaders()
             });
             const data = await res.json();
             const orders = (data && data.orders) ? data.orders : [];
@@ -2183,7 +2363,7 @@ window.switchMarketTab = async function(tab) {
                 <span style="font-size:2.4rem;">🎫</span>
                 <div>
                     <h4 style="margin:0; color:#fff;">Ficha de Jaina (WoW Token Canónico)</h4>
-                    <p style="margin:2px 0 0 0; font-size:0.8rem; color:#94a3b8;">Item ID: 900100 · Moneda puente entre la economía in-game y el portal web.</p>
+                    <p style="margin:2px 0 0 0; font-size:0.8rem; color:#94a3b8;">Item ID: 900200 (Ficha = +100 PD · Token 900100 = +1 PD) · Moneda puente oficial.</p>
                 </div>
             </div>
             <div style="font-size:0.85rem; color:#cbd5e1; line-height:1.6; margin-bottom:1.2rem;">
@@ -2207,7 +2387,7 @@ window.updateMarketSellPreview = function() {
     if (!sel || !goldInput || !priceInput || !feeEl || !netEl) return;
 
     const price = parseInt(priceInput.value, 10) || 0;
-    const fee = Math.max(1, Math.round(price * 0.10));
+    const fee = Math.max(1, Math.ceil(price * 0.10));
     const net = Math.max(0, price - fee);
 
     feeEl.textContent = `-${fee} PD`;
@@ -2239,7 +2419,7 @@ window.promptBuyMarketGold = async function(listingId, gold, pricePd, sellerChar
     try {
         const res = await fetch(`${apiUrl}/api/market/buy`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({
                 username: acct.username,
                 listing_id: listingId,
@@ -2289,7 +2469,7 @@ window.submitListGoldMarket = async function(e) {
     try {
         const res = await fetch(`${apiUrl}/api/market/list-gold`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({
                 username: acct.username,
                 char_guid: charGuid,
@@ -2321,7 +2501,7 @@ window.cancelMarketListing = async function(listingId) {
     try {
         const res = await fetch(`${apiUrl}/api/market/cancel`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: getAuthHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({
                 username: acct.username,
                 listing_id: listingId

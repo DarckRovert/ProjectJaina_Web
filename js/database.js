@@ -156,6 +156,8 @@ const DB_ENGINE = {
         const params = new URLSearchParams({
             q: this.query,
             cat: this.category,
+            rarity: this.rarity,
+            sort: this.sortBy,
             page: this.page,
             limit: this.limit,
             era_cap: this.eraCap
@@ -177,17 +179,17 @@ const DB_ENGINE = {
 
             if (res.ok) {
                 const data = await res.json();
-                if (data && Array.isArray(data.items) && data.items.length > 0) {
-                    if (this.category === "enclaves" && data.items[0].category !== "enclaves") {
+                if (data && Array.isArray(data.items)) {
+                    if (this.category === "enclaves" && data.items.length > 0 && data.items[0].category !== "enclaves") {
                         throw new Error("Usar enclaves canónicos verificados");
                     }
                     this.isLive = true;
-                    const processed = this.applyClientRarityAndSort(data.items);
-                    this.totalItems = (this.rarity === "all") ? (data.total || processed.length) : processed.length;
-                    this.totalPages = (this.rarity === "all") ? (data.total_pages || 1) : Math.max(1, Math.ceil(processed.length / this.limit));
+                    const items = data.items;
+                    this.totalItems = Number(data.total ?? items.length);
+                    this.totalPages = Math.max(1, Number(data.total_pages || Math.ceil(this.totalItems / this.limit) || 1));
                     this.updateStatusBadge(true, "● SERVIDOR EN VIVO (BASE DE DATOS OFICIAL)");
-                    this.updateSummaryCounter(processed.length, this.totalItems);
-                    this.renderGrid(processed);
+                    this.updateSummaryCounter(items.length, this.totalItems);
+                    this.renderGrid(items);
                     this.renderPagination();
                     this.refreshWowheadTooltips();
                     return;

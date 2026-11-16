@@ -188,4 +188,4 @@ Puedes consultar el cronograma interactivo en vivo en la portada del [Portal Ofi
 
 ---
 
-© 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna (Portal v7.4.4 — Hito #377)
+© 2026 **DarckRovert (Elnazzareno)** & **Antigravity (Mythos 5)** — Project JAIna (Portal v7.4.5 — Hito #382)

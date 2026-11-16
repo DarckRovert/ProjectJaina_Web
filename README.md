@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Project JAIna Official Crest" width="220">
 </p>
 
-# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.4)
+# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.5)
 
 <div align="center">
   <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Emblema" width="180" style="border-radius: 50%;">
@@ -14,7 +14,7 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.4%20(Hito%20%23377)-00ccff.svg)](./CHANGELOG.md)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.5%20(Hito%20%23382)-00ccff.svg)](./CHANGELOG.md)
 [![WebAPI Engine](https://img.shields.io/badge/WebAPI-Rust%20Tokio%2FAxum%20:8080-orange.svg)](./CHANGELOG.md)
 [![WebClient 3D](https://img.shields.io/badge/Client-Lanzador%20Oficial%20%26%20HD%20PC-E34F26.svg)](./downloads/ProjectJaina_Launcher.exe)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
@@ -33,9 +33,9 @@
 
 ---
 
-## 💎 2. Características del Portal AAA (v7.4.4)
+## 💎 2. Características del Portal AAA (v7.4.5)
 
-* **Backend Soberano en Rust Nativo Tokio/Axum (`jaina_webapi_daemon` en :8080):** Servidor HTTP asíncrono de alto rendimiento con latencias sub-milisegundo (< 1 ms), 28 endpoints REST API nativos, motor criptográfico SRP-6 RFC 5054 integrado, vinculación instantánea 1-Click SSO con Discord, pasarelas de pago omnicanal automatizadas (PayPal y Yape/Plin con generación `YP-XXXX-XXXX`), mercado P2P de oro y consultas relacionales SQL optimizadas sin bloqueos de contención.
+* **Backend Soberano en Rust Nativo Tokio/Axum (`jaina_webapi_daemon` en :8080):** Servidor HTTP asíncrono de alto rendimiento con latencias sub-milisegundo (< 1 ms), rutas REST API nativas con sesiones firmadas HMAC-SHA256, motor criptográfico SRP-6 RFC 5054, vinculación instantánea Discord, pasarelas de pago con verificación server-side PayPal y Yape/Plin (`YP-XXXX-XXXX`), mercado P2P de oro, proxy `/voice-ws`, `/api/backup/status` sobre `reino_1_latest.manifest.json` y comandos admin protegidos con `X-Admin-Token`.
 * **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`), animaciones aceleradas por GPU y sistema de diálogos no bloqueantes **Suite Kirin Tor** (cero `alert`/`confirm`/`prompt` nativos).
 * **Living Lore & AI Revolution:** Sección interactiva que narra el despertar de los LoreBots, la arquitectura C++20 `JainaCore` (`jainacore.html`) y la integración del puente neuronal LLM.
 * **Kirin Tor Arcane Sonic Studio (Fonoteca & Radio v7.1):**
@@ -53,7 +53,7 @@
 * **Bifacción Canónica Simétrica:** Una sola cuenta universal otorga acceso total al reino; la facción (**Alianza** u **Horda**) se elige libremente in-game con auto-incorporación a `<El Kirin Tor>` (Guild 21, Lady Jaina) o `<La Horda de Orgrimmar>` (Guild 22, Thrall).
 * **Cronograma Interactivo de Progresión de Eras (2026–2028) & Chrono-Master v2.0:** Línea de tiempo visual de las 8 fases del reino (`Classic Vanilla` → `TBC` → `WotLK T7..T10.5` → `Cataclysm`) sincronizada en tiempo real con `/api/progression` y respaldo autónomo en `data/progression.json`.
 * **Subpáginas Especializadas AAA:**
-  * **Armería Soberana v7.4.4 (`armeria.html`):** El Arquitecto (`Elnazzareno`) y los 7 Campeones Soberanos con equipamiento real SSOT verificado contra MySQL en vivo (Tier 3 / BiS real en DB, Paperdoll responsivo de 19 ranuras `"0".."18"`, GS calculado en vivo en `jaina_webapi_daemon`), barra de censo Alianza/Horda, filtros de facción/clase, ordenamiento por GS/Nivel/HKs y enlace compartible `?inspect=`.
+  * **Armería Soberana v7.4.5 (`armeria.html`):** El Arquitecto (`Elnazzareno`) y los 7 Campeones Soberanos con equipamiento real SSOT verificado contra MySQL en vivo (Tier 3 / BiS real en DB, Paperdoll responsivo de 19 ranuras `"0".."18"`, GS calculado en vivo en `jaina_webapi_daemon`), saneamiento `escapeArmoryHtml`, indicador `is_dead`, barra de censo Alianza/Horda, filtros de facción/clase, ordenamiento por GS/Nivel/HKs y enlace compartible `?inspect=`.
   * **Base de Datos Soberana AoWoW v7.1 (`database.html`):** 72 registros verificados en 8 pestañas (Armas, Armaduras, Monturas, Criaturas, Misiones, Zonas, Pase de Batalla y los 6 Baluartes Soberanos), barra de filtros por rareza/orden e Inspector Soberano con guarda `< 900000` para ítems custom.
   * **Panel de Cuenta & Modo Sandbox (`cuenta.html`):** Gestión integral de cuenta SRP6, inventario de personajes, servicios in-game y **Modo Sandbox Interactivo** para previsualizar el panel cuando el backend local está desconectado.
   * **Tienda & Donaciones (`tienda.html`):** Catálogo visual de cosméticos, monturas y pases de batalla con tooltips limpios sin solapamiento e idempotencia transaccional.

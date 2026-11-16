@@ -4,6 +4,21 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.4.5] - 2026-11-16 — Endurecimiento Auth Bearer, Anti-XSS Armería/Tienda, Paginación AoWoW, Voz `/voice-ws` & WebAPI Rust Hardening (Hito #382)
+
+### 🔐 Autenticación, Seguridad DOM y Sincronización Web (`js/auth.js`, `js/armory.js`, `js/cuenta.js`, `js/database.js`, `js/store.js`, `voz/app.js`)
+- **Cabeceras Autenticadas & Bypass Ngrok (`js/auth.js`):** Añadidos `getToken()` y `getAuthHeaders()` adjuntando `Authorization: Bearer <token>` y `ngrok-skip-browser-warning: true` en peticiones protegidas.
+- **Armería Soberana Anti-XSS & Estado Muerto (`js/armory.js`, `armeria.html`):** Saneamiento estricto con `escapeArmoryHtml()` en podio, nombres, títulos y hermandades; preservación de flag `is_dead` y coalesce `gs ?? gear_score ?? 0`.
+- **Panel de Cuenta (`js/cuenta.js`, `cuenta.html`):** Envío autenticado via `getAuthHeaders()`, alineación de descripción de entrega de oro (`500g = 20 PD`) y normalización de acciones de personaje.
+- **Base de Datos AoWoW (`js/database.js`, `database.html`):** Renderizado directo de paginación autoritativa del servidor (`data.items`, `data.total`, `data.total_pages`).
+- **Tienda & Voz 3D (`js/store.js`, `voz/app.js`):** Escapado `_escapeStoreHtml()` y uso del código de referencia autoritativo devuelto por backend (`data.reference_code || data.order_id`), cabecera `ngrok-skip-browser-warning` en `/api/verify-pin` y detección `/voice-ws` cuando corre tras gateway `:8080`.
+- **Cache-Busting Plantillas HTML:** Actualizadas referencias `?v=20261116_v745..v751` en las páginas del portal.
+
+### 🦀 Paridad Backend `jaina_webapi_daemon.exe` (:8080)
+- Implementadas sesiones firmadas HMAC-SHA256 (`require_authenticated_session`), PayPal server-side verification, verificación fail-closed `X-Admin-Token`, proxy WebSocket `/voice-ws`, `/api/progression` SSOT y resolución canónica de manifiesto `reino_1_latest.manifest.json` en `/api/backup/status` y `/api/backup/trigger` (Hito #382).
+
+---
+
 ## [v7.4.4] - 2026-11-15 — Alineación SSOT de Armería Real Tier 3, Tarjetas Web y WebAPI Rust GS (Hito #377)
 
 ### 🛡️ Armería Soberana & Tarjetas de Campeones (`data/armory.json`, `index.html`, `js/cuenta.js`)
