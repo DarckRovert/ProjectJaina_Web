@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Project JAIna Official Crest" width="220">
 </p>
 
-# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.3)
+# 🌐 Project JAIna — Portal Web Oficial AAA (v7.4.4)
 
 <div align="center">
   <img src="images/jaina_crest_logo.jpg" alt="Project JAIna Emblema" width="180" style="border-radius: 50%;">
@@ -14,7 +14,7 @@
 
 ---
 
-[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.3%20(Hito%20%23366)-00ccff.svg)](./CHANGELOG.md)
+[![Versión Portal](https://img.shields.io/badge/Portal-v7.4.4%20(Hito%20%23377)-00ccff.svg)](./CHANGELOG.md)
 [![WebAPI Engine](https://img.shields.io/badge/WebAPI-Rust%20Tokio%2FAxum%20:8080-orange.svg)](./CHANGELOG.md)
 [![WebClient 3D](https://img.shields.io/badge/Client-Lanzador%20Oficial%20%26%20HD%20PC-E34F26.svg)](./downloads/ProjectJaina_Launcher.exe)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](./LICENSE)
@@ -53,7 +53,7 @@
 * **Bifacción Canónica Simétrica:** Una sola cuenta universal otorga acceso total al reino; la facción (**Alianza** u **Horda**) se elige libremente in-game con auto-incorporación a `<El Kirin Tor>` (Guild 21, Lady Jaina) o `<La Horda de Orgrimmar>` (Guild 22, Thrall).
 * **Cronograma Interactivo de Progresión de Eras (2026–2028) & Chrono-Master v2.0:** Línea de tiempo visual de las 8 fases del reino (`Classic Vanilla` → `TBC` → `WotLK T7..T10.5` → `Cataclysm`) sincronizada en tiempo real con `/api/progression` y respaldo autónomo en `data/progression.json`.
 * **Subpáginas Especializadas AAA:**
-  * **Armería Soberana v7.1 (`armeria.html`):** 20 campeones con equipamiento canónico Tier 2 verificado (Paperdoll responsivo de 19 ranuras `"0".."18"`), barra de censo Alianza/Horda, filtros de facción/clase, ordenamiento por GS/Nivel/HKs y enlace compartible `?inspect=`.
+  * **Armería Soberana v7.4.4 (`armeria.html`):** Campeones con equipamiento real SSOT verificado contra MySQL en vivo (Tier 3 / BiS en los 8 campeones, Paperdoll responsivo de 19 ranuras `"0".."18"`, GS calculado en vivo en `jaina_webapi_daemon`), barra de censo Alianza/Horda, filtros de facción/clase, ordenamiento por GS/Nivel/HKs y enlace compartible `?inspect=`.
   * **Base de Datos Soberana AoWoW v7.1 (`database.html`):** 72 registros verificados en 8 pestañas (Armas, Armaduras, Monturas, Criaturas, Misiones, Zonas, Pase de Batalla y los 6 Baluartes Soberanos), barra de filtros por rareza/orden e Inspector Soberano con guarda `< 900000` para ítems custom.
   * **Panel de Cuenta & Modo Sandbox (`cuenta.html`):** Gestión integral de cuenta SRP6, inventario de personajes, servicios in-game y **Modo Sandbox Interactivo** para previsualizar el panel cuando el backend local está desconectado.
   * **Tienda & Donaciones (`tienda.html`):** Catálogo visual de cosméticos, monturas y pases de batalla con tooltips limpios sin solapamiento e idempotencia transaccional.

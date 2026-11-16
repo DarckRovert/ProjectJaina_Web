@@ -4,6 +4,20 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 
 ---
 
+## [v7.4.4] - 2026-11-15 — Alineación SSOT de Armería Real Tier 3, Tarjetas Web y WebAPI Rust GS (Hito #377)
+
+### 🛡️ Armería Soberana & Tarjetas de Campeones (`data/armory.json`, `index.html`, `js/cuenta.js`)
+- **Sincronización SSOT contra MySQL en Vivo (`acore_characters`):** Regenerado `data/armory.json` con los 19 slots reales (`bag=0, slot<19`), hermandades reales y GearScore calculado para los 8 campeones canónicos:
+  - `Elnazzareno` (`GUID 1`): `2,357 GS` · `<El Kirin Tor>` · Tier 3 *Corazón de la Peste* & *Atiesh* (`22630`).
+  - `Jaina` (`GUID 1002`): `2,306 GS` · `<El Kirin Tor>` · Tier 3 *Fuego de Escarcha* (hombreras restauradas a `22499`) & *Buscador de Almas*.
+  - `Varian` (`GUID 1003`): `2,502 GS` · `<Guardia Real de Ventormenta>` · Tier 3 *Acorazado* & *Trueno Furioso*.
+  - `Thrall` (`GUID 2284`): `2,486 GS` · `<Los Hijos de Durotar>` · Tier 3 *Rompetierra* & *Martillo del Vacío Abisal*.
+  - Escuadrón Élite `<La Horda de Orgrimmar>`: `Rogotten` (`2,137 GS`), `Silka` (`2,072 GS`), `Aezrah` (`1,969 GS`) y `Melissah` (`1,952 GS`).
+- **Tarjetas Principales (`index.html`) y Sandbox (`js/cuenta.js`):** Actualizadas las 7 tarjetas heroicas de portada para reflejar los sets reales (Tier 3 / BiS real en DB), armas, hermandades y GS vigentes, junto con `PJ_SANDBOX_FALLBACK_HEROES` (`22506`/`22630`, `22466`/`23056`, `22498`/`22799`).
+- **Paridad Backend WebAPI Rust (`jaina_webapi_daemon` en `:8080`):** Implementado cálculo real de GS sobre inventario en `handle_armory_inspect` y normalización de `"Guardia Real de Ventorme"` → `"Guardia Real de Ventormenta"`.
+
+---
+
 ## [v7.4.3] - 2026-11-14 — Certificación Topográfica 3D de Baluartes 3.0 en Catálogo AoWoW y WebAPI Rust (Hito #366)
 
 ### 🏰 Base de Datos AoWoW (`data/database_catalog.json` & `jaina_webapi_daemon`)

@@ -1,6 +1,6 @@
-# 🏛️ Arquitectura del Portal: Project Jaina Web (v7.4.1)
+# 🏛️ Arquitectura del Portal: Project Jaina Web (v7.4.4)
 
-Este documento describe la arquitectura técnica, el sistema de diseño y la integración con el ecosistema de **Project Jaina (WotLK 3.3.5a - Living Lore & AI Revolution — Hito #341)**.
+Este documento describe la arquitectura técnica, el sistema de diseño y la integración con el ecosistema de **Project Jaina (WotLK 3.3.5a - Living Lore & AI Revolution — Hito #377)**.
 
 ---
 
@@ -14,7 +14,7 @@ Este documento describe la arquitectura técnica, el sistema de diseño y la int
   - `js/register.js`: Registro criptográfico SRP6 RFC 5054, modal **Discord Quick-Bind** con correo sintético RFC-5322 (`@discord.projectjaina.net`), conmutadores de visibilidad de contraseña y sonda de estado de AuthServer.
   - `js/cuenta.js`: Panel integral de cuenta y personajes con `AbortController` de 4.5s, normalización de razas/clases (`PJ_RACE_MAP`, `PJ_CLASS_MAP`), guarda `< 900000` para ítems custom, caché `accountSnapshot` y **Modo Sandbox Interactivo** (`launchAccountSandboxDemo()`).
   - `js/database.js`: Motor **AoWoW Soberano v7.1** con 72 registros verificados en 8 pestañas (incluyendo *Pase de Batalla* y los *6 Baluartes Soberanos*), filtros por rareza/ordenamiento e Inspector Modal Soberano.
-  - `js/armory.js`: **Armería Soberana v7.4.1** con paperdoll responsivo de 19 ranuras `"0".."18"` normalizado vía `buildArmoryItemsBySlot()` (compatible con arrays dispersos live y `armory.json`), badges de modos de juego (`HARDCORE`, `IRONMAN`, `DIE_AND_RISE`, `SLOW_X1`), retención de caché en vivo y deep-link `?inspect=`.
+  - `js/armory.js`: **Armería Soberana v7.4.4** con paperdoll responsivo de 19 ranuras `"0".."18"` normalizado vía `buildArmoryItemsBySlot()` (sincronizada 1:1 con `acore_characters`, GearScore real en `jaina_webapi_daemon`, badges de modos de juego `HARDCORE`, `IRONMAN`, `DIE_AND_RISE`, `SLOW_X1`, retención de caché en vivo y deep-link `?inspect=`).
   - `js/jaina_dialogue.js`: Diálogo neuronal de Lady Jaina (`/api/chat`) con sanitización HTML anti-XSS (`escapeHtml`), timeout `14000ms` y detección unificada `neural`/`neural_gpu`/`gravity_cloud*`.
   - `js/store.js`: Tienda cosmética Zero-P2W con contenedores de ítems `.store-item-badge` aislados de `.icontinyl` y despacho transaccional idempotente.
   - `js/lore_audio.js` & `radio/app.js`: **Kirin Tor Arcane Sonic Studio** (15 canales en 3 suites: *Lo-Fi & Estudio*, *Sinfonías de Azeroth* y *Kirin Tor FM En Vivo*) sincronizado entre pestañas mediante `BroadcastChannel('pj_sonic_mutex')`.

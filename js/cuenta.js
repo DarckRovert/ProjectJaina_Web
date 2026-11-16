@@ -40,26 +40,26 @@ const PJ_SANDBOX_FALLBACK_HEROES = [
         level: 60, zone_name: "Ciudadela de Theramore", guild: "El Kirin Tor", gs: 2357, playtime_hours: 247.1,
         faction: "Alianza",
         items: {
-            "0": { entry: 16929, name: "Casquete de Némesis", ilvl: 76, quality: 4, icon: "inv_helmet_08" },
-            "15": { entry: 19356, name: "Bastón de la Llama de las Sombras", ilvl: 81, quality: 4, icon: "inv_staff_06" }
+            "0": { entry: 22506, name: "Aro corazón de peste", ilvl: 88, quality: 4, icon: "inv_crown_01" },
+            "15": { entry: 22630, name: "Atiesh, gran báculo del Guardián", ilvl: 90, quality: 5, icon: "inv_staff_medivh" }
         }
     },
     {
         guid: 2284, name: "Thrall", race: "Orco", class: "Chamán", gender: "Masculino",
-        level: 60, zone_name: "Orgrimmar", guild: "Los Hijos de Durotar", gs: 1954, playtime_hours: 185.0,
+        level: 60, zone_name: "Orgrimmar", guild: "Los Hijos de Durotar", gs: 2486, playtime_hours: 185.0,
         faction: "Horda",
         items: {
-            "0": { entry: 16947, name: "Casco de Diez Tormentas", ilvl: 76, quality: 4, icon: "inv_helmet_69" },
-            "15": { entry: 19360, name: "Lok'amir il Romathis", ilvl: 83, quality: 4, icon: "inv_mace_06" }
+            "0": { entry: 22466, name: "Celada Rompeterra", ilvl: 88, quality: 4, icon: "inv_helmet_09" },
+            "15": { entry: 23056, name: "Martillo de El Vacío Abisal", ilvl: 89, quality: 4, icon: "inv_mace_1h_stratholme_d_02" }
         }
     },
     {
         guid: 1002, name: "Jaina", race: "Humano", class: "Mago", gender: "Femenino",
-        level: 60, zone_name: "Ventormenta", guild: "El Kirin Tor", gs: 2140, playtime_hours: 312.5,
+        level: 60, zone_name: "Ciudadela de Theramore", guild: "El Kirin Tor", gs: 2306, playtime_hours: 312.5,
         faction: "Alianza",
         items: {
-            "0": { entry: 16914, name: "Corona del Viento Abisal", ilvl: 76, quality: 4, icon: "inv_crown_01" },
-            "15": { entry: 22589, name: "Atiesh, Gran Báculo del Guardián", ilvl: 90, quality: 5, icon: "inv_staff_medivh" }
+            "0": { entry: 22498, name: "Aro de Fuego de Escarcha", ilvl: 88, quality: 4, icon: "inv_crown_01" },
+            "15": { entry: 22799, name: "Buscador de almas", ilvl: 89, quality: 4, icon: "inv_staff_15" }
         }
     }
 ];
