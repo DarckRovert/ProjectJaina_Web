@@ -7,7 +7,7 @@ Todas las modificaciones notables a este proyecto están documentadas cronológi
 ## [v7.4.4] - 2026-11-15 — Alineación SSOT de Armería Real Tier 3, Tarjetas Web y WebAPI Rust GS (Hito #377)
 
 ### 🛡️ Armería Soberana & Tarjetas de Campeones (`data/armory.json`, `index.html`, `js/cuenta.js`)
-- **Sincronización SSOT contra MySQL en Vivo (`acore_characters`):** Regenerado `data/armory.json` con los 19 slots reales (`bag=0, slot<19`), hermandades reales y GearScore calculado para los 8 campeones canónicos:
+- **Sincronización SSOT contra MySQL en Vivo (`acore_characters`):** Regenerado `data/armory.json` con los 19 slots reales (`bag=0, slot<19`), hermandades reales y GearScore calculado para el Arquitecto y los 7 Campeones Soberanos:
   - `Elnazzareno` (`GUID 1`): `2,357 GS` · `<El Kirin Tor>` · Tier 3 *Corazón de la Peste* & *Atiesh* (`22630`).
   - `Jaina` (`GUID 1002`): `2,306 GS` · `<El Kirin Tor>` · Tier 3 *Fuego de Escarcha* (hombreras restauradas a `22499`) & *Buscador de Almas*.
   - `Varian` (`GUID 1003`): `2,502 GS` · `<Guardia Real de Ventormenta>` · Tier 3 *Acorazado* & *Trueno Furioso*.

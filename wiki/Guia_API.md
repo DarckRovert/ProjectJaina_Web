@@ -1,6 +1,6 @@
-# 🔌 Guía de API y Módulos JavaScript — Project Jaina Web (v7.4.1)
+# 🔌 Guía de API y Módulos JavaScript — Project Jaina Web (v7.4.4)
 
-Documentación técnica de los módulos JavaScript del cliente y los endpoints REST/WebSocket que alimentan el portal oficial de **Project Jaina (Hito #341)**.
+Documentación técnica de los módulos JavaScript del cliente y los endpoints REST/WebSocket del daemon Rust `jaina_webapi_daemon.exe` que alimentan el portal oficial de **Project Jaina (Hito #377)**.
 
 ---
 
@@ -29,7 +29,7 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 - Gestiona 8 categorías (`weapons`, `armor`, `mounts`, `npcs`, `quests`, `zones`, `battlepass`, `enclaves`) con contadores en vivo por pestaña, búsqueda instantánea, filtro por rareza y ordenamiento multicriterio.
 - Respaldo estático verificado en `data/database_catalog.json` (72 registros canónicos y custom con iconos verificados HTTP 200) e **Inspector Modal Soberano** con ficha técnica completa y comando `.additem` / coordenadas.
 
-### `js/armory.js` — Armería Soberana & Paperdoll Responsivo (v7.4.1)
+### `js/armory.js` — Armería Soberana & Paperdoll Responsivo (v7.4.4)
 - Búsqueda normalizada insensible a diacríticos (`NFD`), barra de **Censo del Reino** (proporción Alianza/Horda, GearScore medio, horas jugadas y muertes con honor), filtros de facción/clase, badges de modo de juego (`HARDCORE`, `IRONMAN`, `DIE_AND_RISE`, `SLOW_X1`) y ordenamiento dinámico.
 - **Paperdoll Responsivo de 19 Ranuras (`"0".."18"`)**: `buildArmoryItemsBySlot()` unifica arrays dispersos de `/api/armory/search` y diccionarios por slot de `data/armory.json`; `fetchLiveArmory()` preserva `items` y `mode` cacheados cuando faltan en la respuesta en vivo y enlaza por `?inspect=Nombre`.
 
@@ -49,7 +49,7 @@ Gestiona la resolución dinámica de endpoints según el origen desde donde nave
 
 ---
 
-## 2. Endpoints del Micro-Backend (`ProjectJaina_WebAPI.py` — Puerto 8080)
+## 2. Endpoints del Micro-Backend (`jaina_webapi_daemon.exe` — Puerto 8080)
 
 | Método | Ruta | Descripción |
 | :--- | :--- | :--- |

@@ -33,7 +33,7 @@
 
 ---
 
-## 💎 2. Características del Portal AAA (v7.4.0)
+## 💎 2. Características del Portal AAA (v7.4.4)
 
 * **Backend Soberano en Rust Nativo Tokio/Axum (`jaina_webapi_daemon` en :8080):** Servidor HTTP asíncrono de alto rendimiento con latencias sub-milisegundo (< 1 ms), 28 endpoints REST API nativos, motor criptográfico SRP-6 RFC 5054 integrado, vinculación instantánea 1-Click SSO con Discord, pasarelas de pago omnicanal automatizadas (PayPal y Yape/Plin con generación `YP-XXXX-XXXX`), mercado P2P de oro y consultas relacionales SQL optimizadas sin bloqueos de contención.
 * **Estética Arcana Premium:** Diseño Glassmorphism con paleta oficial de Theramore (Azul Arcano `#00ccff`, Oro Regio `#d4af37` y Abisal `#080b12`), animaciones aceleradas por GPU y sistema de diálogos no bloqueantes **Suite Kirin Tor** (cero `alert`/`confirm`/`prompt` nativos).
@@ -53,7 +53,7 @@
 * **Bifacción Canónica Simétrica:** Una sola cuenta universal otorga acceso total al reino; la facción (**Alianza** u **Horda**) se elige libremente in-game con auto-incorporación a `<El Kirin Tor>` (Guild 21, Lady Jaina) o `<La Horda de Orgrimmar>` (Guild 22, Thrall).
 * **Cronograma Interactivo de Progresión de Eras (2026–2028) & Chrono-Master v2.0:** Línea de tiempo visual de las 8 fases del reino (`Classic Vanilla` → `TBC` → `WotLK T7..T10.5` → `Cataclysm`) sincronizada en tiempo real con `/api/progression` y respaldo autónomo en `data/progression.json`.
 * **Subpáginas Especializadas AAA:**
-  * **Armería Soberana v7.4.4 (`armeria.html`):** Campeones con equipamiento real SSOT verificado contra MySQL en vivo (Tier 3 / BiS en los 8 campeones, Paperdoll responsivo de 19 ranuras `"0".."18"`, GS calculado en vivo en `jaina_webapi_daemon`), barra de censo Alianza/Horda, filtros de facción/clase, ordenamiento por GS/Nivel/HKs y enlace compartible `?inspect=`.
+  * **Armería Soberana v7.4.4 (`armeria.html`):** El Arquitecto (`Elnazzareno`) y los 7 Campeones Soberanos con equipamiento real SSOT verificado contra MySQL en vivo (Tier 3 / BiS real en DB, Paperdoll responsivo de 19 ranuras `"0".."18"`, GS calculado en vivo en `jaina_webapi_daemon`), barra de censo Alianza/Horda, filtros de facción/clase, ordenamiento por GS/Nivel/HKs y enlace compartible `?inspect=`.
   * **Base de Datos Soberana AoWoW v7.1 (`database.html`):** 72 registros verificados en 8 pestañas (Armas, Armaduras, Monturas, Criaturas, Misiones, Zonas, Pase de Batalla y los 6 Baluartes Soberanos), barra de filtros por rareza/orden e Inspector Soberano con guarda `< 900000` para ítems custom.
   * **Panel de Cuenta & Modo Sandbox (`cuenta.html`):** Gestión integral de cuenta SRP6, inventario de personajes, servicios in-game y **Modo Sandbox Interactivo** para previsualizar el panel cuando el backend local está desconectado.
   * **Tienda & Donaciones (`tienda.html`):** Catálogo visual de cosméticos, monturas y pases de batalla con tooltips limpios sin solapamiento e idempotencia transaccional.

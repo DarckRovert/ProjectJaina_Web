@@ -1,1 +1,1 @@
-feat(web): sincronizacion portal Project Jaina 2026-11-05_01:32 
+feat(web): sincronizacion portal Project Jaina v7.4.4 (Hito #377) 2026-11-15

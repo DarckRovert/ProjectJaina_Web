@@ -1,6 +1,6 @@
 # 🛡️ Política de Seguridad — Project JAIna Web
 
-Este documento describe la política de seguridad y las salvaguardas criptográficas/cliente del portal oficial de **Project JAIna (WotLK 3.3.5a — Portal v7.1.0)**.
+Este documento describe la política de seguridad y las salvaguardas criptográficas/cliente del portal oficial de **Project JAIna (WotLK 3.3.5a — Portal v7.4.4)**.
 
 ## 1. Versiones Soportadas
 
@@ -8,11 +8,11 @@ Actualmente se proporciona soporte activo de seguridad para las siguientes versi
 
 | Versión | Estado de Soporte |
 | :--- | :--- |
-| **7.1.x (Actual — Hito #270)** | ✅ Soporte Activo Completo |
-| **7.0.x** | ✅ Parches Críticos |
+| **7.4.x (Actual — Hito #377)** | ✅ Soporte Activo Completo |
+| **7.0.x – 7.3.x** | ✅ Parches Críticos |
 | **< 7.0** | ❌ Obsoleta |
 
-## 2. Salvaguardas Arquitectónicas (v7.1.0)
+## 2. Salvaguardas Arquitectónicas (v7.4.4)
 
 1. **Autenticación SRP6 Zero-Plaintext (RFC 5054):** Las credenciales de registro y cambio de contraseña se procesan bajo protocolo criptográfico SRP6 (`salt` + `verifier`) hacia `acore_auth.account`. Jamás se almacenan contraseñas en texto plano.
 2. **Saneamiento Anti-XSS en Diálogos del Cliente:** La suite universal `window.showPortalToast`, `window.showPortalConfirm` y `window.showPortalPrompt` (`js/navbar.js`) escapa estrictamente entidades HTML (`&`, `<`, `>`, `"`, `'`) antes de renderizar mensajes en el DOM.

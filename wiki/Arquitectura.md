@@ -46,7 +46,7 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 
 ## 3. Integración con el Núcleo del Servidor y Clúster Bi-Regional
 - **Malla Bi-Regional Soberana**:
-  - **Nodo Maestro Perú (`node_1_master` - `26.140.157.205`)**: Aloja MySQL 8.4 autoritativo, AuthServer (`:3724`), WorldServer de producción (`:8085`) y `ProjectJaina_WebAPI.py` (`:8080`).
+  - **Nodo Maestro Perú (`node_1_master` - `26.140.157.205`)**: Aloja MySQL 8.4 autoritativo, AuthServer (`:3724`), WorldServer de producción (`:8085`) y `jaina_webapi_daemon.exe` (Tokio/Axum `:8080`).
   - **Nodo Cómputo España (`node_2_compute` - `26.202.12.241`)**: Aloja Reino 3 `WanitosGym` (`:8087`), inferencia neuronal y contingencia activa en espejo.
   - **Conmutación Automática (Sentinel Failover & Maintenance Lock)**: `ProjectJaina_Sentinel.py` supervisa la malla respetando `maintenance_lock.json` (`TTL <= 300s`) durante transiciones controladas de era.
 - **Topología de Reinos Consolidada**:
@@ -55,7 +55,7 @@ La estética del portal rinde homenaje a Lady Jaina Valiente y la ciudadela de T
 - **Bifacción Canónica Simétrica y Hermandades Oficiales**:
   - 🦁 **La Alianza & El Kirin Tor**: Hermandad canónica `<El Kirin Tor>` (Guild ID 21, Lady Jaina Valiente).
   - 🐺 **La Horda de Orgrimmar**: Hermandad canónica `<La Horda de Orgrimmar>` (Guild ID 22, Jefe de Guerra Thrall).
-- **Micro-Backend API**: `ProjectJaina_WebAPI.py` (puerto `8080`) con soporte SSOT para los 6 Baluartes Soberanos (`CANONICAL_ENCLAVES`), filtro `battlepass`, Armería, Tienda y Progresión.
+- **Micro-Backend API**: `jaina_webapi_daemon.exe` (Tokio/Axum, puerto `8080`) con soporte SSOT para los 6 Baluartes Soberanos (`CANONICAL_ENCLAVES`), cálculo real de GearScore en Armería, normalización de hermandades, filtro `battlepass`, Tienda y Progresión.
 - **Coordinador de Voz 3D WebRTC**: `server/voice_service/server.js` (puerto `3050` / gateway `3051` HTTPS/WSS Multi-SAN).
 - **Puente Neuronal de IA (LLM)**: LM Studio / Neural Worker (`:1234` / `:5005`) conectado vía `mod-llm-chatter` bajo la regla *Smallest-Model-First*.
 - **Gobernanza Legal & Blindaje**: Cumplimiento vía `terms.html` y `privacy.html` integrados en todas las páginas del portal, y defensa perimetral `ProjectJaina_Shield.py` + `jaina_threat_radar.py`.

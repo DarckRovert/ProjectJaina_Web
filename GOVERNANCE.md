@@ -2,7 +2,7 @@
 
 **Proyecto:** Project Jaina (Project Jaina WotLK 3.3.5a — Ecosistema Vivo & Multijugador Global)  
 **Estándar de Ingeniería:** Staff Software Engineer L9 (Mythos 5)  
-**Fecha de Actualización:** 30 de Octubre de 2026 (Ecosistema v5.53.0 / Portal Web v7.1.0 — Hito #270)
+**Fecha de Actualización:** 15 de Noviembre de 2026 (Ecosistema v6.3.4 / Portal Web v7.4.4 — Hito #377)
 **Líder & Arquitecto:** DarckRovert (Elnazzareno)  
 **Staff AI Engineer:** Antigravity L9 (Mythos 5)  
 
@@ -14,13 +14,13 @@ El disco `E:\` aloja la totalidad de la infraestructura de desarrollo, simulaci�
 
 | Directorio | Rol Técnico | Tecnologías Clave |
 | :--- | :--- | :--- |
-| [`E:\JainaCore_Server`](file:///E:/JainaCore_Server) | **Backend de Producción & Motor JainaCore (SSOT)** | JainaCore C++20 x64, `mod-ale` (Eluna Lua Engine v3.0 con suite de blindaje omnicanal de punteros `IsPlayerValid`/`IsPlayerInWorld`), `mod-playerbots` (humanización 10/10, retardos cognitivos 150-380ms, caminata RPG y emotes activos), motor de población dinámica circadiana (`96_DynamicPopulation_Pacer.lua` de 40 a 300 bots), `mod-llm-chatter`, `mod-anticheat`, MySQL 8.4 (Puerto 3306 con `innodb_flush_log_at_trx_commit=2`), SOAP API (Puerto 7878), Scripts Lua (`server/lua_scripts/`), WorldServer (Puerto 8085 con buffer 64KB) y AuthServer (Puerto 3724). |
+| [`E:\JainaCore_Server`](file:///E:/JainaCore_Server) | **Backend de Producción & Motor JainaCore (SSOT)** | JainaCore C++20 x64, `mod-ale` (Eluna Lua Engine v3.0 con 25 métodos C++, polyfills `IsValidWorldObject` y auditor `luac52`), `mod-playerbots` (humanización 10/10, aislamiento HeroBots/Elite por prefijo en `RandomPlayerbotMgr`/`PlayerbotMgr`), motor de población dinámica circadiana (`96_DynamicPopulation_Pacer.lua` de 220 a 600 bots), `mod-llm-chatter`, `mod-anticheat`, MySQL 8.4 (Puerto 3306 con `innodb_flush_log_at_trx_commit=2`), SOAP API (Puerto 7878), Scripts Lua (`server/lua_scripts/`), WorldServer (Puerto 8085 con buffer 64KB) y AuthServer (Puerto 3724). |
 | [`E:\JainaCore`](file:///E:/JainaCore) | **Repositorio Oficial & Portal Engine de JainaCore** | Arquitectura del motor ([Portal JainaCore](https://darckrovert.github.io/ProjectJaina_Web/jainacore.html)), documentación técnica C++20, pilares de IA y licencias GPLv2. |
 | [`E:\ProjectJaina_FHD`](file:///E:/ProjectJaina_FHD) | **Cliente Maestro Canónico (GM & Desarrollador)** | World of Warcraft 3.3.5a (Build 12340), Texturas FHD/HD (23.8 GB), UI Dragonflight, Suite completa de AddOns oficiales, herramientas exclusivas de GM (`ProjectJaina_AdminTools`, `GMGenie`), perfiles personales WTF, mitigación de ratones 1000 Hz (`rawMouseEnable 1`) y lanzadores de laboratorio. |
-| [`E:\ProjectJaina_Lab`](file:///E:/ProjectJaina_Lab) | **Centro de Operaciones, Consola GM y Túneles** | `ProjectJaina_Console.py` (Dashboard Web Puerto 8088 con Catálogo & Spawner Universal, Inspector 360° Paperdoll, Editor Web de Configs con respaldos `.bak`, Tacómetro Tick Diff, Tickets GM y Radar Leaflet/Three.js), `ProjectJaina_Shield.py` (Sovereign Shield & Anti-DDoS con mitigación Playit Anycast), `tools/audit_playit_api.py`, `ProjectJaina_WebAPI.py` (Puerto 8080), lanzadores unificados `.bat`, configuración de red SSOT (`network_target.json`). |
-| [`E:\ProjectJaina_Distribucion_Publica`](file:///E:/ProjectJaina_Distribucion_Publica) | **Arquitectura de Distribución Canónica (3 Paquetes)** | `01_Cliente_ProjectJaina_Publico` (36.99 GB, 45 Hardlinks NTFS hacia MPQs), `02_Servidor_Cluster_Colegas` (1.01 GB, RAR con -rr3%), `03_Launcher_Solo_Actualizador` (70.47 MB). Manifiesto canónico [DISTRIBUCION_MANIFEST.json](file:///e:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) con hashes SHA-256 certificados. |
+| [`E:\ProjectJaina_Lab`](file:///E:/ProjectJaina_Lab) | **Centro de Operaciones, Consola GM y Malla Rust** | `jaina_console_daemon.exe` (Tokio/Axum :8088 con telemetría SQL `EXISTS`, Catálogo & Spawner Universal, Inspector 360° Paperdoll, Editor Web de Configs con respaldos `.bak`, Tacómetro Tick Diff y Tickets GM), `jaina_webapi_daemon.exe` (Tokio/Axum :8080 con Armería GS DB real), `jaina_mesh_daemon.exe` (:8090), `jaina_neural_core.exe`, `jaina_tactical_solver.dll`, `jaina_combat_core.dll`, `ProjectJaina_Shield.py`, `tools/audit_playit_api.py`, lanzadores unificados `.bat` y configuración de red SSOT (`network_target.json`). |
+| [`E:\ProjectJaina_Distribucion_Publica`](file:///E:/ProjectJaina_Distribucion_Publica) | **Arquitectura de Distribución Canónica (4 Paquetes)** | `01_Cliente_ProjectJaina_Publico` (37.02 GB, Hardlinks NTFS hacia MPQs), `02_Servidor_Cluster_Colegas`, `03_Launcher_Solo_Actualizador`, `04_Cliente_Android_Imito` (ARM64 v1.1). Manifiesto canónico [DISTRIBUCION_MANIFEST.json](file:///e:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) con hashes SHA-256 certificados. |
 | [`E:\Logo_ProjectJaina`](file:///E:/Logo_ProjectJaina) | **Identidad Visual y Activos Gráficos** | Vectores e ilustraciones oficiales de ultra alta resolución (escudo arcano, banner hero cinemático, living lore) y catálogo de marca. |
-| [`E:\ProjectJaina_Web`](file:///E:/ProjectJaina_Web) | **Portal Web Público AAA v7.1.0 (GitHub Pages)** | Aplicación web alojada en [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/) con Suite Kirin Tor de diálogos no bloqueantes (0 `alert`), Fonoteca Arcana & Kirin Tor FM (15 canales + Cross-Tab Sonic Mutex), Armería v7.1 (20 campeones Tier 2, Paperdoll 19 slots, `?inspect=`), Base de Datos AoWoW v7.1 (72 registros, 8 pestañas, 6 Baluartes), Modo Sandbox en Mi Cuenta, registro SRP6 + Discord Quick-Bind, Voz 3D WebRTC, `terms.html`/`privacy.html` y descarga CDN v2.1.3. |
+| [`E:\ProjectJaina_Web`](file:///E:/ProjectJaina_Web) | **Portal Web Público AAA v7.4.4 (GitHub Pages)** | Aplicación web alojada en [https://darckrovert.github.io/ProjectJaina_Web/](https://darckrovert.github.io/ProjectJaina_Web/) con Suite Kirin Tor de diálogos no bloqueantes (0 `alert`), Fonoteca Arcana & Kirin Tor FM (15 canales + Cross-Tab Sonic Mutex), Armería v7.4.4 (Arquitecto `Elnazzareno` y 7 Campeones Soberanos Tier 2/3 Real, Paperdoll 19 slots, GS DB real, `?inspect=`), Base de Datos AoWoW (72 registros, 8 pestañas, 6 Baluartes certificados 3D), Modo Sandbox en Mi Cuenta, registro SRP6 + Discord Quick-Bind, Voz 3D WebRTC, `terms.html`/`privacy.html` y descarga CDN v2.1.3. |
 
 ---
 
@@ -68,7 +68,7 @@ Dado que la conexión de salida residencial está bajo CGNAT de Bitel Perú (IP 
 flowchart TD
     Player[Jugador Remoto sin VPN] -->|Navegador HTTPS| GHPages[Portal Web GitHub Pages]
     GHPages -->|Registro SRP6 & Armería| Ngrok[Túnel Ngrok HTTPS<br/>ingrainedly-easeled-edelmira.ngrok-free.dev]
-    Ngrok --> WebAPI[ProjectJaina_WebAPI.py<br/>Puerto Local 8080]
+    Ngrok --> WebAPI[jaina_webapi_daemon.exe<br/>Puerto Local 8080]
     WebAPI --> MySQL[MySQL 8.4 Local<br/>Puerto 3306]
 
     Player -->|Cliente WoW 3.3.5a<br/>realmlist 127.0.0.1| LoopbackProxy[Jaina Loopback Proxy<br/>127.0.0.1:3724 / 11356]
@@ -89,7 +89,7 @@ flowchart TD
 | **Web Portal & Registro** | `https://darckrovert.github.io/ProjectJaina_Web/` | N/A | GitHub Pages |
 | **API Backend (Registro SRP6)** | `https://ingrainedly-easeled-edelmira.ngrok-free.dev` | `127.0.0.1:8080` | Ngrok Agent (Capa 7 HTTPS) |
 | **Discord Bot Sentinel** | App ID `1563652716859887807` (`cXxMuRJrfy`) | Inbound Webhook | Canal `#🌐┃estado-de-reinos` (`1563660859488731257`) |
-| **Consola GM Maestra** | `http://127.0.0.1:8088` | `127.0.0.1:8088` | Localhost (Threaded HTTP) |
+| **Consola GM Maestra** | `http://127.0.0.1:8088` | `127.0.0.1:8088` | Localhost (`jaina_console_daemon.exe`, Tokio/Axum) |
 | **Audio Espacial 3D** | Multi-SAN SSL WebRTC (`26.140.157.205` / `26.202.12.241`) | `127.0.0.1:3050` / `3051` | Node.js + X.509 Gateway |
 | **Red Privada Alternativa** | Red: `Project_Jaina` (Uso Exclusivo Clúster Staff) | `26.140.157.205` | Radmin VPN (Backup / Sync) |
 
@@ -105,7 +105,7 @@ Para encender y apagar el ecosistema de forma ordenada y transaccional:
      `UPDATE realmlist SET address='ambulance-ergonomic.tun.ply.gg', localAddress='ambulance-ergonomic.tun.ply.gg', localSubnetMask='255.0.0.0', port=11356, name='Project Jaina' WHERE id=1;`
    - Inicia `authserver.exe` (3724).
    - Inicia `worldserver.exe` (8085) con Eluna y Playerbots.
-   - Inicia `ProjectJaina_WebAPI.py` (8080).
+   - Inicia `jaina_webapi_daemon.exe` (8080).
    - Inicia el demonio de `ngrok.exe` para enlazar la Web con la base de datos.
 2. **Apagado Limpio Transaccional:** [Detener_Servidor_Local.bat](file:///e:/ProjectJaina_Lab/Launchers/Detener_Servidor_Local.bat)
    - Cierra ordenadamente WorldServer, AuthServer, WebAPI, Ngrok y puentes IA.
@@ -124,14 +124,14 @@ Todo agente de IA, desarrollador o administrador que ingrese al repositorio debe
 | [E:\.agents\rules\GOVERNANCE_FRAMEWORK.md](file:///E:/.agents/rules/GOVERNANCE_FRAMEWORK.md) | **Directrices Canónicas L9 (`.agents/rules/`)** | Framework canónico de 10 directrices: SOLID, Programación Defensiva, ACID/InnoDB, Zero-Trust, SRE, Clúster, Empaquetado Post-Sesión, Discord Sentinel y Red Anycast Playit. |
 | [E:\GOVERNANCE.md](file:///E:/GOVERNANCE.md) | **Disco E:\ (Raíz)** | Gobernanza maestra, topología de carpetas, cuadro de honor, política dual de clientes, túneles y reglas de inferencia. |
 | [E:\ProjectJaina_Lab\GOVERNANCE.md](file:///E:/ProjectJaina_Lab/GOVERNANCE.md) | `E:\ProjectJaina_Lab` | Consola GM (8088), WebAPI (8080), Sovereign Shield Anti-DDoS, suite de diagnósticos y lanzadores `.bat`. |
-| [E:\ProjectJaina_Distribucion_Publica\GOVERNANCE.md](file:///E:/ProjectJaina_Distribucion_Publica/GOVERNANCE.md) | `E:\ProjectJaina_Distribucion_Publica` | Aislamiento de datos GM, eliminación de `.git`, 3 paquetes de distribución canónica (`.rar`), manifiesto SHA-256 y WTF virgen. |
+| [E:\ProjectJaina_Distribucion_Publica\GOVERNANCE.md](file:///E:/ProjectJaina_Distribucion_Publica/GOVERNANCE.md) | `E:\ProjectJaina_Distribucion_Publica` | Aislamiento de datos GM, eliminación de `.git`, 4 paquetes de distribución canónica, manifiesto SHA-256 y WTF virgen. |
 | [E:\ProjectJaina_FHD\GOVERNANCE.md](file:///E:/ProjectJaina_FHD/GOVERNANCE.md) | `E:\ProjectJaina_FHD` | Cliente maestro de GM/Dev, límites de memoria 32-bit (`farclip 800`, `gxApi D3D9`), suite de AddOns y parches delta. |
 | [E:\ProjectJaina_Web\GOVERNANCE.md](file:///E:/ProjectJaina_Web/GOVERNANCE.md) | `E:\ProjectJaina_Web` | Portal público en GitHub Pages, cabecera mandatoria `ngrok-skip-browser-warning`, SRP6, Discord SSO, `terms.html`/`privacy.html` y pipeline Git. |
 | [E:\JainaCore_Server\GOVERNANCE.md](file:///E:/JainaCore_Server/GOVERNANCE.md) | `E:\JainaCore_Server` | Motor C++20 x64, prevención de carreras en MySQL 8.4 (3306), mod-playerbots, mod-llm-chatter, scripts Eluna Lua y SOAP (7878). |
 | [E:\JainaCore_Server\server\lua_scripts\GOVERNANCE.md](file:///E:/JainaCore_Server/server/lua_scripts/GOVERNANCE.md) | `E:\JainaCore_Server\server\lua_scripts` | Gobernanza autoritativa de Eluna Lua Engine, blindaje de punteros de mundo (`IsPlayerValid`), discriminación estricta de bots, Evento 42 y población circadiana. |
 | [INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md](file:///E:/ProjectJaina_Lab/INFRAESTRUCTURA_RED_Y_CONECTIVIDAD_GLOBAL.md) | `E:\ProjectJaina_Lab` | Diagnóstico de CGNAT Bitel (`10.53.0.1`), túneles Playit Anycast L4, Ngrok L7, reglas de firewall y puertos. |
 | [DISTRIBUCION_MANIFEST.json](file:///E:/ProjectJaina_Distribucion_Publica/DISTRIBUCION_MANIFEST.json) | `E:\ProjectJaina_Distribucion_Publica` | Manifiesto criptográfico autoritativo SHA-256 de los paquetes de distribución (Cliente, Clúster Colegas, Launcher). |
-| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #270, cacería de bugs y arquitectura profunda. |
+| [PROJECT_JAINA_ESTADO_MAESTRO.md](file:///E:/ProjectJaina_Lab/PROJECT_JAINA_ESTADO_MAESTRO.md) | `E:\ProjectJaina_Lab` | Bitácora autoritativa integral con cobertura de Hitos #1 al #377, cacería de bugs y arquitectura profunda. |
 
 ---
 
@@ -139,7 +139,7 @@ Todo agente de IA, desarrollador o administrador que ingrese al repositorio debe
 
 Para preservar la estabilidad de la memoria RAM y VRAM del host donde coexisten `worldserver.exe`, `authserver.exe`, MySQL 8.4 Server y cientos de bots de simulación:
 
-1. **Selección Dinámica Obligatoria:** Todo componente (`jaina_neural_worker.py`, `ProjectJaina_WebAPI.py`, `ProjectJaina_Console.py`, `mod-llm-chatter`/`chatter_llm.py`) que consulte `/v1/models` para inferencia local en LM Studio (`:1234`) u Ollama (`:11434`) debe ejecutar la función canónica `select_smallest_model()`.
+1. **Selección Dinámica Obligatoria:** Todo componente (`jaina_neural_core.exe`, `jaina_webapi_daemon.exe`, `jaina_console_daemon.exe`, `mod-llm-chatter`/`chatter_llm.py`) que consulte `/v1/models` para inferencia local en LM Studio (`:1234`) u Ollama (`:11434`) debe ejecutar la selección dinámica de modelo mínimo compatible.
 2. **Prioridad al Modelo más Pequeño:** Se debe seleccionar siempre el modelo con menor número de parámetros detectado (ej. `liquid/lfm2-1.2b` de 1.2B parámetros, ~1.2 GB de huella) en lugar de modelos 9B o superiores que consumen 8-12 GB de VRAM/RAM y provocarían inanición de recursos (*Out-Of-Memory*).
 3. **Exclusión de Embeddings:** Los modelos no generativos (`embed`, `bge-`, `rerank`, `reward`, `clip`, `whisper`) deben ser filtrados estrictamente antes del ordenamiento por tamaño.
 
